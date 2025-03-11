@@ -1,5 +1,5 @@
-import { Github } from "@medusajs/icons"
-import { Button, Heading } from "@medusajs/ui"
+import { Button, Heading, Text } from "@medusajs/ui"
+import LocalizedClientLink from "@modules/common/components/localized-client-link"
 
 const Hero = () => {
   return (
@@ -8,26 +8,43 @@ const Hero = () => {
         <span>
           <Heading
             level="h1"
-            className="text-3xl leading-10 text-ui-fg-base font-normal"
+            className="mb-12 text-6xl uppercase text-ui-fg-base font-normal"
           >
-            Ecommerce Starter Template
+            Musical Instruments
           </Heading>
-          <Heading
-            level="h2"
-            className="text-3xl leading-10 text-ui-fg-subtle font-normal"
-          >
-            Powered by Medusa and Next.js
-          </Heading>
+          <Text className="text-lg text-ui-fg-subtle font-normal">
+            Bowed string instruments makers
+          </Text>
+          <Text className="text-lg text-ui-fg-subtle font-normal">
+            Traditional manufacturing process  *  Quality wood and materials  *   Special final finishing’s
+          </Text>
         </span>
-        <a
-          href="https://github.com/medusajs/nextjs-starter-medusa"
-          target="_blank"
-        >
-          <Button variant="secondary">
-            View on GitHub
-            <Github />
-          </Button>
-        </a>
+        <div className="flex flex-row gap-4 mt-8">
+          <LocalizedClientLink
+            href="/about-us"
+            data-testid="nav-about-us-link"
+          >
+            <Button className="uppercase text-ui-fg-base w-40 h-12 rounded-3xl bg-transparent hover:bg-ui-bg-base-hover">
+              Our Story
+            </Button>
+          </LocalizedClientLink>
+          <LocalizedClientLink
+            href="/gallery"
+            data-testid="nav-gallery-link"
+          >
+            <Button className="uppercase text-ui-fg-base w-40 h-12 rounded-3xl bg-transparent hover:bg-ui-bg-base-hover">
+              Workshop View
+            </Button>
+          </LocalizedClientLink>
+          <LocalizedClientLink
+            href="/store"
+            data-testid="nav-store-link"
+          >
+            <Button className="uppercase text-ui-fg-base w-40 h-12 rounded-3xl bg-transparent hover:bg-ui-bg-base-hover">
+              Store
+            </Button>
+          </LocalizedClientLink>
+        </div>
       </div>
     </div>
   )

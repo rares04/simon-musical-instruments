@@ -25,11 +25,38 @@ export default async function Nav() {
               className="txt-compact-xlarge-plus hover:text-ui-fg-base uppercase"
               data-testid="nav-store-link"
             >
-              Medusa Store
+              Simon Musical Instruments
             </LocalizedClientLink>
           </div>
 
           <div className="flex items-center gap-x-6 h-full flex-1 basis-0 justify-end">
+            <div className="hidden small:flex items-center gap-x-6 h-full">
+              <LocalizedClientLink
+                className="hover:text-ui-fg-base"
+                href="/about-us"
+                data-testid="nav-about-us-link"
+              >
+                About Us
+              </LocalizedClientLink>
+            </div>
+            <div className="hidden small:flex items-center gap-x-6 h-full">
+              <LocalizedClientLink
+                className="hover:text-ui-fg-base"
+                href="/gallery"
+                data-testid="nav-gallery-link"
+              >
+                Gallery
+              </LocalizedClientLink>
+            </div>
+            <div className="hidden small:flex items-center gap-x-6 h-full">
+              <LocalizedClientLink
+                className="hover:text-ui-fg-base"
+                href="/contact"
+                data-testid="nav-contact-link"
+              >
+                Contact
+              </LocalizedClientLink>
+            </div>
             <div className="hidden small:flex items-center gap-x-6 h-full">
               <LocalizedClientLink
                 className="hover:text-ui-fg-base"

@@ -1,29 +1,75 @@
-import { listCategories } from "@lib/data/categories"
-import { listCollections } from "@lib/data/collections"
-import { Text, clx } from "@medusajs/ui"
+// import { listCategories } from "@lib/data/categories"
+// import { listCollections } from "@lib/data/collections"
+import { Heading, Text, clx } from "@medusajs/ui"
 
 import LocalizedClientLink from "@modules/common/components/localized-client-link"
-import MedusaCTA from "@modules/layout/components/medusa-cta"
 
 export default async function Footer() {
-  const { collections } = await listCollections({
-    fields: "*products",
-  })
-  const productCategories = await listCategories()
+  // const { collections } = await listCollections({
+  //   fields: "*products",
+  // })
+  // const productCategories = await listCategories()
 
   return (
     <footer className="border-t border-ui-border-base w-full">
       <div className="content-container flex flex-col w-full">
-        <div className="flex flex-col gap-y-6 xsmall:flex-row items-start justify-between py-40">
-          <div>
+        <div className="flex flex-col gap-y-6 xsmall:flex-row items-start justify-between py-10">
+          <div className="flex flex-col gap-y-4">
+            <Heading level="h2" className="mb-2 uppercase">
+              Menu
+            </Heading>
             <LocalizedClientLink
-              href="/"
-              className="txt-compact-xlarge-plus text-ui-fg-subtle hover:text-ui-fg-base uppercase"
+              href="/about-us"
+              className="text-ui-fg-base hover:text-ui-fg-subtle"
             >
-              Medusa Store
+              About Us
+            </LocalizedClientLink>
+            <LocalizedClientLink
+              href="/gallery"
+              className="text-ui-fg-base hover:text-ui-fg-subtle"
+            >
+              Gallery
+            </LocalizedClientLink>
+            <LocalizedClientLink
+              href="/contact"
+              className="text-ui-fg-base hover:text-ui-fg-subtle"
+            >
+              Contact
+            </LocalizedClientLink>
+            <LocalizedClientLink
+              href="/account"
+              className="text-ui-fg-base hover:text-ui-fg-subtle"
+            >
+              Account
+            </LocalizedClientLink>
+            <LocalizedClientLink
+              href="/store"
+              className="text-ui-fg-base hover:text-ui-fg-subtle"
+            >
+              Store
             </LocalizedClientLink>
           </div>
-          <div className="text-small-regular gap-10 md:gap-x-16 grid grid-cols-2 sm:grid-cols-3">
+          <div className="flex flex-col gap-y-4">
+            <Heading level="h2" className="mb-2 uppercase">
+              Simon Musical Instruments
+            </Heading>
+            <div className="flex flex-col items-center">
+              <Text className="py-1">Phone:</Text>
+              <Text className="text-ui-fg-muted">+40 744 960 722</Text>
+              <Text className="text-ui-fg-muted">+40 365 100 422 (FAX)</Text>
+            </div>
+            <div className="flex flex-col items-center">
+              <Text className="py-1">Email:</Text>
+              <Text className="text-ui-fg-muted">paul.simon@simoninstruments.com</Text>
+            </div>
+            <div className="flex flex-col items-center">
+              <Text className="py-1">Address:</Text>
+              <Text className="text-ui-fg-muted">1 Decembrie 1918 street, no. 8</Text>
+              <Text className="text-ui-fg-muted">545300 Reghin, ROMANIA</Text>
+            </div>
+          </div>
+
+          {/* <div className="text-small-regular gap-10 md:gap-x-16 grid grid-cols-2 sm:grid-cols-3">
             {productCategories && productCategories?.length > 0 && (
               <div className="flex flex-col gap-y-2">
                 <span className="txt-small-plus txt-ui-fg-base">
@@ -143,13 +189,32 @@ export default async function Footer() {
                 </li>
               </ul>
             </div>
+          </div> */}
+          <div className="flex flex-col gap-y-4 items-center">
+            <Heading level="h2" className="mb-2 uppercase">
+              Workshop
+            </Heading>
+            <div className="flex flex-row gap-x-2">
+              <div className="overflow-hidden">
+                <img src="/images/simon-instrumente.jpg" alt="Instrumente" className="transform transition-transform duration-300 hover:scale-110"/>
+              </div>
+              <div className="overflow-hidden">
+                <img src="/images/simon-instrumente-ecaterina-simon.jpg" alt="Instrumente Ecaterina Simon" className="transform transition-transform duration-300 hover:scale-110"/>
+              </div>
+              <div className="overflow-hidden">
+                <img src="/images/simon-instrumente-lacuite.jpg" alt="Instrumente Lacuite" className="transform transition-transform duration-300 hover:scale-110"/>
+              </div>
+              <div className="overflow-hidden">
+                <img src="/images/simon-instrumente-paul-simon.jpg" alt="Instrumente Paul Simon" className="transform transition-transform duration-300 hover:scale-110"/>
+              </div>
+            </div>
           </div>
         </div>
-        <div className="flex w-full mb-16 justify-between text-ui-fg-muted">
+        <div className="flex w-full mb-4 justify-center text-ui-fg-muted">
           <Text className="txt-compact-small">
-            © {new Date().getFullYear()} Medusa Store. All rights reserved.
+            Simon Musical Instruments 2019 - All Rights Reserved. 
           </Text>
-          <MedusaCTA />
+          {/* <MedusaCTA /> */}
         </div>
       </div>
     </footer>
