@@ -12,5 +12,8 @@ export const Media: CollectionConfig = {
       required: true,
     },
   ],
-  upload: true,
+  upload: {
+    // Disable local storage - files go to S3/Supabase Storage
+    disableLocalStorage: true,
+  },
 }
