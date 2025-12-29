@@ -1,22 +1,24 @@
-import Link from 'next/link'
+'use client'
+
+import { useTranslations } from 'next-intl'
 import { Mail, MapPin, Phone, Facebook, Instagram, Youtube } from 'lucide-react'
+import { Link } from '@/i18n/routing'
+import { LanguageSwitcher } from '@/components/language-switcher'
 
 export function Footer() {
+  const t = useTranslations('footer')
+
   return (
     <footer id="contact" className="border-t border-border/60 bg-primary/5">
       <div className="container mx-auto px-4 lg:px-8 py-12 lg:py-16">
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
-          {/* Brand - Added workshop invitation */}
+          {/* Brand */}
           <div className="space-y-4 lg:col-span-2">
             <h3 className="font-serif text-xl text-foreground">Simon Musical Instruments</h3>
             <p className="text-muted-foreground text-sm leading-relaxed max-w-md text-pretty">
-              We invite you to our virtual workshop, where tradition meets exceptional craftsmanship.
-              Handcrafted bowed string instruments from the heart of Transylvania.
+              {t('tagline')}
             </p>
-            <p className="text-xs text-muted-foreground italic">
-              &quot;From our little workshop in Reghin, we create instruments that resonate with
-              musicians worldwide.&quot;
-            </p>
+            <p className="text-xs text-muted-foreground italic">&quot;{t('quote')}&quot;</p>
 
             {/* Social Media Links */}
             <div className="flex gap-4 pt-2">
@@ -53,7 +55,7 @@ export function Footer() {
           {/* Contact */}
           <div className="space-y-4">
             <h4 className="text-sm font-medium uppercase tracking-wider text-foreground">
-              Contact
+              {t('contact')}
             </h4>
             <div className="space-y-3 text-sm">
               <div className="flex items-start gap-2 text-muted-foreground">
@@ -79,20 +81,20 @@ export function Footer() {
           {/* Links */}
           <div className="space-y-4">
             <h4 className="text-sm font-medium uppercase tracking-wider text-foreground">
-              Explore
+              {t('explore')}
             </h4>
             <nav className="flex flex-col gap-2 text-sm">
               <Link
                 href="/gallery"
                 className="text-muted-foreground hover:text-accent transition-colors cursor-pointer"
               >
-                Shop Instruments
+                {t('shopInstruments')}
               </Link>
               <Link
                 href="/#story"
                 className="text-muted-foreground hover:text-accent transition-colors cursor-pointer"
               >
-                Our Story
+                {t('ourStory')}
               </Link>
               <Link
                 href="/faq"
@@ -104,16 +106,19 @@ export function Footer() {
                 href="/contact"
                 className="text-muted-foreground hover:text-accent transition-colors cursor-pointer"
               >
-                Contact
+                {t('contact')}
               </Link>
+              <div className="pt-2">
+                <LanguageSwitcher variant="footer" />
+              </div>
             </nav>
           </div>
         </div>
 
         <div className="mt-12 pt-8 border-t border-border/40">
           <div className="flex flex-col sm:flex-row justify-between items-center gap-4 text-sm text-muted-foreground">
-            <p>© {new Date().getFullYear()} Simon Musical Instruments. All rights reserved.</p>
-            <p className="text-xs">Handcrafted with care in Reghin, Romania</p>
+            <p>{t('copyright', { year: new Date().getFullYear() })}</p>
+            <p className="text-xs">{t('madeIn')}</p>
           </div>
         </div>
       </div>

@@ -1,0 +1,194 @@
+{
+  "navigation": {
+    "shop": "Shop",
+    "about": "About",
+    "faq": "FAQ",
+    "contact": "Contact",
+    "signIn": "Sign In",
+    "myAccount": "My Account",
+    "myOrders": "My Orders",
+    "signOut": "Sign Out"
+  },
+  "hero": {
+    "title": "Welcome to Our Virtual Workshop",
+    "subtitle": "Handcrafted bowed string instruments from the heart of Transylvania, where tradition meets exceptional craftsmanship.",
+    "cta": "Explore Our Instruments",
+    "learnStory": "Our Story",
+    "established": "Est. 2014",
+    "quote": "We are Paul and Ecaterina Simon, and we are happy to welcome you to our site. From our little workshop in Reghin, known as \"The City of Violins,\" we create instruments that resonate with musicians worldwide."
+  },
+  "instruments": {
+    "title": "Our Instruments",
+    "subtitle": "Each instrument is handcrafted with care and precision",
+    "viewDetails": "View Details",
+    "addToCart": "Add to Cart",
+    "inquire": "Inquire",
+    "available": "Available",
+    "inBuild": "In Build",
+    "reserved": "Reserved",
+    "sold": "Sold",
+    "violin": "Violin",
+    "viola": "Viola",
+    "cello": "Cello",
+    "contrabass": "Contrabass"
+  },
+  "story": {
+    "title": "Our Story",
+    "subtitle": "A tradition of excellence from Reghin, Transylvania",
+    "heritage": {
+      "title": "Master Craftsmanship",
+      "description": "Since 2001, we've been perfecting the art of string instrument making, learning from the best traditions of Reghin."
+    },
+    "materials": {
+      "title": "Premium Materials",
+      "description": "We carefully select and naturally cure the finest tonewoods, ensuring exceptional resonance in every instrument."
+    },
+    "clientele": {
+      "title": "International Clientele",
+      "description": "Our instruments are appreciated by musicians from France, Belgium, Spain, Germany, Japan, Taiwan, and beyond."
+    }
+  },
+  "testimonials": {
+    "title": "What Our Clients Say",
+    "subtitle": "Hear from musicians who have chosen our instruments",
+    "source": "Source: Google Reviews"
+  },
+  "faq": {
+    "title": "Frequently Asked Questions",
+    "subtitle": "Find answers to common questions about our instruments and services",
+    "contactPrompt": "Can't find what you're looking for?",
+    "contactLink": "Contact us directly",
+    "questions": {
+      "purchase": {
+        "question": "How can I purchase an instrument?",
+        "answer": "You can browse our available instruments in the Shop section. Each instrument page has detailed information, photos, and audio samples. To purchase, simply add the instrument to your cart and proceed to checkout, or contact us directly for a personalized consultation."
+      },
+      "shipping": {
+        "question": "Do you ship internationally?",
+        "answer": "Yes, we ship worldwide! We have experience shipping to clients in France, Belgium, Spain, Germany, Japan, Taiwan, and many other countries. All instruments are professionally packed and fully insured during transport."
+      },
+      "returns": {
+        "question": "What is your return policy?",
+        "answer": "We offer a 14-day return policy for instruments in their original condition. If you're not completely satisfied, you can return the instrument for a full refund minus shipping costs. Custom orders may have different terms."
+      },
+      "certificate": {
+        "question": "Do instruments come with a certificate of authenticity?",
+        "answer": "Yes, every instrument we create comes with a signed certificate of authenticity that includes details about the materials used, construction date, and our workshop guarantee."
+      },
+      "care": {
+        "question": "How should I care for my instrument?",
+        "answer": "We recommend keeping your instrument in a case when not in use, maintaining proper humidity levels (40-60%), and having it professionally set up annually. We include detailed care instructions with every purchase."
+      },
+      "custom": {
+        "question": "Can I order a custom instrument?",
+        "answer": "We welcome custom orders. Contact us to discuss your specific requirements, preferences for wood selection, varnish color, and any other customizations you'd like. Custom instruments typically take 3-6 months to complete."
+      },
+      "payment": {
+        "question": "What payment methods do you accept?",
+        "answer": "We accept major credit cards (Visa, Mastercard, American Express) through our secure Stripe payment system. For larger purchases, we can also arrange bank transfers or payment plans."
+      },
+      "packaging": {
+        "question": "How are instruments packaged for shipping?",
+        "answer": "Each instrument is carefully wrapped in protective materials, placed in a hard case (included with purchase), and then packed in a custom shipping box with additional padding. We use climate-controlled shipping when possible."
+      }
+    }
+  },
+  "contact": {
+    "title": "Contact Us",
+    "subtitle": "We'd love to hear from you",
+    "form": {
+      "name": "Your Name",
+      "email": "Email Address",
+      "phone": "Phone Number",
+      "subject": "Subject",
+      "message": "Your Message",
+      "submit": "Send Message",
+      "sending": "Sending...",
+      "success": "Message sent successfully! We'll get back to you soon.",
+      "subjects": {
+        "general": "General Inquiry",
+        "purchase": "Purchase Question",
+        "custom": "Custom Order",
+        "visit": "Workshop Visit",
+        "other": "Other"
+      }
+    },
+    "info": {
+      "title": "Get in Touch",
+      "address": "Address",
+      "email": "Email",
+      "phone": "Phone / Fax",
+      "hours": "Workshop Hours",
+      "hoursValue": "Monday - Friday: 9:00 - 17:00\nSaturday: By appointment"
+    },
+    "map": {
+      "title": "Find Us"
+    }
+  },
+  "footer": {
+    "tagline": "We invite you to our virtual workshop, where tradition meets exceptional craftsmanship. Handcrafted bowed string instruments from the heart of Transylvania.",
+    "quote": "From our little workshop in Reghin, we create instruments that resonate with musicians worldwide.",
+    "contact": "Contact",
+    "explore": "Explore",
+    "shopInstruments": "Shop Instruments",
+    "ourStory": "Our Story",
+    "copyright": "© {year} Simon Musical Instruments. All rights reserved.",
+    "madeIn": "Handcrafted with care in Reghin, Romania"
+  },
+  "common": {
+    "loading": "Loading...",
+    "error": "An error occurred",
+    "backToHome": "Back to Home",
+    "learnMore": "Learn More",
+    "viewAll": "View All"
+  },
+  "account": {
+    "title": "My Account",
+    "profile": "Profile",
+    "orders": "Orders",
+    "addresses": "Addresses",
+    "settings": "Settings"
+  },
+  "gallery": {
+    "badge": "Available for Purchase",
+    "title": "Instrument Shop",
+    "description": "Browse our current inventory of handcrafted instruments. Each piece is available for purchase and ready to ship. Click any instrument to view full details, hear sound samples, and complete your purchase.",
+    "noResults": "No instruments match your filters",
+    "adjustFilters": "Try adjusting your selection or view all instruments",
+    "filters": {
+      "instrumentType": "Instrument Type",
+      "priceRange": "Price Range",
+      "allInstruments": "All Instruments",
+      "violins": "Violins",
+      "violas": "Violas",
+      "cellos": "Cellos",
+      "contrabasses": "Contrabasses",
+      "allTypes": "All Types",
+      "allPrices": "All Prices",
+      "under3000": "Under €3,000",
+      "3000to6000": "€3,000 - €6,000",
+      "6000to10000": "€6,000 - €10,000",
+      "over10000": "Over €10,000"
+    },
+    "showing": "Showing {count} instruments"
+  },
+  "cart": {
+    "title": "Shopping Cart",
+    "empty": "Your cart is empty",
+    "total": "Total",
+    "checkout": "Proceed to Checkout",
+    "continueShopping": "Continue Shopping",
+    "remove": "Remove"
+  },
+  "checkout": {
+    "title": "Checkout",
+    "shipping": "Shipping Information",
+    "payment": "Payment",
+    "review": "Review Order",
+    "placeOrder": "Place Order",
+    "success": {
+      "title": "Thank You!",
+      "message": "Your order has been placed successfully."
+    }
+  }
+}

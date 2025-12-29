@@ -1,0 +1,195 @@
+{
+  "navigation": {
+    "shop": "Winkel",
+    "about": "Over Ons",
+    "faq": "FAQ",
+    "contact": "Contact",
+    "signIn": "Inloggen",
+    "myAccount": "Mijn Account",
+    "myOrders": "Mijn Bestellingen",
+    "signOut": "Uitloggen"
+  },
+  "hero": {
+    "title": "Welkom in Onze Virtuele Werkplaats",
+    "subtitle": "Handgemaakte strijkinstrumenten uit het hart van Transsylvanië, waar traditie samenkomt met uitzonderlijk vakmanschap.",
+    "cta": "Ontdek Onze Instrumenten",
+    "learnStory": "Ons Verhaal",
+    "established": "Sinds 2014",
+    "quote": "Wij zijn Paul en Ecaterina Simon en we zijn blij u welkom te heten op onze site. Vanuit onze kleine werkplaats in Reghin, bekend als \"De Stad van de Violen\", creëren we instrumenten die resoneren met muzikanten wereldwijd."
+  },
+  "instruments": {
+    "title": "Onze Instrumenten",
+    "subtitle": "Elk instrument wordt met zorg en precisie met de hand gemaakt",
+    "viewDetails": "Details Bekijken",
+    "addToCart": "In Winkelwagen",
+    "inquire": "Informeren",
+    "available": "Beschikbaar",
+    "inBuild": "In Productie",
+    "reserved": "Gereserveerd",
+    "sold": "Verkocht",
+    "violin": "Viool",
+    "viola": "Altviool",
+    "cello": "Cello",
+    "contrabass": "Contrabas"
+  },
+  "story": {
+    "title": "Ons Verhaal",
+    "subtitle": "Een traditie van excellentie uit Reghin, Transsylvanië",
+    "heritage": {
+      "title": "Meesterlijk Vakmanschap",
+      "description": "Sinds 2001 perfectioneren we de kunst van het strijkinstrumentenbouwen, lerend van de beste tradities van Reghin."
+    },
+    "materials": {
+      "title": "Premium Materialen",
+      "description": "We selecteren zorgvuldig en laten de fijnste klankhouten op natuurlijke wijze drogen, waardoor elk instrument een uitzonderlijke resonantie krijgt."
+    },
+    "clientele": {
+      "title": "Internationale Klantenkring",
+      "description": "Onze instrumenten worden gewaardeerd door muzikanten uit Frankrijk, België, Spanje, Duitsland, Japan, Taiwan en daarbuiten."
+    }
+  },
+  "testimonials": {
+    "title": "Wat Onze Klanten Zeggen",
+    "subtitle": "Luister naar muzikanten die voor onze instrumenten hebben gekozen",
+    "source": "Bron: Google Recensies"
+  },
+  "faq": {
+    "title": "Veelgestelde Vragen",
+    "subtitle": "Vind antwoorden op veelgestelde vragen over onze instrumenten en diensten",
+    "contactPrompt": "Niet gevonden wat u zoekt?",
+    "contactLink": "Neem direct contact met ons op",
+    "questions": {
+      "purchase": {
+        "question": "Hoe kan ik een instrument kopen?",
+        "answer": "U kunt onze beschikbare instrumenten bekijken in de Winkel sectie. Elke instrumentpagina bevat gedetailleerde informatie, foto's en audiosamples. Om te kopen, voegt u simpelweg het instrument toe aan uw winkelwagen en gaat u naar de kassa, of neem direct contact met ons op voor een persoonlijk advies."
+      },
+      "shipping": {
+        "question": "Verzenden jullie internationaal?",
+        "answer": "Ja, we verzenden wereldwijd! We hebben ervaring met verzenden naar klanten in Frankrijk, België, Spanje, Duitsland, Japan, Taiwan en vele andere landen. Alle instrumenten worden professioneel verpakt en volledig verzekerd tijdens transport."
+      },
+      "returns": {
+        "question": "Wat is jullie retourbeleid?",
+        "answer": "We bieden een retourbeleid van 14 dagen voor instrumenten in hun originele staat. Als u niet volledig tevreden bent, kunt u het instrument retourneren voor volledige terugbetaling minus verzendkosten. Aangepaste bestellingen kunnen andere voorwaarden hebben."
+      },
+      "certificate": {
+        "question": "Worden instrumenten geleverd met een certificaat van echtheid?",
+        "answer": "Ja, elk instrument dat we maken wordt geleverd met een ondertekend certificaat van echtheid dat details bevat over de gebruikte materialen, constructiedatum en onze werkplaatsgarantie."
+      },
+      "care": {
+        "question": "Hoe moet ik mijn instrument verzorgen?",
+        "answer": "We raden aan uw instrument in een koffer te bewaren wanneer het niet in gebruik is, de juiste vochtigheidsgraad te handhaven (40-60%) en het jaarlijks professioneel te laten afstellen. We voegen gedetailleerde verzorgingsinstructies toe bij elke aankoop."
+      },
+      "custom": {
+        "question": "Kan ik een op maat gemaakt instrument bestellen?",
+        "answer": "We verwelkomen aangepaste bestellingen. Neem contact met ons op om uw specifieke eisen te bespreken, voorkeuren voor houtselectie, lakkleur en eventuele andere aanpassingen. Op maat gemaakte instrumenten duren meestal 3-6 maanden om te voltooien."
+      },
+      "payment": {
+        "question": "Welke betaalmethodes accepteren jullie?",
+        "answer": "We accepteren grote creditcards (Visa, Mastercard, American Express) via ons beveiligde Stripe-betalingssysteem. Voor grotere aankopen kunnen we ook bankoverschrijvingen of betalingsregelingen arrangeren."
+      },
+      "packaging": {
+        "question": "Hoe worden instrumenten verpakt voor verzending?",
+        "answer": "Elk instrument wordt zorgvuldig gewikkeld in beschermende materialen, geplaatst in een harde koffer (inbegrepen bij aankoop), en vervolgens verpakt in een speciale verzenddoos met extra vulling. We gebruiken waar mogelijk klimaatgecontroleerde verzending."
+      }
+    }
+  },
+  "contact": {
+    "title": "Neem Contact Op",
+    "subtitle": "We horen graag van u",
+    "form": {
+      "name": "Uw Naam",
+      "email": "E-mailadres",
+      "phone": "Telefoonnummer",
+      "subject": "Onderwerp",
+      "message": "Uw Bericht",
+      "submit": "Bericht Verzenden",
+      "sending": "Verzenden...",
+      "success": "Bericht succesvol verzonden! We nemen binnenkort contact met u op.",
+      "subjects": {
+        "general": "Algemene Vraag",
+        "purchase": "Aankoopvraag",
+        "custom": "Op Maat Bestelling",
+        "visit": "Werkplaatsbezoek",
+        "other": "Anders"
+      }
+    },
+    "info": {
+      "title": "Contact Opnemen",
+      "address": "Adres",
+      "email": "E-mail",
+      "phone": "Telefoon / Fax",
+      "hours": "Werkplaatsuren",
+      "hoursValue": "Maandag - Vrijdag: 9:00 - 17:00\nZaterdag: Op afspraak"
+    },
+    "map": {
+      "title": "Vind Ons"
+    }
+  },
+  "footer": {
+    "tagline": "We nodigen u uit in onze virtuele werkplaats, waar traditie samenkomt met uitzonderlijk vakmanschap. Handgemaakte strijkinstrumenten uit het hart van Transsylvanië.",
+    "quote": "Vanuit onze kleine werkplaats in Reghin creëren we instrumenten die resoneren met muzikanten wereldwijd.",
+    "contact": "Contact",
+    "explore": "Ontdekken",
+    "shopInstruments": "Instrumenten Kopen",
+    "ourStory": "Ons Verhaal",
+    "copyright": "© {year} Simon Musical Instruments. Alle rechten voorbehouden.",
+    "madeIn": "Met liefde gemaakt in Reghin, Roemenië"
+  },
+  "common": {
+    "loading": "Laden...",
+    "error": "Er is een fout opgetreden",
+    "backToHome": "Terug naar Home",
+    "learnMore": "Meer Leren",
+    "viewAll": "Alles Bekijken"
+  },
+  "gallery": {
+    "badge": "Beschikbaar voor Aankoop",
+    "title": "Instrumentenwinkel",
+    "description": "Blader door onze huidige voorraad handgemaakte instrumenten. Elk stuk is beschikbaar voor aankoop en klaar voor verzending. Klik op een instrument om volledige details te bekijken, geluidsvoorbeelden te beluisteren en uw aankoop af te ronden.",
+    "noResults": "Geen instrumenten komen overeen met uw filters",
+    "adjustFilters": "Probeer uw selectie aan te passen of bekijk alle instrumenten",
+    "filters": {
+      "instrumentType": "Instrumenttype",
+      "priceRange": "Prijsklasse",
+      "allInstruments": "Alle Instrumenten",
+      "violins": "Violen",
+      "violas": "Altviolen",
+      "cellos": "Cello's",
+      "contrabasses": "Contrabassen",
+      "allTypes": "Alle Types",
+      "allPrices": "Alle Prijzen",
+      "under3000": "Onder €3.000",
+      "3000to6000": "€3.000 - €6.000",
+      "6000to10000": "€6.000 - €10.000",
+      "over10000": "Boven €10.000"
+    },
+    "showing": "{count} instrumenten weergegeven"
+  },
+  "account": {
+    "title": "Mijn Account",
+    "profile": "Profiel",
+    "orders": "Bestellingen",
+    "addresses": "Adressen",
+    "settings": "Instellingen"
+  },
+  "cart": {
+    "title": "Winkelwagen",
+    "empty": "Uw winkelwagen is leeg",
+    "total": "Totaal",
+    "checkout": "Naar de Kassa",
+    "continueShopping": "Verder Winkelen",
+    "remove": "Verwijderen"
+  },
+  "checkout": {
+    "title": "Kassa",
+    "shipping": "Verzendinformatie",
+    "payment": "Betaling",
+    "review": "Bestelling Controleren",
+    "placeOrder": "Bestelling Plaatsen",
+    "success": {
+      "title": "Bedankt!",
+      "message": "Uw bestelling is succesvol geplaatst."
+    }
+  }
+}
+

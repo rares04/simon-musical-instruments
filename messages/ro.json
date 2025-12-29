@@ -1,0 +1,194 @@
+{
+  "navigation": {
+    "shop": "Magazin",
+    "about": "Despre Noi",
+    "faq": "Întrebări Frecvente",
+    "contact": "Contact",
+    "signIn": "Autentificare",
+    "myAccount": "Contul Meu",
+    "myOrders": "Comenzile Mele",
+    "signOut": "Deconectare"
+  },
+  "hero": {
+    "title": "Bine Ați Venit în Atelierul Nostru Virtual",
+    "subtitle": "Instrumente muzicale cu coarde, realizate manual, din inima Transilvaniei, unde tradiția întâlnește meșteșugul de excepție.",
+    "cta": "Explorează Instrumentele Noastre",
+    "learnStory": "Povestea Noastră",
+    "established": "Din 2014",
+    "quote": "Suntem Paul și Ecaterina Simon și suntem bucuroși să vă urăm bun venit pe site-ul nostru. Din micul nostru atelier din Reghin, cunoscut ca \"Orașul Viorilor\", creăm instrumente care rezonează cu muzicieni din întreaga lume."
+  },
+  "instruments": {
+    "title": "Instrumentele Noastre",
+    "subtitle": "Fiecare instrument este realizat manual cu grijă și precizie",
+    "viewDetails": "Vezi Detalii",
+    "addToCart": "Adaugă în Coș",
+    "inquire": "Solicită Informații",
+    "available": "Disponibil",
+    "inBuild": "În Construcție",
+    "reserved": "Rezervat",
+    "sold": "Vândut",
+    "violin": "Vioară",
+    "viola": "Violă",
+    "cello": "Violoncel",
+    "contrabass": "Contrabas"
+  },
+  "story": {
+    "title": "Povestea Noastră",
+    "subtitle": "O tradiție a excelenței din Reghin, Transilvania",
+    "heritage": {
+      "title": "Măiestrie de Maestru",
+      "description": "Din 2001, perfecționăm arta confecționării instrumentelor cu coarde, învățând din cele mai bune tradiții ale Reghinului."
+    },
+    "materials": {
+      "title": "Materiale Premium",
+      "description": "Selectăm cu grijă și uscăm natural cele mai fine lemne de ton, asigurând o rezonanță excepțională în fiecare instrument."
+    },
+    "clientele": {
+      "title": "Clientelă Internațională",
+      "description": "Instrumentele noastre sunt apreciate de muzicieni din Franța, Belgia, Spania, Germania, Japonia, Taiwan și din alte părți."
+    }
+  },
+  "testimonials": {
+    "title": "Ce Spun Clienții Noștri",
+    "subtitle": "Ascultă de la muzicienii care au ales instrumentele noastre",
+    "source": "Sursă: Recenzii Google"
+  },
+  "faq": {
+    "title": "Întrebări Frecvente",
+    "subtitle": "Găsește răspunsuri la întrebările comune despre instrumentele și serviciile noastre",
+    "contactPrompt": "Nu găsești ceea ce cauți?",
+    "contactLink": "Contactează-ne direct",
+    "questions": {
+      "purchase": {
+        "question": "Cum pot achiziționa un instrument?",
+        "answer": "Poți răsfoi instrumentele disponibile în secțiunea Magazin. Fiecare pagină de instrument are informații detaliate, fotografii și mostre audio. Pentru a cumpăra, adaugă pur și simplu instrumentul în coș și finalizează comanda, sau contactează-ne direct pentru o consultare personalizată."
+      },
+      "shipping": {
+        "question": "Expediați internațional?",
+        "answer": "Da, expediăm în întreaga lume! Avem experiență în expedierea către clienți din Franța, Belgia, Spania, Germania, Japonia, Taiwan și multe alte țări. Toate instrumentele sunt ambalate profesional și complet asigurate în timpul transportului."
+      },
+      "returns": {
+        "question": "Care este politica de retur?",
+        "answer": "Oferim o politică de retur de 14 zile pentru instrumentele în starea lor originală. Dacă nu ești complet satisfăcut, poți returna instrumentul pentru o rambursare completă minus costurile de expediere. Comenzile personalizate pot avea termeni diferiți."
+      },
+      "certificate": {
+        "question": "Instrumentele vin cu un certificat de autenticitate?",
+        "answer": "Da, fiecare instrument pe care îl creăm vine cu un certificat de autenticitate semnat care include detalii despre materialele folosite, data construcției și garanția atelierului nostru."
+      },
+      "care": {
+        "question": "Cum ar trebui să îngrijesc instrumentul meu?",
+        "answer": "Recomandăm păstrarea instrumentului în toc când nu este folosit, menținerea nivelurilor corespunzătoare de umiditate (40-60%) și verificarea profesională anuală. Includem instrucțiuni detaliate de îngrijire cu fiecare achiziție."
+      },
+      "custom": {
+        "question": "Pot comanda un instrument personalizat?",
+        "answer": "Salutăm comenzile personalizate. Contactează-ne pentru a discuta cerințele tale specifice, preferințele pentru selecția lemnului, culoarea lacului și orice alte personalizări dorite. Instrumentele personalizate durează de obicei 3-6 luni pentru finalizare."
+      },
+      "payment": {
+        "question": "Ce metode de plată acceptați?",
+        "answer": "Acceptăm carduri de credit principale (Visa, Mastercard, American Express) prin sistemul nostru securizat de plată Stripe. Pentru achiziții mai mari, putem aranja și transferuri bancare sau planuri de plată în rate."
+      },
+      "packaging": {
+        "question": "Cum sunt ambalate instrumentele pentru expediere?",
+        "answer": "Fiecare instrument este înfășurat cu grijă în materiale de protecție, plasat într-un toc dur (inclus în achiziție), apoi ambalat într-o cutie de expediere personalizată cu căptușeală suplimentară. Folosim transport cu control climatic când este posibil."
+      }
+    }
+  },
+  "contact": {
+    "title": "Contactează-ne",
+    "subtitle": "Ne-ar plăcea să auzim de la tine",
+    "form": {
+      "name": "Numele Tău",
+      "email": "Adresa de Email",
+      "phone": "Număr de Telefon",
+      "subject": "Subiect",
+      "message": "Mesajul Tău",
+      "submit": "Trimite Mesajul",
+      "sending": "Se trimite...",
+      "success": "Mesaj trimis cu succes! Îți vom răspunde în curând.",
+      "subjects": {
+        "general": "Întrebare Generală",
+        "purchase": "Întrebare despre Achiziție",
+        "custom": "Comandă Personalizată",
+        "visit": "Vizită la Atelier",
+        "other": "Altele"
+      }
+    },
+    "info": {
+      "title": "Ia Legătura",
+      "address": "Adresă",
+      "email": "Email",
+      "phone": "Telefon / Fax",
+      "hours": "Program Atelier",
+      "hoursValue": "Luni - Vineri: 9:00 - 17:00\nSâmbătă: Cu programare"
+    },
+    "map": {
+      "title": "Găsește-ne"
+    }
+  },
+  "footer": {
+    "tagline": "Te invităm în atelierul nostru virtual, unde tradiția întâlnește meșteșugul de excepție. Instrumente cu coarde realizate manual din inima Transilvaniei.",
+    "quote": "Din micul nostru atelier din Reghin, creăm instrumente care rezonează cu muzicieni din întreaga lume.",
+    "contact": "Contact",
+    "explore": "Explorează",
+    "shopInstruments": "Magazin Instrumente",
+    "ourStory": "Povestea Noastră",
+    "copyright": "© {year} Simon Musical Instruments. Toate drepturile rezervate.",
+    "madeIn": "Realizat cu grijă în Reghin, România"
+  },
+  "common": {
+    "loading": "Se încarcă...",
+    "error": "A apărut o eroare",
+    "backToHome": "Înapoi la Pagina Principală",
+    "learnMore": "Află Mai Multe",
+    "viewAll": "Vezi Tot"
+  },
+  "gallery": {
+    "badge": "Disponibil pentru Achiziție",
+    "title": "Magazin de Instrumente",
+    "description": "Răsfoiește inventarul nostru actual de instrumente realizate manual. Fiecare piesă este disponibilă pentru achiziție și gata de expediere. Dă click pe orice instrument pentru a vedea detalii complete, a asculta mostre audio și a finaliza achiziția.",
+    "noResults": "Niciun instrument nu corespunde filtrelor",
+    "adjustFilters": "Încearcă să ajustezi selecția sau vezi toate instrumentele",
+    "filters": {
+      "instrumentType": "Tip de Instrument",
+      "priceRange": "Interval de Preț",
+      "allInstruments": "Toate Instrumentele",
+      "violins": "Viori",
+      "violas": "Viole",
+      "cellos": "Violoncele",
+      "contrabasses": "Contrabași",
+      "allTypes": "Toate Tipurile",
+      "allPrices": "Toate Prețurile",
+      "under3000": "Sub €3.000",
+      "3000to6000": "€3.000 - €6.000",
+      "6000to10000": "€6.000 - €10.000",
+      "over10000": "Peste €10.000"
+    },
+    "showing": "Se afișează {count} instrumente"
+  },
+  "account": {
+    "title": "Contul Meu",
+    "profile": "Profil",
+    "orders": "Comenzi",
+    "addresses": "Adrese",
+    "settings": "Setări"
+  },
+  "cart": {
+    "title": "Coșul de Cumpărături",
+    "empty": "Coșul tău este gol",
+    "total": "Total",
+    "checkout": "Finalizează Comanda",
+    "continueShopping": "Continuă Cumpărăturile",
+    "remove": "Elimină"
+  },
+  "checkout": {
+    "title": "Finalizare Comandă",
+    "shipping": "Informații de Livrare",
+    "payment": "Plată",
+    "review": "Verifică Comanda",
+    "placeOrder": "Plasează Comanda",
+    "success": {
+      "title": "Mulțumim!",
+      "message": "Comanda ta a fost plasată cu succes."
+    }
+  }
+}

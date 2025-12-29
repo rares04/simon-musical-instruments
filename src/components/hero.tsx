@@ -1,9 +1,14 @@
-import Link from 'next/link'
+'use client'
+
 import Image from 'next/image'
+import { useTranslations } from 'next-intl'
 import { Button } from '@/components/ui/button'
+import { Link } from '@/i18n/routing'
 import { ArrowRight } from 'lucide-react'
 
 export function Hero() {
+  const t = useTranslations('hero')
+
   return (
     <section className="relative pt-24 lg:pt-32 pb-16 lg:pb-24">
       <div className="container mx-auto px-4 lg:px-8">
@@ -12,22 +17,17 @@ export function Hero() {
           <div className="space-y-6 lg:space-y-8">
             <div className="inline-block">
               <span className="text-xs lg:text-sm uppercase tracking-wider text-muted-foreground font-medium">
-                Reghin, Transylvania · Est. 2014
+                Reghin, Transylvania · {t('established')}
               </span>
             </div>
 
             <h1 className="font-serif text-4xl sm:text-5xl lg:text-6xl xl:text-7xl leading-[1.1] text-balance text-foreground">
-              Welcome to Our Virtual Workshop
+              {t('title')}
             </h1>
 
             <div className="space-y-4">
-              <p className="text-base lg:text-lg text-foreground leading-relaxed max-w-xl text-pretty font-medium">
-                We are Paul and Ecaterina Simon and we are happy to welcome you to our site.
-              </p>
               <p className="text-base lg:text-lg text-muted-foreground leading-relaxed max-w-xl text-pretty">
-                From our little workshop in Reghin—the City of Violins—we handcraft premium bowed
-                string instruments using wood naturally cured since 2001 and traditional
-                hand-applied varnish.
+                {t('quote')}
               </p>
             </div>
 
@@ -37,23 +37,23 @@ export function Hero() {
                   size="lg"
                   className="bg-accent hover:bg-accent/90 text-accent-foreground group cursor-pointer w-full sm:w-auto shadow-sm"
                 >
-                  View Our Instruments
+                  {t('cta')}
                   <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
                 </Button>
               </Link>
-              <Link href="#story">
+              <Link href="/#story">
                 <Button
                   size="lg"
                   variant="outline"
                   className="cursor-pointer w-full sm:w-auto border-border/60 hover:bg-muted/50 bg-transparent"
                 >
-                  Learn Our Story
+                  {t('learnStory')}
                 </Button>
               </Link>
             </div>
           </div>
 
-          {/* Right Image - Added subtle warm overlay effect */}
+          {/* Right Image */}
           <div className="relative aspect-[3/4] lg:aspect-[4/5] rounded-md overflow-hidden bg-muted shadow-lg">
             <Image
               src="/close-up-detail-of-handcrafted-violin-with-beautif.jpg"

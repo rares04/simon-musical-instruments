@@ -1,0 +1,195 @@
+{
+  "navigation": {
+    "shop": "Boutique",
+    "about": "À Propos",
+    "faq": "FAQ",
+    "contact": "Contact",
+    "signIn": "Connexion",
+    "myAccount": "Mon Compte",
+    "myOrders": "Mes Commandes",
+    "signOut": "Déconnexion"
+  },
+  "hero": {
+    "title": "Bienvenue dans Notre Atelier Virtuel",
+    "subtitle": "Instruments à cordes frottées fabriqués à la main au cœur de la Transylvanie, où la tradition rencontre un savoir-faire exceptionnel.",
+    "cta": "Découvrez Nos Instruments",
+    "learnStory": "Notre Histoire",
+    "established": "Depuis 2014",
+    "quote": "Nous sommes Paul et Ecaterina Simon et nous sommes heureux de vous accueillir sur notre site. Depuis notre petit atelier à Reghin, connu comme \"La Ville des Violons\", nous créons des instruments qui résonnent avec des musiciens du monde entier."
+  },
+  "instruments": {
+    "title": "Nos Instruments",
+    "subtitle": "Chaque instrument est fabriqué à la main avec soin et précision",
+    "viewDetails": "Voir les Détails",
+    "addToCart": "Ajouter au Panier",
+    "inquire": "Demander",
+    "available": "Disponible",
+    "inBuild": "En Construction",
+    "reserved": "Réservé",
+    "sold": "Vendu",
+    "violin": "Violon",
+    "viola": "Alto",
+    "cello": "Violoncelle",
+    "contrabass": "Contrebasse"
+  },
+  "story": {
+    "title": "Notre Histoire",
+    "subtitle": "Une tradition d'excellence de Reghin, Transylvanie",
+    "heritage": {
+      "title": "Maîtrise Artisanale",
+      "description": "Depuis 2001, nous perfectionnons l'art de la lutherie, en apprenant des meilleures traditions de Reghin."
+    },
+    "materials": {
+      "title": "Matériaux Premium",
+      "description": "Nous sélectionnons soigneusement et séchons naturellement les bois de résonance les plus fins, assurant une résonance exceptionnelle dans chaque instrument."
+    },
+    "clientele": {
+      "title": "Clientèle Internationale",
+      "description": "Nos instruments sont appréciés par des musiciens de France, Belgique, Espagne, Allemagne, Japon, Taiwan et au-delà."
+    }
+  },
+  "testimonials": {
+    "title": "Ce Que Disent Nos Clients",
+    "subtitle": "Écoutez les musiciens qui ont choisi nos instruments",
+    "source": "Source: Avis Google"
+  },
+  "faq": {
+    "title": "Questions Fréquentes",
+    "subtitle": "Trouvez des réponses aux questions courantes sur nos instruments et services",
+    "contactPrompt": "Vous ne trouvez pas ce que vous cherchez?",
+    "contactLink": "Contactez-nous directement",
+    "questions": {
+      "purchase": {
+        "question": "Comment puis-je acheter un instrument?",
+        "answer": "Vous pouvez parcourir nos instruments disponibles dans la section Boutique. Chaque page d'instrument contient des informations détaillées, des photos et des échantillons audio. Pour acheter, ajoutez simplement l'instrument à votre panier et procédez au paiement, ou contactez-nous directement pour une consultation personnalisée."
+      },
+      "shipping": {
+        "question": "Expédiez-vous à l'international?",
+        "answer": "Oui, nous expédions dans le monde entier! Nous avons de l'expérience dans l'expédition vers des clients en France, Belgique, Espagne, Allemagne, Japon, Taiwan et dans de nombreux autres pays. Tous les instruments sont emballés professionnellement et entièrement assurés pendant le transport."
+      },
+      "returns": {
+        "question": "Quelle est votre politique de retour?",
+        "answer": "Nous offrons une politique de retour de 14 jours pour les instruments dans leur état d'origine. Si vous n'êtes pas complètement satisfait, vous pouvez retourner l'instrument pour un remboursement complet moins les frais d'expédition. Les commandes personnalisées peuvent avoir des conditions différentes."
+      },
+      "certificate": {
+        "question": "Les instruments sont-ils livrés avec un certificat d'authenticité?",
+        "answer": "Oui, chaque instrument que nous créons est accompagné d'un certificat d'authenticité signé qui comprend des détails sur les matériaux utilisés, la date de construction et notre garantie d'atelier."
+      },
+      "care": {
+        "question": "Comment dois-je entretenir mon instrument?",
+        "answer": "Nous recommandons de garder votre instrument dans son étui lorsqu'il n'est pas utilisé, de maintenir des niveaux d'humidité appropriés (40-60%) et de le faire régler professionnellement chaque année. Nous incluons des instructions d'entretien détaillées avec chaque achat."
+      },
+      "custom": {
+        "question": "Puis-je commander un instrument sur mesure?",
+        "answer": "Nous accueillons les commandes sur mesure. Contactez-nous pour discuter de vos exigences spécifiques, préférences pour la sélection du bois, couleur du vernis et toute autre personnalisation souhaitée. Les instruments sur mesure prennent généralement 3-6 mois à réaliser."
+      },
+      "payment": {
+        "question": "Quels modes de paiement acceptez-vous?",
+        "answer": "Nous acceptons les principales cartes de crédit (Visa, Mastercard, American Express) via notre système de paiement sécurisé Stripe. Pour les achats plus importants, nous pouvons également organiser des virements bancaires ou des plans de paiement."
+      },
+      "packaging": {
+        "question": "Comment les instruments sont-ils emballés pour l'expédition?",
+        "answer": "Chaque instrument est soigneusement enveloppé dans des matériaux de protection, placé dans un étui rigide (inclus avec l'achat), puis emballé dans une boîte d'expédition personnalisée avec un rembourrage supplémentaire. Nous utilisons l'expédition à température contrôlée lorsque c'est possible."
+      }
+    }
+  },
+  "contact": {
+    "title": "Contactez-Nous",
+    "subtitle": "Nous serions ravis de vous entendre",
+    "form": {
+      "name": "Votre Nom",
+      "email": "Adresse E-mail",
+      "phone": "Numéro de Téléphone",
+      "subject": "Sujet",
+      "message": "Votre Message",
+      "submit": "Envoyer le Message",
+      "sending": "Envoi en cours...",
+      "success": "Message envoyé avec succès! Nous vous répondrons bientôt.",
+      "subjects": {
+        "general": "Demande Générale",
+        "purchase": "Question d'Achat",
+        "custom": "Commande Sur Mesure",
+        "visit": "Visite de l'Atelier",
+        "other": "Autre"
+      }
+    },
+    "info": {
+      "title": "Nous Contacter",
+      "address": "Adresse",
+      "email": "E-mail",
+      "phone": "Téléphone / Fax",
+      "hours": "Heures d'Atelier",
+      "hoursValue": "Lundi - Vendredi: 9:00 - 17:00\nSamedi: Sur rendez-vous"
+    },
+    "map": {
+      "title": "Nous Trouver"
+    }
+  },
+  "footer": {
+    "tagline": "Nous vous invitons dans notre atelier virtuel, où la tradition rencontre un savoir-faire exceptionnel. Instruments à cordes frottées fabriqués à la main au cœur de la Transylvanie.",
+    "quote": "Depuis notre petit atelier à Reghin, nous créons des instruments qui résonnent avec des musiciens du monde entier.",
+    "contact": "Contact",
+    "explore": "Explorer",
+    "shopInstruments": "Acheter des Instruments",
+    "ourStory": "Notre Histoire",
+    "copyright": "© {year} Simon Musical Instruments. Tous droits réservés.",
+    "madeIn": "Fabriqué avec amour à Reghin, Roumanie"
+  },
+  "common": {
+    "loading": "Chargement...",
+    "error": "Une erreur s'est produite",
+    "backToHome": "Retour à l'Accueil",
+    "learnMore": "En Savoir Plus",
+    "viewAll": "Voir Tout"
+  },
+  "gallery": {
+    "badge": "Disponible à l'Achat",
+    "title": "Boutique d'Instruments",
+    "description": "Parcourez notre inventaire actuel d'instruments fabriqués à la main. Chaque pièce est disponible à l'achat et prête à être expédiée. Cliquez sur n'importe quel instrument pour voir tous les détails, écouter des échantillons sonores et finaliser votre achat.",
+    "noResults": "Aucun instrument ne correspond à vos filtres",
+    "adjustFilters": "Essayez d'ajuster votre sélection ou voir tous les instruments",
+    "filters": {
+      "instrumentType": "Type d'Instrument",
+      "priceRange": "Gamme de Prix",
+      "allInstruments": "Tous les Instruments",
+      "violins": "Violons",
+      "violas": "Altos",
+      "cellos": "Violoncelles",
+      "contrabasses": "Contrebasses",
+      "allTypes": "Tous les Types",
+      "allPrices": "Tous les Prix",
+      "under3000": "Moins de €3 000",
+      "3000to6000": "€3 000 - €6 000",
+      "6000to10000": "€6 000 - €10 000",
+      "over10000": "Plus de €10 000"
+    },
+    "showing": "Affichage de {count} instruments"
+  },
+  "account": {
+    "title": "Mon Compte",
+    "profile": "Profil",
+    "orders": "Commandes",
+    "addresses": "Adresses",
+    "settings": "Paramètres"
+  },
+  "cart": {
+    "title": "Panier",
+    "empty": "Votre panier est vide",
+    "total": "Total",
+    "checkout": "Passer à la Caisse",
+    "continueShopping": "Continuer les Achats",
+    "remove": "Supprimer"
+  },
+  "checkout": {
+    "title": "Paiement",
+    "shipping": "Informations de Livraison",
+    "payment": "Paiement",
+    "review": "Vérifier la Commande",
+    "placeOrder": "Passer la Commande",
+    "success": {
+      "title": "Merci!",
+      "message": "Votre commande a été passée avec succès."
+    }
+  }
+}
+

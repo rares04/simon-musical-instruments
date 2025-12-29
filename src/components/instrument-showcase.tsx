@@ -1,8 +1,11 @@
-import Link from 'next/link'
+'use client'
+
 import Image from 'next/image'
+import { useTranslations } from 'next-intl'
 import { Card } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
+import { Link } from '@/i18n/routing'
 import { ArrowRight } from 'lucide-react'
 import type { Instrument, Media } from '@/payload-types'
 
@@ -27,16 +30,47 @@ interface InstrumentShowcaseProps {
 }
 
 export function InstrumentShowcase({ instruments }: InstrumentShowcaseProps) {
+  const t = useTranslations('instruments')
+
+  const getStatusLabel = (status: string) => {
+    switch (status) {
+      case 'available':
+        return t('available')
+      case 'in-build':
+        return t('inBuild')
+      case 'reserved':
+        return t('reserved')
+      case 'sold':
+        return t('sold')
+      default:
+        return status
+    }
+  }
+
+  const getTypeLabel = (type: string) => {
+    switch (type) {
+      case 'violin':
+        return t('violin')
+      case 'viola':
+        return t('viola')
+      case 'cello':
+        return t('cello')
+      case 'contrabass':
+        return t('contrabass')
+      default:
+        return type
+    }
+  }
+
   return (
     <section id="instruments" className="py-16 lg:py-24 bg-background">
       <div className="container mx-auto px-4 lg:px-8">
         <div className="text-center space-y-4 mb-12 lg:mb-16">
           <h2 className="font-serif text-3xl lg:text-5xl text-foreground text-balance leading-tight">
-            Our Instruments
+            {t('title')}
           </h2>
           <p className="text-muted-foreground text-base lg:text-lg max-w-2xl mx-auto text-pretty leading-relaxed">
-            Each instrument is a unique work of art, meticulously crafted with wood that has been
-            naturally aging for over two decades.
+            {t('subtitle')}
           </p>
         </div>
 
@@ -44,25 +78,8 @@ export function InstrumentShowcase({ instruments }: InstrumentShowcaseProps) {
           {instruments.map((instrument) => {
             const rawImageUrl = getImageUrl(instrument.mainImage)
             const imageUrl = getImageSrc(rawImageUrl)
-            const statusLabel =
-              instrument.status === 'available'
-                ? 'Available'
-                : instrument.status === 'in-build'
-                  ? 'In Build'
-                  : instrument.status === 'reserved'
-                    ? 'Reserved'
-                    : 'Sold'
-
-            const typeLabel =
-              instrument.instrumentType === 'violin'
-                ? 'Violin'
-                : instrument.instrumentType === 'viola'
-                  ? 'Viola'
-                  : instrument.instrumentType === 'cello'
-                    ? 'Cello'
-                    : instrument.instrumentType === 'contrabass'
-                      ? 'Contrabass'
-                      : 'Instrument'
+            const statusLabel = getStatusLabel(instrument.status)
+            const typeLabel = getTypeLabel(instrument.instrumentType)
 
             return (
               <Link
@@ -124,7 +141,7 @@ export function InstrumentShowcase({ instruments }: InstrumentShowcaseProps) {
               variant="outline"
               className="bg-transparent group cursor-pointer border-border/60 hover:bg-muted/50"
             >
-              View All Instruments
+              {t('viewDetails')}
               <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
             </Button>
           </Link>

@@ -1,0 +1,195 @@
+{
+  "navigation": {
+    "shop": "Shop",
+    "about": "Über Uns",
+    "faq": "FAQ",
+    "contact": "Kontakt",
+    "signIn": "Anmelden",
+    "myAccount": "Mein Konto",
+    "myOrders": "Meine Bestellungen",
+    "signOut": "Abmelden"
+  },
+  "hero": {
+    "title": "Willkommen in Unserer Virtuellen Werkstatt",
+    "subtitle": "Handgefertigte Streichinstrumente aus dem Herzen Siebenbürgens, wo Tradition auf außergewöhnliche Handwerkskunst trifft.",
+    "cta": "Entdecken Sie Unsere Instrumente",
+    "learnStory": "Unsere Geschichte",
+    "established": "Seit 2014",
+    "quote": "Wir sind Paul und Ecaterina Simon und freuen uns, Sie auf unserer Website begrüßen zu dürfen. In unserer kleinen Werkstatt in Reghin, bekannt als \"Die Stadt der Geigen\", fertigen wir Instrumente, die bei Musikern weltweit Anklang finden."
+  },
+  "instruments": {
+    "title": "Unsere Instrumente",
+    "subtitle": "Jedes Instrument wird mit Sorgfalt und Präzision handgefertigt",
+    "viewDetails": "Details Ansehen",
+    "addToCart": "In den Warenkorb",
+    "inquire": "Anfragen",
+    "available": "Verfügbar",
+    "inBuild": "In Fertigung",
+    "reserved": "Reserviert",
+    "sold": "Verkauft",
+    "violin": "Violine",
+    "viola": "Viola",
+    "cello": "Cello",
+    "contrabass": "Kontrabass"
+  },
+  "story": {
+    "title": "Unsere Geschichte",
+    "subtitle": "Eine Tradition der Exzellenz aus Reghin, Siebenbürgen",
+    "heritage": {
+      "title": "Meisterhandwerk",
+      "description": "Seit 2001 perfektionieren wir die Kunst des Streichinstrumentenbaus und lernen von den besten Traditionen Reghins."
+    },
+    "materials": {
+      "title": "Premium-Materialien",
+      "description": "Wir wählen sorgfältig die feinsten Tonhölzer aus und lassen sie natürlich trocknen, um in jedem Instrument eine außergewöhnliche Resonanz zu gewährleisten."
+    },
+    "clientele": {
+      "title": "Internationale Kundschaft",
+      "description": "Unsere Instrumente werden von Musikern aus Frankreich, Belgien, Spanien, Deutschland, Japan, Taiwan und darüber hinaus geschätzt."
+    }
+  },
+  "testimonials": {
+    "title": "Was Unsere Kunden Sagen",
+    "subtitle": "Hören Sie von Musikern, die unsere Instrumente gewählt haben",
+    "source": "Quelle: Google Bewertungen"
+  },
+  "faq": {
+    "title": "Häufig Gestellte Fragen",
+    "subtitle": "Finden Sie Antworten auf häufige Fragen zu unseren Instrumenten und Dienstleistungen",
+    "contactPrompt": "Nicht gefunden, wonach Sie suchen?",
+    "contactLink": "Kontaktieren Sie uns direkt",
+    "questions": {
+      "purchase": {
+        "question": "Wie kann ich ein Instrument kaufen?",
+        "answer": "Sie können unsere verfügbaren Instrumente im Shop-Bereich durchstöbern. Jede Instrumentenseite enthält detaillierte Informationen, Fotos und Audiobeispiele. Um zu kaufen, fügen Sie das Instrument einfach in den Warenkorb und gehen Sie zur Kasse, oder kontaktieren Sie uns direkt für eine persönliche Beratung."
+      },
+      "shipping": {
+        "question": "Versenden Sie international?",
+        "answer": "Ja, wir versenden weltweit! Wir haben Erfahrung im Versand an Kunden in Frankreich, Belgien, Spanien, Deutschland, Japan, Taiwan und vielen anderen Ländern. Alle Instrumente werden professionell verpackt und während des Transports vollständig versichert."
+      },
+      "returns": {
+        "question": "Wie ist Ihre Rückgaberichtlinie?",
+        "answer": "Wir bieten eine 14-tägige Rückgaberichtlinie für Instrumente im Originalzustand. Wenn Sie nicht vollständig zufrieden sind, können Sie das Instrument gegen volle Rückerstattung abzüglich der Versandkosten zurückgeben. Für Sonderanfertigungen können andere Bedingungen gelten."
+      },
+      "certificate": {
+        "question": "Werden die Instrumente mit einem Echtheitszertifikat geliefert?",
+        "answer": "Ja, jedes von uns gefertigte Instrument wird mit einem signierten Echtheitszertifikat geliefert, das Details über die verwendeten Materialien, das Herstellungsdatum und unsere Werkstattgarantie enthält."
+      },
+      "care": {
+        "question": "Wie sollte ich mein Instrument pflegen?",
+        "answer": "Wir empfehlen, Ihr Instrument bei Nichtgebrauch im Koffer aufzubewahren, die richtige Luftfeuchtigkeit (40-60%) zu halten und es jährlich professionell einstellen zu lassen. Bei jedem Kauf sind detaillierte Pflegeanleitungen enthalten."
+      },
+      "custom": {
+        "question": "Kann ich ein maßgefertigtes Instrument bestellen?",
+        "answer": "Wir begrüßen Sonderanfertigungen. Kontaktieren Sie uns, um Ihre spezifischen Anforderungen, Präferenzen für die Holzauswahl, Lackfarbe und alle anderen gewünschten Anpassungen zu besprechen. Maßgefertigte Instrumente benötigen in der Regel 3-6 Monate zur Fertigstellung."
+      },
+      "payment": {
+        "question": "Welche Zahlungsmethoden akzeptieren Sie?",
+        "answer": "Wir akzeptieren gängige Kreditkarten (Visa, Mastercard, American Express) über unser sicheres Stripe-Zahlungssystem. Für größere Einkäufe können wir auch Banküberweisungen oder Ratenzahlungen arrangieren."
+      },
+      "packaging": {
+        "question": "Wie werden Instrumente für den Versand verpackt?",
+        "answer": "Jedes Instrument wird sorgfältig in Schutzmaterialien eingewickelt, in einem Hartkoffer (im Kauf enthalten) platziert und dann in einem speziellen Versandkarton mit zusätzlicher Polsterung verpackt. Wir verwenden klimakontrollierten Versand, wenn möglich."
+      }
+    }
+  },
+  "contact": {
+    "title": "Kontaktieren Sie Uns",
+    "subtitle": "Wir freuen uns, von Ihnen zu hören",
+    "form": {
+      "name": "Ihr Name",
+      "email": "E-Mail-Adresse",
+      "phone": "Telefonnummer",
+      "subject": "Betreff",
+      "message": "Ihre Nachricht",
+      "submit": "Nachricht Senden",
+      "sending": "Wird gesendet...",
+      "success": "Nachricht erfolgreich gesendet! Wir melden uns bald bei Ihnen.",
+      "subjects": {
+        "general": "Allgemeine Anfrage",
+        "purchase": "Kaufanfrage",
+        "custom": "Sonderanfertigung",
+        "visit": "Werkstattbesuch",
+        "other": "Sonstiges"
+      }
+    },
+    "info": {
+      "title": "Kontakt Aufnehmen",
+      "address": "Adresse",
+      "email": "E-Mail",
+      "phone": "Telefon / Fax",
+      "hours": "Werkstattzeiten",
+      "hoursValue": "Montag - Freitag: 9:00 - 17:00\nSamstag: Nach Vereinbarung"
+    },
+    "map": {
+      "title": "Finden Sie Uns"
+    }
+  },
+  "footer": {
+    "tagline": "Wir laden Sie in unsere virtuelle Werkstatt ein, wo Tradition auf außergewöhnliche Handwerkskunst trifft. Handgefertigte Streichinstrumente aus dem Herzen Siebenbürgens.",
+    "quote": "In unserer kleinen Werkstatt in Reghin fertigen wir Instrumente, die bei Musikern weltweit Anklang finden.",
+    "contact": "Kontakt",
+    "explore": "Entdecken",
+    "shopInstruments": "Instrumente Kaufen",
+    "ourStory": "Unsere Geschichte",
+    "copyright": "© {year} Simon Musical Instruments. Alle Rechte vorbehalten.",
+    "madeIn": "Mit Liebe gefertigt in Reghin, Rumänien"
+  },
+  "common": {
+    "loading": "Lädt...",
+    "error": "Ein Fehler ist aufgetreten",
+    "backToHome": "Zurück zur Startseite",
+    "learnMore": "Mehr Erfahren",
+    "viewAll": "Alle Anzeigen"
+  },
+  "gallery": {
+    "badge": "Zum Kauf Verfügbar",
+    "title": "Instrumentenshop",
+    "description": "Durchstöbern Sie unser aktuelles Angebot an handgefertigten Instrumenten. Jedes Stück ist zum Kauf verfügbar und versandbereit. Klicken Sie auf ein Instrument, um vollständige Details anzuzeigen, Klangproben zu hören und Ihren Kauf abzuschließen.",
+    "noResults": "Keine Instrumente entsprechen Ihren Filtern",
+    "adjustFilters": "Versuchen Sie, Ihre Auswahl anzupassen oder alle Instrumente anzuzeigen",
+    "filters": {
+      "instrumentType": "Instrumententyp",
+      "priceRange": "Preisbereich",
+      "allInstruments": "Alle Instrumente",
+      "violins": "Geigen",
+      "violas": "Bratschen",
+      "cellos": "Celli",
+      "contrabasses": "Kontrabässe",
+      "allTypes": "Alle Typen",
+      "allPrices": "Alle Preise",
+      "under3000": "Unter €3.000",
+      "3000to6000": "€3.000 - €6.000",
+      "6000to10000": "€6.000 - €10.000",
+      "over10000": "Über €10.000"
+    },
+    "showing": "{count} Instrumente werden angezeigt"
+  },
+  "account": {
+    "title": "Mein Konto",
+    "profile": "Profil",
+    "orders": "Bestellungen",
+    "addresses": "Adressen",
+    "settings": "Einstellungen"
+  },
+  "cart": {
+    "title": "Warenkorb",
+    "empty": "Ihr Warenkorb ist leer",
+    "total": "Gesamt",
+    "checkout": "Zur Kasse",
+    "continueShopping": "Weiter Einkaufen",
+    "remove": "Entfernen"
+  },
+  "checkout": {
+    "title": "Kasse",
+    "shipping": "Versandinformationen",
+    "payment": "Zahlung",
+    "review": "Bestellung Prüfen",
+    "placeOrder": "Bestellung Aufgeben",
+    "success": {
+      "title": "Vielen Dank!",
+      "message": "Ihre Bestellung wurde erfolgreich aufgegeben."
+    }
+  }
+}
+

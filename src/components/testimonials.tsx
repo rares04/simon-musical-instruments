@@ -1,3 +1,6 @@
+'use client'
+
+import { useTranslations } from 'next-intl'
 import { Star, Quote } from 'lucide-react'
 
 interface Testimonial {
@@ -11,6 +14,9 @@ interface Testimonial {
 }
 
 export function Testimonials() {
+  const t = useTranslations('testimonials')
+
+  // Testimonial data is kept static as these are real reviews
   const testimonials: Testimonial[] = [
     {
       originalQuote:
@@ -69,14 +75,12 @@ export function Testimonials() {
         {/* Header */}
         <div className="max-w-3xl mx-auto text-center space-y-4 mb-12 lg:mb-16">
           <h2 className="font-serif text-3xl lg:text-4xl text-foreground text-balance">
-            What Musicians Say
+            {t('title')}
           </h2>
-          <p className="text-lg text-muted-foreground text-pretty">
-            Real reviews from musicians across Europe, Asia, and beyond
-          </p>
+          <p className="text-lg text-muted-foreground text-pretty">{t('subtitle')}</p>
         </div>
 
-        {/* Testimonial Cards - Scrollable on mobile, grid on desktop */}
+        {/* Testimonial Cards */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 max-w-7xl mx-auto">
           {testimonials.slice(0, 3).map((testimonial, index) => (
             <TestimonialCard key={index} testimonial={testimonial} />
@@ -93,7 +97,7 @@ export function Testimonials() {
         {/* Google Reviews Attribution */}
         <div className="text-center mt-12">
           <p className="text-sm text-muted-foreground">
-            Reviews sourced from{' '}
+            {t('source')}:{' '}
             <a
               href="https://maps.app.goo.gl/NqV7kbScxHWPSG8X6"
               target="_blank"

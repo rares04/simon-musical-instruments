@@ -1,4 +1,5 @@
 import type { CollectionConfig } from 'payload'
+import { autoTranslateInstrument } from '@/hooks/autoTranslate'
 
 export const Instruments: CollectionConfig = {
   slug: 'instruments',
@@ -6,6 +7,9 @@ export const Instruments: CollectionConfig = {
     useAsTitle: 'title',
     defaultColumns: ['title', 'instrumentType', 'status', 'price', 'createdAt'],
     listSearchableFields: ['title', 'slug'],
+  },
+  hooks: {
+    afterChange: [autoTranslateInstrument],
   },
   access: {
     read: () => true,
@@ -27,6 +31,7 @@ export const Instruments: CollectionConfig = {
       name: 'title',
       type: 'text',
       required: true,
+      localized: true,
     },
     {
       name: 'slug',
@@ -104,6 +109,7 @@ export const Instruments: CollectionConfig = {
       name: 'luthierNotes',
       type: 'textarea',
       label: "Luthier's Notes",
+      localized: true,
       admin: {
         description: 'Detailed description of the instrument for product pages',
       },

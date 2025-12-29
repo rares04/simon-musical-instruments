@@ -1,11 +1,13 @@
 'use client'
 
-import Link from 'next/link'
 import Image from 'next/image'
 import { useSession, signOut } from 'next-auth/react'
+import { useTranslations } from 'next-intl'
 import { Menu, User, LogOut } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { CartButton } from '@/components/cart-button'
+import { LanguageSwitcher } from '@/components/language-switcher'
+import { Link } from '@/i18n/routing'
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -17,6 +19,7 @@ import {
 export function Header() {
   const { data: session, status } = useSession()
   const isAuthenticated = status === 'authenticated'
+  const t = useTranslations('navigation')
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-md border-b border-border/60">
@@ -29,32 +32,34 @@ export function Header() {
             </div>
           </Link>
 
-          {/* Desktop Navigation - Simplified to honest navigation */}
+          {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center gap-6 lg:gap-8">
             <Link
               href="/gallery"
               className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors cursor-pointer"
             >
-              Shop
+              {t('shop')}
             </Link>
             <Link
               href="/#story"
               className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors cursor-pointer"
             >
-              About
+              {t('about')}
             </Link>
             <Link
               href="/faq"
               className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors cursor-pointer"
             >
-              FAQ
+              {t('faq')}
             </Link>
             <Link
               href="/contact"
               className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors cursor-pointer"
             >
-              Contact
+              {t('contact')}
             </Link>
+
+            <LanguageSwitcher variant="header" />
 
             {isAuthenticated && session?.user ? (
               <DropdownMenu>
@@ -86,12 +91,12 @@ export function Header() {
                   <DropdownMenuSeparator />
                   <DropdownMenuItem asChild>
                     <Link href="/account" className="cursor-pointer">
-                      My Account
+                      {t('myAccount')}
                     </Link>
                   </DropdownMenuItem>
                   <DropdownMenuItem asChild>
                     <Link href="/account/orders" className="cursor-pointer">
-                      My Orders
+                      {t('myOrders')}
                     </Link>
                   </DropdownMenuItem>
                   <DropdownMenuSeparator />
@@ -100,14 +105,14 @@ export function Header() {
                     className="cursor-pointer text-destructive focus:text-destructive"
                   >
                     <LogOut className="h-4 w-4 mr-2" />
-                    Sign Out
+                    {t('signOut')}
                   </DropdownMenuItem>
                 </DropdownMenuContent>
               </DropdownMenu>
             ) : (
               <Link href="/login">
                 <Button variant="ghost" size="sm" className="cursor-pointer">
-                  Sign In
+                  {t('signIn')}
                 </Button>
               </Link>
             )}
@@ -117,6 +122,7 @@ export function Header() {
 
           {/* Mobile Menu */}
           <div className="flex items-center gap-2 md:hidden">
+            <LanguageSwitcher variant="header" />
             {!isAuthenticated && (
               <Link href="/login">
                 <Button variant="ghost" size="icon" className="cursor-pointer">
