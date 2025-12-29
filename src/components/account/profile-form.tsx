@@ -116,7 +116,7 @@ export function ProfileForm() {
             required
           />
           <p className="text-xs text-muted-foreground">
-            We'll send a verification email if you change this
+            We&apos;ll send a verification email if you change this
           </p>
         </div>
 

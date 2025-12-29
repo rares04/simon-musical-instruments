@@ -1,4 +1,4 @@
-# Nixpacks configuration for Railway deployment
+# Nixpacks/Railpack configuration for Railway deployment
 
 [phases.setup]
 nixPkgs = ["nodejs_22"]
@@ -10,5 +10,5 @@ cmds = ["corepack enable pnpm", "pnpm install --frozen-lockfile"]
 cmds = ["pnpm run build"]
 
 [start]
-cmd = "pnpm start"
+cmd = "node .next/standalone/server.js"
 

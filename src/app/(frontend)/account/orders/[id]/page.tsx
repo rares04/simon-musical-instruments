@@ -9,6 +9,9 @@ import { getPayload } from 'payload'
 import config from '@/payload.config'
 import type { Media } from '@/payload-types'
 
+// Render at runtime (DB not accessible during build)
+export const dynamic = 'force-dynamic'
+
 // Helper to get image URL from Payload media
 function getImageUrl(image: number | Media | null | undefined): string | null {
   if (!image) return null

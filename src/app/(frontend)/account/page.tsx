@@ -6,6 +6,9 @@ import { requireAuth } from '@/lib/auth-guard'
 import { getPayload } from 'payload'
 import config from '@/payload.config'
 
+// Render at runtime (DB not accessible during build)
+export const dynamic = 'force-dynamic'
+
 export const metadata = {
   title: 'Dashboard - Simon Musical Instruments',
   description: 'Your account dashboard',

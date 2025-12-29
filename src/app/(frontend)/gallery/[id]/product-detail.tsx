@@ -110,7 +110,9 @@ export function ProductDetail({ instrument, images, audioUrl }: ProductDetailPro
             {/* Luthier's Notes */}
             {instrument.luthierNotes && (
               <div className="space-y-4">
-                <h2 className="font-serif text-2xl font-bold text-foreground">Luthier's Notes</h2>
+                <h2 className="font-serif text-2xl font-bold text-foreground">
+                  Luthier&apos;s Notes
+                </h2>
                 <div className="bg-muted/30 border border-border p-6 lg:p-8">
                   <p className="text-base text-foreground/90 leading-relaxed text-pretty whitespace-pre-wrap">
                     {instrument.luthierNotes}

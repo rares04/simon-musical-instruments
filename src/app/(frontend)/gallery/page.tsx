@@ -4,6 +4,9 @@ import { Header } from '@/components/header'
 import { Footer } from '@/components/footer'
 import { GalleryClient } from './gallery-client'
 
+// Render at runtime (DB not accessible during build)
+export const dynamic = 'force-dynamic'
+
 export const metadata = {
   title: 'Gallery | Simon Musical Instruments',
   description: 'Browse our collection of handcrafted violins, violas, cellos, and contrabasses.',
@@ -37,8 +40,9 @@ export default async function GalleryPage() {
               Instrument Shop
             </h1>
             <p className="text-lg text-muted-foreground text-pretty">
-              Browse our current inventory of handcrafted instruments. Each piece is available for purchase and ready to
-              ship. Click any instrument to view full details, hear sound samples, and complete your purchase.
+              Browse our current inventory of handcrafted instruments. Each piece is available for
+              purchase and ready to ship. Click any instrument to view full details, hear sound
+              samples, and complete your purchase.
             </p>
           </div>
 

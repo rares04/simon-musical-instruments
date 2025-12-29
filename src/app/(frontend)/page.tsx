@@ -2,6 +2,9 @@ import { getPayload } from 'payload'
 import config from '@/payload.config'
 
 import { Header } from '@/components/header'
+
+// Render at runtime (DB not accessible during build)
+export const dynamic = 'force-dynamic'
 import { Hero } from '@/components/hero'
 import { InstrumentShowcase } from '@/components/instrument-showcase'
 import { LuthierStory } from '@/components/luthier-story'

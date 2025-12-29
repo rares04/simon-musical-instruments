@@ -61,8 +61,8 @@ function LoginForm() {
 
           <div className="space-y-4">
             <blockquote className="font-serif text-2xl text-foreground text-balance leading-relaxed">
-              "Every instrument carries the soul of the wood and the dedication of centuries-old
-              craftsmanship."
+              &quot;Every instrument carries the soul of the wood and the dedication of
+              centuries-old craftsmanship.&quot;
             </blockquote>
             <p className="text-sm text-muted-foreground">— Master Luthier Paul Simon</p>
           </div>
@@ -166,7 +166,7 @@ function LoginForm() {
 
           {/* Sign Up Link */}
           <div className="text-center text-sm">
-            <span className="text-muted-foreground">Don't have an account? </span>
+            <span className="text-muted-foreground">Don&apos;t have an account? </span>
             <Link
               href="/register"
               className="text-accent hover:text-accent/80 font-medium transition-colors cursor-pointer"
