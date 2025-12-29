@@ -168,9 +168,24 @@ async function seed() {
 
   const payload = await getPayload({ config })
 
-  // Delete existing instruments and media for fresh seed
+  // Delete existing data for fresh seed (order matters due to foreign keys)
   console.log('🗑️  Clearing existing data...')
 
+  // Delete orders first (they reference instruments)
+  const existingOrders = await payload.find({
+    collection: 'orders',
+    limit: 100,
+  })
+
+  for (const order of existingOrders.docs) {
+    await payload.delete({
+      collection: 'orders',
+      id: order.id,
+    })
+  }
+  console.log(`   Deleted ${existingOrders.docs.length} orders`)
+
+  // Then delete instruments
   const existingInstruments = await payload.find({
     collection: 'instruments',
     limit: 100,
@@ -182,7 +197,9 @@ async function seed() {
       id: instrument.id,
     })
   }
+  console.log(`   Deleted ${existingInstruments.docs.length} instruments`)
 
+  // Finally delete media
   const existingMedia = await payload.find({
     collection: 'media',
     limit: 100,
@@ -194,6 +211,7 @@ async function seed() {
       id: media.id,
     })
   }
+  console.log(`   Deleted ${existingMedia.docs.length} media files`)
 
   const publicDir = path.resolve(__dirname, '../public')
 
