@@ -1,0 +1,338 @@
+import type { CollectionConfig, CollectionAfterChangeHook } from 'payload'
+import { sendEmail } from '@/lib/resend'
+import { ShippingNotificationEmail } from '@/lib/emails'
+
+// Hook to send shipping notification when status changes to 'shipped'
+const sendShippingNotification: CollectionAfterChangeHook = async ({
+  doc,
+  previousDoc,
+  operation,
+}) => {
+  // Only run on update, not create
+  if (operation !== 'update') return doc
+
+  // Check if status changed to 'shipped'
+  if (previousDoc?.status !== 'shipped' && doc.status === 'shipped') {
+    const customerEmail = doc.contactInfo?.email
+    const customerName =
+      `${doc.contactInfo?.firstName || ''} ${doc.contactInfo?.lastName || ''}`.trim()
+
+    if (customerEmail) {
+      await sendEmail({
+        to: customerEmail,
+        subject: `Your Order ${doc.orderNumber} Has Shipped!`,
+        react: ShippingNotificationEmail({
+          orderNumber: doc.orderNumber,
+          customerName: customerName || 'Valued Customer',
+          items:
+            doc.items?.map((item: { title: string }) => ({
+              title: item.title,
+            })) || [],
+          trackingNumber: doc.trackingNumber || undefined,
+          trackingUrl: doc.trackingUrl || undefined,
+          estimatedDelivery: doc.estimatedDelivery || undefined,
+          shippingAddress: {
+            street: doc.shippingAddress?.street || '',
+            apartment: doc.shippingAddress?.apartment || '',
+            city: doc.shippingAddress?.city || '',
+            state: doc.shippingAddress?.state || '',
+            zip: doc.shippingAddress?.zip || '',
+            country: doc.shippingAddress?.country || '',
+          },
+        }),
+      })
+    }
+  }
+
+  return doc
+}
+
+export const Orders: CollectionConfig = {
+  slug: 'orders',
+  admin: {
+    useAsTitle: 'orderNumber',
+    defaultColumns: ['orderNumber', 'status', 'total', 'createdAt'],
+    group: 'Shop',
+  },
+  hooks: {
+    afterChange: [sendShippingNotification],
+  },
+  access: {
+    // Admins can do everything
+    read: ({ req: { user } }) => {
+      if (!user) return false
+      const roles = (user as { roles?: string[] })?.roles
+      if (roles?.includes('admin')) return true
+      // Customers can only read their own orders
+      return {
+        customer: { equals: user.id },
+      }
+    },
+    create: () => true, // API creates orders
+    update: ({ req: { user } }) => {
+      const roles = (user as { roles?: string[] } | null)?.roles
+      return Boolean(roles?.includes('admin'))
+    },
+    delete: ({ req: { user } }) => {
+      const roles = (user as { roles?: string[] } | null)?.roles
+      return Boolean(roles?.includes('admin'))
+    },
+  },
+  fields: [
+    {
+      name: 'orderNumber',
+      type: 'text',
+      required: true,
+      unique: true,
+      index: true,
+      admin: {
+        readOnly: true,
+      },
+    },
+    {
+      name: 'customer',
+      type: 'relationship',
+      relationTo: 'users',
+      admin: {
+        position: 'sidebar',
+        description: 'Linked user account (if logged in during purchase)',
+      },
+    },
+    {
+      name: 'guestEmail',
+      type: 'email',
+      admin: {
+        description: 'Email for guest checkouts',
+        condition: (data) => !data?.customer,
+      },
+    },
+    {
+      name: 'status',
+      type: 'select',
+      required: true,
+      defaultValue: 'pending',
+      options: [
+        { label: 'Pending', value: 'pending' },
+        { label: 'Paid', value: 'paid' },
+        { label: 'Processing', value: 'processing' },
+        { label: 'Shipped', value: 'shipped' },
+        { label: 'Delivered', value: 'delivered' },
+        { label: 'Cancelled', value: 'cancelled' },
+        { label: 'Refunded', value: 'refunded' },
+      ],
+      admin: {
+        position: 'sidebar',
+      },
+    },
+    // Shipping/Tracking Information
+    {
+      name: 'trackingNumber',
+      type: 'text',
+      admin: {
+        description: 'FedEx or carrier tracking number',
+        condition: (data) => ['processing', 'shipped', 'delivered'].includes(data?.status),
+      },
+    },
+    {
+      name: 'trackingUrl',
+      type: 'text',
+      admin: {
+        description: 'Full tracking URL (optional - auto-generated for FedEx if blank)',
+        condition: (data) => ['processing', 'shipped', 'delivered'].includes(data?.status),
+      },
+    },
+    {
+      name: 'estimatedDelivery',
+      type: 'text',
+      admin: {
+        description: 'Estimated delivery date (e.g., "January 15-17, 2025")',
+        condition: (data) => ['processing', 'shipped', 'delivered'].includes(data?.status),
+      },
+    },
+    {
+      name: 'shippedAt',
+      type: 'date',
+      admin: {
+        date: {
+          pickerAppearance: 'dayAndTime',
+        },
+        condition: (data) => ['shipped', 'delivered'].includes(data?.status),
+      },
+    },
+    {
+      name: 'items',
+      type: 'array',
+      required: true,
+      minRows: 1,
+      fields: [
+        {
+          name: 'instrument',
+          type: 'relationship',
+          relationTo: 'instruments',
+          required: true,
+        },
+        {
+          name: 'title',
+          type: 'text',
+          required: true,
+          admin: {
+            description: 'Snapshot of instrument title at time of purchase',
+          },
+        },
+        {
+          name: 'price',
+          type: 'number',
+          required: true,
+          min: 0,
+          admin: {
+            description: 'Price at time of purchase (EUR)',
+          },
+        },
+      ],
+    },
+    {
+      name: 'contactInfo',
+      type: 'group',
+      fields: [
+        {
+          type: 'row',
+          fields: [
+            {
+              name: 'firstName',
+              type: 'text',
+              required: true,
+              admin: { width: '50%' },
+            },
+            {
+              name: 'lastName',
+              type: 'text',
+              required: true,
+              admin: { width: '50%' },
+            },
+          ],
+        },
+        {
+          name: 'email',
+          type: 'email',
+          required: true,
+        },
+        {
+          name: 'phone',
+          type: 'text',
+          required: true,
+        },
+      ],
+    },
+    {
+      name: 'shippingAddress',
+      type: 'group',
+      fields: [
+        {
+          name: 'street',
+          type: 'text',
+          required: true,
+        },
+        {
+          name: 'apartment',
+          type: 'text',
+        },
+        {
+          type: 'row',
+          fields: [
+            {
+              name: 'city',
+              type: 'text',
+              required: true,
+              admin: { width: '50%' },
+            },
+            {
+              name: 'state',
+              type: 'text',
+              required: true,
+              admin: { width: '50%' },
+            },
+          ],
+        },
+        {
+          type: 'row',
+          fields: [
+            {
+              name: 'zip',
+              type: 'text',
+              required: true,
+              admin: { width: '50%' },
+            },
+            {
+              name: 'country',
+              type: 'text',
+              required: true,
+              admin: { width: '50%' },
+            },
+          ],
+        },
+      ],
+    },
+    {
+      name: 'paymentIntentId',
+      type: 'text',
+      required: true,
+      index: true,
+      admin: {
+        readOnly: true,
+        description: 'Stripe PaymentIntent ID',
+      },
+    },
+    {
+      name: 'subtotal',
+      type: 'number',
+      required: true,
+      min: 0,
+      admin: {
+        description: 'Sum of item prices (EUR)',
+      },
+    },
+    {
+      name: 'shipping',
+      type: 'number',
+      required: true,
+      min: 0,
+      admin: {
+        description: 'Shipping cost (EUR)',
+      },
+    },
+    {
+      name: 'insurance',
+      type: 'number',
+      required: true,
+      min: 0,
+      admin: {
+        description: 'Insurance cost (EUR)',
+      },
+    },
+    {
+      name: 'total',
+      type: 'number',
+      required: true,
+      min: 0,
+      admin: {
+        description: 'Total charged (EUR)',
+      },
+    },
+    {
+      name: 'paidAt',
+      type: 'date',
+      admin: {
+        date: {
+          pickerAppearance: 'dayAndTime',
+        },
+      },
+    },
+    {
+      name: 'notes',
+      type: 'textarea',
+      admin: {
+        description: 'Internal notes about the order',
+      },
+    },
+  ],
+}

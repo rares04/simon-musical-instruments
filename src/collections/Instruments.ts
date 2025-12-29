@@ -4,7 +4,7 @@ export const Instruments: CollectionConfig = {
   slug: 'instruments',
   admin: {
     useAsTitle: 'title',
-    defaultColumns: ['title', 'status', 'price', 'createdAt'],
+    defaultColumns: ['title', 'instrumentType', 'status', 'price', 'createdAt'],
     listSearchableFields: ['title', 'slug'],
   },
   access: {
@@ -51,6 +51,20 @@ export const Instruments: CollectionConfig = {
       },
     },
     {
+      name: 'instrumentType',
+      type: 'select',
+      required: true,
+      options: [
+        { label: 'Violin', value: 'violin' },
+        { label: 'Viola', value: 'viola' },
+        { label: 'Cello', value: 'cello' },
+        { label: 'Contrabass', value: 'contrabass' },
+      ],
+      admin: {
+        position: 'sidebar',
+      },
+    },
+    {
       name: 'status',
       type: 'select',
       required: true,
@@ -72,12 +86,27 @@ export const Instruments: CollectionConfig = {
       min: 0,
       admin: {
         position: 'sidebar',
-        description: 'Price in USD',
+        description: 'Price in EUR (€)',
       },
     },
     {
-      name: 'description',
-      type: 'richText',
+      name: 'year',
+      type: 'number',
+      required: true,
+      min: 1900,
+      max: 2100,
+      admin: {
+        position: 'sidebar',
+        description: 'Year crafted',
+      },
+    },
+    {
+      name: 'luthierNotes',
+      type: 'textarea',
+      label: "Luthier's Notes",
+      admin: {
+        description: 'Detailed description of the instrument for product pages',
+      },
     },
     {
       name: 'mainImage',
@@ -116,7 +145,7 @@ export const Instruments: CollectionConfig = {
     {
       name: 'specs',
       type: 'group',
-      label: 'Luthier Specifications',
+      label: 'Specifications',
       fields: [
         {
           type: 'row',
@@ -145,9 +174,9 @@ export const Instruments: CollectionConfig = {
               admin: { width: '50%' },
             },
             {
-              name: 'fretboardWood',
+              name: 'fingerboardWood',
               type: 'text',
-              label: 'Fretboard Wood',
+              label: 'Fingerboard',
               admin: { width: '50%' },
             },
           ],
@@ -156,38 +185,26 @@ export const Instruments: CollectionConfig = {
           type: 'row',
           fields: [
             {
-              name: 'scaleLength',
+              name: 'varnish',
               type: 'text',
-              label: 'Scale Length',
-              admin: {
-                width: '50%',
-                description: 'e.g., 25.5"',
-              },
+              label: 'Varnish',
+              admin: { width: '50%' },
             },
             {
-              name: 'radius',
+              name: 'strings',
               type: 'text',
-              label: 'Fretboard Radius',
-              admin: {
-                width: '50%',
-                description: 'e.g., 12"',
-              },
+              label: 'Strings',
+              admin: { width: '50%' },
             },
           ],
         },
         {
-          name: 'pickups',
+          name: 'bodyLength',
           type: 'text',
-          label: 'Pickups',
+          label: 'Body Length',
           admin: {
-            description: 'e.g., Seymour Duncan JB/Jazz Set',
+            description: 'e.g., 356mm for violin, 755mm for cello',
           },
-        },
-        {
-          name: 'weight',
-          type: 'number',
-          label: 'Weight (lbs)',
-          min: 0,
         },
       ],
     },

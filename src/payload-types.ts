@@ -70,6 +70,7 @@ export interface Config {
     users: User;
     media: Media;
     instruments: Instrument;
+    orders: Order;
     'payload-kv': PayloadKv;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
@@ -80,6 +81,7 @@ export interface Config {
     users: UsersSelect<false> | UsersSelect<true>;
     media: MediaSelect<false> | MediaSelect<true>;
     instruments: InstrumentsSelect<false> | InstrumentsSelect<true>;
+    orders: OrdersSelect<false> | OrdersSelect<true>;
     'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
@@ -124,7 +126,47 @@ export interface UserAuthOperations {
  */
 export interface User {
   id: number;
+  name?: string | null;
+  firstName?: string | null;
+  lastName?: string | null;
+  /**
+   * Avatar URL from OAuth provider
+   */
+  image?: string | null;
+  provider?: ('credentials' | 'google' | 'facebook' | 'apple') | null;
+  /**
+   * Unique ID from the OAuth provider
+   */
+  providerId?: string | null;
   roles?: ('admin' | 'user')[] | null;
+  shippingAddress?: {
+    street?: string | null;
+    street2?: string | null;
+    city?: string | null;
+    state?: string | null;
+    postalCode?: string | null;
+    country?: string | null;
+  };
+  phone?: string | null;
+  /**
+   * Multiple addresses for flexible shipping options
+   */
+  savedAddresses?:
+    | {
+        /**
+         * e.g., Home, Work, Studio
+         */
+        label: string;
+        street: string;
+        apartment?: string | null;
+        city: string;
+        state: string;
+        zip: string;
+        country: string;
+        isDefault?: boolean | null;
+        id?: string | null;
+      }[]
+    | null;
   updatedAt: string;
   createdAt: string;
   email: string;
@@ -170,26 +212,20 @@ export interface Instrument {
   id: number;
   title: string;
   slug?: string | null;
+  instrumentType: 'violin' | 'viola' | 'cello' | 'contrabass';
   status: 'available' | 'in-build' | 'reserved' | 'sold';
   /**
-   * Price in USD
+   * Price in EUR (€)
    */
   price: number;
-  description?: {
-    root: {
-      type: string;
-      children: {
-        type: any;
-        version: number;
-        [k: string]: unknown;
-      }[];
-      direction: ('ltr' | 'rtl') | null;
-      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-      indent: number;
-      version: number;
-    };
-    [k: string]: unknown;
-  } | null;
+  /**
+   * Year crafted
+   */
+  year: number;
+  /**
+   * Detailed description of the instrument for product pages
+   */
+  luthierNotes?: string | null;
   mainImage: number | Media;
   gallery?:
     | {
@@ -205,21 +241,97 @@ export interface Instrument {
     bodyWood?: string | null;
     topWood?: string | null;
     neckWood?: string | null;
-    fretboardWood?: string | null;
+    fingerboardWood?: string | null;
+    varnish?: string | null;
+    strings?: string | null;
     /**
-     * e.g., 25.5"
+     * e.g., 356mm for violin, 755mm for cello
      */
-    scaleLength?: string | null;
-    /**
-     * e.g., 12"
-     */
-    radius?: string | null;
-    /**
-     * e.g., Seymour Duncan JB/Jazz Set
-     */
-    pickups?: string | null;
-    weight?: number | null;
+    bodyLength?: string | null;
   };
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "orders".
+ */
+export interface Order {
+  id: number;
+  orderNumber: string;
+  /**
+   * Linked user account (if logged in during purchase)
+   */
+  customer?: (number | null) | User;
+  /**
+   * Email for guest checkouts
+   */
+  guestEmail?: string | null;
+  status: 'pending' | 'paid' | 'processing' | 'shipped' | 'delivered' | 'cancelled' | 'refunded';
+  /**
+   * FedEx or carrier tracking number
+   */
+  trackingNumber?: string | null;
+  /**
+   * Full tracking URL (optional - auto-generated for FedEx if blank)
+   */
+  trackingUrl?: string | null;
+  /**
+   * Estimated delivery date (e.g., "January 15-17, 2025")
+   */
+  estimatedDelivery?: string | null;
+  shippedAt?: string | null;
+  items: {
+    instrument: number | Instrument;
+    /**
+     * Snapshot of instrument title at time of purchase
+     */
+    title: string;
+    /**
+     * Price at time of purchase (EUR)
+     */
+    price: number;
+    id?: string | null;
+  }[];
+  contactInfo: {
+    firstName: string;
+    lastName: string;
+    email: string;
+    phone: string;
+  };
+  shippingAddress: {
+    street: string;
+    apartment?: string | null;
+    city: string;
+    state: string;
+    zip: string;
+    country: string;
+  };
+  /**
+   * Stripe PaymentIntent ID
+   */
+  paymentIntentId: string;
+  /**
+   * Sum of item prices (EUR)
+   */
+  subtotal: number;
+  /**
+   * Shipping cost (EUR)
+   */
+  shipping: number;
+  /**
+   * Insurance cost (EUR)
+   */
+  insurance: number;
+  /**
+   * Total charged (EUR)
+   */
+  total: number;
+  paidAt?: string | null;
+  /**
+   * Internal notes about the order
+   */
+  notes?: string | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -258,6 +370,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'instruments';
         value: number | Instrument;
+      } | null)
+    | ({
+        relationTo: 'orders';
+        value: number | Order;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -306,7 +422,37 @@ export interface PayloadMigration {
  * via the `definition` "users_select".
  */
 export interface UsersSelect<T extends boolean = true> {
+  name?: T;
+  firstName?: T;
+  lastName?: T;
+  image?: T;
+  provider?: T;
+  providerId?: T;
   roles?: T;
+  shippingAddress?:
+    | T
+    | {
+        street?: T;
+        street2?: T;
+        city?: T;
+        state?: T;
+        postalCode?: T;
+        country?: T;
+      };
+  phone?: T;
+  savedAddresses?:
+    | T
+    | {
+        label?: T;
+        street?: T;
+        apartment?: T;
+        city?: T;
+        state?: T;
+        zip?: T;
+        country?: T;
+        isDefault?: T;
+        id?: T;
+      };
   updatedAt?: T;
   createdAt?: T;
   email?: T;
@@ -349,9 +495,11 @@ export interface MediaSelect<T extends boolean = true> {
 export interface InstrumentsSelect<T extends boolean = true> {
   title?: T;
   slug?: T;
+  instrumentType?: T;
   status?: T;
   price?: T;
-  description?: T;
+  year?: T;
+  luthierNotes?: T;
   mainImage?: T;
   gallery?:
     | T
@@ -366,12 +514,60 @@ export interface InstrumentsSelect<T extends boolean = true> {
         bodyWood?: T;
         topWood?: T;
         neckWood?: T;
-        fretboardWood?: T;
-        scaleLength?: T;
-        radius?: T;
-        pickups?: T;
-        weight?: T;
+        fingerboardWood?: T;
+        varnish?: T;
+        strings?: T;
+        bodyLength?: T;
       };
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "orders_select".
+ */
+export interface OrdersSelect<T extends boolean = true> {
+  orderNumber?: T;
+  customer?: T;
+  guestEmail?: T;
+  status?: T;
+  trackingNumber?: T;
+  trackingUrl?: T;
+  estimatedDelivery?: T;
+  shippedAt?: T;
+  items?:
+    | T
+    | {
+        instrument?: T;
+        title?: T;
+        price?: T;
+        id?: T;
+      };
+  contactInfo?:
+    | T
+    | {
+        firstName?: T;
+        lastName?: T;
+        email?: T;
+        phone?: T;
+      };
+  shippingAddress?:
+    | T
+    | {
+        street?: T;
+        apartment?: T;
+        city?: T;
+        state?: T;
+        zip?: T;
+        country?: T;
+      };
+  paymentIntentId?: T;
+  subtotal?: T;
+  shipping?: T;
+  insurance?: T;
+  total?: T;
+  paidAt?: T;
+  notes?: T;
   updatedAt?: T;
   createdAt?: T;
 }
