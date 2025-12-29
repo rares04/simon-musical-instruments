@@ -3,41 +3,68 @@
 
 @custom-variant dark (&:is(.dark *));
 
+/* Updated to warmer color palette inspired by aged wood, varnish, and workshop feel */
 :root {
-  /* Premium luthier brand color palette inspired by aged wood, natural varnish, and Transylvanian heritage */
-  --background: oklch(0.98 0.005 85);
-  --foreground: oklch(0.25 0.01 60);
-  --card: oklch(0.99 0.003 85);
-  --card-foreground: oklch(0.25 0.01 60);
-  --popover: oklch(0.99 0.003 85);
-  --popover-foreground: oklch(0.25 0.01 60);
-  --primary: oklch(0.35 0.04 50);
-  --primary-foreground: oklch(0.98 0.005 85);
-  --secondary: oklch(0.92 0.01 75);
-  --secondary-foreground: oklch(0.25 0.01 60);
-  --muted: oklch(0.94 0.008 80);
-  --muted-foreground: oklch(0.5 0.015 60);
-  --accent: oklch(0.45 0.08 40);
-  --accent-foreground: oklch(0.98 0.005 85);
+  /* Warmer background - aged parchment feel */
+  --background: oklch(0.96 0.015 75);
+
+  /* Richer foreground - aged wood brown */
+  --foreground: oklch(0.22 0.03 45);
+
+  /* Cards - soft aged paper */
+  --card: oklch(0.97 0.012 70);
+  --card-foreground: oklch(0.22 0.03 45);
+
+  /* Popover */
+  --popover: oklch(0.97 0.012 70);
+  --popover-foreground: oklch(0.22 0.03 45);
+
+  /* Primary - rich violin wood brown */
+  --primary: oklch(0.32 0.06 40);
+  --primary-foreground: oklch(0.96 0.015 75);
+
+  /* Secondary - warm neutral */
+  --secondary: oklch(0.88 0.02 65);
+  --secondary-foreground: oklch(0.22 0.03 45);
+
+  /* Muted - soft wood tones */
+  --muted: oklch(0.92 0.015 70);
+  --muted-foreground: oklch(0.45 0.02 50);
+
+  /* Accent - warm amber/honey from varnish */
+  --accent: oklch(0.55 0.14 55);
+  --accent-foreground: oklch(0.96 0.015 75);
+
+  /* Destructive */
   --destructive: oklch(0.577 0.245 27.325);
-  --destructive-foreground: oklch(0.98 0.005 85);
-  --border: oklch(0.88 0.01 75);
-  --input: oklch(0.88 0.01 75);
-  --ring: oklch(0.45 0.08 40);
-  --chart-1: oklch(0.646 0.222 41.116);
+  --destructive-foreground: oklch(0.96 0.015 75);
+
+  /* Border - warmer, softer */
+  --border: oklch(0.85 0.02 68);
+  --input: oklch(0.85 0.02 68);
+
+  /* Ring - warm amber */
+  --ring: oklch(0.55 0.14 55);
+
+  /* Charts */
+  --chart-1: oklch(0.55 0.14 55);
   --chart-2: oklch(0.6 0.118 184.704);
   --chart-3: oklch(0.398 0.07 227.392);
-  --chart-4: oklch(0.828 0.189 84.429);
+  --chart-4: oklch(0.65 0.12 45);
   --chart-5: oklch(0.769 0.188 70.08);
-  --radius: 0.125rem;
-  --sidebar: oklch(0.98 0.005 85);
-  --sidebar-foreground: oklch(0.25 0.01 60);
-  --sidebar-primary: oklch(0.35 0.04 50);
-  --sidebar-primary-foreground: oklch(0.98 0.005 85);
-  --sidebar-accent: oklch(0.92 0.01 75);
-  --sidebar-accent-foreground: oklch(0.25 0.01 60);
-  --sidebar-border: oklch(0.88 0.01 75);
-  --sidebar-ring: oklch(0.45 0.08 40);
+
+  /* Radius - slightly more rounded for organic feel */
+  --radius: 0.25rem;
+
+  /* Sidebar */
+  --sidebar: oklch(0.96 0.015 75);
+  --sidebar-foreground: oklch(0.22 0.03 45);
+  --sidebar-primary: oklch(0.32 0.06 40);
+  --sidebar-primary-foreground: oklch(0.96 0.015 75);
+  --sidebar-accent: oklch(0.92 0.015 70);
+  --sidebar-accent-foreground: oklch(0.22 0.03 45);
+  --sidebar-border: oklch(0.85 0.02 68);
+  --sidebar-ring: oklch(0.55 0.14 55);
 }
 
 .dark {

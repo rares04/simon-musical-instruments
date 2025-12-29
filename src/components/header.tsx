@@ -19,7 +19,7 @@ export function Header() {
   const isAuthenticated = status === 'authenticated'
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b border-border">
+    <header className="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-md border-b border-border/60">
       <div className="container mx-auto px-4 lg:px-8">
         <div className="flex items-center justify-between h-16 lg:h-20">
           {/* Logo */}
@@ -29,29 +29,29 @@ export function Header() {
             </div>
           </Link>
 
-          {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center gap-8">
+          {/* Desktop Navigation - Simplified to honest navigation */}
+          <nav className="hidden md:flex items-center gap-6 lg:gap-8">
             <Link
               href="/gallery"
-              className="text-sm text-muted-foreground hover:text-foreground transition-colors cursor-pointer"
+              className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors cursor-pointer"
             >
               Shop
             </Link>
             <Link
-              href="/#instruments"
-              className="text-sm text-muted-foreground hover:text-foreground transition-colors cursor-pointer"
-            >
-              Instruments
-            </Link>
-            <Link
               href="/#story"
-              className="text-sm text-muted-foreground hover:text-foreground transition-colors cursor-pointer"
+              className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors cursor-pointer"
             >
-              Our Story
+              About
             </Link>
             <Link
-              href="/#contact"
-              className="text-sm text-muted-foreground hover:text-foreground transition-colors cursor-pointer"
+              href="/faq"
+              className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors cursor-pointer"
+            >
+              FAQ
+            </Link>
+            <Link
+              href="/contact"
+              className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors cursor-pointer"
             >
               Contact
             </Link>

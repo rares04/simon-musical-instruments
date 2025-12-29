@@ -28,13 +28,13 @@ interface InstrumentShowcaseProps {
 
 export function InstrumentShowcase({ instruments }: InstrumentShowcaseProps) {
   return (
-    <section id="instruments" className="py-16 lg:py-24 bg-muted/30">
+    <section id="instruments" className="py-16 lg:py-24 bg-background">
       <div className="container mx-auto px-4 lg:px-8">
         <div className="text-center space-y-4 mb-12 lg:mb-16">
-          <h2 className="font-serif text-3xl lg:text-5xl text-foreground text-balance">
-            Featured Instruments
+          <h2 className="font-serif text-3xl lg:text-5xl text-foreground text-balance leading-tight">
+            Our Instruments
           </h2>
-          <p className="text-muted-foreground text-base lg:text-lg max-w-2xl mx-auto text-pretty">
+          <p className="text-muted-foreground text-base lg:text-lg max-w-2xl mx-auto text-pretty leading-relaxed">
             Each instrument is a unique work of art, meticulously crafted with wood that has been
             naturally aging for over two decades.
           </p>
@@ -70,14 +70,14 @@ export function InstrumentShowcase({ instruments }: InstrumentShowcaseProps) {
                 href={`/gallery/${instrument.slug || instrument.id}`}
                 className="group"
               >
-                <Card className="overflow-hidden border-border hover:shadow-lg transition-all duration-300 cursor-pointer">
-                  <div className="relative aspect-[3/4] bg-background overflow-hidden">
+                <Card className="overflow-hidden border-border/60 bg-card hover:shadow-xl hover:shadow-accent/5 transition-all duration-500 cursor-pointer">
+                  <div className="relative aspect-[3/4] bg-muted/30 overflow-hidden">
                     {imageUrl ? (
                       <Image
                         src={imageUrl}
                         alt={instrument.title}
                         fill
-                        className="object-cover group-hover:scale-105 transition-transform duration-500"
+                        className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
                         unoptimized
                       />
                     ) : (
@@ -90,7 +90,7 @@ export function InstrumentShowcase({ instruments }: InstrumentShowcaseProps) {
                         variant={instrument.status === 'available' ? 'default' : 'secondary'}
                         className={
                           instrument.status === 'available'
-                            ? 'bg-accent text-accent-foreground'
+                            ? 'bg-accent text-accent-foreground shadow-sm'
                             : 'bg-muted text-muted-foreground'
                         }
                       >
@@ -98,12 +98,14 @@ export function InstrumentShowcase({ instruments }: InstrumentShowcaseProps) {
                       </Badge>
                     </div>
                   </div>
-                  <div className="p-5 space-y-2">
+                  <div className="p-5 space-y-2 bg-card">
                     <div className="text-xs uppercase tracking-wider text-muted-foreground font-medium">
                       {typeLabel} ·{' '}
                       {instrument.year || new Date(instrument.createdAt).getFullYear()}
                     </div>
-                    <h3 className="font-serif text-lg text-foreground">{instrument.title}</h3>
+                    <h3 className="font-serif text-lg text-foreground group-hover:text-accent transition-colors">
+                      {instrument.title}
+                    </h3>
                     <p className="text-base font-medium text-foreground">
                       €{instrument.price.toLocaleString()}
                     </p>
@@ -117,7 +119,11 @@ export function InstrumentShowcase({ instruments }: InstrumentShowcaseProps) {
         {/* View All Button */}
         <div className="text-center mt-12">
           <Link href="/gallery">
-            <Button size="lg" variant="outline" className="bg-transparent group cursor-pointer">
+            <Button
+              size="lg"
+              variant="outline"
+              className="bg-transparent group cursor-pointer border-border/60 hover:bg-muted/50"
+            >
               View All Instruments
               <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
             </Button>
