@@ -1,6 +1,7 @@
 'use client'
 
 import Link from 'next/link'
+import Image from 'next/image'
 import { useSession, signOut } from 'next-auth/react'
 import { Menu, User, LogOut } from 'lucide-react'
 import { Button } from '@/components/ui/button'
@@ -60,10 +61,13 @@ export function Header() {
                 <DropdownMenuTrigger asChild>
                   <Button variant="ghost" size="icon" className="cursor-pointer">
                     {session.user.image ? (
-                      <img
+                      <Image
                         src={session.user.image}
                         alt={session.user.name || 'User'}
-                        className="h-8 w-8 rounded-full"
+                        width={32}
+                        height={32}
+                        className="rounded-full"
+                        unoptimized
                       />
                     ) : (
                       <User className="h-5 w-5" />

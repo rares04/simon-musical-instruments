@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import Image from 'next/image'
 import { Card } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
@@ -72,10 +73,12 @@ export function InstrumentShowcase({ instruments }: InstrumentShowcaseProps) {
                 <Card className="overflow-hidden border-border hover:shadow-lg transition-all duration-300 cursor-pointer">
                   <div className="relative aspect-[3/4] bg-background overflow-hidden">
                     {imageUrl ? (
-                      <img
+                      <Image
                         src={imageUrl}
                         alt={instrument.title}
-                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                        fill
+                        className="object-cover group-hover:scale-105 transition-transform duration-500"
+                        unoptimized
                       />
                     ) : (
                       <div className="w-full h-full flex items-center justify-center bg-muted">

@@ -1,4 +1,5 @@
 import Link from "next/link"
+import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { ArrowRight } from "lucide-react"
 
@@ -44,10 +45,12 @@ export function Hero() {
 
           {/* Right Image */}
           <div className="relative aspect-[3/4] lg:aspect-[4/5] rounded-sm overflow-hidden bg-muted">
-            <img
+            <Image
               src="/close-up-detail-of-handcrafted-violin-with-beautif.jpg"
               alt="Handcrafted violin detail"
-              className="w-full h-full object-cover"
+              fill
+              className="object-cover"
+              priority
             />
           </div>
         </div>

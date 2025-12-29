@@ -3,7 +3,7 @@ import { auth } from '@/lib/auth'
 import { getPayload } from 'payload'
 import config from '@/payload.config'
 
-export async function GET(req: NextRequest) {
+export async function GET(_req: NextRequest) {
   try {
     const session = await auth()
 

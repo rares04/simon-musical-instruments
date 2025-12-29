@@ -1,3 +1,4 @@
+import Image from 'next/image'
 import { Timer, Droplet } from 'lucide-react'
 
 export function LuthierStory() {
@@ -7,10 +8,11 @@ export function LuthierStory() {
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           {/* Image */}
           <div className="relative aspect-[4/3] rounded-sm overflow-hidden bg-muted order-2 lg:order-1">
-            <img
+            <Image
               src="/luthier-workshop-hands-working-on-violin-with-tool.jpg"
               alt="Luthier workshop"
-              className="w-full h-full object-cover"
+              fill
+              className="object-cover"
             />
           </div>
 

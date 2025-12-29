@@ -26,7 +26,7 @@ export async function POST(req: NextRequest) {
     const total = items.reduce((sum: number, item: InquiryItem) => sum + item.price, 0)
 
     // Send confirmation email to customer
-    const customerEmailResult = await sendEmail({
+    await sendEmail({
       to: customerEmail,
       subject: 'Your Inquiry - Simon Musical Instruments',
       react: InquiryReceivedEmail({

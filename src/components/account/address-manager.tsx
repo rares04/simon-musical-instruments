@@ -5,7 +5,7 @@ import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { EmptyState } from '@/components/account/empty-state'
-import { MapPin, Plus, Pencil, Trash2, Check } from 'lucide-react'
+import { MapPin, Plus, Trash2, Check } from 'lucide-react'
 
 interface Address {
   id: string
@@ -24,7 +24,7 @@ export function AddressManager() {
   const [isLoading, setIsLoading] = useState(true)
   const [isAdding, setIsAdding] = useState(false)
   const [isSaving, setIsSaving] = useState(false)
-  const [editingId, setEditingId] = useState<string | null>(null)
+  const [_editingId, _setEditingId] = useState<string | null>(null)
   const [formData, setFormData] = useState({
     label: '',
     street: '',

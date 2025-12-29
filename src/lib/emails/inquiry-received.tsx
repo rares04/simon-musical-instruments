@@ -28,7 +28,7 @@ interface InquiryReceivedEmailProps {
 
 export function InquiryReceivedEmail({
   customerName,
-  customerEmail,
+  customerEmail: _customerEmail,
   items,
   message,
   total,

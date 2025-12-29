@@ -65,7 +65,7 @@ export function ProfileForm() {
         const error = await response.json()
         setMessage({ type: 'error', text: error.error || 'Failed to update profile' })
       }
-    } catch (error) {
+    } catch (_error) {
       setMessage({ type: 'error', text: 'Failed to update profile' })
     } finally {
       setIsLoading(false)

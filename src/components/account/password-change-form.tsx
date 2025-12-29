@@ -18,8 +18,8 @@ export function PasswordChangeForm() {
     confirmPassword: '',
   })
 
-  // Check if user is OAuth-authenticated
-  const isOAuthUser = session?.user && !session.user.email?.includes('@') // Simple heuristic
+  // Check if user is OAuth-authenticated (kept for future use)
+  const _isOAuthUser = session?.user && !session.user.email?.includes('@')
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -58,7 +58,7 @@ export function PasswordChangeForm() {
       } else {
         setMessage({ type: 'error', text: data.error || 'Failed to change password' })
       }
-    } catch (error) {
+    } catch (_error) {
       setMessage({ type: 'error', text: 'Failed to change password' })
     } finally {
       setIsLoading(false)

@@ -2,6 +2,9 @@ import { type NextRequest, NextResponse } from 'next/server'
 import { auth } from '@/lib/auth'
 import { getPayload } from 'payload'
 import config from '@/payload.config'
+import type { User } from '@/payload-types'
+
+type SavedAddress = NonNullable<User['savedAddresses']>[number]
 
 export async function POST(req: NextRequest) {
   try {
@@ -21,11 +24,11 @@ export async function POST(req: NextRequest) {
       depth: 0,
     })
 
-    const currentAddresses = user.savedAddresses || []
+    const currentAddresses = (user.savedAddresses || []) as SavedAddress[]
 
     // If this is set as default, unset others
     if (body.isDefault) {
-      currentAddresses.forEach((addr: any) => {
+      currentAddresses.forEach((addr) => {
         addr.isDefault = false
       })
     }
@@ -70,18 +73,18 @@ export async function PATCH(req: NextRequest) {
       depth: 0,
     })
 
-    let updatedAddresses = user.savedAddresses || []
+    let updatedAddresses = (user.savedAddresses || []) as SavedAddress[]
 
     // If setting this as default, unset others
     if (addressData.isDefault) {
-      updatedAddresses = updatedAddresses.map((addr: any) => ({
+      updatedAddresses = updatedAddresses.map((addr) => ({
         ...addr,
-        isDefault: addr.id === id ? true : false,
+        isDefault: addr.id === id,
       }))
     }
 
     // Update the specific address
-    updatedAddresses = updatedAddresses.map((addr: any) =>
+    updatedAddresses = updatedAddresses.map((addr) =>
       addr.id === id ? { ...addr, ...addressData } : addr,
     )
 
@@ -130,7 +133,7 @@ export async function DELETE(req: NextRequest) {
 
     // Remove address
     const updatedAddresses = (user.savedAddresses || []).filter(
-      (addr: any) => addr.id !== addressId,
+      (addr) => addr.id !== addressId,
     )
 
     // Update user

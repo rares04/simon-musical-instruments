@@ -10,7 +10,6 @@ import { Label } from '@/components/ui/label'
 import Image from 'next/image'
 import { Shield, Package, Truck, Mail, Phone, Loader2 } from 'lucide-react'
 import type { CartItem } from '@/lib/cart-context'
-import { useRouter } from 'next/navigation'
 
 // Initialize Stripe
 const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY || '')
@@ -52,7 +51,6 @@ function CheckoutForm({
 }: StripePaymentFormProps) {
   const stripe = useStripe()
   const elements = useElements()
-  const router = useRouter()
   const [errorMessage, setErrorMessage] = useState<string>('')
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -115,7 +113,7 @@ function CheckoutForm({
         setErrorMessage(error.message || 'An error occurred during payment')
         setIsProcessing(false)
       }
-    } catch (err) {
+    } catch (_err) {
       setErrorMessage('An unexpected error occurred')
       setIsProcessing(false)
     }
