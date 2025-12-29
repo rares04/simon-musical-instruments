@@ -20,7 +20,6 @@ export function InstrumentFilters({
 }: InstrumentFiltersProps) {
   const t = useTranslations('gallery.filters')
   const tGallery = useTranslations('gallery')
-  const tInstruments = useTranslations('instruments')
 
   const instrumentTypes = [
     { value: 'all', label: t('allInstruments') },
