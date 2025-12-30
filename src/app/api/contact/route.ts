@@ -12,24 +12,24 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: 'Missing required fields' }, { status: 400 })
     }
 
-    // Map subject value to human-readable label
-    const subjectLabels: Record<string, string> = {
-      general: 'General Inquiry',
-      purchase: 'Instrument Purchase',
-      custom: 'Custom Order',
-      other: 'Other',
+    // Map subject value to Romanian labels (Paul's native language)
+    const subjectLabelsRo: Record<string, string> = {
+      general: 'Întrebare Generală',
+      purchase: 'Achiziție Instrument',
+      custom: 'Comandă Personalizată',
+      other: 'Altele',
     }
-    const subjectLabel = subjectLabels[subject] || subject
+    const subjectLabelRo = subjectLabelsRo[subject] || subject
 
-    // Send notification email to Paul
+    // Send notification email to Paul (in Romanian)
     await sendEmail({
       to: 'paul.simon@simoninstruments.com',
-      subject: `New Contact Form: ${subjectLabel} from ${name}`,
+      subject: `Formular de Contact: ${subjectLabelRo} de la ${name}`,
       react: ContactFormEmail({
         name,
         email,
         phone,
-        subject: subjectLabel,
+        subject: subjectLabelRo,
         message,
       }),
     })

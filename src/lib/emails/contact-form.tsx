@@ -5,6 +5,7 @@ import {
   Heading,
   Hr,
   Html,
+  Link,
   Preview,
   Section,
   Text,
@@ -19,43 +20,49 @@ interface ContactFormEmailProps {
 }
 
 export function ContactFormEmail({ name, email, phone, subject, message }: ContactFormEmailProps) {
+  const contactPageUrl = 'https://simoninstruments.com/en/contact'
+
   return (
     <Html>
       <Head />
-      <Preview>New contact form submission from {name}</Preview>
+      <Preview>Mesaj nou de la {name} prin formularul de contact</Preview>
       <Body style={main}>
         <Container style={container}>
-          <Heading style={h1}>New Contact Form Submission</Heading>
+          <Heading style={h1}>Mesaj Nou din Formularul de Contact</Heading>
 
           <Section style={section}>
-            <Text style={label}>Subject</Text>
+            <Text style={label}>Subiect</Text>
             <Text style={value}>{subject}</Text>
           </Section>
 
           <Hr style={hr} />
 
           <Section style={section}>
-            <Text style={label}>From</Text>
+            <Text style={label}>De la</Text>
             <Text style={value}>{name}</Text>
             <Text style={subValue}>
-              <a href={`mailto:${email}`} style={link}>
+              <Link href={`mailto:${email}`} style={link}>
                 {email}
-              </a>
+              </Link>
             </Text>
-            {phone && <Text style={subValue}>Phone: {phone}</Text>}
+            {phone && <Text style={subValue}>Telefon: {phone}</Text>}
           </Section>
 
           <Hr style={hr} />
 
           <Section style={section}>
-            <Text style={label}>Message</Text>
+            <Text style={label}>Mesaj</Text>
             <Text style={messageStyle}>{message}</Text>
           </Section>
 
           <Hr style={hr} />
 
           <Text style={footer}>
-            This message was sent via the contact form on simoninstruments.com
+            Acest mesaj a fost trimis prin{' '}
+            <Link href={contactPageUrl} style={footerLink}>
+              formularul de contact
+            </Link>{' '}
+            de pe simoninstruments.com
           </Text>
         </Container>
       </Body>
@@ -137,5 +144,9 @@ const footer = {
   textAlign: 'center' as const,
 }
 
-export default ContactFormEmail
+const footerLink = {
+  color: '#b87333',
+  textDecoration: 'underline',
+}
 
+export default ContactFormEmail

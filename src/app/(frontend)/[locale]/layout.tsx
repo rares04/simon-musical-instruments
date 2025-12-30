@@ -26,15 +26,14 @@ export const metadata: Metadata = {
   title: 'Simon Musical Instruments | Handcrafted String Instruments from Reghin, Romania',
   description:
     'Premium handcrafted violins, violas, cellos, and contrabasses made with naturally-cured wood and traditional varnish in Reghin, Transylvania.',
-  generator: 'v0.app',
   icons: {
     icon: [
       {
-        url: '/icon-light-32x32.png',
+        url: '/icon-light.svg',
         media: '(prefers-color-scheme: light)',
       },
       {
-        url: '/icon-dark-32x32.png',
+        url: '/icon-dark.svg',
         media: '(prefers-color-scheme: dark)',
       },
       {
