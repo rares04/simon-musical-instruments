@@ -15,8 +15,7 @@ export function getResend(): Resend {
 }
 
 // Email sender configuration
-export const EMAIL_FROM =
-  process.env.EMAIL_FROM || 'Simon Musical Instruments <orders@simoninstruments.com>'
+export const EMAIL_FROM = process.env.EMAIL_FROM || 'Paul Simon <paul.simon@simoninstruments.com>'
 
 // Helper function to send emails with error handling
 export async function sendEmail({
