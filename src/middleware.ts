@@ -4,12 +4,25 @@ import { routing } from './i18n/routing'
 
 const intlMiddleware = createMiddleware(routing)
 
+/** The canonical production domain (no subdomains allowed) */
+const CANONICAL_DOMAIN = 'simoninstruments.com'
+
+/**
+ * Check if a host is allowed for local development
+ * Matches: localhost, localhost:3000, 127.0.0.1, etc.
+ */
+function isLocalhost(host: string): boolean {
+  const hostWithoutPort = host.split(':')[0]
+  return hostWithoutPort === 'localhost' || hostWithoutPort === '127.0.0.1'
+}
+
 /**
  * Middleware that handles URL canonicalization for SEO:
- * 1. WWW to non-WWW redirect (301)
+ * 1. Strict domain enforcement - redirects ALL subdomains to canonical domain (301)
  * 2. Trailing slash removal for sub-pages (301)
  * 3. Internationalization routing via next-intl
  *
+ * Wildcard domain setup: *.simoninstruments.com → simoninstruments.com
  * All canonicalization is done in a single redirect to avoid redirect chains.
  */
 export default function middleware(request: NextRequest) {
@@ -19,19 +32,24 @@ export default function middleware(request: NextRequest) {
   const forwardedHost = request.headers.get('x-forwarded-host')
   const host = forwardedHost || request.headers.get('host') || ''
 
+  // Extract hostname without port for comparison
+  const hostWithoutPort = host.split(':')[0]
+
   // Get the protocol (default to https in production)
   const forwardedProto = request.headers.get('x-forwarded-proto')
   const protocol = forwardedProto || 'https'
 
   // Track if we need to redirect
   let needsRedirect = false
-  let canonicalHost = host
   let canonicalPath = url.pathname
 
-  // 1. Non-WWW Enforcement
-  // If host starts with "www.", remove it
-  if (host.startsWith('www.')) {
-    canonicalHost = host.replace(/^www\./, '')
+  // 1. Strict Domain Enforcement
+  // If host is NOT exactly the canonical domain (and not localhost for dev),
+  // redirect to the canonical domain. This catches www., api., random., etc.
+  const isCanonicalDomain = hostWithoutPort === CANONICAL_DOMAIN
+  const isDevelopment = isLocalhost(host)
+
+  if (!isCanonicalDomain && !isDevelopment) {
     needsRedirect = true
   }
 
@@ -39,7 +57,6 @@ export default function middleware(request: NextRequest) {
   // Remove trailing slash if:
   // - Path ends with "/"
   // - Path is not the root "/"
-  // - Path doesn't look like a file (no extension)
   // Note: API routes are already excluded by the matcher config
   if (canonicalPath !== '/' && canonicalPath.endsWith('/')) {
     canonicalPath = canonicalPath.slice(0, -1)
@@ -48,7 +65,10 @@ export default function middleware(request: NextRequest) {
 
   // If any canonicalization is needed, redirect with 301
   if (needsRedirect) {
-    const canonicalUrl = `${protocol}://${canonicalHost}${canonicalPath}${url.search}`
+    // Always redirect to the canonical domain in production
+    const targetHost = isDevelopment ? host : CANONICAL_DOMAIN
+    const targetProtocol = isDevelopment ? 'http' : protocol
+    const canonicalUrl = `${targetProtocol}://${targetHost}${canonicalPath}${url.search}`
 
     return NextResponse.redirect(canonicalUrl, {
       status: 301,
