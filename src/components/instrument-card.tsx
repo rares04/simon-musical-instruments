@@ -80,9 +80,15 @@ export function InstrumentCard({ instrument }: InstrumentCardProps) {
             </p>
           )}
 
-          <div className="flex items-center gap-3 text-xs text-muted-foreground">
+          <div className="flex items-center gap-3 text-xs text-muted-foreground flex-wrap">
             {instrument.instrumentType && (
               <span className="capitalize">{instrument.instrumentType}</span>
+            )}
+            {instrument.model && (
+              <>
+                <span>•</span>
+                <span>{instrument.model}</span>
+              </>
             )}
             {instrument.year && (
               <>

@@ -49,9 +49,9 @@ export async function POST(req: NextRequest) {
       )
     }
 
-    // Check if all instruments are available
+    // Check if all instruments are available (status and stock)
     const unavailableInstruments = instruments.filter(
-      (instrument) => instrument.status !== 'available',
+      (instrument) => instrument.status !== 'available' || (instrument.stock ?? 1) <= 0,
     )
 
     if (unavailableInstruments.length > 0) {

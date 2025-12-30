@@ -31,6 +31,7 @@
     "viola": "Alto",
     "cello": "Violoncelle",
     "contrabass": "Contrebasse",
+    "model": "Modèle",
     "noImage": "Aucune image",
     "handcraftedInstrument": "Instrument artisanal"
   },
@@ -232,10 +233,12 @@
     "varnish": "Vernis",
     "strings": "Cordes",
     "bodyLength": "Longueur du Corps",
+    "stringVibration": "Longueur de Corde Vibrante",
     "crafted": "Fabriqué en {year}",
     "checkoutNote": "Commande sécurisée avec livraison FedEx assurée. Chaque instrument est un investissement significatif et inclut une documentation complète.",
     "inBuildNote": "Cet instrument est actuellement en cours de fabrication. Contactez-nous pour le réserver ou obtenir des mises à jour sur l'achèvement.",
     "soldNote": "Cet instrument a été {status}. Contactez-nous pour commander une pièce similaire.",
+    "lowStock": "Seulement {count} en stock",
     "noImagesAvailable": "Aucune image disponible"
   },
   "cart": {

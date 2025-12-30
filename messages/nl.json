@@ -31,6 +31,7 @@
     "viola": "Altviool",
     "cello": "Cello",
     "contrabass": "Contrabas",
+    "model": "Model",
     "noImage": "Geen afbeelding",
     "handcraftedInstrument": "Handgemaakt instrument"
   },
@@ -232,10 +233,12 @@
     "varnish": "Lak",
     "strings": "Snaren",
     "bodyLength": "Korpuslengte",
+    "stringVibration": "Trillende Snaarlengte",
     "crafted": "Gemaakt {year}",
     "checkoutNote": "Veilige checkout met verzekerde FedEx levering. Elk instrument is een significante investering en bevat volledige documentatie.",
     "inBuildNote": "Dit instrument wordt momenteel gemaakt. Neem contact met ons op om het te reserveren of updates over voltooiing te krijgen.",
     "soldNote": "Dit instrument is {status}. Neem contact met ons op om een soortgelijk stuk te bestellen.",
+    "lowStock": "Nog maar {count} op voorraad",
     "noImagesAvailable": "Geen afbeeldingen beschikbaar"
   },
   "cart": {

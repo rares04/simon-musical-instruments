@@ -70,6 +70,15 @@ export const Instruments: CollectionConfig = {
       },
     },
     {
+      name: 'model',
+      type: 'text',
+      label: 'Model',
+      admin: {
+        position: 'sidebar',
+        description: 'e.g., Stradivari, Guarneri, Montagnana',
+      },
+    },
+    {
       name: 'status',
       type: 'select',
       required: true,
@@ -92,6 +101,17 @@ export const Instruments: CollectionConfig = {
       admin: {
         position: 'sidebar',
         description: 'Price in EUR (€)',
+      },
+    },
+    {
+      name: 'stock',
+      type: 'number',
+      required: true,
+      defaultValue: 1,
+      min: 0,
+      admin: {
+        position: 'sidebar',
+        description: 'Number of units in stock',
       },
     },
     {
@@ -210,6 +230,15 @@ export const Instruments: CollectionConfig = {
           label: 'Body Length',
           admin: {
             description: 'e.g., 356mm for violin, 755mm for cello',
+          },
+        },
+        {
+          name: 'stringVibration',
+          type: 'text',
+          label: 'String Vibration Length',
+          admin: {
+            description: 'Vibrating string length (specific to double bass)',
+            condition: (data) => data.instrumentType === 'contrabass',
           },
         },
       ],

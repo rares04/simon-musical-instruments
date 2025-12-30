@@ -179,8 +179,14 @@ export function GalleryClient({ instruments }: GalleryClientProps) {
                         .join(' / ') || t('handcraftedInstrument')}
                     </p>
 
-                    <div className="flex items-center gap-3 text-xs text-muted-foreground">
+                    <div className="flex items-center gap-3 text-xs text-muted-foreground flex-wrap">
                       <span>{typeLabel}</span>
+                      {instrument.model && (
+                        <>
+                          <span>•</span>
+                          <span>{instrument.model}</span>
+                        </>
+                      )}
                       <span>•</span>
                       <span>{instrument.year || new Date(instrument.createdAt).getFullYear()}</span>
                     </div>

@@ -83,9 +83,9 @@ export async function POST(req: NextRequest) {
       limit: instrumentIds.length,
     })
 
-    // Verify all instruments are still available (double-check)
+    // Verify all instruments are still available (double-check status and stock)
     const unavailableInstruments = instruments.filter(
-      (instrument) => instrument.status !== 'available',
+      (instrument) => instrument.status !== 'available' || (instrument.stock ?? 1) <= 0,
     )
 
     if (unavailableInstruments.length > 0) {
@@ -138,13 +138,18 @@ export async function POST(req: NextRequest) {
       },
     })
 
-    // Update each instrument's status to 'sold'
+    // Decrease stock for each instrument and mark as sold if stock reaches 0
     for (const instrument of instruments) {
+      const currentStock = instrument.stock ?? 1
+      const newStock = Math.max(0, currentStock - 1)
+
       await payload.update({
         collection: 'instruments',
         id: instrument.id,
         data: {
-          status: 'sold',
+          stock: newStock,
+          // Mark as sold only when stock reaches 0
+          ...(newStock === 0 ? { status: 'sold' } : {}),
         },
       })
     }

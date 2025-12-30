@@ -31,6 +31,7 @@
     "viola": "Viola",
     "cello": "Cello",
     "contrabass": "Contrabass",
+    "model": "Model",
     "noImage": "No image",
     "handcraftedInstrument": "Handcrafted instrument"
   },
@@ -232,10 +233,12 @@
     "varnish": "Varnish",
     "strings": "Strings",
     "bodyLength": "Body Length",
+    "stringVibration": "String Vibration Length",
     "crafted": "Crafted {year}",
     "checkoutNote": "Secure checkout with insured FedEx delivery. Each instrument is a significant investment and includes full documentation.",
     "inBuildNote": "This instrument is currently being crafted. Contact us to reserve it or get updates on completion.",
     "soldNote": "This instrument has been {status}. Contact us to commission a similar piece.",
+    "lowStock": "Only {count} left in stock",
     "noImagesAvailable": "No images available"
   },
   "cart": {

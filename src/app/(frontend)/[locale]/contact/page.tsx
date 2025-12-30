@@ -1,7 +1,8 @@
 'use client'
 
 import type React from 'react'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+import { useSearchParams } from 'next/navigation'
 import { useTranslations } from 'next-intl'
 import { MapPin, Mail, Phone, Clock } from 'lucide-react'
 import { Button } from '@/components/ui/button'
@@ -20,6 +21,8 @@ import { Footer } from '@/components/footer'
 
 export default function ContactPage() {
   const t = useTranslations('contact')
+  const searchParams = useSearchParams()
+  const instrumentName = searchParams.get('instrument')
 
   const [formData, setFormData] = useState({
     name: '',
@@ -28,6 +31,17 @@ export default function ContactPage() {
     subject: '',
     message: '',
   })
+
+  // Pre-fill form when coming from an instrument inquiry
+  useEffect(() => {
+    if (instrumentName) {
+      setFormData((prev) => ({
+        ...prev,
+        subject: 'purchase',
+        message: `I am interested in the "${instrumentName}" and would like to inquire about commissioning a similar instrument.\n\n`,
+      }))
+    }
+  }, [instrumentName])
   const [isSubmitted, setIsSubmitted] = useState(false)
   const [isSubmitting, setIsSubmitting] = useState(false)
 

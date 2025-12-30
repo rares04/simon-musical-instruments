@@ -161,7 +161,9 @@ export default async function OrderDetailPage({ params }: { params: Promise<{ id
                       <h3 className="font-semibold text-foreground">{item.title}</h3>
                       {instrument && (
                         <p className="text-sm text-muted-foreground mt-1">
-                          {instrument.instrumentType} · {instrument.year}
+                          {instrument.instrumentType}
+                          {instrument.model && ` · ${instrument.model}`}
+                          {instrument.year && ` · ${instrument.year}`}
                         </p>
                       )}
                       <div className="flex items-center justify-between mt-2">

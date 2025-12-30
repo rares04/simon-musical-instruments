@@ -117,7 +117,9 @@ export function InstrumentShowcase({ instruments }: InstrumentShowcaseProps) {
                   </div>
                   <div className="p-5 space-y-2 bg-card">
                     <div className="text-xs uppercase tracking-wider text-muted-foreground font-medium">
-                      {typeLabel} ·{' '}
+                      {typeLabel}
+                      {instrument.model && ` · ${instrument.model}`}
+                      {' · '}
                       {instrument.year || new Date(instrument.createdAt).getFullYear()}
                     </div>
                     <h3 className="font-serif text-lg text-foreground group-hover:text-accent transition-colors">

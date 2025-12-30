@@ -16,7 +16,9 @@ type Locale = (typeof locales)[number]
 const instruments = [
   {
     instrumentType: 'violin' as const,
+    model: 'Stradivari',
     status: 'available' as const,
+    stock: 1,
     price: 3500,
     year: 2024,
     image: 'professional-violin-front-view-on-white-background.jpg',
@@ -74,7 +76,9 @@ const instruments = [
   },
   {
     instrumentType: 'cello' as const,
+    model: 'Montagnana',
     status: 'available' as const,
+    stock: 1,
     price: 8500,
     year: 2023,
     image: 'professional-cello-front-view-warm-wood.jpg',
@@ -132,7 +136,9 @@ const instruments = [
   },
   {
     instrumentType: 'violin' as const,
+    model: 'Guarneri',
     status: 'sold' as const,
+    stock: 0,
     price: 2200,
     year: 2024,
     image: 'violin-craftsmanship-warm-lighting.jpg',
@@ -190,7 +196,9 @@ const instruments = [
   },
   {
     instrumentType: 'contrabass' as const,
+    model: 'Busetto',
     status: 'available' as const,
+    stock: 2,
     price: 12000,
     year: 2023,
     image: 'double-bass-contrabass-full-view.jpg',
@@ -202,6 +210,7 @@ const instruments = [
       varnish: 'Traditional oil-based, hand-applied',
       strings: 'Spirocore',
       bodyLength: '1120mm (3/4 size)',
+      stringVibration: '1060mm',
     },
     translations: {
       en: {
@@ -248,7 +257,9 @@ const instruments = [
   },
   {
     instrumentType: 'viola' as const,
+    model: 'Gasparo da Salò',
     status: 'available' as const,
+    stock: 1,
     price: 4200,
     year: 2024,
     image: 'viola-instrument-wood-grain.jpg',
@@ -306,7 +317,9 @@ const instruments = [
   },
   {
     instrumentType: 'violin' as const,
+    model: 'Stradivari',
     status: 'sold' as const,
+    stock: 0,
     price: 5800,
     year: 2022,
     image: 'vintage-violin-detailed-craftsmanship.jpg',
@@ -364,7 +377,9 @@ const instruments = [
   },
   {
     instrumentType: 'cello' as const,
+    model: 'Stradivari',
     status: 'available' as const,
+    stock: 1,
     price: 6500,
     year: 2024,
     image: 'cello-dark-wood-professional.jpg',
@@ -422,7 +437,9 @@ const instruments = [
   },
   {
     instrumentType: 'contrabass' as const,
+    model: 'Gamba',
     status: 'sold' as const,
+    stock: 0,
     price: 9800,
     year: 2023,
     image: 'upright-bass-concert-hall.jpg',
@@ -434,6 +451,7 @@ const instruments = [
       varnish: 'Traditional oil-based',
       strings: 'Spirocore Solo',
       bodyLength: '1120mm (3/4 size)',
+      stringVibration: '1040mm',
     },
     translations: {
       en: {
@@ -572,7 +590,9 @@ async function seed() {
       data: {
         title: instrument.translations.en.title,
         instrumentType: instrument.instrumentType,
+        model: instrument.model,
         status: instrument.status,
+        stock: instrument.stock ?? 1,
         price: instrument.price,
         year: instrument.year,
         mainImage: media.id,

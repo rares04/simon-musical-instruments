@@ -31,6 +31,7 @@
     "viola": "Violă",
     "cello": "Violoncel",
     "contrabass": "Contrabas",
+    "model": "Model",
     "noImage": "Fără imagine",
     "handcraftedInstrument": "Instrument realizat manual"
   },
@@ -232,10 +233,12 @@
     "varnish": "Lac",
     "strings": "Corzi",
     "bodyLength": "Lungime Corp",
+    "stringVibration": "Lungime Vibrație Coardă",
     "crafted": "Realizat în {year}",
     "checkoutNote": "Checkout securizat cu livrare FedEx asigurată. Fiecare instrument este o investiție semnificativă și include documentație completă.",
     "inBuildNote": "Acest instrument este în construcție. Contactează-ne pentru a-l rezerva sau pentru actualizări despre finalizare.",
     "soldNote": "Acest instrument a fost {status}. Contactează-ne pentru a comanda unul similar.",
+    "lowStock": "Doar {count} în stoc",
     "noImagesAvailable": "Nicio imagine disponibilă"
   },
   "cart": {

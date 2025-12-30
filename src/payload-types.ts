@@ -218,11 +218,19 @@ export interface Instrument {
   title: string;
   slug?: string | null;
   instrumentType: 'violin' | 'viola' | 'cello' | 'contrabass';
+  /**
+   * e.g., Stradivari, Guarneri, Montagnana
+   */
+  model?: string | null;
   status: 'available' | 'in-build' | 'reserved' | 'sold';
   /**
    * Price in EUR (€)
    */
   price: number;
+  /**
+   * Number of units in stock
+   */
+  stock: number;
   /**
    * Year crafted
    */
@@ -253,6 +261,10 @@ export interface Instrument {
      * e.g., 356mm for violin, 755mm for cello
      */
     bodyLength?: string | null;
+    /**
+     * Vibrating string length (specific to double bass)
+     */
+    stringVibration?: string | null;
   };
   updatedAt: string;
   createdAt: string;
@@ -501,8 +513,10 @@ export interface InstrumentsSelect<T extends boolean = true> {
   title?: T;
   slug?: T;
   instrumentType?: T;
+  model?: T;
   status?: T;
   price?: T;
+  stock?: T;
   year?: T;
   luthierNotes?: T;
   mainImage?: T;
@@ -523,6 +537,7 @@ export interface InstrumentsSelect<T extends boolean = true> {
         varnish?: T;
         strings?: T;
         bodyLength?: T;
+        stringVibration?: T;
       };
   updatedAt?: T;
   createdAt?: T;

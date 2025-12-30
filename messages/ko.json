@@ -31,6 +31,7 @@
     "viola": "비올라",
     "cello": "첼로",
     "contrabass": "콘트라베이스",
+    "model": "모델",
     "noImage": "이미지 없음",
     "handcraftedInstrument": "수제 악기"
   },
@@ -232,10 +233,12 @@
     "varnish": "바니시",
     "strings": "현",
     "bodyLength": "몸통 길이",
+    "stringVibration": "현 진동 길이",
     "crafted": "{year}년 제작",
     "checkoutNote": "보험 가입된 FedEx 배송으로 안전한 결제. 각 악기는 중요한 투자이며 완전한 문서가 포함됩니다.",
     "inBuildNote": "이 악기는 현재 제작 중입니다. 예약하거나 완성에 대한 업데이트를 받으려면 문의해 주세요.",
     "soldNote": "이 악기는 {status}입니다. 유사한 작품 주문에 대해서는 문의해 주세요.",
+    "lowStock": "{count}개만 남음",
     "noImagesAvailable": "사용 가능한 이미지가 없습니다"
   },
   "cart": {

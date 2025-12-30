@@ -80,7 +80,11 @@ export function ProductDetail({ instrument, images, audioUrl }: ProductDetailPro
         <div className="grid lg:grid-cols-2 gap-8 lg:gap-16">
           {/* Left Column - Sticky Image Gallery */}
           <div className="lg:sticky lg:top-24 lg:h-[calc(100vh-8rem)] flex flex-col">
-            <ImageGallery images={images.map(getImageSrc)} alt={instrument.title} noImagesText={tProduct('noImagesAvailable')} />
+            <ImageGallery
+              images={images.map(getImageSrc)}
+              alt={instrument.title}
+              noImagesText={tProduct('noImagesAvailable')}
+            />
           </div>
 
           {/* Right Column - Scrollable Content */}
@@ -91,6 +95,7 @@ export function ProductDetail({ instrument, images, audioUrl }: ProductDetailPro
                 <div className="space-y-2">
                   <p className="text-sm uppercase tracking-wider text-accent font-medium">
                     {typeLabel}
+                    {instrument.model && ` · ${instrument.model}`}
                   </p>
                   <h1 className="font-serif text-3xl lg:text-4xl font-bold text-foreground text-balance">
                     {instrument.title}
@@ -102,7 +107,9 @@ export function ProductDetail({ instrument, images, audioUrl }: ProductDetailPro
                     €{instrument.price.toLocaleString()}
                   </div>
                   {instrument.year && (
-                    <p className="text-sm text-muted-foreground mt-1">{tProduct('crafted', { year: instrument.year })}</p>
+                    <p className="text-sm text-muted-foreground mt-1">
+                      {tProduct('crafted', { year: instrument.year })}
+                    </p>
                   )}
                 </div>
               </div>
@@ -135,7 +142,9 @@ export function ProductDetail({ instrument, images, audioUrl }: ProductDetailPro
             {/* Specifications */}
             {instrument.specs && (
               <div className="space-y-4">
-                <h2 className="font-serif text-2xl font-bold text-foreground">{tProduct('specifications')}</h2>
+                <h2 className="font-serif text-2xl font-bold text-foreground">
+                  {tProduct('specifications')}
+                </h2>
                 <div className="grid gap-4">
                   {instrument.specs.bodyWood && (
                     <SpecRow label={tProduct('bodyWood')} value={instrument.specs.bodyWood} />
@@ -147,7 +156,10 @@ export function ProductDetail({ instrument, images, audioUrl }: ProductDetailPro
                     <SpecRow label={tProduct('neckWood')} value={instrument.specs.neckWood} />
                   )}
                   {instrument.specs.fingerboardWood && (
-                    <SpecRow label={tProduct('fingerboard')} value={instrument.specs.fingerboardWood} />
+                    <SpecRow
+                      label={tProduct('fingerboard')}
+                      value={instrument.specs.fingerboardWood}
+                    />
                   )}
                   {instrument.specs.varnish && (
                     <SpecRow label={tProduct('varnish')} value={instrument.specs.varnish} />
@@ -158,13 +170,20 @@ export function ProductDetail({ instrument, images, audioUrl }: ProductDetailPro
                   {instrument.specs.bodyLength && (
                     <SpecRow label={tProduct('bodyLength')} value={instrument.specs.bodyLength} />
                   )}
+                  {instrument.instrumentType === 'contrabass' &&
+                    instrument.specs.stringVibration && (
+                      <SpecRow
+                        label={tProduct('stringVibration')}
+                        value={instrument.specs.stringVibration}
+                      />
+                    )}
                 </div>
               </div>
             )}
 
             {/* Call to Action */}
             <div className="space-y-4 pt-4">
-              {instrument.status === 'available' ? (
+              {instrument.status === 'available' && (instrument.stock ?? 1) > 0 ? (
                 <>
                   <Button
                     size="lg"
@@ -176,6 +195,11 @@ export function ProductDetail({ instrument, images, audioUrl }: ProductDetailPro
                   <p className="text-sm text-muted-foreground text-center text-pretty">
                     {tProduct('checkoutNote')}
                   </p>
+                  {(instrument.stock ?? 1) <= 3 && (instrument.stock ?? 1) > 1 && (
+                    <p className="text-sm text-amber-600 text-center font-medium">
+                      {tProduct('lowStock', { count: instrument.stock })}
+                    </p>
+                  )}
                 </>
               ) : instrument.status === 'in-build' ? (
                 <div className="bg-muted/50 border border-border p-6 text-center">
@@ -186,8 +210,11 @@ export function ProductDetail({ instrument, images, audioUrl }: ProductDetailPro
                     variant="outline"
                     size="lg"
                     className="mt-4 bg-transparent cursor-pointer"
+                    asChild
                   >
-                    {t('inquire')}
+                    <Link href={`/contact?instrument=${encodeURIComponent(instrument.title)}`}>
+                      {t('inquire')}
+                    </Link>
                   </Button>
                 </div>
               ) : (
@@ -199,8 +226,11 @@ export function ProductDetail({ instrument, images, audioUrl }: ProductDetailPro
                     variant="outline"
                     size="lg"
                     className="mt-4 bg-transparent cursor-pointer"
+                    asChild
                   >
-                    {t('inquire')}
+                    <Link href={`/contact?instrument=${encodeURIComponent(instrument.title)}`}>
+                      {t('inquire')}
+                    </Link>
                   </Button>
                 </div>
               )}
@@ -221,7 +251,15 @@ function SpecRow({ label, value }: { label: string; value: string }) {
   )
 }
 
-function ImageGallery({ images, alt, noImagesText }: { images: string[]; alt: string; noImagesText: string }) {
+function ImageGallery({
+  images,
+  alt,
+  noImagesText,
+}: {
+  images: string[]
+  alt: string
+  noImagesText: string
+}) {
   const [currentIndex, setCurrentIndex] = useState(0)
 
   if (images.length === 0) {

@@ -31,6 +31,7 @@
     "viola": "ビオラ",
     "cello": "チェロ",
     "contrabass": "コントラバス",
+    "model": "モデル",
     "noImage": "画像なし",
     "handcraftedInstrument": "手作り楽器"
   },
@@ -232,10 +233,12 @@
     "varnish": "ニス",
     "strings": "弦",
     "bodyLength": "胴体長",
+    "stringVibration": "弦振動長",
     "crafted": "{year}年製作",
     "checkoutNote": "保険付きFedEx配送での安全なチェックアウト。各楽器は重要な投資であり、完全な書類が含まれています。",
     "inBuildNote": "この楽器は現在製作中です。予約または完成の最新情報については、お問い合わせください。",
     "soldNote": "この楽器は{status}です。類似品の注文についてはお問い合わせください。",
+    "lowStock": "残り{count}点のみ",
     "noImagesAvailable": "利用可能な画像がありません"
   },
   "cart": {

@@ -31,6 +31,7 @@
     "viola": "Viola",
     "cello": "Cello",
     "contrabass": "Kontrabass",
+    "model": "Modell",
     "noImage": "Kein Bild",
     "handcraftedInstrument": "Handgefertigtes Instrument"
   },
@@ -232,10 +233,12 @@
     "varnish": "Lack",
     "strings": "Saiten",
     "bodyLength": "Korpuslänge",
+    "stringVibration": "Schwingende Saitenlänge",
     "crafted": "Gefertigt {year}",
     "checkoutNote": "Sichere Kasse mit versicherter FedEx-Lieferung. Jedes Instrument ist eine bedeutende Investition und beinhaltet vollständige Dokumentation.",
     "inBuildNote": "Dieses Instrument wird derzeit gefertigt. Kontaktieren Sie uns, um es zu reservieren oder Updates zur Fertigstellung zu erhalten.",
     "soldNote": "Dieses Instrument wurde {status}. Kontaktieren Sie uns, um ein ähnliches Stück in Auftrag zu geben.",
+    "lowStock": "Nur noch {count} auf Lager",
     "noImagesAvailable": "Keine Bilder verfügbar"
   },
   "cart": {
