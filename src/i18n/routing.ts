@@ -10,6 +10,10 @@ export const routing = defineRouting({
 
   // Always show locale in URL (e.g., /en/shop, /de/shop)
   localePrefix: 'always',
+
+  // Automatically detect locale from Accept-Language header
+  // When a user visits `/` they'll be redirected to their preferred locale
+  localeDetection: true,
 })
 
 // Lightweight wrappers around Next.js' navigation APIs
