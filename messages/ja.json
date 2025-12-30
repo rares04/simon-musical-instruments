@@ -7,7 +7,11 @@
     "signIn": "ログイン",
     "myAccount": "マイアカウント",
     "myOrders": "注文履歴",
-    "signOut": "ログアウト"
+    "signOut": "ログアウト",
+    "activeOrders": "進行中の注文",
+    "ordersInProgress": "{count}件の注文が進行中",
+    "completePayment": "支払いを完了",
+    "paulWillContact": "ポールが支払いの手配についてご連絡いたします"
   },
   "hero": {
     "title": "私たちのバーチャル工房へようこそ",
@@ -159,7 +163,8 @@
     "tryAgain": "再試行",
     "contactSupport": "サポートに連絡",
     "continueAsGuest": "ゲストとして買い物を続ける",
-    "needAssistance": "サポートが必要ですか？"
+    "needAssistance": "サポートが必要ですか？",
+    "viewDetails": "詳細を見る"
   },
   "account": {
     "title": "マイアカウント",
@@ -181,14 +186,24 @@
       "browseInstruments": "楽器を見る",
       "profileSettings": "プロフィール設定",
       "profileSettingsDesc": "個人情報と設定を更新",
-      "browseInstrumentsDesc": "楽器コレクションを発見"
+      "browseInstrumentsDesc": "楽器コレクションを発見",
+      "pendingPaymentAlert": "{count}件の予約が支払い待ち",
+      "pendingPaymentDesc": "ポールが1〜2営業日以内に銀行振込の手配についてご連絡いたします。"
     },
     "orderHistory": {
       "title": "注文履歴",
       "subtitle": "すべての注文を表示・追跡",
       "loadingOrders": "注文を読み込み中...",
       "noOrders": "まだ注文がありません",
-      "noOrdersDesc": "注文すると、ここに表示されます。"
+      "noOrdersDesc": "注文すると、ここに表示されます。",
+      "filterByStatus": "ステータスでフィルター",
+      "allOrders": "すべての注文",
+      "awaitingPayment": "支払い待ち",
+      "paid": "支払い済み",
+      "processing": "処理中",
+      "shipped": "発送済み",
+      "delivered": "配達済み",
+      "cancelled": "キャンセル"
     },
     "profilePage": {
       "title": "プロフィール設定",
@@ -263,6 +278,20 @@
     "backToShop": "ショップに戻る",
     "signInPrompt": "ログイン",
     "guestCheckout": "より速いチェックアウトのため、または下記からゲストとして続行。",
+    "reserveInstrument": "楽器を予約する",
+    "noPaymentRequired": "今すぐ支払いは不要です。ポールが1-2営業日以内にご連絡いたします。",
+    "howItWorks": "予約プロセスの仕組み：",
+    "howItWorksStep1": "以下のフォームに記入して、選択した楽器を予約してください",
+    "howItWorksStep2": "ポールが1-2営業日以内に詳細を確認するためご連絡いたします",
+    "howItWorksStep3": "銀行振込または現金（受け取りの場合）で支払い手配",
+    "howItWorksStep4": "楽器が準備され、配送または受け取り準備が完了します",
+    "reserveButton": "楽器を予約",
+    "noPaymentNow": "今すぐ支払いは不要です",
+    "paulContactNote": "ポールが1-2営業日以内に銀行振込の手配についてご連絡いたします。",
+    "errors": {
+      "fillRequired": "すべての必須フィールドを入力してください",
+      "reservationFailed": "予約に失敗しました。もう一度お試しください。"
+    },
     "emptyCart": {
       "title": "カートは空です",
       "description": "チェックアウト前にカートに楽器を追加してください。",
@@ -291,12 +320,15 @@
     },
     "pickup": {
       "title": "受け取り場所",
-      "note": "ご購入後、便利な受け取り時間を調整するためにご連絡いたします。受け取りは月曜日〜金曜日、午前9時〜午後5時に可能です。",
+      "note": "予約確認後、便利な受け取り時間を調整するためにご連絡いたします。受け取りは月曜日〜金曜日、午前9時〜午後5時に可能です。",
       "fromAtelier": "工房での受け取り",
       "free": "無料"
     },
     "shipping": {
       "title": "配送先住所",
+      "savedAddresses": "保存済みの住所",
+      "selectAddress": "保存済みの住所を選択",
+      "enterNewAddress": "新しい住所を入力",
       "streetAddress": "住所",
       "apartment": "アパート、階数など",
       "city": "市区町村",
@@ -326,7 +358,8 @@
       "subtotal": "小計",
       "total": "合計",
       "deliveryIncluded": "ドア・ツー・ドア配送 & 保険",
-      "included": "含まれています"
+      "included": "含まれています",
+      "priceNote": "価格には配送・保険が含まれています"
     },
     "submitInquiry": "問い合わせを送信",
     "payment": "支払い",
@@ -344,6 +377,21 @@
       "paymentNote": "支払いが処理された場合は、お問い合わせいただければ解決いたします。",
       "tryAgain": "再試行"
     },
+    "reservation": {
+      "title": "予約が送信されました！",
+      "subtitle": "ご予約ありがとうございます。ポールが1-2営業日以内にご連絡いたします。",
+      "reservationNumber": "予約番号",
+      "whatHappensNext": "次に何が起こるか：",
+      "step1Title": "ポールからのご連絡",
+      "step1Desc": "1-2営業日以内に、ポールがメールまたは電話で予約詳細の確認と質問への回答のためご連絡いたします。",
+      "step2Title": "支払い手配",
+      "step2Desc": "ポールが銀行振込の詳細をお知らせするか、工房での受け取りの場合は現金支払いを手配します。支払いは銀行振込で安全に行えます。",
+      "step3Title": "楽器の準備",
+      "step3Desc": "手作りの楽器は慎重に準備され、丁寧に梱包され、完全保険付きで配送されるか、受け取り準備が整います。",
+      "emailSent": "確認メール送信済み",
+      "emailSentDesc": "予約番号と次のステップを記載した確認メールをお送りしました。受信トレイ（と迷惑メールフォルダ）をご確認ください。",
+      "questionsAbout": "予約についてご質問がありますか？"
+    },
     "inquiry": {
       "title": "お問い合わせを送信しました！",
       "subtitle": "ご関心をお寄せいただきありがとうございます。1-2営業日以内にお返事いたします。",
@@ -358,12 +406,12 @@
     },
     "order": {
       "title": "注文確認！",
-      "subtitle": "ご購入ありがとうございます。手作り楽器は配送準備中です。",
+      "subtitle": "ご購入ありがとうございます。手作り楽器は工房で準備中です。",
       "orderNumber": "注文番号",
       "confirmationEmail": "確認メール",
-      "confirmationEmailDesc": "注文詳細と追跡情報を記載した確認メールをお送りしました。",
+      "confirmationEmailDesc": "注文詳細を記載した確認メールをお送りしました。",
       "shippingTracking": "配送・追跡",
-      "shippingTrackingDesc": "楽器は慎重に梱包され、完全保険付きでFedExを通じて配送されます。1-2営業日以内に追跡詳細をお送りします。",
+      "shippingTrackingDesc": "楽器は工房で慎重に梱包され、ご自宅まで直接配送されます。配送と完全保険が含まれています。楽器が発送されると追跡詳細をお送りします。",
       "questionsAboutOrder": "注文についてご質問がありますか？"
     },
     "continueShopping": "買い物を続ける",
@@ -473,5 +521,30 @@
       "country": "国",
       "saveAddress": "住所を保存"
     }
+  },
+  "reservations": {
+    "slots": "予約スロット",
+    "reservation": "予約",
+    "reservations": "予約",
+    "slotsUsed": "{limit}スロット中{count}使用中",
+    "slotsCount": "{limit}スロット中{count}",
+    "slotsAvailable": "利用可能",
+    "limitReached": "上限に達しました",
+    "limitReachedTitle": "予約上限に達しました",
+    "limitReachedDescription": "保留中の予約が最大2件に達しました。さらに楽器を予約するには、既存の予約の支払いを完了するか、1件をキャンセルしてください。",
+    "pendingReservationCount": "{count}件の保留中の予約があります",
+    "canReserveMore": "Paulとお支払いの手配をしながら、最大2台の楽器を予約できます。支払い完了後、スロットが再び利用可能になります。",
+    "canReserveMoreCount": "既存の予約の支払いを完了する前に、さらに{count}台の楽器を予約できます。",
+    "completePaymentToReserve": "さらに楽器を予約するには、支払いを完了するか予約をキャンセルしてください。",
+    "viewReservations": "保留中の予約を見る",
+    "viewAllReservations": "すべての予約を見る",
+    "manageReservations": "予約を管理",
+    "contactPaul": "Paulに連絡",
+    "yourPendingReservations": "保留中の予約：",
+    "reservedOn": "予約日：{date}",
+    "needHelp": "お困りですか？",
+    "emailPaul": "Paulにメール",
+    "callPaul": "Paulに電話",
+    "returnToGallery": "ギャラリーに戻る"
   }
 }

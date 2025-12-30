@@ -1,15 +1,44 @@
 'use client'
 
+import { useState, useEffect } from 'react'
+import { useSession } from 'next-auth/react'
 import { useCart } from '@/lib/cart-context'
 import { useTranslations } from 'next-intl'
-import { X, ShoppingBag, Package, Shield, Truck } from 'lucide-react'
+import { X, ShoppingBag, Package, Shield, Truck, Info } from 'lucide-react'
 import Image from 'next/image'
 import { Button } from '@/components/ui/button'
 import { Link } from '@/i18n/routing'
 
+const RESERVATION_LIMIT = 2
+
 export function CartDrawer() {
   const { items, removeItem, isOpen, closeCart, itemCount } = useCart()
+  const { status } = useSession()
+  const isAuthenticated = status === 'authenticated'
   const t = useTranslations('cart')
+  const tRes = useTranslations('reservations')
+  const [reservationCount, setReservationCount] = useState(0)
+
+  // Fetch reservation count when drawer opens
+  useEffect(() => {
+    if (!isOpen || !isAuthenticated) {
+      return
+    }
+
+    async function fetchReservationCount() {
+      try {
+        const response = await fetch('/api/account/reservation-count')
+        if (response.ok) {
+          const data = await response.json()
+          setReservationCount(data.count || 0)
+        }
+      } catch (error) {
+        console.error('Failed to fetch reservation count:', error)
+      }
+    }
+
+    fetchReservationCount()
+  }, [isOpen, isAuthenticated])
 
   return (
     <>
@@ -98,6 +127,50 @@ export function CartDrawer() {
             ) : (
               /* Cart Items */
               <div className="p-6 space-y-4">
+                {/* Reservation Warning Banner */}
+                {isAuthenticated && reservationCount > 0 && reservationCount < RESERVATION_LIMIT && (
+                  <div className="bg-accent/5 border border-accent/20 rounded-lg p-4 space-y-3">
+                    <div className="flex items-start gap-3">
+                      <Info className="h-5 w-5 text-accent flex-shrink-0 mt-0.5" />
+                      <div className="flex-1">
+                        <p className="text-sm font-semibold text-foreground mb-1">
+                          {tRes('pendingReservationCount', { count: reservationCount })}
+                        </p>
+                        <p className="text-xs text-muted-foreground">
+                          {tRes('canReserveMoreCount', { count: RESERVATION_LIMIT - reservationCount })}
+                        </p>
+                      </div>
+                    </div>
+                    <Button asChild variant="ghost" size="sm" className="w-full text-xs h-8 cursor-pointer">
+                      <Link href="/account/orders" onClick={closeCart}>
+                        {tRes('viewReservations')} →
+                      </Link>
+                    </Button>
+                  </div>
+                )}
+
+                {/* At Limit Warning */}
+                {isAuthenticated && reservationCount >= RESERVATION_LIMIT && (
+                  <div className="bg-amber-500/5 border-2 border-amber-500/20 rounded-lg p-4 space-y-3">
+                    <div className="flex items-start gap-3">
+                      <Info className="h-5 w-5 text-amber-600 flex-shrink-0 mt-0.5" />
+                      <div className="flex-1">
+                        <p className="text-sm font-semibold text-foreground mb-1">
+                          {tRes('limitReached')}
+                        </p>
+                        <p className="text-xs text-muted-foreground">
+                          {tRes('completePaymentToReserve')}
+                        </p>
+                      </div>
+                    </div>
+                    <Button asChild variant="ghost" size="sm" className="w-full text-xs h-8 cursor-pointer">
+                      <Link href="/account/orders" onClick={closeCart}>
+                        {tRes('manageReservations')} →
+                      </Link>
+                    </Button>
+                  </div>
+                )}
+
                 {items.map((item) => (
                   <div
                     key={item.id}

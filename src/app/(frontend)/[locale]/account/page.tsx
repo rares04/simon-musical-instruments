@@ -1,11 +1,21 @@
-import { Package, Clock, CheckCircle, TrendingUp } from 'lucide-react'
+import { Package, Clock, CheckCircle, TrendingUp, AlertCircle } from 'lucide-react'
 import { getTranslations } from 'next-intl/server'
 import { Button } from '@/components/ui/button'
 import { Link } from '@/i18n/routing'
 import { OrderCard } from '@/components/account/order-card'
+import { OrderStatusBadge } from '@/components/account/order-status-badge'
+import { ReservationSlotsCard } from '@/components/reservation-slots-card'
 import { requireAuth } from '@/lib/auth-guard'
 import { getPayload } from 'payload'
 import config from '@/payload.config'
+import type { Media } from '@/payload-types'
+
+// Helper to get image URL from Payload media
+function getImageUrl(image: number | Media | null | undefined): string | null {
+  if (!image) return null
+  if (typeof image === 'number') return null
+  return image.url || null
+}
 
 // Render at runtime (DB not accessible during build)
 export const dynamic = 'force-dynamic'
@@ -34,17 +44,25 @@ export default async function AccountDashboard() {
       or: [{ customer: { equals: userId } }, { guestEmail: { equals: userEmail } }],
     },
     sort: '-createdAt',
-    limit: 3, // Only get recent 3 for dashboard
-    depth: 1,
+    limit: 10, // Get more to check for pending_payment
+    depth: 2, // Increase depth to get instrument images
   })
+
+  // Filter orders needing attention (pending_payment)
+  const ordersNeedingAttention = orders.filter((o) => o.status === 'pending_payment')
 
   // Calculate stats
   const stats = {
     totalOrders: totalDocs,
-    pending: orders.filter((o) => ['pending', 'paid', 'processing'].includes(o.status)).length,
+    pending: orders.filter((o) =>
+      ['pending', 'pending_payment', 'paid', 'processing'].includes(o.status),
+    ).length,
     delivered: orders.filter((o) => o.status === 'delivered').length,
     totalSpent: orders.reduce((sum, o) => sum + o.total, 0),
   }
+
+  // Get recent 3 for display
+  const recentOrders = orders.slice(0, 3)
 
   const user = session.user
   const userName = user.firstName || user?.name?.split(' ')[0] || 'there'
@@ -58,6 +76,48 @@ export default async function AccountDashboard() {
         </h1>
         <p className="text-muted-foreground">{t('subtitle')}</p>
       </div>
+
+      {/* Pending Payment Alert */}
+      {ordersNeedingAttention.length > 0 && (
+        <div className="bg-amber-500/5 border-2 border-amber-500/20 rounded-lg p-6">
+          <div className="flex items-start gap-4">
+            <div className="p-2 bg-amber-500/10 rounded-lg">
+              <AlertCircle className="w-6 h-6 text-amber-600" />
+            </div>
+            <div className="flex-1">
+              <h3 className="font-semibold text-foreground mb-1">
+                {t('pendingPaymentAlert', { count: ordersNeedingAttention.length })}
+              </h3>
+              <p className="text-sm text-muted-foreground mb-4">{t('pendingPaymentDesc')}</p>
+              <div className="space-y-2">
+                {ordersNeedingAttention.map((order) => {
+                  const firstItem = order.items?.[0]
+                  return (
+                    <Link
+                      key={order.id}
+                      href={`/account/orders/${order.orderNumber}`}
+                      className="flex items-center justify-between p-3 bg-background border border-border rounded-lg hover:border-accent transition-colors cursor-pointer"
+                    >
+                      <div>
+                        <p className="font-mono text-sm text-muted-foreground">
+                          {order.orderNumber}
+                        </p>
+                        <p className="font-medium text-foreground mt-0.5">
+                          {firstItem?.title || 'Instrument'}
+                        </p>
+                      </div>
+                      <OrderStatusBadge status={order.status} animate />
+                    </Link>
+                  )
+                })}
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Reservation Slots Card */}
+      <ReservationSlotsCard count={ordersNeedingAttention.length} limit={2} />
 
       {/* Stats Grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
@@ -106,10 +166,13 @@ export default async function AccountDashboard() {
           )}
         </div>
 
-        {orders.length > 0 ? (
+        {recentOrders.length > 0 ? (
           <div className="space-y-4">
-            {orders.map((order) => {
+            {recentOrders.map((order) => {
               const firstItem = order.items?.[0]
+              const instrument =
+                firstItem && typeof firstItem.instrument === 'object' ? firstItem.instrument : null
+              const imageUrl = instrument ? getImageUrl(instrument.mainImage) : null
               return (
                 <OrderCard
                   key={order.id}
@@ -119,7 +182,7 @@ export default async function AccountDashboard() {
                     items: [
                       {
                         name: firstItem?.title || 'Instrument',
-                        image: '/placeholder.svg',
+                        image: imageUrl || '/placeholder.svg',
                       },
                     ],
                     total: order.total,
@@ -133,9 +196,7 @@ export default async function AccountDashboard() {
           <div className="bg-card border border-border rounded-lg p-12 text-center">
             <Package className="w-12 h-12 text-muted-foreground mx-auto mb-4" />
             <h3 className="font-semibold text-foreground mb-2">{t('noOrders')}</h3>
-            <p className="text-sm text-muted-foreground mb-4">
-              {t('startBrowsing')}
-            </p>
+            <p className="text-sm text-muted-foreground mb-4">{t('startBrowsing')}</p>
             <Button asChild className="cursor-pointer">
               <Link href="/gallery">{t('browseInstruments')}</Link>
             </Button>
@@ -150,9 +211,7 @@ export default async function AccountDashboard() {
           className="bg-card border border-border rounded-lg p-6 hover:border-accent transition-colors cursor-pointer"
         >
           <h3 className="font-semibold text-foreground mb-2">{t('profileSettings')}</h3>
-          <p className="text-sm text-muted-foreground">
-            {t('profileSettingsDesc')}
-          </p>
+          <p className="text-sm text-muted-foreground">{t('profileSettingsDesc')}</p>
         </Link>
 
         <Link
@@ -160,9 +219,7 @@ export default async function AccountDashboard() {
           className="bg-card border border-border rounded-lg p-6 hover:border-accent transition-colors cursor-pointer"
         >
           <h3 className="font-semibold text-foreground mb-2">{t('browseInstruments')}</h3>
-          <p className="text-sm text-muted-foreground">
-            {t('browseInstrumentsDesc')}
-          </p>
+          <p className="text-sm text-muted-foreground">{t('browseInstrumentsDesc')}</p>
         </Link>
       </div>
     </div>

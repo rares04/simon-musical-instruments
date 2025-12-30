@@ -1,10 +1,10 @@
 'use client'
 
-import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { LayoutDashboard, Package, User, LogOut } from 'lucide-react'
+import { LayoutDashboard, Package, User, LogOut, ArrowLeft } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { Button } from '@/components/ui/button'
+import { Link } from '@/i18n/routing'
 import { signOut } from 'next-auth/react'
 
 const navigation = [
@@ -22,6 +22,17 @@ export function AccountSidebar() {
 
   return (
     <div className="bg-card border border-border rounded-lg p-4 sticky top-24">
+      {/* Back to Shop Link */}
+      <Link
+        href="/gallery"
+        className="flex items-center gap-2 px-4 py-2 mb-4 text-sm font-medium text-accent hover:text-accent/80 transition-colors cursor-pointer"
+      >
+        <ArrowLeft className="w-4 h-4" />
+        Back to Shop
+      </Link>
+
+      <div className="border-t border-border mb-4" />
+
       <nav className="space-y-1">
         {navigation.map((item) => {
           const isActive = pathname === item.href || (item.href !== '/account' && pathname.startsWith(item.href))

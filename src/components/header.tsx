@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Image from 'next/image'
 import { useSession, signOut } from 'next-auth/react'
 import { useTranslations } from 'next-intl'
@@ -8,6 +8,8 @@ import { Menu, User, LogOut, X } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { CartButton } from '@/components/cart-button'
 import { LanguageSwitcher } from '@/components/language-switcher'
+import { OrderNotificationDropdown } from '@/components/order-notification-dropdown'
+import { ReservationSlotIndicator } from '@/components/reservation-slot-indicator'
 import { Link } from '@/i18n/routing'
 import {
   DropdownMenu,
@@ -19,11 +21,34 @@ import {
 
 export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const [reservationCount, setReservationCount] = useState(0)
   const { data: session, status } = useSession()
   const isAuthenticated = status === 'authenticated'
   const t = useTranslations('navigation')
 
   const closeMobileMenu = () => setMobileMenuOpen(false)
+
+  // Fetch reservation count for authenticated users
+  useEffect(() => {
+    if (!isAuthenticated) {
+      setReservationCount(0)
+      return
+    }
+
+    async function fetchReservationCount() {
+      try {
+        const response = await fetch('/api/account/reservation-count')
+        if (response.ok) {
+          const data = await response.json()
+          setReservationCount(data.count || 0)
+        }
+      } catch (error) {
+        console.error('Failed to fetch reservation count:', error)
+      }
+    }
+
+    fetchReservationCount()
+  }, [isAuthenticated])
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-md border-b border-border/60">
@@ -64,6 +89,12 @@ export function Header() {
             </Link>
 
             <LanguageSwitcher variant="header" />
+
+            {isAuthenticated && reservationCount > 0 && (
+              <ReservationSlotIndicator count={reservationCount} variant="header" />
+            )}
+
+            {isAuthenticated && <OrderNotificationDropdown />}
 
             {isAuthenticated && session?.user ? (
               <DropdownMenu>
@@ -127,6 +158,7 @@ export function Header() {
           {/* Mobile Menu Button */}
           <div className="flex items-center gap-2 md:hidden">
             <LanguageSwitcher variant="header" />
+            {isAuthenticated && <OrderNotificationDropdown />}
             {!isAuthenticated && (
               <Link href="/login">
                 <Button variant="ghost" size="icon" className="cursor-pointer">
@@ -209,6 +241,11 @@ export function Header() {
                 >
                   {t('myOrders')}
                 </Link>
+                {reservationCount > 0 && (
+                  <div className="px-4 py-2">
+                    <ReservationSlotIndicator count={reservationCount} variant="account" />
+                  </div>
+                )}
                 <button
                   onClick={() => {
                     closeMobileMenu()

@@ -7,7 +7,11 @@
     "signIn": "Connexion",
     "myAccount": "Mon Compte",
     "myOrders": "Mes Commandes",
-    "signOut": "Déconnexion"
+    "signOut": "Déconnexion",
+    "activeOrders": "Commandes Actives",
+    "ordersInProgress": "{count} commande(s) en cours",
+    "completePayment": "Compléter le Paiement",
+    "paulWillContact": "Paul vous contactera pour organiser le paiement"
   },
   "hero": {
     "title": "Bienvenue dans Notre Atelier Virtuel",
@@ -159,7 +163,8 @@
     "tryAgain": "Réessayer",
     "contactSupport": "Contacter le Support",
     "continueAsGuest": "Continuer les achats en tant qu'invité",
-    "needAssistance": "Besoin d'aide?"
+    "needAssistance": "Besoin d'aide?",
+    "viewDetails": "Voir les Détails"
   },
   "account": {
     "title": "Mon Compte",
@@ -181,14 +186,24 @@
       "browseInstruments": "Parcourir les Instruments",
       "profileSettings": "Paramètres du Profil",
       "profileSettingsDesc": "Mettez à jour vos informations personnelles et préférences",
-      "browseInstrumentsDesc": "Découvrez notre collection d'instruments"
+      "browseInstrumentsDesc": "Découvrez notre collection d'instruments",
+      "pendingPaymentAlert": "{count} réservation(s) en attente de paiement",
+      "pendingPaymentDesc": "Paul vous contactera sous 1-2 jours ouvrables pour organiser le virement bancaire."
     },
     "orderHistory": {
       "title": "Historique des Commandes",
       "subtitle": "Consultez et suivez toutes vos commandes",
       "loadingOrders": "Chargement des commandes...",
       "noOrders": "Aucune commande encore",
-      "noOrdersDesc": "Quand vous passerez une commande, elle apparaîtra ici."
+      "noOrdersDesc": "Quand vous passerez une commande, elle apparaîtra ici.",
+      "filterByStatus": "Filtrer par statut",
+      "allOrders": "Toutes les Commandes",
+      "awaitingPayment": "En Attente de Paiement",
+      "paid": "Payé",
+      "processing": "En Cours",
+      "shipped": "Expédié",
+      "delivered": "Livré",
+      "cancelled": "Annulé"
     },
     "profilePage": {
       "title": "Paramètres du Profil",
@@ -263,6 +278,20 @@
     "backToShop": "Retour à la Boutique",
     "signInPrompt": "Se connecter",
     "guestCheckout": "pour un paiement plus rapide, ou continuer en tant qu'invité ci-dessous.",
+    "reserveInstrument": "Réserver Votre Instrument",
+    "noPaymentRequired": "Aucun paiement requis maintenant. Paul vous contactera sous 1-2 jours ouvrables.",
+    "howItWorks": "Comment fonctionne le processus de réservation :",
+    "howItWorksStep1": "Remplissez le formulaire ci-dessous pour réserver l'instrument choisi",
+    "howItWorksStep2": "Paul vous contactera sous 1-2 jours ouvrables pour confirmer les détails",
+    "howItWorksStep3": "Paiement par virement bancaire ou espèces (pour le retrait)",
+    "howItWorksStep4": "Votre instrument sera préparé et expédié ou prêt pour le retrait",
+    "reserveButton": "Réserver l'Instrument",
+    "noPaymentNow": "Aucun paiement requis maintenant",
+    "paulContactNote": "Paul vous contactera sous 1-2 jours ouvrables pour organiser le virement bancaire.",
+    "errors": {
+      "fillRequired": "Veuillez remplir tous les champs obligatoires",
+      "reservationFailed": "Échec de la réservation. Veuillez réessayer."
+    },
     "emptyCart": {
       "title": "Votre panier est vide",
       "description": "Ajoutez des instruments à votre panier avant de passer à la caisse.",
@@ -291,12 +320,15 @@
     },
     "pickup": {
       "title": "Lieu de Retrait",
-      "note": "Après votre achat, nous vous contacterons pour planifier un créneau de retrait qui vous convient. Le retrait est disponible du lundi au vendredi, de 9h00 à 17h00.",
+      "note": "Après confirmation de votre réservation, nous vous contacterons pour planifier un créneau de retrait qui vous convient. Le retrait est disponible du lundi au vendredi, de 9h00 à 17h00.",
       "fromAtelier": "Retrait à l'Atelier",
       "free": "Gratuit"
     },
     "shipping": {
       "title": "Adresse de Livraison",
+      "savedAddresses": "Adresses Enregistrées",
+      "selectAddress": "Sélectionner une adresse enregistrée",
+      "enterNewAddress": "Saisir une nouvelle adresse",
       "streetAddress": "Adresse de la Rue",
       "apartment": "Appartement, Étage, etc.",
       "city": "Ville",
@@ -326,7 +358,8 @@
       "subtotal": "Sous-total",
       "total": "Total",
       "deliveryIncluded": "Livraison porte à porte & assurance",
-      "included": "Inclus"
+      "included": "Inclus",
+      "priceNote": "Le prix inclut la livraison et l'assurance"
     },
     "submitInquiry": "Soumettre la Demande",
     "payment": "Paiement",
@@ -343,6 +376,21 @@
       "title": "Quelque chose s'est mal passé",
       "paymentNote": "Si votre paiement a été traité, veuillez nous contacter et nous vous aiderons à résoudre le problème.",
       "tryAgain": "Réessayer"
+    },
+    "reservation": {
+      "title": "Réservation Soumise!",
+      "subtitle": "Merci pour votre réservation. Paul vous contactera sous 1-2 jours ouvrables.",
+      "reservationNumber": "Numéro de Réservation",
+      "whatHappensNext": "Ce qui se passe ensuite :",
+      "step1Title": "Paul vous contacte",
+      "step1Desc": "Sous 1-2 jours ouvrables, Paul vous contactera par e-mail ou téléphone pour confirmer les détails de votre réservation et répondre à vos questions.",
+      "step2Title": "Paiement organisé",
+      "step2Desc": "Paul vous fournira les coordonnées bancaires ou organisera un paiement en espèces pour le retrait à l'atelier. Le paiement peut être effectué en toute sécurité par virement bancaire.",
+      "step3Title": "Instrument préparé",
+      "step3Desc": "Votre instrument artisanal sera soigneusement préparé, emballé avec soin, et soit expédié avec une assurance complète, soit préparé pour votre retrait.",
+      "emailSent": "E-mail de Confirmation Envoyé",
+      "emailSentDesc": "Nous vous avons envoyé un e-mail de confirmation avec votre numéro de réservation et les prochaines étapes. Veuillez vérifier votre boîte de réception (et le dossier spam).",
+      "questionsAbout": "Questions sur votre réservation ?"
     },
     "inquiry": {
       "title": "Demande Soumise!",
@@ -473,5 +521,30 @@
       "country": "Pays",
       "saveAddress": "Enregistrer l'Adresse"
     }
+  },
+  "reservations": {
+    "slots": "Créneaux de Réservation",
+    "reservation": "Réservation",
+    "reservations": "Réservations",
+    "slotsUsed": "{count} sur {limit} créneaux utilisés",
+    "slotsCount": "{count} sur {limit} créneaux",
+    "slotsAvailable": "disponible",
+    "limitReached": "Limite atteinte",
+    "limitReachedTitle": "Limite de Réservation Atteinte",
+    "limitReachedDescription": "Vous avez atteint le maximum de 2 réservations en attente. Pour réserver plus d'instruments, veuillez effectuer le paiement d'une réservation existante ou en annuler une.",
+    "pendingReservationCount": "Vous avez {count} réservation(s) en attente",
+    "canReserveMore": "Vous pouvez réserver jusqu'à 2 instruments pendant que vous organisez le paiement avec Paul. Une fois payés, les créneaux deviennent à nouveau disponibles.",
+    "canReserveMoreCount": "Vous pouvez réserver {count} instrument(s) supplémentaire(s) avant d'effectuer le paiement des réservations existantes.",
+    "completePaymentToReserve": "Effectuez le paiement ou annulez une réservation pour réserver plus d'instruments.",
+    "viewReservations": "Voir les Réservations en Attente",
+    "viewAllReservations": "Voir Toutes les Réservations",
+    "manageReservations": "Gérer les Réservations",
+    "contactPaul": "Contacter Paul",
+    "yourPendingReservations": "Vos Réservations en Attente:",
+    "reservedOn": "Réservé le: {date}",
+    "needHelp": "Besoin d'Aide?",
+    "emailPaul": "Email à Paul",
+    "callPaul": "Appeler Paul",
+    "returnToGallery": "Retour à la Galerie"
   }
 }

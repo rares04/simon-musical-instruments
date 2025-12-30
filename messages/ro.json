@@ -7,7 +7,11 @@
     "signIn": "Autentificare",
     "myAccount": "Contul Meu",
     "myOrders": "Comenzile Mele",
-    "signOut": "Deconectare"
+    "signOut": "Deconectare",
+    "activeOrders": "Comenzi Active",
+    "ordersInProgress": "{count} comandă(e) în curs",
+    "completePayment": "Finalizează Plata",
+    "paulWillContact": "Paul vă va contacta pentru a aranja plata"
   },
   "hero": {
     "title": "Bine Ați Venit în Atelierul Nostru Virtual",
@@ -159,7 +163,8 @@
     "tryAgain": "Încearcă din nou",
     "contactSupport": "Contactează Suportul",
     "continueAsGuest": "Continuă cumpărăturile ca vizitator",
-    "needAssistance": "Ai nevoie de asistență?"
+    "needAssistance": "Ai nevoie de asistență?",
+    "viewDetails": "Vezi Detalii"
   },
   "account": {
     "title": "Contul Meu",
@@ -181,14 +186,24 @@
       "browseInstruments": "Răsfoiește Instrumente",
       "profileSettings": "Setări Profil",
       "profileSettingsDesc": "Actualizează-ți informațiile personale și preferințele",
-      "browseInstrumentsDesc": "Descoperă colecția noastră de instrumente"
+      "browseInstrumentsDesc": "Descoperă colecția noastră de instrumente",
+      "pendingPaymentAlert": "{count} rezervare(ări) în așteptarea plății",
+      "pendingPaymentDesc": "Paul te va contacta în 1-2 zile lucrătoare pentru a aranja transferul bancar."
     },
     "orderHistory": {
       "title": "Istoric Comenzi",
       "subtitle": "Vezi și urmărește toate comenzile tale",
       "loadingOrders": "Se încarcă comenzile...",
       "noOrders": "Nicio comandă încă",
-      "noOrdersDesc": "Când plasezi o comandă, aceasta va apărea aici."
+      "noOrdersDesc": "Când plasezi o comandă, aceasta va apărea aici.",
+      "filterByStatus": "Filtrează după status",
+      "allOrders": "Toate Comenzile",
+      "awaitingPayment": "În Așteptarea Plății",
+      "paid": "Plătit",
+      "processing": "În Procesare",
+      "shipped": "Expediat",
+      "delivered": "Livrat",
+      "cancelled": "Anulat"
     },
     "profilePage": {
       "title": "Setări Profil",
@@ -263,6 +278,20 @@
     "backToShop": "Înapoi la Magazin",
     "signInPrompt": "Autentifică-te",
     "guestCheckout": "pentru checkout mai rapid, sau continuă ca vizitator mai jos.",
+    "reserveInstrument": "Rezervă Instrumentul Tău",
+    "noPaymentRequired": "Nu este necesară plata acum. Paul te va contacta în 1-2 zile lucrătoare.",
+    "howItWorks": "Cum funcționează procesul de rezervare:",
+    "howItWorksStep1": "Completează formularul de mai jos pentru a rezerva instrumentul ales",
+    "howItWorksStep2": "Paul te va contacta în 1-2 zile lucrătoare pentru a confirma detaliile",
+    "howItWorksStep3": "Plata prin transfer bancar sau numerar (pentru ridicare)",
+    "howItWorksStep4": "Instrumentul tău va fi pregătit și expediat sau gata pentru ridicare",
+    "reserveButton": "Rezervă Instrumentul",
+    "noPaymentNow": "Nu este necesară plata acum",
+    "paulContactNote": "Paul te va contacta în 1-2 zile lucrătoare pentru a aranja transferul bancar.",
+    "errors": {
+      "fillRequired": "Te rugăm să completezi toate câmpurile obligatorii",
+      "reservationFailed": "Rezervarea a eșuat. Te rugăm să încerci din nou."
+    },
     "emptyCart": {
       "title": "Coșul tău este gol",
       "description": "Adaugă instrumente în coș înainte de finalizare.",
@@ -291,12 +320,15 @@
     },
     "pickup": {
       "title": "Locație de Ridicare",
-      "note": "După achiziție, te vom contacta pentru a programa o oră convenabilă de ridicare. Ridicarea este disponibilă luni–vineri, 9:00 – 17:00.",
+      "note": "După confirmarea rezervării, te vom contacta pentru a programa o oră convenabilă de ridicare. Ridicarea este disponibilă luni–vineri, 9:00 – 17:00.",
       "fromAtelier": "Ridicare de la Atelier",
       "free": "Gratuit"
     },
     "shipping": {
       "title": "Adresa de Livrare",
+      "savedAddresses": "Adrese Salvate",
+      "selectAddress": "Selectează o adresă salvată",
+      "enterNewAddress": "Introdu o adresă nouă",
       "streetAddress": "Adresă Stradă",
       "apartment": "Apartament, Etaj, etc.",
       "city": "Oraș",
@@ -326,7 +358,8 @@
       "subtotal": "Subtotal",
       "total": "Total",
       "deliveryIncluded": "Livrare din ușă în ușă & asigurare",
-      "included": "Inclus"
+      "included": "Inclus",
+      "priceNote": "Prețul include livrarea și asigurarea"
     },
     "submitInquiry": "Trimite Cererea",
     "payment": "Plată",
@@ -343,6 +376,21 @@
       "title": "Ceva nu a funcționat",
       "paymentNote": "Dacă plata a fost procesată, te rugăm să ne contactezi și te vom ajuta să rezolvăm problema.",
       "tryAgain": "Încearcă Din Nou"
+    },
+    "reservation": {
+      "title": "Rezervare Trimisă!",
+      "subtitle": "Îți mulțumim pentru rezervare. Paul te va contacta în 1-2 zile lucrătoare.",
+      "reservationNumber": "Numărul Rezervării",
+      "whatHappensNext": "Ce urmează:",
+      "step1Title": "Paul te contactează",
+      "step1Desc": "În 1-2 zile lucrătoare, Paul te va contacta prin email sau telefon pentru a confirma detaliile rezervării și a răspunde la întrebări.",
+      "step2Title": "Plata aranjată",
+      "step2Desc": "Paul îți va oferi detaliile bancare sau va aranja plata în numerar pentru ridicarea de la atelier. Plata poate fi făcută în siguranță prin transfer bancar.",
+      "step3Title": "Instrument pregătit",
+      "step3Desc": "Instrumentul tău realizat manual va fi pregătit cu grijă, ambalat și fie expediat cu asigurare completă, fie pregătit pentru ridicare.",
+      "emailSent": "Email de Confirmare Trimis",
+      "emailSentDesc": "Ți-am trimis un email de confirmare cu numărul rezervării și pașii următori. Te rugăm să verifici inbox-ul (și folderul spam).",
+      "questionsAbout": "Întrebări despre rezervarea ta?"
     },
     "inquiry": {
       "title": "Cerere Trimisă!",
@@ -473,5 +521,30 @@
       "country": "Țară",
       "saveAddress": "Salvează Adresa"
     }
+  },
+  "reservations": {
+    "slots": "Sloturi de Rezervare",
+    "reservation": "Rezervare",
+    "reservations": "Rezervări",
+    "slotsUsed": "{count} din {limit} sloturi utilizate",
+    "slotsCount": "{count} din {limit} sloturi",
+    "slotsAvailable": "disponibil",
+    "limitReached": "Limită atinsă",
+    "limitReachedTitle": "Limită de Rezervări Atinsă",
+    "limitReachedDescription": "Ai atins maximul de 2 rezervări în așteptare. Pentru a rezerva mai multe instrumente, te rugăm să finalizezi plata pentru o rezervare existentă sau să anulezi una.",
+    "pendingReservationCount": "Ai {count} rezervare/rezervări în așteptare",
+    "canReserveMore": "Poți rezerva până la 2 instrumente în timp ce aranjezi plata cu Paul. După plată, sloturile devin din nou disponibile.",
+    "canReserveMoreCount": "Poți rezerva încă {count} instrument(e) înainte de a finaliza plata pentru rezervările existente.",
+    "completePaymentToReserve": "Finalizează plata sau anulează o rezervare pentru a rezerva mai multe instrumente.",
+    "viewReservations": "Vezi Rezervările în Așteptare",
+    "viewAllReservations": "Vezi Toate Rezervările",
+    "manageReservations": "Gestionează Rezervările",
+    "contactPaul": "Contactează-l pe Paul",
+    "yourPendingReservations": "Rezervările Tale în Așteptare:",
+    "reservedOn": "Rezervat: {date}",
+    "needHelp": "Ai Nevoie de Ajutor?",
+    "emailPaul": "Email Paul",
+    "callPaul": "Sună-l pe Paul",
+    "returnToGallery": "Înapoi la Galerie"
   }
 }

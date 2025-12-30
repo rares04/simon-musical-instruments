@@ -7,7 +7,11 @@
     "signIn": "Anmelden",
     "myAccount": "Mein Konto",
     "myOrders": "Meine Bestellungen",
-    "signOut": "Abmelden"
+    "signOut": "Abmelden",
+    "activeOrders": "Aktive Bestellungen",
+    "ordersInProgress": "{count} Bestellung(en) in Bearbeitung",
+    "completePayment": "Zahlung Abschließen",
+    "paulWillContact": "Paul wird Sie kontaktieren, um die Zahlung zu vereinbaren"
   },
   "hero": {
     "title": "Willkommen in Unserer Virtuellen Werkstatt",
@@ -159,7 +163,8 @@
     "tryAgain": "Erneut versuchen",
     "contactSupport": "Support kontaktieren",
     "continueAsGuest": "Als Gast weiter einkaufen",
-    "needAssistance": "Benötigen Sie Hilfe?"
+    "needAssistance": "Benötigen Sie Hilfe?",
+    "viewDetails": "Details Ansehen"
   },
   "account": {
     "title": "Mein Konto",
@@ -181,14 +186,24 @@
       "browseInstruments": "Instrumente Durchstöbern",
       "profileSettings": "Profileinstellungen",
       "profileSettingsDesc": "Aktualisieren Sie Ihre persönlichen Informationen und Einstellungen",
-      "browseInstrumentsDesc": "Entdecken Sie unsere Instrumentensammlung"
+      "browseInstrumentsDesc": "Entdecken Sie unsere Instrumentensammlung",
+      "pendingPaymentAlert": "{count} Reservierung(en) warten auf Zahlung",
+      "pendingPaymentDesc": "Paul wird Sie innerhalb von 1-2 Werktagen kontaktieren, um die Banküberweisung zu arrangieren."
     },
     "orderHistory": {
       "title": "Bestellhistorie",
       "subtitle": "Sehen und verfolgen Sie alle Ihre Bestellungen",
       "loadingOrders": "Bestellungen werden geladen...",
       "noOrders": "Noch keine Bestellungen",
-      "noOrdersDesc": "Wenn Sie eine Bestellung aufgeben, erscheint sie hier."
+      "noOrdersDesc": "Wenn Sie eine Bestellung aufgeben, erscheint sie hier.",
+      "filterByStatus": "Nach Status filtern",
+      "allOrders": "Alle Bestellungen",
+      "awaitingPayment": "Warten auf Zahlung",
+      "paid": "Bezahlt",
+      "processing": "In Bearbeitung",
+      "shipped": "Versendet",
+      "delivered": "Geliefert",
+      "cancelled": "Storniert"
     },
     "profilePage": {
       "title": "Profileinstellungen",
@@ -263,6 +278,20 @@
     "backToShop": "Zurück zum Shop",
     "signInPrompt": "Anmelden",
     "guestCheckout": "für schnellere Kasse, oder als Gast fortfahren.",
+    "reserveInstrument": "Instrument Reservieren",
+    "noPaymentRequired": "Keine Zahlung erforderlich. Paul wird Sie innerhalb von 1-2 Werktagen kontaktieren.",
+    "howItWorks": "So funktioniert der Reservierungsprozess:",
+    "howItWorksStep1": "Füllen Sie das Formular aus, um Ihr gewähltes Instrument zu reservieren",
+    "howItWorksStep2": "Paul wird Sie innerhalb von 1-2 Werktagen kontaktieren, um Details zu bestätigen",
+    "howItWorksStep3": "Zahlung per Banküberweisung oder bar (bei Abholung)",
+    "howItWorksStep4": "Ihr Instrument wird vorbereitet und versandt oder zur Abholung bereitgestellt",
+    "reserveButton": "Instrument Reservieren",
+    "noPaymentNow": "Keine Zahlung jetzt erforderlich",
+    "paulContactNote": "Paul wird Sie innerhalb von 1-2 Werktagen kontaktieren, um die Banküberweisung zu arrangieren.",
+    "errors": {
+      "fillRequired": "Bitte füllen Sie alle erforderlichen Felder aus",
+      "reservationFailed": "Reservierung fehlgeschlagen. Bitte versuchen Sie es erneut."
+    },
     "emptyCart": {
       "title": "Ihr Warenkorb ist leer",
       "description": "Fügen Sie Instrumente zu Ihrem Warenkorb hinzu, bevor Sie zur Kasse gehen.",
@@ -291,12 +320,15 @@
     },
     "pickup": {
       "title": "Abholort",
-      "note": "Nach Ihrem Kauf werden wir Sie kontaktieren, um einen passenden Abholtermin zu vereinbaren. Abholung ist verfügbar Montag–Freitag, 9:00 – 17:00 Uhr.",
+      "note": "Nach Bestätigung Ihrer Reservierung werden wir Sie kontaktieren, um einen passenden Abholtermin zu vereinbaren. Abholung ist verfügbar Montag–Freitag, 9:00 – 17:00 Uhr.",
       "fromAtelier": "Abholung im Atelier",
       "free": "Kostenlos"
     },
     "shipping": {
       "title": "Lieferadresse",
+      "savedAddresses": "Gespeicherte Adressen",
+      "selectAddress": "Gespeicherte Adresse auswählen",
+      "enterNewAddress": "Neue Adresse eingeben",
       "streetAddress": "Straßenadresse",
       "apartment": "Wohnung, Etage, usw.",
       "city": "Stadt",
@@ -326,7 +358,8 @@
       "subtotal": "Zwischensumme",
       "total": "Gesamt",
       "deliveryIncluded": "Tür-zu-Tür-Lieferung & Versicherung",
-      "included": "Inklusive"
+      "included": "Inklusive",
+      "priceNote": "Preis beinhaltet Lieferung & Versicherung"
     },
     "submitInquiry": "Anfrage Senden",
     "payment": "Zahlung",
@@ -343,6 +376,21 @@
       "title": "Etwas ist schiefgelaufen",
       "paymentNote": "Wenn Ihre Zahlung verarbeitet wurde, kontaktieren Sie uns bitte und wir helfen bei der Lösung.",
       "tryAgain": "Erneut Versuchen"
+    },
+    "reservation": {
+      "title": "Reservierung Eingereicht!",
+      "subtitle": "Vielen Dank für Ihre Reservierung. Paul wird Sie innerhalb von 1-2 Werktagen kontaktieren.",
+      "reservationNumber": "Reservierungsnummer",
+      "whatHappensNext": "Was passiert als nächstes:",
+      "step1Title": "Paul kontaktiert Sie",
+      "step1Desc": "Innerhalb von 1-2 Werktagen wird Paul Sie per E-Mail oder Telefon kontaktieren, um Ihre Reservierungsdetails zu bestätigen und Fragen zu beantworten.",
+      "step2Title": "Zahlung vereinbart",
+      "step2Desc": "Paul wird Ihnen Bankverbindungsdaten mitteilen oder eine Barzahlung bei Abholung in der Werkstatt arrangieren. Die Zahlung kann sicher per Banküberweisung erfolgen.",
+      "step3Title": "Instrument vorbereitet",
+      "step3Desc": "Ihr handgefertigtes Instrument wird sorgfältig vorbereitet, mit Sorgfalt verpackt und entweder mit voller Versicherung versandt oder zur Abholung bereitgestellt.",
+      "emailSent": "Bestätigungs-E-Mail Gesendet",
+      "emailSentDesc": "Wir haben Ihnen eine Bestätigungs-E-Mail mit Ihrer Reservierungsnummer und den nächsten Schritten gesendet. Bitte überprüfen Sie Ihren Posteingang (und Spam-Ordner).",
+      "questionsAbout": "Fragen zu Ihrer Reservierung?"
     },
     "inquiry": {
       "title": "Anfrage Eingereicht!",
@@ -473,5 +521,30 @@
       "country": "Land",
       "saveAddress": "Adresse Speichern"
     }
+  },
+  "reservations": {
+    "slots": "Reservierungsplätze",
+    "reservation": "Reservierung",
+    "reservations": "Reservierungen",
+    "slotsUsed": "{count} von {limit} Plätzen belegt",
+    "slotsCount": "{count} von {limit} Plätzen",
+    "slotsAvailable": "verfügbar",
+    "limitReached": "Limit erreicht",
+    "limitReachedTitle": "Reservierungslimit Erreicht",
+    "limitReachedDescription": "Sie haben die maximale Anzahl von 2 ausstehenden Reservierungen erreicht. Um weitere Instrumente zu reservieren, schließen Sie bitte die Zahlung für eine bestehende Reservierung ab oder stornieren Sie eine.",
+    "pendingReservationCount": "Sie haben {count} ausstehende Reservierung(en)",
+    "canReserveMore": "Sie können bis zu 2 Instrumente reservieren, während Sie die Zahlung mit Paul arrangieren. Nach der Zahlung werden Plätze wieder frei.",
+    "canReserveMoreCount": "Sie können noch {count} weitere(s) Instrument(e) reservieren, bevor Sie die Zahlung für bestehende Reservierungen abschließen.",
+    "completePaymentToReserve": "Schließen Sie die Zahlung ab oder stornieren Sie eine Reservierung, um weitere Instrumente zu reservieren.",
+    "viewReservations": "Ausstehende Reservierungen Anzeigen",
+    "viewAllReservations": "Alle Reservierungen Anzeigen",
+    "manageReservations": "Reservierungen Verwalten",
+    "contactPaul": "Paul Kontaktieren",
+    "yourPendingReservations": "Ihre Ausstehenden Reservierungen:",
+    "reservedOn": "Reserviert: {date}",
+    "needHelp": "Brauchen Sie Hilfe?",
+    "emailPaul": "E-Mail an Paul",
+    "callPaul": "Paul Anrufen",
+    "returnToGallery": "Zur Galerie Zurückkehren"
   }
 }

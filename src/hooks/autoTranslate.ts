@@ -4,6 +4,14 @@ import { translateTexts, TRANSLATABLE_LOCALES } from '@/lib/deepl'
 /**
  * Auto-translate localized fields after saving in English
  * This hook translates title and luthierNotes to all other locales
+ *
+ * ONLY runs when:
+ * - Creating a new instrument (operation === 'create')
+ * - OR explicitly requested via context.triggerAutoTranslate = true
+ *
+ * NEVER runs when:
+ * - context.skipAutoTranslate is true
+ * - Updating an instrument (unless triggerAutoTranslate is set)
  */
 export const autoTranslateInstrument: CollectionAfterChangeHook = async ({
   doc,
@@ -11,8 +19,14 @@ export const autoTranslateInstrument: CollectionAfterChangeHook = async ({
   operation,
   context,
 }) => {
-  // Skip if this is a translation update (to prevent infinite loop)
+  // FIRST CHECK: Skip if explicitly disabled (most important)
   if (context?.skipAutoTranslate) {
+    return doc
+  }
+
+  // SECOND CHECK: Only auto-translate on CREATE, or when explicitly triggered
+  // This prevents translation from running on status/price/stock updates
+  if (operation === 'update' && !context?.triggerAutoTranslate) {
     return doc
   }
 
@@ -22,14 +36,8 @@ export const autoTranslateInstrument: CollectionAfterChangeHook = async ({
     return doc
   }
 
-  // Only translate on create or when English content changes
-  if (operation !== 'create' && operation !== 'update') {
-    return doc
-  }
-
   // Check if DEEPL_API_KEY is set
   if (!process.env.DEEPL_API_KEY) {
-    console.log('⚠️ DEEPL_API_KEY not set, skipping auto-translation')
     return doc
   }
 

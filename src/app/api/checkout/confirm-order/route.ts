@@ -1,3 +1,16 @@
+/**
+ * STRIPE DISABLED: This endpoint was used to confirm orders after Stripe payment.
+ * Currently disabled in favor of reservation flow with bank transfer.
+ *
+ * To re-enable Stripe payments:
+ * 1. Uncomment the code below
+ * 2. Update checkout success page to call this endpoint
+ * 3. Ensure STRIPE_SECRET_KEY is set
+ *
+ * See: create-reservation/route.ts for the current reservation flow
+ */
+
+/*
 import { type NextRequest, NextResponse } from 'next/server'
 import Stripe from 'stripe'
 import { getPayload } from 'payload'
@@ -208,4 +221,16 @@ export async function POST(req: NextRequest) {
     console.error('Error confirming order:', error)
     return NextResponse.json({ error: 'Failed to confirm order' }, { status: 500 })
   }
+}
+*/
+
+import { NextResponse } from 'next/server'
+
+export async function POST() {
+  return NextResponse.json(
+    {
+      error: 'Stripe order confirmation is currently disabled. Please use the reservation flow.',
+    },
+    { status: 501 },
+  )
 }

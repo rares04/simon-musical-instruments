@@ -284,7 +284,15 @@ export interface Order {
    * Email for guest checkouts
    */
   guestEmail?: string | null;
-  status: 'pending' | 'paid' | 'processing' | 'shipped' | 'delivered' | 'cancelled' | 'refunded';
+  status: 'pending_payment' | 'paid' | 'processing' | 'shipped' | 'delivered' | 'cancelled' | 'refunded';
+  /**
+   * How the customer will pay
+   */
+  paymentMethod?: ('bank_transfer' | 'cash' | 'card' | 'other') | null;
+  /**
+   * Bank transfer reference, transaction ID, or other payment identifier
+   */
+  paymentReference?: string | null;
   /**
    * How the customer will receive their instrument
    */
@@ -336,23 +344,23 @@ export interface Order {
     country?: string | null;
   };
   /**
-   * Stripe PaymentIntent ID
+   * Stripe PaymentIntent ID (empty for bank transfer orders)
    */
-  paymentIntentId: string;
+  paymentIntentId?: string | null;
   /**
    * Sum of item prices (EUR)
    */
   subtotal: number;
   /**
-   * Shipping cost (EUR)
+   * Shipping cost (EUR) - typically 0 as delivery is included in price
    */
   shipping: number;
   /**
-   * Insurance cost (EUR)
+   * Insurance cost (EUR) - typically 0 as insurance is included in price
    */
   insurance: number;
   /**
-   * Total charged (EUR)
+   * Total amount (EUR)
    */
   total: number;
   paidAt?: string | null;
@@ -562,6 +570,8 @@ export interface OrdersSelect<T extends boolean = true> {
   customer?: T;
   guestEmail?: T;
   status?: T;
+  paymentMethod?: T;
+  paymentReference?: T;
   deliveryMethod?: T;
   trackingNumber?: T;
   trackingUrl?: T;

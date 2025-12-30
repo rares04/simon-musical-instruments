@@ -1,6 +1,22 @@
+/**
+ * STRIPE DISABLED: Online payments temporarily disabled in favor of reservation flow.
+ * Buyers now reserve instruments and pay via bank transfer arranged personally with Paul.
+ *
+ * To re-enable Stripe payments:
+ * 1. Uncomment the StripePaymentFormContent component below
+ * 2. Replace the placeholder export at the bottom with the real one
+ * 3. Update checkout page to use this component instead of reservation form
+ * 4. Ensure Stripe environment variables are set
+ *
+ * This file is preserved for potential future use of online payments.
+ */
+
 'use client'
 
 import type React from 'react'
+import type { CartItem } from '@/lib/cart-context'
+
+/*
 import { useState, useEffect } from 'react'
 import { loadStripe } from '@stripe/stripe-js'
 import { Elements, PaymentElement, useStripe, useElements } from '@stripe/react-stripe-js'
@@ -10,7 +26,6 @@ import { Label } from '@/components/ui/label'
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group'
 import Image from 'next/image'
 import { Shield, Package, Truck, Mail, Phone, Loader2, MapPin } from 'lucide-react'
-import type { CartItem } from '@/lib/cart-context'
 
 // Initialize Stripe
 const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY || '')
@@ -139,9 +154,9 @@ function CheckoutForm({
   return (
     <form onSubmit={handleSubmit}>
       <div className="grid lg:grid-cols-3 gap-8">
-        {/* Main Form */}
+        {/* Main Form *}
         <div className="lg:col-span-2 space-y-8">
-          {/* Contact Information */}
+          {/* Contact Information *}
           <section className="bg-card border border-border rounded-lg p-6">
             <h2 className="font-serif text-xl font-semibold text-foreground mb-6">
               Contact Information
@@ -194,7 +209,7 @@ function CheckoutForm({
             </div>
           </section>
 
-          {/* Delivery Method */}
+          {/* Delivery Method *}
           <section className="bg-card border border-border rounded-lg p-6">
             <h2 className="font-serif text-xl font-semibold text-foreground mb-6">
               How would you like to receive your instrument?
@@ -239,7 +254,7 @@ function CheckoutForm({
             </RadioGroup>
           </section>
 
-          {/* Pickup Information (shown when pickup selected) */}
+          {/* Pickup Information (shown when pickup selected) *}
           {formData.deliveryMethod === 'pickup' && (
             <section className="bg-accent/5 border border-accent/20 rounded-lg p-6">
               <h2 className="font-serif text-xl font-semibold text-foreground mb-4">
@@ -251,7 +266,7 @@ function CheckoutForm({
                   <div>
                     <p className="font-medium text-foreground">Simon Musical Instruments</p>
                     <p className="text-sm text-muted-foreground">
-                      Str. Castelului 112
+                      Strada 1 Decembrie 1918, nr. 8
                       <br />
                       Reghin 545300, Mureș County
                       <br />
@@ -269,111 +284,111 @@ function CheckoutForm({
             </section>
           )}
 
-          {/* Delivery Address (shown when delivery selected) */}
+          {/* Delivery Address (shown when delivery selected) *}
           {formData.deliveryMethod === 'delivery' && (
             <section className="bg-card border border-border rounded-lg p-6">
               <h2 className="font-serif text-xl font-semibold text-foreground mb-6">
                 Delivery Address
-              </h2>
-              <div className="space-y-4">
+            </h2>
+            <div className="space-y-4">
+              <div>
+                <Label htmlFor="address">Street Address *</Label>
+                <Input
+                  id="address"
+                  required
+                  value={formData.address}
+                  onChange={(e) => onInputChange('address', e.target.value)}
+                  className="mt-1.5"
+                />
+              </div>
+              <div>
+                <Label htmlFor="address2">Apartment, Suite, etc.</Label>
+                <Input
+                  id="address2"
+                  value={formData.address2}
+                  onChange={(e) => onInputChange('address2', e.target.value)}
+                  className="mt-1.5"
+                />
+              </div>
+              <div className="grid sm:grid-cols-2 gap-4">
                 <div>
-                  <Label htmlFor="address">Street Address *</Label>
+                  <Label htmlFor="city">City *</Label>
                   <Input
-                    id="address"
+                    id="city"
                     required
-                    value={formData.address}
-                    onChange={(e) => onInputChange('address', e.target.value)}
+                    value={formData.city}
+                    onChange={(e) => onInputChange('city', e.target.value)}
                     className="mt-1.5"
                   />
                 </div>
                 <div>
-                  <Label htmlFor="address2">Apartment, Suite, etc.</Label>
+                  <Label htmlFor="state">State/Province *</Label>
                   <Input
-                    id="address2"
-                    value={formData.address2}
-                    onChange={(e) => onInputChange('address2', e.target.value)}
+                    id="state"
+                    required
+                    value={formData.state}
+                    onChange={(e) => onInputChange('state', e.target.value)}
                     className="mt-1.5"
                   />
-                </div>
-                <div className="grid sm:grid-cols-2 gap-4">
-                  <div>
-                    <Label htmlFor="city">City *</Label>
-                    <Input
-                      id="city"
-                      required
-                      value={formData.city}
-                      onChange={(e) => onInputChange('city', e.target.value)}
-                      className="mt-1.5"
-                    />
-                  </div>
-                  <div>
-                    <Label htmlFor="state">State/Province *</Label>
-                    <Input
-                      id="state"
-                      required
-                      value={formData.state}
-                      onChange={(e) => onInputChange('state', e.target.value)}
-                      className="mt-1.5"
-                    />
-                  </div>
-                </div>
-                <div className="grid sm:grid-cols-2 gap-4">
-                  <div>
-                    <Label htmlFor="zip">Postal Code *</Label>
-                    <Input
-                      id="zip"
-                      required
-                      value={formData.zip}
-                      onChange={(e) => onInputChange('zip', e.target.value)}
-                      className="mt-1.5"
-                    />
-                  </div>
-                  <div>
-                    <Label htmlFor="country">Country *</Label>
-                    <select
-                      id="country"
-                      required
-                      value={formData.country}
-                      onChange={(e) => onInputChange('country', e.target.value)}
-                      className="mt-1.5 flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-1 text-base shadow-sm transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring cursor-pointer"
-                    >
-                      <option value="RO">Romania</option>
-                      <option value="EU">European Union</option>
-                      <option value="UK">United Kingdom</option>
-                      <option value="US">United States</option>
-                      <option value="CA">Canada</option>
-                      <option value="AU">Australia</option>
-                      <option value="OTHER">Other International</option>
-                    </select>
-                  </div>
-                </div>
-
-                {/* Delivery Details */}
-                <div className="pt-4 border-t border-border space-y-3">
-                  <div className="flex items-center gap-3 text-sm">
-                    <Truck className="h-4 w-4 text-accent flex-shrink-0" />
-                    <span className="text-muted-foreground">
-                      Door-to-door delivery with signature confirmation
-                    </span>
-                  </div>
-                  <div className="flex items-center gap-3 text-sm">
-                    <Shield className="h-4 w-4 text-accent flex-shrink-0" />
-                    <span className="text-muted-foreground">
-                      Delivery & insurance included in price
-                    </span>
-                  </div>
-                  <div className="flex items-center gap-3 text-sm">
-                    <Package className="h-4 w-4 text-accent flex-shrink-0" />
-                    <span className="text-muted-foreground">
-                      Professional packaging with climate protection
-                    </span>
-                  </div>
                 </div>
               </div>
-            </section>
+              <div className="grid sm:grid-cols-2 gap-4">
+                <div>
+                  <Label htmlFor="zip">Postal Code *</Label>
+                  <Input
+                    id="zip"
+                    required
+                    value={formData.zip}
+                    onChange={(e) => onInputChange('zip', e.target.value)}
+                    className="mt-1.5"
+                  />
+                </div>
+                <div>
+                  <Label htmlFor="country">Country *</Label>
+                  <select
+                    id="country"
+                    required
+                    value={formData.country}
+                    onChange={(e) => onInputChange('country', e.target.value)}
+                    className="mt-1.5 flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-1 text-base shadow-sm transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring cursor-pointer"
+                  >
+                    <option value="RO">Romania</option>
+                    <option value="EU">European Union</option>
+                    <option value="UK">United Kingdom</option>
+                    <option value="US">United States</option>
+                    <option value="CA">Canada</option>
+                    <option value="AU">Australia</option>
+                    <option value="OTHER">Other International</option>
+                  </select>
+                </div>
+              </div>
+
+                {/* Delivery Details *}
+              <div className="pt-4 border-t border-border space-y-3">
+                <div className="flex items-center gap-3 text-sm">
+                  <Truck className="h-4 w-4 text-accent flex-shrink-0" />
+                  <span className="text-muted-foreground">
+                      Door-to-door delivery with signature confirmation
+                  </span>
+                </div>
+                <div className="flex items-center gap-3 text-sm">
+                  <Shield className="h-4 w-4 text-accent flex-shrink-0" />
+                  <span className="text-muted-foreground">
+                      Delivery & insurance included in price
+                  </span>
+                </div>
+                <div className="flex items-center gap-3 text-sm">
+                  <Package className="h-4 w-4 text-accent flex-shrink-0" />
+                  <span className="text-muted-foreground">
+                    Professional packaging with climate protection
+                  </span>
+                </div>
+              </div>
+            </div>
+          </section>
           )}
 
-          {/* Payment Information */}
+          {/* Payment Information *}
           <section className="bg-card border border-border rounded-lg p-6">
             <h2 className="font-serif text-xl font-semibold text-foreground mb-6">
               Payment Information
@@ -395,12 +410,12 @@ function CheckoutForm({
           </section>
         </div>
 
-        {/* Order Summary Sidebar */}
+        {/* Order Summary Sidebar *}
         <div className="lg:col-span-1">
           <div className="sticky top-8 bg-card border border-border rounded-lg p-6 space-y-6">
             <h2 className="font-serif text-xl font-semibold text-foreground">Order Summary</h2>
 
-            {/* Items */}
+            {/* Items *}
             <div className="space-y-4">
               {items.map((item) => (
                 <div key={item.id} className="flex gap-3 pb-4 border-b border-border last:border-0">
@@ -426,18 +441,18 @@ function CheckoutForm({
               ))}
             </div>
 
-            {/* Pricing Breakdown */}
+            {/* Pricing Breakdown *}
             <div className="space-y-3 pt-4 border-t border-border">
               {formData.deliveryMethod === 'delivery' ? (
-                <div className="flex justify-between text-sm">
+              <div className="flex justify-between text-sm">
                   <span className="text-muted-foreground">Door-to-door delivery & insurance</span>
                   <span className="font-medium text-green-600">Included</span>
-                </div>
+              </div>
               ) : (
-                <div className="flex justify-between text-sm">
+              <div className="flex justify-between text-sm">
                   <span className="text-muted-foreground">Pickup from Atelier</span>
                   <span className="font-medium text-muted-foreground">—</span>
-                </div>
+              </div>
               )}
               <div className="flex justify-between pt-3 border-t border-border">
                 <span className="font-semibold text-base text-foreground">Total</span>
@@ -447,7 +462,7 @@ function CheckoutForm({
               </div>
             </div>
 
-            {/* Submit Button */}
+            {/* Submit Button *}
             <Button
               type="submit"
               size="lg"
@@ -464,7 +479,7 @@ function CheckoutForm({
               )}
             </Button>
 
-            {/* Contact Support */}
+            {/* Contact Support *}
             <div className="pt-4 border-t border-border space-y-2">
               <p className="text-xs font-semibold text-foreground">Need assistance?</p>
               <div className="space-y-1.5">
@@ -491,7 +506,7 @@ function CheckoutForm({
   )
 }
 
-export function StripePaymentForm(props: StripePaymentFormProps) {
+function StripePaymentFormContent(props: StripePaymentFormProps) {
   const [clientSecret, setClientSecret] = useState<string>('')
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string>('')
@@ -554,5 +569,43 @@ export function StripePaymentForm(props: StripePaymentFormProps) {
     <Elements stripe={stripePromise} options={{ clientSecret }}>
       <CheckoutForm {...props} />
     </Elements>
+  )
+}
+*/
+
+// Placeholder export - Stripe is currently disabled
+export interface StripePaymentFormProps {
+  items: CartItem[]
+  subtotal: number
+  shippingCost: number
+  insurance: number
+  total: number
+  formData: {
+    firstName: string
+    lastName: string
+    email: string
+    phone: string
+    address: string
+    address2: string
+    city: string
+    state: string
+    zip: string
+    country: string
+    deliveryMethod: 'delivery' | 'pickup'
+  }
+  onInputChange: (field: string, value: string) => void
+  isProcessing: boolean
+  setIsProcessing: (value: boolean) => void
+  userId?: string
+}
+
+export function StripePaymentForm(_props: StripePaymentFormProps) {
+  return (
+    <div className="p-6 bg-yellow-500/10 border border-yellow-500/20 rounded-lg">
+      <p className="text-yellow-700">
+        Online payments are currently disabled. Please use the reservation flow to reserve your
+        instrument, and Paul will contact you to arrange payment via bank transfer.
+      </p>
+    </div>
   )
 }

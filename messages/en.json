@@ -7,7 +7,11 @@
     "signIn": "Sign In",
     "myAccount": "My Account",
     "myOrders": "My Orders",
-    "signOut": "Sign Out"
+    "signOut": "Sign Out",
+    "activeOrders": "Active Orders",
+    "ordersInProgress": "{count} order(s) in progress",
+    "completePayment": "Complete Payment",
+    "paulWillContact": "Paul will contact you to arrange payment"
   },
   "hero": {
     "title": "Welcome to Our Virtual Workshop",
@@ -159,7 +163,8 @@
     "tryAgain": "Try Again",
     "contactSupport": "Contact Support",
     "continueAsGuest": "Continue shopping as guest",
-    "needAssistance": "Need assistance?"
+    "needAssistance": "Need assistance?",
+    "viewDetails": "View Details"
   },
   "account": {
     "title": "My Account",
@@ -181,14 +186,24 @@
       "browseInstruments": "Browse Instruments",
       "profileSettings": "Profile Settings",
       "profileSettingsDesc": "Update your personal information and preferences",
-      "browseInstrumentsDesc": "Discover our collection of handcrafted instruments"
+      "browseInstrumentsDesc": "Discover our collection of handcrafted instruments",
+      "pendingPaymentAlert": "{count} Reservation(s) Awaiting Payment",
+      "pendingPaymentDesc": "Paul will contact you within 1-2 business days to arrange bank transfer payment."
     },
     "orderHistory": {
       "title": "Order History",
       "subtitle": "View and track all your orders",
       "loadingOrders": "Loading orders...",
       "noOrders": "No orders yet",
-      "noOrdersDesc": "When you place an order, it will appear here."
+      "noOrdersDesc": "When you place an order, it will appear here.",
+      "filterByStatus": "Filter by status",
+      "allOrders": "All Orders",
+      "awaitingPayment": "Awaiting Payment",
+      "paid": "Paid",
+      "processing": "Processing",
+      "shipped": "Shipped",
+      "delivered": "Delivered",
+      "cancelled": "Cancelled"
     },
     "profilePage": {
       "title": "Profile Settings",
@@ -263,6 +278,20 @@
     "backToShop": "Back to Shop",
     "signInPrompt": "Sign in",
     "guestCheckout": "for faster checkout, or continue as a guest below.",
+    "reserveInstrument": "Reserve Your Instrument",
+    "noPaymentRequired": "No payment required now. Paul will contact you within 1-2 business days.",
+    "howItWorks": "How the reservation process works:",
+    "howItWorksStep1": "Complete the form below to reserve your chosen instrument",
+    "howItWorksStep2": "Paul will contact you within 1-2 business days to confirm details",
+    "howItWorksStep3": "Payment arranged via bank transfer or cash (for pickup)",
+    "howItWorksStep4": "Your instrument will be prepared and shipped or ready for pickup",
+    "reserveButton": "Reserve Instrument",
+    "noPaymentNow": "No payment required now",
+    "paulContactNote": "Paul will contact you within 1-2 business days to arrange bank transfer payment.",
+    "errors": {
+      "fillRequired": "Please fill in all required fields",
+      "reservationFailed": "Failed to submit reservation. Please try again."
+    },
     "emptyCart": {
       "title": "Your cart is empty",
       "description": "Add some instruments to your cart before checking out.",
@@ -291,12 +320,15 @@
     },
     "pickup": {
       "title": "Pickup Location",
-      "note": "After your purchase, we'll contact you to schedule a convenient pickup time. Pickup is available Monday–Friday, 9:00 AM – 5:00 PM.",
+      "note": "After your reservation is confirmed, we'll contact you to schedule a convenient pickup time. Pickup is available Monday–Friday, 9:00 AM – 5:00 PM.",
       "fromAtelier": "Pickup from Atelier",
       "free": "Free"
     },
     "shipping": {
       "title": "Delivery Address",
+      "savedAddresses": "Saved Addresses",
+      "selectAddress": "Select a saved address",
+      "enterNewAddress": "Enter a new address",
       "streetAddress": "Street Address",
       "apartment": "Apartment, Suite, etc.",
       "city": "City",
@@ -326,7 +358,8 @@
       "subtotal": "Subtotal",
       "total": "Total",
       "deliveryIncluded": "Door-to-door delivery & insurance",
-      "included": "Included"
+      "included": "Included",
+      "priceNote": "Price includes delivery & insurance"
     },
     "submitInquiry": "Submit Inquiry",
     "payment": "Payment",
@@ -343,6 +376,21 @@
       "title": "Something went wrong",
       "paymentNote": "If your payment was processed, please contact us and we'll help resolve this.",
       "tryAgain": "Try Again"
+    },
+    "reservation": {
+      "title": "Reservation Submitted!",
+      "subtitle": "Thank you for your reservation. Paul will contact you within 1-2 business days.",
+      "reservationNumber": "Reservation Number",
+      "whatHappensNext": "What happens next:",
+      "step1Title": "Paul contacts you",
+      "step1Desc": "Within 1-2 business days, Paul will reach out via email or phone to confirm your reservation details and answer any questions.",
+      "step2Title": "Payment arranged",
+      "step2Desc": "Paul will provide bank transfer details or arrange cash payment for workshop pickup. Payment can be made securely via bank transfer.",
+      "step3Title": "Instrument prepared",
+      "step3Desc": "Your handcrafted instrument will be carefully prepared, packaged with care, and either shipped with full insurance or made ready for your pickup.",
+      "emailSent": "Confirmation Email Sent",
+      "emailSentDesc": "We've sent a confirmation email with your reservation number and next steps. Please check your inbox (and spam folder).",
+      "questionsAbout": "Questions about your reservation?"
     },
     "inquiry": {
       "title": "Inquiry Submitted!",
@@ -473,5 +521,30 @@
       "country": "Country",
       "saveAddress": "Save Address"
     }
+  },
+  "reservations": {
+    "slots": "Reservation Slots",
+    "reservation": "Reservation",
+    "reservations": "Reservations",
+    "slotsUsed": "{count} of {limit} slots used",
+    "slotsCount": "{count} of {limit} slots",
+    "slotsAvailable": "available",
+    "limitReached": "Limit reached",
+    "limitReachedTitle": "Reservation Limit Reached",
+    "limitReachedDescription": "You've reached the maximum of 2 pending reservations. To reserve more instruments, please complete payment on an existing reservation or cancel one.",
+    "pendingReservationCount": "You have {count} pending reservation(s)",
+    "canReserveMore": "You can reserve up to 2 instruments while arranging payment with Paul. Once paid, slots become available again.",
+    "canReserveMoreCount": "You can reserve {count} more instrument(s) before completing payment on existing reservations.",
+    "completePaymentToReserve": "Complete payment or cancel a reservation to reserve more instruments.",
+    "viewReservations": "View Pending Reservations",
+    "viewAllReservations": "View All Reservations",
+    "manageReservations": "Manage Reservations",
+    "contactPaul": "Contact Paul",
+    "yourPendingReservations": "Your Pending Reservations:",
+    "reservedOn": "Reserved: {date}",
+    "needHelp": "Need Help?",
+    "emailPaul": "Email Paul",
+    "callPaul": "Call Paul",
+    "returnToGallery": "Return to Gallery"
   }
 }

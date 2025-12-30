@@ -7,7 +7,11 @@
     "signIn": "Inloggen",
     "myAccount": "Mijn Account",
     "myOrders": "Mijn Bestellingen",
-    "signOut": "Uitloggen"
+    "signOut": "Uitloggen",
+    "activeOrders": "Actieve Bestellingen",
+    "ordersInProgress": "{count} bestelling(en) in behandeling",
+    "completePayment": "Betaling Voltooien",
+    "paulWillContact": "Paul neemt contact met u op om de betaling te regelen"
   },
   "hero": {
     "title": "Welkom in Onze Virtuele Werkplaats",
@@ -159,7 +163,8 @@
     "tryAgain": "Opnieuw Proberen",
     "contactSupport": "Contact Opnemen met Support",
     "continueAsGuest": "Doorgaan winkelen als gast",
-    "needAssistance": "Hulp nodig?"
+    "needAssistance": "Hulp nodig?",
+    "viewDetails": "Details Bekijken"
   },
   "account": {
     "title": "Mijn Account",
@@ -181,14 +186,24 @@
       "browseInstruments": "Instrumenten Bekijken",
       "profileSettings": "Profielinstellingen",
       "profileSettingsDesc": "Werk uw persoonlijke informatie en voorkeuren bij",
-      "browseInstrumentsDesc": "Ontdek onze instrumentencollectie"
+      "browseInstrumentsDesc": "Ontdek onze instrumentencollectie",
+      "pendingPaymentAlert": "{count} reservering(en) wachten op betaling",
+      "pendingPaymentDesc": "Paul neemt binnen 1-2 werkdagen contact met u op om de bankoverschrijving te regelen."
     },
     "orderHistory": {
       "title": "Bestelgeschiedenis",
       "subtitle": "Bekijk en volg al uw bestellingen",
       "loadingOrders": "Bestellingen laden...",
       "noOrders": "Nog geen bestellingen",
-      "noOrdersDesc": "Wanneer u een bestelling plaatst, verschijnt deze hier."
+      "noOrdersDesc": "Wanneer u een bestelling plaatst, verschijnt deze hier.",
+      "filterByStatus": "Filteren op status",
+      "allOrders": "Alle Bestellingen",
+      "awaitingPayment": "Wachten op Betaling",
+      "paid": "Betaald",
+      "processing": "In Behandeling",
+      "shipped": "Verzonden",
+      "delivered": "Bezorgd",
+      "cancelled": "Geannuleerd"
     },
     "profilePage": {
       "title": "Profielinstellingen",
@@ -263,6 +278,20 @@
     "backToShop": "Terug naar Winkel",
     "signInPrompt": "Inloggen",
     "guestCheckout": "voor snellere checkout, of ga door als gast hieronder.",
+    "reserveInstrument": "Reserveer Uw Instrument",
+    "noPaymentRequired": "Geen betaling nu vereist. Paul neemt binnen 1-2 werkdagen contact met u op.",
+    "howItWorks": "Hoe het reserveringsproces werkt:",
+    "howItWorksStep1": "Vul het onderstaande formulier in om uw gekozen instrument te reserveren",
+    "howItWorksStep2": "Paul neemt binnen 1-2 werkdagen contact met u op om details te bevestigen",
+    "howItWorksStep3": "Betaling via bankoverschrijving of contant (bij ophalen)",
+    "howItWorksStep4": "Uw instrument wordt voorbereid en verzonden of klaargemaakt voor ophalen",
+    "reserveButton": "Instrument Reserveren",
+    "noPaymentNow": "Geen betaling nu vereist",
+    "paulContactNote": "Paul neemt binnen 1-2 werkdagen contact met u op om de bankoverschrijving te regelen.",
+    "errors": {
+      "fillRequired": "Vul alle verplichte velden in",
+      "reservationFailed": "Reservering mislukt. Probeer het opnieuw."
+    },
     "emptyCart": {
       "title": "Uw winkelwagen is leeg",
       "description": "Voeg instrumenten toe aan uw winkelwagen voordat u naar de kassa gaat.",
@@ -291,12 +320,15 @@
     },
     "pickup": {
       "title": "Ophaallocatie",
-      "note": "Na uw aankoop nemen we contact met u op om een geschikte ophaaltijd te plannen. Ophalen is mogelijk van maandag t/m vrijdag, 9:00 – 17:00 uur.",
+      "note": "Na bevestiging van uw reservering nemen we contact met u op om een geschikte ophaaltijd te plannen. Ophalen is mogelijk van maandag t/m vrijdag, 9:00 – 17:00 uur.",
       "fromAtelier": "Ophalen bij Atelier",
       "free": "Gratis"
     },
     "shipping": {
       "title": "Bezorgadres",
+      "savedAddresses": "Opgeslagen Adressen",
+      "selectAddress": "Selecteer een opgeslagen adres",
+      "enterNewAddress": "Voer een nieuw adres in",
       "streetAddress": "Straatnaam",
       "apartment": "Appartement, Verdieping, enz.",
       "city": "Stad",
@@ -326,7 +358,8 @@
       "subtotal": "Subtotaal",
       "total": "Totaal",
       "deliveryIncluded": "Deur-tot-deur levering & verzekering",
-      "included": "Inbegrepen"
+      "included": "Inbegrepen",
+      "priceNote": "Prijs inclusief levering & verzekering"
     },
     "submitInquiry": "Aanvraag Indienen",
     "payment": "Betaling",
@@ -344,6 +377,21 @@
       "paymentNote": "Als uw betaling is verwerkt, neem dan contact met ons op en we helpen het op te lossen.",
       "tryAgain": "Opnieuw Proberen"
     },
+    "reservation": {
+      "title": "Reservering Ingediend!",
+      "subtitle": "Dank u voor uw reservering. Paul neemt binnen 1-2 werkdagen contact met u op.",
+      "reservationNumber": "Reserveringsnummer",
+      "whatHappensNext": "Wat er nu gebeurt:",
+      "step1Title": "Paul neemt contact op",
+      "step1Desc": "Binnen 1-2 werkdagen neemt Paul via e-mail of telefoon contact met u op om uw reserveringsdetails te bevestigen en eventuele vragen te beantwoorden.",
+      "step2Title": "Betaling geregeld",
+      "step2Desc": "Paul zal u bankgegevens verstrekken of contante betaling regelen voor ophalen bij het atelier. Betaling kan veilig via bankoverschrijving worden gedaan.",
+      "step3Title": "Instrument voorbereid",
+      "step3Desc": "Uw handgemaakte instrument wordt zorgvuldig voorbereid, met zorg verpakt, en met volledige verzekering verzonden of klaargemaakt voor ophalen.",
+      "emailSent": "Bevestigings-e-mail Verzonden",
+      "emailSentDesc": "We hebben u een bevestigings-e-mail gestuurd met uw reserveringsnummer en volgende stappen. Controleer uw inbox (en spammap).",
+      "questionsAbout": "Vragen over uw reservering?"
+    },
     "inquiry": {
       "title": "Aanvraag Ingediend!",
       "subtitle": "Dank u voor uw interesse. We zullen binnen 1-2 werkdagen op uw aanvraag reageren.",
@@ -358,12 +406,12 @@
     },
     "order": {
       "title": "Bestelling Bevestigd!",
-      "subtitle": "Dank u voor uw aankoop. Uw handgemaakte instrument wordt voorbereid voor verzending.",
+      "subtitle": "Dank u voor uw aankoop. Uw handgemaakte instrument wordt voorbereid in ons atelier.",
       "orderNumber": "Bestelnummer",
       "confirmationEmail": "Bevestigings-e-mail",
-      "confirmationEmailDesc": "We hebben u een bevestigings-e-mail gestuurd met uw besteldetails en trackinginformatie.",
+      "confirmationEmailDesc": "We hebben u een bevestigings-e-mail gestuurd met uw besteldetails.",
       "shippingTracking": "Verzending & Tracking",
-      "shippingTrackingDesc": "Uw instrument wordt zorgvuldig verpakt en verzonden via FedEx met volledige verzekering. U ontvangt trackingdetails binnen 1-2 werkdagen.",
+      "shippingTrackingDesc": "Uw instrument wordt zorgvuldig verpakt in ons atelier en deur-tot-deur bezorgd op uw adres. Levering en volledige verzekering zijn inbegrepen. U ontvangt trackingdetails zodra uw instrument onderweg is.",
       "questionsAboutOrder": "Vragen over uw bestelling?"
     },
     "continueShopping": "Doorgaan met Winkelen",
@@ -473,5 +521,30 @@
       "country": "Land",
       "saveAddress": "Adres Opslaan"
     }
+  },
+  "reservations": {
+    "slots": "Reserveringsslots",
+    "reservation": "Reservering",
+    "reservations": "Reserveringen",
+    "slotsUsed": "{count} van {limit} slots gebruikt",
+    "slotsCount": "{count} van {limit} slots",
+    "slotsAvailable": "beschikbaar",
+    "limitReached": "Limiet bereikt",
+    "limitReachedTitle": "Reserveringslimiet Bereikt",
+    "limitReachedDescription": "U heeft het maximum van 2 openstaande reserveringen bereikt. Om meer instrumenten te reserveren, voltooit u de betaling voor een bestaande reservering of annuleert u er een.",
+    "pendingReservationCount": "U heeft {count} openstaande reservering(en)",
+    "canReserveMore": "U kunt tot 2 instrumenten reserveren terwijl u de betaling met Paul regelt. Na betaling worden slots weer beschikbaar.",
+    "canReserveMoreCount": "U kunt nog {count} instrument(en) reserveren voordat u de betaling voor bestaande reserveringen voltooit.",
+    "completePaymentToReserve": "Voltooi de betaling of annuleer een reservering om meer instrumenten te reserveren.",
+    "viewReservations": "Openstaande Reserveringen Bekijken",
+    "viewAllReservations": "Alle Reserveringen Bekijken",
+    "manageReservations": "Reserveringen Beheren",
+    "contactPaul": "Contact Paul",
+    "yourPendingReservations": "Uw Openstaande Reserveringen:",
+    "reservedOn": "Gereserveerd: {date}",
+    "needHelp": "Hulp Nodig?",
+    "emailPaul": "Email Paul",
+    "callPaul": "Bel Paul",
+    "returnToGallery": "Terug naar Galerie"
   }
 }

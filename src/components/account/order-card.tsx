@@ -1,4 +1,4 @@
-import Link from 'next/link'
+import { Link } from '@/i18n/routing'
 import Image from 'next/image'
 import { OrderStatusBadge } from '@/components/account/order-status-badge'
 import { ChevronRight } from 'lucide-react'

@@ -5,6 +5,13 @@ import { useTranslations } from 'next-intl'
 import { OrderCard } from '@/components/account/order-card'
 import { Button } from '@/components/ui/button'
 import { EmptyState } from '@/components/account/empty-state'
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select'
 import { Package } from 'lucide-react'
 import { useSession } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
@@ -15,7 +22,7 @@ interface Order {
   orderNumber: string
   createdAt: string
   status: OrderStatus
-  items: Array<{ title: string }>
+  items: Array<{ title: string; imageUrl?: string | null }>
   total: number
 }
 
@@ -27,6 +34,7 @@ export default function OrdersPage() {
   const [orders, setOrders] = useState<Order[]>([])
   const [isLoading, setIsLoading] = useState(true)
   const [currentPage, setCurrentPage] = useState(1)
+  const [statusFilter, setStatusFilter] = useState<string>('all')
   const ordersPerPage = 10
 
   useEffect(() => {
@@ -66,8 +74,21 @@ export default function OrdersPage() {
     )
   }
 
-  const totalPages = Math.ceil(orders.length / ordersPerPage)
-  const currentOrders = orders.slice((currentPage - 1) * ordersPerPage, currentPage * ordersPerPage)
+  // Filter orders by status
+  const filteredOrders =
+    statusFilter === 'all' ? orders : orders.filter((order) => order.status === statusFilter)
+
+  const totalPages = Math.ceil(filteredOrders.length / ordersPerPage)
+  const currentOrders = filteredOrders.slice(
+    (currentPage - 1) * ordersPerPage,
+    currentPage * ordersPerPage,
+  )
+
+  // Reset to page 1 when filter changes
+  const handleFilterChange = (value: string) => {
+    setStatusFilter(value)
+    setCurrentPage(1)
+  }
 
   if (orders.length === 0) {
     return (
@@ -84,11 +105,28 @@ export default function OrdersPage() {
   return (
     <div className="space-y-6">
       {/* Header */}
-      <div>
-        <h1 className="font-serif text-3xl sm:text-4xl font-bold text-foreground mb-2">
-          {t('title')}
-        </h1>
-        <p className="text-muted-foreground">{t('subtitle')}</p>
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+        <div>
+          <h1 className="font-serif text-3xl sm:text-4xl font-bold text-foreground mb-2">
+            {t('title')}
+          </h1>
+          <p className="text-muted-foreground">{t('subtitle')}</p>
+        </div>
+
+        <Select value={statusFilter} onValueChange={handleFilterChange}>
+          <SelectTrigger className="w-[180px]">
+            <SelectValue placeholder={t('filterByStatus')} />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectItem value="all">{t('allOrders')}</SelectItem>
+            <SelectItem value="pending_payment">{t('awaitingPayment')}</SelectItem>
+            <SelectItem value="paid">{t('paid')}</SelectItem>
+            <SelectItem value="processing">{t('processing')}</SelectItem>
+            <SelectItem value="shipped">{t('shipped')}</SelectItem>
+            <SelectItem value="delivered">{t('delivered')}</SelectItem>
+            <SelectItem value="cancelled">{t('cancelled')}</SelectItem>
+          </SelectContent>
+        </Select>
       </div>
 
       {/* Orders List */}
@@ -104,7 +142,7 @@ export default function OrdersPage() {
                 items: [
                   {
                     name: firstItem?.title || 'Instrument',
-                    image: '/placeholder.svg',
+                    image: firstItem?.imageUrl || '/placeholder.svg',
                   },
                 ],
                 total: order.total,

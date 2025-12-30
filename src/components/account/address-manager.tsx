@@ -139,19 +139,17 @@ export function AddressManager() {
 
   if (addresses.length === 0 && !isAdding) {
     return (
-      <>
-        <EmptyState
-          icon={MapPin}
-          title={t('noAddresses')}
-          description={t('addToFaster')}
-          actionLabel={t('addAddress')}
-          actionHref="#"
-        />
-        <Button onClick={() => setIsAdding(true)} className="mt-4 cursor-pointer">
+      <div className="text-center py-8">
+        <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-muted mb-4">
+          <MapPin className="w-8 h-8 text-muted-foreground" />
+        </div>
+        <h3 className="font-semibold text-foreground mb-2">{t('noAddresses')}</h3>
+        <p className="text-sm text-muted-foreground mb-4">{t('addToFaster')}</p>
+        <Button onClick={() => setIsAdding(true)} className="cursor-pointer">
           <Plus className="w-4 h-4 mr-2" />
           {t('addAddress')}
         </Button>
-      </>
+      </div>
     )
   }
 
@@ -208,7 +206,11 @@ export function AddressManager() {
 
       {/* Add New Button */}
       {!isAdding && (
-        <Button onClick={() => setIsAdding(true)} variant="outline" className="w-full cursor-pointer">
+        <Button
+          onClick={() => setIsAdding(true)}
+          variant="outline"
+          className="w-full cursor-pointer"
+        >
           <Plus className="w-4 h-4 mr-2" />
           {t('addNewAddress')}
         </Button>

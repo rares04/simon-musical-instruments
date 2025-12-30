@@ -54,7 +54,7 @@ export const Orders: CollectionConfig = {
   slug: 'orders',
   admin: {
     useAsTitle: 'orderNumber',
-    defaultColumns: ['orderNumber', 'status', 'total', 'createdAt'],
+    defaultColumns: ['orderNumber', 'status', 'paymentMethod', 'total', 'createdAt'],
     group: 'Shop',
   },
   hooks: {
@@ -113,9 +113,9 @@ export const Orders: CollectionConfig = {
       name: 'status',
       type: 'select',
       required: true,
-      defaultValue: 'pending',
+      defaultValue: 'pending_payment',
       options: [
-        { label: 'Pending', value: 'pending' },
+        { label: 'Pending Payment', value: 'pending_payment' },
         { label: 'Paid', value: 'paid' },
         { label: 'Processing', value: 'processing' },
         { label: 'Shipped', value: 'shipped' },
@@ -125,6 +125,30 @@ export const Orders: CollectionConfig = {
       ],
       admin: {
         position: 'sidebar',
+      },
+    },
+    // Payment Information
+    {
+      name: 'paymentMethod',
+      type: 'select',
+      defaultValue: 'bank_transfer',
+      options: [
+        { label: 'Bank Transfer', value: 'bank_transfer' },
+        { label: 'Cash (Pickup)', value: 'cash' },
+        { label: 'Card (Stripe)', value: 'card' },
+        { label: 'Other', value: 'other' },
+      ],
+      admin: {
+        position: 'sidebar',
+        description: 'How the customer will pay',
+      },
+    },
+    {
+      name: 'paymentReference',
+      type: 'text',
+      admin: {
+        description: 'Bank transfer reference, transaction ID, or other payment identifier',
+        condition: (data) => data?.status !== 'pending_payment',
       },
     },
     // Shipping/Tracking Information
@@ -190,8 +214,7 @@ export const Orders: CollectionConfig = {
           pickerAppearance: 'dayAndTime',
         },
         condition: (data) =>
-          data?.deliveryMethod === 'delivery' &&
-          ['shipped', 'delivered'].includes(data?.status),
+          data?.deliveryMethod === 'delivery' && ['shipped', 'delivered'].includes(data?.status),
       },
     },
     {
@@ -306,14 +329,18 @@ export const Orders: CollectionConfig = {
         },
       ],
     },
+    /**
+     * STRIPE DISABLED: paymentIntentId is now optional.
+     * When Stripe payments are re-enabled, this field stores the Stripe PaymentIntent ID.
+     * For bank transfer orders, this field will be empty.
+     */
     {
       name: 'paymentIntentId',
       type: 'text',
-      required: true,
       index: true,
       admin: {
         readOnly: true,
-        description: 'Stripe PaymentIntent ID',
+        description: 'Stripe PaymentIntent ID (empty for bank transfer orders)',
       },
     },
     {
@@ -330,8 +357,9 @@ export const Orders: CollectionConfig = {
       type: 'number',
       required: true,
       min: 0,
+      defaultValue: 0,
       admin: {
-        description: 'Shipping cost (EUR)',
+        description: 'Shipping cost (EUR) - typically 0 as delivery is included in price',
       },
     },
     {
@@ -339,8 +367,9 @@ export const Orders: CollectionConfig = {
       type: 'number',
       required: true,
       min: 0,
+      defaultValue: 0,
       admin: {
-        description: 'Insurance cost (EUR)',
+        description: 'Insurance cost (EUR) - typically 0 as insurance is included in price',
       },
     },
     {
@@ -349,7 +378,7 @@ export const Orders: CollectionConfig = {
       required: true,
       min: 0,
       admin: {
-        description: 'Total charged (EUR)',
+        description: 'Total amount (EUR)',
       },
     },
     {
@@ -359,6 +388,7 @@ export const Orders: CollectionConfig = {
         date: {
           pickerAppearance: 'dayAndTime',
         },
+        condition: (data) => data?.status !== 'pending_payment',
       },
     },
     {

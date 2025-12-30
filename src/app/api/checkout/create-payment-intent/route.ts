@@ -1,3 +1,16 @@
+/**
+ * STRIPE DISABLED: Online payments temporarily disabled in favor of reservation flow.
+ * Buyers now reserve instruments and pay via bank transfer arranged personally with Paul.
+ *
+ * To re-enable Stripe payments:
+ * 1. Uncomment the code below
+ * 2. Update checkout page to use StripePaymentForm component
+ * 3. Ensure STRIPE_SECRET_KEY and NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY are set
+ *
+ * See: create-reservation/route.ts for the current reservation flow
+ */
+
+/*
 import { type NextRequest, NextResponse } from 'next/server'
 import Stripe from 'stripe'
 import { getPayload } from 'payload'
@@ -99,4 +112,17 @@ export async function POST(req: NextRequest) {
     console.error('Error creating payment intent:', error)
     return NextResponse.json({ error: 'Failed to create payment intent' }, { status: 500 })
   }
+}
+*/
+
+import { NextResponse } from 'next/server'
+
+export async function POST() {
+  return NextResponse.json(
+    {
+      error:
+        'Online payments are currently disabled. Please use the reservation flow to reserve your instrument.',
+    },
+    { status: 501 },
+  )
 }

@@ -27,6 +27,7 @@ interface OrderConfirmationEmailProps {
   insurance: number
   total: number
   deliveryMethod?: 'delivery' | 'pickup'
+  isReservation?: boolean
   shippingAddress?: {
     street: string
     apartment?: string
@@ -46,10 +47,13 @@ export function OrderConfirmationEmail({
   insurance,
   total,
   deliveryMethod = 'delivery',
+  isReservation = false,
   shippingAddress,
 }: OrderConfirmationEmailProps) {
   const isPickup = deliveryMethod === 'pickup'
-  const previewText = `Order Confirmed - ${orderNumber}`
+  const previewText = isReservation
+    ? `Reservation Confirmed - ${orderNumber}`
+    : `Order Confirmed - ${orderNumber}`
 
   return (
     <Html>
@@ -65,17 +69,22 @@ export function OrderConfirmationEmail({
 
           {/* Confirmation Message */}
           <Section style={confirmationSection}>
-            <Heading style={heading}>Order Confirmed</Heading>
+            <Heading style={heading}>
+              {isReservation ? 'Reservation Confirmed' : 'Order Confirmed'}
+            </Heading>
             <Text style={paragraph}>Dear {customerName},</Text>
             <Text style={paragraph}>
-              Thank you for your purchase. Your handcrafted instrument is being prepared with the
-              utmost care.
+              {isReservation
+                ? 'Thank you for your reservation. Paul will contact you within 1-2 business days to confirm details and arrange payment.'
+                : 'Thank you for your purchase. Your handcrafted instrument is being prepared with the utmost care.'}
             </Text>
           </Section>
 
-          {/* Order Number */}
+          {/* Order/Reservation Number */}
           <Section style={orderNumberSection}>
-            <Text style={orderNumberLabel}>Order Number</Text>
+            <Text style={orderNumberLabel}>
+              {isReservation ? 'Reservation Number' : 'Order Number'}
+            </Text>
             <Text style={orderNumberValue}>{orderNumber}</Text>
           </Section>
 
@@ -84,7 +93,7 @@ export function OrderConfirmationEmail({
           {/* Order Items */}
           <Section style={itemsSection}>
             <Heading as="h2" style={sectionHeading}>
-              Your Instruments
+              {isReservation ? 'Reserved Instruments' : 'Your Instruments'}
             </Heading>
             {items.map((item, index) => (
               <Row key={index} style={itemRow}>
@@ -103,23 +112,23 @@ export function OrderConfirmationEmail({
           {/* Order Summary */}
           <Section style={summarySection}>
             {isPickup ? (
-              <Row style={summaryRow}>
-                <Column>
+            <Row style={summaryRow}>
+              <Column>
                   <Text style={summaryLabel}>Pickup from Atelier</Text>
-                </Column>
-                <Column align="right">
-                  <Text style={summaryValue}>—</Text>
-                </Column>
-              </Row>
+              </Column>
+              <Column align="right">
+                  <Text style={summaryValue}>Free</Text>
+              </Column>
+            </Row>
             ) : (
-              <Row style={summaryRow}>
-                <Column>
+            <Row style={summaryRow}>
+              <Column>
                   <Text style={summaryLabel}>Door-to-door delivery & insurance</Text>
-                </Column>
-                <Column align="right">
+              </Column>
+              <Column align="right">
                   <Text style={{ ...summaryValue, color: '#2e7d32' }}>Included</Text>
-                </Column>
-              </Row>
+              </Column>
+            </Row>
             )}
             <Hr style={dividerLight} />
             <Row style={summaryRow}>
@@ -130,6 +139,11 @@ export function OrderConfirmationEmail({
                 <Text style={totalValue}>€{total.toLocaleString()}</Text>
               </Column>
             </Row>
+            {isReservation && (
+              <Text style={{ ...paragraph, fontSize: '12px', marginTop: '12px', color: '#8b8578' }}>
+                Price includes delivery and insurance
+              </Text>
+            )}
           </Section>
 
           <Hr style={divider} />
@@ -143,7 +157,7 @@ export function OrderConfirmationEmail({
               <Text style={addressText}>
                 <strong>Simon Musical Instruments</strong>
                 <br />
-                Str. Castelului 112
+                Strada 1 Decembrie 1918, nr. 8
                 <br />
                 Reghin 545300, Mureș County
                 <br />
@@ -156,19 +170,19 @@ export function OrderConfirmationEmail({
             </Section>
           ) : (
             shippingAddress && (
-              <Section style={addressSection}>
-                <Heading as="h2" style={sectionHeading}>
+          <Section style={addressSection}>
+            <Heading as="h2" style={sectionHeading}>
                   Delivery Address
-                </Heading>
-                <Text style={addressText}>
-                  {shippingAddress.street}
-                  {shippingAddress.apartment && `, ${shippingAddress.apartment}`}
-                  <br />
-                  {shippingAddress.city}, {shippingAddress.state} {shippingAddress.zip}
-                  <br />
-                  {shippingAddress.country}
-                </Text>
-              </Section>
+            </Heading>
+            <Text style={addressText}>
+              {shippingAddress.street}
+              {shippingAddress.apartment && `, ${shippingAddress.apartment}`}
+              <br />
+              {shippingAddress.city}, {shippingAddress.state} {shippingAddress.zip}
+              <br />
+              {shippingAddress.country}
+            </Text>
+          </Section>
             )
           )}
 
@@ -179,7 +193,24 @@ export function OrderConfirmationEmail({
             <Heading as="h2" style={sectionHeading}>
               What Happens Next
             </Heading>
-            {isPickup ? (
+            {isReservation ? (
+              <>
+                <Text style={paragraph}>
+                  <strong>1. Paul Contacts You</strong> — Within 1-2 business days, Paul will reach
+                  out via email or phone to confirm your reservation details and answer any
+                  questions.
+                </Text>
+                <Text style={paragraph}>
+                  <strong>2. Payment Arranged</strong> — Paul will provide bank transfer details or
+                  arrange cash payment if you&apos;re picking up at the workshop.
+                </Text>
+                <Text style={paragraph}>
+                  <strong>3. Instrument Prepared</strong> — Your handcrafted instrument will be
+                  carefully prepared, packaged with care, and either shipped with full insurance or
+                  made ready for your pickup.
+                </Text>
+              </>
+            ) : isPickup ? (
               <>
                 <Text style={paragraph}>
                   <strong>1. Preparation</strong> — Your instrument will be carefully inspected and
@@ -197,20 +228,20 @@ export function OrderConfirmationEmail({
               </>
             ) : (
               <>
-                <Text style={paragraph}>
-                  <strong>1. Preparation</strong> — Your instrument will be carefully inspected and
+            <Text style={paragraph}>
+              <strong>1. Preparation</strong> — Your instrument will be carefully inspected and
                   professionally packaged at our atelier with climate protection.
-                </Text>
-                <Text style={paragraph}>
+            </Text>
+            <Text style={paragraph}>
                   <strong>2. Door-to-Door Delivery</strong> — Your instrument will be picked up from
                   our workshop and delivered directly to your address. Delivery and insurance are
                   included in your purchase price.
-                </Text>
-                <Text style={paragraph}>
+            </Text>
+            <Text style={paragraph}>
                   <strong>3. Safe Arrival</strong> — Signature confirmation will be required to
                   ensure your instrument arrives safely. We&apos;ll send tracking information once
                   it&apos;s on its way.
-                </Text>
+            </Text>
               </>
             )}
           </Section>
@@ -219,7 +250,9 @@ export function OrderConfirmationEmail({
 
           {/* Contact Information */}
           <Section style={contactSection}>
-            <Text style={contactHeading}>Questions about your order?</Text>
+            <Text style={contactHeading}>
+              Questions about your {isReservation ? 'reservation' : 'order'}?
+            </Text>
             <Text style={contactText}>
               Email:{' '}
               <Link href="mailto:paul.simon@simoninstruments.com" style={link}>
@@ -241,9 +274,9 @@ export function OrderConfirmationEmail({
               <br />
               Strada 1 Decembrie 1918, nr. 8
               <br />
-              Reghin, 545300, Romania
+              Reghin 545300, Romania
             </Text>
-            <Text style={footerSubtext}>Crafted with care since 1998</Text>
+            <Text style={footerSubtext}>Handcrafted with care since 2014</Text>
           </Section>
         </Container>
       </Body>
