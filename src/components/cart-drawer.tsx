@@ -1,13 +1,15 @@
 'use client'
 
 import { useCart } from '@/lib/cart-context'
+import { useTranslations } from 'next-intl'
 import { X, ShoppingBag, Package, Shield, Truck } from 'lucide-react'
 import Image from 'next/image'
 import { Button } from '@/components/ui/button'
-import Link from 'next/link'
+import { Link } from '@/i18n/routing'
 
 export function CartDrawer() {
   const { items, removeItem, isOpen, closeCart, itemCount } = useCart()
+  const t = useTranslations('cart')
 
   return (
     <>
@@ -30,7 +32,7 @@ export function CartDrawer() {
           <div className="flex items-center justify-between px-6 py-5 border-b border-border">
             <div className="flex items-center gap-3">
               <ShoppingBag className="h-5 w-5 text-accent" />
-              <h2 className="font-serif text-xl font-bold text-foreground">Your Selection</h2>
+              <h2 className="font-serif text-xl font-bold text-foreground">{t('yourSelection')}</h2>
               {itemCount > 0 && (
                 <span className="bg-accent text-accent-foreground px-2 py-0.5 text-xs font-medium rounded-full">
                   {itemCount}
@@ -80,17 +82,17 @@ export function CartDrawer() {
                   </svg>
                 </div>
                 <h3 className="font-serif text-lg font-semibold text-foreground mb-2">
-                  Your cart is empty
+                  {t('empty')}
                 </h3>
                 <p className="text-sm text-muted-foreground text-balance">
-                  Explore our collection of handcrafted instruments
+                  {t('emptyDescription')}
                 </p>
                 <Button
                   onClick={closeCart}
                   variant="outline"
                   className="mt-6 bg-transparent cursor-pointer"
                 >
-                  Continue Browsing
+                  {t('continueBrowsing')}
                 </Button>
               </div>
             ) : (
@@ -128,7 +130,7 @@ export function CartDrawer() {
                         onClick={() => removeItem(item.id)}
                         className="text-sm text-muted-foreground hover:text-foreground transition-colors self-start mt-2 cursor-pointer"
                       >
-                        Remove
+                        {t('remove')}
                       </button>
                     </div>
                   </div>
@@ -144,21 +146,21 @@ export function CartDrawer() {
               <div className="space-y-2 pb-4 border-b border-border">
                 <div className="flex items-center gap-3 text-sm text-muted-foreground">
                   <Shield className="h-4 w-4 text-accent flex-shrink-0" />
-                  <span>Fully insured delivery</span>
+                  <span>{t('fullyInsured')}</span>
                 </div>
                 <div className="flex items-center gap-3 text-sm text-muted-foreground">
                   <Truck className="h-4 w-4 text-accent flex-shrink-0" />
-                  <span>Secure shipping via FedEx</span>
+                  <span>{t('secureShipping')}</span>
                 </div>
                 <div className="flex items-center gap-3 text-sm text-muted-foreground">
                   <Package className="h-4 w-4 text-accent flex-shrink-0" />
-                  <span>Professional packaging</span>
+                  <span>{t('professionalPackaging')}</span>
                 </div>
               </div>
 
               {/* Total */}
               <div className="flex items-baseline justify-between pb-4">
-                <span className="text-base font-medium text-foreground">Total</span>
+                <span className="text-base font-medium text-foreground">{t('total')}</span>
                 <span className="font-serif text-2xl font-bold text-accent">
                   €{items.reduce((sum, item) => sum + item.price, 0).toLocaleString()}
                 </span>
@@ -170,11 +172,11 @@ export function CartDrawer() {
                 className="w-full h-12 text-base font-medium cursor-pointer"
                 onClick={closeCart}
               >
-                <Link href="/checkout">Proceed to Checkout</Link>
+                <Link href="/checkout">{t('checkout')}</Link>
               </Button>
 
               <p className="text-xs text-muted-foreground text-center text-balance">
-                Need assistance? Contact us for a personal consultation
+                {t('assistanceNote')}
               </p>
             </div>
           )}

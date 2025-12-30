@@ -3,6 +3,7 @@
 import { useState, Suspense } from 'react'
 import { signIn } from 'next-auth/react'
 import { useRouter, useSearchParams } from 'next/navigation'
+import { useTranslations } from 'next-intl'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
@@ -13,6 +14,8 @@ import { Link } from '@/i18n/routing'
 function LoginForm() {
   const router = useRouter()
   const searchParams = useSearchParams()
+  const t = useTranslations('auth')
+  const tCommon = useTranslations('common')
   const callbackUrl = searchParams.get('callbackUrl') || '/'
   const error = searchParams.get('error')
 
@@ -34,13 +37,13 @@ function LoginForm() {
       })
 
       if (result?.error) {
-        setFormError('Invalid email or password')
+        setFormError(t('login.errors.invalidCredentials'))
       } else {
         router.push(callbackUrl)
         router.refresh()
       }
     } catch {
-      setFormError('An error occurred. Please try again.')
+      setFormError(t('login.errors.tryAgain'))
     } finally {
       setIsLoading(false)
     }
@@ -54,17 +57,16 @@ function LoginForm() {
         <div className="relative z-10 flex flex-col justify-between p-12">
           <Link href="/" className="cursor-pointer">
             <h1 className="font-serif text-2xl font-bold text-foreground">
-              Simon Musical Instruments
+              {t('brandName')}
             </h1>
-            <p className="text-sm text-muted-foreground mt-1">Reghin, Transylvania</p>
+            <p className="text-sm text-muted-foreground mt-1">{t('location')}</p>
           </Link>
 
           <div className="space-y-4">
             <blockquote className="font-serif text-2xl text-foreground text-balance leading-relaxed">
-              &quot;Every instrument carries the soul of the wood and the dedication of
-              centuries-old craftsmanship.&quot;
+              &quot;{t('login.quote')}&quot;
             </blockquote>
-            <p className="text-sm text-muted-foreground">— Master Luthier Paul Simon</p>
+            <p className="text-sm text-muted-foreground">{t('login.quoteAuthor')}</p>
           </div>
         </div>
       </div>
@@ -76,16 +78,16 @@ function LoginForm() {
           <div className="lg:hidden text-center">
             <Link href="/" className="cursor-pointer">
               <h1 className="font-serif text-xl font-bold text-foreground">
-                Simon Musical Instruments
+                {t('brandName')}
               </h1>
             </Link>
           </div>
 
           {/* Header */}
           <div className="text-center">
-            <h2 className="font-serif text-3xl font-bold text-foreground">Welcome Back</h2>
+            <h2 className="font-serif text-3xl font-bold text-foreground">{t('login.title')}</h2>
             <p className="text-muted-foreground mt-2">
-              Sign in to access your account and continue your journey
+              {t('login.subtitle')}
             </p>
           </div>
 
@@ -94,8 +96,8 @@ function LoginForm() {
             <div className="p-4 bg-destructive/10 border border-destructive/20 rounded-lg text-sm text-destructive">
               {formError ||
                 (error === 'OAuthAccountNotLinked'
-                  ? 'This email is already associated with another account.'
-                  : 'An error occurred during sign in.')}
+                  ? t('login.errors.oauthNotLinked')
+                  : t('login.errors.genericError'))}
             </div>
           )}
 
@@ -111,7 +113,7 @@ function LoginForm() {
             </div>
             <div className="relative flex justify-center text-xs uppercase">
               <span className="bg-background px-2 text-muted-foreground">
-                Or continue with email
+                {t('login.orContinueWith')}
               </span>
             </div>
           </div>
@@ -119,11 +121,11 @@ function LoginForm() {
           {/* Email Form */}
           <form onSubmit={handleSubmit} className="space-y-4">
             <div>
-              <Label htmlFor="email">Email Address</Label>
+              <Label htmlFor="email">{t('labels.email')}</Label>
               <Input
                 id="email"
                 type="email"
-                placeholder="your@email.com"
+                placeholder={t('login.emailPlaceholder')}
                 required
                 className="mt-1.5"
                 value={email}
@@ -134,18 +136,18 @@ function LoginForm() {
 
             <div>
               <div className="flex items-center justify-between">
-                <Label htmlFor="password">Password</Label>
+                <Label htmlFor="password">{t('labels.password')}</Label>
                 <Link
                   href="/forgot-password"
                   className="text-sm text-accent hover:text-accent/80 transition-colors cursor-pointer"
                 >
-                  Forgot password?
+                  {t('login.forgotPassword')}
                 </Link>
               </div>
               <Input
                 id="password"
                 type="password"
-                placeholder="••••••••"
+                placeholder={t('login.passwordPlaceholder')}
                 required
                 className="mt-1.5"
                 value={password}
@@ -160,18 +162,18 @@ function LoginForm() {
               className="w-full h-11 cursor-pointer"
               disabled={isLoading}
             >
-              {isLoading ? 'Signing in...' : 'Sign In'}
+              {isLoading ? t('login.signingIn') : t('login.signIn')}
             </Button>
           </form>
 
           {/* Sign Up Link */}
           <div className="text-center text-sm">
-            <span className="text-muted-foreground">Don&apos;t have an account? </span>
+            <span className="text-muted-foreground">{t('login.noAccount')} </span>
             <Link
               href="/register"
               className="text-accent hover:text-accent/80 font-medium transition-colors cursor-pointer"
             >
-              Create an account
+              {t('login.createAccount')}
             </Link>
           </div>
 
@@ -181,7 +183,7 @@ function LoginForm() {
               href="/gallery"
               className="text-sm text-muted-foreground hover:text-foreground transition-colors cursor-pointer"
             >
-              ← Continue shopping as guest
+              ← {tCommon('continueAsGuest')}
             </Link>
           </div>
         </div>
@@ -191,9 +193,10 @@ function LoginForm() {
 }
 
 function LoginFormFallback() {
+  const tCommon = useTranslations('common')
   return (
     <div className="min-h-screen bg-background flex items-center justify-center">
-      <div className="animate-pulse text-muted-foreground">Loading...</div>
+      <div className="animate-pulse text-muted-foreground">{tCommon('loading')}</div>
     </div>
   )
 }
@@ -205,4 +208,3 @@ export default function LoginPage() {
     </Suspense>
   )
 }
-

@@ -1,4 +1,5 @@
 import { Package, Clock, CheckCircle, TrendingUp } from 'lucide-react'
+import { getTranslations } from 'next-intl/server'
 import { Button } from '@/components/ui/button'
 import { Link } from '@/i18n/routing'
 import { OrderCard } from '@/components/account/order-card'
@@ -17,6 +18,7 @@ export const metadata = {
 export default async function AccountDashboard() {
   const session = await requireAuth()
   const payload = await getPayload({ config })
+  const t = await getTranslations('account.dashboard')
 
   const userId = session.user?.id
   const userEmail = session.user?.email
@@ -52,9 +54,9 @@ export default async function AccountDashboard() {
       {/* Welcome Section */}
       <div>
         <h1 className="font-serif text-3xl sm:text-4xl font-bold text-foreground mb-2">
-          Welcome back, {userName}
+          {t('welcome', { name: userName })}
         </h1>
-        <p className="text-muted-foreground">Manage your account and view your order history</p>
+        <p className="text-muted-foreground">{t('subtitle')}</p>
       </div>
 
       {/* Stats Grid */}
@@ -65,7 +67,7 @@ export default async function AccountDashboard() {
             <TrendingUp className="w-4 h-4 text-muted-foreground" />
           </div>
           <p className="text-2xl font-bold text-foreground">{stats.totalOrders}</p>
-          <p className="text-sm text-muted-foreground">Total Orders</p>
+          <p className="text-sm text-muted-foreground">{t('totalOrders')}</p>
         </div>
 
         <div className="bg-card border border-border rounded-lg p-6">
@@ -73,7 +75,7 @@ export default async function AccountDashboard() {
             <Clock className="w-5 h-5 text-blue-500" />
           </div>
           <p className="text-2xl font-bold text-foreground">{stats.pending}</p>
-          <p className="text-sm text-muted-foreground">Pending</p>
+          <p className="text-sm text-muted-foreground">{t('pending')}</p>
         </div>
 
         <div className="bg-card border border-border rounded-lg p-6">
@@ -81,7 +83,7 @@ export default async function AccountDashboard() {
             <CheckCircle className="w-5 h-5 text-green-500" />
           </div>
           <p className="text-2xl font-bold text-foreground">{stats.delivered}</p>
-          <p className="text-sm text-muted-foreground">Delivered</p>
+          <p className="text-sm text-muted-foreground">{t('delivered')}</p>
         </div>
 
         <div className="bg-card border border-border rounded-lg p-6">
@@ -89,17 +91,17 @@ export default async function AccountDashboard() {
             <span className="text-accent font-semibold">€</span>
           </div>
           <p className="text-2xl font-bold text-foreground">€{stats.totalSpent.toLocaleString()}</p>
-          <p className="text-sm text-muted-foreground">Total Spent</p>
+          <p className="text-sm text-muted-foreground">{t('totalSpent')}</p>
         </div>
       </div>
 
       {/* Recent Orders */}
       <div>
         <div className="flex items-center justify-between mb-6">
-          <h2 className="font-serif text-2xl font-bold text-foreground">Recent Orders</h2>
+          <h2 className="font-serif text-2xl font-bold text-foreground">{t('recentOrders')}</h2>
           {totalDocs > 3 && (
             <Button asChild variant="ghost" className="cursor-pointer">
-              <Link href="/account/orders">View All</Link>
+              <Link href="/account/orders">{t('viewAll')}</Link>
             </Button>
           )}
         </div>
@@ -130,12 +132,12 @@ export default async function AccountDashboard() {
         ) : (
           <div className="bg-card border border-border rounded-lg p-12 text-center">
             <Package className="w-12 h-12 text-muted-foreground mx-auto mb-4" />
-            <h3 className="font-semibold text-foreground mb-2">No orders yet</h3>
+            <h3 className="font-semibold text-foreground mb-2">{t('noOrders')}</h3>
             <p className="text-sm text-muted-foreground mb-4">
-              Start browsing our collection of handcrafted instruments
+              {t('startBrowsing')}
             </p>
             <Button asChild className="cursor-pointer">
-              <Link href="/gallery">Browse Instruments</Link>
+              <Link href="/gallery">{t('browseInstruments')}</Link>
             </Button>
           </div>
         )}
@@ -147,9 +149,9 @@ export default async function AccountDashboard() {
           href="/account/profile"
           className="bg-card border border-border rounded-lg p-6 hover:border-accent transition-colors cursor-pointer"
         >
-          <h3 className="font-semibold text-foreground mb-2">Profile Settings</h3>
+          <h3 className="font-semibold text-foreground mb-2">{t('profileSettings')}</h3>
           <p className="text-sm text-muted-foreground">
-            Update your personal information and preferences
+            {t('profileSettingsDesc')}
           </p>
         </Link>
 
@@ -157,9 +159,9 @@ export default async function AccountDashboard() {
           href="/gallery"
           className="bg-card border border-border rounded-lg p-6 hover:border-accent transition-colors cursor-pointer"
         >
-          <h3 className="font-semibold text-foreground mb-2">Browse Instruments</h3>
+          <h3 className="font-semibold text-foreground mb-2">{t('browseInstruments')}</h3>
           <p className="text-sm text-muted-foreground">
-            Discover our collection of handcrafted instruments
+            {t('browseInstrumentsDesc')}
           </p>
         </Link>
       </div>

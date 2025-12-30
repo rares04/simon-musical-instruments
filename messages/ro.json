@@ -30,7 +30,9 @@
     "violin": "Vioară",
     "viola": "Violă",
     "cello": "Violoncel",
-    "contrabass": "Contrabas"
+    "contrabass": "Contrabas",
+    "noImage": "Fără imagine",
+    "handcraftedInstrument": "Instrument realizat manual"
   },
   "story": {
     "title": "Povestea Noastră",
@@ -105,6 +107,7 @@
       "submit": "Trimite Mesajul",
       "sending": "Se trimite...",
       "success": "Mesaj trimis cu succes! Îți vom răspunde în curând.",
+      "error": "Eroare la trimiterea mesajului. Te rugăm să încerci din nou.",
       "subjects": {
         "general": "Întrebare Generală",
         "purchase": "Întrebare despre Achiziție",
@@ -119,7 +122,9 @@
       "email": "Email",
       "phone": "Telefon / Fax",
       "hours": "Program Atelier",
-      "hoursValue": "Luni - Vineri: 9:00 - 17:00\nSâmbătă: Cu programare"
+      "hoursValue": "Luni - Vineri: 9:00 - 17:00\nSâmbătă: Cu programare",
+      "phoneLabel": "Telefon",
+      "faxLabel": "Fax"
     },
     "map": {
       "title": "Găsește-ne"
@@ -140,7 +145,57 @@
     "error": "A apărut o eroare",
     "backToHome": "Înapoi la Pagina Principală",
     "learnMore": "Află Mai Multe",
-    "viewAll": "Vezi Tot"
+    "viewAll": "Vezi Tot",
+    "save": "Salvează",
+    "cancel": "Anulează",
+    "delete": "Șterge",
+    "edit": "Editează",
+    "required": "Obligatoriu",
+    "optional": "Opțional",
+    "previous": "Anterior",
+    "next": "Următorul",
+    "processing": "Se procesează...",
+    "tryAgain": "Încearcă din nou",
+    "contactSupport": "Contactează Suportul",
+    "continueAsGuest": "Continuă cumpărăturile ca vizitator",
+    "needAssistance": "Ai nevoie de asistență?"
+  },
+  "account": {
+    "title": "Contul Meu",
+    "profile": "Profil",
+    "orders": "Comenzi",
+    "addresses": "Adrese",
+    "settings": "Setări",
+    "dashboard": {
+      "welcome": "Bine ai revenit, {name}",
+      "subtitle": "Gestionează-ți contul și vezi istoricul comenzilor",
+      "totalOrders": "Total Comenzi",
+      "pending": "În așteptare",
+      "delivered": "Livrate",
+      "totalSpent": "Total Cheltuit",
+      "recentOrders": "Comenzi Recente",
+      "viewAll": "Vezi Tot",
+      "noOrders": "Nicio comandă încă",
+      "startBrowsing": "Începe să răsfoiești colecția noastră de instrumente",
+      "browseInstruments": "Răsfoiește Instrumente",
+      "profileSettings": "Setări Profil",
+      "profileSettingsDesc": "Actualizează-ți informațiile personale și preferințele",
+      "browseInstrumentsDesc": "Descoperă colecția noastră de instrumente"
+    },
+    "orderHistory": {
+      "title": "Istoric Comenzi",
+      "subtitle": "Vezi și urmărește toate comenzile tale",
+      "loadingOrders": "Se încarcă comenzile...",
+      "noOrders": "Nicio comandă încă",
+      "noOrdersDesc": "Când plasezi o comandă, aceasta va apărea aici."
+    },
+    "profilePage": {
+      "title": "Setări Profil",
+      "subtitle": "Gestionează-ți informațiile contului și preferințele",
+      "personalInfo": "Informații Personale",
+      "savedAddresses": "Adrese Salvate",
+      "password": "Parolă"
+    }
   },
   "gallery": {
     "badge": "Disponibil pentru Achiziție",
@@ -165,30 +220,242 @@
     },
     "showing": "Se afișează {count} instrumente"
   },
-  "account": {
-    "title": "Contul Meu",
-    "profile": "Profil",
-    "orders": "Comenzi",
-    "addresses": "Adrese",
-    "settings": "Setări"
+  "product": {
+    "backToCollection": "Înapoi la Colecție",
+    "luthierNotes": "Notele Lutierului",
+    "listenSound": "Ascultă Sunetul",
+    "specifications": "Specificații",
+    "bodyWood": "Lemn Corp",
+    "topWood": "Lemn Față",
+    "neckWood": "Lemn Gât",
+    "fingerboard": "Tastieră",
+    "varnish": "Lac",
+    "strings": "Corzi",
+    "bodyLength": "Lungime Corp",
+    "crafted": "Realizat în {year}",
+    "checkoutNote": "Checkout securizat cu livrare FedEx asigurată. Fiecare instrument este o investiție semnificativă și include documentație completă.",
+    "inBuildNote": "Acest instrument este în construcție. Contactează-ne pentru a-l rezerva sau pentru actualizări despre finalizare.",
+    "soldNote": "Acest instrument a fost {status}. Contactează-ne pentru a comanda unul similar.",
+    "noImagesAvailable": "Nicio imagine disponibilă"
   },
   "cart": {
     "title": "Coșul de Cumpărături",
+    "yourSelection": "Selecția Ta",
     "empty": "Coșul tău este gol",
+    "emptyDescription": "Explorează colecția noastră de instrumente",
+    "continueBrowsing": "Continuă Navigarea",
     "total": "Total",
     "checkout": "Finalizează Comanda",
     "continueShopping": "Continuă Cumpărăturile",
-    "remove": "Elimină"
+    "remove": "Elimină",
+    "fullyInsured": "Livrare complet asigurată",
+    "secureShipping": "Expediere securizată prin FedEx",
+    "professionalPackaging": "Ambalaj profesional",
+    "assistanceNote": "Ai nevoie de asistență? Contactează-ne pentru o consultare personală"
   },
   "checkout": {
     "title": "Finalizare Comandă",
-    "shipping": "Informații de Livrare",
+    "completeOrder": "Finalizează Comanda",
+    "subtitle": "Asigură-ți instrumentul realizat manual cu grijă și încredere",
+    "backToShop": "Înapoi la Magazin",
+    "signInPrompt": "Autentifică-te",
+    "guestCheckout": "pentru checkout mai rapid, sau continuă ca vizitator mai jos.",
+    "emptyCart": {
+      "title": "Coșul tău este gol",
+      "description": "Adaugă instrumente în coș înainte de finalizare.",
+      "browse": "Răsfoiește Instrumente"
+    },
+    "mode": {
+      "title": "Cum dorești să continui?",
+      "directPurchase": "Achiziție Directă",
+      "directPurchaseDesc": "Finalizează achiziția imediat cu plată securizată",
+      "requestQuote": "Solicită Ofertă",
+      "requestQuoteDesc": "Trimite o cerere pentru consultare personală și aranjamente personalizate"
+    },
+    "contactInfo": {
+      "title": "Informații de Contact",
+      "firstName": "Prenume",
+      "lastName": "Nume",
+      "email": "Adresa de Email",
+      "phone": "Număr de Telefon"
+    },
+    "shipping": {
+      "title": "Informații de Livrare",
+      "streetAddress": "Adresă Stradă",
+      "apartment": "Apartament, Etaj, etc.",
+      "city": "Oraș",
+      "state": "Județ/Regiune",
+      "zip": "Cod Poștal",
+      "country": "Țară",
+      "countries": {
+        "RO": "România",
+        "EU": "Uniunea Europeană",
+        "UK": "Regatul Unit",
+        "US": "Statele Unite",
+        "CA": "Canada",
+        "AU": "Australia",
+        "OTHER": "Altă destinație"
+      },
+      "secureShipping": "Livrare FedEx securizată cu confirmare de semnătură",
+      "fullInsurance": "Asigurare completă inclusă (€{amount})",
+      "professionalPackaging": "Ambalaj profesional cu protecție climatică"
+    },
+    "message": {
+      "title": "Mesaj",
+      "label": "Spune-ne despre nevoile tale",
+      "placeholder": "Împărtășește cerințele specifice, întrebările sau preferințele tale despre instrument..."
+    },
+    "summary": {
+      "title": "Sumar Comandă",
+      "subtotal": "Subtotal",
+      "shipping": "Livrare ({region})",
+      "insurance": "Asigurare (2%)",
+      "total": "Total"
+    },
+    "submitInquiry": "Trimite Cererea",
     "payment": "Plată",
     "review": "Verifică Comanda",
     "placeOrder": "Plasează Comanda",
     "success": {
       "title": "Mulțumim!",
       "message": "Comanda ta a fost plasată cu succes."
+    }
+  },
+  "checkoutSuccess": {
+    "confirmingOrder": "Se confirmă comanda...",
+    "error": {
+      "title": "Ceva nu a funcționat",
+      "paymentNote": "Dacă plata a fost procesată, te rugăm să ne contactezi și te vom ajuta să rezolvăm problema.",
+      "tryAgain": "Încearcă Din Nou"
+    },
+    "inquiry": {
+      "title": "Cerere Trimisă!",
+      "subtitle": "Îți mulțumim pentru interesul tău. Îți vom răspunde în 1-2 zile lucrătoare.",
+      "whatNext": "Ce Urmează",
+      "confirmationEmail": "Email de Confirmare",
+      "confirmationEmailDesc": "Ți-am trimis un email de confirmare cu detaliile cererii.",
+      "personalResponse": "Răspuns Personal",
+      "personalResponseDesc": "Paul sau Ecaterina Simon va revizui personal cererea ta și va răspunde cu informații detaliate despre instrumentele care te interesează.",
+      "consultationAvailable": "Consultare Disponibilă",
+      "consultationAvailableDesc": "Putem aranja un apel telefonic sau video pentru a discuta nevoile tale și a te ajuta să găsești instrumentul perfect.",
+      "immediateAssistance": "Ai nevoie de asistență imediată?"
+    },
+    "order": {
+      "title": "Comandă Confirmată!",
+      "subtitle": "Îți mulțumim pentru achiziție. Instrumentul tău realizat manual este pregătit pentru expediere.",
+      "orderNumber": "Numărul Comenzii",
+      "confirmationEmail": "Email de Confirmare",
+      "confirmationEmailDesc": "Ți-am trimis un email de confirmare cu detaliile comenzii și informațiile de urmărire.",
+      "shippingTracking": "Expediere și Urmărire",
+      "shippingTrackingDesc": "Instrumentul tău va fi ambalat cu grijă și expediat prin FedEx cu asigurare completă. Vei primi detaliile de urmărire în 1-2 zile lucrătoare.",
+      "questionsAboutOrder": "Întrebări despre comanda ta?"
+    },
+    "continueShopping": "Continuă Cumpărăturile",
+    "returnHome": "Înapoi Acasă"
+  },
+  "auth": {
+    "brandName": "Simon Musical Instruments",
+    "location": "Reghin, Transilvania",
+    "login": {
+      "title": "Bine ai Revenit",
+      "subtitle": "Autentifică-te pentru a accesa contul tău și a continua călătoria",
+      "quote": "Fiecare instrument poartă sufletul lemnului și dedicarea meșteșugului secular.",
+      "quoteAuthor": "— Maestrul Lutier Paul Simon",
+      "emailPlaceholder": "email@exemplu.com",
+      "passwordPlaceholder": "••••••••",
+      "forgotPassword": "Ai uitat parola?",
+      "signIn": "Autentificare",
+      "signingIn": "Se autentifică...",
+      "noAccount": "Nu ai un cont?",
+      "createAccount": "Creează un cont",
+      "orContinueWith": "Sau continuă cu email",
+      "errors": {
+        "invalidCredentials": "Email sau parolă invalidă",
+        "oauthNotLinked": "Acest email este deja asociat cu alt cont.",
+        "genericError": "A apărut o eroare la autentificare.",
+        "tryAgain": "A apărut o eroare. Te rugăm să încerci din nou."
+      }
+    },
+    "register": {
+      "title": "Creează-ți Contul",
+      "subtitle": "Alătură-te comunității noastre de muzicieni și colecționari",
+      "whyCreateAccount": "De ce să creezi un cont?",
+      "benefits": {
+        "trackOrders": "Urmărește comenzile și livrările tale",
+        "savePreferences": "Salvează preferințele și detaliile de livrare",
+        "exclusiveUpdates": "Primește actualizări exclusive despre noi instrumente",
+        "personalizedRecs": "Accesează recomandări personalizate"
+      },
+      "firstName": "Prenume",
+      "lastName": "Nume",
+      "email": "Adresă de Email",
+      "password": "Parolă",
+      "confirmPassword": "Confirmă Parola",
+      "passwordRequirement": "Minim 8 caractere",
+      "termsAgreement": "Sunt de acord cu",
+      "termsOfService": "Termenii și Condițiile",
+      "and": "și",
+      "privacyPolicy": "Politica de Confidențialitate",
+      "createAccount": "Creează Cont",
+      "creatingAccount": "Se creează contul...",
+      "haveAccount": "Ai deja un cont?",
+      "signIn": "Autentifică-te",
+      "orRegisterWith": "Sau înregistrează-te cu email",
+      "errors": {
+        "passwordMismatch": "Parolele nu coincid",
+        "passwordTooShort": "Parola trebuie să aibă cel puțin 8 caractere",
+        "termsRequired": "Trebuie să accepți termenii și condițiile",
+        "emailExists": "Un cont cu acest email există deja",
+        "signInFailed": "Cont creat dar autentificarea a eșuat. Te rugăm să încerci să te autentifici.",
+        "genericError": "A apărut o eroare. Te rugăm să încerci din nou.",
+        "registrationFailed": "Înregistrarea a eșuat. Te rugăm să încerci din nou."
+      }
+    },
+    "labels": {
+      "email": "Adresă de Email",
+      "password": "Parolă"
+    }
+  },
+  "profile": {
+    "form": {
+      "firstName": "Prenume",
+      "lastName": "Nume",
+      "email": "Email",
+      "phone": "Număr de Telefon",
+      "emailChangeNote": "Îți vom trimite un email de verificare dacă schimbi aceasta",
+      "saveChanges": "Salvează Modificările",
+      "saving": "Se salvează...",
+      "updateSuccess": "Profil actualizat cu succes!",
+      "updateError": "Eroare la actualizarea profilului"
+    },
+    "password": {
+      "currentPassword": "Parola Curentă",
+      "newPassword": "Parolă Nouă",
+      "confirmPassword": "Confirmă Parola Nouă",
+      "requirement": "Minim 8 caractere",
+      "changePassword": "Schimbă Parola",
+      "changing": "Se schimbă parola...",
+      "success": "Parolă schimbată cu succes!",
+      "error": "Eroare la schimbarea parolei",
+      "mismatch": "Parolele nu coincid",
+      "tooShort": "Parola trebuie să aibă cel puțin 8 caractere"
+    },
+    "address": {
+      "noAddresses": "Nicio adresă salvată",
+      "addToFaster": "Adaugă adrese pentru checkout mai rapid",
+      "addAddress": "Adaugă Adresă",
+      "addNewAddress": "Adaugă Adresă Nouă",
+      "default": "Implicit",
+      "setAsDefault": "Setează ca Implicit",
+      "addressLabel": "Etichetă Adresă",
+      "labelPlaceholder": "ex. Acasă, Serviciu, Studio",
+      "streetAddress": "Adresă Stradă",
+      "apartment": "Apartament, Etaj, etc.",
+      "city": "Oraș",
+      "state": "Județ/Regiune",
+      "zip": "Cod Poștal",
+      "country": "Țară",
+      "saveAddress": "Salvează Adresa"
     }
   }
 }

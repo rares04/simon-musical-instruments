@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import { signIn } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
+import { useTranslations } from 'next-intl'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
@@ -13,6 +14,8 @@ import { Link } from '@/i18n/routing'
 
 export default function RegisterPage() {
   const router = useRouter()
+  const t = useTranslations('auth')
+  const tCommon = useTranslations('common')
 
   const [firstName, setFirstName] = useState('')
   const [lastName, setLastName] = useState('')
@@ -29,17 +32,17 @@ export default function RegisterPage() {
 
     // Validation
     if (password !== confirmPassword) {
-      setError('Passwords do not match')
+      setError(t('register.errors.passwordMismatch'))
       return
     }
 
     if (password.length < 8) {
-      setError('Password must be at least 8 characters long')
+      setError(t('register.errors.passwordTooShort'))
       return
     }
 
     if (!termsAccepted) {
-      setError('You must accept the terms and conditions')
+      setError(t('register.errors.termsRequired'))
       return
     }
 
@@ -66,9 +69,9 @@ export default function RegisterPage() {
       if (!response.ok) {
         const data = await response.json()
         if (data.errors?.[0]?.message?.includes('email')) {
-          setError('An account with this email already exists')
+          setError(t('register.errors.emailExists'))
         } else {
-          setError(data.errors?.[0]?.message || 'Registration failed. Please try again.')
+          setError(data.errors?.[0]?.message || t('register.errors.registrationFailed'))
         }
         return
       }
@@ -81,13 +84,13 @@ export default function RegisterPage() {
       })
 
       if (result?.error) {
-        setError('Account created but sign in failed. Please try logging in.')
+        setError(t('register.errors.signInFailed'))
       } else {
         router.push('/')
         router.refresh()
       }
     } catch {
-      setError('An error occurred. Please try again.')
+      setError(t('register.errors.genericError'))
     } finally {
       setIsLoading(false)
     }
@@ -101,32 +104,32 @@ export default function RegisterPage() {
         <div className="relative z-10 flex flex-col justify-between p-12">
           <Link href="/" className="cursor-pointer">
             <h1 className="font-serif text-2xl font-bold text-foreground">
-              Simon Musical Instruments
+              {t('brandName')}
             </h1>
-            <p className="text-sm text-muted-foreground mt-1">Reghin, Transylvania</p>
+            <p className="text-sm text-muted-foreground mt-1">{t('location')}</p>
           </Link>
 
           <div className="space-y-6">
             <div>
               <h3 className="font-serif text-xl font-semibold text-foreground mb-3">
-                Why create an account?
+                {t('register.whyCreateAccount')}
               </h3>
               <ul className="space-y-3 text-muted-foreground">
                 <li className="flex items-start gap-3">
                   <span className="text-accent mt-0.5">✓</span>
-                  <span>Track your instrument orders and delivery</span>
+                  <span>{t('register.benefits.trackOrders')}</span>
                 </li>
                 <li className="flex items-start gap-3">
                   <span className="text-accent mt-0.5">✓</span>
-                  <span>Save your preferences and shipping details</span>
+                  <span>{t('register.benefits.savePreferences')}</span>
                 </li>
                 <li className="flex items-start gap-3">
                   <span className="text-accent mt-0.5">✓</span>
-                  <span>Receive exclusive updates on new instruments</span>
+                  <span>{t('register.benefits.exclusiveUpdates')}</span>
                 </li>
                 <li className="flex items-start gap-3">
                   <span className="text-accent mt-0.5">✓</span>
-                  <span>Access personalized recommendations</span>
+                  <span>{t('register.benefits.personalizedRecs')}</span>
                 </li>
               </ul>
             </div>
@@ -141,16 +144,16 @@ export default function RegisterPage() {
           <div className="lg:hidden text-center">
             <Link href="/" className="cursor-pointer">
               <h1 className="font-serif text-xl font-bold text-foreground">
-                Simon Musical Instruments
+                {t('brandName')}
               </h1>
             </Link>
           </div>
 
           {/* Header */}
           <div className="text-center">
-            <h2 className="font-serif text-3xl font-bold text-foreground">Create Your Account</h2>
+            <h2 className="font-serif text-3xl font-bold text-foreground">{t('register.title')}</h2>
             <p className="text-muted-foreground mt-2">
-              Join our community of musicians and collectors
+              {t('register.subtitle')}
             </p>
           </div>
 
@@ -173,7 +176,7 @@ export default function RegisterPage() {
             </div>
             <div className="relative flex justify-center text-xs uppercase">
               <span className="bg-background px-2 text-muted-foreground">
-                Or register with email
+                {t('register.orRegisterWith')}
               </span>
             </div>
           </div>
@@ -182,7 +185,7 @@ export default function RegisterPage() {
           <form onSubmit={handleSubmit} className="space-y-4">
             <div className="grid grid-cols-2 gap-4">
               <div>
-                <Label htmlFor="firstName">First Name</Label>
+                <Label htmlFor="firstName">{t('register.firstName')}</Label>
                 <Input
                   id="firstName"
                   placeholder="Paul"
@@ -194,7 +197,7 @@ export default function RegisterPage() {
                 />
               </div>
               <div>
-                <Label htmlFor="lastName">Last Name</Label>
+                <Label htmlFor="lastName">{t('register.lastName')}</Label>
                 <Input
                   id="lastName"
                   placeholder="Simon"
@@ -208,7 +211,7 @@ export default function RegisterPage() {
             </div>
 
             <div>
-              <Label htmlFor="email">Email Address</Label>
+              <Label htmlFor="email">{t('register.email')}</Label>
               <Input
                 id="email"
                 type="email"
@@ -222,7 +225,7 @@ export default function RegisterPage() {
             </div>
 
             <div>
-              <Label htmlFor="password">Password</Label>
+              <Label htmlFor="password">{t('register.password')}</Label>
               <Input
                 id="password"
                 type="password"
@@ -234,12 +237,12 @@ export default function RegisterPage() {
                 disabled={isLoading}
               />
               <p className="text-xs text-muted-foreground mt-1.5">
-                Must be at least 8 characters long
+                {t('register.passwordRequirement')}
               </p>
             </div>
 
             <div>
-              <Label htmlFor="confirmPassword">Confirm Password</Label>
+              <Label htmlFor="confirmPassword">{t('register.confirmPassword')}</Label>
               <Input
                 id="confirmPassword"
                 type="password"
@@ -261,13 +264,13 @@ export default function RegisterPage() {
                 className="mt-0.5"
               />
               <Label htmlFor="terms" className="text-sm cursor-pointer leading-relaxed">
-                I agree to the{' '}
+                {t('register.termsAgreement')}{' '}
                 <Link href="/terms" className="text-accent hover:text-accent/80 cursor-pointer">
-                  Terms of Service
+                  {t('register.termsOfService')}
                 </Link>{' '}
-                and{' '}
+                {t('register.and')}{' '}
                 <Link href="/privacy" className="text-accent hover:text-accent/80 cursor-pointer">
-                  Privacy Policy
+                  {t('register.privacyPolicy')}
                 </Link>
               </Label>
             </div>
@@ -278,18 +281,18 @@ export default function RegisterPage() {
               className="w-full h-11 cursor-pointer"
               disabled={isLoading}
             >
-              {isLoading ? 'Creating Account...' : 'Create Account'}
+              {isLoading ? t('register.creatingAccount') : t('register.createAccount')}
             </Button>
           </form>
 
           {/* Sign In Link */}
           <div className="text-center text-sm">
-            <span className="text-muted-foreground">Already have an account? </span>
+            <span className="text-muted-foreground">{t('register.haveAccount')} </span>
             <Link
               href="/login"
               className="text-accent hover:text-accent/80 font-medium transition-colors cursor-pointer"
             >
-              Sign in
+              {t('register.signIn')}
             </Link>
           </div>
 
@@ -299,7 +302,7 @@ export default function RegisterPage() {
               href="/gallery"
               className="text-sm text-muted-foreground hover:text-foreground transition-colors cursor-pointer"
             >
-              ← Continue shopping as guest
+              ← {tCommon('continueAsGuest')}
             </Link>
           </div>
         </div>
@@ -307,4 +310,3 @@ export default function RegisterPage() {
     </div>
   )
 }
-

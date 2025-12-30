@@ -1,6 +1,6 @@
 {
   "navigation": {
-    "shop": "쇼핑",
+    "shop": "상점",
     "about": "소개",
     "faq": "자주 묻는 질문",
     "contact": "문의",
@@ -11,93 +11,95 @@
   },
   "hero": {
     "title": "가상 공방에 오신 것을 환영합니다",
-    "subtitle": "전통과 뛰어난 장인 정신이 만나는 트란실바니아의 중심에서 수제작된 현악기입니다.",
-    "cta": "악기 둘러보기",
-    "learnStory": "저희 이야기",
+    "subtitle": "전통과 뛰어난 장인정신이 만나는 트란실바니아 중심부에서 수제로 만든 활 현악기.",
+    "cta": "악기 보기",
+    "learnStory": "우리의 이야기",
     "established": "2014년 설립",
-    "quote": "저희는 폴과 에카테리나 시몬입니다. 저희 사이트에 오신 것을 환영합니다. \"바이올린의 도시\"로 알려진 레긴의 작은 공방에서 전 세계 음악가들과 공명하는 악기를 만들고 있습니다."
+    "quote": "저희는 폴과 에카테리나 시몬입니다. 저희 사이트에 오신 것을 환영합니다. '바이올린의 도시'로 알려진 레긴의 작은 공방에서 전 세계 음악가들과 공명하는 악기를 만들고 있습니다."
   },
   "instruments": {
-    "title": "저희 악기",
-    "subtitle": "모든 악기는 정성과 정밀함으로 수제작됩니다",
-    "viewDetails": "상세 보기",
-    "addToCart": "장바구니에 추가",
+    "title": "우리의 악기",
+    "subtitle": "모든 악기는 정성과 정밀함으로 수제 제작됩니다",
+    "viewDetails": "상세 정보",
+    "addToCart": "장바구니 담기",
     "inquire": "문의하기",
-    "available": "구매 가능",
+    "available": "재고 있음",
     "inBuild": "제작 중",
     "reserved": "예약됨",
     "sold": "판매 완료",
     "violin": "바이올린",
     "viola": "비올라",
     "cello": "첼로",
-    "contrabass": "콘트라베이스"
+    "contrabass": "콘트라베이스",
+    "noImage": "이미지 없음",
+    "handcraftedInstrument": "수제 악기"
   },
   "story": {
-    "title": "저희 이야기",
-    "subtitle": "트란실바니아 레긴에서 이어온 우수성의 전통",
+    "title": "우리의 이야기",
+    "subtitle": "트란실바니아 레긴에서 온 우수성의 전통",
     "heritage": {
-      "title": "마스터 장인 정신",
-      "description": "2001년부터 레긴의 최고의 전통에서 배우며 현악기 제작 기술을 연마해 왔습니다."
+      "title": "명장의 솜씨",
+      "description": "2001년부터 레긴의 최고 전통을 배우며 현악기 제작 예술을 완성해 왔습니다."
     },
     "materials": {
       "title": "프리미엄 재료",
-      "description": "최고급 음향목을 신중하게 선택하고 자연 건조시켜 모든 악기에서 뛰어난 울림을 보장합니다."
+      "description": "최고급 음향목재를 신중히 선택하고 자연 건조시켜 모든 악기에서 뛰어난 공명을 보장합니다."
     },
     "clientele": {
       "title": "국제적 고객층",
-      "description": "저희 악기는 프랑스, 벨기에, 스페인, 독일, 일본, 대만 등 전 세계 음악가들로부터 사랑받고 있습니다."
+      "description": "저희 악기는 프랑스, 벨기에, 스페인, 독일, 일본, 대만 및 그 외 지역의 음악가들에게 사랑받고 있습니다."
     }
   },
   "testimonials": {
-    "title": "고객 후기",
+    "title": "고객의 말씀",
     "subtitle": "저희 악기를 선택한 음악가들의 이야기를 들어보세요",
     "source": "출처: 구글 리뷰"
   },
   "faq": {
     "title": "자주 묻는 질문",
-    "subtitle": "저희 악기와 서비스에 관한 일반적인 질문에 대한 답변",
-    "contactPrompt": "찾으시는 정보를 찾지 못하셨나요?",
+    "subtitle": "악기와 서비스에 대한 일반적인 질문의 답을 찾아보세요",
+    "contactPrompt": "찾으시는 것을 찾지 못하셨나요?",
     "contactLink": "직접 문의해 주세요",
     "questions": {
       "purchase": {
-        "question": "악기를 어떻게 구매할 수 있나요?",
-        "answer": "쇼핑 섹션에서 구매 가능한 악기를 둘러볼 수 있습니다. 각 악기 페이지에는 상세 정보, 사진, 오디오 샘플이 있습니다. 구매하려면 악기를 장바구니에 추가하고 결제를 진행하거나 맞춤 상담을 위해 직접 문의해 주세요."
+        "question": "악기는 어떻게 구매할 수 있나요?",
+        "answer": "상점 섹션에서 사용 가능한 악기를 둘러보실 수 있습니다. 각 악기 페이지에는 상세 정보, 사진, 오디오 샘플이 포함되어 있습니다. 구매하시려면 악기를 장바구니에 추가하고 결제를 진행하거나, 개인 상담을 위해 직접 연락해 주세요."
       },
       "shipping": {
-        "question": "해외 배송이 가능한가요?",
-        "answer": "네, 전 세계로 배송합니다! 프랑스, 벨기에, 스페인, 독일, 일본, 대만 등 많은 국가의 고객에게 배송한 경험이 있습니다. 모든 악기는 전문적으로 포장되며 운송 중 완전 보험 처리됩니다."
+        "question": "국제 배송을 하나요?",
+        "answer": "네, 전 세계로 배송합니다! 프랑스, 벨기에, 스페인, 독일, 일본, 대만 및 기타 여러 국가의 고객에게 배송한 경험이 있습니다. 모든 악기는 전문적으로 포장되고 운송 중 완전히 보험에 가입됩니다."
       },
       "returns": {
-        "question": "반품 정책은 어떻게 되나요?",
-        "answer": "원래 상태의 악기에 대해 14일 반품 정책을 제공합니다. 완전히 만족하지 못하시면 배송비를 제외한 전액 환불로 악기를 반품하실 수 있습니다. 맞춤 주문은 다른 조건이 적용될 수 있습니다."
+        "question": "반품 정책은 무엇인가요?",
+        "answer": "원래 상태의 악기에 대해 14일 반품 정책을 제공합니다. 완전히 만족하지 않으시면 배송비를 제외한 전액 환불로 악기를 반품하실 수 있습니다. 맞춤 주문은 다른 조건이 적용될 수 있습니다."
       },
       "certificate": {
-        "question": "악기에 진품 증명서가 포함되나요?",
-        "answer": "네, 저희가 만드는 모든 악기에는 사용된 재료, 제작일, 공방 보증에 대한 세부 정보가 포함된 서명된 진품 증명서가 함께 제공됩니다."
+        "question": "악기에 진품 증명서가 함께 제공되나요?",
+        "answer": "네, 저희가 제작하는 모든 악기에는 사용된 재료, 제작 날짜, 공방 보증에 대한 세부 사항이 포함된 서명된 진품 증명서가 함께 제공됩니다."
       },
       "care": {
-        "question": "악기를 어떻게 관리해야 하나요?",
-        "answer": "사용하지 않을 때는 케이스에 보관하고, 적절한 습도 수준(40-60%)을 유지하며, 매년 전문가 조정을 받는 것을 권장합니다. 모든 구매에 상세한 관리 지침이 포함됩니다."
+        "question": "악기는 어떻게 관리해야 하나요?",
+        "answer": "사용하지 않을 때는 악기를 케이스에 보관하고, 적절한 습도 수준(40-60%)을 유지하며, 매년 전문적인 셋업을 받으시기를 권장합니다. 모든 구매에 상세한 관리 지침을 포함합니다."
       },
       "custom": {
         "question": "맞춤 악기를 주문할 수 있나요?",
-        "answer": "맞춤 주문을 환영합니다. 특정 요구 사항, 목재 선택 선호도, 바니시 색상 및 기타 원하는 맞춤 사항에 대해 문의해 주세요. 맞춤 악기는 일반적으로 완성까지 3-6개월이 소요됩니다."
+        "answer": "맞춤 주문을 환영합니다. 특정 요구사항, 목재 선택 선호도, 바니시 색상 및 기타 원하시는 맞춤 설정에 대해 논의하려면 연락해 주세요. 맞춤 악기는 일반적으로 완성까지 3-6개월이 소요됩니다."
       },
       "payment": {
         "question": "어떤 결제 방법을 받나요?",
-        "answer": "안전한 Stripe 결제 시스템을 통해 주요 신용카드(Visa, Mastercard, American Express)를 받습니다. 대량 구매의 경우 은행 송금이나 할부 결제도 준비할 수 있습니다."
+        "answer": "안전한 Stripe 결제 시스템을 통해 주요 신용카드(Visa, Mastercard, American Express)를 받습니다. 더 큰 구매의 경우 은행 이체나 할부 계획도 준비할 수 있습니다."
       },
       "packaging": {
-        "question": "배송 시 악기는 어떻게 포장되나요?",
-        "answer": "각 악기는 보호 재료로 신중하게 감싸지고, 하드 케이스(구매에 포함)에 넣어지고, 추가 패딩이 있는 맞춤 배송 상자에 포장됩니다. 가능한 경우 온도 조절 배송을 사용합니다."
+        "question": "배송을 위해 악기는 어떻게 포장되나요?",
+        "answer": "각 악기는 보호재로 조심스럽게 포장되고, 하드 케이스(구매 시 포함)에 넣어진 후, 추가 패딩이 있는 맞춤 배송 상자에 포장됩니다. 가능한 경우 온도 조절 배송을 사용합니다."
       }
     }
   },
   "contact": {
     "title": "문의하기",
-    "subtitle": "연락을 기다리고 있습니다",
+    "subtitle": "여러분의 소식을 듣고 싶습니다",
     "form": {
-      "name": "이름",
+      "name": "성함",
       "email": "이메일 주소",
       "phone": "전화번호",
       "subject": "제목",
@@ -105,6 +107,7 @@
       "submit": "메시지 보내기",
       "sending": "전송 중...",
       "success": "메시지가 성공적으로 전송되었습니다! 곧 연락드리겠습니다.",
+      "error": "메시지 전송에 실패했습니다. 다시 시도해 주세요.",
       "subjects": {
         "general": "일반 문의",
         "purchase": "구매 질문",
@@ -118,38 +121,90 @@
       "address": "주소",
       "email": "이메일",
       "phone": "전화 / 팩스",
-      "hours": "영업 시간",
-      "hoursValue": "월요일 - 금요일: 9:00 - 17:00\n토요일: 예약제"
+      "hours": "공방 운영시간",
+      "hoursValue": "월요일 - 금요일: 9:00 - 17:00\n토요일: 예약 필요",
+      "phoneLabel": "전화",
+      "faxLabel": "팩스"
     },
     "map": {
       "title": "찾아오시는 길"
     }
   },
   "footer": {
-    "tagline": "전통과 뛰어난 장인 정신이 만나는 가상 공방에 오신 것을 환영합니다. 트란실바니아의 중심에서 수제작된 현악기입니다.",
+    "tagline": "전통과 뛰어난 장인정신이 만나는 가상 공방에 여러분을 초대합니다. 트란실바니아 중심부에서 수제로 만든 활 현악기.",
     "quote": "레긴의 작은 공방에서 전 세계 음악가들과 공명하는 악기를 만들고 있습니다.",
-    "contact": "연락처",
-    "explore": "둘러보기",
+    "contact": "문의",
+    "explore": "탐색",
     "shopInstruments": "악기 구매",
-    "ourStory": "저희 이야기",
+    "ourStory": "우리의 이야기",
     "copyright": "© {year} Simon Musical Instruments. 모든 권리 보유.",
-    "madeIn": "루마니아 레긴에서 정성을 담아 제작"
+    "madeIn": "루마니아 레긴에서 사랑으로 제작"
   },
   "common": {
     "loading": "로딩 중...",
     "error": "오류가 발생했습니다",
     "backToHome": "홈으로 돌아가기",
     "learnMore": "더 알아보기",
-    "viewAll": "전체 보기"
+    "viewAll": "모두 보기",
+    "save": "저장",
+    "cancel": "취소",
+    "delete": "삭제",
+    "edit": "편집",
+    "required": "필수",
+    "optional": "선택사항",
+    "previous": "이전",
+    "next": "다음",
+    "processing": "처리 중...",
+    "tryAgain": "다시 시도",
+    "contactSupport": "지원팀 문의",
+    "continueAsGuest": "게스트로 쇼핑 계속",
+    "needAssistance": "도움이 필요하신가요?"
+  },
+  "account": {
+    "title": "내 계정",
+    "profile": "프로필",
+    "orders": "주문",
+    "addresses": "주소",
+    "settings": "설정",
+    "dashboard": {
+      "welcome": "환영합니다, {name}님",
+      "subtitle": "계정을 관리하고 주문 내역을 확인하세요",
+      "totalOrders": "총 주문 수",
+      "pending": "처리 중",
+      "delivered": "배송 완료",
+      "totalSpent": "총 지출",
+      "recentOrders": "최근 주문",
+      "viewAll": "모두 보기",
+      "noOrders": "아직 주문이 없습니다",
+      "startBrowsing": "수제 악기 컬렉션을 둘러보기 시작하세요",
+      "browseInstruments": "악기 보기",
+      "profileSettings": "프로필 설정",
+      "profileSettingsDesc": "개인 정보와 설정을 업데이트하세요",
+      "browseInstrumentsDesc": "악기 컬렉션을 발견하세요"
+    },
+    "orderHistory": {
+      "title": "주문 내역",
+      "subtitle": "모든 주문을 보고 추적하세요",
+      "loadingOrders": "주문 로딩 중...",
+      "noOrders": "아직 주문이 없습니다",
+      "noOrdersDesc": "주문을 하시면 여기에 나타납니다."
+    },
+    "profilePage": {
+      "title": "프로필 설정",
+      "subtitle": "계정 정보와 설정을 관리하세요",
+      "personalInfo": "개인 정보",
+      "savedAddresses": "저장된 주소",
+      "password": "비밀번호"
+    }
   },
   "gallery": {
     "badge": "구매 가능",
     "title": "악기 상점",
-    "description": "수제 악기의 현재 재고를 둘러보세요. 각 악기는 구매 가능하며 배송 준비가 되어 있습니다. 악기를 클릭하여 전체 세부 정보를 확인하고, 사운드 샘플을 듣고, 구매를 완료하세요.",
+    "description": "현재 수제 악기 재고를 둘러보세요. 모든 작품은 구매 가능하며 배송 준비가 되어 있습니다. 악기를 클릭하여 전체 세부 사항을 보고, 사운드 샘플을 듣고, 구매를 완료하세요.",
     "noResults": "필터에 일치하는 악기가 없습니다",
     "adjustFilters": "선택을 조정하거나 모든 악기를 보세요",
     "filters": {
-      "instrumentType": "악기 종류",
+      "instrumentType": "악기 유형",
       "priceRange": "가격대",
       "allInstruments": "모든 악기",
       "violins": "바이올린",
@@ -163,32 +218,244 @@
       "6000to10000": "€6,000 - €10,000",
       "over10000": "€10,000 이상"
     },
-    "showing": "{count}개의 악기 표시"
+    "showing": "{count}개의 악기 표시 중"
   },
-  "account": {
-    "title": "내 계정",
-    "profile": "프로필",
-    "orders": "주문",
-    "addresses": "주소",
-    "settings": "설정"
+  "product": {
+    "backToCollection": "컬렉션으로 돌아가기",
+    "luthierNotes": "제작자 노트",
+    "listenSound": "소리 듣기",
+    "specifications": "사양",
+    "bodyWood": "몸통 목재",
+    "topWood": "상판 목재",
+    "neckWood": "넥 목재",
+    "fingerboard": "지판",
+    "varnish": "바니시",
+    "strings": "현",
+    "bodyLength": "몸통 길이",
+    "crafted": "{year}년 제작",
+    "checkoutNote": "보험 가입된 FedEx 배송으로 안전한 결제. 각 악기는 중요한 투자이며 완전한 문서가 포함됩니다.",
+    "inBuildNote": "이 악기는 현재 제작 중입니다. 예약하거나 완성에 대한 업데이트를 받으려면 문의해 주세요.",
+    "soldNote": "이 악기는 {status}입니다. 유사한 작품 주문에 대해서는 문의해 주세요.",
+    "noImagesAvailable": "사용 가능한 이미지가 없습니다"
   },
   "cart": {
-    "title": "장바구니",
-    "empty": "장바구니가 비어 있습니다",
-    "total": "합계",
+    "title": "쇼핑 카트",
+    "yourSelection": "선택한 상품",
+    "empty": "장바구니가 비어있습니다",
+    "emptyDescription": "수제 악기 컬렉션을 탐색하세요",
+    "continueBrowsing": "계속 둘러보기",
+    "total": "총계",
     "checkout": "결제하기",
     "continueShopping": "쇼핑 계속하기",
-    "remove": "삭제"
+    "remove": "제거",
+    "fullyInsured": "완전 보험 배송",
+    "secureShipping": "FedEx를 통한 안전 배송",
+    "professionalPackaging": "전문 포장",
+    "assistanceNote": "도움이 필요하신가요? 개인 상담을 위해 문의해 주세요"
   },
   "checkout": {
     "title": "결제",
-    "shipping": "배송 정보",
+    "completeOrder": "주문 완료",
+    "subtitle": "주의와 신뢰로 수제 악기를 확보하세요",
+    "backToShop": "상점으로 돌아가기",
+    "signInPrompt": "로그인",
+    "guestCheckout": "더 빠른 결제를 위해 로그인하거나 아래에서 게스트로 계속하세요.",
+    "emptyCart": {
+      "title": "장바구니가 비어있습니다",
+      "description": "결제하기 전에 장바구니에 악기를 추가해 주세요.",
+      "browse": "악기 보기"
+    },
+    "mode": {
+      "title": "어떻게 진행하시겠습니까?",
+      "directPurchase": "직접 구매",
+      "directPurchaseDesc": "안전한 결제로 즉시 구매를 완료하세요",
+      "requestQuote": "견적 요청",
+      "requestQuoteDesc": "개인 상담과 맞춤 준비를 위한 문의를 제출하세요"
+    },
+    "contactInfo": {
+      "title": "연락처 정보",
+      "firstName": "이름",
+      "lastName": "성",
+      "email": "이메일 주소",
+      "phone": "전화번호"
+    },
+    "shipping": {
+      "title": "배송 정보",
+      "streetAddress": "주소",
+      "apartment": "아파트, 층수 등",
+      "city": "도시",
+      "state": "시/도",
+      "zip": "우편번호",
+      "country": "국가",
+      "countries": {
+        "RO": "루마니아",
+        "EU": "유럽연합",
+        "UK": "영국",
+        "US": "미국",
+        "CA": "캐나다",
+        "AU": "호주",
+        "OTHER": "기타 국제"
+      },
+      "secureShipping": "서명 확인이 있는 안전한 FedEx 배송",
+      "fullInsurance": "완전 보험 포함 (€{amount})",
+      "professionalPackaging": "기후 보호가 있는 전문 포장"
+    },
+    "message": {
+      "title": "메시지",
+      "label": "요구사항을 알려주세요",
+      "placeholder": "악기에 대한 특별한 요구사항, 질문 또는 선호사항을 공유해 주세요..."
+    },
+    "summary": {
+      "title": "주문 요약",
+      "subtotal": "소계",
+      "shipping": "배송 ({region})",
+      "insurance": "보험 (2%)",
+      "total": "총계"
+    },
+    "submitInquiry": "문의 제출",
     "payment": "결제",
-    "review": "주문 확인",
+    "review": "주문 검토",
     "placeOrder": "주문하기",
     "success": {
       "title": "감사합니다!",
       "message": "주문이 성공적으로 완료되었습니다."
+    }
+  },
+  "checkoutSuccess": {
+    "confirmingOrder": "주문 확인 중...",
+    "error": {
+      "title": "문제가 발생했습니다",
+      "paymentNote": "결제가 처리되었다면 연락해 주시면 해결해 드리겠습니다.",
+      "tryAgain": "다시 시도"
+    },
+    "inquiry": {
+      "title": "문의가 제출되었습니다!",
+      "subtitle": "관심을 가져주셔서 감사합니다. 1-2 영업일 내에 답변드리겠습니다.",
+      "whatNext": "다음 단계",
+      "confirmationEmail": "확인 이메일",
+      "confirmationEmailDesc": "문의 세부 사항이 포함된 확인 이메일을 보내드렸습니다.",
+      "personalResponse": "개인 응답",
+      "personalResponseDesc": "폴 또는 에카테리나 시몬이 개인적으로 문의를 검토하고 관심 있는 악기에 대한 자세한 정보를 답변드립니다.",
+      "consultationAvailable": "상담 가능",
+      "consultationAvailableDesc": "요구사항을 논의하고 완벽한 악기를 찾는 데 도움을 드리기 위해 전화 또는 화상 통화를 준비할 수 있습니다.",
+      "immediateAssistance": "즉시 도움이 필요하신가요?"
+    },
+    "order": {
+      "title": "주문 확인!",
+      "subtitle": "구매해 주셔서 감사합니다. 수제 악기가 배송 준비 중입니다.",
+      "orderNumber": "주문 번호",
+      "confirmationEmail": "확인 이메일",
+      "confirmationEmailDesc": "주문 세부 사항과 추적 정보가 포함된 확인 이메일을 보내드렸습니다.",
+      "shippingTracking": "배송 및 추적",
+      "shippingTrackingDesc": "악기는 신중하게 포장되어 완전 보험과 함께 FedEx를 통해 배송됩니다. 1-2 영업일 내에 추적 세부 정보를 받으실 수 있습니다.",
+      "questionsAboutOrder": "주문에 대한 질문이 있으신가요?"
+    },
+    "continueShopping": "쇼핑 계속하기",
+    "returnHome": "홈으로 돌아가기"
+  },
+  "auth": {
+    "brandName": "Simon Musical Instruments",
+    "location": "레긴, 트란실바니아",
+    "login": {
+      "title": "다시 오신 것을 환영합니다",
+      "subtitle": "계정에 로그인하여 여행을 계속하세요",
+      "quote": "모든 악기는 목재의 영혼과 수세기에 걸친 장인정신의 헌신을 담고 있습니다.",
+      "quoteAuthor": "— 마스터 제작자 폴 시몬",
+      "emailPlaceholder": "your@email.com",
+      "passwordPlaceholder": "••••••••",
+      "forgotPassword": "비밀번호를 잊으셨나요?",
+      "signIn": "로그인",
+      "signingIn": "로그인 중...",
+      "noAccount": "계정이 없으신가요?",
+      "createAccount": "계정 만들기",
+      "orContinueWith": "또는 이메일로 계속",
+      "errors": {
+        "invalidCredentials": "잘못된 이메일 또는 비밀번호",
+        "oauthNotLinked": "이 이메일은 이미 다른 계정과 연결되어 있습니다.",
+        "genericError": "로그인 중 오류가 발생했습니다.",
+        "tryAgain": "오류가 발생했습니다. 다시 시도해 주세요."
+      }
+    },
+    "register": {
+      "title": "계정 만들기",
+      "subtitle": "음악가와 수집가 커뮤니티에 참여하세요",
+      "whyCreateAccount": "왜 계정을 만드나요?",
+      "benefits": {
+        "trackOrders": "악기 주문과 배송을 추적하세요",
+        "savePreferences": "설정과 배송 세부 정보를 저장하세요",
+        "exclusiveUpdates": "새로운 악기에 대한 독점 업데이트를 받으세요",
+        "personalizedRecs": "개인화된 추천에 액세스하세요"
+      },
+      "firstName": "이름",
+      "lastName": "성",
+      "email": "이메일 주소",
+      "password": "비밀번호",
+      "confirmPassword": "비밀번호 확인",
+      "passwordRequirement": "8자 이상이어야 합니다",
+      "termsAgreement": "동의합니다",
+      "termsOfService": "이용약관",
+      "and": "및",
+      "privacyPolicy": "개인정보 보호정책",
+      "createAccount": "계정 만들기",
+      "creatingAccount": "계정 생성 중...",
+      "haveAccount": "이미 계정이 있으신가요?",
+      "signIn": "로그인",
+      "orRegisterWith": "또는 이메일로 등록",
+      "errors": {
+        "passwordMismatch": "비밀번호가 일치하지 않습니다",
+        "passwordTooShort": "비밀번호는 8자 이상이어야 합니다",
+        "termsRequired": "이용약관에 동의해야 합니다",
+        "emailExists": "이 이메일의 계정이 이미 존재합니다",
+        "signInFailed": "계정이 생성되었지만 로그인에 실패했습니다. 로그인을 시도해 주세요.",
+        "genericError": "오류가 발생했습니다. 다시 시도해 주세요.",
+        "registrationFailed": "등록에 실패했습니다. 다시 시도해 주세요."
+      }
+    },
+    "labels": {
+      "email": "이메일 주소",
+      "password": "비밀번호"
+    }
+  },
+  "profile": {
+    "form": {
+      "firstName": "이름",
+      "lastName": "성",
+      "email": "이메일",
+      "phone": "전화번호",
+      "emailChangeNote": "이것을 변경하면 확인 이메일을 보내드립니다",
+      "saveChanges": "변경사항 저장",
+      "saving": "저장 중...",
+      "updateSuccess": "프로필이 성공적으로 업데이트되었습니다!",
+      "updateError": "프로필 업데이트에 실패했습니다"
+    },
+    "password": {
+      "currentPassword": "현재 비밀번호",
+      "newPassword": "새 비밀번호",
+      "confirmPassword": "새 비밀번호 확인",
+      "requirement": "8자 이상이어야 합니다",
+      "changePassword": "비밀번호 변경",
+      "changing": "비밀번호 변경 중...",
+      "success": "비밀번호가 성공적으로 변경되었습니다!",
+      "error": "비밀번호 변경에 실패했습니다",
+      "mismatch": "비밀번호가 일치하지 않습니다",
+      "tooShort": "비밀번호는 8자 이상이어야 합니다"
+    },
+    "address": {
+      "noAddresses": "저장된 주소가 없습니다",
+      "addToFaster": "더 빠른 결제를 위해 주소를 추가하세요",
+      "addAddress": "주소 추가",
+      "addNewAddress": "새 주소 추가",
+      "default": "기본값",
+      "setAsDefault": "기본값으로 설정",
+      "addressLabel": "주소 라벨",
+      "labelPlaceholder": "예: 집, 직장, 스튜디오",
+      "streetAddress": "주소",
+      "apartment": "아파트, 층수 등",
+      "city": "도시",
+      "state": "시/도",
+      "zip": "우편번호",
+      "country": "국가",
+      "saveAddress": "주소 저장"
     }
   }
 }

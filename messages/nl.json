@@ -2,7 +2,7 @@
   "navigation": {
     "shop": "Winkel",
     "about": "Over Ons",
-    "faq": "FAQ",
+    "faq": "Veelgestelde Vragen",
     "contact": "Contact",
     "signIn": "Inloggen",
     "myAccount": "Mijn Account",
@@ -11,17 +11,17 @@
   },
   "hero": {
     "title": "Welkom in Onze Virtuele Werkplaats",
-    "subtitle": "Handgemaakte strijkinstrumenten uit het hart van Transsylvanië, waar traditie samenkomt met uitzonderlijk vakmanschap.",
+    "subtitle": "Handgemaakte strijkinstrumenten uit het hart van Transsylvanië, waar traditie uitzonderlijk vakmanschap ontmoet.",
     "cta": "Ontdek Onze Instrumenten",
     "learnStory": "Ons Verhaal",
     "established": "Sinds 2014",
-    "quote": "Wij zijn Paul en Ecaterina Simon en we zijn blij u welkom te heten op onze site. Vanuit onze kleine werkplaats in Reghin, bekend als \"De Stad van de Violen\", creëren we instrumenten die resoneren met muzikanten wereldwijd."
+    "quote": "Wij zijn Paul en Ecaterina Simon en verwelkomen u graag op onze website. Vanuit onze kleine werkplaats in Reghin, bekend als \"De Stad van Violen\", maken wij instrumenten die resoneren met musici wereldwijd."
   },
   "instruments": {
     "title": "Onze Instrumenten",
-    "subtitle": "Elk instrument wordt met zorg en precisie met de hand gemaakt",
+    "subtitle": "Elk instrument wordt met zorg en precisie handgemaakt",
     "viewDetails": "Details Bekijken",
-    "addToCart": "In Winkelwagen",
+    "addToCart": "Toevoegen aan Winkelwagen",
     "inquire": "Informeren",
     "available": "Beschikbaar",
     "inBuild": "In Productie",
@@ -30,66 +30,68 @@
     "violin": "Viool",
     "viola": "Altviool",
     "cello": "Cello",
-    "contrabass": "Contrabas"
+    "contrabass": "Contrabas",
+    "noImage": "Geen afbeelding",
+    "handcraftedInstrument": "Handgemaakt instrument"
   },
   "story": {
     "title": "Ons Verhaal",
     "subtitle": "Een traditie van excellentie uit Reghin, Transsylvanië",
     "heritage": {
       "title": "Meesterlijk Vakmanschap",
-      "description": "Sinds 2001 perfectioneren we de kunst van het strijkinstrumentenbouwen, lerend van de beste tradities van Reghin."
+      "description": "Sinds 2001 perfectioneren we de kunst van het maken van strijkinstrumenten, lerend van de beste tradities van Reghin."
     },
     "materials": {
       "title": "Premium Materialen",
-      "description": "We selecteren zorgvuldig en laten de fijnste klankhouten op natuurlijke wijze drogen, waardoor elk instrument een uitzonderlijke resonantie krijgt."
+      "description": "We selecteren zorgvuldig en laten natuurlijk drogen de beste klankhout, wat zorgt voor uitzonderlijke resonantie in elk instrument."
     },
     "clientele": {
       "title": "Internationale Klantenkring",
-      "description": "Onze instrumenten worden gewaardeerd door muzikanten uit Frankrijk, België, Spanje, Duitsland, Japan, Taiwan en daarbuiten."
+      "description": "Onze instrumenten worden gewaardeerd door musici uit Frankrijk, België, Spanje, Duitsland, Japan, Taiwan en daarbuiten."
     }
   },
   "testimonials": {
     "title": "Wat Onze Klanten Zeggen",
-    "subtitle": "Luister naar muzikanten die voor onze instrumenten hebben gekozen",
-    "source": "Bron: Google Recensies"
+    "subtitle": "Hoor van musici die onze instrumenten hebben gekozen",
+    "source": "Bron: Google Beoordelingen"
   },
   "faq": {
     "title": "Veelgestelde Vragen",
     "subtitle": "Vind antwoorden op veelgestelde vragen over onze instrumenten en diensten",
-    "contactPrompt": "Niet gevonden wat u zoekt?",
+    "contactPrompt": "Kunt u niet vinden wat u zoekt?",
     "contactLink": "Neem direct contact met ons op",
     "questions": {
       "purchase": {
         "question": "Hoe kan ik een instrument kopen?",
-        "answer": "U kunt onze beschikbare instrumenten bekijken in de Winkel sectie. Elke instrumentpagina bevat gedetailleerde informatie, foto's en audiosamples. Om te kopen, voegt u simpelweg het instrument toe aan uw winkelwagen en gaat u naar de kassa, of neem direct contact met ons op voor een persoonlijk advies."
+        "answer": "U kunt onze beschikbare instrumenten bekijken in de Winkel sectie. Elke instrumentpagina bevat gedetailleerde informatie, foto's en audiosamples. Om te kopen, voegt u het instrument gewoon toe aan uw winkelwagen en gaat u naar de kassa, of neemt u direct contact met ons op voor een persoonlijk advies."
       },
       "shipping": {
         "question": "Verzenden jullie internationaal?",
-        "answer": "Ja, we verzenden wereldwijd! We hebben ervaring met verzenden naar klanten in Frankrijk, België, Spanje, Duitsland, Japan, Taiwan en vele andere landen. Alle instrumenten worden professioneel verpakt en volledig verzekerd tijdens transport."
+        "answer": "Ja, we verzenden wereldwijd! We hebben ervaring met verzending naar klanten in Frankrijk, België, Spanje, Duitsland, Japan, Taiwan en vele andere landen. Alle instrumenten worden professioneel verpakt en volledig verzekerd tijdens transport."
       },
       "returns": {
-        "question": "Wat is jullie retourbeleid?",
-        "answer": "We bieden een retourbeleid van 14 dagen voor instrumenten in hun originele staat. Als u niet volledig tevreden bent, kunt u het instrument retourneren voor volledige terugbetaling minus verzendkosten. Aangepaste bestellingen kunnen andere voorwaarden hebben."
+        "question": "Wat is uw retourbeleid?",
+        "answer": "We bieden een 14-daags retourbeleid voor instrumenten in originele staat. Als u niet volledig tevreden bent, kunt u het instrument retourneren voor volledige terugbetaling minus verzendkosten. Aangepaste bestellingen kunnen andere voorwaarden hebben."
       },
       "certificate": {
-        "question": "Worden instrumenten geleverd met een certificaat van echtheid?",
-        "answer": "Ja, elk instrument dat we maken wordt geleverd met een ondertekend certificaat van echtheid dat details bevat over de gebruikte materialen, constructiedatum en onze werkplaatsgarantie."
+        "question": "Komen instrumenten met een certificaat van echtheid?",
+        "answer": "Ja, elk instrument dat we maken komt met een ondertekend certificaat van echtheid dat details bevat over de gebruikte materialen, constructiedatum en onze werkplaatsgarantie."
       },
       "care": {
-        "question": "Hoe moet ik mijn instrument verzorgen?",
-        "answer": "We raden aan uw instrument in een koffer te bewaren wanneer het niet in gebruik is, de juiste vochtigheidsgraad te handhaven (40-60%) en het jaarlijks professioneel te laten afstellen. We voegen gedetailleerde verzorgingsinstructies toe bij elke aankoop."
+        "question": "Hoe moet ik mijn instrument onderhouden?",
+        "answer": "We raden aan uw instrument in een koffer te bewaren wanneer het niet wordt gebruikt, juiste vochtigheidsgraden te handhaven (40-60%) en het jaarlijks professioneel te laten afstellen. We leveren gedetailleerde verzorgingsinstructies bij elke aankoop."
       },
       "custom": {
-        "question": "Kan ik een op maat gemaakt instrument bestellen?",
-        "answer": "We verwelkomen aangepaste bestellingen. Neem contact met ons op om uw specifieke eisen te bespreken, voorkeuren voor houtselectie, lakkleur en eventuele andere aanpassingen. Op maat gemaakte instrumenten duren meestal 3-6 maanden om te voltooien."
+        "question": "Kan ik een aangepast instrument bestellen?",
+        "answer": "We verwelkomen aangepaste bestellingen. Neem contact met ons op om uw specifieke vereisten, voorkeuren voor houtselectie, lakkleur en andere gewenste aanpassingen te bespreken. Aangepaste instrumenten duren meestal 3-6 maanden om te voltooien."
       },
       "payment": {
-        "question": "Welke betaalmethodes accepteren jullie?",
-        "answer": "We accepteren grote creditcards (Visa, Mastercard, American Express) via ons beveiligde Stripe-betalingssysteem. Voor grotere aankopen kunnen we ook bankoverschrijvingen of betalingsregelingen arrangeren."
+        "question": "Welke betaalmethoden accepteren jullie?",
+        "answer": "We accepteren grote creditcards (Visa, Mastercard, American Express) via ons veilige Stripe betalingssysteem. Voor grotere aankopen kunnen we ook bankoverschrijvingen of betalingsplannen regelen."
       },
       "packaging": {
         "question": "Hoe worden instrumenten verpakt voor verzending?",
-        "answer": "Elk instrument wordt zorgvuldig gewikkeld in beschermende materialen, geplaatst in een harde koffer (inbegrepen bij aankoop), en vervolgens verpakt in een speciale verzenddoos met extra vulling. We gebruiken waar mogelijk klimaatgecontroleerde verzending."
+        "answer": "Elk instrument wordt zorgvuldig verpakt in beschermende materialen, geplaatst in een harde koffer (inbegrepen bij aankoop), en vervolgens verpakt in een aangepaste verzendbox met extra vulling. We gebruiken klimaatgecontroleerde verzending wanneer mogelijk."
       }
     }
   },
@@ -102,13 +104,14 @@
       "phone": "Telefoonnummer",
       "subject": "Onderwerp",
       "message": "Uw Bericht",
-      "submit": "Bericht Verzenden",
-      "sending": "Verzenden...",
+      "submit": "Bericht Versturen",
+      "sending": "Versturen...",
       "success": "Bericht succesvol verzonden! We nemen binnenkort contact met u op.",
+      "error": "Fout bij het versturen van bericht. Probeer het opnieuw.",
       "subjects": {
         "general": "Algemene Vraag",
         "purchase": "Aankoopvraag",
-        "custom": "Op Maat Bestelling",
+        "custom": "Aangepaste Bestelling",
         "visit": "Werkplaatsbezoek",
         "other": "Anders"
       }
@@ -118,39 +121,91 @@
       "address": "Adres",
       "email": "E-mail",
       "phone": "Telefoon / Fax",
-      "hours": "Werkplaatsuren",
-      "hoursValue": "Maandag - Vrijdag: 9:00 - 17:00\nZaterdag: Op afspraak"
+      "hours": "Werkplaats Uren",
+      "hoursValue": "Maandag - Vrijdag: 9:00 - 17:00\nZaterdag: Op afspraak",
+      "phoneLabel": "Telefoon",
+      "faxLabel": "Fax"
     },
     "map": {
       "title": "Vind Ons"
     }
   },
   "footer": {
-    "tagline": "We nodigen u uit in onze virtuele werkplaats, waar traditie samenkomt met uitzonderlijk vakmanschap. Handgemaakte strijkinstrumenten uit het hart van Transsylvanië.",
-    "quote": "Vanuit onze kleine werkplaats in Reghin creëren we instrumenten die resoneren met muzikanten wereldwijd.",
+    "tagline": "We nodigen u uit in onze virtuele werkplaats, waar traditie uitzonderlijk vakmanschap ontmoet. Handgemaakte strijkinstrumenten uit het hart van Transsylvanië.",
+    "quote": "Vanuit onze kleine werkplaats in Reghin maken we instrumenten die resoneren met musici wereldwijd.",
     "contact": "Contact",
-    "explore": "Ontdekken",
+    "explore": "Verkennen",
     "shopInstruments": "Instrumenten Kopen",
     "ourStory": "Ons Verhaal",
     "copyright": "© {year} Simon Musical Instruments. Alle rechten voorbehouden.",
-    "madeIn": "Met liefde gemaakt in Reghin, Roemenië"
+    "madeIn": "Met zorg gemaakt in Reghin, Roemenië"
   },
   "common": {
     "loading": "Laden...",
     "error": "Er is een fout opgetreden",
     "backToHome": "Terug naar Home",
     "learnMore": "Meer Leren",
-    "viewAll": "Alles Bekijken"
+    "viewAll": "Alles Bekijken",
+    "save": "Opslaan",
+    "cancel": "Annuleren",
+    "delete": "Verwijderen",
+    "edit": "Bewerken",
+    "required": "Vereist",
+    "optional": "Optioneel",
+    "previous": "Vorige",
+    "next": "Volgende",
+    "processing": "Verwerken...",
+    "tryAgain": "Opnieuw Proberen",
+    "contactSupport": "Contact Opnemen met Support",
+    "continueAsGuest": "Doorgaan winkelen als gast",
+    "needAssistance": "Hulp nodig?"
+  },
+  "account": {
+    "title": "Mijn Account",
+    "profile": "Profiel",
+    "orders": "Bestellingen",
+    "addresses": "Adressen",
+    "settings": "Instellingen",
+    "dashboard": {
+      "welcome": "Welkom terug, {name}",
+      "subtitle": "Beheer uw account en bekijk uw bestelgeschiedenis",
+      "totalOrders": "Totaal Bestellingen",
+      "pending": "In Afwachting",
+      "delivered": "Bezorgd",
+      "totalSpent": "Totaal Uitgegeven",
+      "recentOrders": "Recente Bestellingen",
+      "viewAll": "Alles Bekijken",
+      "noOrders": "Nog geen bestellingen",
+      "startBrowsing": "Begin met bladeren door onze collectie handgemaakte instrumenten",
+      "browseInstruments": "Instrumenten Bekijken",
+      "profileSettings": "Profielinstellingen",
+      "profileSettingsDesc": "Werk uw persoonlijke informatie en voorkeuren bij",
+      "browseInstrumentsDesc": "Ontdek onze instrumentencollectie"
+    },
+    "orderHistory": {
+      "title": "Bestelgeschiedenis",
+      "subtitle": "Bekijk en volg al uw bestellingen",
+      "loadingOrders": "Bestellingen laden...",
+      "noOrders": "Nog geen bestellingen",
+      "noOrdersDesc": "Wanneer u een bestelling plaatst, verschijnt deze hier."
+    },
+    "profilePage": {
+      "title": "Profielinstellingen",
+      "subtitle": "Beheer uw accountinformatie en voorkeuren",
+      "personalInfo": "Persoonlijke Informatie",
+      "savedAddresses": "Opgeslagen Adressen",
+      "password": "Wachtwoord"
+    }
   },
   "gallery": {
     "badge": "Beschikbaar voor Aankoop",
     "title": "Instrumentenwinkel",
-    "description": "Blader door onze huidige voorraad handgemaakte instrumenten. Elk stuk is beschikbaar voor aankoop en klaar voor verzending. Klik op een instrument om volledige details te bekijken, geluidsvoorbeelden te beluisteren en uw aankoop af te ronden.",
+    "description": "Bekijk onze huidige voorraad handgemaakte instrumenten. Elk stuk is beschikbaar voor aankoop en klaar voor verzending. Klik op een instrument om volledige details te bekijken, geluidssamples te beluisteren en uw aankoop te voltooien.",
     "noResults": "Geen instrumenten komen overeen met uw filters",
     "adjustFilters": "Probeer uw selectie aan te passen of bekijk alle instrumenten",
     "filters": {
       "instrumentType": "Instrumenttype",
-      "priceRange": "Prijsklasse",
+      "priceRange": "Prijsbereik",
       "allInstruments": "Alle Instrumenten",
       "violins": "Violen",
       "violas": "Altviolen",
@@ -165,31 +220,242 @@
     },
     "showing": "{count} instrumenten weergegeven"
   },
-  "account": {
-    "title": "Mijn Account",
-    "profile": "Profiel",
-    "orders": "Bestellingen",
-    "addresses": "Adressen",
-    "settings": "Instellingen"
+  "product": {
+    "backToCollection": "Terug naar Collectie",
+    "luthierNotes": "Vioolbouwer Notities",
+    "listenSound": "Luister naar het Geluid",
+    "specifications": "Specificaties",
+    "bodyWood": "Korpushout",
+    "topWood": "Bovenbladhout",
+    "neckWood": "Halshout",
+    "fingerboard": "Toets",
+    "varnish": "Lak",
+    "strings": "Snaren",
+    "bodyLength": "Korpuslengte",
+    "crafted": "Gemaakt {year}",
+    "checkoutNote": "Veilige checkout met verzekerde FedEx levering. Elk instrument is een significante investering en bevat volledige documentatie.",
+    "inBuildNote": "Dit instrument wordt momenteel gemaakt. Neem contact met ons op om het te reserveren of updates over voltooiing te krijgen.",
+    "soldNote": "Dit instrument is {status}. Neem contact met ons op om een soortgelijk stuk te bestellen.",
+    "noImagesAvailable": "Geen afbeeldingen beschikbaar"
   },
   "cart": {
     "title": "Winkelwagen",
+    "yourSelection": "Uw Selectie",
     "empty": "Uw winkelwagen is leeg",
+    "emptyDescription": "Verken onze collectie handgemaakte instrumenten",
+    "continueBrowsing": "Doorgaan met Bladeren",
     "total": "Totaal",
-    "checkout": "Naar de Kassa",
-    "continueShopping": "Verder Winkelen",
-    "remove": "Verwijderen"
+    "checkout": "Naar Kassa",
+    "continueShopping": "Doorgaan met Winkelen",
+    "remove": "Verwijderen",
+    "fullyInsured": "Volledig verzekerde levering",
+    "secureShipping": "Veilige verzending via FedEx",
+    "professionalPackaging": "Professionele verpakking",
+    "assistanceNote": "Hulp nodig? Neem contact met ons op voor een persoonlijk advies"
   },
   "checkout": {
     "title": "Kassa",
-    "shipping": "Verzendinformatie",
+    "completeOrder": "Uw Bestelling Voltooien",
+    "subtitle": "Verzeker uw handgemaakte instrument met zorg en vertrouwen",
+    "backToShop": "Terug naar Winkel",
+    "signInPrompt": "Inloggen",
+    "guestCheckout": "voor snellere checkout, of ga door als gast hieronder.",
+    "emptyCart": {
+      "title": "Uw winkelwagen is leeg",
+      "description": "Voeg instrumenten toe aan uw winkelwagen voordat u naar de kassa gaat.",
+      "browse": "Instrumenten Bekijken"
+    },
+    "mode": {
+      "title": "Hoe wilt u doorgaan?",
+      "directPurchase": "Directe Aankoop",
+      "directPurchaseDesc": "Voltooi uw aankoop onmiddellijk met veilige betaling",
+      "requestQuote": "Offerte Aanvragen",
+      "requestQuoteDesc": "Dien een aanvraag in voor persoonlijk advies en aangepaste regelingen"
+    },
+    "contactInfo": {
+      "title": "Contactinformatie",
+      "firstName": "Voornaam",
+      "lastName": "Achternaam",
+      "email": "E-mailadres",
+      "phone": "Telefoonnummer"
+    },
+    "shipping": {
+      "title": "Verzendgegevens",
+      "streetAddress": "Straatnaam",
+      "apartment": "Appartement, Verdieping, enz.",
+      "city": "Stad",
+      "state": "Provincie/Regio",
+      "zip": "Postcode",
+      "country": "Land",
+      "countries": {
+        "RO": "Roemenië",
+        "EU": "Europese Unie",
+        "UK": "Verenigd Koninkrijk",
+        "US": "Verenigde Staten",
+        "CA": "Canada",
+        "AU": "Australië",
+        "OTHER": "Ander Internationaal"
+      },
+      "secureShipping": "Veilige FedEx verzending met handtekeningbevestiging",
+      "fullInsurance": "Volledige verzekering inbegrepen (€{amount})",
+      "professionalPackaging": "Professionele verpakking met klimaatbescherming"
+    },
+    "message": {
+      "title": "Bericht",
+      "label": "Vertel ons over uw behoeften",
+      "placeholder": "Deel specifieke vereisten, vragen of voorkeuren die u heeft over het instrument..."
+    },
+    "summary": {
+      "title": "Besteloverzicht",
+      "subtotal": "Subtotaal",
+      "shipping": "Verzending ({region})",
+      "insurance": "Verzekering (2%)",
+      "total": "Totaal"
+    },
+    "submitInquiry": "Aanvraag Indienen",
     "payment": "Betaling",
     "review": "Bestelling Controleren",
     "placeOrder": "Bestelling Plaatsen",
     "success": {
-      "title": "Bedankt!",
+      "title": "Dank je wel!",
       "message": "Uw bestelling is succesvol geplaatst."
+    }
+  },
+  "checkoutSuccess": {
+    "confirmingOrder": "Uw bestelling bevestigen...",
+    "error": {
+      "title": "Er is iets misgegaan",
+      "paymentNote": "Als uw betaling is verwerkt, neem dan contact met ons op en we helpen het op te lossen.",
+      "tryAgain": "Opnieuw Proberen"
+    },
+    "inquiry": {
+      "title": "Aanvraag Ingediend!",
+      "subtitle": "Dank u voor uw interesse. We zullen binnen 1-2 werkdagen op uw aanvraag reageren.",
+      "whatNext": "Wat Gebeurt Er Nu",
+      "confirmationEmail": "Bevestigings-e-mail",
+      "confirmationEmailDesc": "We hebben u een bevestigings-e-mail gestuurd met uw aanvraagdetails.",
+      "personalResponse": "Persoonlijke Reactie",
+      "personalResponseDesc": "Paul of Ecaterina Simon zal uw aanvraag persoonlijk beoordelen en reageren met gedetailleerde informatie over de instrumenten waarin u geïnteresseerd bent.",
+      "consultationAvailable": "Consultatie Beschikbaar",
+      "consultationAvailableDesc": "We kunnen een telefoon- of videogesprek regelen om uw behoeften te bespreken en u te helpen het perfecte instrument te vinden.",
+      "immediateAssistance": "Onmiddellijke hulp nodig?"
+    },
+    "order": {
+      "title": "Bestelling Bevestigd!",
+      "subtitle": "Dank u voor uw aankoop. Uw handgemaakte instrument wordt voorbereid voor verzending.",
+      "orderNumber": "Bestelnummer",
+      "confirmationEmail": "Bevestigings-e-mail",
+      "confirmationEmailDesc": "We hebben u een bevestigings-e-mail gestuurd met uw besteldetails en trackinginformatie.",
+      "shippingTracking": "Verzending & Tracking",
+      "shippingTrackingDesc": "Uw instrument wordt zorgvuldig verpakt en verzonden via FedEx met volledige verzekering. U ontvangt trackingdetails binnen 1-2 werkdagen.",
+      "questionsAboutOrder": "Vragen over uw bestelling?"
+    },
+    "continueShopping": "Doorgaan met Winkelen",
+    "returnHome": "Terug naar Home"
+  },
+  "auth": {
+    "brandName": "Simon Musical Instruments",
+    "location": "Reghin, Transsylvanië",
+    "login": {
+      "title": "Welkom Terug",
+      "subtitle": "Log in om toegang te krijgen tot uw account en uw reis voort te zetten",
+      "quote": "Elk instrument draagt de ziel van het hout en de toewijding van eeuwenoude vakmanschap.",
+      "quoteAuthor": "— Meester Vioolbouwer Paul Simon",
+      "emailPlaceholder": "uw@email.com",
+      "passwordPlaceholder": "••••••••",
+      "forgotPassword": "Wachtwoord vergeten?",
+      "signIn": "Inloggen",
+      "signingIn": "Inloggen...",
+      "noAccount": "Heeft u geen account?",
+      "createAccount": "Account aanmaken",
+      "orContinueWith": "Of doorgaan met e-mail",
+      "errors": {
+        "invalidCredentials": "Ongeldig e-mailadres of wachtwoord",
+        "oauthNotLinked": "Dit e-mailadres is al gekoppeld aan een ander account.",
+        "genericError": "Er is een fout opgetreden tijdens het inloggen.",
+        "tryAgain": "Er is een fout opgetreden. Probeer het opnieuw."
+      }
+    },
+    "register": {
+      "title": "Maak Uw Account Aan",
+      "subtitle": "Word lid van onze gemeenschap van musici en verzamelaars",
+      "whyCreateAccount": "Waarom een account aanmaken?",
+      "benefits": {
+        "trackOrders": "Volg uw instrumentbestellingen en leveringen",
+        "savePreferences": "Sla uw voorkeuren en verzendgegevens op",
+        "exclusiveUpdates": "Ontvang exclusieve updates over nieuwe instrumenten",
+        "personalizedRecs": "Toegang tot gepersonaliseerde aanbevelingen"
+      },
+      "firstName": "Voornaam",
+      "lastName": "Achternaam",
+      "email": "E-mailadres",
+      "password": "Wachtwoord",
+      "confirmPassword": "Wachtwoord Bevestigen",
+      "passwordRequirement": "Moet minimaal 8 karakters lang zijn",
+      "termsAgreement": "Ik ga akkoord met de",
+      "termsOfService": "Algemene Voorwaarden",
+      "and": "en",
+      "privacyPolicy": "Privacybeleid",
+      "createAccount": "Account Aanmaken",
+      "creatingAccount": "Account aanmaken...",
+      "haveAccount": "Heeft u al een account?",
+      "signIn": "Inloggen",
+      "orRegisterWith": "Of registreren met e-mail",
+      "errors": {
+        "passwordMismatch": "Wachtwoorden komen niet overeen",
+        "passwordTooShort": "Wachtwoord moet minimaal 8 karakters lang zijn",
+        "termsRequired": "U moet de algemene voorwaarden accepteren",
+        "emailExists": "Een account met dit e-mailadres bestaat al",
+        "signInFailed": "Account aangemaakt maar inloggen mislukt. Probeer in te loggen.",
+        "genericError": "Er is een fout opgetreden. Probeer het opnieuw.",
+        "registrationFailed": "Registratie mislukt. Probeer het opnieuw."
+      }
+    },
+    "labels": {
+      "email": "E-mailadres",
+      "password": "Wachtwoord"
+    }
+  },
+  "profile": {
+    "form": {
+      "firstName": "Voornaam",
+      "lastName": "Achternaam",
+      "email": "E-mail",
+      "phone": "Telefoonnummer",
+      "emailChangeNote": "We sturen u een verificatie-e-mail als u dit wijzigt",
+      "saveChanges": "Wijzigingen Opslaan",
+      "saving": "Opslaan...",
+      "updateSuccess": "Profiel succesvol bijgewerkt!",
+      "updateError": "Fout bij het bijwerken van profiel"
+    },
+    "password": {
+      "currentPassword": "Huidig Wachtwoord",
+      "newPassword": "Nieuw Wachtwoord",
+      "confirmPassword": "Nieuw Wachtwoord Bevestigen",
+      "requirement": "Moet minimaal 8 karakters hebben",
+      "changePassword": "Wachtwoord Wijzigen",
+      "changing": "Wachtwoord wijzigen...",
+      "success": "Wachtwoord succesvol gewijzigd!",
+      "error": "Fout bij het wijzigen van wachtwoord",
+      "mismatch": "Wachtwoorden komen niet overeen",
+      "tooShort": "Wachtwoord moet minimaal 8 karakters lang zijn"
+    },
+    "address": {
+      "noAddresses": "Geen opgeslagen adressen",
+      "addToFaster": "Voeg adressen toe voor snellere checkout",
+      "addAddress": "Adres Toevoegen",
+      "addNewAddress": "Nieuw Adres Toevoegen",
+      "default": "Standaard",
+      "setAsDefault": "Als Standaard Instellen",
+      "addressLabel": "Adreslabel",
+      "labelPlaceholder": "bijv. Thuis, Werk, Studio",
+      "streetAddress": "Straatnaam",
+      "apartment": "Appartement, Verdieping, enz.",
+      "city": "Stad",
+      "state": "Provincie/Regio",
+      "zip": "Postcode",
+      "country": "Land",
+      "saveAddress": "Adres Opslaan"
     }
   }
 }
-

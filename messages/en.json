@@ -30,7 +30,9 @@
     "violin": "Violin",
     "viola": "Viola",
     "cello": "Cello",
-    "contrabass": "Contrabass"
+    "contrabass": "Contrabass",
+    "noImage": "No image",
+    "handcraftedInstrument": "Handcrafted instrument"
   },
   "story": {
     "title": "Our Story",
@@ -105,6 +107,7 @@
       "submit": "Send Message",
       "sending": "Sending...",
       "success": "Message sent successfully! We'll get back to you soon.",
+      "error": "Failed to send message. Please try again or email us directly.",
       "subjects": {
         "general": "General Inquiry",
         "purchase": "Purchase Question",
@@ -119,7 +122,9 @@
       "email": "Email",
       "phone": "Phone / Fax",
       "hours": "Workshop Hours",
-      "hoursValue": "Monday - Friday: 9:00 - 17:00\nSaturday: By appointment"
+      "hoursValue": "Monday - Friday: 9:00 - 17:00\nSaturday: By appointment",
+      "phoneLabel": "Phone",
+      "faxLabel": "Fax"
     },
     "map": {
       "title": "Find Us"
@@ -140,14 +145,57 @@
     "error": "An error occurred",
     "backToHome": "Back to Home",
     "learnMore": "Learn More",
-    "viewAll": "View All"
+    "viewAll": "View All",
+    "save": "Save",
+    "cancel": "Cancel",
+    "delete": "Delete",
+    "edit": "Edit",
+    "required": "Required",
+    "optional": "Optional",
+    "previous": "Previous",
+    "next": "Next",
+    "processing": "Processing...",
+    "tryAgain": "Try Again",
+    "contactSupport": "Contact Support",
+    "continueAsGuest": "Continue shopping as guest",
+    "needAssistance": "Need assistance?"
   },
   "account": {
     "title": "My Account",
     "profile": "Profile",
     "orders": "Orders",
     "addresses": "Addresses",
-    "settings": "Settings"
+    "settings": "Settings",
+    "dashboard": {
+      "welcome": "Welcome back, {name}",
+      "subtitle": "Manage your account and view your order history",
+      "totalOrders": "Total Orders",
+      "pending": "Pending",
+      "delivered": "Delivered",
+      "totalSpent": "Total Spent",
+      "recentOrders": "Recent Orders",
+      "viewAll": "View All",
+      "noOrders": "No orders yet",
+      "startBrowsing": "Start browsing our collection of handcrafted instruments",
+      "browseInstruments": "Browse Instruments",
+      "profileSettings": "Profile Settings",
+      "profileSettingsDesc": "Update your personal information and preferences",
+      "browseInstrumentsDesc": "Discover our collection of handcrafted instruments"
+    },
+    "orderHistory": {
+      "title": "Order History",
+      "subtitle": "View and track all your orders",
+      "loadingOrders": "Loading orders...",
+      "noOrders": "No orders yet",
+      "noOrdersDesc": "When you place an order, it will appear here."
+    },
+    "profilePage": {
+      "title": "Profile Settings",
+      "subtitle": "Manage your account information and preferences",
+      "personalInfo": "Personal Info",
+      "savedAddresses": "Saved Addresses",
+      "password": "Password"
+    }
   },
   "gallery": {
     "badge": "Available for Purchase",
@@ -172,23 +220,242 @@
     },
     "showing": "Showing {count} instruments"
   },
+  "product": {
+    "backToCollection": "Back to Collection",
+    "luthierNotes": "Luthier's Notes",
+    "listenSound": "Listen to the Sound",
+    "specifications": "Specifications",
+    "bodyWood": "Body Wood",
+    "topWood": "Top Wood",
+    "neckWood": "Neck Wood",
+    "fingerboard": "Fingerboard",
+    "varnish": "Varnish",
+    "strings": "Strings",
+    "bodyLength": "Body Length",
+    "crafted": "Crafted {year}",
+    "checkoutNote": "Secure checkout with insured FedEx delivery. Each instrument is a significant investment and includes full documentation.",
+    "inBuildNote": "This instrument is currently being crafted. Contact us to reserve it or get updates on completion.",
+    "soldNote": "This instrument has been {status}. Contact us to commission a similar piece.",
+    "noImagesAvailable": "No images available"
+  },
   "cart": {
     "title": "Shopping Cart",
+    "yourSelection": "Your Selection",
     "empty": "Your cart is empty",
+    "emptyDescription": "Explore our collection of handcrafted instruments",
+    "continueBrowsing": "Continue Browsing",
     "total": "Total",
     "checkout": "Proceed to Checkout",
     "continueShopping": "Continue Shopping",
-    "remove": "Remove"
+    "remove": "Remove",
+    "fullyInsured": "Fully insured delivery",
+    "secureShipping": "Secure shipping via FedEx",
+    "professionalPackaging": "Professional packaging",
+    "assistanceNote": "Need assistance? Contact us for a personal consultation"
   },
   "checkout": {
     "title": "Checkout",
-    "shipping": "Shipping Information",
+    "completeOrder": "Complete Your Order",
+    "subtitle": "Secure your handcrafted instrument with care and confidence",
+    "backToShop": "Back to Shop",
+    "signInPrompt": "Sign in",
+    "guestCheckout": "for faster checkout, or continue as a guest below.",
+    "emptyCart": {
+      "title": "Your cart is empty",
+      "description": "Add some instruments to your cart before checking out.",
+      "browse": "Browse Instruments"
+    },
+    "mode": {
+      "title": "How would you like to proceed?",
+      "directPurchase": "Direct Purchase",
+      "directPurchaseDesc": "Complete your purchase immediately with secure payment",
+      "requestQuote": "Request Quote",
+      "requestQuoteDesc": "Submit an inquiry for personal consultation and custom arrangements"
+    },
+    "contactInfo": {
+      "title": "Contact Information",
+      "firstName": "First Name",
+      "lastName": "Last Name",
+      "email": "Email Address",
+      "phone": "Phone Number"
+    },
+    "shipping": {
+      "title": "Shipping Information",
+      "streetAddress": "Street Address",
+      "apartment": "Apartment, Suite, etc.",
+      "city": "City",
+      "state": "State/Province",
+      "zip": "Postal Code",
+      "country": "Country",
+      "countries": {
+        "RO": "Romania",
+        "EU": "European Union",
+        "UK": "United Kingdom",
+        "US": "United States",
+        "CA": "Canada",
+        "AU": "Australia",
+        "OTHER": "Other International"
+      },
+      "secureShipping": "Secure FedEx shipping with signature confirmation",
+      "fullInsurance": "Full insurance coverage included (€{amount})",
+      "professionalPackaging": "Professional packaging with climate protection"
+    },
+    "message": {
+      "title": "Message",
+      "label": "Tell us about your needs",
+      "placeholder": "Share any specific requirements, questions, or preferences you have about the instrument..."
+    },
+    "summary": {
+      "title": "Order Summary",
+      "subtotal": "Subtotal",
+      "shipping": "Shipping ({region})",
+      "insurance": "Insurance (2%)",
+      "total": "Total"
+    },
+    "submitInquiry": "Submit Inquiry",
     "payment": "Payment",
     "review": "Review Order",
     "placeOrder": "Place Order",
     "success": {
       "title": "Thank You!",
       "message": "Your order has been placed successfully."
+    }
+  },
+  "checkoutSuccess": {
+    "confirmingOrder": "Confirming your order...",
+    "error": {
+      "title": "Something went wrong",
+      "paymentNote": "If your payment was processed, please contact us and we'll help resolve this.",
+      "tryAgain": "Try Again"
+    },
+    "inquiry": {
+      "title": "Inquiry Submitted!",
+      "subtitle": "Thank you for your interest. We'll respond to your inquiry within 1-2 business days.",
+      "whatNext": "What Happens Next",
+      "confirmationEmail": "Confirmation Email",
+      "confirmationEmailDesc": "We've sent a confirmation email with your inquiry details.",
+      "personalResponse": "Personal Response",
+      "personalResponseDesc": "Paul or Ecaterina Simon will personally review your inquiry and respond with detailed information about the instruments you're interested in.",
+      "consultationAvailable": "Consultation Available",
+      "consultationAvailableDesc": "We can arrange a phone or video call to discuss your needs and help you find the perfect instrument.",
+      "immediateAssistance": "Need immediate assistance?"
+    },
+    "order": {
+      "title": "Order Confirmed!",
+      "subtitle": "Thank you for your purchase. Your handcrafted instrument is being prepared for shipment.",
+      "orderNumber": "Order Number",
+      "confirmationEmail": "Confirmation Email",
+      "confirmationEmailDesc": "We've sent a confirmation email with your order details and tracking information.",
+      "shippingTracking": "Shipping & Tracking",
+      "shippingTrackingDesc": "Your instrument will be carefully packaged and shipped via FedEx with full insurance. You'll receive tracking details within 1-2 business days.",
+      "questionsAboutOrder": "Questions about your order?"
+    },
+    "continueShopping": "Continue Shopping",
+    "returnHome": "Return Home"
+  },
+  "auth": {
+    "brandName": "Simon Musical Instruments",
+    "location": "Reghin, Transylvania",
+    "login": {
+      "title": "Welcome Back",
+      "subtitle": "Sign in to access your account and continue your journey",
+      "quote": "Every instrument carries the soul of the wood and the dedication of centuries-old craftsmanship.",
+      "quoteAuthor": "— Master Luthier Paul Simon",
+      "emailPlaceholder": "your@email.com",
+      "passwordPlaceholder": "••••••••",
+      "forgotPassword": "Forgot password?",
+      "signIn": "Sign In",
+      "signingIn": "Signing in...",
+      "noAccount": "Don't have an account?",
+      "createAccount": "Create an account",
+      "orContinueWith": "Or continue with email",
+      "errors": {
+        "invalidCredentials": "Invalid email or password",
+        "oauthNotLinked": "This email is already associated with another account.",
+        "genericError": "An error occurred during sign in.",
+        "tryAgain": "An error occurred. Please try again."
+      }
+    },
+    "register": {
+      "title": "Create Your Account",
+      "subtitle": "Join our community of musicians and collectors",
+      "whyCreateAccount": "Why create an account?",
+      "benefits": {
+        "trackOrders": "Track your instrument orders and delivery",
+        "savePreferences": "Save your preferences and shipping details",
+        "exclusiveUpdates": "Receive exclusive updates on new instruments",
+        "personalizedRecs": "Access personalized recommendations"
+      },
+      "firstName": "First Name",
+      "lastName": "Last Name",
+      "email": "Email Address",
+      "password": "Password",
+      "confirmPassword": "Confirm Password",
+      "passwordRequirement": "Must be at least 8 characters long",
+      "termsAgreement": "I agree to the",
+      "termsOfService": "Terms of Service",
+      "and": "and",
+      "privacyPolicy": "Privacy Policy",
+      "createAccount": "Create Account",
+      "creatingAccount": "Creating Account...",
+      "haveAccount": "Already have an account?",
+      "signIn": "Sign in",
+      "orRegisterWith": "Or register with email",
+      "errors": {
+        "passwordMismatch": "Passwords do not match",
+        "passwordTooShort": "Password must be at least 8 characters long",
+        "termsRequired": "You must accept the terms and conditions",
+        "emailExists": "An account with this email already exists",
+        "signInFailed": "Account created but sign in failed. Please try logging in.",
+        "genericError": "An error occurred. Please try again.",
+        "registrationFailed": "Registration failed. Please try again."
+      }
+    },
+    "labels": {
+      "email": "Email Address",
+      "password": "Password"
+    }
+  },
+  "profile": {
+    "form": {
+      "firstName": "First Name",
+      "lastName": "Last Name",
+      "email": "Email",
+      "phone": "Phone Number",
+      "emailChangeNote": "We'll send a verification email if you change this",
+      "saveChanges": "Save Changes",
+      "saving": "Saving...",
+      "updateSuccess": "Profile updated successfully!",
+      "updateError": "Failed to update profile"
+    },
+    "password": {
+      "currentPassword": "Current Password",
+      "newPassword": "New Password",
+      "confirmPassword": "Confirm New Password",
+      "requirement": "Must be at least 8 characters",
+      "changePassword": "Change Password",
+      "changing": "Changing Password...",
+      "success": "Password changed successfully!",
+      "error": "Failed to change password",
+      "mismatch": "Passwords do not match",
+      "tooShort": "Password must be at least 8 characters long"
+    },
+    "address": {
+      "noAddresses": "No saved addresses",
+      "addToFaster": "Add addresses to make checkout faster",
+      "addAddress": "Add Address",
+      "addNewAddress": "Add New Address",
+      "default": "Default",
+      "setAsDefault": "Set as Default",
+      "addressLabel": "Address Label",
+      "labelPlaceholder": "e.g., Home, Work, Studio",
+      "streetAddress": "Street Address",
+      "apartment": "Apartment, Suite, etc.",
+      "city": "City",
+      "state": "State/Province",
+      "zip": "Postal Code",
+      "country": "Country",
+      "saveAddress": "Save Address"
     }
   }
 }

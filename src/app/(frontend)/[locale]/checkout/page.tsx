@@ -4,6 +4,7 @@ import type React from 'react'
 
 import { useState, useEffect } from 'react'
 import { useSession } from 'next-auth/react'
+import { useTranslations } from 'next-intl'
 import { useCart } from '@/lib/cart-context'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
@@ -20,6 +21,8 @@ export default function CheckoutPage() {
   const isAuthenticated = status === 'authenticated'
   const userId = session?.user?.id
   const { items } = useCart()
+  const t = useTranslations('checkout')
+  const tCommon = useTranslations('common')
 
   // Checkout mode state
   const [checkoutMode, setCheckoutMode] = useState<'purchase' | 'inquiry'>('purchase')
@@ -72,17 +75,23 @@ export default function CheckoutPage() {
   const insurance = Math.ceil(subtotal * 0.02) // 2% insurance
   const total = subtotal + shippingCost + insurance
 
+  // Get shipping region name
+  const getShippingRegion = (country: string) => {
+    if (country === 'RO') return t('shipping.countries.RO')
+    return country
+  }
+
   // Redirect if cart is empty
   if (items.length === 0) {
     return (
       <div className="min-h-screen bg-background flex items-center justify-center px-4">
         <div className="text-center max-w-md">
-          <h1 className="font-serif text-2xl font-bold text-foreground mb-4">Your cart is empty</h1>
-          <p className="text-muted-foreground mb-6">
-            Add some instruments to your cart before checking out.
-          </p>
+          <h1 className="font-serif text-2xl font-bold text-foreground mb-4">
+            {t('emptyCart.title')}
+          </h1>
+          <p className="text-muted-foreground mb-6">{t('emptyCart.description')}</p>
           <Button asChild className="cursor-pointer">
-            <Link href="/gallery">Browse Instruments</Link>
+            <Link href="/gallery">{t('emptyCart.browse')}</Link>
           </Button>
         </div>
       </div>
@@ -135,14 +144,12 @@ export default function CheckoutPage() {
             href="/gallery"
             className="text-sm text-muted-foreground hover:text-foreground transition-colors cursor-pointer"
           >
-            ← Back to Shop
+            ← {t('backToShop')}
           </Link>
           <h1 className="font-serif text-3xl sm:text-4xl font-bold text-foreground mt-4">
-            Complete Your Order
+            {t('completeOrder')}
           </h1>
-          <p className="text-muted-foreground mt-2">
-            Secure your handcrafted instrument with care and confidence
-          </p>
+          <p className="text-muted-foreground mt-2">{t('subtitle')}</p>
 
           {!isAuthenticated && status !== 'loading' && (
             <div className="mt-4 p-4 bg-accent/5 border border-accent/20 rounded-lg">
@@ -151,9 +158,9 @@ export default function CheckoutPage() {
                   href={`/login?callbackUrl=${encodeURIComponent('/checkout')}`}
                   className="font-semibold text-accent hover:text-accent/80 cursor-pointer"
                 >
-                  Sign in
+                  {t('signInPrompt')}
                 </Link>{' '}
-                for faster checkout, or continue as a guest below.
+                {t('guestCheckout')}
               </p>
             </div>
           )}
@@ -162,7 +169,7 @@ export default function CheckoutPage() {
         {/* Checkout Mode Selection */}
         <div className="mb-8 p-6 bg-muted/30 border border-border rounded-lg">
           <h2 className="font-serif text-xl font-semibold text-foreground mb-4">
-            How would you like to proceed?
+            {t('mode.title')}
           </h2>
           <RadioGroup
             value={checkoutMode}
@@ -172,19 +179,17 @@ export default function CheckoutPage() {
               <div className="flex items-start space-x-3 p-4 bg-background border border-border rounded-lg hover:border-accent transition-colors cursor-pointer">
                 <RadioGroupItem value="purchase" id="purchase" className="mt-1 cursor-pointer" />
                 <Label htmlFor="purchase" className="flex-1 cursor-pointer">
-                  <div className="font-semibold text-foreground">Direct Purchase</div>
+                  <div className="font-semibold text-foreground">{t('mode.directPurchase')}</div>
                   <p className="text-sm text-muted-foreground mt-1">
-                    Complete your purchase immediately with secure payment
+                    {t('mode.directPurchaseDesc')}
                   </p>
                 </Label>
               </div>
               <div className="flex items-start space-x-3 p-4 bg-background border border-border rounded-lg hover:border-accent transition-colors cursor-pointer">
                 <RadioGroupItem value="inquiry" id="inquiry" className="mt-1 cursor-pointer" />
                 <Label htmlFor="inquiry" className="flex-1 cursor-pointer">
-                  <div className="font-semibold text-foreground">Request Quote</div>
-                  <p className="text-sm text-muted-foreground mt-1">
-                    Submit an inquiry for personal consultation and custom arrangements
-                  </p>
+                  <div className="font-semibold text-foreground">{t('mode.requestQuote')}</div>
+                  <p className="text-sm text-muted-foreground mt-1">{t('mode.requestQuoteDesc')}</p>
                 </Label>
               </div>
             </div>
@@ -212,12 +217,12 @@ export default function CheckoutPage() {
                 {/* Contact Information */}
                 <section className="bg-card border border-border rounded-lg p-6">
                   <h2 className="font-serif text-xl font-semibold text-foreground mb-6">
-                    Contact Information
+                    {t('contactInfo.title')}
                   </h2>
                   <div className="space-y-4">
                     <div className="grid sm:grid-cols-2 gap-4">
                       <div>
-                        <Label htmlFor="firstName">First Name *</Label>
+                        <Label htmlFor="firstName">{t('contactInfo.firstName')} *</Label>
                         <Input
                           id="firstName"
                           required
@@ -227,7 +232,7 @@ export default function CheckoutPage() {
                         />
                       </div>
                       <div>
-                        <Label htmlFor="lastName">Last Name *</Label>
+                        <Label htmlFor="lastName">{t('contactInfo.lastName')} *</Label>
                         <Input
                           id="lastName"
                           required
@@ -238,7 +243,7 @@ export default function CheckoutPage() {
                       </div>
                     </div>
                     <div>
-                      <Label htmlFor="email">Email Address *</Label>
+                      <Label htmlFor="email">{t('contactInfo.email')} *</Label>
                       <Input
                         id="email"
                         type="email"
@@ -249,7 +254,7 @@ export default function CheckoutPage() {
                       />
                     </div>
                     <div>
-                      <Label htmlFor="phone">Phone Number *</Label>
+                      <Label htmlFor="phone">{t('contactInfo.phone')} *</Label>
                       <Input
                         id="phone"
                         type="tel"
@@ -265,11 +270,11 @@ export default function CheckoutPage() {
                 {/* Shipping Information */}
                 <section className="bg-card border border-border rounded-lg p-6">
                   <h2 className="font-serif text-xl font-semibold text-foreground mb-6">
-                    Shipping Information
+                    {t('shipping.title')}
                   </h2>
                   <div className="space-y-4">
                     <div>
-                      <Label htmlFor="address">Street Address *</Label>
+                      <Label htmlFor="address">{t('shipping.streetAddress')} *</Label>
                       <Input
                         id="address"
                         required
@@ -279,7 +284,7 @@ export default function CheckoutPage() {
                       />
                     </div>
                     <div>
-                      <Label htmlFor="address2">Apartment, Suite, etc.</Label>
+                      <Label htmlFor="address2">{t('shipping.apartment')}</Label>
                       <Input
                         id="address2"
                         value={formData.address2}
@@ -289,7 +294,7 @@ export default function CheckoutPage() {
                     </div>
                     <div className="grid sm:grid-cols-2 gap-4">
                       <div>
-                        <Label htmlFor="city">City *</Label>
+                        <Label htmlFor="city">{t('shipping.city')} *</Label>
                         <Input
                           id="city"
                           required
@@ -299,7 +304,7 @@ export default function CheckoutPage() {
                         />
                       </div>
                       <div>
-                        <Label htmlFor="state">State/Province *</Label>
+                        <Label htmlFor="state">{t('shipping.state')} *</Label>
                         <Input
                           id="state"
                           required
@@ -311,7 +316,7 @@ export default function CheckoutPage() {
                     </div>
                     <div className="grid sm:grid-cols-2 gap-4">
                       <div>
-                        <Label htmlFor="zip">Postal Code *</Label>
+                        <Label htmlFor="zip">{t('shipping.zip')} *</Label>
                         <Input
                           id="zip"
                           required
@@ -321,7 +326,7 @@ export default function CheckoutPage() {
                         />
                       </div>
                       <div>
-                        <Label htmlFor="country">Country *</Label>
+                        <Label htmlFor="country">{t('shipping.country')} *</Label>
                         <select
                           id="country"
                           required
@@ -329,13 +334,13 @@ export default function CheckoutPage() {
                           onChange={(e) => handleInputChange('country', e.target.value)}
                           className="mt-1.5 flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-1 text-base shadow-sm transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring cursor-pointer"
                         >
-                          <option value="RO">Romania</option>
-                          <option value="EU">European Union</option>
-                          <option value="UK">United Kingdom</option>
-                          <option value="US">United States</option>
-                          <option value="CA">Canada</option>
-                          <option value="AU">Australia</option>
-                          <option value="OTHER">Other International</option>
+                          <option value="RO">{t('shipping.countries.RO')}</option>
+                          <option value="EU">{t('shipping.countries.EU')}</option>
+                          <option value="UK">{t('shipping.countries.UK')}</option>
+                          <option value="US">{t('shipping.countries.US')}</option>
+                          <option value="CA">{t('shipping.countries.CA')}</option>
+                          <option value="AU">{t('shipping.countries.AU')}</option>
+                          <option value="OTHER">{t('shipping.countries.OTHER')}</option>
                         </select>
                       </div>
                     </div>
@@ -345,19 +350,19 @@ export default function CheckoutPage() {
                       <div className="flex items-center gap-3 text-sm">
                         <Truck className="h-4 w-4 text-accent flex-shrink-0" />
                         <span className="text-muted-foreground">
-                          Secure FedEx shipping with signature confirmation
+                          {t('shipping.secureShipping')}
                         </span>
                       </div>
                       <div className="flex items-center gap-3 text-sm">
                         <Shield className="h-4 w-4 text-accent flex-shrink-0" />
                         <span className="text-muted-foreground">
-                          Full insurance coverage included (€{insurance.toLocaleString()})
+                          {t('shipping.fullInsurance', { amount: insurance.toLocaleString() })}
                         </span>
                       </div>
                       <div className="flex items-center gap-3 text-sm">
                         <Package className="h-4 w-4 text-accent flex-shrink-0" />
                         <span className="text-muted-foreground">
-                          Professional packaging with climate protection
+                          {t('shipping.professionalPackaging')}
                         </span>
                       </div>
                     </div>
@@ -366,15 +371,17 @@ export default function CheckoutPage() {
 
                 {/* Message */}
                 <section className="bg-card border border-border rounded-lg p-6">
-                  <h2 className="font-serif text-xl font-semibold text-foreground mb-6">Message</h2>
+                  <h2 className="font-serif text-xl font-semibold text-foreground mb-6">
+                    {t('message.title')}
+                  </h2>
                   <div>
-                    <Label htmlFor="message">Tell us about your needs</Label>
+                    <Label htmlFor="message">{t('message.label')}</Label>
                     <Textarea
                       id="message"
                       rows={5}
                       value={formData.message}
                       onChange={(e) => handleInputChange('message', e.target.value)}
-                      placeholder="Share any specific requirements, questions, or preferences you have about the instrument..."
+                      placeholder={t('message.placeholder')}
                       className="mt-1.5"
                     />
                   </div>
@@ -385,7 +392,7 @@ export default function CheckoutPage() {
               <div className="lg:col-span-1">
                 <div className="sticky top-8 bg-card border border-border rounded-lg p-6 space-y-6">
                   <h2 className="font-serif text-xl font-semibold text-foreground">
-                    Order Summary
+                    {t('summary.title')}
                   </h2>
 
                   {/* Items */}
@@ -420,27 +427,29 @@ export default function CheckoutPage() {
                   {/* Pricing Breakdown */}
                   <div className="space-y-3 pt-4 border-t border-border">
                     <div className="flex justify-between text-sm">
-                      <span className="text-muted-foreground">Subtotal</span>
+                      <span className="text-muted-foreground">{t('summary.subtotal')}</span>
                       <span className="font-medium text-foreground">
                         €{subtotal.toLocaleString()}
                       </span>
                     </div>
                     <div className="flex justify-between text-sm">
                       <span className="text-muted-foreground">
-                        Shipping ({shippingCountry === 'RO' ? 'Romania' : shippingCountry})
+                        {t('summary.shipping', { region: getShippingRegion(shippingCountry) })}
                       </span>
                       <span className="font-medium text-foreground">
                         €{shippingCost.toLocaleString()}
                       </span>
                     </div>
                     <div className="flex justify-between text-sm">
-                      <span className="text-muted-foreground">Insurance (2%)</span>
+                      <span className="text-muted-foreground">{t('summary.insurance')}</span>
                       <span className="font-medium text-foreground">
                         €{insurance.toLocaleString()}
                       </span>
                     </div>
                     <div className="flex justify-between pt-3 border-t border-border">
-                      <span className="font-semibold text-base text-foreground">Total</span>
+                      <span className="font-semibold text-base text-foreground">
+                        {t('summary.total')}
+                      </span>
                       <span className="font-serif text-2xl font-bold text-accent">
                         €{total.toLocaleString()}
                       </span>
@@ -454,12 +463,14 @@ export default function CheckoutPage() {
                     className="w-full h-12 cursor-pointer"
                     disabled={isProcessing}
                   >
-                    {isProcessing ? 'Processing...' : 'Submit Inquiry'}
+                    {isProcessing ? tCommon('processing') : t('submitInquiry')}
                   </Button>
 
                   {/* Contact Support */}
                   <div className="pt-4 border-t border-border space-y-2">
-                    <p className="text-xs font-semibold text-foreground">Need assistance?</p>
+                    <p className="text-xs font-semibold text-foreground">
+                      {tCommon('needAssistance')}
+                    </p>
                     <div className="space-y-1.5">
                       <a
                         href="mailto:paul.simon@simoninstruments.com"

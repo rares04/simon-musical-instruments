@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
+import { useTranslations } from 'next-intl'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
@@ -20,6 +21,8 @@ interface Address {
 }
 
 export function AddressManager() {
+  const t = useTranslations('profile.address')
+  const tCommon = useTranslations('common')
   const [addresses, setAddresses] = useState<Address[]>([])
   const [isLoading, setIsLoading] = useState(true)
   const [isAdding, setIsAdding] = useState(false)
@@ -139,14 +142,14 @@ export function AddressManager() {
       <>
         <EmptyState
           icon={MapPin}
-          title="No saved addresses"
-          description="Add addresses to make checkout faster"
-          actionLabel="Add Address"
+          title={t('noAddresses')}
+          description={t('addToFaster')}
+          actionLabel={t('addAddress')}
           actionHref="#"
         />
         <Button onClick={() => setIsAdding(true)} className="mt-4 cursor-pointer">
           <Plus className="w-4 h-4 mr-2" />
-          Add Address
+          {t('addAddress')}
         </Button>
       </>
     )
@@ -163,7 +166,7 @@ export function AddressManager() {
                 <h3 className="font-semibold text-foreground">{address.label}</h3>
                 {address.isDefault && (
                   <span className="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-accent/10 text-accent">
-                    Default
+                    {t('default')}
                   </span>
                 )}
               </div>
@@ -196,7 +199,7 @@ export function AddressManager() {
                 onClick={() => handleSetDefault(address.id)}
               >
                 <Check className="w-4 h-4 mr-2" />
-                Set as Default
+                {t('setAsDefault')}
               </Button>
             )}
           </div>
@@ -207,20 +210,20 @@ export function AddressManager() {
       {!isAdding && (
         <Button onClick={() => setIsAdding(true)} variant="outline" className="w-full cursor-pointer">
           <Plus className="w-4 h-4 mr-2" />
-          Add New Address
+          {t('addNewAddress')}
         </Button>
       )}
 
       {/* Add Form */}
       {isAdding && (
         <div className="bg-card border border-border rounded-lg p-6">
-          <h3 className="font-semibold text-foreground mb-4">Add New Address</h3>
+          <h3 className="font-semibold text-foreground mb-4">{t('addNewAddress')}</h3>
           <form onSubmit={handleAdd} className="space-y-4">
             <div className="space-y-2">
-              <Label htmlFor="label">Address Label *</Label>
+              <Label htmlFor="label">{t('addressLabel')} *</Label>
               <Input
                 id="label"
-                placeholder="e.g., Home, Work, Studio"
+                placeholder={t('labelPlaceholder')}
                 value={formData.label}
                 onChange={(e) => setFormData({ ...formData, label: e.target.value })}
                 required
@@ -228,7 +231,7 @@ export function AddressManager() {
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="street">Street Address *</Label>
+              <Label htmlFor="street">{t('streetAddress')} *</Label>
               <Input
                 id="street"
                 value={formData.street}
@@ -238,7 +241,7 @@ export function AddressManager() {
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="apartment">Apartment, Suite, etc.</Label>
+              <Label htmlFor="apartment">{t('apartment')}</Label>
               <Input
                 id="apartment"
                 value={formData.apartment}
@@ -248,7 +251,7 @@ export function AddressManager() {
 
             <div className="grid grid-cols-2 gap-4">
               <div className="space-y-2">
-                <Label htmlFor="city">City *</Label>
+                <Label htmlFor="city">{t('city')} *</Label>
                 <Input
                   id="city"
                   value={formData.city}
@@ -257,7 +260,7 @@ export function AddressManager() {
                 />
               </div>
               <div className="space-y-2">
-                <Label htmlFor="state">State/Province *</Label>
+                <Label htmlFor="state">{t('state')} *</Label>
                 <Input
                   id="state"
                   value={formData.state}
@@ -269,7 +272,7 @@ export function AddressManager() {
 
             <div className="grid grid-cols-2 gap-4">
               <div className="space-y-2">
-                <Label htmlFor="zip">Postal Code *</Label>
+                <Label htmlFor="zip">{t('zip')} *</Label>
                 <Input
                   id="zip"
                   value={formData.zip}
@@ -278,7 +281,7 @@ export function AddressManager() {
                 />
               </div>
               <div className="space-y-2">
-                <Label htmlFor="country">Country *</Label>
+                <Label htmlFor="country">{t('country')} *</Label>
                 <Input
                   id="country"
                   value={formData.country}
@@ -290,7 +293,7 @@ export function AddressManager() {
 
             <div className="flex gap-2">
               <Button type="submit" disabled={isSaving} className="cursor-pointer">
-                {isSaving ? 'Saving...' : 'Save Address'}
+                {isSaving ? tCommon('processing') : t('saveAddress')}
               </Button>
               <Button
                 type="button"
@@ -301,7 +304,7 @@ export function AddressManager() {
                 }}
                 className="cursor-pointer"
               >
-                Cancel
+                {tCommon('cancel')}
               </Button>
             </div>
           </form>

@@ -3,6 +3,7 @@
 import type React from 'react'
 
 import { useState } from 'react'
+import { useTranslations } from 'next-intl'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
@@ -10,6 +11,7 @@ import { useSession } from 'next-auth/react'
 
 export function PasswordChangeForm() {
   const { data: session } = useSession()
+  const t = useTranslations('profile.password')
   const [isLoading, setIsLoading] = useState(false)
   const [message, setMessage] = useState<{ type: 'success' | 'error'; text: string } | null>(null)
   const [formData, setFormData] = useState({
@@ -27,13 +29,13 @@ export function PasswordChangeForm() {
     setMessage(null)
 
     if (formData.newPassword !== formData.confirmPassword) {
-      setMessage({ type: 'error', text: 'Passwords do not match' })
+      setMessage({ type: 'error', text: t('mismatch') })
       setIsLoading(false)
       return
     }
 
     if (formData.newPassword.length < 8) {
-      setMessage({ type: 'error', text: 'Password must be at least 8 characters long' })
+      setMessage({ type: 'error', text: t('tooShort') })
       setIsLoading(false)
       return
     }
@@ -53,13 +55,13 @@ export function PasswordChangeForm() {
       const data = await response.json()
 
       if (response.ok) {
-        setMessage({ type: 'success', text: 'Password changed successfully!' })
+        setMessage({ type: 'success', text: t('success') })
         setFormData({ currentPassword: '', newPassword: '', confirmPassword: '' })
       } else {
-        setMessage({ type: 'error', text: data.error || 'Failed to change password' })
+        setMessage({ type: 'error', text: data.error || t('error') })
       }
     } catch (_error) {
-      setMessage({ type: 'error', text: 'Failed to change password' })
+      setMessage({ type: 'error', text: t('error') })
     } finally {
       setIsLoading(false)
     }
@@ -69,7 +71,7 @@ export function PasswordChangeForm() {
     <div className="bg-card border border-border rounded-lg p-6">
       <form onSubmit={handleSubmit} className="space-y-6">
         <div className="space-y-2">
-          <Label htmlFor="currentPassword">Current Password</Label>
+          <Label htmlFor="currentPassword">{t('currentPassword')}</Label>
           <Input
             id="currentPassword"
             type="password"
@@ -80,7 +82,7 @@ export function PasswordChangeForm() {
         </div>
 
         <div className="space-y-2">
-          <Label htmlFor="newPassword">New Password</Label>
+          <Label htmlFor="newPassword">{t('newPassword')}</Label>
           <Input
             id="newPassword"
             type="password"
@@ -88,11 +90,11 @@ export function PasswordChangeForm() {
             onChange={(e) => setFormData({ ...formData, newPassword: e.target.value })}
             required
           />
-          <p className="text-xs text-muted-foreground">Must be at least 8 characters</p>
+          <p className="text-xs text-muted-foreground">{t('requirement')}</p>
         </div>
 
         <div className="space-y-2">
-          <Label htmlFor="confirmPassword">Confirm New Password</Label>
+          <Label htmlFor="confirmPassword">{t('confirmPassword')}</Label>
           <Input
             id="confirmPassword"
             type="password"
@@ -115,7 +117,7 @@ export function PasswordChangeForm() {
         )}
 
         <Button type="submit" disabled={isLoading} className="cursor-pointer">
-          {isLoading ? 'Changing Password...' : 'Change Password'}
+          {isLoading ? t('changing') : t('changePassword')}
         </Button>
       </form>
     </div>

@@ -3,6 +3,7 @@
 import type React from 'react'
 
 import { useState, useEffect } from 'react'
+import { useTranslations } from 'next-intl'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
@@ -10,6 +11,7 @@ import { useSession } from 'next-auth/react'
 
 export function ProfileForm() {
   const { data: session } = useSession()
+  const t = useTranslations('profile.form')
   const [isLoading, setIsLoading] = useState(false)
   const [isFetching, setIsFetching] = useState(true)
   const [message, setMessage] = useState<{ type: 'success' | 'error'; text: string } | null>(null)
@@ -60,13 +62,13 @@ export function ProfileForm() {
       })
 
       if (response.ok) {
-        setMessage({ type: 'success', text: 'Profile updated successfully!' })
+        setMessage({ type: 'success', text: t('updateSuccess') })
       } else {
         const error = await response.json()
-        setMessage({ type: 'error', text: error.error || 'Failed to update profile' })
+        setMessage({ type: 'error', text: error.error || t('updateError') })
       }
     } catch (_error) {
-      setMessage({ type: 'error', text: 'Failed to update profile' })
+      setMessage({ type: 'error', text: t('updateError') })
     } finally {
       setIsLoading(false)
     }
@@ -87,7 +89,7 @@ export function ProfileForm() {
       <form onSubmit={handleSubmit} className="space-y-6">
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div className="space-y-2">
-            <Label htmlFor="firstName">First Name</Label>
+            <Label htmlFor="firstName">{t('firstName')}</Label>
             <Input
               id="firstName"
               value={formData.firstName}
@@ -96,7 +98,7 @@ export function ProfileForm() {
             />
           </div>
           <div className="space-y-2">
-            <Label htmlFor="lastName">Last Name</Label>
+            <Label htmlFor="lastName">{t('lastName')}</Label>
             <Input
               id="lastName"
               value={formData.lastName}
@@ -107,7 +109,7 @@ export function ProfileForm() {
         </div>
 
         <div className="space-y-2">
-          <Label htmlFor="email">Email</Label>
+          <Label htmlFor="email">{t('email')}</Label>
           <Input
             id="email"
             type="email"
@@ -116,12 +118,12 @@ export function ProfileForm() {
             required
           />
           <p className="text-xs text-muted-foreground">
-            We&apos;ll send a verification email if you change this
+            {t('emailChangeNote')}
           </p>
         </div>
 
         <div className="space-y-2">
-          <Label htmlFor="phone">Phone Number</Label>
+          <Label htmlFor="phone">{t('phone')}</Label>
           <Input
             id="phone"
             type="tel"
@@ -143,7 +145,7 @@ export function ProfileForm() {
         )}
 
         <Button type="submit" disabled={isLoading} className="cursor-pointer">
-          {isLoading ? 'Saving...' : 'Save Changes'}
+          {isLoading ? t('saving') : t('saveChanges')}
         </Button>
       </form>
     </div>

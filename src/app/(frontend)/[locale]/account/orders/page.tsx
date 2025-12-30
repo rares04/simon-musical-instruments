@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
+import { useTranslations } from 'next-intl'
 import { OrderCard } from '@/components/account/order-card'
 import { Button } from '@/components/ui/button'
 import { EmptyState } from '@/components/account/empty-state'
@@ -21,6 +22,8 @@ interface Order {
 export default function OrdersPage() {
   const { status } = useSession()
   const router = useRouter()
+  const t = useTranslations('account.orderHistory')
+  const tCommon = useTranslations('common')
   const [orders, setOrders] = useState<Order[]>([])
   const [isLoading, setIsLoading] = useState(true)
   const [currentPage, setCurrentPage] = useState(1)
@@ -57,7 +60,7 @@ export default function OrdersPage() {
       <div className="flex items-center justify-center min-h-[400px]">
         <div className="text-center">
           <div className="w-8 h-8 border-4 border-accent border-t-transparent rounded-full animate-spin mx-auto mb-4" />
-          <p className="text-muted-foreground">Loading orders...</p>
+          <p className="text-muted-foreground">{t('loadingOrders')}</p>
         </div>
       </div>
     )
@@ -70,9 +73,9 @@ export default function OrdersPage() {
     return (
       <EmptyState
         icon={Package}
-        title="No orders yet"
-        description="When you place an order, it will appear here."
-        actionLabel="Browse Instruments"
+        title={t('noOrders')}
+        description={t('noOrdersDesc')}
+        actionLabel={tCommon('viewAll')}
         actionHref="/gallery"
       />
     )
@@ -83,9 +86,9 @@ export default function OrdersPage() {
       {/* Header */}
       <div>
         <h1 className="font-serif text-3xl sm:text-4xl font-bold text-foreground mb-2">
-          Order History
+          {t('title')}
         </h1>
-        <p className="text-muted-foreground">View and track all your orders</p>
+        <p className="text-muted-foreground">{t('subtitle')}</p>
       </div>
 
       {/* Orders List */}
@@ -122,7 +125,7 @@ export default function OrdersPage() {
             disabled={currentPage === 1}
             className="cursor-pointer"
           >
-            Previous
+            {tCommon('previous')}
           </Button>
           <div className="flex items-center gap-1">
             {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
@@ -142,7 +145,7 @@ export default function OrdersPage() {
             disabled={currentPage === totalPages}
             className="cursor-pointer"
           >
-            Next
+            {tCommon('next')}
           </Button>
         </div>
       )}

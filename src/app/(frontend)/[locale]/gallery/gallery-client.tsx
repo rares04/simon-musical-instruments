@@ -143,7 +143,7 @@ export function GalleryClient({ instruments }: GalleryClientProps) {
                       />
                     ) : (
                       <div className="w-full h-full flex items-center justify-center">
-                        <span className="text-muted-foreground">No image</span>
+                        <span className="text-muted-foreground">{t('noImage')}</span>
                       </div>
                     )}
 
@@ -176,7 +176,7 @@ export function GalleryClient({ instruments }: GalleryClientProps) {
                     <p className="text-sm text-muted-foreground line-clamp-2">
                       {[instrument.specs?.bodyWood, instrument.specs?.topWood]
                         .filter(Boolean)
-                        .join(' / ') || 'Handcrafted instrument'}
+                        .join(' / ') || t('handcraftedInstrument')}
                     </p>
 
                     <div className="flex items-center gap-3 text-xs text-muted-foreground">

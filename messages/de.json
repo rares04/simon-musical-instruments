@@ -30,7 +30,9 @@
     "violin": "Violine",
     "viola": "Viola",
     "cello": "Cello",
-    "contrabass": "Kontrabass"
+    "contrabass": "Kontrabass",
+    "noImage": "Kein Bild",
+    "handcraftedInstrument": "Handgefertigtes Instrument"
   },
   "story": {
     "title": "Unsere Geschichte",
@@ -105,6 +107,7 @@
       "submit": "Nachricht Senden",
       "sending": "Wird gesendet...",
       "success": "Nachricht erfolgreich gesendet! Wir melden uns bald bei Ihnen.",
+      "error": "Fehler beim Senden der Nachricht. Bitte versuchen Sie es erneut.",
       "subjects": {
         "general": "Allgemeine Anfrage",
         "purchase": "Kaufanfrage",
@@ -119,7 +122,9 @@
       "email": "E-Mail",
       "phone": "Telefon / Fax",
       "hours": "Werkstattzeiten",
-      "hoursValue": "Montag - Freitag: 9:00 - 17:00\nSamstag: Nach Vereinbarung"
+      "hoursValue": "Montag - Freitag: 9:00 - 17:00\nSamstag: Nach Vereinbarung",
+      "phoneLabel": "Telefon",
+      "faxLabel": "Fax"
     },
     "map": {
       "title": "Finden Sie Uns"
@@ -140,7 +145,57 @@
     "error": "Ein Fehler ist aufgetreten",
     "backToHome": "Zurück zur Startseite",
     "learnMore": "Mehr Erfahren",
-    "viewAll": "Alle Anzeigen"
+    "viewAll": "Alle Anzeigen",
+    "save": "Speichern",
+    "cancel": "Abbrechen",
+    "delete": "Löschen",
+    "edit": "Bearbeiten",
+    "required": "Erforderlich",
+    "optional": "Optional",
+    "previous": "Zurück",
+    "next": "Weiter",
+    "processing": "Wird verarbeitet...",
+    "tryAgain": "Erneut versuchen",
+    "contactSupport": "Support kontaktieren",
+    "continueAsGuest": "Als Gast weiter einkaufen",
+    "needAssistance": "Benötigen Sie Hilfe?"
+  },
+  "account": {
+    "title": "Mein Konto",
+    "profile": "Profil",
+    "orders": "Bestellungen",
+    "addresses": "Adressen",
+    "settings": "Einstellungen",
+    "dashboard": {
+      "welcome": "Willkommen zurück, {name}",
+      "subtitle": "Verwalten Sie Ihr Konto und sehen Sie Ihre Bestellhistorie",
+      "totalOrders": "Gesamte Bestellungen",
+      "pending": "Ausstehend",
+      "delivered": "Geliefert",
+      "totalSpent": "Gesamtausgaben",
+      "recentOrders": "Neueste Bestellungen",
+      "viewAll": "Alle Anzeigen",
+      "noOrders": "Noch keine Bestellungen",
+      "startBrowsing": "Beginnen Sie, unsere Sammlung handgefertigter Instrumente zu durchstöbern",
+      "browseInstruments": "Instrumente Durchstöbern",
+      "profileSettings": "Profileinstellungen",
+      "profileSettingsDesc": "Aktualisieren Sie Ihre persönlichen Informationen und Einstellungen",
+      "browseInstrumentsDesc": "Entdecken Sie unsere Instrumentensammlung"
+    },
+    "orderHistory": {
+      "title": "Bestellhistorie",
+      "subtitle": "Sehen und verfolgen Sie alle Ihre Bestellungen",
+      "loadingOrders": "Bestellungen werden geladen...",
+      "noOrders": "Noch keine Bestellungen",
+      "noOrdersDesc": "Wenn Sie eine Bestellung aufgeben, erscheint sie hier."
+    },
+    "profilePage": {
+      "title": "Profileinstellungen",
+      "subtitle": "Verwalten Sie Ihre Kontoinformationen und Einstellungen",
+      "personalInfo": "Persönliche Informationen",
+      "savedAddresses": "Gespeicherte Adressen",
+      "password": "Passwort"
+    }
   },
   "gallery": {
     "badge": "Zum Kauf Verfügbar",
@@ -165,24 +220,99 @@
     },
     "showing": "{count} Instrumente werden angezeigt"
   },
-  "account": {
-    "title": "Mein Konto",
-    "profile": "Profil",
-    "orders": "Bestellungen",
-    "addresses": "Adressen",
-    "settings": "Einstellungen"
+  "product": {
+    "backToCollection": "Zurück zur Sammlung",
+    "luthierNotes": "Geigenbauer-Notizen",
+    "listenSound": "Den Klang Anhören",
+    "specifications": "Spezifikationen",
+    "bodyWood": "Korpusholz",
+    "topWood": "Deckenholz",
+    "neckWood": "Halsholz",
+    "fingerboard": "Griffbrett",
+    "varnish": "Lack",
+    "strings": "Saiten",
+    "bodyLength": "Korpuslänge",
+    "crafted": "Gefertigt {year}",
+    "checkoutNote": "Sichere Kasse mit versicherter FedEx-Lieferung. Jedes Instrument ist eine bedeutende Investition und beinhaltet vollständige Dokumentation.",
+    "inBuildNote": "Dieses Instrument wird derzeit gefertigt. Kontaktieren Sie uns, um es zu reservieren oder Updates zur Fertigstellung zu erhalten.",
+    "soldNote": "Dieses Instrument wurde {status}. Kontaktieren Sie uns, um ein ähnliches Stück in Auftrag zu geben.",
+    "noImagesAvailable": "Keine Bilder verfügbar"
   },
   "cart": {
     "title": "Warenkorb",
+    "yourSelection": "Ihre Auswahl",
     "empty": "Ihr Warenkorb ist leer",
+    "emptyDescription": "Entdecken Sie unsere Sammlung handgefertigter Instrumente",
+    "continueBrowsing": "Weiter Stöbern",
     "total": "Gesamt",
     "checkout": "Zur Kasse",
     "continueShopping": "Weiter Einkaufen",
-    "remove": "Entfernen"
+    "remove": "Entfernen",
+    "fullyInsured": "Vollständig versicherte Lieferung",
+    "secureShipping": "Sicherer Versand über FedEx",
+    "professionalPackaging": "Professionelle Verpackung",
+    "assistanceNote": "Benötigen Sie Hilfe? Kontaktieren Sie uns für eine persönliche Beratung"
   },
   "checkout": {
     "title": "Kasse",
-    "shipping": "Versandinformationen",
+    "completeOrder": "Bestellung Abschließen",
+    "subtitle": "Sichern Sie sich Ihr handgefertigtes Instrument mit Sorgfalt und Vertrauen",
+    "backToShop": "Zurück zum Shop",
+    "signInPrompt": "Anmelden",
+    "guestCheckout": "für schnellere Kasse, oder als Gast fortfahren.",
+    "emptyCart": {
+      "title": "Ihr Warenkorb ist leer",
+      "description": "Fügen Sie Instrumente zu Ihrem Warenkorb hinzu, bevor Sie zur Kasse gehen.",
+      "browse": "Instrumente Durchstöbern"
+    },
+    "mode": {
+      "title": "Wie möchten Sie fortfahren?",
+      "directPurchase": "Direktkauf",
+      "directPurchaseDesc": "Schließen Sie Ihren Kauf sofort mit sicherer Zahlung ab",
+      "requestQuote": "Angebot Anfordern",
+      "requestQuoteDesc": "Senden Sie eine Anfrage für persönliche Beratung und individuelle Vereinbarungen"
+    },
+    "contactInfo": {
+      "title": "Kontaktinformationen",
+      "firstName": "Vorname",
+      "lastName": "Nachname",
+      "email": "E-Mail-Adresse",
+      "phone": "Telefonnummer"
+    },
+    "shipping": {
+      "title": "Versandinformationen",
+      "streetAddress": "Straßenadresse",
+      "apartment": "Wohnung, Etage, usw.",
+      "city": "Stadt",
+      "state": "Bundesland/Region",
+      "zip": "Postleitzahl",
+      "country": "Land",
+      "countries": {
+        "RO": "Rumänien",
+        "EU": "Europäische Union",
+        "UK": "Vereinigtes Königreich",
+        "US": "Vereinigte Staaten",
+        "CA": "Kanada",
+        "AU": "Australien",
+        "OTHER": "Andere International"
+      },
+      "secureShipping": "Sicherer FedEx-Versand mit Unterschriftsbestätigung",
+      "fullInsurance": "Vollständige Versicherung enthalten (€{amount})",
+      "professionalPackaging": "Professionelle Verpackung mit Klimaschutz"
+    },
+    "message": {
+      "title": "Nachricht",
+      "label": "Erzählen Sie uns von Ihren Bedürfnissen",
+      "placeholder": "Teilen Sie spezifische Anforderungen, Fragen oder Präferenzen mit, die Sie bezüglich des Instruments haben..."
+    },
+    "summary": {
+      "title": "Bestellübersicht",
+      "subtotal": "Zwischensumme",
+      "shipping": "Versand ({region})",
+      "insurance": "Versicherung (2%)",
+      "total": "Gesamt"
+    },
+    "submitInquiry": "Anfrage Senden",
     "payment": "Zahlung",
     "review": "Bestellung Prüfen",
     "placeOrder": "Bestellung Aufgeben",
@@ -190,6 +320,142 @@
       "title": "Vielen Dank!",
       "message": "Ihre Bestellung wurde erfolgreich aufgegeben."
     }
+  },
+  "checkoutSuccess": {
+    "confirmingOrder": "Bestellung wird bestätigt...",
+    "error": {
+      "title": "Etwas ist schiefgelaufen",
+      "paymentNote": "Wenn Ihre Zahlung verarbeitet wurde, kontaktieren Sie uns bitte und wir helfen bei der Lösung.",
+      "tryAgain": "Erneut Versuchen"
+    },
+    "inquiry": {
+      "title": "Anfrage Eingereicht!",
+      "subtitle": "Vielen Dank für Ihr Interesse. Wir werden Ihnen innerhalb von 1-2 Werktagen antworten.",
+      "whatNext": "Was Passiert Als Nächstes",
+      "confirmationEmail": "Bestätigungs-E-Mail",
+      "confirmationEmailDesc": "Wir haben Ihnen eine Bestätigungs-E-Mail mit Ihren Anfragedetails gesendet.",
+      "personalResponse": "Persönliche Antwort",
+      "personalResponseDesc": "Paul oder Ecaterina Simon wird Ihre Anfrage persönlich prüfen und mit detaillierten Informationen über die Instrumente antworten, die Sie interessieren.",
+      "consultationAvailable": "Beratung Verfügbar",
+      "consultationAvailableDesc": "Wir können einen Telefon- oder Videoanruf vereinbaren, um Ihre Bedürfnisse zu besprechen und Ihnen zu helfen, das perfekte Instrument zu finden.",
+      "immediateAssistance": "Benötigen Sie sofortige Hilfe?"
+    },
+    "order": {
+      "title": "Bestellung Bestätigt!",
+      "subtitle": "Vielen Dank für Ihren Kauf. Ihr handgefertigtes Instrument wird für den Versand vorbereitet.",
+      "orderNumber": "Bestellnummer",
+      "confirmationEmail": "Bestätigungs-E-Mail",
+      "confirmationEmailDesc": "Wir haben Ihnen eine Bestätigungs-E-Mail mit Ihren Bestelldetails und Tracking-Informationen gesendet.",
+      "shippingTracking": "Versand & Tracking",
+      "shippingTrackingDesc": "Ihr Instrument wird sorgfältig verpackt und über FedEx mit vollständiger Versicherung versandt. Sie erhalten Tracking-Details innerhalb von 1-2 Werktagen.",
+      "questionsAboutOrder": "Fragen zu Ihrer Bestellung?"
+    },
+    "continueShopping": "Weiter Einkaufen",
+    "returnHome": "Zur Startseite"
+  },
+  "auth": {
+    "brandName": "Simon Musical Instruments",
+    "location": "Reghin, Siebenbürgen",
+    "login": {
+      "title": "Willkommen Zurück",
+      "subtitle": "Melden Sie sich an, um auf Ihr Konto zuzugreifen und Ihre Reise fortzusetzen",
+      "quote": "Jedes Instrument trägt die Seele des Holzes und die Hingabe jahrhundertealter Handwerkskunst.",
+      "quoteAuthor": "— Meister-Geigenbauer Paul Simon",
+      "emailPlaceholder": "ihre@email.com",
+      "passwordPlaceholder": "••••••••",
+      "forgotPassword": "Passwort vergessen?",
+      "signIn": "Anmelden",
+      "signingIn": "Wird angemeldet...",
+      "noAccount": "Haben Sie kein Konto?",
+      "createAccount": "Konto erstellen",
+      "orContinueWith": "Oder mit E-Mail fortfahren",
+      "errors": {
+        "invalidCredentials": "Ungültige E-Mail oder Passwort",
+        "oauthNotLinked": "Diese E-Mail ist bereits mit einem anderen Konto verknüpft.",
+        "genericError": "Ein Fehler ist bei der Anmeldung aufgetreten.",
+        "tryAgain": "Ein Fehler ist aufgetreten. Bitte versuchen Sie es erneut."
+      }
+    },
+    "register": {
+      "title": "Erstellen Sie Ihr Konto",
+      "subtitle": "Treten Sie unserer Gemeinschaft von Musikern und Sammlern bei",
+      "whyCreateAccount": "Warum ein Konto erstellen?",
+      "benefits": {
+        "trackOrders": "Verfolgen Sie Ihre Instrumentenbestellungen und Lieferungen",
+        "savePreferences": "Speichern Sie Ihre Einstellungen und Versanddetails",
+        "exclusiveUpdates": "Erhalten Sie exklusive Updates über neue Instrumente",
+        "personalizedRecs": "Zugang zu personalisierten Empfehlungen"
+      },
+      "firstName": "Vorname",
+      "lastName": "Nachname",
+      "email": "E-Mail-Adresse",
+      "password": "Passwort",
+      "confirmPassword": "Passwort Bestätigen",
+      "passwordRequirement": "Muss mindestens 8 Zeichen lang sein",
+      "termsAgreement": "Ich stimme den",
+      "termsOfService": "Nutzungsbedingungen",
+      "and": "und",
+      "privacyPolicy": "Datenschutzrichtlinie",
+      "createAccount": "Konto Erstellen",
+      "creatingAccount": "Konto wird erstellt...",
+      "haveAccount": "Haben Sie bereits ein Konto?",
+      "signIn": "Anmelden",
+      "orRegisterWith": "Oder mit E-Mail registrieren",
+      "errors": {
+        "passwordMismatch": "Passwörter stimmen nicht überein",
+        "passwordTooShort": "Passwort muss mindestens 8 Zeichen lang sein",
+        "termsRequired": "Sie müssen die Nutzungsbedingungen akzeptieren",
+        "emailExists": "Ein Konto mit dieser E-Mail existiert bereits",
+        "signInFailed": "Konto erstellt, aber Anmeldung fehlgeschlagen. Bitte versuchen Sie sich anzumelden.",
+        "genericError": "Ein Fehler ist aufgetreten. Bitte versuchen Sie es erneut.",
+        "registrationFailed": "Registrierung fehlgeschlagen. Bitte versuchen Sie es erneut."
+      }
+    },
+    "labels": {
+      "email": "E-Mail-Adresse",
+      "password": "Passwort"
+    }
+  },
+  "profile": {
+    "form": {
+      "firstName": "Vorname",
+      "lastName": "Nachname",
+      "email": "E-Mail",
+      "phone": "Telefonnummer",
+      "emailChangeNote": "Wir senden Ihnen eine Bestätigungs-E-Mail, wenn Sie diese ändern",
+      "saveChanges": "Änderungen Speichern",
+      "saving": "Wird gespeichert...",
+      "updateSuccess": "Profil erfolgreich aktualisiert!",
+      "updateError": "Fehler beim Aktualisieren des Profils"
+    },
+    "password": {
+      "currentPassword": "Aktuelles Passwort",
+      "newPassword": "Neues Passwort",
+      "confirmPassword": "Neues Passwort Bestätigen",
+      "requirement": "Muss mindestens 8 Zeichen haben",
+      "changePassword": "Passwort Ändern",
+      "changing": "Passwort wird geändert...",
+      "success": "Passwort erfolgreich geändert!",
+      "error": "Fehler beim Ändern des Passworts",
+      "mismatch": "Passwörter stimmen nicht überein",
+      "tooShort": "Passwort muss mindestens 8 Zeichen lang sein"
+    },
+    "address": {
+      "noAddresses": "Keine gespeicherten Adressen",
+      "addToFaster": "Adressen hinzufügen für schnellere Kasse",
+      "addAddress": "Adresse Hinzufügen",
+      "addNewAddress": "Neue Adresse Hinzufügen",
+      "default": "Standard",
+      "setAsDefault": "Als Standard Setzen",
+      "addressLabel": "Adress-Bezeichnung",
+      "labelPlaceholder": "z.B. Zuhause, Arbeit, Studio",
+      "streetAddress": "Straßenadresse",
+      "apartment": "Wohnung, Etage, usw.",
+      "city": "Stadt",
+      "state": "Bundesland/Region",
+      "zip": "Postleitzahl",
+      "country": "Land",
+      "saveAddress": "Adresse Speichern"
+    }
   }
 }
-

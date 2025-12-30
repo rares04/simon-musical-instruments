@@ -2,6 +2,7 @@
 
 import { useEffect, useState, Suspense, useRef } from 'react'
 import { useSearchParams } from 'next/navigation'
+import { useTranslations } from 'next-intl'
 import { Button } from '@/components/ui/button'
 import { Link } from '@/i18n/routing'
 import { CheckCircle2, Package, Mail, Phone, Loader2, XCircle } from 'lucide-react'
@@ -10,6 +11,8 @@ import { useCart } from '@/lib/cart-context'
 function SuccessContent() {
   const searchParams = useSearchParams()
   const { clearCart } = useCart()
+  const t = useTranslations('checkoutSuccess')
+  const tCommon = useTranslations('common')
   const [orderNumber, setOrderNumber] = useState<string>('')
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string>('')
@@ -95,7 +98,7 @@ function SuccessContent() {
       <div className="min-h-screen bg-background flex items-center justify-center px-4">
         <div className="text-center">
           <Loader2 className="w-12 h-12 animate-spin text-accent mx-auto mb-4" />
-          <p className="text-muted-foreground">Confirming your order...</p>
+          <p className="text-muted-foreground">{t('confirmingOrder')}</p>
         </div>
       </div>
     )
@@ -109,18 +112,18 @@ function SuccessContent() {
             <XCircle className="w-12 h-12 text-red-500" />
           </div>
           <h1 className="font-serif text-3xl font-bold text-foreground mb-4">
-            Something went wrong
+            {t('error.title')}
           </h1>
           <p className="text-muted-foreground mb-8">{error}</p>
           <p className="text-sm text-muted-foreground mb-6">
-            If your payment was processed, please contact us and we&apos;ll help resolve this.
+            {t('error.paymentNote')}
           </p>
           <div className="space-y-3">
             <Button asChild className="w-full cursor-pointer">
-              <Link href="/checkout">Try Again</Link>
+              <Link href="/checkout">{tCommon('tryAgain')}</Link>
             </Button>
             <Button asChild variant="outline" className="w-full cursor-pointer bg-transparent">
-              <a href="mailto:paul.simon@simoninstruments.com">Contact Support</a>
+              <a href="mailto:paul.simon@simoninstruments.com">{tCommon('contactSupport')}</a>
             </Button>
           </div>
         </div>
@@ -139,26 +142,25 @@ function SuccessContent() {
               <CheckCircle2 className="w-12 h-12 text-accent" />
             </div>
             <h1 className="font-serif text-4xl sm:text-5xl font-bold text-foreground mb-4 text-balance">
-              Inquiry Submitted!
+              {t('inquiry.title')}
             </h1>
             <p className="text-lg text-muted-foreground text-balance">
-              Thank you for your interest. We&apos;ll respond to your inquiry within 1-2 business
-              days.
+              {t('inquiry.subtitle')}
             </p>
           </div>
 
           {/* Next Steps Card */}
           <div className="bg-card border border-border rounded-lg p-6 sm:p-8 mb-6">
             <h2 className="font-serif text-xl font-semibold text-foreground mb-6">
-              What Happens Next
+              {t('inquiry.whatNext')}
             </h2>
             <div className="space-y-4">
               <div className="flex items-start gap-3">
                 <Mail className="w-5 h-5 text-accent flex-shrink-0 mt-0.5" />
                 <div>
-                  <p className="font-semibold text-foreground">Confirmation Email</p>
+                  <p className="font-semibold text-foreground">{t('inquiry.confirmationEmail')}</p>
                   <p className="text-sm text-muted-foreground mt-1">
-                    We&apos;ve sent a confirmation email with your inquiry details.
+                    {t('inquiry.confirmationEmailDesc')}
                   </p>
                 </div>
               </div>
@@ -166,10 +168,9 @@ function SuccessContent() {
               <div className="flex items-start gap-3">
                 <Package className="w-5 h-5 text-accent flex-shrink-0 mt-0.5" />
                 <div>
-                  <p className="font-semibold text-foreground">Personal Response</p>
+                  <p className="font-semibold text-foreground">{t('inquiry.personalResponse')}</p>
                   <p className="text-sm text-muted-foreground mt-1">
-                    Paul or Ecaterina Simon will personally review your inquiry and respond with
-                    detailed information about the instruments you&apos;re interested in.
+                    {t('inquiry.personalResponseDesc')}
                   </p>
                 </div>
               </div>
@@ -177,10 +178,9 @@ function SuccessContent() {
               <div className="flex items-start gap-3">
                 <Phone className="w-5 h-5 text-accent flex-shrink-0 mt-0.5" />
                 <div>
-                  <p className="font-semibold text-foreground">Consultation Available</p>
+                  <p className="font-semibold text-foreground">{t('inquiry.consultationAvailable')}</p>
                   <p className="text-sm text-muted-foreground mt-1">
-                    We can arrange a phone or video call to discuss your needs and help you find the
-                    perfect instrument.
+                    {t('inquiry.consultationAvailableDesc')}
                   </p>
                 </div>
               </div>
@@ -189,7 +189,7 @@ function SuccessContent() {
 
           {/* Contact Info */}
           <div className="bg-muted/30 border border-border rounded-lg p-6 mb-6">
-            <p className="font-semibold text-foreground mb-3">Need immediate assistance?</p>
+            <p className="font-semibold text-foreground mb-3">{t('inquiry.immediateAssistance')}</p>
             <div className="space-y-2">
               <a
                 href="mailto:paul.simon@simoninstruments.com"
@@ -211,7 +211,7 @@ function SuccessContent() {
           {/* Action Buttons */}
           <div className="flex flex-col sm:flex-row gap-3">
             <Button asChild size="lg" className="flex-1 cursor-pointer">
-              <Link href="/gallery">Continue Shopping</Link>
+              <Link href="/gallery">{t('continueShopping')}</Link>
             </Button>
             <Button
               asChild
@@ -219,7 +219,7 @@ function SuccessContent() {
               size="lg"
               className="flex-1 cursor-pointer bg-transparent"
             >
-              <Link href="/">Return Home</Link>
+              <Link href="/">{t('returnHome')}</Link>
             </Button>
           </div>
         </div>
@@ -237,17 +237,17 @@ function SuccessContent() {
             <CheckCircle2 className="w-12 h-12 text-accent" />
           </div>
           <h1 className="font-serif text-4xl sm:text-5xl font-bold text-foreground mb-4 text-balance">
-            Order Confirmed!
+            {t('order.title')}
           </h1>
           <p className="text-lg text-muted-foreground text-balance">
-            Thank you for your purchase. Your handcrafted instrument is being prepared for shipment.
+            {t('order.subtitle')}
           </p>
         </div>
 
         {/* Order Details Card */}
         <div className="bg-card border border-border rounded-lg p-6 sm:p-8 mb-6">
           <div className="mb-6 pb-6 border-b border-border">
-            <p className="text-sm text-muted-foreground mb-1">Order Number</p>
+            <p className="text-sm text-muted-foreground mb-1">{t('order.orderNumber')}</p>
             <p className="font-mono text-xl font-semibold text-foreground">{orderNumber}</p>
           </div>
 
@@ -255,10 +255,9 @@ function SuccessContent() {
             <div className="flex items-start gap-3">
               <Mail className="w-5 h-5 text-accent flex-shrink-0 mt-0.5" />
               <div>
-                <p className="font-semibold text-foreground">Confirmation Email</p>
+                <p className="font-semibold text-foreground">{t('order.confirmationEmail')}</p>
                 <p className="text-sm text-muted-foreground mt-1">
-                  We&apos;ve sent a confirmation email with your order details and tracking
-                  information.
+                  {t('order.confirmationEmailDesc')}
                 </p>
               </div>
             </div>
@@ -266,10 +265,9 @@ function SuccessContent() {
             <div className="flex items-start gap-3">
               <Package className="w-5 h-5 text-accent flex-shrink-0 mt-0.5" />
               <div>
-                <p className="font-semibold text-foreground">Shipping & Tracking</p>
+                <p className="font-semibold text-foreground">{t('order.shippingTracking')}</p>
                 <p className="text-sm text-muted-foreground mt-1">
-                  Your instrument will be carefully packaged and shipped via FedEx with full
-                  insurance. You&apos;ll receive tracking details within 1-2 business days.
+                  {t('order.shippingTrackingDesc')}
                 </p>
               </div>
             </div>
@@ -278,7 +276,7 @@ function SuccessContent() {
 
         {/* Contact Info */}
         <div className="bg-muted/30 border border-border rounded-lg p-6 mb-6">
-          <p className="font-semibold text-foreground mb-3">Questions about your order?</p>
+          <p className="font-semibold text-foreground mb-3">{t('order.questionsAboutOrder')}</p>
           <div className="space-y-2">
             <a
               href="mailto:paul.simon@simoninstruments.com"
@@ -300,7 +298,7 @@ function SuccessContent() {
         {/* Action Buttons */}
         <div className="flex flex-col sm:flex-row gap-3">
           <Button asChild size="lg" className="flex-1 cursor-pointer">
-            <Link href="/gallery">Continue Shopping</Link>
+            <Link href="/gallery">{t('continueShopping')}</Link>
           </Button>
           <Button
             asChild
@@ -308,7 +306,7 @@ function SuccessContent() {
             size="lg"
             className="flex-1 cursor-pointer bg-transparent"
           >
-            <Link href="/">Return Home</Link>
+            <Link href="/">{t('returnHome')}</Link>
           </Button>
         </div>
       </div>

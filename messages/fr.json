@@ -30,7 +30,9 @@
     "violin": "Violon",
     "viola": "Alto",
     "cello": "Violoncelle",
-    "contrabass": "Contrebasse"
+    "contrabass": "Contrebasse",
+    "noImage": "Aucune image",
+    "handcraftedInstrument": "Instrument artisanal"
   },
   "story": {
     "title": "Notre Histoire",
@@ -105,6 +107,7 @@
       "submit": "Envoyer le Message",
       "sending": "Envoi en cours...",
       "success": "Message envoyé avec succès! Nous vous répondrons bientôt.",
+      "error": "Échec de l'envoi du message. Veuillez réessayer.",
       "subjects": {
         "general": "Demande Générale",
         "purchase": "Question d'Achat",
@@ -119,7 +122,9 @@
       "email": "E-mail",
       "phone": "Téléphone / Fax",
       "hours": "Heures d'Atelier",
-      "hoursValue": "Lundi - Vendredi: 9:00 - 17:00\nSamedi: Sur rendez-vous"
+      "hoursValue": "Lundi - Vendredi: 9:00 - 17:00\nSamedi: Sur rendez-vous",
+      "phoneLabel": "Téléphone",
+      "faxLabel": "Fax"
     },
     "map": {
       "title": "Nous Trouver"
@@ -140,7 +145,57 @@
     "error": "Une erreur s'est produite",
     "backToHome": "Retour à l'Accueil",
     "learnMore": "En Savoir Plus",
-    "viewAll": "Voir Tout"
+    "viewAll": "Voir Tout",
+    "save": "Enregistrer",
+    "cancel": "Annuler",
+    "delete": "Supprimer",
+    "edit": "Modifier",
+    "required": "Requis",
+    "optional": "Facultatif",
+    "previous": "Précédent",
+    "next": "Suivant",
+    "processing": "Traitement en cours...",
+    "tryAgain": "Réessayer",
+    "contactSupport": "Contacter le Support",
+    "continueAsGuest": "Continuer les achats en tant qu'invité",
+    "needAssistance": "Besoin d'aide?"
+  },
+  "account": {
+    "title": "Mon Compte",
+    "profile": "Profil",
+    "orders": "Commandes",
+    "addresses": "Adresses",
+    "settings": "Paramètres",
+    "dashboard": {
+      "welcome": "Bon retour, {name}",
+      "subtitle": "Gérez votre compte et consultez votre historique de commandes",
+      "totalOrders": "Total des Commandes",
+      "pending": "En Attente",
+      "delivered": "Livrées",
+      "totalSpent": "Total Dépensé",
+      "recentOrders": "Commandes Récentes",
+      "viewAll": "Voir Tout",
+      "noOrders": "Aucune commande encore",
+      "startBrowsing": "Commencez à parcourir notre collection d'instruments artisanaux",
+      "browseInstruments": "Parcourir les Instruments",
+      "profileSettings": "Paramètres du Profil",
+      "profileSettingsDesc": "Mettez à jour vos informations personnelles et préférences",
+      "browseInstrumentsDesc": "Découvrez notre collection d'instruments"
+    },
+    "orderHistory": {
+      "title": "Historique des Commandes",
+      "subtitle": "Consultez et suivez toutes vos commandes",
+      "loadingOrders": "Chargement des commandes...",
+      "noOrders": "Aucune commande encore",
+      "noOrdersDesc": "Quand vous passerez une commande, elle apparaîtra ici."
+    },
+    "profilePage": {
+      "title": "Paramètres du Profil",
+      "subtitle": "Gérez les informations de votre compte et vos préférences",
+      "personalInfo": "Informations Personnelles",
+      "savedAddresses": "Adresses Enregistrées",
+      "password": "Mot de Passe"
+    }
   },
   "gallery": {
     "badge": "Disponible à l'Achat",
@@ -165,24 +220,99 @@
     },
     "showing": "Affichage de {count} instruments"
   },
-  "account": {
-    "title": "Mon Compte",
-    "profile": "Profil",
-    "orders": "Commandes",
-    "addresses": "Adresses",
-    "settings": "Paramètres"
+  "product": {
+    "backToCollection": "Retour à la Collection",
+    "luthierNotes": "Notes du Luthier",
+    "listenSound": "Écouter le Son",
+    "specifications": "Spécifications",
+    "bodyWood": "Bois du Corps",
+    "topWood": "Bois de la Table",
+    "neckWood": "Bois du Manche",
+    "fingerboard": "Touche",
+    "varnish": "Vernis",
+    "strings": "Cordes",
+    "bodyLength": "Longueur du Corps",
+    "crafted": "Fabriqué en {year}",
+    "checkoutNote": "Commande sécurisée avec livraison FedEx assurée. Chaque instrument est un investissement significatif et inclut une documentation complète.",
+    "inBuildNote": "Cet instrument est actuellement en cours de fabrication. Contactez-nous pour le réserver ou obtenir des mises à jour sur l'achèvement.",
+    "soldNote": "Cet instrument a été {status}. Contactez-nous pour commander une pièce similaire.",
+    "noImagesAvailable": "Aucune image disponible"
   },
   "cart": {
     "title": "Panier",
+    "yourSelection": "Votre Sélection",
     "empty": "Votre panier est vide",
+    "emptyDescription": "Explorez notre collection d'instruments artisanaux",
+    "continueBrowsing": "Continuer à Parcourir",
     "total": "Total",
     "checkout": "Passer à la Caisse",
     "continueShopping": "Continuer les Achats",
-    "remove": "Supprimer"
+    "remove": "Supprimer",
+    "fullyInsured": "Livraison entièrement assurée",
+    "secureShipping": "Expédition sécurisée via FedEx",
+    "professionalPackaging": "Emballage professionnel",
+    "assistanceNote": "Besoin d'aide? Contactez-nous pour une consultation personnelle"
   },
   "checkout": {
     "title": "Paiement",
-    "shipping": "Informations de Livraison",
+    "completeOrder": "Finaliser Votre Commande",
+    "subtitle": "Sécurisez votre instrument artisanal avec soin et confiance",
+    "backToShop": "Retour à la Boutique",
+    "signInPrompt": "Se connecter",
+    "guestCheckout": "pour un paiement plus rapide, ou continuer en tant qu'invité ci-dessous.",
+    "emptyCart": {
+      "title": "Votre panier est vide",
+      "description": "Ajoutez des instruments à votre panier avant de passer à la caisse.",
+      "browse": "Parcourir les Instruments"
+    },
+    "mode": {
+      "title": "Comment souhaitez-vous procéder?",
+      "directPurchase": "Achat Direct",
+      "directPurchaseDesc": "Finalisez votre achat immédiatement avec un paiement sécurisé",
+      "requestQuote": "Demander un Devis",
+      "requestQuoteDesc": "Soumettez une demande pour une consultation personnelle et des arrangements personnalisés"
+    },
+    "contactInfo": {
+      "title": "Informations de Contact",
+      "firstName": "Prénom",
+      "lastName": "Nom de Famille",
+      "email": "Adresse E-mail",
+      "phone": "Numéro de Téléphone"
+    },
+    "shipping": {
+      "title": "Informations de Livraison",
+      "streetAddress": "Adresse de la Rue",
+      "apartment": "Appartement, Étage, etc.",
+      "city": "Ville",
+      "state": "État/Province",
+      "zip": "Code Postal",
+      "country": "Pays",
+      "countries": {
+        "RO": "Roumanie",
+        "EU": "Union Européenne",
+        "UK": "Royaume-Uni",
+        "US": "États-Unis",
+        "CA": "Canada",
+        "AU": "Australie",
+        "OTHER": "Autre International"
+      },
+      "secureShipping": "Expédition FedEx sécurisée avec confirmation de signature",
+      "fullInsurance": "Assurance complète incluse (€{amount})",
+      "professionalPackaging": "Emballage professionnel avec protection climatique"
+    },
+    "message": {
+      "title": "Message",
+      "label": "Parlez-nous de vos besoins",
+      "placeholder": "Partagez toute exigence spécifique, questions ou préférences que vous avez concernant l'instrument..."
+    },
+    "summary": {
+      "title": "Résumé de la Commande",
+      "subtotal": "Sous-total",
+      "shipping": "Livraison ({region})",
+      "insurance": "Assurance (2%)",
+      "total": "Total"
+    },
+    "submitInquiry": "Soumettre la Demande",
     "payment": "Paiement",
     "review": "Vérifier la Commande",
     "placeOrder": "Passer la Commande",
@@ -190,6 +320,142 @@
       "title": "Merci!",
       "message": "Votre commande a été passée avec succès."
     }
+  },
+  "checkoutSuccess": {
+    "confirmingOrder": "Confirmation de votre commande...",
+    "error": {
+      "title": "Quelque chose s'est mal passé",
+      "paymentNote": "Si votre paiement a été traité, veuillez nous contacter et nous vous aiderons à résoudre le problème.",
+      "tryAgain": "Réessayer"
+    },
+    "inquiry": {
+      "title": "Demande Soumise!",
+      "subtitle": "Merci pour votre intérêt. Nous répondrons à votre demande dans un délai de 1-2 jours ouvrables.",
+      "whatNext": "Que Se Passe-t-il Ensuite",
+      "confirmationEmail": "E-mail de Confirmation",
+      "confirmationEmailDesc": "Nous vous avons envoyé un e-mail de confirmation avec les détails de votre demande.",
+      "personalResponse": "Réponse Personnelle",
+      "personalResponseDesc": "Paul ou Ecaterina Simon examinera personnellement votre demande et répondra avec des informations détaillées sur les instruments qui vous intéressent.",
+      "consultationAvailable": "Consultation Disponible",
+      "consultationAvailableDesc": "Nous pouvons organiser un appel téléphonique ou vidéo pour discuter de vos besoins et vous aider à trouver l'instrument parfait.",
+      "immediateAssistance": "Besoin d'une aide immédiate?"
+    },
+    "order": {
+      "title": "Commande Confirmée!",
+      "subtitle": "Merci pour votre achat. Votre instrument artisanal est en cours de préparation pour l'expédition.",
+      "orderNumber": "Numéro de Commande",
+      "confirmationEmail": "E-mail de Confirmation",
+      "confirmationEmailDesc": "Nous vous avons envoyé un e-mail de confirmation avec les détails de votre commande et les informations de suivi.",
+      "shippingTracking": "Expédition et Suivi",
+      "shippingTrackingDesc": "Votre instrument sera soigneusement emballé et expédié via FedEx avec une assurance complète. Vous recevrez les détails de suivi dans un délai de 1-2 jours ouvrables.",
+      "questionsAboutOrder": "Questions sur votre commande?"
+    },
+    "continueShopping": "Continuer les Achats",
+    "returnHome": "Retour à l'Accueil"
+  },
+  "auth": {
+    "brandName": "Simon Musical Instruments",
+    "location": "Reghin, Transylvanie",
+    "login": {
+      "title": "Bon Retour",
+      "subtitle": "Connectez-vous pour accéder à votre compte et continuer votre voyage",
+      "quote": "Chaque instrument porte l'âme du bois et le dévouement d'un savoir-faire séculaire.",
+      "quoteAuthor": "— Maître Luthier Paul Simon",
+      "emailPlaceholder": "votre@email.com",
+      "passwordPlaceholder": "••••••••",
+      "forgotPassword": "Mot de passe oublié?",
+      "signIn": "Se Connecter",
+      "signingIn": "Connexion...",
+      "noAccount": "Vous n'avez pas de compte?",
+      "createAccount": "Créer un compte",
+      "orContinueWith": "Ou continuer avec l'e-mail",
+      "errors": {
+        "invalidCredentials": "E-mail ou mot de passe invalide",
+        "oauthNotLinked": "Cet e-mail est déjà associé à un autre compte.",
+        "genericError": "Une erreur s'est produite lors de la connexion.",
+        "tryAgain": "Une erreur s'est produite. Veuillez réessayer."
+      }
+    },
+    "register": {
+      "title": "Créez Votre Compte",
+      "subtitle": "Rejoignez notre communauté de musiciens et collectionneurs",
+      "whyCreateAccount": "Pourquoi créer un compte?",
+      "benefits": {
+        "trackOrders": "Suivez vos commandes d'instruments et livraisons",
+        "savePreferences": "Sauvegardez vos préférences et détails d'expédition",
+        "exclusiveUpdates": "Recevez des mises à jour exclusives sur les nouveaux instruments",
+        "personalizedRecs": "Accédez à des recommandations personnalisées"
+      },
+      "firstName": "Prénom",
+      "lastName": "Nom de Famille",
+      "email": "Adresse E-mail",
+      "password": "Mot de Passe",
+      "confirmPassword": "Confirmer le Mot de Passe",
+      "passwordRequirement": "Doit contenir au moins 8 caractères",
+      "termsAgreement": "J'accepte les",
+      "termsOfService": "Conditions d'Utilisation",
+      "and": "et",
+      "privacyPolicy": "Politique de Confidentialité",
+      "createAccount": "Créer un Compte",
+      "creatingAccount": "Création du compte...",
+      "haveAccount": "Vous avez déjà un compte?",
+      "signIn": "Se connecter",
+      "orRegisterWith": "Ou s'inscrire avec l'e-mail",
+      "errors": {
+        "passwordMismatch": "Les mots de passe ne correspondent pas",
+        "passwordTooShort": "Le mot de passe doit contenir au moins 8 caractères",
+        "termsRequired": "Vous devez accepter les conditions d'utilisation",
+        "emailExists": "Un compte avec cet e-mail existe déjà",
+        "signInFailed": "Compte créé mais la connexion a échoué. Veuillez essayer de vous connecter.",
+        "genericError": "Une erreur s'est produite. Veuillez réessayer.",
+        "registrationFailed": "L'inscription a échoué. Veuillez réessayer."
+      }
+    },
+    "labels": {
+      "email": "Adresse E-mail",
+      "password": "Mot de Passe"
+    }
+  },
+  "profile": {
+    "form": {
+      "firstName": "Prénom",
+      "lastName": "Nom de Famille",
+      "email": "E-mail",
+      "phone": "Numéro de Téléphone",
+      "emailChangeNote": "Nous vous enverrons un e-mail de vérification si vous changez ceci",
+      "saveChanges": "Enregistrer les Modifications",
+      "saving": "Enregistrement...",
+      "updateSuccess": "Profil mis à jour avec succès!",
+      "updateError": "Échec de la mise à jour du profil"
+    },
+    "password": {
+      "currentPassword": "Mot de Passe Actuel",
+      "newPassword": "Nouveau Mot de Passe",
+      "confirmPassword": "Confirmer le Nouveau Mot de Passe",
+      "requirement": "Doit contenir au moins 8 caractères",
+      "changePassword": "Changer le Mot de Passe",
+      "changing": "Changement du mot de passe...",
+      "success": "Mot de passe changé avec succès!",
+      "error": "Échec du changement de mot de passe",
+      "mismatch": "Les mots de passe ne correspondent pas",
+      "tooShort": "Le mot de passe doit contenir au moins 8 caractères"
+    },
+    "address": {
+      "noAddresses": "Aucune adresse enregistrée",
+      "addToFaster": "Ajouter des adresses pour un paiement plus rapide",
+      "addAddress": "Ajouter une Adresse",
+      "addNewAddress": "Ajouter une Nouvelle Adresse",
+      "default": "Par Défaut",
+      "setAsDefault": "Définir par Défaut",
+      "addressLabel": "Étiquette d'Adresse",
+      "labelPlaceholder": "ex. Domicile, Travail, Studio",
+      "streetAddress": "Adresse de la Rue",
+      "apartment": "Appartement, Étage, etc.",
+      "city": "Ville",
+      "state": "État/Province",
+      "zip": "Code Postal",
+      "country": "Pays",
+      "saveAddress": "Enregistrer l'Adresse"
+    }
   }
 }
-

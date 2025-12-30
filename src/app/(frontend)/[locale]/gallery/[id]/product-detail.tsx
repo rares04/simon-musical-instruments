@@ -27,6 +27,7 @@ function getImageSrc(url: string): string {
 export function ProductDetail({ instrument, images, audioUrl }: ProductDetailProps) {
   const { addItem } = useCart()
   const t = useTranslations('instruments')
+  const tProduct = useTranslations('product')
 
   // Get instrument type label
   const typeLabel =
@@ -69,7 +70,7 @@ export function ProductDetail({ instrument, images, audioUrl }: ProductDetailPro
             className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors"
           >
             <ArrowLeft className="h-4 w-4" />
-            Back to Collection
+            {tProduct('backToCollection')}
           </Link>
         </div>
       </div>
@@ -79,7 +80,7 @@ export function ProductDetail({ instrument, images, audioUrl }: ProductDetailPro
         <div className="grid lg:grid-cols-2 gap-8 lg:gap-16">
           {/* Left Column - Sticky Image Gallery */}
           <div className="lg:sticky lg:top-24 lg:h-[calc(100vh-8rem)] flex flex-col">
-            <ImageGallery images={images.map(getImageSrc)} alt={instrument.title} />
+            <ImageGallery images={images.map(getImageSrc)} alt={instrument.title} noImagesText={tProduct('noImagesAvailable')} />
           </div>
 
           {/* Right Column - Scrollable Content */}
@@ -101,7 +102,7 @@ export function ProductDetail({ instrument, images, audioUrl }: ProductDetailPro
                     €{instrument.price.toLocaleString()}
                   </div>
                   {instrument.year && (
-                    <p className="text-sm text-muted-foreground mt-1">Crafted {instrument.year}</p>
+                    <p className="text-sm text-muted-foreground mt-1">{tProduct('crafted', { year: instrument.year })}</p>
                   )}
                 </div>
               </div>
@@ -111,7 +112,7 @@ export function ProductDetail({ instrument, images, audioUrl }: ProductDetailPro
             {instrument.luthierNotes && (
               <div className="space-y-4">
                 <h2 className="font-serif text-2xl font-bold text-foreground">
-                  Luthier&apos;s Notes
+                  {tProduct('luthierNotes')}
                 </h2>
                 <div className="bg-muted/30 border border-border p-6 lg:p-8">
                   <p className="text-base text-foreground/90 leading-relaxed text-pretty whitespace-pre-wrap">
@@ -125,7 +126,7 @@ export function ProductDetail({ instrument, images, audioUrl }: ProductDetailPro
             {audioUrl && (
               <div className="space-y-4">
                 <h2 className="font-serif text-2xl font-bold text-foreground">
-                  Listen to the Sound
+                  {tProduct('listenSound')}
                 </h2>
                 <AudioPlayer audioUrl={audioUrl} instrumentName={instrument.title} />
               </div>
@@ -134,28 +135,28 @@ export function ProductDetail({ instrument, images, audioUrl }: ProductDetailPro
             {/* Specifications */}
             {instrument.specs && (
               <div className="space-y-4">
-                <h2 className="font-serif text-2xl font-bold text-foreground">Specifications</h2>
+                <h2 className="font-serif text-2xl font-bold text-foreground">{tProduct('specifications')}</h2>
                 <div className="grid gap-4">
                   {instrument.specs.bodyWood && (
-                    <SpecRow label="Body Wood" value={instrument.specs.bodyWood} />
+                    <SpecRow label={tProduct('bodyWood')} value={instrument.specs.bodyWood} />
                   )}
                   {instrument.specs.topWood && (
-                    <SpecRow label="Top Wood" value={instrument.specs.topWood} />
+                    <SpecRow label={tProduct('topWood')} value={instrument.specs.topWood} />
                   )}
                   {instrument.specs.neckWood && (
-                    <SpecRow label="Neck Wood" value={instrument.specs.neckWood} />
+                    <SpecRow label={tProduct('neckWood')} value={instrument.specs.neckWood} />
                   )}
                   {instrument.specs.fingerboardWood && (
-                    <SpecRow label="Fingerboard" value={instrument.specs.fingerboardWood} />
+                    <SpecRow label={tProduct('fingerboard')} value={instrument.specs.fingerboardWood} />
                   )}
                   {instrument.specs.varnish && (
-                    <SpecRow label="Varnish" value={instrument.specs.varnish} />
+                    <SpecRow label={tProduct('varnish')} value={instrument.specs.varnish} />
                   )}
                   {instrument.specs.strings && (
-                    <SpecRow label="Strings" value={instrument.specs.strings} />
+                    <SpecRow label={tProduct('strings')} value={instrument.specs.strings} />
                   )}
                   {instrument.specs.bodyLength && (
-                    <SpecRow label="Body Length" value={instrument.specs.bodyLength} />
+                    <SpecRow label={tProduct('bodyLength')} value={instrument.specs.bodyLength} />
                   )}
                 </div>
               </div>
@@ -173,15 +174,13 @@ export function ProductDetail({ instrument, images, audioUrl }: ProductDetailPro
                     {t('addToCart')}
                   </Button>
                   <p className="text-sm text-muted-foreground text-center text-pretty">
-                    Secure checkout with insured FedEx delivery. Each instrument is a significant
-                    investment and includes full documentation.
+                    {tProduct('checkoutNote')}
                   </p>
                 </>
               ) : instrument.status === 'in-build' ? (
                 <div className="bg-muted/50 border border-border p-6 text-center">
                   <p className="text-base text-muted-foreground text-pretty">
-                    This instrument is currently being crafted. Contact us to reserve it or get
-                    updates on completion.
+                    {tProduct('inBuildNote')}
                   </p>
                   <Button
                     variant="outline"
@@ -194,8 +193,7 @@ export function ProductDetail({ instrument, images, audioUrl }: ProductDetailPro
               ) : (
                 <div className="bg-muted/50 border border-border p-6 text-center">
                   <p className="text-base text-muted-foreground text-pretty">
-                    This instrument has been {instrument.status}. Contact us to commission a similar
-                    piece.
+                    {tProduct('soldNote', { status: instrument.status })}
                   </p>
                   <Button
                     variant="outline"
@@ -223,13 +221,13 @@ function SpecRow({ label, value }: { label: string; value: string }) {
   )
 }
 
-function ImageGallery({ images, alt }: { images: string[]; alt: string }) {
+function ImageGallery({ images, alt, noImagesText }: { images: string[]; alt: string; noImagesText: string }) {
   const [currentIndex, setCurrentIndex] = useState(0)
 
   if (images.length === 0) {
     return (
       <div className="aspect-[3/4] bg-muted flex items-center justify-center">
-        <span className="text-muted-foreground">No images available</span>
+        <span className="text-muted-foreground">{noImagesText}</span>
       </div>
     )
   }
@@ -308,4 +306,3 @@ function ImageGallery({ images, alt }: { images: string[]; alt: string }) {
     </div>
   )
 }
-

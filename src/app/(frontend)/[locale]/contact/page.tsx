@@ -49,10 +49,10 @@ export default function ContactPage() {
           setFormData({ name: '', email: '', phone: '', subject: '', message: '' })
         }, 5000)
       } else {
-        alert('Failed to send message. Please try again or email us directly.')
+        alert(t('form.error'))
       }
     } catch {
-      alert('Failed to send message. Please try again or email us directly.')
+      alert(t('form.error'))
     } finally {
       setIsSubmitting(false)
     }
@@ -245,7 +245,7 @@ export default function ContactPage() {
                   <div>
                     <h3 className="font-semibold text-foreground mb-2">{t('info.phone')}</h3>
                     <p className="text-muted-foreground">
-                      Phone:{' '}
+                      {t('info.phoneLabel')}:{' '}
                       <a
                         href="tel:+40744960722"
                         className="text-accent hover:underline cursor-pointer"
@@ -253,7 +253,7 @@ export default function ContactPage() {
                         +40 744 960 722
                       </a>
                       <br />
-                      Fax: +40 365 100 422
+                      {t('info.faxLabel')}: +40 365 100 422
                     </p>
                   </div>
                 </div>
