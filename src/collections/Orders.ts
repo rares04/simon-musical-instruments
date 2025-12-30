@@ -2,7 +2,7 @@ import type { CollectionConfig, CollectionAfterChangeHook } from 'payload'
 import { sendEmail } from '@/lib/resend'
 import { ShippingNotificationEmail } from '@/lib/emails'
 
-// Hook to send shipping notification when status changes to 'shipped'
+// Hook to send shipping notification when status changes to 'shipped' (delivery orders only)
 const sendShippingNotification: CollectionAfterChangeHook = async ({
   doc,
   previousDoc,
@@ -10,6 +10,9 @@ const sendShippingNotification: CollectionAfterChangeHook = async ({
 }) => {
   // Only run on update, not create
   if (operation !== 'update') return doc
+
+  // Only send for delivery orders, not pickup
+  if (doc.deliveryMethod === 'pickup') return doc
 
   // Check if status changed to 'shipped'
   if (previousDoc?.status !== 'shipped' && doc.status === 'shipped') {
@@ -126,19 +129,37 @@ export const Orders: CollectionConfig = {
     },
     // Shipping/Tracking Information
     {
+      name: 'deliveryMethod',
+      type: 'select',
+      required: true,
+      defaultValue: 'delivery',
+      options: [
+        { label: 'Door-to-Door Delivery', value: 'delivery' },
+        { label: 'Pickup from Atelier', value: 'pickup' },
+      ],
+      admin: {
+        position: 'sidebar',
+        description: 'How the customer will receive their instrument',
+      },
+    },
+    {
       name: 'trackingNumber',
       type: 'text',
       admin: {
-        description: 'FedEx or carrier tracking number',
-        condition: (data) => ['processing', 'shipped', 'delivered'].includes(data?.status),
+        description: 'Carrier tracking number',
+        condition: (data) =>
+          data?.deliveryMethod === 'delivery' &&
+          ['processing', 'shipped', 'delivered'].includes(data?.status),
       },
     },
     {
       name: 'trackingUrl',
       type: 'text',
       admin: {
-        description: 'Full tracking URL (optional - auto-generated for FedEx if blank)',
-        condition: (data) => ['processing', 'shipped', 'delivered'].includes(data?.status),
+        description: 'Full tracking URL (optional)',
+        condition: (data) =>
+          data?.deliveryMethod === 'delivery' &&
+          ['processing', 'shipped', 'delivered'].includes(data?.status),
       },
     },
     {
@@ -146,7 +167,19 @@ export const Orders: CollectionConfig = {
       type: 'text',
       admin: {
         description: 'Estimated delivery date (e.g., "January 15-17, 2025")',
-        condition: (data) => ['processing', 'shipped', 'delivered'].includes(data?.status),
+        condition: (data) =>
+          data?.deliveryMethod === 'delivery' &&
+          ['processing', 'shipped', 'delivered'].includes(data?.status),
+      },
+    },
+    {
+      name: 'pickupDate',
+      type: 'text',
+      admin: {
+        description: 'Scheduled pickup date/time (e.g., "January 15, 2025 at 10:00 AM")',
+        condition: (data) =>
+          data?.deliveryMethod === 'pickup' &&
+          ['processing', 'shipped', 'delivered'].includes(data?.status),
       },
     },
     {
@@ -156,7 +189,9 @@ export const Orders: CollectionConfig = {
         date: {
           pickerAppearance: 'dayAndTime',
         },
-        condition: (data) => ['shipped', 'delivered'].includes(data?.status),
+        condition: (data) =>
+          data?.deliveryMethod === 'delivery' &&
+          ['shipped', 'delivered'].includes(data?.status),
       },
     },
     {
@@ -226,11 +261,14 @@ export const Orders: CollectionConfig = {
     {
       name: 'shippingAddress',
       type: 'group',
+      admin: {
+        description: 'Only required for delivery orders (not pickup)',
+        condition: (data) => data?.deliveryMethod !== 'pickup',
+      },
       fields: [
         {
           name: 'street',
           type: 'text',
-          required: true,
         },
         {
           name: 'apartment',
@@ -242,13 +280,11 @@ export const Orders: CollectionConfig = {
             {
               name: 'city',
               type: 'text',
-              required: true,
               admin: { width: '50%' },
             },
             {
               name: 'state',
               type: 'text',
-              required: true,
               admin: { width: '50%' },
             },
           ],
@@ -259,13 +295,11 @@ export const Orders: CollectionConfig = {
             {
               name: 'zip',
               type: 'text',
-              required: true,
               admin: { width: '50%' },
             },
             {
               name: 'country',
               type: 'text',
-              required: true,
               admin: { width: '50%' },
             },
           ],

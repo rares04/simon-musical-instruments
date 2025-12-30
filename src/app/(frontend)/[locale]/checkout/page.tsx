@@ -13,7 +13,7 @@ import { Textarea } from '@/components/ui/textarea'
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group'
 import Image from 'next/image'
 import { Link } from '@/i18n/routing'
-import { Shield, Package, Truck, Mail, Phone } from 'lucide-react'
+import { Shield, Package, Truck, Mail, Phone, MapPin } from 'lucide-react'
 import { StripePaymentForm } from '@/components/stripe-payment-form'
 
 export default function CheckoutPage() {
@@ -44,6 +44,7 @@ export default function CheckoutPage() {
     zip: '',
     country: 'RO',
     message: '',
+    deliveryMethod: 'delivery' as 'delivery' | 'pickup',
   })
 
   // Pre-fill form with session data
@@ -69,17 +70,13 @@ export default function CheckoutPage() {
     }
   }, [formData, checkoutMode, userId])
 
-  // Calculate shipping (in EUR)
+  // Calculate total - delivery & insurance already included in instrument price
   const subtotal = items.reduce((sum, item) => sum + item.price, 0)
-  const shippingCost = shippingCountry === 'RO' ? 50 : shippingCountry === 'EU' ? 150 : 350
-  const insurance = Math.ceil(subtotal * 0.02) // 2% insurance
-  const total = subtotal + shippingCost + insurance
-
-  // Get shipping region name
-  const getShippingRegion = (country: string) => {
-    if (country === 'RO') return t('shipping.countries.RO')
-    return country
-  }
+  const isPickup = formData.deliveryMethod === 'pickup'
+  // Delivery and insurance are included in the price, not added separately
+  const shippingCost = 0
+  const insurance = 0
+  const total = subtotal
 
   // Redirect if cart is empty
   if (items.length === 0) {
@@ -267,107 +264,189 @@ export default function CheckoutPage() {
                   </div>
                 </section>
 
-                {/* Shipping Information */}
+                {/* Delivery Method */}
                 <section className="bg-card border border-border rounded-lg p-6">
                   <h2 className="font-serif text-xl font-semibold text-foreground mb-6">
-                    {t('shipping.title')}
+                    {t('deliveryMethod.title')}
                   </h2>
-                  <div className="space-y-4">
-                    <div>
-                      <Label htmlFor="address">{t('shipping.streetAddress')} *</Label>
-                      <Input
-                        id="address"
-                        required
-                        value={formData.address}
-                        onChange={(e) => handleInputChange('address', e.target.value)}
-                        className="mt-1.5"
+                  <RadioGroup
+                    value={formData.deliveryMethod}
+                    onValueChange={(value) => handleInputChange('deliveryMethod', value)}
+                    className="space-y-3"
+                  >
+                    <div
+                      className={`flex items-start space-x-3 p-4 border rounded-lg transition-colors cursor-pointer ${formData.deliveryMethod === 'delivery' ? 'border-accent bg-accent/5' : 'border-border hover:border-accent/50'}`}
+                    >
+                      <RadioGroupItem
+                        value="delivery"
+                        id="inquiry-delivery"
+                        className="mt-1 cursor-pointer"
                       />
+                      <Label htmlFor="inquiry-delivery" className="flex-1 cursor-pointer">
+                        <div className="flex items-center gap-2">
+                          <Truck className="h-4 w-4 text-accent" />
+                          <span className="font-semibold text-foreground">
+                            {t('deliveryMethod.delivery')}
+                          </span>
+                        </div>
+                        <p className="text-sm text-muted-foreground mt-1">
+                          {t('deliveryMethod.deliveryDesc')}
+                        </p>
+                      </Label>
                     </div>
-                    <div>
-                      <Label htmlFor="address2">{t('shipping.apartment')}</Label>
-                      <Input
-                        id="address2"
-                        value={formData.address2}
-                        onChange={(e) => handleInputChange('address2', e.target.value)}
-                        className="mt-1.5"
+                    <div
+                      className={`flex items-start space-x-3 p-4 border rounded-lg transition-colors cursor-pointer ${formData.deliveryMethod === 'pickup' ? 'border-accent bg-accent/5' : 'border-border hover:border-accent/50'}`}
+                    >
+                      <RadioGroupItem
+                        value="pickup"
+                        id="inquiry-pickup"
+                        className="mt-1 cursor-pointer"
                       />
+                      <Label htmlFor="inquiry-pickup" className="flex-1 cursor-pointer">
+                        <div className="flex items-center gap-2">
+                          <MapPin className="h-4 w-4 text-accent" />
+                          <span className="font-semibold text-foreground">
+                            {t('deliveryMethod.pickup')}
+                          </span>
+                        </div>
+                        <p className="text-sm text-muted-foreground mt-1">
+                          {t('deliveryMethod.pickupDesc')}
+                        </p>
+                      </Label>
                     </div>
-                    <div className="grid sm:grid-cols-2 gap-4">
-                      <div>
-                        <Label htmlFor="city">{t('shipping.city')} *</Label>
-                        <Input
-                          id="city"
-                          required
-                          value={formData.city}
-                          onChange={(e) => handleInputChange('city', e.target.value)}
-                          className="mt-1.5"
-                        />
-                      </div>
-                      <div>
-                        <Label htmlFor="state">{t('shipping.state')} *</Label>
-                        <Input
-                          id="state"
-                          required
-                          value={formData.state}
-                          onChange={(e) => handleInputChange('state', e.target.value)}
-                          className="mt-1.5"
-                        />
-                      </div>
-                    </div>
-                    <div className="grid sm:grid-cols-2 gap-4">
-                      <div>
-                        <Label htmlFor="zip">{t('shipping.zip')} *</Label>
-                        <Input
-                          id="zip"
-                          required
-                          value={formData.zip}
-                          onChange={(e) => handleInputChange('zip', e.target.value)}
-                          className="mt-1.5"
-                        />
-                      </div>
-                      <div>
-                        <Label htmlFor="country">{t('shipping.country')} *</Label>
-                        <select
-                          id="country"
-                          required
-                          value={formData.country}
-                          onChange={(e) => handleInputChange('country', e.target.value)}
-                          className="mt-1.5 flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-1 text-base shadow-sm transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring cursor-pointer"
-                        >
-                          <option value="RO">{t('shipping.countries.RO')}</option>
-                          <option value="EU">{t('shipping.countries.EU')}</option>
-                          <option value="UK">{t('shipping.countries.UK')}</option>
-                          <option value="US">{t('shipping.countries.US')}</option>
-                          <option value="CA">{t('shipping.countries.CA')}</option>
-                          <option value="AU">{t('shipping.countries.AU')}</option>
-                          <option value="OTHER">{t('shipping.countries.OTHER')}</option>
-                        </select>
-                      </div>
-                    </div>
-
-                    {/* Shipping Details */}
-                    <div className="pt-4 border-t border-border space-y-3">
-                      <div className="flex items-center gap-3 text-sm">
-                        <Truck className="h-4 w-4 text-accent flex-shrink-0" />
-                        <span className="text-muted-foreground">
-                          {t('shipping.secureShipping')}
-                        </span>
-                      </div>
-                      <div className="flex items-center gap-3 text-sm">
-                        <Shield className="h-4 w-4 text-accent flex-shrink-0" />
-                        <span className="text-muted-foreground">
-                          {t('shipping.fullInsurance', { amount: insurance.toLocaleString() })}
-                        </span>
-                      </div>
-                      <div className="flex items-center gap-3 text-sm">
-                        <Package className="h-4 w-4 text-accent flex-shrink-0" />
-                        <span className="text-muted-foreground">
-                          {t('shipping.professionalPackaging')}
-                        </span>
-                      </div>
-                    </div>
-                  </div>
+                  </RadioGroup>
                 </section>
+
+                {/* Pickup Location (shown when pickup selected) */}
+                {formData.deliveryMethod === 'pickup' && (
+                  <section className="bg-accent/5 border border-accent/20 rounded-lg p-6">
+                    <h2 className="font-serif text-xl font-semibold text-foreground mb-4">
+                      {t('pickup.title')}
+                    </h2>
+                    <div className="space-y-4">
+                      <div className="flex items-start gap-3">
+                        <MapPin className="h-5 w-5 text-accent flex-shrink-0 mt-0.5" />
+                        <div>
+                          <p className="font-medium text-foreground">Simon Musical Instruments</p>
+                          <p className="text-sm text-muted-foreground">
+                            Str. Castelului 112
+                            <br />
+                            Reghin 545300, Mureș County
+                            <br />
+                            Romania
+                          </p>
+                        </div>
+                      </div>
+                      <div className="pt-4 border-t border-accent/20">
+                        <p className="text-sm text-muted-foreground">{t('pickup.note')}</p>
+                      </div>
+                    </div>
+                  </section>
+                )}
+
+                {/* Shipping Information (shown when delivery selected) */}
+                {formData.deliveryMethod === 'delivery' && (
+                  <section className="bg-card border border-border rounded-lg p-6">
+                    <h2 className="font-serif text-xl font-semibold text-foreground mb-6">
+                      {t('shipping.title')}
+                    </h2>
+                    <div className="space-y-4">
+                      <div>
+                        <Label htmlFor="address">{t('shipping.streetAddress')} *</Label>
+                        <Input
+                          id="address"
+                          required
+                          value={formData.address}
+                          onChange={(e) => handleInputChange('address', e.target.value)}
+                          className="mt-1.5"
+                        />
+                      </div>
+                      <div>
+                        <Label htmlFor="address2">{t('shipping.apartment')}</Label>
+                        <Input
+                          id="address2"
+                          value={formData.address2}
+                          onChange={(e) => handleInputChange('address2', e.target.value)}
+                          className="mt-1.5"
+                        />
+                      </div>
+                      <div className="grid sm:grid-cols-2 gap-4">
+                        <div>
+                          <Label htmlFor="city">{t('shipping.city')} *</Label>
+                          <Input
+                            id="city"
+                            required
+                            value={formData.city}
+                            onChange={(e) => handleInputChange('city', e.target.value)}
+                            className="mt-1.5"
+                          />
+                        </div>
+                        <div>
+                          <Label htmlFor="state">{t('shipping.state')} *</Label>
+                          <Input
+                            id="state"
+                            required
+                            value={formData.state}
+                            onChange={(e) => handleInputChange('state', e.target.value)}
+                            className="mt-1.5"
+                          />
+                        </div>
+                      </div>
+                      <div className="grid sm:grid-cols-2 gap-4">
+                        <div>
+                          <Label htmlFor="zip">{t('shipping.zip')} *</Label>
+                          <Input
+                            id="zip"
+                            required
+                            value={formData.zip}
+                            onChange={(e) => handleInputChange('zip', e.target.value)}
+                            className="mt-1.5"
+                          />
+                        </div>
+                        <div>
+                          <Label htmlFor="country">{t('shipping.country')} *</Label>
+                          <select
+                            id="country"
+                            required
+                            value={formData.country}
+                            onChange={(e) => handleInputChange('country', e.target.value)}
+                            className="mt-1.5 flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-1 text-base shadow-sm transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring cursor-pointer"
+                          >
+                            <option value="RO">{t('shipping.countries.RO')}</option>
+                            <option value="EU">{t('shipping.countries.EU')}</option>
+                            <option value="UK">{t('shipping.countries.UK')}</option>
+                            <option value="US">{t('shipping.countries.US')}</option>
+                            <option value="CA">{t('shipping.countries.CA')}</option>
+                            <option value="AU">{t('shipping.countries.AU')}</option>
+                            <option value="OTHER">{t('shipping.countries.OTHER')}</option>
+                          </select>
+                        </div>
+                      </div>
+
+                      {/* Shipping Details */}
+                      <div className="pt-4 border-t border-border space-y-3">
+                        <div className="flex items-center gap-3 text-sm">
+                          <Truck className="h-4 w-4 text-accent flex-shrink-0" />
+                          <span className="text-muted-foreground">
+                            {t('shipping.secureShipping')}
+                          </span>
+                        </div>
+                        <div className="flex items-center gap-3 text-sm">
+                          <Shield className="h-4 w-4 text-accent flex-shrink-0" />
+                          <span className="text-muted-foreground">
+                            {t('shipping.fullInsurance')}
+                          </span>
+                        </div>
+                        <div className="flex items-center gap-3 text-sm">
+                          <Package className="h-4 w-4 text-accent flex-shrink-0" />
+                          <span className="text-muted-foreground">
+                            {t('shipping.professionalPackaging')}
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                  </section>
+                )}
 
                 {/* Message */}
                 <section className="bg-card border border-border rounded-lg p-6">
@@ -426,26 +505,19 @@ export default function CheckoutPage() {
 
                   {/* Pricing Breakdown */}
                   <div className="space-y-3 pt-4 border-t border-border">
-                    <div className="flex justify-between text-sm">
-                      <span className="text-muted-foreground">{t('summary.subtotal')}</span>
-                      <span className="font-medium text-foreground">
-                        €{subtotal.toLocaleString()}
-                      </span>
-                    </div>
-                    <div className="flex justify-between text-sm">
-                      <span className="text-muted-foreground">
-                        {t('summary.shipping', { region: getShippingRegion(shippingCountry) })}
-                      </span>
-                      <span className="font-medium text-foreground">
-                        €{shippingCost.toLocaleString()}
-                      </span>
-                    </div>
-                    <div className="flex justify-between text-sm">
-                      <span className="text-muted-foreground">{t('summary.insurance')}</span>
-                      <span className="font-medium text-foreground">
-                        €{insurance.toLocaleString()}
-                      </span>
-                    </div>
+                    {formData.deliveryMethod === 'delivery' ? (
+                      <div className="flex justify-between text-sm">
+                        <span className="text-muted-foreground">
+                          {t('summary.deliveryIncluded')}
+                        </span>
+                        <span className="font-medium text-green-600">{t('summary.included')}</span>
+                      </div>
+                    ) : (
+                      <div className="flex justify-between text-sm">
+                        <span className="text-muted-foreground">{t('pickup.fromAtelier')}</span>
+                        <span className="font-medium text-muted-foreground">—</span>
+                      </div>
+                    )}
                     <div className="flex justify-between pt-3 border-t border-border">
                       <span className="font-semibold text-base text-foreground">
                         {t('summary.total')}

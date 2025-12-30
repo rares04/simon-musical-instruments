@@ -26,7 +26,8 @@ interface OrderConfirmationEmailProps {
   shipping: number
   insurance: number
   total: number
-  shippingAddress: {
+  deliveryMethod?: 'delivery' | 'pickup'
+  shippingAddress?: {
     street: string
     apartment?: string
     city: string
@@ -44,8 +45,10 @@ export function OrderConfirmationEmail({
   shipping,
   insurance,
   total,
+  deliveryMethod = 'delivery',
   shippingAddress,
 }: OrderConfirmationEmailProps) {
+  const isPickup = deliveryMethod === 'pickup'
   const previewText = `Order Confirmed - ${orderNumber}`
 
   return (
@@ -99,30 +102,25 @@ export function OrderConfirmationEmail({
 
           {/* Order Summary */}
           <Section style={summarySection}>
-            <Row style={summaryRow}>
-              <Column>
-                <Text style={summaryLabel}>Subtotal</Text>
-              </Column>
-              <Column align="right">
-                <Text style={summaryValue}>€{subtotal.toLocaleString()}</Text>
-              </Column>
-            </Row>
-            <Row style={summaryRow}>
-              <Column>
-                <Text style={summaryLabel}>Shipping</Text>
-              </Column>
-              <Column align="right">
-                <Text style={summaryValue}>€{shipping.toLocaleString()}</Text>
-              </Column>
-            </Row>
-            <Row style={summaryRow}>
-              <Column>
-                <Text style={summaryLabel}>Insurance</Text>
-              </Column>
-              <Column align="right">
-                <Text style={summaryValue}>€{insurance.toLocaleString()}</Text>
-              </Column>
-            </Row>
+            {isPickup ? (
+              <Row style={summaryRow}>
+                <Column>
+                  <Text style={summaryLabel}>Pickup from Atelier</Text>
+                </Column>
+                <Column align="right">
+                  <Text style={summaryValue}>—</Text>
+                </Column>
+              </Row>
+            ) : (
+              <Row style={summaryRow}>
+                <Column>
+                  <Text style={summaryLabel}>Door-to-door delivery & insurance</Text>
+                </Column>
+                <Column align="right">
+                  <Text style={{ ...summaryValue, color: '#2e7d32' }}>Included</Text>
+                </Column>
+              </Row>
+            )}
             <Hr style={dividerLight} />
             <Row style={summaryRow}>
               <Column>
@@ -136,20 +134,43 @@ export function OrderConfirmationEmail({
 
           <Hr style={divider} />
 
-          {/* Shipping Address */}
-          <Section style={addressSection}>
-            <Heading as="h2" style={sectionHeading}>
-              Shipping Address
-            </Heading>
-            <Text style={addressText}>
-              {shippingAddress.street}
-              {shippingAddress.apartment && `, ${shippingAddress.apartment}`}
-              <br />
-              {shippingAddress.city}, {shippingAddress.state} {shippingAddress.zip}
-              <br />
-              {shippingAddress.country}
-            </Text>
-          </Section>
+          {/* Delivery Address or Pickup Location */}
+          {isPickup ? (
+            <Section style={addressSection}>
+              <Heading as="h2" style={sectionHeading}>
+                Pickup Location
+              </Heading>
+              <Text style={addressText}>
+                <strong>Simon Musical Instruments</strong>
+                <br />
+                Str. Castelului 112
+                <br />
+                Reghin 545300, Mureș County
+                <br />
+                Romania
+              </Text>
+              <Text style={{ ...paragraph, marginTop: '16px', fontSize: '14px' }}>
+                We&apos;ll contact you to schedule a convenient pickup time. Pickup is available
+                Monday–Friday, 9:00 AM – 5:00 PM.
+              </Text>
+            </Section>
+          ) : (
+            shippingAddress && (
+              <Section style={addressSection}>
+                <Heading as="h2" style={sectionHeading}>
+                  Delivery Address
+                </Heading>
+                <Text style={addressText}>
+                  {shippingAddress.street}
+                  {shippingAddress.apartment && `, ${shippingAddress.apartment}`}
+                  <br />
+                  {shippingAddress.city}, {shippingAddress.state} {shippingAddress.zip}
+                  <br />
+                  {shippingAddress.country}
+                </Text>
+              </Section>
+            )
+          )}
 
           <Hr style={divider} />
 
@@ -158,18 +179,40 @@ export function OrderConfirmationEmail({
             <Heading as="h2" style={sectionHeading}>
               What Happens Next
             </Heading>
-            <Text style={paragraph}>
-              <strong>1. Preparation</strong> — Your instrument will be carefully inspected and
-              professionally packaged with climate protection.
-            </Text>
-            <Text style={paragraph}>
-              <strong>2. Shipping</strong> — We&apos;ll send your tracking information once your
-              package is on its way via FedEx with full insurance.
-            </Text>
-            <Text style={paragraph}>
-              <strong>3. Delivery</strong> — Signature confirmation will be required to ensure
-              secure delivery.
-            </Text>
+            {isPickup ? (
+              <>
+                <Text style={paragraph}>
+                  <strong>1. Preparation</strong> — Your instrument will be carefully inspected and
+                  prepared for pickup at our atelier.
+                </Text>
+                <Text style={paragraph}>
+                  <strong>2. Schedule Pickup</strong> — We&apos;ll contact you within 1-2 business
+                  days to schedule a convenient time for you to visit our workshop.
+                </Text>
+                <Text style={paragraph}>
+                  <strong>3. Visit Our Atelier</strong> — Collect your instrument in person and meet
+                  the craftsmen who created it. You&apos;ll have the opportunity to see our workshop
+                  and ask any questions.
+                </Text>
+              </>
+            ) : (
+              <>
+                <Text style={paragraph}>
+                  <strong>1. Preparation</strong> — Your instrument will be carefully inspected and
+                  professionally packaged at our atelier with climate protection.
+                </Text>
+                <Text style={paragraph}>
+                  <strong>2. Door-to-Door Delivery</strong> — Your instrument will be picked up from
+                  our workshop and delivered directly to your address. Delivery and insurance are
+                  included in your purchase price.
+                </Text>
+                <Text style={paragraph}>
+                  <strong>3. Safe Arrival</strong> — Signature confirmation will be required to
+                  ensure your instrument arrives safely. We&apos;ll send tracking information once
+                  it&apos;s on its way.
+                </Text>
+              </>
+            )}
           </Section>
 
           <Hr style={divider} />

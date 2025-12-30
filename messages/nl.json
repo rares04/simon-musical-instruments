@@ -67,8 +67,8 @@
         "answer": "U kunt onze beschikbare instrumenten bekijken in de Winkel sectie. Elke instrumentpagina bevat gedetailleerde informatie, foto's en audiosamples. Om te kopen, voegt u het instrument gewoon toe aan uw winkelwagen en gaat u naar de kassa, of neemt u direct contact met ons op voor een persoonlijk advies."
       },
       "shipping": {
-        "question": "Verzenden jullie internationaal?",
-        "answer": "Ja, we verzenden wereldwijd! We hebben ervaring met verzending naar klanten in Frankrijk, België, Spanje, Duitsland, Japan, Taiwan en vele andere landen. Alle instrumenten worden professioneel verpakt en volledig verzekerd tijdens transport."
+        "question": "Hoe werkt de levering?",
+        "answer": "Levering en verzekering zijn inbegrepen in de prijs. Wij bieden een deur-tot-deur service: uw instrument wordt opgehaald bij ons atelier in Reghin en rechtstreeks bij u thuis afgeleverd. Afhankelijk van uw locatie kan levering plaatsvinden via luchtvracht of over land. We hebben succesvol geleverd aan klanten in Frankrijk, België, Spanje, Duitsland, Japan, Taiwan en vele andere landen wereldwijd. Elk instrument wordt professioneel verpakt met klimaatbescherming en is volledig verzekerd gedurende de hele reis."
       },
       "returns": {
         "question": "Wat is uw retourbeleid?",
@@ -235,7 +235,7 @@
     "bodyLength": "Korpuslengte",
     "stringVibration": "Trillende Snaarlengte",
     "crafted": "Gemaakt {year}",
-    "checkoutNote": "Veilige checkout met verzekerde FedEx levering. Elk instrument is een significante investering en bevat volledige documentatie.",
+    "checkoutNote": "Veilige checkout met deur-tot-deur levering en volledige verzekering inbegrepen. Elk instrument wordt zorgvuldig verpakt in ons atelier en rechtstreeks bij u thuis afgeleverd.",
     "inBuildNote": "Dit instrument wordt momenteel gemaakt. Neem contact met ons op om het te reserveren of updates over voltooiing te krijgen.",
     "soldNote": "Dit instrument is {status}. Neem contact met ons op om een soortgelijk stuk te bestellen.",
     "lowStock": "Nog maar {count} op voorraad",
@@ -251,9 +251,9 @@
     "checkout": "Naar Kassa",
     "continueShopping": "Doorgaan met Winkelen",
     "remove": "Verwijderen",
-    "fullyInsured": "Volledig verzekerde levering",
-    "secureShipping": "Veilige verzending via FedEx",
-    "professionalPackaging": "Professionele verpakking",
+    "fullyInsured": "Levering & verzekering inbegrepen in de prijs",
+    "secureShipping": "Deur-tot-deur service vanuit ons atelier",
+    "professionalPackaging": "Professionele verpakking met klimaatbescherming",
     "assistanceNote": "Hulp nodig? Neem contact met ons op voor een persoonlijk advies"
   },
   "checkout": {
@@ -282,8 +282,21 @@
       "email": "E-mailadres",
       "phone": "Telefoonnummer"
     },
+    "deliveryMethod": {
+      "title": "Hoe wilt u uw instrument ontvangen?",
+      "delivery": "Deur-tot-Deur Levering",
+      "deliveryDesc": "Uw instrument wordt opgehaald bij ons atelier en rechtstreeks bij u thuis afgeleverd. Levering & verzekering inbegrepen in de prijs.",
+      "pickup": "Ophalen bij Atelier (Reghin, Roemenië)",
+      "pickupDesc": "Bezoek ons atelier persoonlijk om uw instrument op te halen. Ontmoet de vioolbouwer en zie waar uw instrument is gemaakt."
+    },
+    "pickup": {
+      "title": "Ophaallocatie",
+      "note": "Na uw aankoop nemen we contact met u op om een geschikte ophaaltijd te plannen. Ophalen is mogelijk van maandag t/m vrijdag, 9:00 – 17:00 uur.",
+      "fromAtelier": "Ophalen bij Atelier",
+      "free": "Gratis"
+    },
     "shipping": {
-      "title": "Verzendgegevens",
+      "title": "Bezorgadres",
       "streetAddress": "Straatnaam",
       "apartment": "Appartement, Verdieping, enz.",
       "city": "Stad",
@@ -299,8 +312,8 @@
         "AU": "Australië",
         "OTHER": "Ander Internationaal"
       },
-      "secureShipping": "Veilige FedEx verzending met handtekeningbevestiging",
-      "fullInsurance": "Volledige verzekering inbegrepen (€{amount})",
+      "secureShipping": "Deur-tot-deur levering met handtekeningbevestiging",
+      "fullInsurance": "Levering & verzekering inbegrepen in de prijs",
       "professionalPackaging": "Professionele verpakking met klimaatbescherming"
     },
     "message": {
@@ -311,9 +324,9 @@
     "summary": {
       "title": "Besteloverzicht",
       "subtotal": "Subtotaal",
-      "shipping": "Verzending ({region})",
-      "insurance": "Verzekering (2%)",
-      "total": "Totaal"
+      "total": "Totaal",
+      "deliveryIncluded": "Deur-tot-deur levering & verzekering",
+      "included": "Inbegrepen"
     },
     "submitInquiry": "Aanvraag Indienen",
     "payment": "Betaling",

@@ -67,8 +67,8 @@
         "answer": "You can browse our available instruments in the Shop section. Each instrument page has detailed information, photos, and audio samples. To purchase, simply add the instrument to your cart and proceed to checkout, or contact us directly for a personalized consultation."
       },
       "shipping": {
-        "question": "Do you ship internationally?",
-        "answer": "Yes, we ship worldwide! We have experience shipping to clients in France, Belgium, Spain, Germany, Japan, Taiwan, and many other countries. All instruments are professionally packed and fully insured during transport."
+        "question": "How does delivery work?",
+        "answer": "Delivery and insurance are included in the price. We offer door-to-door service: your instrument is picked up from our atelier in Reghin and delivered directly to your address. Depending on your location, delivery may be via air cargo or ground transport. We've successfully delivered to clients in France, Belgium, Spain, Germany, Japan, Taiwan, and many other countries worldwide. Every instrument is professionally packed with climate protection and fully insured throughout the journey."
       },
       "returns": {
         "question": "What is your return policy?",
@@ -91,8 +91,8 @@
         "answer": "We accept major credit cards (Visa, Mastercard, American Express) through our secure Stripe payment system. For larger purchases, we can also arrange bank transfers or payment plans."
       },
       "packaging": {
-        "question": "How are instruments packaged for shipping?",
-        "answer": "Each instrument is carefully wrapped in protective materials, placed in a hard case (included with purchase), and then packed in a custom shipping box with additional padding. We use climate-controlled shipping when possible."
+        "question": "How are instruments packaged for delivery?",
+        "answer": "Each instrument is carefully wrapped in protective materials, placed in a hard case (included with purchase), and then packed in a custom shipping box with additional padding. We use climate-controlled packaging to protect your instrument throughout its journey from our atelier to your door."
       }
     }
   },
@@ -201,7 +201,7 @@
   "gallery": {
     "badge": "Available for Purchase",
     "title": "Instrument Shop",
-    "description": "Browse our current inventory of handcrafted instruments. Each piece is available for purchase and ready to ship. Click any instrument to view full details, hear sound samples, and complete your purchase.",
+    "description": "Browse our current inventory of handcrafted instruments. Each piece is available for purchase with door-to-door delivery and insurance included. Click any instrument to view full details, hear sound samples, and complete your purchase.",
     "noResults": "No instruments match your filters",
     "adjustFilters": "Try adjusting your selection or view all instruments",
     "filters": {
@@ -235,7 +235,7 @@
     "bodyLength": "Body Length",
     "stringVibration": "String Vibration Length",
     "crafted": "Crafted {year}",
-    "checkoutNote": "Secure checkout with insured FedEx delivery. Each instrument is a significant investment and includes full documentation.",
+    "checkoutNote": "Secure checkout with door-to-door delivery and full insurance included. Each instrument is carefully packaged at our atelier and delivered directly to your address.",
     "inBuildNote": "This instrument is currently being crafted. Contact us to reserve it or get updates on completion.",
     "soldNote": "This instrument has been {status}. Contact us to commission a similar piece.",
     "lowStock": "Only {count} left in stock",
@@ -251,9 +251,9 @@
     "checkout": "Proceed to Checkout",
     "continueShopping": "Continue Shopping",
     "remove": "Remove",
-    "fullyInsured": "Fully insured delivery",
-    "secureShipping": "Secure shipping via FedEx",
-    "professionalPackaging": "Professional packaging",
+    "fullyInsured": "Delivery & insurance included in price",
+    "secureShipping": "Door-to-door service from our atelier",
+    "professionalPackaging": "Professional packaging with climate protection",
     "assistanceNote": "Need assistance? Contact us for a personal consultation"
   },
   "checkout": {
@@ -282,8 +282,21 @@
       "email": "Email Address",
       "phone": "Phone Number"
     },
+    "deliveryMethod": {
+      "title": "How would you like to receive your instrument?",
+      "delivery": "Door-to-Door Delivery",
+      "deliveryDesc": "Your instrument is picked up from our atelier and delivered directly to your address. Delivery & insurance included in price.",
+      "pickup": "Pickup from Atelier (Reghin, Romania)",
+      "pickupDesc": "Visit our workshop in person to collect your instrument. Meet the luthier and see where your instrument was crafted."
+    },
+    "pickup": {
+      "title": "Pickup Location",
+      "note": "After your purchase, we'll contact you to schedule a convenient pickup time. Pickup is available Monday–Friday, 9:00 AM – 5:00 PM.",
+      "fromAtelier": "Pickup from Atelier",
+      "free": "Free"
+    },
     "shipping": {
-      "title": "Shipping Information",
+      "title": "Delivery Address",
       "streetAddress": "Street Address",
       "apartment": "Apartment, Suite, etc.",
       "city": "City",
@@ -299,8 +312,8 @@
         "AU": "Australia",
         "OTHER": "Other International"
       },
-      "secureShipping": "Secure FedEx shipping with signature confirmation",
-      "fullInsurance": "Full insurance coverage included (€{amount})",
+      "secureShipping": "Door-to-door delivery with signature confirmation",
+      "fullInsurance": "Delivery & insurance included in price",
       "professionalPackaging": "Professional packaging with climate protection"
     },
     "message": {
@@ -311,9 +324,9 @@
     "summary": {
       "title": "Order Summary",
       "subtotal": "Subtotal",
-      "shipping": "Shipping ({region})",
-      "insurance": "Insurance (2%)",
-      "total": "Total"
+      "total": "Total",
+      "deliveryIncluded": "Door-to-door delivery & insurance",
+      "included": "Included"
     },
     "submitInquiry": "Submit Inquiry",
     "payment": "Payment",
@@ -345,12 +358,12 @@
     },
     "order": {
       "title": "Order Confirmed!",
-      "subtitle": "Thank you for your purchase. Your handcrafted instrument is being prepared for shipment.",
+      "subtitle": "Thank you for your purchase. Your handcrafted instrument is being prepared at our atelier.",
       "orderNumber": "Order Number",
       "confirmationEmail": "Confirmation Email",
-      "confirmationEmailDesc": "We've sent a confirmation email with your order details and tracking information.",
-      "shippingTracking": "Shipping & Tracking",
-      "shippingTrackingDesc": "Your instrument will be carefully packaged and shipped via FedEx with full insurance. You'll receive tracking details within 1-2 business days.",
+      "confirmationEmailDesc": "We've sent a confirmation email with your order details.",
+      "shippingTracking": "Delivery & Tracking",
+      "shippingTrackingDesc": "Your instrument will be carefully packaged at our atelier and delivered door-to-door to your address. Delivery and full insurance are included. You'll receive tracking details once your instrument is on its way.",
       "questionsAboutOrder": "Questions about your order?"
     },
     "continueShopping": "Continue Shopping",

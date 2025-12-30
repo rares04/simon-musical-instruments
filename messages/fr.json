@@ -67,8 +67,8 @@
         "answer": "Vous pouvez parcourir nos instruments disponibles dans la section Boutique. Chaque page d'instrument contient des informations détaillées, des photos et des échantillons audio. Pour acheter, ajoutez simplement l'instrument à votre panier et procédez au paiement, ou contactez-nous directement pour une consultation personnalisée."
       },
       "shipping": {
-        "question": "Expédiez-vous à l'international?",
-        "answer": "Oui, nous expédions dans le monde entier! Nous avons de l'expérience dans l'expédition vers des clients en France, Belgique, Espagne, Allemagne, Japon, Taiwan et dans de nombreux autres pays. Tous les instruments sont emballés professionnellement et entièrement assurés pendant le transport."
+        "question": "Comment fonctionne la livraison?",
+        "answer": "La livraison et l'assurance sont incluses dans le prix. Nous offrons un service de porte à porte: votre instrument est récupéré dans notre atelier à Reghin et livré directement à votre adresse. Selon votre emplacement, la livraison peut se faire par fret aérien ou transport terrestre. Nous avons livré avec succès à des clients en France, Belgique, Espagne, Allemagne, Japon, Taiwan et dans de nombreux autres pays du monde. Chaque instrument est emballé professionnellement avec protection climatique et entièrement assuré tout au long du voyage."
       },
       "returns": {
         "question": "Quelle est votre politique de retour?",
@@ -91,8 +91,8 @@
         "answer": "Nous acceptons les principales cartes de crédit (Visa, Mastercard, American Express) via notre système de paiement sécurisé Stripe. Pour les achats plus importants, nous pouvons également organiser des virements bancaires ou des plans de paiement."
       },
       "packaging": {
-        "question": "Comment les instruments sont-ils emballés pour l'expédition?",
-        "answer": "Chaque instrument est soigneusement enveloppé dans des matériaux de protection, placé dans un étui rigide (inclus avec l'achat), puis emballé dans une boîte d'expédition personnalisée avec un rembourrage supplémentaire. Nous utilisons l'expédition à température contrôlée lorsque c'est possible."
+        "question": "Comment les instruments sont-ils emballés pour la livraison?",
+        "answer": "Chaque instrument est soigneusement enveloppé dans des matériaux de protection, placé dans un étui rigide (inclus avec l'achat), puis emballé dans une boîte d'expédition personnalisée avec un rembourrage supplémentaire. Nous utilisons un emballage à température contrôlée pour protéger votre instrument tout au long de son voyage de notre atelier à votre porte."
       }
     }
   },
@@ -201,7 +201,7 @@
   "gallery": {
     "badge": "Disponible à l'Achat",
     "title": "Boutique d'Instruments",
-    "description": "Parcourez notre inventaire actuel d'instruments fabriqués à la main. Chaque pièce est disponible à l'achat et prête à être expédiée. Cliquez sur n'importe quel instrument pour voir tous les détails, écouter des échantillons sonores et finaliser votre achat.",
+    "description": "Parcourez notre inventaire actuel d'instruments fabriqués à la main. Chaque pièce est disponible à l'achat avec livraison porte à porte et assurance incluses. Cliquez sur n'importe quel instrument pour voir tous les détails, écouter des échantillons sonores et finaliser votre achat.",
     "noResults": "Aucun instrument ne correspond à vos filtres",
     "adjustFilters": "Essayez d'ajuster votre sélection ou voir tous les instruments",
     "filters": {
@@ -235,7 +235,7 @@
     "bodyLength": "Longueur du Corps",
     "stringVibration": "Longueur de Corde Vibrante",
     "crafted": "Fabriqué en {year}",
-    "checkoutNote": "Commande sécurisée avec livraison FedEx assurée. Chaque instrument est un investissement significatif et inclut une documentation complète.",
+    "checkoutNote": "Commande sécurisée avec livraison porte à porte et assurance complète incluses. Chaque instrument est soigneusement emballé dans notre atelier et livré directement à votre adresse.",
     "inBuildNote": "Cet instrument est actuellement en cours de fabrication. Contactez-nous pour le réserver ou obtenir des mises à jour sur l'achèvement.",
     "soldNote": "Cet instrument a été {status}. Contactez-nous pour commander une pièce similaire.",
     "lowStock": "Seulement {count} en stock",
@@ -251,9 +251,9 @@
     "checkout": "Passer à la Caisse",
     "continueShopping": "Continuer les Achats",
     "remove": "Supprimer",
-    "fullyInsured": "Livraison entièrement assurée",
-    "secureShipping": "Expédition sécurisée via FedEx",
-    "professionalPackaging": "Emballage professionnel",
+    "fullyInsured": "Livraison & assurance incluses dans le prix",
+    "secureShipping": "Service de porte à porte depuis notre atelier",
+    "professionalPackaging": "Emballage professionnel avec protection climatique",
     "assistanceNote": "Besoin d'aide? Contactez-nous pour une consultation personnelle"
   },
   "checkout": {
@@ -282,8 +282,21 @@
       "email": "Adresse E-mail",
       "phone": "Numéro de Téléphone"
     },
+    "deliveryMethod": {
+      "title": "Comment souhaitez-vous recevoir votre instrument ?",
+      "delivery": "Livraison Porte à Porte",
+      "deliveryDesc": "Votre instrument est récupéré dans notre atelier et livré directement à votre adresse. Livraison & assurance incluses dans le prix.",
+      "pickup": "Retrait à l'Atelier (Reghin, Roumanie)",
+      "pickupDesc": "Visitez notre atelier en personne pour récupérer votre instrument. Rencontrez le luthier et découvrez où votre instrument a été fabriqué."
+    },
+    "pickup": {
+      "title": "Lieu de Retrait",
+      "note": "Après votre achat, nous vous contacterons pour planifier un créneau de retrait qui vous convient. Le retrait est disponible du lundi au vendredi, de 9h00 à 17h00.",
+      "fromAtelier": "Retrait à l'Atelier",
+      "free": "Gratuit"
+    },
     "shipping": {
-      "title": "Informations de Livraison",
+      "title": "Adresse de Livraison",
       "streetAddress": "Adresse de la Rue",
       "apartment": "Appartement, Étage, etc.",
       "city": "Ville",
@@ -299,8 +312,8 @@
         "AU": "Australie",
         "OTHER": "Autre International"
       },
-      "secureShipping": "Expédition FedEx sécurisée avec confirmation de signature",
-      "fullInsurance": "Assurance complète incluse (€{amount})",
+      "secureShipping": "Livraison porte à porte avec confirmation de signature",
+      "fullInsurance": "Livraison & assurance incluses dans le prix",
       "professionalPackaging": "Emballage professionnel avec protection climatique"
     },
     "message": {
@@ -311,9 +324,9 @@
     "summary": {
       "title": "Résumé de la Commande",
       "subtotal": "Sous-total",
-      "shipping": "Livraison ({region})",
-      "insurance": "Assurance (2%)",
-      "total": "Total"
+      "total": "Total",
+      "deliveryIncluded": "Livraison porte à porte & assurance",
+      "included": "Inclus"
     },
     "submitInquiry": "Soumettre la Demande",
     "payment": "Paiement",
@@ -345,12 +358,12 @@
     },
     "order": {
       "title": "Commande Confirmée!",
-      "subtitle": "Merci pour votre achat. Votre instrument artisanal est en cours de préparation pour l'expédition.",
+      "subtitle": "Merci pour votre achat. Votre instrument artisanal est en cours de préparation dans notre atelier.",
       "orderNumber": "Numéro de Commande",
       "confirmationEmail": "E-mail de Confirmation",
-      "confirmationEmailDesc": "Nous vous avons envoyé un e-mail de confirmation avec les détails de votre commande et les informations de suivi.",
-      "shippingTracking": "Expédition et Suivi",
-      "shippingTrackingDesc": "Votre instrument sera soigneusement emballé et expédié via FedEx avec une assurance complète. Vous recevrez les détails de suivi dans un délai de 1-2 jours ouvrables.",
+      "confirmationEmailDesc": "Nous vous avons envoyé un e-mail de confirmation avec les détails de votre commande.",
+      "shippingTracking": "Livraison et Suivi",
+      "shippingTrackingDesc": "Votre instrument sera soigneusement emballé dans notre atelier et livré porte à porte à votre adresse. La livraison et l'assurance complète sont incluses. Vous recevrez les détails de suivi lorsque votre instrument sera en route.",
       "questionsAboutOrder": "Questions sur votre commande?"
     },
     "continueShopping": "Continuer les Achats",

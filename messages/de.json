@@ -67,8 +67,8 @@
         "answer": "Sie können unsere verfügbaren Instrumente im Shop-Bereich durchstöbern. Jede Instrumentenseite enthält detaillierte Informationen, Fotos und Audiobeispiele. Um zu kaufen, fügen Sie das Instrument einfach in den Warenkorb und gehen Sie zur Kasse, oder kontaktieren Sie uns direkt für eine persönliche Beratung."
       },
       "shipping": {
-        "question": "Versenden Sie international?",
-        "answer": "Ja, wir versenden weltweit! Wir haben Erfahrung im Versand an Kunden in Frankreich, Belgien, Spanien, Deutschland, Japan, Taiwan und vielen anderen Ländern. Alle Instrumente werden professionell verpackt und während des Transports vollständig versichert."
+        "question": "Wie funktioniert die Lieferung?",
+        "answer": "Lieferung und Versicherung sind im Preis enthalten. Wir bieten einen Tür-zu-Tür-Service: Ihr Instrument wird in unserem Atelier in Reghin abgeholt und direkt an Ihre Adresse geliefert. Je nach Standort erfolgt die Lieferung per Luftfracht oder Landtransport. Wir haben erfolgreich an Kunden in Frankreich, Belgien, Spanien, Deutschland, Japan, Taiwan und viele andere Länder weltweit geliefert. Jedes Instrument wird professionell mit Klimaschutz verpackt und während der gesamten Reise vollständig versichert."
       },
       "returns": {
         "question": "Wie ist Ihre Rückgaberichtlinie?",
@@ -91,8 +91,8 @@
         "answer": "Wir akzeptieren gängige Kreditkarten (Visa, Mastercard, American Express) über unser sicheres Stripe-Zahlungssystem. Für größere Einkäufe können wir auch Banküberweisungen oder Ratenzahlungen arrangieren."
       },
       "packaging": {
-        "question": "Wie werden Instrumente für den Versand verpackt?",
-        "answer": "Jedes Instrument wird sorgfältig in Schutzmaterialien eingewickelt, in einem Hartkoffer (im Kauf enthalten) platziert und dann in einem speziellen Versandkarton mit zusätzlicher Polsterung verpackt. Wir verwenden klimakontrollierten Versand, wenn möglich."
+        "question": "Wie werden Instrumente für die Lieferung verpackt?",
+        "answer": "Jedes Instrument wird sorgfältig in Schutzmaterialien eingewickelt, in einem Hartkoffer (im Kauf enthalten) platziert und dann in einem speziellen Versandkarton mit zusätzlicher Polsterung verpackt. Wir verwenden klimakontrollierte Verpackung, um Ihr Instrument während der gesamten Reise von unserem Atelier bis zu Ihrer Tür zu schützen."
       }
     }
   },
@@ -201,7 +201,7 @@
   "gallery": {
     "badge": "Zum Kauf Verfügbar",
     "title": "Instrumentenshop",
-    "description": "Durchstöbern Sie unser aktuelles Angebot an handgefertigten Instrumenten. Jedes Stück ist zum Kauf verfügbar und versandbereit. Klicken Sie auf ein Instrument, um vollständige Details anzuzeigen, Klangproben zu hören und Ihren Kauf abzuschließen.",
+    "description": "Durchstöbern Sie unser aktuelles Angebot an handgefertigten Instrumenten. Jedes Stück ist zum Kauf verfügbar mit Tür-zu-Tür-Lieferung und Versicherung inklusive. Klicken Sie auf ein Instrument, um vollständige Details anzuzeigen, Klangproben zu hören und Ihren Kauf abzuschließen.",
     "noResults": "Keine Instrumente entsprechen Ihren Filtern",
     "adjustFilters": "Versuchen Sie, Ihre Auswahl anzupassen oder alle Instrumente anzuzeigen",
     "filters": {
@@ -235,7 +235,7 @@
     "bodyLength": "Korpuslänge",
     "stringVibration": "Schwingende Saitenlänge",
     "crafted": "Gefertigt {year}",
-    "checkoutNote": "Sichere Kasse mit versicherter FedEx-Lieferung. Jedes Instrument ist eine bedeutende Investition und beinhaltet vollständige Dokumentation.",
+    "checkoutNote": "Sichere Kasse mit Tür-zu-Tür-Lieferung und vollständiger Versicherung inklusive. Jedes Instrument wird sorgfältig in unserem Atelier verpackt und direkt an Ihre Adresse geliefert.",
     "inBuildNote": "Dieses Instrument wird derzeit gefertigt. Kontaktieren Sie uns, um es zu reservieren oder Updates zur Fertigstellung zu erhalten.",
     "soldNote": "Dieses Instrument wurde {status}. Kontaktieren Sie uns, um ein ähnliches Stück in Auftrag zu geben.",
     "lowStock": "Nur noch {count} auf Lager",
@@ -251,9 +251,9 @@
     "checkout": "Zur Kasse",
     "continueShopping": "Weiter Einkaufen",
     "remove": "Entfernen",
-    "fullyInsured": "Vollständig versicherte Lieferung",
-    "secureShipping": "Sicherer Versand über FedEx",
-    "professionalPackaging": "Professionelle Verpackung",
+    "fullyInsured": "Lieferung & Versicherung im Preis enthalten",
+    "secureShipping": "Tür-zu-Tür-Service aus unserem Atelier",
+    "professionalPackaging": "Professionelle Verpackung mit Klimaschutz",
     "assistanceNote": "Benötigen Sie Hilfe? Kontaktieren Sie uns für eine persönliche Beratung"
   },
   "checkout": {
@@ -282,8 +282,21 @@
       "email": "E-Mail-Adresse",
       "phone": "Telefonnummer"
     },
+    "deliveryMethod": {
+      "title": "Wie möchten Sie Ihr Instrument erhalten?",
+      "delivery": "Tür-zu-Tür-Lieferung",
+      "deliveryDesc": "Ihr Instrument wird in unserem Atelier abgeholt und direkt an Ihre Adresse geliefert. Lieferung & Versicherung im Preis enthalten.",
+      "pickup": "Abholung im Atelier (Reghin, Rumänien)",
+      "pickupDesc": "Besuchen Sie unsere Werkstatt persönlich, um Ihr Instrument abzuholen. Treffen Sie den Geigenbauer und sehen Sie, wo Ihr Instrument gefertigt wurde."
+    },
+    "pickup": {
+      "title": "Abholort",
+      "note": "Nach Ihrem Kauf werden wir Sie kontaktieren, um einen passenden Abholtermin zu vereinbaren. Abholung ist verfügbar Montag–Freitag, 9:00 – 17:00 Uhr.",
+      "fromAtelier": "Abholung im Atelier",
+      "free": "Kostenlos"
+    },
     "shipping": {
-      "title": "Versandinformationen",
+      "title": "Lieferadresse",
       "streetAddress": "Straßenadresse",
       "apartment": "Wohnung, Etage, usw.",
       "city": "Stadt",
@@ -299,8 +312,8 @@
         "AU": "Australien",
         "OTHER": "Andere International"
       },
-      "secureShipping": "Sicherer FedEx-Versand mit Unterschriftsbestätigung",
-      "fullInsurance": "Vollständige Versicherung enthalten (€{amount})",
+      "secureShipping": "Tür-zu-Tür-Lieferung mit Unterschriftsbestätigung",
+      "fullInsurance": "Lieferung & Versicherung im Preis enthalten",
       "professionalPackaging": "Professionelle Verpackung mit Klimaschutz"
     },
     "message": {
@@ -311,9 +324,9 @@
     "summary": {
       "title": "Bestellübersicht",
       "subtotal": "Zwischensumme",
-      "shipping": "Versand ({region})",
-      "insurance": "Versicherung (2%)",
-      "total": "Gesamt"
+      "total": "Gesamt",
+      "deliveryIncluded": "Tür-zu-Tür-Lieferung & Versicherung",
+      "included": "Inklusive"
     },
     "submitInquiry": "Anfrage Senden",
     "payment": "Zahlung",
@@ -345,12 +358,12 @@
     },
     "order": {
       "title": "Bestellung Bestätigt!",
-      "subtitle": "Vielen Dank für Ihren Kauf. Ihr handgefertigtes Instrument wird für den Versand vorbereitet.",
+      "subtitle": "Vielen Dank für Ihren Kauf. Ihr handgefertigtes Instrument wird in unserem Atelier vorbereitet.",
       "orderNumber": "Bestellnummer",
       "confirmationEmail": "Bestätigungs-E-Mail",
-      "confirmationEmailDesc": "Wir haben Ihnen eine Bestätigungs-E-Mail mit Ihren Bestelldetails und Tracking-Informationen gesendet.",
-      "shippingTracking": "Versand & Tracking",
-      "shippingTrackingDesc": "Ihr Instrument wird sorgfältig verpackt und über FedEx mit vollständiger Versicherung versandt. Sie erhalten Tracking-Details innerhalb von 1-2 Werktagen.",
+      "confirmationEmailDesc": "Wir haben Ihnen eine Bestätigungs-E-Mail mit Ihren Bestelldetails gesendet.",
+      "shippingTracking": "Lieferung & Tracking",
+      "shippingTrackingDesc": "Ihr Instrument wird sorgfältig in unserem Atelier verpackt und direkt zu Ihrer Adresse geliefert. Lieferung und vollständige Versicherung sind inklusive. Sie erhalten Tracking-Details, sobald Ihr Instrument unterwegs ist.",
       "questionsAboutOrder": "Fragen zu Ihrer Bestellung?"
     },
     "continueShopping": "Weiter Einkaufen",

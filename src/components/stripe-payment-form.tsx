@@ -7,8 +7,9 @@ import { Elements, PaymentElement, useStripe, useElements } from '@stripe/react-
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
+import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group'
 import Image from 'next/image'
-import { Shield, Package, Truck, Mail, Phone, Loader2 } from 'lucide-react'
+import { Shield, Package, Truck, Mail, Phone, Loader2, MapPin } from 'lucide-react'
 import type { CartItem } from '@/lib/cart-context'
 
 // Initialize Stripe
@@ -31,6 +32,7 @@ interface StripePaymentFormProps {
     state: string
     zip: string
     country: string
+    deliveryMethod: 'delivery' | 'pickup'
   }
   onInputChange: (field: string, value: string) => void
   isProcessing: boolean
@@ -64,18 +66,15 @@ function CheckoutForm({
     setErrorMessage('')
 
     try {
-      // Validate form data
-      const requiredFields = [
-        'firstName',
-        'lastName',
-        'email',
-        'phone',
-        'address',
-        'city',
-        'state',
-        'zip',
-        'country',
-      ]
+      // Validate form data - address fields only required for delivery
+      const baseRequiredFields = ['firstName', 'lastName', 'email', 'phone']
+      const addressFields = ['address', 'city', 'state', 'zip', 'country']
+
+      const requiredFields =
+        formData.deliveryMethod === 'pickup'
+          ? baseRequiredFields
+          : [...baseRequiredFields, ...addressFields]
+
       const missingFields = requiredFields.filter(
         (field) => !formData[field as keyof typeof formData],
       )
@@ -87,24 +86,42 @@ function CheckoutForm({
       }
 
       // Confirm payment with Stripe
+      const billingDetails: {
+        name: string
+        email: string
+        phone: string
+        address?: {
+          line1: string
+          line2?: string
+          city: string
+          state: string
+          postal_code: string
+          country: string
+        }
+      } = {
+        name: `${formData.firstName} ${formData.lastName}`,
+        email: formData.email,
+        phone: formData.phone,
+      }
+
+      // Only include address for delivery orders
+      if (formData.deliveryMethod === 'delivery') {
+        billingDetails.address = {
+          line1: formData.address,
+          line2: formData.address2 || undefined,
+          city: formData.city,
+          state: formData.state,
+          postal_code: formData.zip,
+          country: formData.country,
+        }
+      }
+
       const { error } = await stripe.confirmPayment({
         elements,
         confirmParams: {
           return_url: `${window.location.origin}/checkout/success`,
           payment_method_data: {
-            billing_details: {
-              name: `${formData.firstName} ${formData.lastName}`,
-              email: formData.email,
-              phone: formData.phone,
-              address: {
-                line1: formData.address,
-                line2: formData.address2 || undefined,
-                city: formData.city,
-                state: formData.state,
-                postal_code: formData.zip,
-                country: formData.country,
-              },
-            },
+            billing_details: billingDetails,
           },
         },
       })
@@ -177,107 +194,184 @@ function CheckoutForm({
             </div>
           </section>
 
-          {/* Shipping Information */}
+          {/* Delivery Method */}
           <section className="bg-card border border-border rounded-lg p-6">
             <h2 className="font-serif text-xl font-semibold text-foreground mb-6">
-              Shipping Information
+              How would you like to receive your instrument?
             </h2>
-            <div className="space-y-4">
-              <div>
-                <Label htmlFor="address">Street Address *</Label>
-                <Input
-                  id="address"
-                  required
-                  value={formData.address}
-                  onChange={(e) => onInputChange('address', e.target.value)}
-                  className="mt-1.5"
-                />
+            <RadioGroup
+              value={formData.deliveryMethod}
+              onValueChange={(value) => onInputChange('deliveryMethod', value)}
+              className="space-y-3"
+            >
+              <div
+                className={`flex items-start space-x-3 p-4 border rounded-lg transition-colors cursor-pointer ${formData.deliveryMethod === 'delivery' ? 'border-accent bg-accent/5' : 'border-border hover:border-accent/50'}`}
+              >
+                <RadioGroupItem value="delivery" id="delivery" className="mt-1 cursor-pointer" />
+                <Label htmlFor="delivery" className="flex-1 cursor-pointer">
+                  <div className="flex items-center gap-2">
+                    <Truck className="h-4 w-4 text-accent" />
+                    <span className="font-semibold text-foreground">Door-to-Door Delivery</span>
+                  </div>
+                  <p className="text-sm text-muted-foreground mt-1">
+                    Your instrument is picked up from our atelier and delivered directly to your
+                    address. Delivery & insurance included in price.
+                  </p>
+                </Label>
               </div>
-              <div>
-                <Label htmlFor="address2">Apartment, Suite, etc.</Label>
-                <Input
-                  id="address2"
-                  value={formData.address2}
-                  onChange={(e) => onInputChange('address2', e.target.value)}
-                  className="mt-1.5"
-                />
+              <div
+                className={`flex items-start space-x-3 p-4 border rounded-lg transition-colors cursor-pointer ${formData.deliveryMethod === 'pickup' ? 'border-accent bg-accent/5' : 'border-border hover:border-accent/50'}`}
+              >
+                <RadioGroupItem value="pickup" id="pickup" className="mt-1 cursor-pointer" />
+                <Label htmlFor="pickup" className="flex-1 cursor-pointer">
+                  <div className="flex items-center gap-2">
+                    <MapPin className="h-4 w-4 text-accent" />
+                    <span className="font-semibold text-foreground">
+                      Pickup from Atelier (Reghin, Romania)
+                    </span>
+                  </div>
+                  <p className="text-sm text-muted-foreground mt-1">
+                    Visit our workshop in person to collect your instrument. Meet the luthier and
+                    see where your instrument was crafted.
+                  </p>
+                </Label>
               </div>
-              <div className="grid sm:grid-cols-2 gap-4">
-                <div>
-                  <Label htmlFor="city">City *</Label>
-                  <Input
-                    id="city"
-                    required
-                    value={formData.city}
-                    onChange={(e) => onInputChange('city', e.target.value)}
-                    className="mt-1.5"
-                  />
-                </div>
-                <div>
-                  <Label htmlFor="state">State/Province *</Label>
-                  <Input
-                    id="state"
-                    required
-                    value={formData.state}
-                    onChange={(e) => onInputChange('state', e.target.value)}
-                    className="mt-1.5"
-                  />
-                </div>
-              </div>
-              <div className="grid sm:grid-cols-2 gap-4">
-                <div>
-                  <Label htmlFor="zip">Postal Code *</Label>
-                  <Input
-                    id="zip"
-                    required
-                    value={formData.zip}
-                    onChange={(e) => onInputChange('zip', e.target.value)}
-                    className="mt-1.5"
-                  />
-                </div>
-                <div>
-                  <Label htmlFor="country">Country *</Label>
-                  <select
-                    id="country"
-                    required
-                    value={formData.country}
-                    onChange={(e) => onInputChange('country', e.target.value)}
-                    className="mt-1.5 flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-1 text-base shadow-sm transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring cursor-pointer"
-                  >
-                    <option value="RO">Romania</option>
-                    <option value="EU">European Union</option>
-                    <option value="UK">United Kingdom</option>
-                    <option value="US">United States</option>
-                    <option value="CA">Canada</option>
-                    <option value="AU">Australia</option>
-                    <option value="OTHER">Other International</option>
-                  </select>
-                </div>
-              </div>
-
-              {/* Shipping Details */}
-              <div className="pt-4 border-t border-border space-y-3">
-                <div className="flex items-center gap-3 text-sm">
-                  <Truck className="h-4 w-4 text-accent flex-shrink-0" />
-                  <span className="text-muted-foreground">
-                    Secure FedEx shipping with signature confirmation
-                  </span>
-                </div>
-                <div className="flex items-center gap-3 text-sm">
-                  <Shield className="h-4 w-4 text-accent flex-shrink-0" />
-                  <span className="text-muted-foreground">
-                    Full insurance coverage included (€{insurance.toLocaleString()})
-                  </span>
-                </div>
-                <div className="flex items-center gap-3 text-sm">
-                  <Package className="h-4 w-4 text-accent flex-shrink-0" />
-                  <span className="text-muted-foreground">
-                    Professional packaging with climate protection
-                  </span>
-                </div>
-              </div>
-            </div>
+            </RadioGroup>
           </section>
+
+          {/* Pickup Information (shown when pickup selected) */}
+          {formData.deliveryMethod === 'pickup' && (
+            <section className="bg-accent/5 border border-accent/20 rounded-lg p-6">
+              <h2 className="font-serif text-xl font-semibold text-foreground mb-4">
+                Pickup Location
+              </h2>
+              <div className="space-y-4">
+                <div className="flex items-start gap-3">
+                  <MapPin className="h-5 w-5 text-accent flex-shrink-0 mt-0.5" />
+                  <div>
+                    <p className="font-medium text-foreground">Simon Musical Instruments</p>
+                    <p className="text-sm text-muted-foreground">
+                      Str. Castelului 112
+                      <br />
+                      Reghin 545300, Mureș County
+                      <br />
+                      Romania
+                    </p>
+                  </div>
+                </div>
+                <div className="pt-4 border-t border-accent/20">
+                  <p className="text-sm text-muted-foreground">
+                    After your purchase, we&apos;ll contact you to schedule a convenient pickup
+                    time. Pickup is available Monday–Friday, 9:00 AM – 5:00 PM.
+                  </p>
+                </div>
+              </div>
+            </section>
+          )}
+
+          {/* Delivery Address (shown when delivery selected) */}
+          {formData.deliveryMethod === 'delivery' && (
+            <section className="bg-card border border-border rounded-lg p-6">
+              <h2 className="font-serif text-xl font-semibold text-foreground mb-6">
+                Delivery Address
+              </h2>
+              <div className="space-y-4">
+                <div>
+                  <Label htmlFor="address">Street Address *</Label>
+                  <Input
+                    id="address"
+                    required
+                    value={formData.address}
+                    onChange={(e) => onInputChange('address', e.target.value)}
+                    className="mt-1.5"
+                  />
+                </div>
+                <div>
+                  <Label htmlFor="address2">Apartment, Suite, etc.</Label>
+                  <Input
+                    id="address2"
+                    value={formData.address2}
+                    onChange={(e) => onInputChange('address2', e.target.value)}
+                    className="mt-1.5"
+                  />
+                </div>
+                <div className="grid sm:grid-cols-2 gap-4">
+                  <div>
+                    <Label htmlFor="city">City *</Label>
+                    <Input
+                      id="city"
+                      required
+                      value={formData.city}
+                      onChange={(e) => onInputChange('city', e.target.value)}
+                      className="mt-1.5"
+                    />
+                  </div>
+                  <div>
+                    <Label htmlFor="state">State/Province *</Label>
+                    <Input
+                      id="state"
+                      required
+                      value={formData.state}
+                      onChange={(e) => onInputChange('state', e.target.value)}
+                      className="mt-1.5"
+                    />
+                  </div>
+                </div>
+                <div className="grid sm:grid-cols-2 gap-4">
+                  <div>
+                    <Label htmlFor="zip">Postal Code *</Label>
+                    <Input
+                      id="zip"
+                      required
+                      value={formData.zip}
+                      onChange={(e) => onInputChange('zip', e.target.value)}
+                      className="mt-1.5"
+                    />
+                  </div>
+                  <div>
+                    <Label htmlFor="country">Country *</Label>
+                    <select
+                      id="country"
+                      required
+                      value={formData.country}
+                      onChange={(e) => onInputChange('country', e.target.value)}
+                      className="mt-1.5 flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-1 text-base shadow-sm transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring cursor-pointer"
+                    >
+                      <option value="RO">Romania</option>
+                      <option value="EU">European Union</option>
+                      <option value="UK">United Kingdom</option>
+                      <option value="US">United States</option>
+                      <option value="CA">Canada</option>
+                      <option value="AU">Australia</option>
+                      <option value="OTHER">Other International</option>
+                    </select>
+                  </div>
+                </div>
+
+                {/* Delivery Details */}
+                <div className="pt-4 border-t border-border space-y-3">
+                  <div className="flex items-center gap-3 text-sm">
+                    <Truck className="h-4 w-4 text-accent flex-shrink-0" />
+                    <span className="text-muted-foreground">
+                      Door-to-door delivery with signature confirmation
+                    </span>
+                  </div>
+                  <div className="flex items-center gap-3 text-sm">
+                    <Shield className="h-4 w-4 text-accent flex-shrink-0" />
+                    <span className="text-muted-foreground">
+                      Delivery & insurance included in price
+                    </span>
+                  </div>
+                  <div className="flex items-center gap-3 text-sm">
+                    <Package className="h-4 w-4 text-accent flex-shrink-0" />
+                    <span className="text-muted-foreground">
+                      Professional packaging with climate protection
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </section>
+          )}
 
           {/* Payment Information */}
           <section className="bg-card border border-border rounded-lg p-6">
@@ -334,22 +428,17 @@ function CheckoutForm({
 
             {/* Pricing Breakdown */}
             <div className="space-y-3 pt-4 border-t border-border">
-              <div className="flex justify-between text-sm">
-                <span className="text-muted-foreground">Subtotal</span>
-                <span className="font-medium text-foreground">€{subtotal.toLocaleString()}</span>
-              </div>
-              <div className="flex justify-between text-sm">
-                <span className="text-muted-foreground">
-                  Shipping ({formData.country === 'RO' ? 'Romania' : formData.country})
-                </span>
-                <span className="font-medium text-foreground">
-                  €{shippingCost.toLocaleString()}
-                </span>
-              </div>
-              <div className="flex justify-between text-sm">
-                <span className="text-muted-foreground">Insurance (2%)</span>
-                <span className="font-medium text-foreground">€{insurance.toLocaleString()}</span>
-              </div>
+              {formData.deliveryMethod === 'delivery' ? (
+                <div className="flex justify-between text-sm">
+                  <span className="text-muted-foreground">Door-to-door delivery & insurance</span>
+                  <span className="font-medium text-green-600">Included</span>
+                </div>
+              ) : (
+                <div className="flex justify-between text-sm">
+                  <span className="text-muted-foreground">Pickup from Atelier</span>
+                  <span className="font-medium text-muted-foreground">—</span>
+                </div>
+              )}
               <div className="flex justify-between pt-3 border-t border-border">
                 <span className="font-semibold text-base text-foreground">Total</span>
                 <span className="font-serif text-2xl font-bold text-accent">

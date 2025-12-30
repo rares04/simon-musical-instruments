@@ -67,8 +67,8 @@
         "answer": "Poți răsfoi instrumentele disponibile în secțiunea Magazin. Fiecare pagină de instrument are informații detaliate, fotografii și mostre audio. Pentru a cumpăra, adaugă pur și simplu instrumentul în coș și finalizează comanda, sau contactează-ne direct pentru o consultare personalizată."
       },
       "shipping": {
-        "question": "Expediați internațional?",
-        "answer": "Da, expediăm în întreaga lume! Avem experiență în expedierea către clienți din Franța, Belgia, Spania, Germania, Japonia, Taiwan și multe alte țări. Toate instrumentele sunt ambalate profesional și complet asigurate în timpul transportului."
+        "question": "Cum funcționează livrarea?",
+        "answer": "Livrarea și asigurarea sunt incluse în preț. Oferim serviciu din ușă în ușă: instrumentul tău este preluat de la atelierul nostru din Reghin și livrat direct la adresa ta. În funcție de locație, livrarea poate fi prin cargo aerian sau transport terestru. Am livrat cu succes către clienți din Franța, Belgia, Spania, Germania, Japonia, Taiwan și multe alte țări din întreaga lume. Fiecare instrument este ambalat profesional cu protecție climatică și complet asigurat pe toată durata călătoriei."
       },
       "returns": {
         "question": "Care este politica de retur?",
@@ -91,8 +91,8 @@
         "answer": "Acceptăm carduri de credit principale (Visa, Mastercard, American Express) prin sistemul nostru securizat de plată Stripe. Pentru achiziții mai mari, putem aranja și transferuri bancare sau planuri de plată în rate."
       },
       "packaging": {
-        "question": "Cum sunt ambalate instrumentele pentru expediere?",
-        "answer": "Fiecare instrument este înfășurat cu grijă în materiale de protecție, plasat într-un toc dur (inclus în achiziție), apoi ambalat într-o cutie de expediere personalizată cu căptușeală suplimentară. Folosim transport cu control climatic când este posibil."
+        "question": "Cum sunt ambalate instrumentele pentru livrare?",
+        "answer": "Fiecare instrument este înfășurat cu grijă în materiale de protecție, plasat într-un toc dur (inclus în achiziție), apoi ambalat într-o cutie de expediere personalizată cu căptușeală suplimentară. Folosim ambalaj cu control climatic pentru a proteja instrumentul tău pe toată durata călătoriei de la atelierul nostru până la ușa ta."
       }
     }
   },
@@ -201,7 +201,7 @@
   "gallery": {
     "badge": "Disponibil pentru Achiziție",
     "title": "Magazin de Instrumente",
-    "description": "Răsfoiește inventarul nostru actual de instrumente realizate manual. Fiecare piesă este disponibilă pentru achiziție și gata de expediere. Dă click pe orice instrument pentru a vedea detalii complete, a asculta mostre audio și a finaliza achiziția.",
+    "description": "Răsfoiește inventarul nostru actual de instrumente realizate manual. Fiecare piesă este disponibilă pentru achiziție cu livrare din ușă în ușă și asigurare incluse. Dă click pe orice instrument pentru a vedea detalii complete, a asculta mostre audio și a finaliza achiziția.",
     "noResults": "Niciun instrument nu corespunde filtrelor",
     "adjustFilters": "Încearcă să ajustezi selecția sau vezi toate instrumentele",
     "filters": {
@@ -235,7 +235,7 @@
     "bodyLength": "Lungime Corp",
     "stringVibration": "Lungime Vibrație Coardă",
     "crafted": "Realizat în {year}",
-    "checkoutNote": "Checkout securizat cu livrare FedEx asigurată. Fiecare instrument este o investiție semnificativă și include documentație completă.",
+    "checkoutNote": "Checkout securizat cu livrare din ușă în ușă și asigurare completă incluse. Fiecare instrument este ambalat cu grijă în atelierul nostru și livrat direct la adresa ta.",
     "inBuildNote": "Acest instrument este în construcție. Contactează-ne pentru a-l rezerva sau pentru actualizări despre finalizare.",
     "soldNote": "Acest instrument a fost {status}. Contactează-ne pentru a comanda unul similar.",
     "lowStock": "Doar {count} în stoc",
@@ -251,9 +251,9 @@
     "checkout": "Finalizează Comanda",
     "continueShopping": "Continuă Cumpărăturile",
     "remove": "Elimină",
-    "fullyInsured": "Livrare complet asigurată",
-    "secureShipping": "Expediere securizată prin FedEx",
-    "professionalPackaging": "Ambalaj profesional",
+    "fullyInsured": "Livrare & asigurare incluse în preț",
+    "secureShipping": "Serviciu din ușă în ușă de la atelierul nostru",
+    "professionalPackaging": "Ambalaj profesional cu protecție climatică",
     "assistanceNote": "Ai nevoie de asistență? Contactează-ne pentru o consultare personală"
   },
   "checkout": {
@@ -282,8 +282,21 @@
       "email": "Adresa de Email",
       "phone": "Număr de Telefon"
     },
+    "deliveryMethod": {
+      "title": "Cum doriți să primiți instrumentul?",
+      "delivery": "Livrare din Ușă în Ușă",
+      "deliveryDesc": "Instrumentul tău este preluat de la atelierul nostru și livrat direct la adresa ta. Livrare & asigurare incluse în preț.",
+      "pickup": "Ridicare de la Atelier (Reghin, România)",
+      "pickupDesc": "Vizitează atelierul nostru personal pentru a ridica instrumentul. Întâlnește lutierul și vezi unde a fost creat instrumentul tău."
+    },
+    "pickup": {
+      "title": "Locație de Ridicare",
+      "note": "După achiziție, te vom contacta pentru a programa o oră convenabilă de ridicare. Ridicarea este disponibilă luni–vineri, 9:00 – 17:00.",
+      "fromAtelier": "Ridicare de la Atelier",
+      "free": "Gratuit"
+    },
     "shipping": {
-      "title": "Informații de Livrare",
+      "title": "Adresa de Livrare",
       "streetAddress": "Adresă Stradă",
       "apartment": "Apartament, Etaj, etc.",
       "city": "Oraș",
@@ -299,8 +312,8 @@
         "AU": "Australia",
         "OTHER": "Altă destinație"
       },
-      "secureShipping": "Livrare FedEx securizată cu confirmare de semnătură",
-      "fullInsurance": "Asigurare completă inclusă (€{amount})",
+      "secureShipping": "Livrare din ușă în ușă cu confirmare de semnătură",
+      "fullInsurance": "Livrare & asigurare incluse în preț",
       "professionalPackaging": "Ambalaj profesional cu protecție climatică"
     },
     "message": {
@@ -311,9 +324,9 @@
     "summary": {
       "title": "Sumar Comandă",
       "subtotal": "Subtotal",
-      "shipping": "Livrare ({region})",
-      "insurance": "Asigurare (2%)",
-      "total": "Total"
+      "total": "Total",
+      "deliveryIncluded": "Livrare din ușă în ușă & asigurare",
+      "included": "Inclus"
     },
     "submitInquiry": "Trimite Cererea",
     "payment": "Plată",
@@ -345,12 +358,12 @@
     },
     "order": {
       "title": "Comandă Confirmată!",
-      "subtitle": "Îți mulțumim pentru achiziție. Instrumentul tău realizat manual este pregătit pentru expediere.",
+      "subtitle": "Îți mulțumim pentru achiziție. Instrumentul tău realizat manual este pregătit în atelierul nostru.",
       "orderNumber": "Numărul Comenzii",
       "confirmationEmail": "Email de Confirmare",
-      "confirmationEmailDesc": "Ți-am trimis un email de confirmare cu detaliile comenzii și informațiile de urmărire.",
-      "shippingTracking": "Expediere și Urmărire",
-      "shippingTrackingDesc": "Instrumentul tău va fi ambalat cu grijă și expediat prin FedEx cu asigurare completă. Vei primi detaliile de urmărire în 1-2 zile lucrătoare.",
+      "confirmationEmailDesc": "Ți-am trimis un email de confirmare cu detaliile comenzii.",
+      "shippingTracking": "Livrare și Urmărire",
+      "shippingTrackingDesc": "Instrumentul tău va fi ambalat cu grijă în atelierul nostru și livrat din ușă în ușă la adresa ta. Livrarea și asigurarea completă sunt incluse. Vei primi detaliile de urmărire când instrumentul tău va fi pe drum.",
       "questionsAboutOrder": "Întrebări despre comanda ta?"
     },
     "continueShopping": "Continuă Cumpărăturile",

@@ -286,17 +286,25 @@ export interface Order {
   guestEmail?: string | null;
   status: 'pending' | 'paid' | 'processing' | 'shipped' | 'delivered' | 'cancelled' | 'refunded';
   /**
-   * FedEx or carrier tracking number
+   * How the customer will receive their instrument
+   */
+  deliveryMethod: 'delivery' | 'pickup';
+  /**
+   * Carrier tracking number
    */
   trackingNumber?: string | null;
   /**
-   * Full tracking URL (optional - auto-generated for FedEx if blank)
+   * Full tracking URL (optional)
    */
   trackingUrl?: string | null;
   /**
    * Estimated delivery date (e.g., "January 15-17, 2025")
    */
   estimatedDelivery?: string | null;
+  /**
+   * Scheduled pickup date/time (e.g., "January 15, 2025 at 10:00 AM")
+   */
+  pickupDate?: string | null;
   shippedAt?: string | null;
   items: {
     instrument: number | Instrument;
@@ -316,13 +324,16 @@ export interface Order {
     email: string;
     phone: string;
   };
-  shippingAddress: {
-    street: string;
+  /**
+   * Only required for delivery orders (not pickup)
+   */
+  shippingAddress?: {
+    street?: string | null;
     apartment?: string | null;
-    city: string;
-    state: string;
-    zip: string;
-    country: string;
+    city?: string | null;
+    state?: string | null;
+    zip?: string | null;
+    country?: string | null;
   };
   /**
    * Stripe PaymentIntent ID
@@ -551,9 +562,11 @@ export interface OrdersSelect<T extends boolean = true> {
   customer?: T;
   guestEmail?: T;
   status?: T;
+  deliveryMethod?: T;
   trackingNumber?: T;
   trackingUrl?: T;
   estimatedDelivery?: T;
+  pickupDate?: T;
   shippedAt?: T;
   items?:
     | T

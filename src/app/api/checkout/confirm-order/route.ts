@@ -73,6 +73,7 @@ export async function POST(req: NextRequest) {
     const subtotal = parseFloat(metadata.subtotal || '0')
     const shippingCost = parseFloat(metadata.shippingCost || '0')
     const insurance = parseFloat(metadata.insurance || '0')
+    const deliveryMethod = (metadata.deliveryMethod as 'delivery' | 'pickup') || 'delivery'
 
     // Fetch instruments to get their details
     const { docs: instruments } = await payload.find({
@@ -109,6 +110,7 @@ export async function POST(req: NextRequest) {
         customer: customerIdNumber,
         guestEmail: !customerIdNumber ? formData?.email : undefined,
         status: 'paid',
+        deliveryMethod,
         items: instruments.map((instrument) => ({
           instrument: instrument.id,
           title: instrument.title,
@@ -121,14 +123,19 @@ export async function POST(req: NextRequest) {
           email: formData?.email || metadata.customerEmail || '',
           phone: formData?.phone || '',
         },
-        shippingAddress: {
-          street: formData?.address || '',
-          apartment: formData?.address2 || '',
-          city: formData?.city || '',
-          state: formData?.state || '',
-          zip: formData?.zip || '',
-          country: formData?.country || '',
-        },
+        // Only include shipping address for delivery orders
+        ...(deliveryMethod === 'delivery'
+          ? {
+              shippingAddress: {
+                street: formData?.address || '',
+                apartment: formData?.address2 || '',
+                city: formData?.city || '',
+                state: formData?.state || '',
+                zip: formData?.zip || '',
+                country: formData?.country || '',
+              },
+            }
+          : {}),
         paymentIntentId,
         subtotal,
         shipping: shippingCost,
@@ -174,14 +181,20 @@ export async function POST(req: NextRequest) {
           shipping: shippingCost,
           insurance,
           total: paymentIntent.amount / 100,
-          shippingAddress: {
-            street: formData?.address || '',
-            apartment: formData?.address2 || '',
-            city: formData?.city || '',
-            state: formData?.state || '',
-            zip: formData?.zip || '',
-            country: formData?.country || '',
-          },
+          deliveryMethod,
+          // Only include shipping address for delivery orders
+          ...(deliveryMethod === 'delivery'
+            ? {
+                shippingAddress: {
+                  street: formData?.address || '',
+                  apartment: formData?.address2 || '',
+                  city: formData?.city || '',
+                  state: formData?.state || '',
+                  zip: formData?.zip || '',
+                  country: formData?.country || '',
+                },
+              }
+            : {}),
         }),
       })
     }

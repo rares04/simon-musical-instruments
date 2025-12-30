@@ -90,6 +90,7 @@ export async function POST(req: NextRequest) {
         userId: userId || '',
         customerEmail: formData?.email || '',
         customerName: formData ? `${formData.firstName} ${formData.lastName}` : '',
+        deliveryMethod: formData?.deliveryMethod || 'delivery',
       },
     })
 

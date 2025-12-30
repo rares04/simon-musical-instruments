@@ -67,8 +67,8 @@
         "answer": "상점 섹션에서 사용 가능한 악기를 둘러보실 수 있습니다. 각 악기 페이지에는 상세 정보, 사진, 오디오 샘플이 포함되어 있습니다. 구매하시려면 악기를 장바구니에 추가하고 결제를 진행하거나, 개인 상담을 위해 직접 연락해 주세요."
       },
       "shipping": {
-        "question": "국제 배송을 하나요?",
-        "answer": "네, 전 세계로 배송합니다! 프랑스, 벨기에, 스페인, 독일, 일본, 대만 및 기타 여러 국가의 고객에게 배송한 경험이 있습니다. 모든 악기는 전문적으로 포장되고 운송 중 완전히 보험에 가입됩니다."
+        "question": "배송은 어떻게 이루어지나요?",
+        "answer": "배송과 보험이 가격에 포함되어 있습니다. 도어투도어 서비스를 제공합니다: 악기는 레긴의 공방에서 픽업되어 고객님의 주소로 직접 배송됩니다. 위치에 따라 항공 화물 또는 육상 운송으로 배송됩니다. 프랑스, 벨기에, 스페인, 독일, 일본, 대만 및 전 세계 많은 다른 국가의 고객에게 성공적으로 배송했습니다. 모든 악기는 기후 보호와 함께 전문적으로 포장되며 전체 여정 동안 완전히 보험에 가입됩니다."
       },
       "returns": {
         "question": "반품 정책은 무엇인가요?",
@@ -235,7 +235,7 @@
     "bodyLength": "몸통 길이",
     "stringVibration": "현 진동 길이",
     "crafted": "{year}년 제작",
-    "checkoutNote": "보험 가입된 FedEx 배송으로 안전한 결제. 각 악기는 중요한 투자이며 완전한 문서가 포함됩니다.",
+    "checkoutNote": "도어투도어 배송과 완전 보험이 포함된 안전한 결제. 각 악기는 공방에서 신중하게 포장되어 고객님의 주소로 직접 배송됩니다.",
     "inBuildNote": "이 악기는 현재 제작 중입니다. 예약하거나 완성에 대한 업데이트를 받으려면 문의해 주세요.",
     "soldNote": "이 악기는 {status}입니다. 유사한 작품 주문에 대해서는 문의해 주세요.",
     "lowStock": "{count}개만 남음",
@@ -251,9 +251,9 @@
     "checkout": "결제하기",
     "continueShopping": "쇼핑 계속하기",
     "remove": "제거",
-    "fullyInsured": "완전 보험 배송",
-    "secureShipping": "FedEx를 통한 안전 배송",
-    "professionalPackaging": "전문 포장",
+    "fullyInsured": "배송 및 보험이 가격에 포함됩니다",
+    "secureShipping": "공방에서 도어투도어 서비스",
+    "professionalPackaging": "기후 보호 기능이 있는 전문 포장",
     "assistanceNote": "도움이 필요하신가요? 개인 상담을 위해 문의해 주세요"
   },
   "checkout": {
@@ -282,8 +282,21 @@
       "email": "이메일 주소",
       "phone": "전화번호"
     },
+    "deliveryMethod": {
+      "title": "악기를 어떻게 받으시겠습니까?",
+      "delivery": "도어투도어 배송",
+      "deliveryDesc": "악기는 공방에서 픽업되어 고객님의 주소로 직접 배송됩니다. 배송 및 보험이 가격에 포함됩니다.",
+      "pickup": "공방에서 수령 (레긴, 루마니아)",
+      "pickupDesc": "공방을 직접 방문하여 악기를 수령하세요. 장인을 만나고 악기가 제작된 곳을 둘러보세요."
+    },
+    "pickup": {
+      "title": "수령 장소",
+      "note": "구매 후 편리한 수령 시간을 조율하기 위해 연락드리겠습니다. 수령은 월요일~금요일, 오전 9시~오후 5시에 가능합니다.",
+      "fromAtelier": "공방에서 수령",
+      "free": "무료"
+    },
     "shipping": {
-      "title": "배송 정보",
+      "title": "배송 주소",
       "streetAddress": "주소",
       "apartment": "아파트, 층수 등",
       "city": "도시",
@@ -299,8 +312,8 @@
         "AU": "호주",
         "OTHER": "기타 국제"
       },
-      "secureShipping": "서명 확인이 있는 안전한 FedEx 배송",
-      "fullInsurance": "완전 보험 포함 (€{amount})",
+      "secureShipping": "서명 확인이 있는 도어투도어 배송",
+      "fullInsurance": "배송 및 보험이 가격에 포함됩니다",
       "professionalPackaging": "기후 보호가 있는 전문 포장"
     },
     "message": {
@@ -311,9 +324,9 @@
     "summary": {
       "title": "주문 요약",
       "subtotal": "소계",
-      "shipping": "배송 ({region})",
-      "insurance": "보험 (2%)",
-      "total": "총계"
+      "total": "총계",
+      "deliveryIncluded": "도어투도어 배송 & 보험",
+      "included": "포함"
     },
     "submitInquiry": "문의 제출",
     "payment": "결제",

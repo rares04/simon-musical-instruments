@@ -57,14 +57,14 @@ export function ShippingNotificationEmail({
             <Text style={tagline}>Handcrafted in Reghin, Transylvania</Text>
           </Section>
 
-          {/* Shipping Announcement */}
+          {/* Delivery Announcement */}
           <Section style={announcementSection}>
             <Text style={icon}>📦</Text>
-            <Heading style={heading}>Your Order Has Shipped!</Heading>
+            <Heading style={heading}>Your Instrument Is On Its Way!</Heading>
             <Text style={paragraph}>Dear {customerName},</Text>
             <Text style={paragraph}>
-              Great news! Your handcrafted instrument has been carefully packaged and is on its way
-              to you.
+              Great news! Your handcrafted instrument has been carefully packaged at our atelier and
+              is now on its way to you via our door-to-door delivery service.
             </Text>
           </Section>
 
@@ -117,10 +117,10 @@ export function ShippingNotificationEmail({
 
           <Hr style={divider} />
 
-          {/* Shipping Address */}
+          {/* Delivery Address */}
           <Section style={addressSection}>
             <Heading as="h2" style={sectionHeading}>
-              Shipping To
+              Delivering To
             </Heading>
             <Text style={addressText}>
               {customerName}
@@ -143,11 +143,12 @@ export function ShippingNotificationEmail({
             </Heading>
             <Text style={paragraph}>
               <strong>Signature Required</strong> — A signature will be required upon delivery to
-              ensure your instrument arrives safely.
+              ensure your instrument arrives safely. Delivery and insurance are included in your
+              purchase.
             </Text>
             <Text style={paragraph}>
               <strong>Inspection</strong> — Please inspect the packaging upon delivery. If
-              there&apos;s any visible damage, note it with the carrier before signing.
+              there&apos;s any visible damage, note it with the delivery person before signing.
             </Text>
             <Text style={paragraph}>
               <strong>Climate Acclimation</strong> — Allow your instrument to acclimate to room
@@ -159,7 +160,7 @@ export function ShippingNotificationEmail({
 
           {/* Contact Information */}
           <Section style={contactSection}>
-            <Text style={contactHeading}>Questions about your shipment?</Text>
+            <Text style={contactHeading}>Questions about your delivery?</Text>
             <Text style={contactText}>
               Email:{' '}
               <Link href="mailto:paul.simon@simoninstruments.com" style={link}>
