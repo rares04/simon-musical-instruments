@@ -548,7 +548,7 @@ async function seed() {
   }
   console.log(`   Deleted ${existingMedia.docs.length} media files`)
 
-  const publicDir = path.resolve(__dirname, '../public')
+  const publicDir = path.resolve(__dirname, '../public/seed')
 
   for (const instrument of instruments) {
     const englishTitle = instrument.translations.en.title
