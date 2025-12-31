@@ -1,7 +1,7 @@
 import NextAuth from 'next-auth'
 import Google from 'next-auth/providers/google'
-import Facebook from 'next-auth/providers/facebook'
-import Apple from 'next-auth/providers/apple'
+// import Facebook from 'next-auth/providers/facebook'
+// import Apple from 'next-auth/providers/apple'
 import Credentials from 'next-auth/providers/credentials'
 import { getPayload } from 'payload'
 import config from '@/payload.config'
@@ -15,14 +15,14 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
       clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
       checks: ['nonce'],
     }),
-    Facebook({
-      clientId: process.env.FACEBOOK_CLIENT_ID!,
-      clientSecret: process.env.FACEBOOK_CLIENT_SECRET!,
-    }),
-    Apple({
-      clientId: process.env.APPLE_CLIENT_ID!,
-      clientSecret: process.env.APPLE_CLIENT_SECRET!,
-    }),
+    // Facebook({
+    //   clientId: process.env.FACEBOOK_CLIENT_ID!,
+    //   clientSecret: process.env.FACEBOOK_CLIENT_SECRET!,
+    // }),
+    // Apple({
+    //   clientId: process.env.APPLE_CLIENT_ID!,
+    //   clientSecret: process.env.APPLE_CLIENT_SECRET!,
+    // }),
     Credentials({
       name: 'credentials',
       credentials: {
@@ -120,7 +120,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
                 collection: 'users',
                 id: existingUser.id,
                 data: {
-                  provider: account.provider as 'google' | 'facebook' | 'apple',
+                  provider: account.provider as 'google', // | 'facebook' | 'apple' // Not implemented for now
                   providerId: account.providerAccountId,
                   name: user.name || existingUser.name || undefined,
                   image: user.image || existingUser.image || undefined,
@@ -137,7 +137,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
                 data: {
                   email: user.email!,
                   password: randomPassword, // Required by Payload auth collection
-                  provider: account.provider as 'google' | 'facebook' | 'apple',
+                  provider: account.provider as 'google', // | 'facebook' | 'apple' // Not implemented for now
                   providerId: account.providerAccountId,
                   name: user.name || undefined,
                   firstName: nameParts[0] || undefined,

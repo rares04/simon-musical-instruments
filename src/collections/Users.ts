@@ -37,8 +37,8 @@ export const Users: CollectionConfig = {
       options: [
         { label: 'Email/Password', value: 'credentials' },
         { label: 'Google', value: 'google' },
-        { label: 'Facebook', value: 'facebook' },
-        { label: 'Apple', value: 'apple' },
+        // { label: 'Facebook', value: 'facebook' }, // Not implemented for now
+        // { label: 'Apple', value: 'apple' }, // Not implemented for now
       ],
       defaultValue: 'credentials',
       admin: {
