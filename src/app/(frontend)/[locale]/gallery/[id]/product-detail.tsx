@@ -9,19 +9,12 @@ import { Button } from '@/components/ui/button'
 import { AudioPlayer } from '@/components/audio-player'
 import { useCart } from '@/lib/cart-context'
 import type { Instrument } from '@/payload-types'
+import { getMediaSrc } from '@/lib/media-utils'
 
 interface ProductDetailProps {
   instrument: Instrument
   images: string[]
   audioUrl: string | null
-}
-
-// Helper to get proper image src
-function getImageSrc(url: string): string {
-  if (url.startsWith('http') || url.startsWith('/')) {
-    return url
-  }
-  return `/api/media/file/${url}`
 }
 
 export function ProductDetail({ instrument, images, audioUrl }: ProductDetailProps) {
@@ -47,7 +40,7 @@ export function ProductDetail({ instrument, images, audioUrl }: ProductDetailPro
       name: instrument.title,
       type: typeLabel,
       price: instrument.price,
-      image: images[0] ? getImageSrc(images[0]) : '',
+      image: images[0] ? (getMediaSrc(images[0]) || images[0]) : '',
     })
   }
 
@@ -81,7 +74,7 @@ export function ProductDetail({ instrument, images, audioUrl }: ProductDetailPro
           {/* Left Column - Sticky Image Gallery */}
           <div className="lg:sticky lg:top-24 lg:h-[calc(100vh-8rem)] flex flex-col">
             <ImageGallery
-              images={images.map(getImageSrc)}
+              images={images.map((url) => getMediaSrc(url) || url)}
               alt={instrument.title}
               noImagesText={tProduct('noImagesAvailable')}
             />
@@ -135,7 +128,7 @@ export function ProductDetail({ instrument, images, audioUrl }: ProductDetailPro
                 <h2 className="font-serif text-2xl font-bold text-foreground">
                   {tProduct('listenSound')}
                 </h2>
-                <AudioPlayer audioUrl={audioUrl} instrumentName={instrument.title} />
+                <AudioPlayer audioUrl={getMediaSrc(audioUrl) || audioUrl} instrumentName={instrument.title} />
               </div>
             )}
 

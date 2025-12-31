@@ -6,17 +6,11 @@ import type { Locale } from '@/i18n/config'
 import { Header } from '@/components/header'
 import { Footer } from '@/components/footer'
 import { ProductDetail } from './product-detail'
-import type { Instrument, Media } from '@/payload-types'
+import type { Instrument } from '@/payload-types'
+import { getMediaUrl } from '@/lib/media-utils'
 
 // Render at runtime (DB not accessible during build)
 export const dynamic = 'force-dynamic'
-
-// Helper to get image URL from Payload media
-function getImageUrl(image: number | Media | null | undefined): string | null {
-  if (!image) return null
-  if (typeof image === 'number') return null
-  return image.url || null
-}
 
 // Generate metadata for SEO
 export async function generateMetadata({ params }: { params: Promise<{ id: string; locale: string }> }) {
@@ -105,18 +99,18 @@ export default async function ProductPage({ params }: { params: Promise<{ id: st
 
   // Build image gallery from mainImage + gallery
   const images: string[] = []
-  const mainImageUrl = getImageUrl(instrument.mainImage)
+  const mainImageUrl = getMediaUrl(instrument.mainImage)
   if (mainImageUrl) images.push(mainImageUrl)
 
   if (instrument.gallery) {
     for (const item of instrument.gallery) {
-      const galleryImageUrl = getImageUrl(item.image)
+      const galleryImageUrl = getMediaUrl(item.image)
       if (galleryImageUrl) images.push(galleryImageUrl)
     }
   }
 
   // Get audio URL if available
-  const audioUrl = getImageUrl(instrument.audioSample)
+  const audioUrl = getMediaUrl(instrument.audioSample)
 
   return (
     <div className="min-h-screen bg-background">

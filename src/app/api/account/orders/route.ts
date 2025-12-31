@@ -2,14 +2,7 @@ import { type NextRequest, NextResponse } from 'next/server'
 import { auth } from '@/lib/auth'
 import { getPayload } from 'payload'
 import config from '@/payload.config'
-import type { Media } from '@/payload-types'
-
-// Helper to get image URL from Payload media
-function getImageUrl(image: number | Media | null | undefined): string | null {
-  if (!image) return null
-  if (typeof image === 'number') return null
-  return image.url || null
-}
+import { getMediaUrl } from '@/lib/media-utils'
 
 export async function GET(_req: NextRequest) {
   try {
@@ -39,7 +32,7 @@ export async function GET(_req: NextRequest) {
       ...order,
       items: order.items?.map((item) => {
         const instrument = typeof item.instrument === 'object' ? item.instrument : null
-        const imageUrl = instrument ? getImageUrl(instrument.mainImage) : null
+        const imageUrl = instrument ? getMediaUrl(instrument.mainImage) : null
         return {
           ...item,
           imageUrl,

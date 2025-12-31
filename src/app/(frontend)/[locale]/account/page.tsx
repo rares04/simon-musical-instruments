@@ -8,14 +8,7 @@ import { ReservationSlotsCard } from '@/components/reservation-slots-card'
 import { requireAuth } from '@/lib/auth-guard'
 import { getPayload } from 'payload'
 import config from '@/payload.config'
-import type { Media } from '@/payload-types'
-
-// Helper to get image URL from Payload media
-function getImageUrl(image: number | Media | null | undefined): string | null {
-  if (!image) return null
-  if (typeof image === 'number') return null
-  return image.url || null
-}
+import { getMediaUrl } from '@/lib/media-utils'
 
 // Render at runtime (DB not accessible during build)
 export const dynamic = 'force-dynamic'
@@ -172,7 +165,7 @@ export default async function AccountDashboard() {
               const firstItem = order.items?.[0]
               const instrument =
                 firstItem && typeof firstItem.instrument === 'object' ? firstItem.instrument : null
-              const imageUrl = instrument ? getImageUrl(instrument.mainImage) : null
+              const imageUrl = instrument ? getMediaUrl(instrument.mainImage) : null
               return (
                 <OrderCard
                   key={order.id}

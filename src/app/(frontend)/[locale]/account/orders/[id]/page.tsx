@@ -16,17 +16,10 @@ import { Link } from '@/i18n/routing'
 import { auth } from '@/lib/auth'
 import { getPayload } from 'payload'
 import config from '@/payload.config'
-import type { Media } from '@/payload-types'
+import { getMediaUrl } from '@/lib/media-utils'
 
 // Render at runtime (DB not accessible during build)
 export const dynamic = 'force-dynamic'
-
-// Helper to get image URL from Payload media
-function getImageUrl(image: number | Media | null | undefined): string | null {
-  if (!image) return null
-  if (typeof image === 'number') return null
-  return image.url || null
-}
 
 export default async function OrderDetailPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params
@@ -195,7 +188,7 @@ export default async function OrderDetailPage({ params }: { params: Promise<{ id
             <div className="space-y-4">
               {order.items?.map((item, idx) => {
                 const instrument = typeof item.instrument === 'object' ? item.instrument : null
-                const imageUrl = instrument ? getImageUrl(instrument.mainImage) : null
+                const imageUrl = instrument ? getMediaUrl(instrument.mainImage) : null
 
                 return (
                   <div key={idx} className="flex gap-4">

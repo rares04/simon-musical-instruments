@@ -1,14 +1,8 @@
 import Image from "next/image"
 import Link from "next/link"
 import { Badge } from "@/components/ui/badge"
-import type { Instrument, Media } from "@/payload-types"
-
-// Helper to get image URL from Payload media
-function getImageUrl(image: number | Media | null | undefined): string | null {
-  if (!image) return null
-  if (typeof image === "number") return null
-  return image.url || null
-}
+import type { Instrument } from "@/payload-types"
+import { getMediaUrlForSrc } from "@/lib/media-utils"
 
 type InstrumentCardProps = {
   instrument: Instrument
@@ -16,7 +10,7 @@ type InstrumentCardProps = {
 
 export function InstrumentCard({ instrument }: InstrumentCardProps) {
   const isSold = instrument.status === "sold"
-  const imageUrl = getImageUrl(instrument.mainImage)
+  const imageUrl = getMediaUrlForSrc(instrument.mainImage)
   const statusLabel =
     instrument.status === "available"
       ? "Available"
