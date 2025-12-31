@@ -2,6 +2,7 @@
   "navigation": {
     "shop": "Magazin",
     "about": "Despre Noi",
+    "photos": "Fotografii",
     "faq": "Întrebări Frecvente",
     "contact": "Contact",
     "signIn": "Autentificare",
@@ -21,9 +22,28 @@
     "established": "Din 2014",
     "quote": "Suntem Paul și Ecaterina Simon și suntem bucuroși să vă urăm bun venit pe site-ul nostru. Din micul nostru atelier din Reghin, cunoscut ca \"Orașul Viorilor\", creăm instrumente care rezonează cu muzicieni din întreaga lume."
   },
+  "instrumentCategories": {
+    "violin": {
+      "subtitle": "Eleganță clasică",
+      "description": "Vocea atemporală a orchestrei"
+    },
+    "viola": {
+      "subtitle": "Căldură bogată",
+      "description": "Sufletul ansamblului"
+    },
+    "cello": {
+      "subtitle": "Rezonanță profundă",
+      "description": "Bătaia inimii muzicii de cameră"
+    },
+    "contrabass": {
+      "subtitle": "Fundație puternică",
+      "description": "Ancora simfoniei"
+    },
+    "exploreCollection": "Explorează Colecția"
+  },
   "instruments": {
-    "title": "Instrumentele Noastre",
-    "subtitle": "Fiecare instrument este realizat manual cu grijă și precizie",
+    "title": "Meșteșugul Nostru",
+    "subtitle": "Explorează cele patru familii de instrumente cu coarde realizate manual. Fiecare spune o poveste de tradiție, meșteșug și dăruire.",
     "viewDetails": "Vezi Detalii",
     "addToCart": "Adaugă în Coș",
     "inquire": "Solicită Informații",
@@ -546,5 +566,98 @@
     "emailPaul": "Email Paul",
     "callPaul": "Sună-l pe Paul",
     "returnToGallery": "Înapoi la Galerie"
+  },
+  "photos": {
+    "badge": "În Culise",
+    "title": "În Atelierul Nostru",
+    "subtitle": "O privire în lumea noastră din Reghin—unde Paul și Ecaterina creează fiecare instrument manual, folosind lemn învechit din 2001 și tehnici transmise din generație în generație.",
+    "categories": {
+      "all": "Toate Fotografiile",
+      "instruments": "Instrumente",
+      "workshop": "Atelierul",
+      "people": "Meșterii"
+    },
+    "images": {
+      "paulPortrait": {
+        "title": "Meșterul Lutier Paul Simon",
+        "alt": "Paul Simon examinând o vioară artizanală în atelierul său"
+      },
+      "ecaterinaPortrait": {
+        "title": "Meșterul Lutier Ecaterina Simon",
+        "alt": "Ecaterina Simon aplicând lac pe o vioară cu precizie"
+      },
+      "paulAtWork": {
+        "title": "Lutierul la Lucru",
+        "alt": "Paul Simon ajustând cu grijă cheițele unei viori"
+      },
+      "ecaterinaVarnishing": {
+        "title": "Lac Aplicat Manual",
+        "alt": "Ecaterina aplicând lac tradițional frecat manual pe o vioară"
+      },
+      "applyingVarnish": {
+        "title": "Procesul de Lăcuire",
+        "alt": "Ecaterina aplicând lac pe un violoncel cu pensula"
+      },
+      "ecaterinaWorking": {
+        "title": "Atenție la Detalii",
+        "alt": "Ecaterina lucrând meticulos la un instrument în atelier"
+      },
+      "craftingCello": {
+        "title": "Crearea unui Violoncel",
+        "alt": "Ecaterina lăcuind un corp de violoncel în atelier"
+      },
+      "woodStorage": {
+        "title": "Lemn Învechit din 2001",
+        "alt": "Stive de scânduri de lemn de ton învechite natural în podul atelierului"
+      },
+      "woodAttic": {
+        "title": "Depozitul Nostru de Lemn",
+        "alt": "Spațiul din pod unde lemnul de ton este depozitat și învechit cu grijă"
+      },
+      "violinTops": {
+        "title": "Instrumente în Așteptarea Asamblării",
+        "alt": "Un rând de plăci de vioară atârnând în atelier"
+      },
+      "awaitingVarnish": {
+        "title": "Pregătite pentru Lac",
+        "alt": "Corpuri de vioară în așteptarea procesului de lăcuire"
+      },
+      "carvedScrolls": {
+        "title": "Volute Sculptate Manual",
+        "alt": "Colecție de volute de vioară sculptate manual arătând meșteșugul tradițional"
+      },
+      "varnishApplication": {
+        "title": "Aplicarea Finisajului",
+        "alt": "Prim-plan al aplicării manuale a lacului pe un instrument"
+      },
+      "celloInProgress": {
+        "title": "Violoncel în Lucru",
+        "alt": "Un corp de violoncel alb înainte de lăcuire, arătând lemnul brut"
+      },
+      "instrumentBacks": {
+        "title": "Frumoasa Textură a Lemnului",
+        "alt": "Mai multe spate de instrumente arătând frumosul fir al arțarului ondulat"
+      },
+      "woodGrain": {
+        "title": "Detaliu Arțar Ondulat",
+        "alt": "Prim-plan al texturii uimitoare a lemnului pe un instrument lăcuit"
+      },
+      "cBoutDetail": {
+        "title": "Măiestrie la C-bout",
+        "alt": "Detaliu al C-bout-ului arătând filetarea precisă și curbele"
+      },
+      "instrumentDetail1": {
+        "title": "Fălți și Curbe",
+        "alt": "Prim-plan al fălților instrumentului arătând curbele grațioase"
+      },
+      "lacqueredInstrument": {
+        "title": "Finisaj Lăcuit",
+        "alt": "Detaliu al unui instrument proaspăt lăcuit arătând profunzimea finisajului"
+      },
+      "violaBack": {
+        "title": "Detaliu Spate Violă",
+        "alt": "Spatele unei viole arătând procesul de lăcuire în desfășurare"
+      }
+    }
   }
 }

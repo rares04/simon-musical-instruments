@@ -2,6 +2,7 @@
   "navigation": {
     "shop": "Shop",
     "about": "Über Uns",
+    "photos": "Fotos",
     "faq": "FAQ",
     "contact": "Kontakt",
     "signIn": "Anmelden",
@@ -21,9 +22,28 @@
     "established": "Seit 2014",
     "quote": "Wir sind Paul und Ecaterina Simon und freuen uns, Sie auf unserer Website begrüßen zu dürfen. In unserer kleinen Werkstatt in Reghin, bekannt als \"Die Stadt der Geigen\", fertigen wir Instrumente, die bei Musikern weltweit Anklang finden."
   },
+  "instrumentCategories": {
+    "violin": {
+      "subtitle": "Klassische Eleganz",
+      "description": "Zeitlose Stimme des Orchesters"
+    },
+    "viola": {
+      "subtitle": "Reiche Wärme",
+      "description": "Seele des Ensembles"
+    },
+    "cello": {
+      "subtitle": "Tiefe Resonanz",
+      "description": "Herzschlag der Kammermusik"
+    },
+    "contrabass": {
+      "subtitle": "Kraftvolles Fundament",
+      "description": "Anker der Symphonie"
+    },
+    "exploreCollection": "Kollektion Entdecken"
+  },
   "instruments": {
-    "title": "Unsere Instrumente",
-    "subtitle": "Jedes Instrument wird mit Sorgfalt und Präzision handgefertigt",
+    "title": "Unser Handwerk",
+    "subtitle": "Entdecken Sie unsere vier Familien handgefertigter Streichinstrumente. Jede erzählt eine Geschichte von Tradition, Handwerkskunst und Hingabe.",
     "viewDetails": "Details Ansehen",
     "addToCart": "In den Warenkorb",
     "inquire": "Anfragen",
@@ -546,5 +566,98 @@
     "emailPaul": "E-Mail an Paul",
     "callPaul": "Paul Anrufen",
     "returnToGallery": "Zur Galerie Zurückkehren"
+  },
+  "photos": {
+    "badge": "Hinter den Kulissen",
+    "title": "In Unserer Werkstatt",
+    "subtitle": "Ein Einblick in unsere Welt in Reghin—wo Paul und Ecaterina jedes Instrument von Hand fertigen, mit seit 2001 gereiftem Holz und über Generationen weitergegebenen Techniken.",
+    "categories": {
+      "all": "Alle Fotos",
+      "instruments": "Instrumente",
+      "workshop": "Die Werkstatt",
+      "people": "Die Handwerker"
+    },
+    "images": {
+      "paulPortrait": {
+        "title": "Meister-Geigenbauer Paul Simon",
+        "alt": "Paul Simon untersucht eine handgefertigte Geige in seiner Werkstatt"
+      },
+      "ecaterinaPortrait": {
+        "title": "Meister-Geigenbauerin Ecaterina Simon",
+        "alt": "Ecaterina Simon trägt präzise Lack auf eine Geige auf"
+      },
+      "paulAtWork": {
+        "title": "Der Geigenbauer bei der Arbeit",
+        "alt": "Paul Simon justiert sorgfältig die Stimmwirbel einer Geige"
+      },
+      "ecaterinaVarnishing": {
+        "title": "Handaufgetragener Lack",
+        "alt": "Ecaterina trägt traditionellen handpolierten Lack auf eine Geige auf"
+      },
+      "applyingVarnish": {
+        "title": "Der Lackierprozess",
+        "alt": "Ecaterina trägt mit einem Pinsel Lack auf ein Cello auf"
+      },
+      "ecaterinaWorking": {
+        "title": "Liebe zum Detail",
+        "alt": "Ecaterina arbeitet sorgfältig an einem Instrument in der Werkstatt"
+      },
+      "craftingCello": {
+        "title": "Ein Cello fertigen",
+        "alt": "Ecaterina lackiert einen Cello-Korpus in der Werkstatt"
+      },
+      "woodStorage": {
+        "title": "Seit 2001 gereiftes Holz",
+        "alt": "Stapel von natürlich gereiften Tonholzplanken im Dachboden der Werkstatt"
+      },
+      "woodAttic": {
+        "title": "Unsere Holzlagerung",
+        "alt": "Der Dachbodenraum, in dem Tonholz sorgfältig gelagert und gereift wird"
+      },
+      "violinTops": {
+        "title": "Instrumente warten auf Montage",
+        "alt": "Eine Reihe von Geigendecken hängt in der Werkstatt"
+      },
+      "awaitingVarnish": {
+        "title": "Bereit für den Lack",
+        "alt": "Geigenkörper warten auf den Lackierprozess"
+      },
+      "carvedScrolls": {
+        "title": "Handgeschnitzte Schnecken",
+        "alt": "Sammlung handgeschnitzter Geigenschnecken, die traditionelle Handwerkskunst zeigen"
+      },
+      "varnishApplication": {
+        "title": "Auftragen der Oberfläche",
+        "alt": "Nahaufnahme der Handauftragung von Lack auf ein Instrument"
+      },
+      "celloInProgress": {
+        "title": "Cello in Arbeit",
+        "alt": "Ein weißer Cello-Korpus vor dem Lackieren, der das rohe Holz zeigt"
+      },
+      "instrumentBacks": {
+        "title": "Schöne Holzmaserung",
+        "alt": "Mehrere Instrumentenrücken zeigen die schöne geflammte Ahornmaserung"
+      },
+      "woodGrain": {
+        "title": "Geflammtes Ahorn-Detail",
+        "alt": "Nahaufnahme der atemberaubenden Holzmaserung auf einem lackierten Instrument"
+      },
+      "cBoutDetail": {
+        "title": "C-Bogen Handwerkskunst",
+        "alt": "Detail des C-Bogens mit präzisen Einlagen und Kurven"
+      },
+      "instrumentDetail1": {
+        "title": "Zargen und Kurven",
+        "alt": "Nahaufnahme der Instrumentenzargen, die die anmutigen Kurven zeigen"
+      },
+      "lacqueredInstrument": {
+        "title": "Lackierte Oberfläche",
+        "alt": "Detail eines frisch lackierten Instruments, das die Tiefe der Oberfläche zeigt"
+      },
+      "violaBack": {
+        "title": "Bratschenrücken-Detail",
+        "alt": "Die Rückseite einer Bratsche, die den Lackierprozess in Arbeit zeigt"
+      }
+    }
   }
 }

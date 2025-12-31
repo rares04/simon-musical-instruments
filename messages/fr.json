@@ -2,6 +2,7 @@
   "navigation": {
     "shop": "Boutique",
     "about": "À Propos",
+    "photos": "Photos",
     "faq": "FAQ",
     "contact": "Contact",
     "signIn": "Connexion",
@@ -21,9 +22,28 @@
     "established": "Depuis 2014",
     "quote": "Nous sommes Paul et Ecaterina Simon et nous sommes heureux de vous accueillir sur notre site. Depuis notre petit atelier à Reghin, connu comme \"La Ville des Violons\", nous créons des instruments qui résonnent avec des musiciens du monde entier."
   },
+  "instrumentCategories": {
+    "violin": {
+      "subtitle": "Élégance classique",
+      "description": "Voix intemporelle de l'orchestre"
+    },
+    "viola": {
+      "subtitle": "Chaleur riche",
+      "description": "Âme de l'ensemble"
+    },
+    "cello": {
+      "subtitle": "Résonance profonde",
+      "description": "Cœur battant de la musique de chambre"
+    },
+    "contrabass": {
+      "subtitle": "Fondation puissante",
+      "description": "Ancre de la symphonie"
+    },
+    "exploreCollection": "Explorer la Collection"
+  },
   "instruments": {
-    "title": "Nos Instruments",
-    "subtitle": "Chaque instrument est fabriqué à la main avec soin et précision",
+    "title": "Notre Savoir-Faire",
+    "subtitle": "Explorez nos quatre familles d'instruments à cordes fabriqués à la main. Chacune raconte une histoire de tradition, d'artisanat et de dévouement.",
     "viewDetails": "Voir les Détails",
     "addToCart": "Ajouter au Panier",
     "inquire": "Demander",
@@ -546,5 +566,98 @@
     "emailPaul": "Email à Paul",
     "callPaul": "Appeler Paul",
     "returnToGallery": "Retour à la Galerie"
+  },
+  "photos": {
+    "badge": "Dans les Coulisses",
+    "title": "Dans Notre Atelier",
+    "subtitle": "Un aperçu de notre monde à Reghin—où Paul et Ecaterina fabriquent chaque instrument à la main, utilisant du bois vieilli depuis 2001 et des techniques transmises de génération en génération.",
+    "categories": {
+      "all": "Toutes les Photos",
+      "instruments": "Instruments",
+      "workshop": "L'Atelier",
+      "people": "Les Artisans"
+    },
+    "images": {
+      "paulPortrait": {
+        "title": "Maître Luthier Paul Simon",
+        "alt": "Paul Simon examinant un violon artisanal dans son atelier"
+      },
+      "ecaterinaPortrait": {
+        "title": "Maître Luthier Ecaterina Simon",
+        "alt": "Ecaterina Simon appliquant du vernis sur un violon avec précision"
+      },
+      "paulAtWork": {
+        "title": "Le Luthier au Travail",
+        "alt": "Paul Simon ajustant soigneusement les chevilles d'un violon"
+      },
+      "ecaterinaVarnishing": {
+        "title": "Vernis Appliqué à la Main",
+        "alt": "Ecaterina appliquant du vernis traditionnel frotté à la main sur un violon"
+      },
+      "applyingVarnish": {
+        "title": "Le Processus de Vernissage",
+        "alt": "Ecaterina appliquant du vernis sur un violoncelle au pinceau"
+      },
+      "ecaterinaWorking": {
+        "title": "Attention aux Détails",
+        "alt": "Ecaterina travaillant méticuleusement sur un instrument dans l'atelier"
+      },
+      "craftingCello": {
+        "title": "Fabrication d'un Violoncelle",
+        "alt": "Ecaterina vernissant un corps de violoncelle dans l'atelier"
+      },
+      "woodStorage": {
+        "title": "Bois Vieilli Depuis 2001",
+        "alt": "Piles de planches de bois de lutherie vieillies naturellement dans le grenier de l'atelier"
+      },
+      "woodAttic": {
+        "title": "Notre Stockage de Bois",
+        "alt": "L'espace du grenier où le bois de lutherie est soigneusement stocké et vieilli"
+      },
+      "violinTops": {
+        "title": "Instruments en Attente d'Assemblage",
+        "alt": "Une rangée de tables de violon suspendues dans l'atelier"
+      },
+      "awaitingVarnish": {
+        "title": "Prêts pour le Vernis",
+        "alt": "Corps de violon en attente du processus de vernissage"
+      },
+      "carvedScrolls": {
+        "title": "Volutes Sculptées à la Main",
+        "alt": "Collection de volutes de violon sculptées à la main montrant l'artisanat traditionnel"
+      },
+      "varnishApplication": {
+        "title": "Application de la Finition",
+        "alt": "Gros plan sur l'application manuelle du vernis sur un instrument"
+      },
+      "celloInProgress": {
+        "title": "Violoncelle en Cours",
+        "alt": "Un corps de violoncelle blanc avant vernissage, montrant le bois brut"
+      },
+      "instrumentBacks": {
+        "title": "Magnifique Grain du Bois",
+        "alt": "Plusieurs dos d'instruments montrant le beau grain de l'érable ondé"
+      },
+      "woodGrain": {
+        "title": "Détail de l'Érable Ondé",
+        "alt": "Gros plan sur le superbe grain du bois sur un instrument verni"
+      },
+      "cBoutDetail": {
+        "title": "Artisanat de l'Échancrure",
+        "alt": "Détail de l'échancrure montrant le filetage précis et les courbes"
+      },
+      "instrumentDetail1": {
+        "title": "Éclisses et Courbes",
+        "alt": "Gros plan sur les éclisses de l'instrument montrant les courbes gracieuses"
+      },
+      "lacqueredInstrument": {
+        "title": "Finition Laquée",
+        "alt": "Détail d'un instrument fraîchement laqué montrant la profondeur de la finition"
+      },
+      "violaBack": {
+        "title": "Détail du Dos d'Alto",
+        "alt": "Le dos d'un alto montrant le processus de vernissage en cours"
+      }
+    }
   }
 }

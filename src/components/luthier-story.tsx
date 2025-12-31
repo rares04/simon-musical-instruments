@@ -11,15 +11,21 @@ export function LuthierStory() {
     <section id="story" className="py-16 lg:py-24 bg-muted/30">
       <div className="container mx-auto px-4 lg:px-8">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-          {/* Image */}
-          <div className="relative aspect-[4/3] rounded-md overflow-hidden bg-card shadow-lg order-2 lg:order-1">
-            <Image
-              src="/luthier-workshop-hands-working-on-violin-with-tool.jpg"
-              alt="Luthier workshop"
-              fill
-              className="object-cover"
-            />
-            <div className="absolute inset-0 bg-gradient-to-br from-accent/5 to-primary/5 pointer-events-none" />
+          {/* Image - Ecaterina at work */}
+          <div className="relative order-2 lg:order-1">
+            {/* Decorative offset background */}
+            <div className="absolute -bottom-4 -left-4 w-full h-full rounded-lg bg-accent/20 hidden sm:block" />
+            <div className="absolute -bottom-2 -left-2 w-full h-full rounded-lg border-2 border-accent/30 hidden sm:block" />
+
+            <div className="relative aspect-[4/3] rounded-lg overflow-hidden shadow-xl shadow-accent/10 border border-border/40">
+              <Image
+                src="/gallery/gallery-3.jpg"
+                alt="Ecaterina Simon applying varnish to a violin"
+                fill
+                className="object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-br from-foreground/5 via-transparent to-foreground/10 pointer-events-none" />
+            </div>
           </div>
 
           {/* Content */}

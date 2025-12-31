@@ -2,6 +2,7 @@
   "navigation": {
     "shop": "Winkel",
     "about": "Over Ons",
+    "photos": "Foto's",
     "faq": "Veelgestelde Vragen",
     "contact": "Contact",
     "signIn": "Inloggen",
@@ -21,9 +22,28 @@
     "established": "Sinds 2014",
     "quote": "Wij zijn Paul en Ecaterina Simon en verwelkomen u graag op onze website. Vanuit onze kleine werkplaats in Reghin, bekend als \"De Stad van Violen\", maken wij instrumenten die resoneren met musici wereldwijd."
   },
+  "instrumentCategories": {
+    "violin": {
+      "subtitle": "Klassieke elegantie",
+      "description": "Tijdloze stem van het orkest"
+    },
+    "viola": {
+      "subtitle": "Rijke warmte",
+      "description": "Ziel van het ensemble"
+    },
+    "cello": {
+      "subtitle": "Diepe resonantie",
+      "description": "Hartslag van kamermuziek"
+    },
+    "contrabass": {
+      "subtitle": "Krachtig fundament",
+      "description": "Anker van de symfonie"
+    },
+    "exploreCollection": "Ontdek Collectie"
+  },
   "instruments": {
-    "title": "Onze Instrumenten",
-    "subtitle": "Elk instrument wordt met zorg en precisie handgemaakt",
+    "title": "Ons Vakmanschap",
+    "subtitle": "Ontdek onze vier families van handgemaakte strijkinstrumenten. Elk vertelt een verhaal van traditie, vakmanschap en toewijding.",
     "viewDetails": "Details Bekijken",
     "addToCart": "Toevoegen aan Winkelwagen",
     "inquire": "Informeren",
@@ -546,5 +566,98 @@
     "emailPaul": "Email Paul",
     "callPaul": "Bel Paul",
     "returnToGallery": "Terug naar Galerie"
+  },
+  "photos": {
+    "badge": "Achter de Schermen",
+    "title": "In Onze Werkplaats",
+    "subtitle": "Een kijkje in onze wereld in Reghin—waar Paul en Ecaterina elk instrument met de hand vervaardigen, met hout dat sinds 2001 is gerijpt en technieken die van generatie op generatie zijn doorgegeven.",
+    "categories": {
+      "all": "Alle Foto's",
+      "instruments": "Instrumenten",
+      "workshop": "De Werkplaats",
+      "people": "De Ambachtslieden"
+    },
+    "images": {
+      "paulPortrait": {
+        "title": "Meester Vioolbouwer Paul Simon",
+        "alt": "Paul Simon onderzoekt een handgemaakte viool in zijn werkplaats"
+      },
+      "ecaterinaPortrait": {
+        "title": "Meester Vioolbouwer Ecaterina Simon",
+        "alt": "Ecaterina Simon brengt met precisie vernis aan op een viool"
+      },
+      "paulAtWork": {
+        "title": "De Vioolbouwer aan het Werk",
+        "alt": "Paul Simon past zorgvuldig de stemschroeven van een viool aan"
+      },
+      "ecaterinaVarnishing": {
+        "title": "Handaangebrachte Vernis",
+        "alt": "Ecaterina brengt traditionele handgewreven vernis aan op een viool"
+      },
+      "applyingVarnish": {
+        "title": "Het Vernisproces",
+        "alt": "Ecaterina brengt vernis aan op een cello met een kwast"
+      },
+      "ecaterinaWorking": {
+        "title": "Oog voor Detail",
+        "alt": "Ecaterina werkt nauwgezet aan een instrument in de werkplaats"
+      },
+      "craftingCello": {
+        "title": "Een Cello Maken",
+        "alt": "Ecaterina vernist een cellokorpus in de werkplaats"
+      },
+      "woodStorage": {
+        "title": "Hout Gerijpt Sinds 2001",
+        "alt": "Stapels natuurlijk gerijpte klankhouten planken opgeslagen op de zolder van de werkplaats"
+      },
+      "woodAttic": {
+        "title": "Onze Houtopslag",
+        "alt": "De zolderruimte waar klankhout zorgvuldig wordt opgeslagen en gerijpt"
+      },
+      "violinTops": {
+        "title": "Instrumenten Wachten op Assemblage",
+        "alt": "Een rij viooltopen hangend in de werkplaats"
+      },
+      "awaitingVarnish": {
+        "title": "Klaar voor Vernis",
+        "alt": "Vioolkorpussen wachten op het vernisproces"
+      },
+      "carvedScrolls": {
+        "title": "Handgesneden Krullen",
+        "alt": "Collectie handgesneden vioolkrullen die traditioneel vakmanschap tonen"
+      },
+      "varnishApplication": {
+        "title": "Aanbrengen van de Afwerking",
+        "alt": "Close-up van het met de hand aanbrengen van vernis op een instrument"
+      },
+      "celloInProgress": {
+        "title": "Cello in Wording",
+        "alt": "Een wit cellokorpus voor het vernissen, het ruwe hout tonend"
+      },
+      "instrumentBacks": {
+        "title": "Prachtige Houtnerf",
+        "alt": "Meerdere instrumentruggen die de prachtige gevlamde esdoornnerf tonen"
+      },
+      "woodGrain": {
+        "title": "Gevlamd Esdoorn Detail",
+        "alt": "Close-up van de prachtige houtnerf op een gelakt instrument"
+      },
+      "cBoutDetail": {
+        "title": "C-Boog Vakmanschap",
+        "alt": "Detail van de C-boog met precieze inlegwerk en rondingen"
+      },
+      "instrumentDetail1": {
+        "title": "Ribben en Rondingen",
+        "alt": "Close-up van instrumentribben die de sierlijke rondingen tonen"
+      },
+      "lacqueredInstrument": {
+        "title": "Gelakte Afwerking",
+        "alt": "Detail van een vers gelakt instrument dat de diepte van de afwerking toont"
+      },
+      "violaBack": {
+        "title": "Altvioolrug Detail",
+        "alt": "De achterkant van een altviool die het vernisproces in uitvoering toont"
+      }
+    }
   }
 }

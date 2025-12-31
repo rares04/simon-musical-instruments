@@ -2,6 +2,7 @@
   "navigation": {
     "shop": "상점",
     "about": "소개",
+    "photos": "사진",
     "faq": "자주 묻는 질문",
     "contact": "문의",
     "signIn": "로그인",
@@ -21,9 +22,28 @@
     "established": "2014년 설립",
     "quote": "저희는 폴과 에카테리나 시몬입니다. 저희 사이트에 오신 것을 환영합니다. '바이올린의 도시'로 알려진 레긴의 작은 공방에서 전 세계 음악가들과 공명하는 악기를 만들고 있습니다."
   },
+  "instrumentCategories": {
+    "violin": {
+      "subtitle": "고전적인 우아함",
+      "description": "오케스트라의 영원한 목소리"
+    },
+    "viola": {
+      "subtitle": "풍부한 따뜻함",
+      "description": "앙상블의 영혼"
+    },
+    "cello": {
+      "subtitle": "깊은 울림",
+      "description": "실내악의 심장 박동"
+    },
+    "contrabass": {
+      "subtitle": "강력한 기초",
+      "description": "교향곡의 닻"
+    },
+    "exploreCollection": "컬렉션 둘러보기"
+  },
   "instruments": {
-    "title": "우리의 악기",
-    "subtitle": "모든 악기는 정성과 정밀함으로 수제 제작됩니다",
+    "title": "우리의 기술",
+    "subtitle": "수제 현악기의 네 가지 계열을 탐험해 보세요. 각각은 전통, 장인정신, 헌신의 이야기를 전합니다.",
     "viewDetails": "상세 정보",
     "addToCart": "장바구니 담기",
     "inquire": "문의하기",
@@ -546,5 +566,98 @@
     "emailPaul": "Paul에게 이메일",
     "callPaul": "Paul에게 전화",
     "returnToGallery": "갤러리로 돌아가기"
+  },
+  "photos": {
+    "badge": "무대 뒤에서",
+    "title": "공방 내부",
+    "subtitle": "레긴에서의 우리 세계를 엿보다—폴과 에카테리나가 2001년부터 숙성시킨 목재와 대대로 전해져 내려온 기술을 사용하여 각 악기를 수작업으로 제작하는 곳.",
+    "categories": {
+      "all": "모든 사진",
+      "instruments": "악기",
+      "workshop": "공방",
+      "people": "장인"
+    },
+    "images": {
+      "paulPortrait": {
+        "title": "마스터 현악기 제작자 폴 시몬",
+        "alt": "폴 시몬이 공방에서 수제 바이올린을 살펴보고 있다"
+      },
+      "ecaterinaPortrait": {
+        "title": "마스터 현악기 제작자 에카테리나 시몬",
+        "alt": "에카테리나 시몬이 바이올린에 정밀하게 바니시를 바르고 있다"
+      },
+      "paulAtWork": {
+        "title": "작업 중인 현악기 제작자",
+        "alt": "폴 시몬이 바이올린의 줄감개를 조심스럽게 조절하고 있다"
+      },
+      "ecaterinaVarnishing": {
+        "title": "수작업 바니시",
+        "alt": "에카테리나가 바이올린에 전통적인 수작업 바니시를 바르고 있다"
+      },
+      "applyingVarnish": {
+        "title": "바니시 과정",
+        "alt": "에카테리나가 붓으로 첼로에 바니시를 바르고 있다"
+      },
+      "ecaterinaWorking": {
+        "title": "세부 사항에 대한 주의",
+        "alt": "에카테리나가 공방에서 악기에 세심하게 작업하고 있다"
+      },
+      "craftingCello": {
+        "title": "첼로 제작",
+        "alt": "에카테리나가 공방에서 첼로 본체에 바니시를 바르고 있다"
+      },
+      "woodStorage": {
+        "title": "2001년부터 숙성된 목재",
+        "alt": "공방 다락에 보관된 자연 숙성 톤우드 판자 더미"
+      },
+      "woodAttic": {
+        "title": "목재 보관소",
+        "alt": "톤우드가 조심스럽게 보관되고 숙성되는 다락 공간"
+      },
+      "violinTops": {
+        "title": "조립을 기다리는 악기",
+        "alt": "공방에 걸린 바이올린 앞판 줄"
+      },
+      "awaitingVarnish": {
+        "title": "바니시 대기 중",
+        "alt": "바니시 작업을 기다리는 바이올린 본체"
+      },
+      "carvedScrolls": {
+        "title": "수작업 조각 스크롤",
+        "alt": "전통 장인정신을 보여주는 수작업 바이올린 스크롤 컬렉션"
+      },
+      "varnishApplication": {
+        "title": "마감재 도포",
+        "alt": "악기에 손으로 바니시를 바르는 클로즈업"
+      },
+      "celloInProgress": {
+        "title": "제작 중인 첼로",
+        "alt": "바니시 전 흰색 첼로 본체, 원목을 보여줌"
+      },
+      "instrumentBacks": {
+        "title": "아름다운 나뭇결",
+        "alt": "아름다운 불꽃 무늬 단풍나무 결을 보여주는 여러 악기 뒤판"
+      },
+      "woodGrain": {
+        "title": "불꽃 무늬 단풍나무 디테일",
+        "alt": "바니시 처리된 악기의 놀라운 나뭇결 클로즈업"
+      },
+      "cBoutDetail": {
+        "title": "C-bout 장인정신",
+        "alt": "정밀한 퍼플링과 곡선을 보여주는 C-bout 디테일"
+      },
+      "instrumentDetail1": {
+        "title": "옆판과 곡선",
+        "alt": "우아한 곡선을 보여주는 악기 옆판 클로즈업"
+      },
+      "lacqueredInstrument": {
+        "title": "래커 마감",
+        "alt": "마감의 깊이를 보여주는 새로 래커 처리된 악기 디테일"
+      },
+      "violaBack": {
+        "title": "비올라 뒤판 디테일",
+        "alt": "진행 중인 바니시 과정을 보여주는 비올라 뒤판"
+      }
+    }
   }
 }

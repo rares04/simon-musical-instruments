@@ -53,17 +53,23 @@ export function Hero() {
             </div>
           </div>
 
-          {/* Right Image */}
-          <div className="relative aspect-[3/4] lg:aspect-[4/5] rounded-md overflow-hidden bg-muted shadow-lg">
-            <Image
-              src="/close-up-detail-of-handcrafted-violin-with-beautif.jpg"
-              alt="Handcrafted violin detail"
-              fill
-              className="object-cover"
-              priority
-            />
-            {/* Subtle warm vignette */}
-            <div className="absolute inset-0 bg-gradient-to-t from-primary/5 to-transparent pointer-events-none" />
+          {/* Right Image - Paul at work */}
+          <div className="relative">
+            {/* Decorative offset background */}
+            <div className="absolute -bottom-4 -right-4 w-full h-full rounded-lg bg-accent/20 hidden sm:block" />
+            <div className="absolute -bottom-2 -right-2 w-full h-full rounded-lg border-2 border-accent/30 hidden sm:block" />
+
+            <div className="relative aspect-[3/4] lg:aspect-[4/5] rounded-lg overflow-hidden shadow-xl shadow-accent/10 border border-border/40">
+              <Image
+                src="/gallery/gallery-1.jpg"
+                alt="Paul Simon crafting a violin in his workshop"
+                fill
+                className="object-cover"
+                priority
+              />
+              {/* Subtle warm vignette */}
+              <div className="absolute inset-0 bg-gradient-to-t from-foreground/10 via-transparent to-transparent pointer-events-none" />
+            </div>
           </div>
         </div>
       </div>

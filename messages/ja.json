@@ -2,6 +2,7 @@
   "navigation": {
     "shop": "ショップ",
     "about": "私たちについて",
+    "photos": "写真",
     "faq": "よくある質問",
     "contact": "お問い合わせ",
     "signIn": "ログイン",
@@ -21,9 +22,28 @@
     "established": "2014年設立",
     "quote": "私たちはポール・エカテリーナ・シモンです。私たちのサイトにお越しいただき、ありがとうございます。「バイオリンの街」として知られるレギンの小さな工房から、世界中のミュージシャンに愛される楽器を作っています。"
   },
+  "instrumentCategories": {
+    "violin": {
+      "subtitle": "古典的な優雅さ",
+      "description": "オーケストラの永遠の声"
+    },
+    "viola": {
+      "subtitle": "豊かな温かみ",
+      "description": "アンサンブルの魂"
+    },
+    "cello": {
+      "subtitle": "深い共鳴",
+      "description": "室内楽の鼓動"
+    },
+    "contrabass": {
+      "subtitle": "力強い土台",
+      "description": "交響曲の錨"
+    },
+    "exploreCollection": "コレクションを見る"
+  },
   "instruments": {
-    "title": "私たちの楽器",
-    "subtitle": "一つ一つの楽器は丁寧に、精密に手作りされています",
+    "title": "私たちの技",
+    "subtitle": "手作りの弦楽器、四つの家族を探索してください。それぞれが伝統、職人技、献身の物語を語ります。",
     "viewDetails": "詳細を見る",
     "addToCart": "カートに追加",
     "inquire": "お問い合わせ",
@@ -546,5 +566,98 @@
     "emailPaul": "Paulにメール",
     "callPaul": "Paulに電話",
     "returnToGallery": "ギャラリーに戻る"
+  },
+  "photos": {
+    "badge": "舞台裏",
+    "title": "工房の中へ",
+    "subtitle": "レギンでの私たちの世界を垣間見る—ポールとエカテリーナが2001年から熟成させた木材と、世代から世代へと受け継がれた技術を使って、各楽器を手作りする場所。",
+    "categories": {
+      "all": "すべての写真",
+      "instruments": "楽器",
+      "workshop": "工房",
+      "people": "職人"
+    },
+    "images": {
+      "paulPortrait": {
+        "title": "マスターリューティエ ポール・シモン",
+        "alt": "ポール・シモンが工房で手作りのバイオリンを調べている"
+      },
+      "ecaterinaPortrait": {
+        "title": "マスターリューティエ エカテリーナ・シモン",
+        "alt": "エカテリーナ・シモンがバイオリンに精密にニスを塗っている"
+      },
+      "paulAtWork": {
+        "title": "仕事中のリューティエ",
+        "alt": "ポール・シモンがバイオリンのペグを慎重に調整している"
+      },
+      "ecaterinaVarnishing": {
+        "title": "手塗りニス",
+        "alt": "エカテリーナがバイオリンに伝統的な手擦りニスを塗っている"
+      },
+      "applyingVarnish": {
+        "title": "ニス塗りプロセス",
+        "alt": "エカテリーナがブラシでチェロにニスを塗っている"
+      },
+      "ecaterinaWorking": {
+        "title": "細部へのこだわり",
+        "alt": "エカテリーナが工房で楽器に細心の注意を払って作業している"
+      },
+      "craftingCello": {
+        "title": "チェロの製作",
+        "alt": "エカテリーナが工房でチェロのボディにニスを塗っている"
+      },
+      "woodStorage": {
+        "title": "2001年から熟成させた木材",
+        "alt": "工房の屋根裏に保管された自然熟成のトーンウッドの板の山"
+      },
+      "woodAttic": {
+        "title": "木材保管庫",
+        "alt": "トーンウッドが慎重に保管・熟成される屋根裏のスペース"
+      },
+      "violinTops": {
+        "title": "組み立てを待つ楽器",
+        "alt": "工房に吊るされたバイオリンの表板の列"
+      },
+      "awaitingVarnish": {
+        "title": "ニス塗り待ち",
+        "alt": "ニス塗りプロセスを待つバイオリンボディ"
+      },
+      "carvedScrolls": {
+        "title": "手彫りのスクロール",
+        "alt": "伝統的な職人技を示す手彫りバイオリンスクロールのコレクション"
+      },
+      "varnishApplication": {
+        "title": "仕上げの塗布",
+        "alt": "楽器に手でニスを塗る様子のクローズアップ"
+      },
+      "celloInProgress": {
+        "title": "製作中のチェロ",
+        "alt": "ニス塗り前の白いチェロボディ、生木を見せている"
+      },
+      "instrumentBacks": {
+        "title": "美しい木目",
+        "alt": "美しいフレイムドメープルの木目を見せる複数の楽器の裏板"
+      },
+      "woodGrain": {
+        "title": "フレイムドメープルの詳細",
+        "alt": "ニス塗りされた楽器の素晴らしい木目のクローズアップ"
+      },
+      "cBoutDetail": {
+        "title": "C-boutの職人技",
+        "alt": "精密なパーフリングとカーブを示すC-boutの詳細"
+      },
+      "instrumentDetail1": {
+        "title": "リブとカーブ",
+        "alt": "優雅なカーブを見せる楽器のリブのクローズアップ"
+      },
+      "lacqueredInstrument": {
+        "title": "ラッカー仕上げ",
+        "alt": "仕上げの深みを見せる新しくラッカー塗装された楽器の詳細"
+      },
+      "violaBack": {
+        "title": "ビオラの裏板詳細",
+        "alt": "進行中のニス塗りプロセスを見せるビオラの裏板"
+      }
+    }
   }
 }

@@ -2,6 +2,7 @@
   "navigation": {
     "shop": "Shop",
     "about": "About",
+    "photos": "Photos",
     "faq": "FAQ",
     "contact": "Contact",
     "signIn": "Sign In",
@@ -21,9 +22,28 @@
     "established": "Est. 2014",
     "quote": "We are Paul and Ecaterina Simon, and we are happy to welcome you to our site. From our little workshop in Reghin, known as \"The City of Violins,\" we create instruments that resonate with musicians worldwide."
   },
+  "instrumentCategories": {
+    "violin": {
+      "subtitle": "Classic elegance",
+      "description": "Timeless voice of the orchestra"
+    },
+    "viola": {
+      "subtitle": "Rich warmth",
+      "description": "Soul of the ensemble"
+    },
+    "cello": {
+      "subtitle": "Deep resonance",
+      "description": "Heartbeat of chamber music"
+    },
+    "contrabass": {
+      "subtitle": "Powerful foundation",
+      "description": "Anchor of the symphony"
+    },
+    "exploreCollection": "Explore Collection"
+  },
   "instruments": {
-    "title": "Our Instruments",
-    "subtitle": "Each instrument is handcrafted with care and precision",
+    "title": "Our Craft",
+    "subtitle": "Explore our four families of handcrafted string instruments. Each one tells a story of tradition, craftsmanship, and dedication.",
     "viewDetails": "View Details",
     "addToCart": "Add to Cart",
     "inquire": "Inquire",
@@ -546,5 +566,98 @@
     "emailPaul": "Email Paul",
     "callPaul": "Call Paul",
     "returnToGallery": "Return to Gallery"
+  },
+  "photos": {
+    "badge": "Behind the Scenes",
+    "title": "Inside Our Workshop",
+    "subtitle": "A glimpse into our world in Reghin—where Paul and Ecaterina craft each instrument by hand, using wood aged since 2001 and techniques passed down through generations.",
+    "categories": {
+      "all": "All Photos",
+      "instruments": "Instruments",
+      "workshop": "The Workshop",
+      "people": "The Craftspeople"
+    },
+    "images": {
+      "paulPortrait": {
+        "title": "Master Luthier Paul Simon",
+        "alt": "Paul Simon examining a handcrafted violin in his workshop"
+      },
+      "ecaterinaPortrait": {
+        "title": "Master Luthier Ecaterina Simon",
+        "alt": "Ecaterina Simon applying varnish to a violin with precision"
+      },
+      "paulAtWork": {
+        "title": "The Luthier at Work",
+        "alt": "Paul Simon carefully adjusting the tuning pegs of a violin"
+      },
+      "ecaterinaVarnishing": {
+        "title": "Hand-Applied Varnish",
+        "alt": "Ecaterina applying traditional hand-rubbed varnish to a violin"
+      },
+      "applyingVarnish": {
+        "title": "The Varnishing Process",
+        "alt": "Ecaterina applying varnish to a cello with a brush"
+      },
+      "ecaterinaWorking": {
+        "title": "Attention to Detail",
+        "alt": "Ecaterina working meticulously on an instrument in the workshop"
+      },
+      "craftingCello": {
+        "title": "Crafting a Cello",
+        "alt": "Ecaterina varnishing a cello body in the workshop"
+      },
+      "woodStorage": {
+        "title": "Wood Aged Since 2001",
+        "alt": "Stacks of naturally aged tonewood planks stored in the workshop attic"
+      },
+      "woodAttic": {
+        "title": "Our Wood Storage",
+        "alt": "The attic space where tonewood is carefully stored and aged"
+      },
+      "violinTops": {
+        "title": "Instruments Awaiting Assembly",
+        "alt": "A row of violin tops hanging in the workshop"
+      },
+      "awaitingVarnish": {
+        "title": "Ready for Varnish",
+        "alt": "Violin bodies awaiting the varnishing process"
+      },
+      "carvedScrolls": {
+        "title": "Hand-Carved Scrolls",
+        "alt": "Collection of hand-carved violin scrolls showing traditional craftsmanship"
+      },
+      "varnishApplication": {
+        "title": "Applying the Finish",
+        "alt": "Close-up of hand applying varnish to an instrument"
+      },
+      "celloInProgress": {
+        "title": "Cello in Progress",
+        "alt": "A white cello body before varnishing, showing the raw wood"
+      },
+      "instrumentBacks": {
+        "title": "Beautiful Wood Grain",
+        "alt": "Multiple instrument backs showing the beautiful flamed maple grain"
+      },
+      "woodGrain": {
+        "title": "Flamed Maple Detail",
+        "alt": "Close-up of the stunning wood grain on a varnished instrument"
+      },
+      "cBoutDetail": {
+        "title": "C-Bout Craftsmanship",
+        "alt": "Detail of the C-bout showing precise purfling and curves"
+      },
+      "instrumentDetail1": {
+        "title": "Ribs and Curves",
+        "alt": "Close-up of instrument ribs showing the graceful curves"
+      },
+      "lacqueredInstrument": {
+        "title": "Lacquered Finish",
+        "alt": "Detail of a freshly lacquered instrument showing depth of finish"
+      },
+      "violaBack": {
+        "title": "Viola Back Detail",
+        "alt": "The back of a viola showing the varnishing process in progress"
+      }
+    }
   }
 }

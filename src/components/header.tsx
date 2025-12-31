@@ -76,6 +76,12 @@ export function Header() {
               {t('about')}
             </Link>
             <Link
+              href="/photos"
+              className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors cursor-pointer"
+            >
+              {t('photos')}
+            </Link>
+            <Link
               href="/faq"
               className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors cursor-pointer"
             >
@@ -198,6 +204,13 @@ export function Header() {
               className="px-4 py-3 text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-muted/50 rounded-md transition-colors cursor-pointer"
             >
               {t('about')}
+            </Link>
+            <Link
+              href="/photos"
+              onClick={closeMobileMenu}
+              className="px-4 py-3 text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-muted/50 rounded-md transition-colors cursor-pointer"
+            >
+              {t('photos')}
             </Link>
             <Link
               href="/faq"

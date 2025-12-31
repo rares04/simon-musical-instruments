@@ -1,6 +1,7 @@
 'use client'
 
-import { useState, useMemo } from 'react'
+import { useState, useMemo, useEffect } from 'react'
+import { useSearchParams } from 'next/navigation'
 import Image from 'next/image'
 import { useTranslations } from 'next-intl'
 import { Link } from '@/i18n/routing'
@@ -29,10 +30,19 @@ interface GalleryClientProps {
 }
 
 export function GalleryClient({ instruments }: GalleryClientProps) {
+  const searchParams = useSearchParams()
   const t = useTranslations('instruments')
   const tGallery = useTranslations('gallery')
   const [selectedType, setSelectedType] = useState<string>('all')
   const [selectedPriceRange, setSelectedPriceRange] = useState<string>('all')
+
+  // Read initial filter from URL params (from category card clicks)
+  useEffect(() => {
+    const typeParam = searchParams.get('type')
+    if (typeParam && ['Violin', 'Viola', 'Cello', 'Contrabass'].includes(typeParam)) {
+      setSelectedType(typeParam)
+    }
+  }, [searchParams])
 
   const getStatusLabel = (status: string) => {
     switch (status) {
