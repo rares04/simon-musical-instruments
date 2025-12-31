@@ -308,6 +308,12 @@
     "reserveButton": "Instrument Reserveren",
     "noPaymentNow": "Geen betaling nu vereist",
     "paulContactNote": "Paul neemt binnen 1-2 werkdagen contact met u op om de bankoverschrijving te regelen.",
+    "remarks": {
+      "title": "Speciale Verzoeken",
+      "label": "Persoonlijke notities of personalisatieverzoeken (optioneel)",
+      "placeholder": "Deel speciale wensen, personalisatieverzoeken of opmerkingen over uw bestelling...\n\nVoorbeelden:\n• Gewenste lakkleur of tint\n• Speciale eisen voor de snaaropstelling\n• Geschenkverpakking of speciale verpakkingsverzoeken\n• Vragen over het instrument",
+      "hint": "Deze informatie wordt gedeeld met onze vioolbouwer om ervoor te zorgen dat uw instrument aan uw verwachtingen voldoet."
+    },
     "errors": {
       "fillRequired": "Vul alle verplichte velden in",
       "reservationFailed": "Reservering mislukt. Probeer het opnieuw."

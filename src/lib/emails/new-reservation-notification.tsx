@@ -34,6 +34,7 @@ interface NewReservationNotificationEmailProps {
     zip: string
     country: string
   }
+  customerRemarks?: string
 }
 
 export function NewReservationNotificationEmail({
@@ -45,6 +46,7 @@ export function NewReservationNotificationEmail({
   total,
   deliveryMethod,
   shippingAddress,
+  customerRemarks,
 }: NewReservationNotificationEmailProps) {
   const isPickup = deliveryMethod === 'pickup'
   const previewText = `New Reservation - ${reservationNumber} from ${customerName}`
@@ -124,6 +126,19 @@ export function NewReservationNotificationEmail({
                   <br />
                   {shippingAddress.country}
                 </Text>
+              </Section>
+              <Hr style={divider} />
+            </>
+          )}
+
+          {/* Customer Remarks */}
+          {customerRemarks && (
+            <>
+              <Section style={remarksSection}>
+                <Heading as="h2" style={sectionHeading}>
+                  Customer Remarks
+                </Heading>
+                <Text style={remarksText}>{customerRemarks}</Text>
               </Section>
               <Hr style={divider} />
             </>
@@ -324,6 +339,22 @@ const addressText = {
   lineHeight: '1.6',
   color: '#333',
   margin: '0',
+}
+
+const remarksSection = {
+  backgroundColor: '#f8f9fa',
+  padding: '20px',
+  borderRadius: '8px',
+  border: '1px solid #e9ecef',
+}
+
+const remarksText = {
+  fontSize: '14px',
+  lineHeight: '1.6',
+  color: '#333',
+  margin: '0',
+  whiteSpace: 'pre-wrap' as const,
+  fontStyle: 'italic' as const,
 }
 
 const itemsSection = {

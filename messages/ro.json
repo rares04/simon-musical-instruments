@@ -308,6 +308,12 @@
     "reserveButton": "Rezervă Instrumentul",
     "noPaymentNow": "Nu este necesară plata acum",
     "paulContactNote": "Paul te va contacta în 1-2 zile lucrătoare pentru a aranja transferul bancar.",
+    "remarks": {
+      "title": "Cereri Speciale",
+      "label": "Note personalizate sau cereri de personalizare (opțional)",
+      "placeholder": "Împărtășește orice dorințe speciale, cereri de personalizare sau note despre comandă...\n\nExemple:\n• Nuanța preferată a lacului sau culoarea\n• Cerințe speciale pentru configurarea corzilor\n• Ambalaj cadou sau cereri speciale de ambalare\n• Întrebări despre instrument",
+      "hint": "Aceste informații vor fi împărtășite cu lutierul nostru pentru a ne asigura că instrumentul îndeplinește așteptările tale."
+    },
     "errors": {
       "fillRequired": "Te rugăm să completezi toate câmpurile obligatorii",
       "reservationFailed": "Rezervarea a eșuat. Te rugăm să încerci din nou."

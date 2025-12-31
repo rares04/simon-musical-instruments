@@ -392,6 +392,13 @@ export const Orders: CollectionConfig = {
       },
     },
     {
+      name: 'customerRemarks',
+      type: 'textarea',
+      admin: {
+        description: 'Customer notes, special requests, or personalization wishes',
+      },
+    },
+    {
       name: 'notes',
       type: 'textarea',
       admin: {

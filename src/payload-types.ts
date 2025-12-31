@@ -138,7 +138,7 @@ export interface User {
    * Avatar URL from OAuth provider
    */
   image?: string | null;
-  provider?: ('credentials' | 'google' | 'facebook' | 'apple') | null;
+  provider?: ('credentials' | 'google') | null;
   /**
    * Unique ID from the OAuth provider
    */
@@ -364,6 +364,10 @@ export interface Order {
    */
   total: number;
   paidAt?: string | null;
+  /**
+   * Customer notes, special requests, or personalization wishes
+   */
+  customerRemarks?: string | null;
   /**
    * Internal notes about the order
    */
@@ -610,6 +614,7 @@ export interface OrdersSelect<T extends boolean = true> {
   insurance?: T;
   total?: T;
   paidAt?: T;
+  customerRemarks?: T;
   notes?: T;
   updatedAt?: T;
   createdAt?: T;

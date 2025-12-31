@@ -308,6 +308,12 @@
     "reserveButton": "Réserver l'Instrument",
     "noPaymentNow": "Aucun paiement requis maintenant",
     "paulContactNote": "Paul vous contactera sous 1-2 jours ouvrables pour organiser le virement bancaire.",
+    "remarks": {
+      "title": "Demandes Spéciales",
+      "label": "Notes personnalisées ou demandes de personnalisation (optionnel)",
+      "placeholder": "Partagez vos souhaits particuliers, demandes de personnalisation ou notes concernant votre commande...\n\nExemples :\n• Nuance de vernis ou couleur préférée\n• Exigences spéciales pour l'installation des cordes\n• Emballage cadeau ou demandes d'emballage spéciales\n• Questions sur l'instrument",
+      "hint": "Ces informations seront partagées avec notre luthier pour garantir que votre instrument répond à vos attentes."
+    },
     "errors": {
       "fillRequired": "Veuillez remplir tous les champs obligatoires",
       "reservationFailed": "Échec de la réservation. Veuillez réessayer."

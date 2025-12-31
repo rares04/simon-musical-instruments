@@ -308,6 +308,12 @@
     "reserveButton": "Instrument Reservieren",
     "noPaymentNow": "Keine Zahlung jetzt erforderlich",
     "paulContactNote": "Paul wird Sie innerhalb von 1-2 Werktagen kontaktieren, um die Banküberweisung zu arrangieren.",
+    "remarks": {
+      "title": "Besondere Wünsche",
+      "label": "Persönliche Notizen oder Personalisierungswünsche (optional)",
+      "placeholder": "Teilen Sie besondere Wünsche, Personalisierungsanfragen oder Notizen zu Ihrer Bestellung mit...\n\nBeispiele:\n• Bevorzugter Lackton oder Farbe\n• Spezielle Anforderungen für die Saiteneinstellung\n• Geschenkverpackung oder besondere Verpackungswünsche\n• Fragen zum Instrument",
+      "hint": "Diese Informationen werden an unseren Geigenbauer weitergeleitet, um sicherzustellen, dass Ihr Instrument Ihren Erwartungen entspricht."
+    },
     "errors": {
       "fillRequired": "Bitte füllen Sie alle erforderlichen Felder aus",
       "reservationFailed": "Reservierung fehlgeschlagen. Bitte versuchen Sie es erneut."

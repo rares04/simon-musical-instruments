@@ -10,6 +10,7 @@ import { useCart } from '@/lib/cart-context'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
+import { Textarea } from '@/components/ui/textarea'
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group'
 import { CheckoutLimitReached } from '@/components/checkout-limit-reached'
 import Image from 'next/image'
@@ -23,7 +24,7 @@ import {
   MapPin,
   Info,
   Loader2,
-  ChevronDown,
+  MessageSquare,
 } from 'lucide-react'
 import {
   Select,
@@ -89,6 +90,7 @@ export default function CheckoutPage() {
     zip: '',
     country: 'RO',
     deliveryMethod: 'delivery' as 'delivery' | 'pickup',
+    customerRemarks: '',
   })
 
   // Fetch reservation count to check limit
@@ -606,6 +608,27 @@ export default function CheckoutPage() {
                   </div>
                 </section>
               )}
+
+              {/* Customer Remarks */}
+              <section className="bg-card border border-border rounded-lg p-6">
+                <h2 className="font-serif text-xl font-semibold text-foreground mb-4">
+                  <div className="flex items-center gap-2">
+                    <MessageSquare className="h-5 w-5 text-accent" />
+                    {t('remarks.title')}
+                  </div>
+                </h2>
+                <div className="space-y-2">
+                  <Label htmlFor="customerRemarks">{t('remarks.label')}</Label>
+                  <Textarea
+                    id="customerRemarks"
+                    value={formData.customerRemarks}
+                    onChange={(e) => handleInputChange('customerRemarks', e.target.value)}
+                    placeholder={t('remarks.placeholder')}
+                    className="mt-1.5 min-h-[120px] resize-y"
+                  />
+                  <p className="text-xs text-muted-foreground">{t('remarks.hint')}</p>
+                </div>
+              </section>
 
               {/* Error Message */}
               {error && (

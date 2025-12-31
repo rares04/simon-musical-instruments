@@ -308,6 +308,12 @@
     "reserveButton": "Reserve Instrument",
     "noPaymentNow": "No payment required now",
     "paulContactNote": "Paul will contact you within 1-2 business days to arrange bank transfer payment.",
+    "remarks": {
+      "title": "Special Requests",
+      "label": "Custom notes or personalization requests (optional)",
+      "placeholder": "Share any special wishes, personalization requests, or notes about your order...\n\nExamples:\n• Preferred varnish shade or color\n• Custom string setup requirements\n• Gift wrapping or special packaging requests\n• Questions about the instrument",
+      "hint": "This information will be shared with our luthier to ensure your instrument meets your expectations."
+    },
     "errors": {
       "fillRequired": "Please fill in all required fields",
       "reservationFailed": "Failed to submit reservation. Please try again."

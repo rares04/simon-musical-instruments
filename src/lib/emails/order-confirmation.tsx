@@ -36,6 +36,7 @@ interface OrderConfirmationEmailProps {
     zip: string
     country: string
   }
+  customerRemarks?: string
 }
 
 export function OrderConfirmationEmail({
@@ -49,6 +50,7 @@ export function OrderConfirmationEmail({
   deliveryMethod = 'delivery',
   isReservation = false,
   shippingAddress,
+  customerRemarks,
 }: OrderConfirmationEmailProps) {
   const isPickup = deliveryMethod === 'pickup'
   const previewText = isReservation
@@ -184,6 +186,19 @@ export function OrderConfirmationEmail({
             </Text>
           </Section>
             )
+          )}
+
+          {/* Customer Remarks */}
+          {customerRemarks && (
+            <>
+              <Hr style={divider} />
+              <Section style={remarksSection}>
+                <Heading as="h2" style={sectionHeading}>
+                  Your Notes
+                </Heading>
+                <Text style={remarksText}>{customerRemarks}</Text>
+              </Section>
+            </>
           )}
 
           <Hr style={divider} />
@@ -439,6 +454,21 @@ const addressText = {
   lineHeight: '1.6',
   color: '#5a5347',
   margin: '0',
+}
+
+const remarksSection = {
+  backgroundColor: '#f8f5f0',
+  padding: '20px',
+  borderRadius: '4px',
+}
+
+const remarksText = {
+  fontSize: '14px',
+  lineHeight: '1.6',
+  color: '#5a5347',
+  margin: '0',
+  whiteSpace: 'pre-wrap' as const,
+  fontStyle: 'italic' as const,
 }
 
 const nextStepsSection = {

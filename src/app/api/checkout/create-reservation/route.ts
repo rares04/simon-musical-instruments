@@ -172,6 +172,8 @@ export async function POST(req: NextRequest) {
         shipping: 0, // Delivery included in price
         insurance: 0, // Insurance included in price
         total: calculatedTotal,
+        // Customer remarks for special requests or personalization wishes
+        ...(formData.customerRemarks ? { customerRemarks: formData.customerRemarks } : {}),
       },
     })
 
@@ -226,6 +228,7 @@ export async function POST(req: NextRequest) {
                     },
                   }
                 : {}),
+              ...(formData.customerRemarks ? { customerRemarks: formData.customerRemarks } : {}),
             }),
           })
           console.log(`✅ Confirmation email sent to ${customerEmail}`)
@@ -258,6 +261,7 @@ export async function POST(req: NextRequest) {
                   },
                 }
               : {}),
+            ...(formData.customerRemarks ? { customerRemarks: formData.customerRemarks } : {}),
           }),
         })
         console.log(`✅ Notification email sent to Paul`)
