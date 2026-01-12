@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react'
 import Image from 'next/image'
 import { useSession, signOut } from 'next-auth/react'
 import { useTranslations } from 'next-intl'
-import { Menu, User, LogOut, X } from 'lucide-react'
+import { Menu, User, LogOut, X, Wrench } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { CartButton } from '@/components/cart-button'
 import { LanguageSwitcher } from '@/components/language-switcher'
@@ -22,11 +22,25 @@ import {
 export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [reservationCount, setReservationCount] = useState(0)
+  const [showNotice, setShowNotice] = useState(false)
   const { data: session, status } = useSession()
   const isAuthenticated = status === 'authenticated'
   const t = useTranslations('navigation')
 
   const closeMobileMenu = () => setMobileMenuOpen(false)
+
+  // Check if construction notice should be shown
+  useEffect(() => {
+    const dismissed = localStorage.getItem('construction-notice-dismissed')
+    if (!dismissed) {
+      setShowNotice(true)
+    }
+  }, [])
+
+  const dismissNotice = () => {
+    setShowNotice(false)
+    localStorage.setItem('construction-notice-dismissed', 'true')
+  }
 
   // Fetch reservation count for authenticated users
   useEffect(() => {
@@ -51,138 +65,168 @@ export function Header() {
   }, [isAuthenticated])
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-md border-b border-border/60">
-      <div className="container mx-auto px-4 lg:px-8">
-        <div className="flex items-center justify-between h-16 lg:h-20">
-          {/* Logo */}
-          <Link href="/" className="flex items-center gap-2 cursor-pointer">
-            <div className="text-lg lg:text-xl font-serif font-semibold tracking-tight text-foreground">
-              Simon Musical Instruments
+    <header className="fixed top-0 left-0 right-0 z-50">
+      {/* Construction Notice Banner */}
+      {showNotice && (
+        <div className="bg-gradient-to-r from-amber-50 via-amber-100/90 to-amber-50 border-b border-amber-200/50">
+          <div className="container mx-auto px-4 lg:px-8">
+            <div className="flex items-center justify-between gap-4 py-2">
+              <div className="flex flex-1 items-center gap-2.5 min-w-0">
+                <Wrench className="h-3.5 w-3.5 text-amber-700 flex-shrink-0" />
+                <p className="text-xs sm:text-sm text-amber-900/90">
+                  <span className="font-medium">Work in progress</span>
+                  <span className="hidden sm:inline">
+                    {' '}
+                    – Most features are ready, but some details may still be updated.
+                  </span>
+                </p>
+              </div>
+              <button
+                onClick={dismissNotice}
+                className="flex-shrink-0 p-1 text-amber-800 hover:bg-amber-200/50 hover:text-amber-950 rounded transition-colors"
+                aria-label="Dismiss notice"
+              >
+                <X className="h-3.5 w-3.5" />
+              </button>
             </div>
-          </Link>
+          </div>
+        </div>
+      )}
 
-          {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center gap-6 lg:gap-8">
-            <Link
-              href="/gallery"
-              className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors cursor-pointer"
-            >
-              {t('shop')}
-            </Link>
-            <Link
-              href="/#story"
-              className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors cursor-pointer"
-            >
-              {t('about')}
-            </Link>
-            <Link
-              href="/photos"
-              className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors cursor-pointer"
-            >
-              {t('photos')}
-            </Link>
-            <Link
-              href="/faq"
-              className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors cursor-pointer"
-            >
-              {t('faq')}
-            </Link>
-            <Link
-              href="/contact"
-              className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors cursor-pointer"
-            >
-              {t('contact')}
+      {/* Main Header */}
+      <div className="bg-background/95 backdrop-blur-md border-b border-border/60">
+        <div className="container mx-auto px-4 lg:px-8">
+          <div className="flex items-center justify-between h-16 lg:h-20">
+            {/* Logo */}
+            <Link href="/" className="flex items-center gap-2 cursor-pointer">
+              <div className="text-lg lg:text-xl font-serif font-semibold tracking-tight text-foreground">
+                Simon Musical Instruments
+              </div>
             </Link>
 
-            <LanguageSwitcher variant="header" />
+            {/* Desktop Navigation */}
+            <nav className="hidden md:flex items-center gap-6 lg:gap-8">
+              <Link
+                href="/gallery"
+                className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors cursor-pointer"
+              >
+                {t('shop')}
+              </Link>
+              <Link
+                href="/#story"
+                className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors cursor-pointer"
+              >
+                {t('about')}
+              </Link>
+              <Link
+                href="/photos"
+                className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors cursor-pointer"
+              >
+                {t('photos')}
+              </Link>
+              <Link
+                href="/faq"
+                className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors cursor-pointer"
+              >
+                {t('faq')}
+              </Link>
+              <Link
+                href="/contact"
+                className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors cursor-pointer"
+              >
+                {t('contact')}
+              </Link>
 
-            {isAuthenticated && reservationCount > 0 && (
-              <ReservationSlotIndicator count={reservationCount} variant="header" />
-            )}
+              <LanguageSwitcher variant="header" />
 
-            {isAuthenticated && <OrderNotificationDropdown />}
+              {isAuthenticated && reservationCount > 0 && (
+                <ReservationSlotIndicator count={reservationCount} variant="header" />
+              )}
 
-            {isAuthenticated && session?.user ? (
-              <DropdownMenu>
-                <DropdownMenuTrigger asChild>
-                  <Button variant="ghost" size="icon" className="cursor-pointer">
-                    {session.user.image ? (
-                      <Image
-                        src={session.user.image}
-                        alt={session.user.name || 'User'}
-                        width={32}
-                        height={32}
-                        className="rounded-full"
-                        unoptimized
-                      />
-                    ) : (
-                      <User className="h-5 w-5" />
-                    )}
+              {isAuthenticated && <OrderNotificationDropdown />}
+
+              {isAuthenticated && session?.user ? (
+                <DropdownMenu>
+                  <DropdownMenuTrigger asChild>
+                    <Button variant="ghost" size="icon" className="cursor-pointer">
+                      {session.user.image ? (
+                        <Image
+                          src={session.user.image}
+                          alt={session.user.name || 'User'}
+                          width={32}
+                          height={32}
+                          className="rounded-full"
+                          unoptimized
+                        />
+                      ) : (
+                        <User className="h-5 w-5" />
+                      )}
+                    </Button>
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent align="end" className="w-56">
+                    <div className="px-2 py-1.5">
+                      <p className="text-sm font-medium text-foreground">
+                        {session.user.name || session.user.email}
+                      </p>
+                      {session.user.name && (
+                        <p className="text-xs text-muted-foreground">{session.user.email}</p>
+                      )}
+                    </div>
+                    <DropdownMenuSeparator />
+                    <DropdownMenuItem asChild>
+                      <Link href="/account" className="cursor-pointer">
+                        {t('myAccount')}
+                      </Link>
+                    </DropdownMenuItem>
+                    <DropdownMenuItem asChild>
+                      <Link href="/account/orders" className="cursor-pointer">
+                        {t('myOrders')}
+                      </Link>
+                    </DropdownMenuItem>
+                    <DropdownMenuSeparator />
+                    <DropdownMenuItem
+                      onClick={() => signOut({ callbackUrl: '/' })}
+                      className="cursor-pointer text-destructive focus:text-destructive"
+                    >
+                      <LogOut className="h-4 w-4 mr-2" />
+                      {t('signOut')}
+                    </DropdownMenuItem>
+                  </DropdownMenuContent>
+                </DropdownMenu>
+              ) : (
+                <Link href="/login">
+                  <Button variant="ghost" size="sm" className="cursor-pointer">
+                    {t('signIn')}
                   </Button>
-                </DropdownMenuTrigger>
-                <DropdownMenuContent align="end" className="w-56">
-                  <div className="px-2 py-1.5">
-                    <p className="text-sm font-medium text-foreground">
-                      {session.user.name || session.user.email}
-                    </p>
-                    {session.user.name && (
-                      <p className="text-xs text-muted-foreground">{session.user.email}</p>
-                    )}
-                  </div>
-                  <DropdownMenuSeparator />
-                  <DropdownMenuItem asChild>
-                    <Link href="/account" className="cursor-pointer">
-                      {t('myAccount')}
-                    </Link>
-                  </DropdownMenuItem>
-                  <DropdownMenuItem asChild>
-                    <Link href="/account/orders" className="cursor-pointer">
-                      {t('myOrders')}
-                    </Link>
-                  </DropdownMenuItem>
-                  <DropdownMenuSeparator />
-                  <DropdownMenuItem
-                    onClick={() => signOut({ callbackUrl: '/' })}
-                    className="cursor-pointer text-destructive focus:text-destructive"
-                  >
-                    <LogOut className="h-4 w-4 mr-2" />
-                    {t('signOut')}
-                  </DropdownMenuItem>
-                </DropdownMenuContent>
-              </DropdownMenu>
-            ) : (
-              <Link href="/login">
-                <Button variant="ghost" size="sm" className="cursor-pointer">
-                  {t('signIn')}
-                </Button>
-              </Link>
-            )}
+                </Link>
+              )}
 
-            <CartButton />
-          </nav>
+              <CartButton />
+            </nav>
 
-          {/* Mobile Menu Button */}
-          <div className="flex items-center gap-2 md:hidden">
-            <LanguageSwitcher variant="header" />
-            {isAuthenticated && <OrderNotificationDropdown />}
-            {!isAuthenticated && (
-              <Link href="/login">
-                <Button variant="ghost" size="icon" className="cursor-pointer">
-                  <User className="h-5 w-5" />
-                </Button>
-              </Link>
-            )}
-            <CartButton />
-            <Button
-              variant="ghost"
-              size="icon"
-              className="cursor-pointer"
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              aria-label={mobileMenuOpen ? 'Close menu' : 'Open menu'}
-              aria-expanded={mobileMenuOpen}
-            >
-              {mobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-            </Button>
+            {/* Mobile Menu Button */}
+            <div className="flex items-center gap-2 md:hidden">
+              <LanguageSwitcher variant="header" />
+              {isAuthenticated && <OrderNotificationDropdown />}
+              {!isAuthenticated && (
+                <Link href="/login">
+                  <Button variant="ghost" size="icon" className="cursor-pointer">
+                    <User className="h-5 w-5" />
+                  </Button>
+                </Link>
+              )}
+              <CartButton />
+              <Button
+                variant="ghost"
+                size="icon"
+                className="cursor-pointer"
+                onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                aria-label={mobileMenuOpen ? 'Close menu' : 'Open menu'}
+                aria-expanded={mobileMenuOpen}
+              >
+                {mobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+              </Button>
+            </div>
           </div>
         </div>
       </div>
