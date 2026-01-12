@@ -2,7 +2,7 @@
 
 import Image from 'next/image'
 import { useTranslations } from 'next-intl'
-import { Timer, Droplet, Globe } from 'lucide-react'
+import { TreeDeciduous, Brush, Globe } from 'lucide-react'
 
 export function LuthierStory() {
   const t = useTranslations('story')
@@ -42,7 +42,7 @@ export function LuthierStory() {
             <div className="space-y-6">
               <div className="flex gap-4">
                 <div className="flex-shrink-0 w-12 h-12 rounded-full bg-accent/10 flex items-center justify-center">
-                  <Timer className="h-5 w-5 text-accent" />
+                  <TreeDeciduous className="h-5 w-5 text-accent" />
                 </div>
                 <div className="space-y-2">
                   <h3 className="font-serif text-xl text-foreground">{t('heritage.title')}</h3>
@@ -54,7 +54,7 @@ export function LuthierStory() {
 
               <div className="flex gap-4">
                 <div className="flex-shrink-0 w-12 h-12 rounded-full bg-accent/10 flex items-center justify-center">
-                  <Droplet className="h-5 w-5 text-accent" />
+                  <Brush className="h-5 w-5 text-accent" />
                 </div>
                 <div className="space-y-2">
                   <h3 className="font-serif text-xl text-foreground">{t('materials.title')}</h3>
@@ -75,6 +75,13 @@ export function LuthierStory() {
                   </p>
                 </div>
               </div>
+            </div>
+
+            {/* Invitation quote */}
+            <div className="pt-4 border-t border-border/50">
+              <p className="font-serif text-xl lg:text-2xl text-foreground italic">
+                {t('invitation')}
+              </p>
             </div>
           </div>
         </div>

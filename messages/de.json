@@ -16,11 +16,20 @@
   },
   "hero": {
     "title": "Willkommen in Unserer Virtuellen Werkstatt",
+    "tagline": "Geigenbaumeister für Streichinstrumente",
     "subtitle": "Handgefertigte Streichinstrumente aus dem Herzen Siebenbürgens, wo Tradition auf außergewöhnliche Handwerkskunst trifft.",
     "cta": "Entdecken Sie Unsere Instrumente",
     "learnStory": "Unsere Geschichte",
     "established": "Seit 2014",
-    "quote": "Wir sind Paul und Ecaterina Simon und freuen uns, Sie auf unserer Website begrüßen zu dürfen. In unserer kleinen Werkstatt in Reghin, bekannt als \"Die Stadt der Geigen\", fertigen wir Instrumente, die bei Musikern weltweit Anklang finden."
+    "welcome": "Wir sind Paul und Ecaterina Simon und freuen uns, Sie auf unserer Website begrüßen zu dürfen.",
+    "intro": "Unser Haupttätigkeitsfeld besteht in der Herstellung und Lieferung von neuen Streichinstrumenten.",
+    "origin": "Unsere kleine Werkstatt, „unser Geschäft“, wurde im Februar 2014 in einer kleinen Stadt in Siebenbürgen, Reghin, gegründet, die aufgrund ihrer Tradition in der Herstellung von Streichinstrumenten als „Stadt der Geigen“ bekannt ist.",
+    "experience": "Unser erster Kontakt mit Musikinstrumenten geht auf das Jahr 2001 zurück, als wir begannen, in einem Unternehmen zu arbeiten, in dem das Holz für Musikinstrumente vorbereitet wurde. Hier lernten wir, das beste Holz sorgfältig auszuwählen, was ein wichtiger Schritt bei der Herstellung von Musikinstrumenten höchster Qualität ist.",
+    "features": {
+      "traditional": "Traditioneller Herstellungsprozess",
+      "quality": "Qualitätsholz und -materialien",
+      "finishing": "Spezielle Endlackierung"
+    }
   },
   "instrumentCategories": {
     "violin": {
@@ -60,20 +69,21 @@
     "handcraftedInstrument": "Handgefertigtes Instrument"
   },
   "story": {
-    "title": "Unsere Geschichte",
-    "subtitle": "Eine Tradition der Exzellenz aus Reghin, Siebenbürgen",
+    "title": "Unser Handwerk",
+    "subtitle": "Zusammen mit unseren erfahrenen Kollegen bereiten wir das Holz in Handarbeit nach traditionellen Verfahren vor, in Dutzenden von Phasen für jedes Instrument, mit dem Ziel, jedem Holzstück den schönsten Klang zu entlocken.",
     "heritage": {
-      "title": "Meisterhandwerk",
-      "description": "Seit 2001 perfektionieren wir die Kunst des Streichinstrumentenbaus und lernen von den besten Traditionen Reghins."
+      "title": "Traditionelle Holzvorbereitung",
+      "description": "In unserem Lager wird das Holz nur natürlich gelagert und getrocknet. Wir wählen das beste Holz sorgfältig aus, eine Fähigkeit, die wir seit 2001 entwickelt haben – ein wichtiger Schritt bei der Herstellung von Musikinstrumenten höchster Qualität."
     },
     "materials": {
-      "title": "Premium-Materialien",
-      "description": "Wir wählen sorgfältig die feinsten Tonhölzer aus und lassen sie natürlich trocknen, um in jedem Instrument eine außergewöhnliche Resonanz zu gewährleisten."
+      "title": "Handaufgetragener Lack",
+      "description": "In unserer Werkstatt widmen wir dem Lackierungs- und Veredelungsprozess der Instrumente besondere Aufmerksamkeit. Wir lackieren jedes Instrument nur von Hand, mit den besten Lacken auf Basis natürlicher Harze."
     },
     "clientele": {
       "title": "Internationale Kundschaft",
-      "description": "Unsere Instrumente werden von Musikern aus Frankreich, Belgien, Spanien, Deutschland, Japan, Taiwan und darüber hinaus geschätzt."
-    }
+      "description": "Unser Portfolio umfasst das gesamte Spektrum der Streichinstrumente: Violinen, Violen, Celli und Kontrabässe. Die Qualität unserer Produkte wird von unseren Kunden und Partnern aus Ländern wie Frankreich, Belgien, Spanien, Deutschland, Japan, Taiwan usw. geschätzt."
+    },
+    "invitation": "Wir laden Sie in unsere virtuelle Werkstatt ein..."
   },
   "testimonials": {
     "title": "Was Unsere Kunden Sagen",
@@ -88,11 +98,11 @@
     "questions": {
       "purchase": {
         "question": "Wie kann ich ein Instrument kaufen?",
-        "answer": "Sie können unsere verfügbaren Instrumente im Shop-Bereich durchstöbern. Jede Instrumentenseite enthält detaillierte Informationen, Fotos und Audiobeispiele. Um zu kaufen, fügen Sie das Instrument einfach in den Warenkorb und gehen Sie zur Kasse, oder kontaktieren Sie uns direkt für eine persönliche Beratung."
+        "answer": "Sie können unsere verfügbaren Instrumente im Shop-Bereich durchstöbern. Sobald Sie ein Instrument gefunden haben, das Ihnen gefällt, können Sie es über unsere Website reservieren. Nach der Reservierung wird Paul Sie innerhalb von 1-2 Werktagen kontaktieren, um die Details zu besprechen, alle Fragen zu beantworten und die Zahlung sowie die Lieferung zu vereinbaren."
       },
       "shipping": {
         "question": "Wie funktioniert die Lieferung?",
-        "answer": "Lieferung und Versicherung sind im Preis enthalten. Wir bieten einen Tür-zu-Tür-Service: Ihr Instrument wird in unserem Atelier in Reghin abgeholt und direkt an Ihre Adresse geliefert. Je nach Standort erfolgt die Lieferung per Luftfracht oder Landtransport. Wir haben erfolgreich an Kunden in Frankreich, Belgien, Spanien, Deutschland, Japan, Taiwan und viele andere Länder weltweit geliefert. Jedes Instrument wird professionell mit Klimaschutz verpackt und während der gesamten Reise vollständig versichert."
+        "answer": "Lieferung und Versicherung sind im Preis enthalten. Wir bieten einen Tür-zu-Tür-Service: Ihr Instrument wird in unserem Atelier in Reghin abgeholt und direkt an Ihre Adresse geliefert. Je nach Standort erfolgt die Lieferung per Luftfracht oder Landtransport. Jedes Instrument wird professionell verpackt und während der gesamten Reise vollständig versichert."
       },
       "returns": {
         "question": "Wie ist Ihre Rückgaberichtlinie?",
@@ -112,11 +122,7 @@
       },
       "payment": {
         "question": "Welche Zahlungsmethoden akzeptieren Sie?",
-        "answer": "Wir akzeptieren gängige Kreditkarten (Visa, Mastercard, American Express) über unser sicheres Stripe-Zahlungssystem. Für größere Einkäufe können wir auch Banküberweisungen oder Ratenzahlungen arrangieren."
-      },
-      "packaging": {
-        "question": "Wie werden Instrumente für die Lieferung verpackt?",
-        "answer": "Jedes Instrument wird sorgfältig in Schutzmaterialien eingewickelt, in einem Hartkoffer (im Kauf enthalten) platziert und dann in einem speziellen Versandkarton mit zusätzlicher Polsterung verpackt. Wir verwenden klimakontrollierte Verpackung, um Ihr Instrument während der gesamten Reise von unserem Atelier bis zu Ihrer Tür zu schützen."
+        "answer": "Nachdem Ihre Reservierung bestätigt wurde, kann die Zahlung per Banküberweisung oder bar erfolgen (falls Sie das Instrument persönlich in unserem Atelier abholen möchten)."
       }
     }
   },
@@ -288,7 +294,7 @@
     "remove": "Entfernen",
     "fullyInsured": "Lieferung & Versicherung im Preis enthalten",
     "secureShipping": "Tür-zu-Tür-Service aus unserem Atelier",
-    "professionalPackaging": "Professionelle Verpackung mit Klimaschutz",
+    "professionalPackaging": "Professionelle Verpackung",
     "assistanceNote": "Benötigen Sie Hilfe? Kontaktieren Sie uns für eine persönliche Beratung"
   },
   "checkout": {

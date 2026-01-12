@@ -245,7 +245,7 @@ export function OrderConfirmationEmail({
               <>
             <Text style={paragraph}>
               <strong>1. Preparation</strong> — Your instrument will be carefully inspected and
-                  professionally packaged at our atelier with climate protection.
+                  professionally packaged at our atelier.
             </Text>
             <Text style={paragraph}>
                   <strong>2. Door-to-Door Delivery</strong> — Your instrument will be picked up from

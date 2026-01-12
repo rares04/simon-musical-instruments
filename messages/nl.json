@@ -16,11 +16,20 @@
   },
   "hero": {
     "title": "Welkom in Onze Virtuele Werkplaats",
+    "tagline": "Bouwers van strijkinstrumenten",
     "subtitle": "Handgemaakte strijkinstrumenten uit het hart van Transsylvanië, waar traditie uitzonderlijk vakmanschap ontmoet.",
     "cta": "Ontdek Onze Instrumenten",
     "learnStory": "Ons Verhaal",
     "established": "Sinds 2014",
-    "quote": "Wij zijn Paul en Ecaterina Simon en verwelkomen u graag op onze website. Vanuit onze kleine werkplaats in Reghin, bekend als \"De Stad van Violen\", maken wij instrumenten die resoneren met musici wereldwijd."
+    "welcome": "Wij zijn Paul en Ecaterina Simon en verwelkomen u graag op onze website.",
+    "intro": "Ons belangrijkste activiteitsveld is het produceren en leveren van nieuwe strijkinstrumenten.",
+    "origin": "Onze kleine werkplaats, 'ons bedrijf', begon in februari 2014 in een klein stadje in Transsylvanië, Reghin, bekend als 'De Stad van Violen' vanwege de traditie in het vervaardigen van strijkinstrumenten.",
+    "experience": "Ons eerste contact met muziekinstrumenten dateert uit 2001, toen we begonnen te werken bij een bedrijf waar het hout voor muziekinstrumenten werd voorbereid. Hier leerden we zorgvuldig het beste hout selecteren, wat een belangrijke stap is bij het vervaardigen van muziekinstrumenten van de hoogste kwaliteit.",
+    "features": {
+      "traditional": "Traditioneel productieproces",
+      "quality": "Kwaliteitshout en materialen",
+      "finishing": "Speciale eindafwerkingen"
+    }
   },
   "instrumentCategories": {
     "violin": {
@@ -60,20 +69,21 @@
     "handcraftedInstrument": "Handgemaakt instrument"
   },
   "story": {
-    "title": "Ons Verhaal",
-    "subtitle": "Een traditie van excellentie uit Reghin, Transsylvanië",
+    "title": "Ons Vakmanschap",
+    "subtitle": "Samen met onze collega's die een ruime ervaring hebben, bereiden we het hout handmatig voor volgens traditionele procedures, via tientallen fasen voor elk instrument, met als doel het mooiste geluid uit elk stuk hout te halen.",
     "heritage": {
-      "title": "Meesterlijk Vakmanschap",
-      "description": "Sinds 2001 perfectioneren we de kunst van het maken van strijkinstrumenten, lerend van de beste tradities van Reghin."
+      "title": "Traditionele Houtbereiding",
+      "description": "In ons magazijn wordt het hout alleen natuurlijk bewaard en gedroogd. We selecteren zorgvuldig het beste hout, een vaardigheid die we sinds 2001 hebben ontwikkeld — een belangrijke stap bij het vervaardigen van muziekinstrumenten van de hoogste kwaliteit."
     },
     "materials": {
-      "title": "Premium Materialen",
-      "description": "We selecteren zorgvuldig en laten natuurlijk drogen de beste klankhout, wat zorgt voor uitzonderlijke resonantie in elk instrument."
+      "title": "Handmatig Aangebrachte Lak",
+      "description": "In onze werkplaats besteden we speciale aandacht aan het lak- en afwerkingsproces van de instrumenten. We lakken elk instrument alleen met de hand, met enkele van de beste lakken op basis van natuurlijke harsen."
     },
     "clientele": {
       "title": "Internationale Klantenkring",
-      "description": "Onze instrumenten worden gewaardeerd door musici uit Frankrijk, België, Spanje, Duitsland, Japan, Taiwan en daarbuiten."
-    }
+      "description": "Onze portfolio bevat het gehele assortiment strijkinstrumenten: violen, altviolen, cello's en contrabassen. De kwaliteit van onze producten wordt gewaardeerd door onze klanten en medewerkers uit landen als Frankrijk, België, Spanje, Duitsland, Japan, Taiwan, etc."
+    },
+    "invitation": "Wij nodigen u uit in onze virtuele werkplaats..."
   },
   "testimonials": {
     "title": "Wat Onze Klanten Zeggen",
@@ -88,11 +98,11 @@
     "questions": {
       "purchase": {
         "question": "Hoe kan ik een instrument kopen?",
-        "answer": "U kunt onze beschikbare instrumenten bekijken in de Winkel sectie. Elke instrumentpagina bevat gedetailleerde informatie, foto's en audiosamples. Om te kopen, voegt u het instrument gewoon toe aan uw winkelwagen en gaat u naar de kassa, of neemt u direct contact met ons op voor een persoonlijk advies."
+        "answer": "U kunt onze beschikbare instrumenten bekijken in de Winkel sectie. Zodra u een instrument vindt dat u bevalt, kunt u het reserveren via onze website. Na reservering neemt Paul binnen 1-2 werkdagen contact met u op om de details te bespreken, eventuele vragen te beantwoorden en de betaling en levering te regelen."
       },
       "shipping": {
         "question": "Hoe werkt de levering?",
-        "answer": "Levering en verzekering zijn inbegrepen in de prijs. Wij bieden een deur-tot-deur service: uw instrument wordt opgehaald bij ons atelier in Reghin en rechtstreeks bij u thuis afgeleverd. Afhankelijk van uw locatie kan levering plaatsvinden via luchtvracht of over land. We hebben succesvol geleverd aan klanten in Frankrijk, België, Spanje, Duitsland, Japan, Taiwan en vele andere landen wereldwijd. Elk instrument wordt professioneel verpakt met klimaatbescherming en is volledig verzekerd gedurende de hele reis."
+        "answer": "Levering en verzekering zijn inbegrepen in de prijs. Wij bieden een deur-tot-deur service: uw instrument wordt opgehaald bij ons atelier in Reghin en rechtstreeks bij u thuis afgeleverd. Afhankelijk van uw locatie kan levering plaatsvinden via luchtvracht of over land. Elk instrument wordt professioneel verpakt en is volledig verzekerd gedurende de hele reis."
       },
       "returns": {
         "question": "Wat is uw retourbeleid?",
@@ -112,11 +122,7 @@
       },
       "payment": {
         "question": "Welke betaalmethoden accepteren jullie?",
-        "answer": "We accepteren grote creditcards (Visa, Mastercard, American Express) via ons veilige Stripe betalingssysteem. Voor grotere aankopen kunnen we ook bankoverschrijvingen of betalingsplannen regelen."
-      },
-      "packaging": {
-        "question": "Hoe worden instrumenten verpakt voor verzending?",
-        "answer": "Elk instrument wordt zorgvuldig verpakt in beschermende materialen, geplaatst in een harde koffer (inbegrepen bij aankoop), en vervolgens verpakt in een aangepaste verzendbox met extra vulling. We gebruiken klimaatgecontroleerde verzending wanneer mogelijk."
+        "answer": "Nadat uw reservering is bevestigd, kan de betaling worden geregeld via bankoverschrijving of contant (als u ervoor kiest om het instrument persoonlijk op te halen in ons atelier)."
       }
     }
   },
@@ -288,7 +294,7 @@
     "remove": "Verwijderen",
     "fullyInsured": "Levering & verzekering inbegrepen in de prijs",
     "secureShipping": "Deur-tot-deur service vanuit ons atelier",
-    "professionalPackaging": "Professionele verpakking met klimaatbescherming",
+    "professionalPackaging": "Professionele verpakking",
     "assistanceNote": "Hulp nodig? Neem contact met ons op voor een persoonlijk advies"
   },
   "checkout": {

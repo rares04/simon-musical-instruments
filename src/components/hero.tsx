@@ -21,14 +21,44 @@ export function Hero() {
               </span>
             </div>
 
-            <h1 className="font-serif text-4xl sm:text-5xl lg:text-6xl xl:text-7xl leading-[1.1] text-balance text-foreground">
-              {t('title')}
-            </h1>
+            <div className="space-y-2">
+              <h1 className="font-serif text-4xl sm:text-5xl lg:text-6xl xl:text-7xl leading-[1.1] text-balance text-foreground">
+                {t('title')}
+              </h1>
+              <p className="font-serif text-lg lg:text-xl text-accent italic">{t('tagline')}</p>
+            </div>
 
             <div className="space-y-4">
-              <p className="text-base lg:text-lg text-muted-foreground leading-relaxed max-w-xl text-pretty">
-                {t('quote')}
+              <p className="text-lg lg:text-xl text-foreground leading-relaxed max-w-xl font-medium">
+                {t('welcome')}
               </p>
+              <p className="text-base lg:text-lg text-muted-foreground leading-relaxed max-w-xl text-pretty">
+                {t('intro')}
+              </p>
+              <p className="text-base lg:text-lg text-muted-foreground leading-relaxed max-w-xl text-pretty">
+                {t('origin')}
+              </p>
+              <p className="text-base lg:text-lg text-muted-foreground leading-relaxed max-w-xl text-pretty">
+                {t('experience')}
+              </p>
+            </div>
+
+            {/* Key Features */}
+            <div className="flex flex-wrap items-center gap-x-3 gap-y-2 text-sm text-muted-foreground">
+              <span className="flex items-center gap-2">
+                <span className="w-1.5 h-1.5 rounded-full bg-accent" />
+                {t('features.traditional')}
+              </span>
+              <span className="hidden sm:inline text-accent/60">·</span>
+              <span className="flex items-center gap-2">
+                <span className="w-1.5 h-1.5 rounded-full bg-accent sm:hidden" />
+                {t('features.quality')}
+              </span>
+              <span className="hidden sm:inline text-accent/60">·</span>
+              <span className="flex items-center gap-2">
+                <span className="w-1.5 h-1.5 rounded-full bg-accent sm:hidden" />
+                {t('features.finishing')}
+              </span>
             </div>
 
             <div className="flex flex-col sm:flex-row gap-4 pt-2">

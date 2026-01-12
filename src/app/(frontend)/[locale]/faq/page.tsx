@@ -29,7 +29,6 @@ export default async function FAQPage() {
     'care',
     'custom',
     'payment',
-    'packaging',
   ] as const
 
   return (
@@ -57,7 +56,7 @@ export default async function FAQPage() {
                 <AccordionItem
                   key={key}
                   value={`item-${index}`}
-                  className="border border-border/60 rounded-lg px-6 bg-card/50 hover:bg-card transition-colors"
+                  className="border border-border/60 rounded-lg px-6 bg-card/50 hover:bg-card transition-colors last:!border-b"
                 >
                   <AccordionTrigger className="text-left font-medium text-foreground hover:text-accent py-5">
                     {t(`questions.${key}.question`)}
@@ -93,4 +92,3 @@ export default async function FAQPage() {
     </div>
   )
 }
-

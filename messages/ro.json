@@ -16,11 +16,20 @@
   },
   "hero": {
     "title": "Bine Ați Venit în Atelierul Nostru Virtual",
+    "tagline": "Lutieri de instrumente cu coarde",
     "subtitle": "Instrumente muzicale cu coarde, realizate manual, din inima Transilvaniei, unde tradiția întâlnește meșteșugul de excepție.",
     "cta": "Explorează Instrumentele Noastre",
     "learnStory": "Povestea Noastră",
     "established": "Din 2014",
-    "quote": "Suntem Paul și Ecaterina Simon și suntem bucuroși să vă urăm bun venit pe site-ul nostru. Din micul nostru atelier din Reghin, cunoscut ca \"Orașul Viorilor\", creăm instrumente care rezonează cu muzicieni din întreaga lume."
+    "welcome": "Suntem Paul și Ecaterina Simon și suntem bucuroși să vă urăm bun venit pe site-ul nostru.",
+    "intro": "Domeniul nostru principal de activitate constă în producerea și furnizarea de instrumente muzicale noi cu coarde.",
+    "origin": "Micul nostru atelier, „afacerea noastră”, a început în februarie 2014 într-un mic oraș din Transilvania, Reghin, cunoscut sub numele de „Orașul Viorilor” datorită tradiției sale în fabricarea instrumentelor muzicale cu coarde.",
+    "experience": "Primul nostru contact cu instrumentele muzicale datează din 2001, când am început să lucrăm într-o companie unde se pregătea lemnul pentru instrumente muzicale. Acesta a fost locul în care am învățat să selectăm cu grijă cel mai bun lemn, care este un pas important în fabricarea instrumentelor muzicale de cea mai înaltă calitate.",
+    "features": {
+      "traditional": "Proces de fabricație tradițional",
+      "quality": "Lemn și materiale de calitate",
+      "finishing": "Finisaje finale speciale"
+    }
   },
   "instrumentCategories": {
     "violin": {
@@ -60,20 +69,21 @@
     "handcraftedInstrument": "Instrument realizat manual"
   },
   "story": {
-    "title": "Povestea Noastră",
-    "subtitle": "O tradiție a excelenței din Reghin, Transilvania",
+    "title": "Meșteșugul Nostru",
+    "subtitle": "Împreună cu colegii noștri care au o vastă experiență, pregătim manual lemnul prin procedee tradiționale, prin zeci de etape pentru fiecare instrument, urmărind să obținem cel mai frumos sunet din fiecare bucată de lemn.",
     "heritage": {
-      "title": "Măiestrie de Maestru",
-      "description": "Din 2001, perfecționăm arta confecționării instrumentelor cu coarde, învățând din cele mai bune tradiții ale Reghinului."
+      "title": "Pregătirea Tradițională a Lemnului",
+      "description": "În depozitul nostru lemnul este păstrat și uscat doar natural. Selectăm cu grijă cel mai bun lemn, o abilitate pe care am dezvoltat-o din 2001 — un pas important în fabricarea instrumentelor muzicale de cea mai înaltă calitate."
     },
     "materials": {
-      "title": "Materiale Premium",
-      "description": "Selectăm cu grijă și uscăm natural cele mai fine lemne de ton, asigurând o rezonanță excepțională în fiecare instrument."
+      "title": "Lac Aplicat Manual",
+      "description": "În atelierul nostru acordăm o atenție specială procesului de lăcuire și finisare a instrumentelor. Lăcuim fiecare instrument doar manual, cu unele dintre cele mai bune lacuri, bazate pe rășini naturale."
     },
     "clientele": {
       "title": "Clientelă Internațională",
-      "description": "Instrumentele noastre sunt apreciate de muzicieni din Franța, Belgia, Spania, Germania, Japonia, Taiwan și din alte părți."
-    }
+      "description": "Portofoliul nostru conține întreaga gamă de instrumente cu coarde: viori, viole, violoncele și contrabași. Calitatea produselor noastre este apreciată de clienții și colaboratorii noștri din țări precum Franța, Belgia, Spania, Germania, Japonia, Taiwan etc."
+    },
+    "invitation": "Vă invităm în atelierul nostru virtual..."
   },
   "testimonials": {
     "title": "Ce Spun Clienții Noștri",
@@ -88,15 +98,15 @@
     "questions": {
       "purchase": {
         "question": "Cum pot achiziționa un instrument?",
-        "answer": "Poți răsfoi instrumentele disponibile în secțiunea Magazin. Fiecare pagină de instrument are informații detaliate, fotografii și mostre audio. Pentru a cumpăra, adaugă pur și simplu instrumentul în coș și finalizează comanda, sau contactează-ne direct pentru o consultare personalizată."
+        "answer": "Puteți răsfoi instrumentele noastre disponibile în secțiunea Magazin. Odată ce găsiți un instrument care vă place, îl puteți rezerva prin intermediul site-ului nostru. După rezervare, Paul vă va contacta în termen de 1-2 zile lucrătoare pentru a discuta detaliile, a răspunde la orice întrebări și a stabili modalitatea de plată și livrare."
       },
       "shipping": {
         "question": "Cum funcționează livrarea?",
-        "answer": "Livrarea și asigurarea sunt incluse în preț. Oferim serviciu din ușă în ușă: instrumentul tău este preluat de la atelierul nostru din Reghin și livrat direct la adresa ta. În funcție de locație, livrarea poate fi prin cargo aerian sau transport terestru. Am livrat cu succes către clienți din Franța, Belgia, Spania, Germania, Japonia, Taiwan și multe alte țări din întreaga lume. Fiecare instrument este ambalat profesional cu protecție climatică și complet asigurat pe toată durata călătoriei."
+        "answer": "Livrarea și asigurarea sunt incluse în preț. Oferim serviciu din ușă în ușă: instrumentul dumneavoastră este preluat de la atelierul nostru din Reghin și livrat direct la adresa dumneavoastră. În funcție de locație, livrarea poate fi prin cargo aerian sau transport terestru. Fiecare instrument este ambalat profesional și complet asigurat pe toată durata călătoriei."
       },
       "returns": {
         "question": "Care este politica de retur?",
-        "answer": "Oferim o politică de retur de 14 zile pentru instrumentele în starea lor originală. Dacă nu ești complet satisfăcut, poți returna instrumentul pentru o rambursare completă minus costurile de expediere. Comenzile personalizate pot avea termeni diferiți."
+        "answer": "Oferim o politică de retur de 14 zile pentru instrumentele în starea lor originală. Dacă nu sunteți complet satisfăcut, puteți returna instrumentul pentru o rambursare completă minus costurile de expediere. Comenzile personalizate pot avea termeni diferiți."
       },
       "certificate": {
         "question": "Instrumentele vin cu un certificat de autenticitate?",
@@ -108,15 +118,11 @@
       },
       "custom": {
         "question": "Pot comanda un instrument personalizat?",
-        "answer": "Salutăm comenzile personalizate. Contactează-ne pentru a discuta cerințele tale specifice, preferințele pentru selecția lemnului, culoarea lacului și orice alte personalizări dorite. Instrumentele personalizate durează de obicei 3-6 luni pentru finalizare."
+        "answer": "Salutăm comenzile personalizate. Contactați-ne pentru a discuta cerințele dumneavoastră specifice, preferințele pentru selecția lemnului, culoarea lacului și orice alte personalizări dorite. Instrumentele personalizate durează de obicei 3-6 luni pentru finalizare."
       },
       "payment": {
         "question": "Ce metode de plată acceptați?",
-        "answer": "Acceptăm carduri de credit principale (Visa, Mastercard, American Express) prin sistemul nostru securizat de plată Stripe. Pentru achiziții mai mari, putem aranja și transferuri bancare sau planuri de plată în rate."
-      },
-      "packaging": {
-        "question": "Cum sunt ambalate instrumentele pentru livrare?",
-        "answer": "Fiecare instrument este înfășurat cu grijă în materiale de protecție, plasat într-un toc dur (inclus în achiziție), apoi ambalat într-o cutie de expediere personalizată cu căptușeală suplimentară. Folosim ambalaj cu control climatic pentru a proteja instrumentul tău pe toată durata călătoriei de la atelierul nostru până la ușa ta."
+        "answer": "După confirmarea rezervării, plata poate fi aranjată prin transfer bancar sau numerar (dacă alegeți să ridicați personal instrumentul de la atelierul nostru)."
       }
     }
   },
@@ -288,7 +294,7 @@
     "remove": "Elimină",
     "fullyInsured": "Livrare & asigurare incluse în preț",
     "secureShipping": "Serviciu din ușă în ușă de la atelierul nostru",
-    "professionalPackaging": "Ambalaj profesional cu protecție climatică",
+    "professionalPackaging": "Ambalaj profesional",
     "assistanceNote": "Ai nevoie de asistență? Contactează-ne pentru o consultare personală"
   },
   "checkout": {

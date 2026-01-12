@@ -380,7 +380,7 @@ function CheckoutForm({
                 <div className="flex items-center gap-3 text-sm">
                   <Package className="h-4 w-4 text-accent flex-shrink-0" />
                   <span className="text-muted-foreground">
-                    Professional packaging with climate protection
+                    Professional packaging
                   </span>
                 </div>
               </div>

@@ -16,11 +16,20 @@
   },
   "hero": {
     "title": "Welcome to Our Virtual Workshop",
+    "tagline": "Bowed string instruments makers",
     "subtitle": "Handcrafted bowed string instruments from the heart of Transylvania, where tradition meets exceptional craftsmanship.",
     "cta": "Explore Our Instruments",
     "learnStory": "Our Story",
     "established": "Est. 2014",
-    "quote": "We are Paul and Ecaterina Simon, and we are happy to welcome you to our site. From our little workshop in Reghin, known as \"The City of Violins,\" we create instruments that resonate with musicians worldwide."
+    "welcome": "We are Paul and Ecaterina Simon and we are happy to welcome you to our site.",
+    "intro": "Our main field of activity consists of producing and supplying new bowed string music instruments.",
+    "origin": "Our little workshop, \"our business\", started in February 2014 in a small town in Transylvania, Reghin, known as \"The City of Violins\" due to its tradition in manufacturing bowed string music instruments.",
+    "experience": "Our first contact with music instruments dates back to 2001, when we started working in a company where the wood for music instruments was prepared. This was the place we learned to carefully select the best wood, which is an important step in manufacturing music instruments of the highest quality.",
+    "features": {
+      "traditional": "Traditional manufacturing process",
+      "quality": "Quality wood and materials",
+      "finishing": "Special final finishings"
+    }
   },
   "instrumentCategories": {
     "violin": {
@@ -60,20 +69,21 @@
     "handcraftedInstrument": "Handcrafted instrument"
   },
   "story": {
-    "title": "Our Story",
-    "subtitle": "A tradition of excellence from Reghin, Transylvania",
+    "title": "Our Craft",
+    "subtitle": "Together with our colleagues who have a vast experience, we manually prepare wood by traditional procedures, through dozens of stages for each instrument, aiming to obtain the nicest sound from each piece of wood.",
     "heritage": {
-      "title": "Master Craftsmanship",
-      "description": "Since 2001, we've been perfecting the art of string instrument making, learning from the best traditions of Reghin."
+      "title": "Traditional Wood Preparation",
+      "description": "In our warehouse the wood is kept and dried only naturally. We carefully select the best wood, a skill we've developed since 2001—an important step in manufacturing music instruments of the highest quality."
     },
     "materials": {
-      "title": "Premium Materials",
-      "description": "We carefully select and naturally cure the finest tonewoods, ensuring exceptional resonance in every instrument."
+      "title": "Hand-Applied Lacquer",
+      "description": "In our workshop we pay special attention to the lacquering and finishing process of the instruments. We lacquer each instrument only by hand, with ones of the best lacquers, based on natural resins."
     },
     "clientele": {
       "title": "International Clientele",
-      "description": "Our instruments are appreciated by musicians from France, Belgium, Spain, Germany, Japan, Taiwan, and beyond."
-    }
+      "description": "Our portfolio contains the whole range of string instruments: violins, violas, cellos and contrabasses. The quality of our products is appreciated by our clients and collaborators from countries like France, Belgium, Spain, Germany, Japan, Taiwan, etc."
+    },
+    "invitation": "We invite you to our virtual workshop..."
   },
   "testimonials": {
     "title": "What Our Clients Say",
@@ -88,11 +98,11 @@
     "questions": {
       "purchase": {
         "question": "How can I purchase an instrument?",
-        "answer": "You can browse our available instruments in the Shop section. Each instrument page has detailed information, photos, and audio samples. To purchase, simply add the instrument to your cart and proceed to checkout, or contact us directly for a personalized consultation."
+        "answer": "You can browse our available instruments in the Shop section. Once you find an instrument you like, you can reserve it through our website. After reservation, Paul will contact you within 1-2 business days to discuss the details, answer any questions, and arrange for payment and delivery."
       },
       "shipping": {
         "question": "How does delivery work?",
-        "answer": "Delivery and insurance are included in the price. We offer door-to-door service: your instrument is picked up from our atelier in Reghin and delivered directly to your address. Depending on your location, delivery may be via air cargo or ground transport. We've successfully delivered to clients in France, Belgium, Spain, Germany, Japan, Taiwan, and many other countries worldwide. Every instrument is professionally packed with climate protection and fully insured throughout the journey."
+        "answer": "Delivery and insurance are included in the price. We offer door-to-door service: your instrument is picked up from our atelier in Reghin and delivered directly to your address. Depending on your location, delivery may be via air cargo or ground transport. Every instrument is professionally packed and fully insured throughout the journey."
       },
       "returns": {
         "question": "What is your return policy?",
@@ -112,11 +122,7 @@
       },
       "payment": {
         "question": "What payment methods do you accept?",
-        "answer": "We accept major credit cards (Visa, Mastercard, American Express) through our secure Stripe payment system. For larger purchases, we can also arrange bank transfers or payment plans."
-      },
-      "packaging": {
-        "question": "How are instruments packaged for delivery?",
-        "answer": "Each instrument is carefully wrapped in protective materials, placed in a hard case (included with purchase), and then packed in a custom shipping box with additional padding. We use climate-controlled packaging to protect your instrument throughout its journey from our atelier to your door."
+        "answer": "After your reservation is confirmed, payment can be arranged via bank transfer or cash (if you choose to pick up the instrument from our atelier in person)."
       }
     }
   },
@@ -288,7 +294,7 @@
     "remove": "Remove",
     "fullyInsured": "Delivery & insurance included in price",
     "secureShipping": "Door-to-door service from our atelier",
-    "professionalPackaging": "Professional packaging with climate protection",
+    "professionalPackaging": "Professional packaging",
     "assistanceNote": "Need assistance? Contact us for a personal consultation"
   },
   "checkout": {
@@ -372,7 +378,7 @@
       },
       "secureShipping": "Door-to-door delivery with signature confirmation",
       "fullInsurance": "Delivery & insurance included in price",
-      "professionalPackaging": "Professional packaging with climate protection"
+      "professionalPackaging": "Professional packaging"
     },
     "message": {
       "title": "Message",

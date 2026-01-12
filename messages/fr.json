@@ -16,11 +16,20 @@
   },
   "hero": {
     "title": "Bienvenue dans Notre Atelier Virtuel",
+    "tagline": "Luthiers d'instruments à cordes",
     "subtitle": "Instruments à cordes frottées fabriqués à la main au cœur de la Transylvanie, où la tradition rencontre un savoir-faire exceptionnel.",
     "cta": "Découvrez Nos Instruments",
     "learnStory": "Notre Histoire",
     "established": "Depuis 2014",
-    "quote": "Nous sommes Paul et Ecaterina Simon et nous sommes heureux de vous accueillir sur notre site. Depuis notre petit atelier à Reghin, connu comme \"La Ville des Violons\", nous créons des instruments qui résonnent avec des musiciens du monde entier."
+    "welcome": "Nous sommes Paul et Ecaterina Simon et nous sommes heureux de vous accueillir sur notre site.",
+    "intro": "Notre principal domaine d'activité consiste à produire et à fournir de nouveaux instruments de musique à cordes frottées.",
+    "origin": "Notre petit atelier, « notre entreprise », a débuté en février 2014 dans une petite ville de Transylvanie, Reghin, connue sous le nom de « La ville des violons » en raison de sa tradition dans la fabrication d'instruments de musique à cordes.",
+    "experience": "Notre premier contact avec les instruments de musique remonte à 2001, quand nous avons commencé à travailler dans une entreprise où le bois pour les instruments de musique était préparé. C'est là que nous avons appris à sélectionner soigneusement le meilleur bois, ce qui est une étape importante dans la fabrication d'instruments de musique de la plus haute qualité.",
+    "features": {
+      "traditional": "Processus de fabrication traditionnel",
+      "quality": "Bois et matériaux de qualité",
+      "finishing": "Finitions finales spéciales"
+    }
   },
   "instrumentCategories": {
     "violin": {
@@ -60,20 +69,21 @@
     "handcraftedInstrument": "Instrument artisanal"
   },
   "story": {
-    "title": "Notre Histoire",
-    "subtitle": "Une tradition d'excellence de Reghin, Transylvanie",
+    "title": "Notre Savoir-Faire",
+    "subtitle": "Avec nos collègues qui possèdent une vaste expérience, nous préparons manuellement le bois par des procédés traditionnels, à travers des dizaines d'étapes pour chaque instrument, dans le but d'obtenir le plus beau son de chaque morceau de bois.",
     "heritage": {
-      "title": "Maîtrise Artisanale",
-      "description": "Depuis 2001, nous perfectionnons l'art de la lutherie, en apprenant des meilleures traditions de Reghin."
+      "title": "Préparation Traditionnelle du Bois",
+      "description": "Dans notre entrepôt, le bois est conservé et séché uniquement de manière naturelle. Nous sélectionnons soigneusement le meilleur bois, une compétence que nous développons depuis 2001 — une étape cruciale dans la fabrication d'instruments de musique de qualité supérieure."
     },
     "materials": {
-      "title": "Matériaux Premium",
-      "description": "Nous sélectionnons soigneusement et séchons naturellement les bois de résonance les plus fins, assurant une résonance exceptionnelle dans chaque instrument."
+      "title": "Vernis Appliqué à la Main",
+      "description": "Dans notre atelier, nous accordons une attention particulière au processus de vernissage et de finition des instruments. Nous vernissons chaque instrument uniquement à la main, avec les meilleurs vernis à base de résines naturelles."
     },
     "clientele": {
       "title": "Clientèle Internationale",
-      "description": "Nos instruments sont appréciés par des musiciens de France, Belgique, Espagne, Allemagne, Japon, Taiwan et au-delà."
-    }
+      "description": "Notre portefeuille contient toute la gamme des instruments à cordes : violons, altos, violoncelles et contrebasses. La qualité de nos produits est appréciée par nos clients et collaborateurs de pays tels que la France, la Belgique, l'Espagne, l'Allemagne, le Japon, Taïwan, etc."
+    },
+    "invitation": "Nous vous invitons dans notre atelier virtuel..."
   },
   "testimonials": {
     "title": "Ce Que Disent Nos Clients",
@@ -288,7 +298,7 @@
     "remove": "Supprimer",
     "fullyInsured": "Livraison & assurance incluses dans le prix",
     "secureShipping": "Service de porte à porte depuis notre atelier",
-    "professionalPackaging": "Emballage professionnel avec protection climatique",
+    "professionalPackaging": "Emballage professionnel",
     "assistanceNote": "Besoin d'aide? Contactez-nous pour une consultation personnelle"
   },
   "checkout": {
