@@ -23,7 +23,7 @@ export function AuthButtons({ mode, callbackUrl = '/' }: AuthButtonsProps) {
         type="button"
         variant="outline"
         size="lg"
-        className="w-full h-11 cursor-pointer bg-transparent"
+        className="w-full h-11 cursor-pointer bg-transparent hover:bg-accent/10 hover:text-accent transition-colors"
         onClick={() => handleOAuthSignIn('google')}
       >
         <svg className="h-5 w-5 mr-3" viewBox="0 0 24 24">

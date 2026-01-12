@@ -132,6 +132,18 @@ export interface UserAuthOperations {
 export interface User {
   id: number;
   name?: string | null;
+  /**
+   * Whether the user has verified their email address
+   */
+  emailVerified?: boolean | null;
+  /**
+   * One-time password for email verification
+   */
+  otp?: string | null;
+  /**
+   * When the OTP expires
+   */
+  otpExpiry?: string | null;
   firstName?: string | null;
   lastName?: string | null;
   /**
@@ -463,6 +475,9 @@ export interface PayloadMigration {
  */
 export interface UsersSelect<T extends boolean = true> {
   name?: T;
+  emailVerified?: T;
+  otp?: T;
+  otpExpiry?: T;
   firstName?: T;
   lastName?: T;
   image?: T;

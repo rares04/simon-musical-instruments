@@ -507,6 +507,32 @@
         "registrationFailed": "登録に失敗しました。もう一度お試しください。"
       }
     },
+    "verifyEmail": {
+      "title": "メールアドレスの確認",
+      "subtitle": "ご登録のメールアドレスに6桁の認証コードを送信しました。",
+      "checkInbox": "受信トレイを確認してください",
+      "weSentCode": "認証コードをメールで送信しました。受信トレイと迷惑メールフォルダを確認してください。",
+      "enterCode": "アカウントを確認するために6桁のコードを入力してください",
+      "verify": "メールを認証する",
+      "verifying": "認証中...",
+      "didntReceive": "コードが届きませんか？",
+      "resendCode": "コードを再送する",
+      "resendIn": "{seconds}秒後に再送可能",
+      "sending": "送信中...",
+      "backToLogin": "ログインに戻る",
+      "errors": {
+        "invalidOtp": "認証コードが正しくありません",
+        "expired": "コードの期限が切れました。新しいコードをリクエストしてください。",
+        "verificationFailed": "認証に失敗しました。もう一度お試しください。",
+        "resendFailed": "コードの再送に失敗しました。もう一度お試しください。",
+        "genericError": "エラーが発生しました。もう一度お試しください。"
+      },
+      "success": {
+        "title": "認証完了！",
+        "subtitle": "メールアドレスの認証が完了しました。ログインしています...",
+        "redirecting": "ダッシュボードに移動しています"
+      }
+    },
     "labels": {
       "email": "メールアドレス",
       "password": "パスワード"

@@ -75,7 +75,7 @@ export function Hero() {
                 <Button
                   size="lg"
                   variant="outline"
-                  className="cursor-pointer w-full sm:w-auto border-border/60 hover:bg-muted/50 bg-transparent"
+                  className="cursor-pointer w-full sm:w-auto border-border/60 hover:bg-accent/10 hover:text-accent bg-transparent transition-colors"
                 >
                   {t('learnStory')}
                 </Button>

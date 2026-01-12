@@ -507,6 +507,32 @@
         "registrationFailed": "등록에 실패했습니다. 다시 시도해 주세요."
       }
     },
+    "verifyEmail": {
+      "title": "이메일 인증",
+      "subtitle": "이메일 주소로 6자리 인증 코드를 보냈습니다.",
+      "checkInbox": "받은 편지함을 확인하세요",
+      "weSentCode": "이메일로 인증 코드를 보냈습니다. 받은 편지함과 스팸함을 확인해 주세요.",
+      "enterCode": "계정 인증을 위해 6자리 코드를 입력하세요",
+      "verify": "이메일 인증하기",
+      "verifying": "인증 중...",
+      "didntReceive": "코드를 받지 못하셨나요?",
+      "resendCode": "코드 재전송",
+      "resendIn": "{seconds}초 후 재전송",
+      "sending": "전송 중...",
+      "backToLogin": "로그인으로 돌아가기",
+      "errors": {
+        "invalidOtp": "잘못된 인증 코드입니다",
+        "expired": "코드가 만료되었습니다. 새 코드를 요청하세요.",
+        "verificationFailed": "인증에 실패했습니다. 다시 시도해 주세요.",
+        "resendFailed": "코드 재전송에 실패했습니다. 다시 시도해 주세요.",
+        "genericError": "오류가 발생했습니다. 다시 시도해 주세요."
+      },
+      "success": {
+        "title": "이메일 인증 완료!",
+        "subtitle": "이메일 인증이 성공적으로 완료되었습니다. 로그인 중입니다...",
+        "redirecting": "대시보드로 이동 중"
+      }
+    },
     "labels": {
       "email": "이메일 주소",
       "password": "비밀번호"

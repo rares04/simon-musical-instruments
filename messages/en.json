@@ -507,6 +507,32 @@
         "registrationFailed": "Registration failed. Please try again."
       }
     },
+    "verifyEmail": {
+      "title": "Verify Your Email",
+      "subtitle": "We've sent a 6-digit verification code to your email address.",
+      "checkInbox": "Check Your Inbox",
+      "weSentCode": "We've sent a verification code to your email. Please check your inbox and spam folder.",
+      "enterCode": "Enter the 6-digit code to verify your account",
+      "verify": "Verify Email",
+      "verifying": "Verifying...",
+      "didntReceive": "Didn't receive the code?",
+      "resendCode": "Resend Code",
+      "resendIn": "Resend in {seconds}s",
+      "sending": "Sending...",
+      "backToLogin": "Back to Sign In",
+      "errors": {
+        "invalidOtp": "Invalid verification code",
+        "expired": "Code has expired. Please request a new one.",
+        "verificationFailed": "Verification failed. Please try again.",
+        "resendFailed": "Failed to resend code. Please try again.",
+        "genericError": "An error occurred. Please try again."
+      },
+      "success": {
+        "title": "Email Verified!",
+        "subtitle": "Your email has been successfully verified. You're being signed in...",
+        "redirecting": "Redirecting to your dashboard"
+      }
+    },
     "labels": {
       "email": "Email Address",
       "password": "Password"

@@ -511,6 +511,32 @@
         "registrationFailed": "L'inscription a échoué. Veuillez réessayer."
       }
     },
+    "verifyEmail": {
+      "title": "Vérifiez Votre E-mail",
+      "subtitle": "Nous avons envoyé un code de vérification à 6 chiffres à votre adresse e-mail.",
+      "checkInbox": "Vérifiez votre boîte de réception",
+      "weSentCode": "Nous avons envoyé un code de vérification à votre adresse e-mail. Veuillez vérifier votre boîte de réception et vos courriers indésirables.",
+      "enterCode": "Saisissez le code à 6 chiffres pour vérifier votre compte",
+      "verify": "Vérifier l'E-mail",
+      "verifying": "Vérification...",
+      "didntReceive": "Vous n'avez pas reçu le code ?",
+      "resendCode": "Renvoyer le Code",
+      "resendIn": "Renvoyer dans {seconds}s",
+      "sending": "Envoi...",
+      "backToLogin": "Retour à la Connexion",
+      "errors": {
+        "invalidOtp": "Code de vérification invalide",
+        "expired": "Le code a expiré. Veuillez en demander un nouveau.",
+        "verificationFailed": "La vérification a échoué. Veuillez réessayer.",
+        "resendFailed": "Échec de l'envoi du code. Veuillez réessayer.",
+        "genericError": "Une erreur est survenue. Veuillez réessayer."
+      },
+      "success": {
+        "title": "E-mail Vérifié !",
+        "subtitle": "Votre e-mail a été vérifié avec succès. Connexion en cours...",
+        "redirecting": "Redirection vers votre tableau de bord"
+      }
+    },
     "labels": {
       "email": "Adresse E-mail",
       "password": "Mot de Passe"

@@ -4,7 +4,7 @@ export const Users: CollectionConfig = {
   slug: 'users',
   admin: {
     useAsTitle: 'email',
-    defaultColumns: ['email', 'name', 'provider', 'roles', 'createdAt'],
+    defaultColumns: ['email', 'name', 'provider', 'emailVerified', 'roles', 'createdAt'],
   },
   auth: true,
   fields: [
@@ -12,6 +12,39 @@ export const Users: CollectionConfig = {
       name: 'name',
       type: 'text',
       label: 'Full Name',
+    },
+    // Email verification fields
+    {
+      name: 'emailVerified',
+      type: 'checkbox',
+      label: 'Email Verified',
+      defaultValue: false,
+      admin: {
+        position: 'sidebar',
+        description: 'Whether the user has verified their email address',
+      },
+    },
+    {
+      name: 'otp',
+      type: 'text',
+      label: 'OTP Code',
+      admin: {
+        position: 'sidebar',
+        readOnly: true,
+        description: 'One-time password for email verification',
+        condition: (data) => Boolean(data?.otp),
+      },
+    },
+    {
+      name: 'otpExpiry',
+      type: 'date',
+      label: 'OTP Expiry',
+      admin: {
+        position: 'sidebar',
+        readOnly: true,
+        description: 'When the OTP expires',
+        condition: (data) => Boolean(data?.otpExpiry),
+      },
     },
     {
       name: 'firstName',

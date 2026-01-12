@@ -37,6 +37,24 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
         try {
           const payload = await getPayload({ config })
 
+          // First, check if user exists and is verified BEFORE attempting login
+          const existingUsers = await payload.find({
+            collection: 'users',
+            where: {
+              email: { equals: credentials.email as string },
+            },
+            limit: 1,
+          })
+
+          if (existingUsers.docs.length > 0) {
+            const existingUser = existingUsers.docs[0]
+            // Check if credentials user hasn't verified their email
+            if (existingUser.provider === 'credentials' && !existingUser.emailVerified) {
+              // Return null instead of throwing - the login page will check verification status
+              return null
+            }
+          }
+
           // Use Payload's built-in login
           const { user } = await payload.login({
             collection: 'users',
@@ -48,6 +66,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
 
           if (user) {
             const payloadUser = user as unknown as PayloadUser
+
             return {
               id: String(payloadUser.id),
               email: payloadUser.email,
@@ -66,6 +85,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
 
           return null
         } catch {
+          // Login failed (wrong password, etc.)
           return null
         }
       },

@@ -507,6 +507,32 @@
         "registrationFailed": "Registratie mislukt. Probeer het opnieuw."
       }
     },
+    "verifyEmail": {
+      "title": "E-mail Verifiëren",
+      "subtitle": "We hebben een 6-cijferige verificatiecode naar uw e-mailadres gestuurd.",
+      "checkInbox": "Controleer uw Postvak In",
+      "weSentCode": "We hebben een verificatiecode naar uw e-mail gestuurd. Controleer uw postvak in en spam-map.",
+      "enterCode": "Voer de 6-cijferige code in om uw account te verifiëren",
+      "verify": "E-mail Verifiëren",
+      "verifying": "Verifiëren...",
+      "didntReceive": "Geen code ontvangen?",
+      "resendCode": "Code Opnieuw Verzenden",
+      "resendIn": "Opnieuw verzenden in {seconds}s",
+      "sending": "Verzenden...",
+      "backToLogin": "Terug naar Aanmelden",
+      "errors": {
+        "invalidOtp": "Ongeldige verificatiecode",
+        "expired": "Code is verlopen. Vraag een nieuwe aan.",
+        "verificationFailed": "Verificatie mislukt. Probeer het opnieuw.",
+        "resendFailed": "Code verzenden mislukt. Probeer het opnieuw.",
+        "genericError": "Er is een fout opgetreden. Probeer het opnieuw."
+      },
+      "success": {
+        "title": "E-mail Geverifieerd!",
+        "subtitle": "Uw e-mail is succesvol geverifieerd. U wordt aangemeld...",
+        "redirecting": "Doorsturen naar uw dashboard"
+      }
+    },
     "labels": {
       "email": "E-mailadres",
       "password": "Wachtwoord"

@@ -37,6 +37,27 @@ function LoginForm() {
       })
 
       if (result?.error) {
+        // On any login failure, check if user exists but hasn't verified their email
+        try {
+          const checkResponse = await fetch('/api/auth/check-verification', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ email }),
+          })
+          const checkData = await checkResponse.json()
+
+          if (checkData.needsVerification) {
+            // User exists but email not verified - redirect to verify
+            const encodedPassword = btoa(password)
+            router.push(
+              `/verify-email?email=${encodeURIComponent(email)}&p=${encodeURIComponent(encodedPassword)}`,
+            )
+            return
+          }
+        } catch {
+          // If check fails, fall through to generic error
+        }
+
         setFormError(t('login.errors.invalidCredentials'))
       } else {
         router.push(callbackUrl)
@@ -56,9 +77,7 @@ function LoginForm() {
         <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-accent/10" />
         <div className="relative z-10 flex flex-col justify-between p-12">
           <Link href="/" className="cursor-pointer">
-            <h1 className="font-serif text-2xl font-bold text-foreground">
-              {t('brandName')}
-            </h1>
+            <h1 className="font-serif text-2xl font-bold text-foreground">{t('brandName')}</h1>
             <p className="text-sm text-muted-foreground mt-1">{t('location')}</p>
           </Link>
 
@@ -77,18 +96,14 @@ function LoginForm() {
           {/* Mobile Logo */}
           <div className="lg:hidden text-center">
             <Link href="/" className="cursor-pointer">
-              <h1 className="font-serif text-xl font-bold text-foreground">
-                {t('brandName')}
-              </h1>
+              <h1 className="font-serif text-xl font-bold text-foreground">{t('brandName')}</h1>
             </Link>
           </div>
 
           {/* Header */}
           <div className="text-center">
             <h2 className="font-serif text-3xl font-bold text-foreground">{t('login.title')}</h2>
-            <p className="text-muted-foreground mt-2">
-              {t('login.subtitle')}
-            </p>
+            <p className="text-muted-foreground mt-2">{t('login.subtitle')}</p>
           </div>
 
           {/* Error Messages */}

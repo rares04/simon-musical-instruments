@@ -507,6 +507,32 @@
         "registrationFailed": "Înregistrarea a eșuat. Te rugăm să încerci din nou."
       }
     },
+    "verifyEmail": {
+      "title": "Verifică-ți Adresa de Email",
+      "subtitle": "Am trimis un cod de verificare din 6 cifre la adresa ta de email.",
+      "checkInbox": "Verifică Inbox-ul",
+      "weSentCode": "Am trimis un cod de verificare la adresa ta de email. Te rugăm să verifici inbox-ul și folderul spam.",
+      "enterCode": "Introdu codul din 6 cifre pentru a-ți verifica contul",
+      "verify": "Verifică Email-ul",
+      "verifying": "Se verifică...",
+      "didntReceive": "Nu ai primit codul?",
+      "resendCode": "Retrimite Codul",
+      "resendIn": "Retrimite în {seconds}s",
+      "sending": "Se trimite...",
+      "backToLogin": "Înapoi la Autentificare",
+      "errors": {
+        "invalidOtp": "Cod de verificare invalid",
+        "expired": "Codul a expirat. Te rugăm să soliciți unul nou.",
+        "verificationFailed": "Verificarea a eșuat. Te rugăm să încerci din nou.",
+        "resendFailed": "Eroare la retrimiterea codului. Te rugăm să încerci din nou.",
+        "genericError": "A apărut o eroare. Te rugăm să încerci din nou."
+      },
+      "success": {
+        "title": "Email Verificat!",
+        "subtitle": "Adresa ta de email a fost verificată cu succes. Te autentificăm...",
+        "redirecting": "Se redirecționează către panoul de control"
+      }
+    },
     "labels": {
       "email": "Adresă de Email",
       "password": "Parolă"

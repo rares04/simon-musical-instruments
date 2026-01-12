@@ -1,8 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import { signIn } from 'next-auth/react'
-import { useRouter } from 'next/navigation'
+import { useRouter, useParams } from 'next/navigation'
 import { useTranslations } from 'next-intl'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
@@ -14,6 +13,8 @@ import { Link } from '@/i18n/routing'
 
 export default function RegisterPage() {
   const router = useRouter()
+  const params = useParams()
+  const locale = params.locale as string
   const t = useTranslations('auth')
   const tCommon = useTranslations('common')
 
@@ -63,6 +64,7 @@ export default function RegisterPage() {
           name: `${firstName} ${lastName}`.trim(),
           provider: 'credentials',
           roles: ['user'],
+          emailVerified: false, // User needs to verify email
         }),
       })
 
@@ -76,19 +78,23 @@ export default function RegisterPage() {
         return
       }
 
-      // Auto sign in after registration
-      const result = await signIn('credentials', {
-        email,
-        password,
-        redirect: false,
+      // Send OTP to user's email
+      const otpResponse = await fetch('/api/auth/send-otp', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, locale }),
       })
 
-      if (result?.error) {
-        setError(t('register.errors.signInFailed'))
-      } else {
-        router.push('/')
-        router.refresh()
+      if (!otpResponse.ok) {
+        // User was created but OTP failed - still redirect to verify page
+        console.error('Failed to send OTP email')
       }
+
+      // Redirect to verify email page with email and password (base64 encoded for auto-login after verification)
+      const encodedPassword = btoa(password)
+      router.push(
+        `/verify-email?email=${encodeURIComponent(email)}&p=${encodeURIComponent(encodedPassword)}`,
+      )
     } catch {
       setError(t('register.errors.genericError'))
     } finally {
@@ -103,9 +109,7 @@ export default function RegisterPage() {
         <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-accent/10" />
         <div className="relative z-10 flex flex-col justify-between p-12">
           <Link href="/" className="cursor-pointer">
-            <h1 className="font-serif text-2xl font-bold text-foreground">
-              {t('brandName')}
-            </h1>
+            <h1 className="font-serif text-2xl font-bold text-foreground">{t('brandName')}</h1>
             <p className="text-sm text-muted-foreground mt-1">{t('location')}</p>
           </Link>
 
@@ -143,18 +147,14 @@ export default function RegisterPage() {
           {/* Mobile Logo */}
           <div className="lg:hidden text-center">
             <Link href="/" className="cursor-pointer">
-              <h1 className="font-serif text-xl font-bold text-foreground">
-                {t('brandName')}
-              </h1>
+              <h1 className="font-serif text-xl font-bold text-foreground">{t('brandName')}</h1>
             </Link>
           </div>
 
           {/* Header */}
           <div className="text-center">
             <h2 className="font-serif text-3xl font-bold text-foreground">{t('register.title')}</h2>
-            <p className="text-muted-foreground mt-2">
-              {t('register.subtitle')}
-            </p>
+            <p className="text-muted-foreground mt-2">{t('register.subtitle')}</p>
           </div>
 
           {/* Error Message */}
