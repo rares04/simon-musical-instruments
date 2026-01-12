@@ -50,8 +50,8 @@ export default function RegisterPage() {
     setIsLoading(true)
 
     try {
-      // Create user via Payload API
-      const response = await fetch('/api/users', {
+      // Create user via custom registration API
+      const response = await fetch('/api/register', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -61,10 +61,6 @@ export default function RegisterPage() {
           password,
           firstName,
           lastName,
-          name: `${firstName} ${lastName}`.trim(),
-          provider: 'credentials',
-          roles: ['user'],
-          emailVerified: false, // User needs to verify email
         }),
       })
 
