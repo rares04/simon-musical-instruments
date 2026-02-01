@@ -102,7 +102,7 @@
       },
       "shipping": {
         "question": "How does delivery work?",
-        "answer": "We offer door-to-door service: your instrument is picked up from our atelier in Reghin and delivered directly to your address. Depending on your location, delivery may be via air cargo or ground transport. Every instrument is professionally packed and fully insured throughout the journey. The cost of delivery is calculated based on the size of the package and the distance, and the instrument is insured for the duration of transport."
+        "answer": "We offer door-to-door service: your instrument is picked up from our atelier in Reghin and delivered directly to your address. Depending on your location, delivery may be via air cargo or ground transport. Every instrument is professionally packed and fully insured throughout the journey. The cost of delivery is calculated based on the size of the package and the distance."
       },
       "returns": {
         "question": "What is your return policy?",
@@ -114,7 +114,7 @@
       },
       "care": {
         "question": "How should I care for my instrument?",
-        "answer": "We recommend keeping your instrument in a case when not in use, maintaining proper humidity levels (40-60%), and having it professionally set up annually. We include detailed care instructions with every purchase."
+        "answer": "We recommend keeping your instrument in a case when not in use, maintaining proper humidity levels (40-60%), and having it professionally set up annually."
       },
       "custom": {
         "question": "Can I order a custom instrument?",
@@ -122,7 +122,7 @@
       },
       "payment": {
         "question": "What payment methods do you accept?",
-        "answer": "After your reservation is confirmed, payment can be arranged via bank transfer or cash (if you choose to pick up the instrument from our atelier in person)."
+        "answer": "After your reservation is confirmed, payment can be arranged via bank transfer or other means of payment."
       }
     }
   },

@@ -102,7 +102,7 @@
       },
       "shipping": {
         "question": "Hoe werkt de levering?",
-        "answer": "Wij bieden een deur-tot-deur service: uw instrument wordt opgehaald bij ons atelier in Reghin en rechtstreeks bij u thuis afgeleverd. Afhankelijk van uw locatie kan levering plaatsvinden via luchtvracht of over land. Elk instrument wordt professioneel verpakt en is volledig verzekerd gedurende de hele reis. De leveringskosten worden berekend op basis van de grootte van het pakket en de afstand, en het instrument is verzekerd voor de duur van het transport."
+        "answer": "Wij bieden een deur-tot-deur service: uw instrument wordt opgehaald bij ons atelier in Reghin en rechtstreeks bij u thuis afgeleverd. Afhankelijk van uw locatie kan levering plaatsvinden via luchtvracht of over land. Elk instrument wordt professioneel verpakt en is volledig verzekerd gedurende de hele reis. De leveringskosten worden berekend op basis van de grootte van het pakket en de afstand."
       },
       "returns": {
         "question": "Wat is uw retourbeleid?",
@@ -114,7 +114,7 @@
       },
       "care": {
         "question": "Hoe moet ik mijn instrument onderhouden?",
-        "answer": "We raden aan uw instrument in een koffer te bewaren wanneer het niet wordt gebruikt, juiste vochtigheidsgraden te handhaven (40-60%) en het jaarlijks professioneel te laten afstellen. We leveren gedetailleerde verzorgingsinstructies bij elke aankoop."
+        "answer": "We raden aan uw instrument in een koffer te bewaren wanneer het niet wordt gebruikt, juiste vochtigheidsgraden te handhaven (40-60%) en het jaarlijks professioneel te laten afstellen."
       },
       "custom": {
         "question": "Kan ik een aangepast instrument bestellen?",
@@ -122,7 +122,7 @@
       },
       "payment": {
         "question": "Welke betaalmethoden accepteren jullie?",
-        "answer": "Nadat uw reservering is bevestigd, kan de betaling worden geregeld via bankoverschrijving of contant (als u ervoor kiest om het instrument persoonlijk op te halen in ons atelier)."
+        "answer": "Nadat uw reservering is bevestigd, kan de betaling worden geregeld via bankoverschrijving of andere betaalmethoden."
       }
     }
   },

@@ -102,7 +102,7 @@
       },
       "shipping": {
         "question": "Cum funcționează livrarea?",
-        "answer": "Oferim serviciu din ușă în ușă: instrumentul dumneavoastră este preluat de la atelierul nostru din Reghin și livrat direct la adresa dumneavoastră. În funcție de locație, livrarea poate fi prin cargo aerian sau transport terestru. Fiecare instrument este ambalat profesional și complet asigurat pe toată durata călătoriei. Costul de livrare se calculeaza pe baza marimii coletului si a distantei, iar instrumentul este asigurat pe perioada transportului."
+        "answer": "Oferim serviciu din ușă în ușă: instrumentul dumneavoastră este preluat de la atelierul nostru din Reghin și livrat direct la adresa dumneavoastră. În funcție de locație, livrarea poate fi prin cargo aerian sau transport terestru. Fiecare instrument este ambalat profesional și complet asigurat pe toată durata călătoriei. Costul de livrare se calculeaza pe baza marimii coletului si a distantei."
       },
       "returns": {
         "question": "Care este politica de retur?",
@@ -114,7 +114,7 @@
       },
       "care": {
         "question": "Cum ar trebui să îngrijesc instrumentul meu?",
-        "answer": "Recomandăm păstrarea instrumentului în toc când nu este folosit, menținerea nivelurilor corespunzătoare de umiditate (40-60%) și verificarea profesională anuală. Includem instrucțiuni detaliate de îngrijire cu fiecare achiziție."
+        "answer": "Recomandăm păstrarea instrumentului în toc când nu este folosit, menținerea nivelurilor corespunzătoare de umiditate (40-60%) și verificarea profesională anuală."
       },
       "custom": {
         "question": "Pot comanda un instrument personalizat?",
@@ -122,7 +122,7 @@
       },
       "payment": {
         "question": "Ce metode de plată acceptați?",
-        "answer": "După confirmarea rezervării, plata poate fi aranjată prin transfer bancar sau numerar (dacă alegeți să ridicați personal instrumentul de la atelierul nostru)."
+        "answer": "După confirmarea rezervării, plata poate fi aranjată prin transfer bancar sau alte mijloace de plata."
       }
     }
   },

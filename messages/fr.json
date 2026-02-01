@@ -102,7 +102,7 @@
       },
       "shipping": {
         "question": "Comment fonctionne la livraison?",
-        "answer": "Nous offrons un service de porte à porte : votre instrument est récupéré dans notre atelier à Reghin et livré directement à votre adresse. Selon votre emplacement, la livraison peut se faire par fret aérien ou transport terrestre. Chaque instrument est emballé professionnellement et entièrement assuré tout au long du voyage. Le coût de la livraison est calculé en fonction de la taille du colis et de la distance, et l'instrument est assuré pour la durée du transport."
+        "answer": "Nous offrons un service de porte à porte : votre instrument est récupéré dans notre atelier à Reghin et livré directement à votre adresse. Selon votre emplacement, la livraison peut se faire par fret aérien ou transport terrestre. Chaque instrument est emballé professionnellement et entièrement assuré tout au long du voyage. Le coût de la livraison est calculé en fonction de la taille du colis et de la distance."
       },
       "returns": {
         "question": "Quelle est votre politique de retour?",
@@ -114,7 +114,7 @@
       },
       "care": {
         "question": "Comment dois-je entretenir mon instrument?",
-        "answer": "Nous recommandons de garder votre instrument dans son étui lorsqu'il n'est pas utilisé, de maintenir des niveaux d'humidité appropriés (40-60%) et de le faire régler professionnellement chaque année. Nous incluons des instructions d'entretien détaillées avec chaque achat."
+        "answer": "Nous recommandons de garder votre instrument dans son étui lorsqu'il n'est pas utilisé, de maintenir des niveaux d'humidité appropriés (40-60%) et de le faire régler professionnellement chaque année."
       },
       "custom": {
         "question": "Puis-je commander un instrument sur mesure?",
@@ -122,7 +122,7 @@
       },
       "payment": {
         "question": "Quels modes de paiement acceptez-vous?",
-        "answer": "Nous acceptons les principales cartes de crédit (Visa, Mastercard, American Express) via notre système de paiement sécurisé Stripe. Pour les achats plus importants, nous pouvons également organiser des virements bancaires ou des plans de paiement."
+        "answer": "Après confirmation de votre réservation, le paiement peut être organisé par virement bancaire ou autres moyens de paiement."
       },
       "packaging": {
         "question": "Comment les instruments sont-ils emballés pour la livraison?",
