@@ -102,7 +102,7 @@
       },
       "shipping": {
         "question": "Cum funcționează livrarea?",
-        "answer": "Livrarea și asigurarea sunt incluse în preț. Oferim serviciu din ușă în ușă: instrumentul dumneavoastră este preluat de la atelierul nostru din Reghin și livrat direct la adresa dumneavoastră. În funcție de locație, livrarea poate fi prin cargo aerian sau transport terestru. Fiecare instrument este ambalat profesional și complet asigurat pe toată durata călătoriei."
+        "answer": "Oferim serviciu din ușă în ușă: instrumentul dumneavoastră este preluat de la atelierul nostru din Reghin și livrat direct la adresa dumneavoastră. În funcție de locație, livrarea poate fi prin cargo aerian sau transport terestru. Fiecare instrument este ambalat profesional și complet asigurat pe toată durata călătoriei. Costul de livrare se calculeaza pe baza marimii coletului si a distantei, iar instrumentul este asigurat pe perioada transportului."
       },
       "returns": {
         "question": "Care este politica de retur?",
