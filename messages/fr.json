@@ -102,7 +102,7 @@
       },
       "shipping": {
         "question": "Comment fonctionne la livraison?",
-        "answer": "La livraison et l'assurance sont incluses dans le prix. Nous offrons un service de porte à porte: votre instrument est récupéré dans notre atelier à Reghin et livré directement à votre adresse. Selon votre emplacement, la livraison peut se faire par fret aérien ou transport terrestre. Nous avons livré avec succès à des clients en France, Belgique, Espagne, Allemagne, Japon, Taiwan et dans de nombreux autres pays du monde. Chaque instrument est emballé professionnellement avec protection climatique et entièrement assuré tout au long du voyage."
+        "answer": "Nous offrons un service de porte à porte : votre instrument est récupéré dans notre atelier à Reghin et livré directement à votre adresse. Selon votre emplacement, la livraison peut se faire par fret aérien ou transport terrestre. Chaque instrument est emballé professionnellement et entièrement assuré tout au long du voyage. Le coût de la livraison est calculé en fonction de la taille du colis et de la distance, et l'instrument est assuré pour la durée du transport."
       },
       "returns": {
         "question": "Quelle est votre politique de retour?",
