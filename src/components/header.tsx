@@ -106,12 +106,7 @@ export function Header() {
 
             {/* Desktop Navigation */}
             <nav className="hidden md:flex items-center gap-6 lg:gap-8">
-              <Link
-                href="/gallery"
-                className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors cursor-pointer"
-              >
-                {t('shop')}
-              </Link>
+            
               <Link
                 href="/#story"
                 className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors cursor-pointer"
@@ -135,6 +130,12 @@ export function Header() {
                 className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors cursor-pointer"
               >
                 {t('contact')}
+              </Link>
+              <Link
+                href="/gallery"
+                className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors cursor-pointer"
+              >
+                {t('shop')}
               </Link>
 
               <LanguageSwitcher variant="header" />
