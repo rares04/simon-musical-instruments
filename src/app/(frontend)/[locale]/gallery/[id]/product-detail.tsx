@@ -1,10 +1,10 @@
 'use client'
 
-import { useState } from 'react'
+import { useRef, useState, type MouseEvent } from 'react'
 import Image from 'next/image'
 import { useTranslations } from 'next-intl'
 import { Link } from '@/i18n/routing'
-import { ArrowLeft, ChevronLeft, ChevronRight, Search, X } from 'lucide-react'
+import { ArrowLeft, ChevronLeft, ChevronRight, Search } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { AudioPlayer } from '@/components/audio-player'
 import { useCart } from '@/lib/cart-context'
@@ -253,8 +253,15 @@ function ImageGallery({
   alt: string
   noImagesText: string
 }) {
-  const [currentIndex, setCurrentIndex] = useState(0)
-  const [isZoomOpen, setIsZoomOpen] = useState(false)
+  const [currentIndex, setCurrentIndex] = useState<number>(0)
+  const containerRef = useRef<HTMLDivElement | null>(null)
+  const [isMagnifying, setIsMagnifying] = useState<boolean>(false)
+  const [lens, setLens] = useState<{ x: number; y: number; xPct: number; yPct: number }>({
+    x: 0,
+    y: 0,
+    xPct: 50,
+    yPct: 50,
+  })
 
   if (images.length === 0) {
     return (
@@ -265,24 +272,45 @@ function ImageGallery({
   }
 
   const nextImage = () => {
-    setCurrentIndex((prev) => (prev + 1) % images.length)
+    setCurrentIndex((prev: number) => (prev + 1) % images.length)
   }
 
   const prevImage = () => {
-    setCurrentIndex((prev) => (prev - 1 + images.length) % images.length)
+    setCurrentIndex((prev: number) => (prev - 1 + images.length) % images.length)
+  }
+
+  const LENS_SIZE = 160
+  const ZOOM = 2.2
+
+  const handleMove = (e: MouseEvent<HTMLDivElement>) => {
+    const el = containerRef.current
+    if (!el) return
+
+    const rect = el.getBoundingClientRect()
+    const rawX = e.clientX - rect.left
+    const rawY = e.clientY - rect.top
+
+    // Keep lens fully inside container
+    const x = Math.max(LENS_SIZE / 2, Math.min(rawX, rect.width - LENS_SIZE / 2))
+    const y = Math.max(LENS_SIZE / 2, Math.min(rawY, rect.height - LENS_SIZE / 2))
+
+    const xPct = (x / rect.width) * 100
+    const yPct = (y / rect.height) * 100
+
+    setLens({ x, y, xPct, yPct })
   }
 
   return (
     <>
       <div className="flex flex-col gap-4 h-full">
         {/* Main Image */}
-        <div className="relative aspect-[3/4] bg-muted overflow-hidden group flex-1">
-          <button
-            type="button"
-            className="absolute inset-0 cursor-zoom-in"
-            onClick={() => setIsZoomOpen(true)}
-            aria-label="Open image in full-screen view"
-          />
+        <div
+          ref={containerRef}
+          className="relative aspect-[3/4] bg-muted overflow-hidden group flex-1"
+          onMouseEnter={() => setIsMagnifying(true)}
+          onMouseLeave={() => setIsMagnifying(false)}
+          onMouseMove={handleMove}
+        >
           <Image
             src={images[currentIndex]}
             alt={`${alt} - View ${currentIndex + 1}`}
@@ -292,11 +320,28 @@ function ImageGallery({
             sizes="(max-width: 1024px) 100vw, 50vw"
           />
 
-          {/* Zoom icon hint */}
+          {/* Magnifier hint */}
           <div className="absolute bottom-3 left-3 bg-background/80 backdrop-blur-sm px-2 py-1 rounded flex items-center gap-1 text-xs text-muted-foreground group-hover:opacity-100 opacity-0 transition-opacity">
             <Search className="h-3 w-3" />
-            <span>Click to zoom</span>
+            <span>Hover to zoom</span>
           </div>
+
+          {/* Magnifier lens */}
+          {isMagnifying && (
+            <div
+              className="absolute rounded-full border border-border shadow-lg pointer-events-none"
+              style={{
+                width: LENS_SIZE,
+                height: LENS_SIZE,
+                left: lens.x - LENS_SIZE / 2,
+                top: lens.y - LENS_SIZE / 2,
+                backgroundImage: `url(${images[currentIndex]})`,
+                backgroundRepeat: 'no-repeat',
+                backgroundSize: `${ZOOM * 100}% ${ZOOM * 100}%`,
+                backgroundPosition: `${lens.xPct}% ${lens.yPct}%`,
+              }}
+            />
+          )}
 
           {/* Navigation Arrows */}
           {images.length > 1 && (
@@ -349,38 +394,6 @@ function ImageGallery({
           </div>
         )}
       </div>
-
-      {/* Full-screen Zoom Viewer */}
-      {isZoomOpen && (
-        <div
-          className="fixed inset-0 z-50 bg-black/80 flex items-center justify-center"
-          onClick={() => setIsZoomOpen(false)}
-        >
-          <div
-            className="relative max-w-5xl w-full max-h-[90vh] px-4"
-            onClick={(e) => e.stopPropagation()}
-          >
-            <button
-              type="button"
-              className="absolute top-4 right-4 z-10 rounded-full bg-black/70 text-white p-2 hover:bg-black cursor-pointer"
-              onClick={() => setIsZoomOpen(false)}
-              aria-label="Close zoomed image"
-            >
-              <X className="h-5 w-5" />
-            </button>
-            <div className="relative w-full aspect-[3/4] bg-black">
-              <Image
-                src={images[currentIndex]}
-                alt={`${alt} - Zoomed view ${currentIndex + 1}`}
-                fill
-                className="object-contain"
-                sizes="100vw"
-                priority
-              />
-            </div>
-          </div>
-        </div>
-      )}
     </>
   )
 }
