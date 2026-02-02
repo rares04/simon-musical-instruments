@@ -276,7 +276,7 @@
     "bodyLength": "Korpuslänge",
     "stringVibration": "Schwingende Saitenlänge",
     "crafted": "Gefertigt {year}",
-    "checkoutNote": "Sichere Kasse mit Tür-zu-Tür-Lieferung und vollständiger Versicherung inklusive. Jedes Instrument wird sorgfältig in unserem Atelier verpackt und direkt an Ihre Adresse geliefert.",
+    "checkoutNote": "Sichere Kasse mit vollständiger Versicherung inklusive. Jedes Instrument wird sorgfältig in unserem Atelier verpackt und direkt an Ihre Adresse geliefert.",
     "inBuildNote": "Dieses Instrument wird derzeit gefertigt. Kontaktieren Sie uns, um es zu reservieren oder Updates zur Fertigstellung zu erhalten.",
     "soldNote": "Dieses Instrument wurde {status}. Kontaktieren Sie uns, um ein ähnliches Stück in Auftrag zu geben.",
     "lowStock": "Nur noch {count} auf Lager",
@@ -292,7 +292,7 @@
     "checkout": "Zur Kasse",
     "continueShopping": "Weiter Einkaufen",
     "remove": "Entfernen",
-    "fullyInsured": "Lieferung & Versicherung im Preis enthalten",
+    "fullyInsured": "Versicherung im Preis enthalten",
     "secureShipping": "Tür-zu-Tür-Service aus unserem Atelier",
     "professionalPackaging": "Professionelle Verpackung",
     "assistanceNote": "Benötigen Sie Hilfe? Kontaktieren Sie uns für eine persönliche Beratung"
@@ -346,7 +346,7 @@
     "deliveryMethod": {
       "title": "Wie möchten Sie Ihr Instrument erhalten?",
       "delivery": "Tür-zu-Tür-Lieferung",
-      "deliveryDesc": "Ihr Instrument wird in unserem Atelier abgeholt und direkt an Ihre Adresse geliefert. Lieferung & Versicherung im Preis enthalten.",
+      "deliveryDesc": "Ihr Instrument wird in unserem Atelier abgeholt und direkt an Ihre Adresse geliefert. Versicherung im Preis enthalten.",
       "pickup": "Abholung im Atelier (Reghin, Rumänien)",
       "pickupDesc": "Besuchen Sie unsere Werkstatt persönlich, um Ihr Instrument abzuholen. Treffen Sie den Geigenbauer und sehen Sie, wo Ihr Instrument gefertigt wurde."
     },
@@ -377,7 +377,7 @@
         "OTHER": "Andere International"
       },
       "secureShipping": "Tür-zu-Tür-Lieferung mit Unterschriftsbestätigung",
-      "fullInsurance": "Lieferung & Versicherung im Preis enthalten",
+      "fullInsurance": "Versicherung im Preis enthalten",
       "professionalPackaging": "Professionelle Verpackung mit Klimaschutz"
     },
     "message": {
@@ -389,9 +389,9 @@
       "title": "Bestellübersicht",
       "subtotal": "Zwischensumme",
       "total": "Gesamt",
-      "deliveryIncluded": "Tür-zu-Tür-Lieferung & Versicherung",
+      "deliveryIncluded": "Versicherung",
       "included": "Inklusive",
-      "priceNote": "Preis beinhaltet Lieferung & Versicherung"
+      "priceNote": "Preis beinhaltet Versicherung"
     },
     "submitInquiry": "Anfrage Senden",
     "payment": "Zahlung",
@@ -443,7 +443,7 @@
       "confirmationEmail": "Bestätigungs-E-Mail",
       "confirmationEmailDesc": "Wir haben Ihnen eine Bestätigungs-E-Mail mit Ihren Bestelldetails gesendet.",
       "shippingTracking": "Lieferung & Tracking",
-      "shippingTrackingDesc": "Ihr Instrument wird sorgfältig in unserem Atelier verpackt und direkt zu Ihrer Adresse geliefert. Lieferung und vollständige Versicherung sind inklusive. Sie erhalten Tracking-Details, sobald Ihr Instrument unterwegs ist.",
+      "shippingTrackingDesc": "Ihr Instrument wird sorgfältig in unserem Atelier verpackt und direkt zu Ihrer Adresse geliefert. Vollständige Versicherung ist inklusive. Sie erhalten Tracking-Details, sobald Ihr Instrument unterwegs ist.",
       "questionsAboutOrder": "Fragen zu Ihrer Bestellung?"
     },
     "continueShopping": "Weiter Einkaufen",
@@ -599,7 +599,7 @@
     "manageReservations": "Reservierungen Verwalten",
     "contactPaul": "Paul Kontaktieren",
     "yourPendingReservations": "Ihre Ausstehenden Reservierungen:",
-    "reservedOn": "Reserviert: {date}",
+    "reservedOn": "Reserved: {date}",
     "needHelp": "Brauchen Sie Hilfe?",
     "emailPaul": "E-Mail an Paul",
     "callPaul": "Paul Anrufen",

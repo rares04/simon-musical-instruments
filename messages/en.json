@@ -292,7 +292,7 @@
     "checkout": "Proceed to Checkout",
     "continueShopping": "Continue Shopping",
     "remove": "Remove",
-    "fullyInsured": "Delivery & insurance included in price",
+    "fullyInsured": "Insurance included in price",
     "secureShipping": "Door-to-door service from our atelier",
     "professionalPackaging": "Professional packaging",
     "assistanceNote": "Need assistance? Contact us for a personal consultation"
@@ -346,7 +346,7 @@
     "deliveryMethod": {
       "title": "How would you like to receive your instrument?",
       "delivery": "Door-to-Door Delivery",
-      "deliveryDesc": "Your instrument is picked up from our atelier and delivered directly to your address. Delivery & insurance included in price.",
+      "deliveryDesc": "Your instrument is picked up from our atelier and delivered directly to your address. Insurance included in price.",
       "pickup": "Pickup from Atelier (Reghin, Romania)",
       "pickupDesc": "Visit our workshop in person to collect your instrument. Meet the luthier and see where your instrument was crafted."
     },
@@ -377,7 +377,7 @@
         "OTHER": "Other International"
       },
       "secureShipping": "Door-to-door delivery with signature confirmation",
-      "fullInsurance": "Delivery & insurance included in price",
+      "fullInsurance": "Insurance included in price",
       "professionalPackaging": "Professional packaging"
     },
     "message": {

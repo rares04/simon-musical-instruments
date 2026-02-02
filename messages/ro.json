@@ -276,7 +276,7 @@
     "bodyLength": "Lungime Corp",
     "stringVibration": "Lungime Vibrație Coardă",
     "crafted": "Realizat în {year}",
-    "checkoutNote": "Checkout securizat cu livrare din ușă în ușă și asigurare completă incluse. Fiecare instrument este ambalat cu grijă în atelierul nostru și livrat direct la adresa ta.",
+    "checkoutNote": "Checkout securizat cu asigurare completă inclusă. Fiecare instrument este ambalat cu grijă în atelierul nostru și livrat direct la adresa ta.",
     "inBuildNote": "Acest instrument este în construcție. Contactează-ne pentru a-l rezerva sau pentru actualizări despre finalizare.",
     "soldNote": "Acest instrument a fost {status}. Contactează-ne pentru a comanda unul similar.",
     "lowStock": "Doar {count} în stoc",
@@ -292,7 +292,7 @@
     "checkout": "Finalizează Comanda",
     "continueShopping": "Continuă Cumpărăturile",
     "remove": "Elimină",
-    "fullyInsured": "Livrare & asigurare incluse în preț",
+    "fullyInsured": "Asigurare inclusă în preț",
     "secureShipping": "Serviciu din ușă în ușă de la atelierul nostru",
     "professionalPackaging": "Ambalaj profesional",
     "assistanceNote": "Ai nevoie de asistență? Contactează-ne pentru o consultare personală"
@@ -346,9 +346,9 @@
     "deliveryMethod": {
       "title": "Cum doriți să primiți instrumentul?",
       "delivery": "Livrare din Ușă în Ușă",
-      "deliveryDesc": "Instrumentul tău este preluat de la atelierul nostru și livrat direct la adresa ta. Livrare & asigurare incluse în preț.",
+      "deliveryDesc": "Instrumentul tău este preluat de la atelierul nostru și livrat direct la adresa ta. Asigurare inclusă în preț.",
       "pickup": "Ridicare de la Atelier (Reghin, România)",
-      "pickupDesc": "Vizitează atelierul nostru personal pentru a ridica instrumentul. Întâlnește lutierul și vezi unde a fost creat instrumentul tău."
+      "pickupDesc": "Vizitează atelierul nostru personal pentru a ridica instrumentul. Întâlnește lutierul și vedeți unde a fost creat instrumentul tău."
     },
     "pickup": {
       "title": "Locație de Ridicare",
@@ -377,7 +377,7 @@
         "OTHER": "Altă destinație"
       },
       "secureShipping": "Livrare din ușă în ușă cu confirmare de semnătură",
-      "fullInsurance": "Livrare & asigurare incluse în preț",
+      "fullInsurance": "Asigurare inclusă în preț",
       "professionalPackaging": "Ambalaj profesional cu protecție climatică"
     },
     "message": {
@@ -389,9 +389,9 @@
       "title": "Sumar Comandă",
       "subtotal": "Subtotal",
       "total": "Total",
-      "deliveryIncluded": "Livrare din ușă în ușă & asigurare",
+      "deliveryIncluded": "Asigurare",
       "included": "Inclus",
-      "priceNote": "Prețul include livrarea și asigurarea"
+      "priceNote": "Prețul include asigurarea"
     },
     "submitInquiry": "Trimite Cererea",
     "payment": "Plată",
@@ -443,7 +443,7 @@
       "confirmationEmail": "Email de Confirmare",
       "confirmationEmailDesc": "Ți-am trimis un email de confirmare cu detaliile comenzii.",
       "shippingTracking": "Livrare și Urmărire",
-      "shippingTrackingDesc": "Instrumentul tău va fi ambalat cu grijă în atelierul nostru și livrat din ușă în ușă la adresa ta. Livrarea și asigurarea completă sunt incluse. Vei primi detaliile de urmărire când instrumentul tău va fi pe drum.",
+      "shippingTrackingDesc": "Instrumentul tău va fi ambalat cu grijă în atelierul nostru și livrat din ușă în ușă la adresa ta. Asigurarea completă este inclusă. Vei primi detaliile de urmărire când instrumentul tău va fi pe drum.",
       "questionsAboutOrder": "Întrebări despre comanda ta?"
     },
     "continueShopping": "Continuă Cumpărăturile",

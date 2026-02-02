@@ -276,7 +276,7 @@
     "bodyLength": "胴体長",
     "stringVibration": "弦振動長",
     "crafted": "{year}年製作",
-    "checkoutNote": "ドア・ツー・ドア配送と完全保険付きの安全なチェックアウト。各楽器は工房で丁寧に梱包され、直接ご自宅にお届けされます。",
+    "checkoutNote": "完全保険付きの安全なチェックアウト。各楽器は工房で丁寧に梱包され、直接ご自宅にお届けされます。",
     "inBuildNote": "この楽器は現在製作中です。予約または完成の最新情報については、お問い合わせください。",
     "soldNote": "この楽器は{status}です。類似品の注文についてはお問い合わせください。",
     "lowStock": "残り{count}点のみ",
@@ -292,7 +292,7 @@
     "checkout": "チェックアウト",
     "continueShopping": "買い物を続ける",
     "remove": "削除",
-    "fullyInsured": "配送・保険は価格に含まれています",
+    "fullyInsured": "保険は価格に含まれています",
     "secureShipping": "工房からのドア・ツー・ドアサービス",
     "professionalPackaging": "プロフェッショナル梱包",
     "assistanceNote": "サポートが必要ですか？個人相談についてお問い合わせください"
@@ -346,7 +346,7 @@
     "deliveryMethod": {
       "title": "楽器の受け取り方法を選択してください",
       "delivery": "ドア・ツー・ドア配送",
-      "deliveryDesc": "楽器は工房から受け取られ、直接ご自宅に配送されます。配送・保険は価格に含まれています。",
+      "deliveryDesc": "楽器は工房から受け取られ、直接ご自宅に配送されます。保険は価格に含まれています。",
       "pickup": "工房での受け取り（レギン、ルーマニア）",
       "pickupDesc": "工房を直接訪問して楽器を受け取ります。職人に会い、楽器が作られた場所をご覧ください。"
     },
@@ -377,7 +377,7 @@
         "OTHER": "その他の国際"
       },
       "secureShipping": "署名確認付きドア・ツー・ドア配送",
-      "fullInsurance": "配送・保険は価格に含まれています",
+      "fullInsurance": "保険は価格に含まれています",
       "professionalPackaging": "気候保護付きプロフェッショナル梱包"
     },
     "message": {
@@ -389,9 +389,9 @@
       "title": "注文概要",
       "subtotal": "小計",
       "total": "合計",
-      "deliveryIncluded": "ドア・ツー・ドア配送 & 保険",
+      "deliveryIncluded": "保険",
       "included": "含まれています",
-      "priceNote": "価格には配送・保険が含まれています"
+      "priceNote": "価格には保険が含まれています"
     },
     "submitInquiry": "問い合わせを送信",
     "payment": "支払い",
@@ -443,7 +443,7 @@
       "confirmationEmail": "確認メール",
       "confirmationEmailDesc": "注文詳細を記載した確認メールをお送りしました。",
       "shippingTracking": "配送・追跡",
-      "shippingTrackingDesc": "楽器は工房で慎重に梱包され、ご自宅まで直接配送されます。配送と完全保険が含まれています。楽器が発送されると追跡詳細をお送りします。",
+      "shippingTrackingDesc": "楽器は工房で慎重に梱包され、ご自宅まで直接配送されます。完全保険が含まれています。楽器が発送されると追跡詳細をお送りします。",
       "questionsAboutOrder": "注文についてご質問がありますか？"
     },
     "continueShopping": "買い物を続ける",

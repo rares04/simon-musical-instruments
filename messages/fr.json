@@ -280,7 +280,7 @@
     "bodyLength": "Longueur du Corps",
     "stringVibration": "Longueur de Corde Vibrante",
     "crafted": "Fabriqué en {year}",
-    "checkoutNote": "Commande sécurisée avec livraison porte à porte et assurance complète incluses. Chaque instrument est soigneusement emballé dans notre atelier et livré directement à votre adresse.",
+    "checkoutNote": "Commande sécurisée avec assurance complète incluse. Chaque instrument est soigneusement emballé dans notre atelier et livré directement à votre adresse.",
     "inBuildNote": "Cet instrument est actuellement en cours de fabrication. Contactez-nous pour le réserver ou obtenir des mises à jour sur l'achèvement.",
     "soldNote": "Cet instrument a été {status}. Contactez-nous pour commander une pièce similaire.",
     "lowStock": "Seulement {count} en stock",
@@ -296,7 +296,7 @@
     "checkout": "Passer à la Caisse",
     "continueShopping": "Continuer les Achats",
     "remove": "Supprimer",
-    "fullyInsured": "Livraison & assurance incluses dans le prix",
+    "fullyInsured": "Assurance incluse dans le prix",
     "secureShipping": "Service de porte à porte depuis notre atelier",
     "professionalPackaging": "Emballage professionnel",
     "assistanceNote": "Besoin d'aide? Contactez-nous pour une consultation personnelle"
@@ -350,7 +350,7 @@
     "deliveryMethod": {
       "title": "Comment souhaitez-vous recevoir votre instrument ?",
       "delivery": "Livraison Porte à Porte",
-      "deliveryDesc": "Votre instrument est récupéré dans notre atelier et livré directement à votre adresse. Livraison & assurance incluses dans le prix.",
+      "deliveryDesc": "Votre instrument est récupéré dans notre atelier et livré directement à votre adresse. Assurance incluse dans le prix.",
       "pickup": "Retrait à l'Atelier (Reghin, Roumanie)",
       "pickupDesc": "Visitez notre atelier en personne pour récupérer votre instrument. Rencontrez le luthier et découvrez où votre instrument a été fabriqué."
     },
@@ -381,7 +381,7 @@
         "OTHER": "Autre International"
       },
       "secureShipping": "Livraison porte à porte avec confirmation de signature",
-      "fullInsurance": "Livraison & assurance incluses dans le prix",
+      "fullInsurance": "Assurance incluse dans le prix",
       "professionalPackaging": "Emballage professionnel avec protection climatique"
     },
     "message": {
@@ -393,9 +393,9 @@
       "title": "Résumé de la Commande",
       "subtotal": "Sous-total",
       "total": "Total",
-      "deliveryIncluded": "Livraison porte à porte & assurance",
+      "deliveryIncluded": "Assurance",
       "included": "Inclus",
-      "priceNote": "Le prix inclut la livraison et l'assurance"
+      "priceNote": "Le prix inclut l'assurance"
     },
     "submitInquiry": "Soumettre la Demande",
     "payment": "Paiement",
@@ -447,7 +447,7 @@
       "confirmationEmail": "E-mail de Confirmation",
       "confirmationEmailDesc": "Nous vous avons envoyé un e-mail de confirmation avec les détails de votre commande.",
       "shippingTracking": "Livraison et Suivi",
-      "shippingTrackingDesc": "Votre instrument sera soigneusement emballé dans notre atelier et livré porte à porte à votre adresse. La livraison et l'assurance complète sont incluses. Vous recevrez les détails de suivi lorsque votre instrument sera en route.",
+      "shippingTrackingDesc": "Votre instrument sera soigneusement emballé dans notre atelier et livré porte à porte à votre adresse. L'assurance complète est incluse. Vous recevrez les détails de suivi lorsque votre instrument sera en route.",
       "questionsAboutOrder": "Questions sur votre commande?"
     },
     "continueShopping": "Continuer les Achats",
@@ -634,7 +634,7 @@
       },
       "ecaterinaVarnishing": {
         "title": "Vernis Appliqué à la Main",
-        "alt": "Ecaterina appliquant du vernis traditionnel frotté à la main sur un violon"
+        "alt": "Ecaterina appliquant du vernis traditionnel frotté à la main on un violon"
       },
       "applyingVarnish": {
         "title": "Le Processus de Vernissage",
