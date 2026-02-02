@@ -594,10 +594,10 @@ export default function CheckoutPage() {
                           {t('shipping.secureShipping')}
                         </span>
                       </div>
-                      <div className="flex items-center gap-3 text-sm">
+                      {/* <div className="flex items-center gap-3 text-sm">
                         <Shield className="h-4 w-4 text-accent flex-shrink-0" />
                         <span className="text-muted-foreground">{t('shipping.fullInsurance')}</span>
-                      </div>
+                      </div> */}
                       <div className="flex items-center gap-3 text-sm">
                         <Package className="h-4 w-4 text-accent flex-shrink-0" />
                         <span className="text-muted-foreground">
@@ -676,7 +676,7 @@ export default function CheckoutPage() {
 
                 {/* Pricing Breakdown */}
                 <div className="space-y-3 pt-4 border-t border-border">
-                  {formData.deliveryMethod === 'delivery' ? (
+                  {/* {formData.deliveryMethod === 'delivery' ? (
                     <div className="flex justify-between text-sm">
                       <span className="text-muted-foreground">{t('summary.deliveryIncluded')}</span>
                       <span className="font-medium text-green-600">{t('summary.included')}</span>
@@ -686,7 +686,7 @@ export default function CheckoutPage() {
                       <span className="text-muted-foreground">{t('pickup.fromAtelier')}</span>
                       <span className="font-medium text-green-600">{t('pickup.free')}</span>
                     </div>
-                  )}
+                  )} */}
                   <div className="flex justify-between pt-3 border-t border-border">
                     <span className="font-semibold text-base text-foreground">
                       {t('summary.total')}
@@ -695,7 +695,7 @@ export default function CheckoutPage() {
                       €{total.toLocaleString()}
                     </span>
                   </div>
-                  <p className="text-xs text-muted-foreground">{t('summary.priceNote')}</p>
+                  {/* <p className="text-xs text-muted-foreground">{t('summary.priceNote')}</p> */}
                 </div>
 
                 {/* Submit Button */}
