@@ -253,8 +253,8 @@ function ImageGallery({
     setCurrentIndex((prev: number) => (prev - 1 + images.length) % images.length)
   }
 
-  const LENS_SIZE = 220
-  const ZOOM = 2.5
+  const LENS_SIZE = 110
+  const ZOOM = 5
 
   const handleMouseMove = (e: MouseEvent<HTMLDivElement>) => {
     const el = containerRef.current
