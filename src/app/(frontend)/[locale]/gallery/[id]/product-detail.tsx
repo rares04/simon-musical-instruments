@@ -22,7 +22,6 @@ export function ProductDetail({ instrument, images, audioUrl }: ProductDetailPro
   const t = useTranslations('instruments')
   const tProduct = useTranslations('product')
 
-  // Get instrument type label
   const typeLabel =
     instrument.instrumentType === 'violin'
       ? t('violin')
@@ -55,7 +54,6 @@ export function ProductDetail({ instrument, images, audioUrl }: ProductDetailPro
 
   return (
     <main className="pt-20">
-      {/* Back to Gallery */}
       <div className="border-b border-border">
         <div className="container mx-auto px-4 lg:px-8 py-4">
           <Link
@@ -68,10 +66,8 @@ export function ProductDetail({ instrument, images, audioUrl }: ProductDetailPro
         </div>
       </div>
 
-      {/* Product Detail Layout */}
       <div className="container mx-auto px-4 lg:px-8 py-8 lg:py-12">
         <div className="grid lg:grid-cols-2 gap-8 lg:gap-16">
-          {/* Left Column - Sticky Image Gallery */}
           <div className="lg:sticky lg:top-24 lg:h-[calc(100vh-8rem)] flex flex-col">
             <ImageGallery
               images={images.map((url) => getMediaSrc(url) || url)}
@@ -80,9 +76,7 @@ export function ProductDetail({ instrument, images, audioUrl }: ProductDetailPro
             />
           </div>
 
-          {/* Right Column - Scrollable Content */}
           <div className="space-y-10 lg:space-y-12">
-            {/* Title and Price */}
             <div className="space-y-4">
               <div className="flex items-start justify-between gap-4">
                 <div className="space-y-2">
@@ -108,7 +102,6 @@ export function ProductDetail({ instrument, images, audioUrl }: ProductDetailPro
               </div>
             </div>
 
-            {/* Luthier's Notes */}
             {instrument.luthierNotes && (
               <div className="space-y-4">
                 <h2 className="font-serif text-2xl font-bold text-foreground">
@@ -122,7 +115,6 @@ export function ProductDetail({ instrument, images, audioUrl }: ProductDetailPro
               </div>
             )}
 
-            {/* Audio Player */}
             {audioUrl && (
               <div className="space-y-4">
                 <h2 className="font-serif text-2xl font-bold text-foreground">
@@ -132,7 +124,6 @@ export function ProductDetail({ instrument, images, audioUrl }: ProductDetailPro
               </div>
             )}
 
-            {/* Specifications */}
             {instrument.specs && (
               <div className="space-y-4">
                 <h2 className="font-serif text-2xl font-bold text-foreground">
@@ -174,7 +165,6 @@ export function ProductDetail({ instrument, images, audioUrl }: ProductDetailPro
               </div>
             )}
 
-            {/* Call to Action */}
             <div className="space-y-4 pt-4">
               {instrument.status === 'available' && (instrument.stock ?? 1) > 0 ? (
                 <>
@@ -194,26 +184,12 @@ export function ProductDetail({ instrument, images, audioUrl }: ProductDetailPro
                     </p>
                   )}
                 </>
-              ) : instrument.status === 'in-build' ? (
-                <div className="bg-muted/50 border border-border p-6 text-center">
-                  <p className="text-base text-muted-foreground text-pretty">
-                    {tProduct('inBuildNote')}
-                  </p>
-                  <Button
-                    variant="outline"
-                    size="lg"
-                    className="mt-4 bg-transparent cursor-pointer"
-                    asChild
-                  >
-                    <Link href={`/contact?instrument=${encodeURIComponent(instrument.title)}`}>
-                      {t('inquire')}
-                    </Link>
-                  </Button>
-                </div>
               ) : (
                 <div className="bg-muted/50 border border-border p-6 text-center">
                   <p className="text-base text-muted-foreground text-pretty">
-                    {tProduct('soldNote', { status: instrument.status })}
+                    {instrument.status === 'in-build'
+                      ? tProduct('inBuildNote')
+                      : tProduct('soldNote', { status: instrument.status })}
                   </p>
                   <Button
                     variant="outline"
@@ -256,7 +232,10 @@ function ImageGallery({
   const [currentIndex, setCurrentIndex] = useState<number>(0)
   const containerRef = useRef<HTMLDivElement | null>(null)
   const [isMagnifying, setIsMagnifying] = useState<boolean>(false)
-  const [lens, setLens] = useState({ x: 0, y: 0, width: 0, height: 0 })
+  // Store mouse position relative to the container
+  const [mousePos, setMousePos] = useState({ x: 0, y: 0 })
+  // Store container dimensions
+  const [containerDims, setContainerDims] = useState({ width: 0, height: 0 })
 
   if (images.length === 0) {
     return (
@@ -274,36 +253,63 @@ function ImageGallery({
     setCurrentIndex((prev: number) => (prev - 1 + images.length) % images.length)
   }
 
-  const LENS_SIZE = 150
-  const ZOOM = 2
+  const LENS_SIZE = 220
+  const ZOOM = 2.5
 
-  const handleMove = (e: MouseEvent<HTMLDivElement>) => {
+  const handleMouseMove = (e: MouseEvent<HTMLDivElement>) => {
     const el = containerRef.current
     if (!el) return
     const rect = el.getBoundingClientRect()
-    setLens({
+
+    // STRICT BOUNDARY CHECK:
+    // If the mouse is outside the container rect, turn off magnifying and return.
+    // This prevents the lens from "escaping".
+    if (
+      e.clientX < rect.left ||
+      e.clientX > rect.right ||
+      e.clientY < rect.top ||
+      e.clientY > rect.bottom
+    ) {
+      setIsMagnifying(false)
+      return
+    }
+
+    // If we are inside, make sure magnifying is on
+    if (!isMagnifying) {
+      setIsMagnifying(true)
+    }
+
+    // Update state with new coordinates and dimensions
+    setMousePos({
       x: e.clientX - rect.left,
       y: e.clientY - rect.top,
+    })
+    setContainerDims({
       width: rect.width,
       height: rect.height,
     })
   }
 
-  // Calculate background position
-  const bgPosX = (lens.x * ZOOM) - (LENS_SIZE / 2)
-  const bgPosY = (lens.y * ZOOM) - (LENS_SIZE / 2)
+  // CALCULATE POSITIONING FOR INNER IMAGE:
+  // 1. We have a large, zoomed-in image.
+  // 2. We need to move (translate) it so that the point under the cursor
+  //    is exactly in the center of the lens.
+  // 3. The math: (Center of Lens) - (Position on Zoomed Image)
+  const translateX = LENS_SIZE / 2 - mousePos.x * ZOOM
+  const translateY = LENS_SIZE / 2 - mousePos.y * ZOOM
 
   return (
     <div className="flex flex-col gap-4 h-full">
       <div
         ref={containerRef}
+        // Add onMouseLeave as a backup to turn off the lens
+        onMouseLeave={() => setIsMagnifying(false)}
+        onMouseMove={handleMouseMove}
         className={`relative aspect-[3/4] bg-muted overflow-hidden group flex-1 select-none ${
           isMagnifying ? 'cursor-none' : 'cursor-default'
         }`}
-        onMouseEnter={() => setIsMagnifying(true)}
-        onMouseLeave={() => setIsMagnifying(false)}
-        onMouseMove={handleMove}
       >
+        {/* Main Image */}
         <Image
           src={images[currentIndex]}
           alt={`${alt} - View ${currentIndex + 1}`}
@@ -319,22 +325,45 @@ function ImageGallery({
           <span>Hover to zoom</span>
         </div>
 
-        {/* Magnifier lens */}
-        {isMagnifying && lens.width > 0 && (
+        {/* NEW MAGNIFIER LENS IMPLEMENTATION */}
+        {isMagnifying && containerDims.width > 0 && (
+          // 1. The Lens Container (Round, moves with mouse)
           <div
-            className="absolute rounded-full border border-white/50 shadow-2xl pointer-events-none overflow-hidden bg-background z-20"
+            className="absolute z-20 rounded-full border-2 border-white shadow-2xl overflow-hidden pointer-events-none bg-background"
             style={{
               width: LENS_SIZE,
               height: LENS_SIZE,
-              left: lens.x - LENS_SIZE / 2,
-              top: lens.y - LENS_SIZE / 2,
-              // ERROR WAS HERE: Added single quotes around the URL to handle spaces/parentheses
-              backgroundImage: `url('${images[currentIndex]}')`,
-              backgroundRepeat: 'no-repeat',
-              backgroundSize: `${lens.width * ZOOM}px ${lens.height * ZOOM}px`,
-              backgroundPosition: `-${bgPosX}px -${bgPosY}px`,
+              // Center the lens itself on the mouse cursor
+              left: mousePos.x - LENS_SIZE / 2,
+              top: mousePos.y - LENS_SIZE / 2,
             }}
-          />
+          >
+            {/* 2. The Zoomed Image Container (Large, gets translated) */}
+            <div
+              className="relative"
+              style={{
+                // Make this container the size of the ZOOMED image
+                width: containerDims.width * ZOOM,
+                height: containerDims.height * ZOOM,
+                // Move it to bring the correct spot to the center
+                transform: `translate(${translateX}px, ${translateY}px)`,
+                // Optimization for smooth movement
+                willChange: 'transform',
+              }}
+            >
+              {/* 3. The Actual Image (Uses object-contain to avoid deformation) */}
+              <Image
+                src={images[currentIndex]}
+                alt="Zoomed view"
+                fill
+                // This ensures the aspect ratio is correct!
+                className="object-contain"
+                priority
+                // Give it a large size value for proper loading
+                sizes={`${containerDims.width * ZOOM}px`}
+              />
+            </div>
+          </div>
         )}
 
         {/* Navigation Arrows */}
