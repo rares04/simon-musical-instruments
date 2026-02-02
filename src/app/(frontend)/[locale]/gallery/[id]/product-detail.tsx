@@ -274,126 +274,119 @@ function ImageGallery({
     setCurrentIndex((prev: number) => (prev - 1 + images.length) % images.length)
   }
 
-  const LENS_SIZE = 200
+  const LENS_SIZE = 220
   const ZOOM = 2.5
 
   const handleMove = (e: MouseEvent<HTMLDivElement>) => {
     const el = containerRef.current
     if (!el) return
-
     const rect = el.getBoundingClientRect()
-    // Calculate relative coordinates
-    const x = e.clientX - rect.left
-    const y = e.clientY - rect.top
-
-    setLens({ x, y, width: rect.width, height: rect.height })
+    setLens({
+      x: e.clientX - rect.left,
+      y: e.clientY - rect.top,
+      width: rect.width,
+      height: rect.height,
+    })
   }
 
-  // Calculate the background position so the lens center aligns with the cursor position
-  // Logic: (LensSize/2) - (CursorPos * ZoomFactor)
+  // Calculate background position
   const bgPosX = (lens.x * ZOOM) - (LENS_SIZE / 2)
   const bgPosY = (lens.y * ZOOM) - (LENS_SIZE / 2)
 
   return (
-    <>
-      <div className="flex flex-col gap-4 h-full">
-        {/* Main Image */}
-        <div
-          ref={containerRef}
-          className={`relative aspect-[3/4] bg-muted overflow-hidden group flex-1 select-none ${
-            isMagnifying ? 'cursor-none' : 'cursor-default'
-          }`}
-          onMouseEnter={() => setIsMagnifying(true)}
-          onMouseLeave={() => setIsMagnifying(false)}
-          onMouseMove={handleMove}
-        >
-          <Image
-            src={images[currentIndex]}
-            alt={`${alt} - View ${currentIndex + 1}`}
-            fill
-            className="object-contain pointer-events-none"
-            priority
-            sizes="(max-width: 1024px) 100vw, 50vw"
-          />
+    <div className="flex flex-col gap-4 h-full">
+      <div
+        ref={containerRef}
+        className={`relative aspect-[3/4] bg-muted overflow-hidden group flex-1 select-none ${
+          isMagnifying ? 'cursor-none' : 'cursor-default'
+        }`}
+        onMouseEnter={() => setIsMagnifying(true)}
+        onMouseLeave={() => setIsMagnifying(false)}
+        onMouseMove={handleMove}
+      >
+        <Image
+          src={images[currentIndex]}
+          alt={`${alt} - View ${currentIndex + 1}`}
+          fill
+          className="object-contain pointer-events-none"
+          priority
+          sizes="(max-width: 1024px) 100vw, 50vw"
+        />
 
-          {/* Magnifier hint */}
-          <div className="absolute bottom-3 left-3 bg-background/80 backdrop-blur-sm px-2 py-1 rounded flex items-center gap-1 text-xs text-muted-foreground group-hover:opacity-0 transition-opacity z-10">
-            <Search className="h-3 w-3" />
-            <span>Hover to zoom</span>
-          </div>
-
-          {/* Magnifier lens */}
-          {isMagnifying && (
-            <div
-              className="absolute rounded-full border border-white/50 shadow-2xl pointer-events-none overflow-hidden bg-background z-20"
-              style={{
-                width: LENS_SIZE,
-                height: LENS_SIZE,
-                // Center the lens on the cursor
-                left: lens.x - LENS_SIZE / 2,
-                top: lens.y - LENS_SIZE / 2,
-                backgroundImage: `url(${images[currentIndex]})`,
-                backgroundRepeat: 'no-repeat',
-                backgroundSize: `${lens.width * ZOOM}px ${lens.height * ZOOM}px`,
-                // Shift background to align image
-                backgroundPosition: `-${bgPosX}px -${bgPosY}px`,
-                // Optimization for smoother animation
-                willChange: 'left, top',
-              }}
-            />
-          )}
-
-          {/* Navigation Arrows */}
-          {images.length > 1 && (
-            <>
-              <button
-                onClick={prevImage}
-                className="absolute left-4 top-1/2 -translate-y-1/2 bg-background/80 backdrop-blur-sm p-2 hover:bg-background transition-colors opacity-0 group-hover:opacity-100 cursor-pointer z-30 rounded-full shadow-sm"
-                aria-label="Previous image"
-              >
-                <ChevronLeft className="h-6 w-6" />
-              </button>
-              <button
-                onClick={nextImage}
-                className="absolute right-4 top-1/2 -translate-y-1/2 bg-background/80 backdrop-blur-sm p-2 hover:bg-background transition-colors opacity-0 group-hover:opacity-100 cursor-pointer z-30 rounded-full shadow-sm"
-                aria-label="Next image"
-              >
-                <ChevronRight className="h-6 w-6" />
-              </button>
-
-              {/* Image Counter */}
-              <div className="absolute bottom-4 right-4 bg-background/80 backdrop-blur-sm px-3 py-1 text-sm rounded z-30 pointer-events-none">
-                {currentIndex + 1} / {images.length}
-              </div>
-            </>
-          )}
+        {/* Magnifier hint */}
+        <div className="absolute bottom-3 left-3 bg-background/80 backdrop-blur-sm px-2 py-1 rounded flex items-center gap-1 text-xs text-muted-foreground group-hover:opacity-0 transition-opacity z-10">
+          <Search className="h-3 w-3" />
+          <span>Hover to zoom</span>
         </div>
 
-        {/* Thumbnail Navigation */}
+        {/* Magnifier lens */}
+        {isMagnifying && lens.width > 0 && (
+          <div
+            className="absolute rounded-full border border-white/50 shadow-2xl pointer-events-none overflow-hidden bg-background z-20"
+            style={{
+              width: LENS_SIZE,
+              height: LENS_SIZE,
+              left: lens.x - LENS_SIZE / 2,
+              top: lens.y - LENS_SIZE / 2,
+              // ERROR WAS HERE: Added single quotes around the URL to handle spaces/parentheses
+              backgroundImage: `url('${images[currentIndex]}')`,
+              backgroundRepeat: 'no-repeat',
+              backgroundSize: `${lens.width * ZOOM}px ${lens.height * ZOOM}px`,
+              backgroundPosition: `-${bgPosX}px -${bgPosY}px`,
+            }}
+          />
+        )}
+
+        {/* Navigation Arrows */}
         {images.length > 1 && (
-          <div className="flex gap-3 overflow-x-auto pb-2">
-            {images.map((image, index) => (
-              <button
-                key={index}
-                onClick={() => setCurrentIndex(index)}
-                className={`relative aspect-[3/4] w-20 overflow-hidden bg-muted transition-all cursor-pointer flex-shrink-0 ${
-                  index === currentIndex
-                    ? 'ring-2 ring-accent opacity-100'
-                    : 'opacity-50 hover:opacity-75'
-                }`}
-              >
-                <Image
-                  src={image}
-                  alt={`Thumbnail ${index + 1}`}
-                  fill
-                  className="object-cover"
-                  sizes="80px"
-                />
-              </button>
-            ))}
-          </div>
+          <>
+            <button
+              onClick={prevImage}
+              className="absolute left-4 top-1/2 -translate-y-1/2 bg-background/80 backdrop-blur-sm p-2 hover:bg-background transition-colors opacity-0 group-hover:opacity-100 cursor-pointer z-30 rounded-full shadow-sm"
+              aria-label="Previous image"
+            >
+              <ChevronLeft className="h-6 w-6" />
+            </button>
+            <button
+              onClick={nextImage}
+              className="absolute right-4 top-1/2 -translate-y-1/2 bg-background/80 backdrop-blur-sm p-2 hover:bg-background transition-colors opacity-0 group-hover:opacity-100 cursor-pointer z-30 rounded-full shadow-sm"
+              aria-label="Next image"
+            >
+              <ChevronRight className="h-6 w-6" />
+            </button>
+
+            {/* Image Counter */}
+            <div className="absolute bottom-4 right-4 bg-background/80 backdrop-blur-sm px-3 py-1 text-sm rounded z-30 pointer-events-none">
+              {currentIndex + 1} / {images.length}
+            </div>
+          </>
         )}
       </div>
-    </>
+
+      {/* Thumbnail Navigation */}
+      {images.length > 1 && (
+        <div className="flex gap-3 overflow-x-auto pb-2">
+          {images.map((image, index) => (
+            <button
+              key={index}
+              onClick={() => setCurrentIndex(index)}
+              className={`relative aspect-[3/4] w-20 overflow-hidden bg-muted transition-all cursor-pointer flex-shrink-0 ${
+                index === currentIndex
+                  ? 'ring-2 ring-accent opacity-100'
+                  : 'opacity-50 hover:opacity-75'
+              }`}
+            >
+              <Image
+                src={image}
+                alt={`Thumbnail ${index + 1}`}
+                fill
+                className="object-cover"
+                sizes="80px"
+              />
+            </button>
+          ))}
+        </div>
+      )}
+    </div>
   )
 }
