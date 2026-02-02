@@ -218,10 +218,6 @@ export function CartDrawer() {
               {/* Trust Indicators */}
               <div className="space-y-2 pb-4 border-b border-border">
                 <div className="flex items-center gap-3 text-sm text-muted-foreground">
-                  <Shield className="h-4 w-4 text-accent flex-shrink-0" />
-                  <span>{t('fullyInsured')}</span>
-                </div>
-                <div className="flex items-center gap-3 text-sm text-muted-foreground">
                   <Truck className="h-4 w-4 text-accent flex-shrink-0" />
                   <span>{t('secureShipping')}</span>
                 </div>
