@@ -256,11 +256,11 @@ function ImageGallery({
   const [currentIndex, setCurrentIndex] = useState<number>(0)
   const containerRef = useRef<HTMLDivElement | null>(null)
   const [isMagnifying, setIsMagnifying] = useState<boolean>(false)
-  const [lens, setLens] = useState<{ x: number; y: number; xPct: number; yPct: number }>({
+  const [lens, setLens] = useState<{ x: number; y: number; width: number; height: number }>({
     x: 0,
     y: 0,
-    xPct: 50,
-    yPct: 50,
+    width: 0,
+    height: 0,
   })
 
   if (images.length === 0) {
@@ -280,7 +280,7 @@ function ImageGallery({
   }
 
   const LENS_SIZE = 200
-  const ZOOM = 5
+  const ZOOM = 2.5
 
   const handleMove = (e: MouseEvent<HTMLDivElement>) => {
     const el = containerRef.current
@@ -294,10 +294,7 @@ function ImageGallery({
     const x = Math.max(LENS_SIZE / 2, Math.min(rawX, rect.width - LENS_SIZE / 2))
     const y = Math.max(LENS_SIZE / 2, Math.min(rawY, rect.height - LENS_SIZE / 2))
 
-    const xPct = (x / rect.width) * 100
-    const yPct = (y / rect.height) * 100
-
-    setLens({ x, y, xPct, yPct })
+    setLens({ x, y, width: rect.width, height: rect.height })
   }
 
   return (
@@ -329,7 +326,7 @@ function ImageGallery({
           {/* Magnifier lens */}
           {isMagnifying && (
             <div
-              className="absolute rounded-full border border-border shadow-lg pointer-events-none"
+              className="absolute rounded-full border border-border shadow-lg pointer-events-none overflow-hidden bg-background"
               style={{
                 width: LENS_SIZE,
                 height: LENS_SIZE,
@@ -337,8 +334,8 @@ function ImageGallery({
                 top: lens.y - LENS_SIZE / 2,
                 backgroundImage: `url(${images[currentIndex]})`,
                 backgroundRepeat: 'no-repeat',
-                backgroundSize: `${ZOOM * 100}% ${ZOOM * 100}%`,
-                backgroundPosition: `${lens.xPct}% ${lens.yPct}%`,
+                backgroundSize: `${lens.width * ZOOM}px ${lens.height * ZOOM}px`,
+                backgroundPosition: `-${lens.x * ZOOM - LENS_SIZE / 2}px -${lens.y * ZOOM - LENS_SIZE / 2}px`,
               }}
             />
           )}
