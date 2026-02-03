@@ -153,7 +153,7 @@
       "email": "E-Mail",
       "phone": "Telefon / Fax",
       "hours": "Werkstattzeiten",
-      "hoursValue": "Montag - Freitag: 9:00 - 17:00\nSamstag: Nach Vereinbarung",
+      "hoursValue": "Dienstag - Freitag: 9:00 - 13:00, 14:00 - 18:00\nSamstag: 10:00 - 12:30\nSonntag - Montag: Geschlossen",
       "phoneLabel": "Telefon",
       "faxLabel": "Fax"
     },
@@ -276,7 +276,7 @@
     "bodyLength": "Korpuslänge",
     "stringVibration": "Schwingende Saitenlänge",
     "crafted": "Gefertigt {year}",
-    "checkoutNote": "Sichere Kasse mit vollständiger Versicherung inklusive. Jedes Instrument wird sorgfältig in unserem Atelier verpackt und direkt an Ihre Adresse geliefert.",
+    "checkoutNote": "Sicherer Checkout mit vollständiger Transportversicherung inklusive. Jedes Instrument wird in unserer Werkstatt sorgfältig verpackt und direkt an Ihre Adresse geliefert.",
     "inBuildNote": "Dieses Instrument wird derzeit gefertigt. Kontaktieren Sie uns, um es zu reservieren oder Updates zur Fertigstellung zu erhalten.",
     "soldNote": "Dieses Instrument wurde {status}. Kontaktieren Sie uns, um ein ähnliches Stück in Auftrag zu geben.",
     "lowStock": "Nur noch {count} auf Lager",
@@ -346,9 +346,9 @@
     "deliveryMethod": {
       "title": "Wie möchten Sie Ihr Instrument erhalten?",
       "delivery": "Tür-zu-Tür-Lieferung",
-      "deliveryDesc": "Ihr Instrument wird in unserem Atelier abgeholt und direkt an Ihre Adresse geliefert. Versicherung im Preis enthalten.",
+      "deliveryDesc": "Ihr Instrument wird von unserer Werkstatt in Reghin abgeholt und direkt an Ihre Adresse geliefert. Die Versicherung während des Transports ist im Preis inbegriffen.",
       "pickup": "Abholung im Atelier (Reghin, Rumänien)",
-      "pickupDesc": "Besuchen Sie unsere Werkstatt persönlich, um Ihr Instrument abzuholen. Treffen Sie den Geigenbauer und sehen Sie, wo Ihr Instrument gefertigt wurde."
+      "pickupDesc": "Besuchen Sie unsere Werkstatt persönlich, um das Instrument abzuholen. Treffen Sie den Geigenbauer und sehen Sie, wo Ihr Instrument geschaffen wurde."
     },
     "pickup": {
       "title": "Abholort",
@@ -608,7 +608,7 @@
   "photos": {
     "badge": "Hinter den Kulissen",
     "title": "In Unserer Werkstatt",
-    "subtitle": "Ein Einblick in unsere Welt in Reghin—wo Paul und Ecaterina jedes Instrument von Hand fertigen, mit seit 2001 gereiftem Holz und über Generationen weitergegebenen Techniken.",
+    "subtitle": "Ein Einblick in unsere Welt in Reghin – wo Paul und Ecaterina jedes Instrument von Hand fertigen, unter Verwendung von seit 2001 gereiftem Holz und traditionellen Techniken.",
     "categories": {
       "all": "Alle Fotos",
       "instruments": "Instrumente",

@@ -62,12 +62,17 @@ export function Footer() {
             <div className="space-y-3 text-sm">
               <div className="flex items-start gap-2 text-muted-foreground">
                 <MapPin className="h-4 w-4 mt-0.5 flex-shrink-0" />
+                <a href="https://maps.app.goo.gl/X7xWDstAb8NBT6eTA" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 text-muted-foreground hover:text-accent transition-colors cursor-pointer">
                 <span>
                   Strada 1 Decembrie 1918, nr. 8<br />
                   Reghin, 545300
                   <br />
                   Romania
                 </span>
+                </a>
               </div>
               <div className="flex items-center gap-2 text-muted-foreground hover:text-accent transition-colors cursor-pointer">
                 <Mail className="h-4 w-4 flex-shrink-0" />
@@ -87,12 +92,6 @@ export function Footer() {
             </h4>
             <nav className="flex flex-col gap-2 text-sm">
               <Link
-                href="/gallery"
-                className="text-muted-foreground hover:text-accent transition-colors cursor-pointer"
-              >
-                {t('shopInstruments')}
-              </Link>
-              <Link
                 href="/#story"
                 className="text-muted-foreground hover:text-accent transition-colors cursor-pointer"
               >
@@ -109,6 +108,12 @@ export function Footer() {
                 className="text-muted-foreground hover:text-accent transition-colors cursor-pointer"
               >
                 {t('contact')}
+              </Link>
+              <Link
+                href="/gallery"
+                className="text-muted-foreground hover:text-accent transition-colors cursor-pointer"
+              >
+                {t('shopInstruments')}
               </Link>
             </nav>
           </div>

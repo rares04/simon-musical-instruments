@@ -675,7 +675,7 @@ export default function CheckoutPage() {
                 </div>
 
                 {/* Pricing Breakdown */}
-                <div className="space-y-3 pt-4 border-t border-border">
+                <div className="space-y-3 pt-4">
                   {/* {formData.deliveryMethod === 'delivery' ? (
                     <div className="flex justify-between text-sm">
                       <span className="text-muted-foreground">{t('summary.deliveryIncluded')}</span>

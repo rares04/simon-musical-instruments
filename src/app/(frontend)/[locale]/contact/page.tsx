@@ -222,12 +222,15 @@ export default function ContactPage() {
                   </div>
                   <div>
                     <h3 className="font-semibold text-foreground mb-2">{t('info.address')}</h3>
-                    <p className="text-muted-foreground leading-relaxed">
+                    <a href="https://maps.app.goo.gl/X7xWDstAb8NBT6eTA" 
+                      className="text-accent hover:underline cursor-pointer">
+                    <p>
                       Strada 1 Decembrie 1918, nr. 8<br />
                       Reghin, 545300
                       <br />
                       ROMANIA
                     </p>
+                    </a>
                   </div>
                 </div>
               </div>
@@ -297,7 +300,7 @@ export default function ContactPage() {
             </h2>
             <div className="rounded-lg overflow-hidden shadow-md border border-border/60">
               <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2731.5!2d24.7089!3d46.7769!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x474bb3e1e1e1e1e1%3A0x1e1e1e1e1e1e1e1!2sStrada%201%20Decembrie%201918%2C%20Reghin%2C%20Romania!5e0!3m2!1sen!2sro!4v1234567890"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2297.182700509798!2d24.716556180426746!3d46.78803265679634!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x474a37a96979b5f7%3A0x62dde59b74d861!2sPaul%20Simon%20-%20Musical%20Instruments!5e0!3m2!1sen!2sro!4v1770140892439!5m2!1sen!2sro"
                 width="100%"
                 height="450"
                 style={{ border: 0 }}

@@ -153,7 +153,7 @@
       "email": "Email",
       "phone": "Telefon / Fax",
       "hours": "Program Atelier",
-      "hoursValue": "Luni - Vineri: 9:00 - 17:00\nSâmbătă: Cu programare",
+      "hoursValue": "Marti - Vineri: 9:00 - 13:00, 14:00 - 18:00\nSâmbătă: 10:00 - 12:30\nDuminica - Luni: Inchis",
       "phoneLabel": "Telefon",
       "faxLabel": "Fax"
     },
@@ -276,7 +276,7 @@
     "bodyLength": "Lungime Corp",
     "stringVibration": "Lungime Vibrație Coardă",
     "crafted": "Realizat în {year}",
-    "checkoutNote": "Checkout securizat cu asigurare completă inclusă. Fiecare instrument este ambalat cu grijă în atelierul nostru și livrat direct la adresa ta.",
+    "checkoutNote": "Checkout securizat cu asigurare completă pe timpul livrării inclusă. Fiecare instrument este ambalat cu grijă în atelierul nostru și livrat direct la adresa ta.",
     "inBuildNote": "Acest instrument este în construcție. Contactează-ne pentru a-l rezerva sau pentru actualizări despre finalizare.",
     "soldNote": "Acest instrument a fost {status}. Contactează-ne pentru a comanda unul similar.",
     "lowStock": "Doar {count} în stoc",
@@ -346,9 +346,9 @@
     "deliveryMethod": {
       "title": "Cum doriți să primiți instrumentul?",
       "delivery": "Livrare din Ușă în Ușă",
-      "deliveryDesc": "Instrumentul tău este preluat de la atelierul nostru și livrat direct la adresa ta. Asigurare inclusă în preț.",
+      "deliveryDesc": "Instrumentul tău este preluat de la atelierul nostru și livrat direct la adresa ta. Asigurare inclusă în preț pe timpul livrării.",
       "pickup": "Ridicare de la Atelier (Reghin, România)",
-      "pickupDesc": "Vizitează atelierul nostru personal pentru a ridica instrumentul. Întâlnește lutierul și vedeți unde a fost creat instrumentul tău."
+      "pickupDesc": "Vizitează atelierul nostru personal pentru a ridica instrumentul. Întâlnește lutierul și vedeți unde a fost creat instrumentul dumneavoastră."
     },
     "pickup": {
       "title": "Locație de Ridicare",
@@ -608,7 +608,7 @@
   "photos": {
     "badge": "În Culise",
     "title": "În Atelierul Nostru",
-    "subtitle": "O privire în lumea noastră din Reghin—unde Paul și Ecaterina creează fiecare instrument manual, folosind lemn învechit din 2001 și tehnici transmise din generație în generație.",
+    "subtitle": "O privire în lumea noastră din Reghin—unde Paul și Ecaterina creează fiecare instrument manual, folosind lemn învechit din 2001 și tehnici transmise traditionale.",
     "categories": {
       "all": "Toate Fotografiile",
       "instruments": "Instrumente",

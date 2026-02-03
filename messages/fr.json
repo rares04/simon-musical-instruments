@@ -157,7 +157,7 @@
       "email": "E-mail",
       "phone": "Téléphone / Fax",
       "hours": "Heures d'Atelier",
-      "hoursValue": "Lundi - Vendredi: 9:00 - 17:00\nSamedi: Sur rendez-vous",
+      "hoursValue": "Mardi - Vendredi : 9:00 - 13:00, 14:00 - 18:00\nSamedi : 10:00 - 12:30\nDimanche - Lundi : Fermé",
       "phoneLabel": "Téléphone",
       "faxLabel": "Fax"
     },
@@ -280,7 +280,7 @@
     "bodyLength": "Longueur du Corps",
     "stringVibration": "Longueur de Corde Vibrante",
     "crafted": "Fabriqué en {year}",
-    "checkoutNote": "Commande sécurisée avec assurance complète incluse. Chaque instrument est soigneusement emballé dans notre atelier et livré directement à votre adresse.",
+    "checkoutNote": "Paiement sécurisé avec assurance complète pendant la livraison incluse. Chaque instrument est soigneusement emballé dans notre atelier et livré directement à votre adresse.",
     "inBuildNote": "Cet instrument est actuellement en cours de fabrication. Contactez-nous pour le réserver ou obtenir des mises à jour sur l'achèvement.",
     "soldNote": "Cet instrument a été {status}. Contactez-nous pour commander une pièce similaire.",
     "lowStock": "Seulement {count} en stock",
@@ -350,9 +350,9 @@
     "deliveryMethod": {
       "title": "Comment souhaitez-vous recevoir votre instrument ?",
       "delivery": "Livraison Porte à Porte",
-      "deliveryDesc": "Votre instrument est récupéré dans notre atelier et livré directement à votre adresse. Assurance incluse dans le prix.",
+      "deliveryDesc": "Votre instrument est récupéré à notre atelier de Reghin et livré directement à votre adresse. L'assurance pendant la livraison est incluse dans le prix.",
       "pickup": "Retrait à l'Atelier (Reghin, Roumanie)",
-      "pickupDesc": "Visitez notre atelier en personne pour récupérer votre instrument. Rencontrez le luthier et découvrez où votre instrument a été fabriqué."
+      "pickupDesc": "Visitez notre atelier en personne pour récupérer l'instrument. Rencontrez le luthier et voyez où votre instrument a été créé."
     },
     "pickup": {
       "title": "Lieu de Retrait",
@@ -612,7 +612,7 @@
   "photos": {
     "badge": "Dans les Coulisses",
     "title": "Dans Notre Atelier",
-    "subtitle": "Un aperçu de notre monde à Reghin—où Paul et Ecaterina fabriquent chaque instrument à la main, utilisant du bois vieilli depuis 2001 et des techniques transmises de génération en génération.",
+    "subtitle": "Un aperçu de notre monde à Reghin—où Paul et Ecaterina créent chaque instrument à la main, en utilisant du bois vieilli depuis 2001 et des techniques traditionnelles transmises.",
     "categories": {
       "all": "Toutes les Photos",
       "instruments": "Instruments",

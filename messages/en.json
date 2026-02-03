@@ -153,7 +153,7 @@
       "email": "Email",
       "phone": "Phone / Fax",
       "hours": "Workshop Hours",
-      "hoursValue": "Monday - Friday: 9:00 - 17:00\nSaturday: By appointment",
+      "hoursValue": "Tuesday - Friday: 9:00 - 13:00, 14:00 - 18:00\nSaturday: 10:00 - 12:30\nSunday - Monday: Closed",
       "phoneLabel": "Phone",
       "faxLabel": "Fax"
     },
@@ -276,7 +276,7 @@
     "bodyLength": "Body Length",
     "stringVibration": "String Vibration Length",
     "crafted": "Crafted {year}",
-    "checkoutNote": "Secure checkout with door-to-door delivery and full insurance included. Each instrument is carefully packaged at our atelier and delivered directly to your address.",
+    "checkoutNote": "Secure checkout with full insurance during delivery included. Each instrument is carefully packaged in our workshop and delivered directly to your address.",
     "inBuildNote": "This instrument is currently being crafted. Contact us to reserve it or get updates on completion.",
     "soldNote": "This instrument has been {status}. Contact us to commission a similar piece.",
     "lowStock": "Only {count} left in stock",
@@ -346,9 +346,9 @@
     "deliveryMethod": {
       "title": "How would you like to receive your instrument?",
       "delivery": "Door-to-Door Delivery",
-      "deliveryDesc": "Your instrument is picked up from our atelier and delivered directly to your address. Insurance included in price.",
+      "deliveryDesc": "Your instrument is picked up from our workshop in Reghin and delivered directly to your address. Insurance during delivery is included in the price.",
       "pickup": "Pickup from Atelier (Reghin, Romania)",
-      "pickupDesc": "Visit our workshop in person to collect your instrument. Meet the luthier and see where your instrument was crafted."
+      "pickupDesc": "Visit our workshop in person to pick up the instrument. Meet the luthier and see where your instrument was created."
     },
     "pickup": {
       "title": "Pickup Location",
@@ -608,7 +608,7 @@
   "photos": {
     "badge": "Behind the Scenes",
     "title": "Inside Our Workshop",
-    "subtitle": "A glimpse into our world in Reghin—where Paul and Ecaterina craft each instrument by hand, using wood aged since 2001 and techniques passed down through generations.",
+    "subtitle": "A glimpse into our world in Reghin—where Paul and Ecaterina craft each instrument by hand, using wood aged since 2001 and traditional techniques.",
     "categories": {
       "all": "All Photos",
       "instruments": "Instruments",

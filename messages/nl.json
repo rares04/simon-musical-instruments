@@ -98,7 +98,7 @@
     "questions": {
       "purchase": {
         "question": "Hoe kan ik een instrument kopen?",
-        "answer": "U kunt onze beschikbare instrumenten bekijken in de Winkel sectie. Zodra u een instrument vindt dat u bevalt, kunt u het reserveren via onze website. Na reservering neemt Paul binnen 1-2 werkdagen contact met u op om de details te bespreken, eventuele vragen te beantwoorden og de betaling en levering te regelen."
+        "answer": "U kunt onze beschikbare instrumenten bekijken in de Winkel sectie. Zodra u een instrument vindt dat u bevalt, kunt u het reserveren via onze website. Na reservering neemt Paul binnen 1-2 werkdagen contact met u op om de details te bespreken, eventuele vragen te beantwoorden en de betaling en levering te regelen."
       },
       "shipping": {
         "question": "Hoe werkt de levering?",
@@ -114,7 +114,7 @@
       },
       "care": {
         "question": "Hoe moet ik mijn instrument onderhouden?",
-        "answer": "We raden aan uw instrument in een koffer te bewaren wanneer het niet wordt gebruikt, juiste vochtigheidsgraden te handhaven (40-60%) og het jaarlijks professioneel te laten afstellen."
+        "answer": "We raden aan uw instrument in een koffer te bewaren wanneer het niet wordt gebruikt, juiste vochtigheidsgraden te handhaven (40-60%) en het jaarlijks professioneel te laten afstellen."
       },
       "custom": {
         "question": "Kan ik een aangepast instrument bestellen?",
@@ -153,7 +153,7 @@
       "email": "E-mail",
       "phone": "Telefoon / Fax",
       "hours": "Werkplaats Uren",
-      "hoursValue": "Maandag - Vrijdag: 9:00 - 17:00\nZaterdag: Op afspraak",
+      "hoursValue": "Dinsdag - Vrijdag: 9:00 - 13:00, 14:00 - 18:00\nZaterdag: 10:00 - 12:30\nZondag - Maandag: Gesloten",
       "phoneLabel": "Telefoon",
       "faxLabel": "Fax"
     },
@@ -242,7 +242,7 @@
   "gallery": {
     "badge": "Beschikbaar voor Aankoop",
     "title": "Instrumentenwinkel",
-    "description": "Bekijk onze huidige voorraad handgemaakte instrumenten. Elk stuk is beschikbaar voor aankoop en klaar voor verzending. Klik op een instrument om volledige details te bekijken, geluidssamples te beluisteren og uw aankoop te voltooien.",
+    "description": "Bekijk onze huidige voorraad handgemaakte instrumenten. Elk stuk is beschikbaar voor aankoop en klaar voor verzending. Klik op een instrument om volledige details te bekijken, geluidssamples te beluisteren en uw aankoop te voltooien.",
     "noResults": "Geen instrumenten komen overeen met uw filters",
     "adjustFilters": "Probeer uw selectie aan te passen of bekijk alle instrumenten",
     "filters": {
@@ -276,7 +276,7 @@
     "bodyLength": "Korpuslengte",
     "stringVibration": "Trillende Snaarlengte",
     "crafted": "Gemaakt {year}",
-    "checkoutNote": "Veilige checkout met volledige verzekering inbegrepen. Elk instrument wordt zorgvuldig verpakt in ons atelier en rechtstreeks bij u thuis afgeleverd.",
+    "checkoutNote": "Veilige checkout met volledige verzekering tijdens de levering inbegrepen. Elk instrument wordt zorgvuldig verpakt in ons atelier en rechtstreeks op uw adres bezorgd.",
     "inBuildNote": "Dit instrument wordt momenteel gemaakt. Neem contact met ons op om het te reserveren of updates over voltooiing te krijgen.",
     "soldNote": "Dit instrument is {status}. Neem contact met ons op om een soortgelijk stuk te bestellen.",
     "lowStock": "Nog maar {count} op voorraad",
@@ -346,9 +346,9 @@
     "deliveryMethod": {
       "title": "Hoe wilt u uw instrument ontvangen?",
       "delivery": "Deur-tot-Deur Levering",
-      "deliveryDesc": "Uw instrument wordt opgehaald bij ons atelier en rechtstreeks bij u thuis afgeleverd. Verzekering inbegrepen in de prijs.",
+      "deliveryDesc": "Uw instrument wordt opgehaald bij ons atelier in Reghin en rechtstreeks op uw adres bezorgd. Verzekering tijdens de levering is inbegrepen in de prijs.",
       "pickup": "Ophalen bij Atelier (Reghin, Roemenië)",
-      "pickupDesc": "Bezoek ons atelier persoonlijk om uw instrument op te halen. Ontmoet de vioolbouwer og zie waar uw instrument is gemaakt."
+      "pickupDesc": "Bezoek ons atelier persoonlijk om het instrument op te halen. Ontmoet de vioolbouwer en zie waar uw instrument is gemaakt."
     },
     "pickup": {
       "title": "Ophaallocatie",
@@ -415,13 +415,13 @@
       "reservationNumber": "Reserveringsnummer",
       "whatHappensNext": "Wat er nu gebeurt:",
       "step1Title": "Paul neemt contact op",
-      "step1Desc": "Binnen 1-2 werkdagen neemt Paul via e-mail of telefoon contact met u op om uw reserveringsdetails te bevestigen og eventuele vragen te beantwoorden.",
+      "step1Desc": "Binnen 1-2 werkdagen neemt Paul via e-mail of telefoon contact met u op om uw reserveringsdetails te bevestigen en eventuele vragen te beantwoorden.",
       "step2Title": "Betaling geregeld",
       "step2Desc": "Paul zal u bankgegevens verstrekken of contante betaling regelen voor ophalen bij het atelier. Betaling kan veilig via bankoverschrijving worden gedaan.",
       "step3Title": "Instrument voorbereid",
       "step3Desc": "Uw handgemaakte instrument wordt zorgvuldig voorbereid, met zorg verpakt, en met volledige verzekering verzonden of klaargemaakt voor ophalen.",
       "emailSent": "Bevestigings-e-mail Verzonden",
-      "emailSentDesc": "We hebben u een bevestigings-e-mail gestuurd met uw reserveringsnummer og volgende stappen. Controleer uw inbox (en spammap).",
+      "emailSentDesc": "We hebben u een bevestigings-e-mail gestuurd met uw reserveringsnummer en volgende stappen. Controleer uw inbox (en spammap).",
       "questionsAbout": "Vragen over uw reservering?"
     },
     "inquiry": {
@@ -431,9 +431,9 @@
       "confirmationEmail": "Bevestigings-e-mail",
       "confirmationEmailDesc": "We hebben u een bevestigings-e-mail gestuurd met uw aanvraagdetails.",
       "personalResponse": "Persoonlijke Reactie",
-      "personalResponseDesc": "Paul of Ecaterina Simon zal uw aanvraag persoonlijk beoordelen og reageren met gedetailleerde informatie over de instrumenten waarin u geïnteresseerd bent.",
+      "personalResponseDesc": "Paul of Ecaterina Simon zal uw aanvraag persoonlijk beoordelen en reageren met gedetailleerde informatie over de instrumenten waarin u geïnteresseerd bent.",
       "consultationAvailable": "Consultatie Beschikbaar",
-      "consultationAvailableDesc": "We kunnen een telefoon- of videogesprek regelen om uw behoeften te bespreken og u te helpen het perfecte instrument te vinden.",
+      "consultationAvailableDesc": "We kunnen een telefoon- of videogesprek regelen om uw behoeften te bespreken en u te helpen het perfecte instrument te vinden.",
       "immediateAssistance": "Onmiddellijke hulp nodig?"
     },
     "order": {
@@ -443,7 +443,7 @@
       "confirmationEmail": "Bevestigings-e-mail",
       "confirmationEmailDesc": "We hebben u een bevestigings-e-mail gestuurd met uw besteldetails.",
       "shippingTracking": "Verzending & Tracking",
-      "shippingTrackingDesc": "Uw instrument wordt zorgvuldig verpakt in ons atelier og deur-tot-deur bezorgd op uw adres. Volledige verzekering este inbegrepen. U ontvangt trackingdetails zodra uw instrument onderweg is.",
+      "shippingTrackingDesc": "Uw instrument wordt zorgvuldig verpakt in ons atelier en deur-tot-deur bezorgd op uw adres. Volledige verzekering is inbegrepen. U ontvangt trackingdetails zodra uw instrument onderweg is.",
       "questionsAboutOrder": "Vragen over uw bestelling?"
     },
     "continueShopping": "Doorgaan met Winkelen",
@@ -454,8 +454,8 @@
     "location": "Reghin, Transsylvanië",
     "login": {
       "title": "Welkom Terug",
-      "subtitle": "Log in om toegang te krijgen tot uw account og uw reis voort te zetten",
-      "quote": "Elk instrument draagt de ziel van het hout og de toewijding van eeuwenoude vakmanschap.",
+      "subtitle": "Log in om toegang te krijgen tot uw account en uw reis voort te zetten",
+      "quote": "Elk instrument draagt de ziel van het hout en de toewijding van eeuwenoude vakmanschap.",
       "quoteAuthor": "— Meester Vioolbouwer Paul Simon",
       "emailPlaceholder": "uw@email.com",
       "passwordPlaceholder": "••••••••",
@@ -474,11 +474,11 @@
     },
     "register": {
       "title": "Maak Uw Account Aan",
-      "subtitle": "Word lid van onze gemeenschap van musici og verzamelaars",
+      "subtitle": "Word lid van onze gemeenschap van musici en verzamelaars",
       "whyCreateAccount": "Waarom een account aanmaken?",
       "benefits": {
-        "trackOrders": "Volg uw instrumentbestellingen og leveringen",
-        "savePreferences": "Sla uw voorkeuren og verzendgegevens op",
+        "trackOrders": "Volg uw instrumentbestellingen en leveringen",
+        "savePreferences": "Sla uw voorkeuren en verzendgegevens op",
         "exclusiveUpdates": "Ontvang exclusieve updates over nieuwe instrumenten",
         "personalizedRecs": "Toegang tot gepersonaliseerde aanbevelingen"
       },
@@ -511,7 +511,7 @@
       "title": "E-mail Verifiëren",
       "subtitle": "We hebben een 6-cijferige verificatiecode naar uw e-mailadres gestuurd.",
       "checkInbox": "Controleer uw Postvak In",
-      "weSentCode": "We hebben een verificatiecode naar uw e-mail gestuurd. Controleer uw postvak in og spam-map.",
+      "weSentCode": "We hebben een verificatiecode naar uw e-mail gestuurd. Controleer uw postvak in en spam-map.",
       "enterCode": "Voer de 6-cijferige code in om uw account te verifiëren",
       "verify": "E-mail Verifiëren",
       "verifying": "Verifiëren...",
@@ -608,7 +608,7 @@
   "photos": {
     "badge": "Achter de Schermen",
     "title": "In Onze Werkplaats",
-    "subtitle": "Een kijkje in onze wereld in Reghin—waar Paul og Ecaterina elk instrument met de hand vervaardigen, met hout dat sinds 2001 is gerijpt og technieken die van generatie op generatie zijn doorgegeven.",
+    "subtitle": "Een kijkje in onze wereld in Reghin—waar Paul en Ecaterina elk instrument met de hand vervaardigen, met hout dat sinds 2001 is gerijpt en doorgegeven traditionele technieken.",
     "categories": {
       "all": "Alle Foto's",
       "instruments": "Instrumenten",
@@ -650,7 +650,7 @@
       },
       "woodAttic": {
         "title": "Onze Houtopslag",
-        "alt": "De zolderruimte waar klankhout zorgvuldig wordt opgeslagen og gerijpt"
+        "alt": "De zolderruimte waar klankhout zorgvuldig wordt opgeslagen en gerijpt"
       },
       "violinTops": {
         "title": "Instrumenten Wachten op Assemblage",
@@ -682,10 +682,10 @@
       },
       "cBoutDetail": {
         "title": "C-Boog Vakmanschap",
-        "alt": "Detail van de C-boog met precieze inlegwerk og rondingen"
+        "alt": "Detail van de C-boog met precieze inlegwerk en rondingen"
       },
       "instrumentDetail1": {
-        "title": "Ribben og Rondingen",
+        "title": "Ribben en Rondingen",
         "alt": "Close-up van instrumentribben die de sierlijke rondingen tonen"
       },
       "lacqueredInstrument": {
