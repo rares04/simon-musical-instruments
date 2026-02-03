@@ -378,7 +378,7 @@
       },
       "secureShipping": "Livrare din ușă în ușă cu confirmare de semnătură",
       "fullInsurance": "Asigurare inclusă în preț",
-      "professionalPackaging": "Ambalaj profesional cu protecție climatică"
+      "professionalPackaging": "Ambalaj profesional"
     },
     "message": {
       "title": "Mesaj",
@@ -608,7 +608,7 @@
   "photos": {
     "badge": "În Culise",
     "title": "În Atelierul Nostru",
-    "subtitle": "O privire în lumea noastră din Reghin—unde Paul și Ecaterina creează fiecare instrument manual, folosind lemn învechit din 2001 și tehnici transmise traditionale.",
+    "subtitle": "O privire în lumea noastră din Reghin—unde Paul și Ecaterina creează fiecare instrument manual, folosind lemn învechit din 2001 și tehnici traditionale.",
     "categories": {
       "all": "Toate Fotografiile",
       "instruments": "Instrumente",
@@ -621,7 +621,7 @@
         "alt": "Paul Simon examinând o vioară artizanală în atelierul său"
       },
       "ecaterinaPortrait": {
-        "title": "Meșterul Lutier Ecaterina Simon",
+        "title": "Lac Aplicat Manual",
         "alt": "Ecaterina Simon aplicând lac pe o vioară cu precizie"
       },
       "paulAtWork": {
@@ -653,7 +653,7 @@
         "alt": "Spațiul din pod unde lemnul de ton este depozitat și învechit cu grijă"
       },
       "violinTops": {
-        "title": "Instrumente în Așteptarea Asamblării",
+        "title": "Instrumente în Așteptarea Lacuirii",
         "alt": "Un rând de plăci de vioară atârnând în atelier"
       },
       "awaitingVarnish": {
@@ -661,7 +661,7 @@
         "alt": "Corpuri de vioară în așteptarea procesului de lăcuire"
       },
       "carvedScrolls": {
-        "title": "Volute Sculptate Manual",
+        "title": "Gaturi Sculptate Manual",
         "alt": "Colecție de volute de vioară sculptate manual arătând meșteșugul tradițional"
       },
       "varnishApplication": {
@@ -693,7 +693,7 @@
         "alt": "Detaliu al unui instrument proaspăt lăcuit arătând profunzimea finisajului"
       },
       "violaBack": {
-        "title": "Detaliu Spate Violă",
+        "title": "Detalii Lac",
         "alt": "Spatele unei viole arătând procesul de lăcuire în desfășurare"
       }
     }

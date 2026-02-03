@@ -382,7 +382,7 @@
       },
       "secureShipping": "Livraison porte à porte avec confirmation de signature",
       "fullInsurance": "Assurance incluse dans le prix",
-      "professionalPackaging": "Emballage professionnel avec protection climatique"
+      "professionalPackaging": "Emballage professionnel"
     },
     "message": {
       "title": "Message",
@@ -612,7 +612,7 @@
   "photos": {
     "badge": "Dans les Coulisses",
     "title": "Dans Notre Atelier",
-    "subtitle": "Un aperçu de notre monde à Reghin—où Paul et Ecaterina créent chaque instrument à la main, en utilisant du bois vieilli depuis 2001 et des techniques traditionnelles transmises.",
+    "subtitle": "Un aperçu de notre monde à Reghin—où Paul et Ecaterina créent chaque instrument à la main, en utilisant du bois vieilli depuis 2001 et des techniques traditionnelles.",
     "categories": {
       "all": "Toutes les Photos",
       "instruments": "Instruments",
@@ -625,7 +625,7 @@
         "alt": "Paul Simon examinant un violon artisanal dans son atelier"
       },
       "ecaterinaPortrait": {
-        "title": "Maître Luthier Ecaterina Simon",
+        "title": "Vernis Appliqué à la Main",
         "alt": "Ecaterina Simon appliquant du vernis sur un violon avec précision"
       },
       "paulAtWork": {
@@ -657,7 +657,7 @@
         "alt": "L'espace du grenier où le bois de lutherie est soigneusement stocké et vieilli"
       },
       "violinTops": {
-        "title": "Instruments en Attente d'Assemblage",
+        "title": "Instruments en Attente de Vernissage",
         "alt": "Une rangée de tables de violon suspendues dans l'atelier"
       },
       "awaitingVarnish": {
@@ -665,7 +665,7 @@
         "alt": "Corps de violon en attente du processus de vernissage"
       },
       "carvedScrolls": {
-        "title": "Volutes Sculptées à la Main",
+        "title": "Manches Sculptés à la Main",
         "alt": "Collection de volutes de violon sculptées à la main montrant l'artisanat traditionnel"
       },
       "varnishApplication": {
@@ -697,7 +697,7 @@
         "alt": "Détail d'un instrument fraîchement laqué montrant la profondeur de la finition"
       },
       "violaBack": {
-        "title": "Détail du Dos d'Alto",
+        "title": "Détails du Vernis",
         "alt": "Le dos d'un alto montrant le processus de vernissage en cours"
       }
     }

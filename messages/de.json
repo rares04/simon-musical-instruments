@@ -378,7 +378,7 @@
       },
       "secureShipping": "Tür-zu-Tür-Lieferung mit Unterschriftsbestätigung",
       "fullInsurance": "Versicherung im Preis enthalten",
-      "professionalPackaging": "Professionelle Verpackung mit Klimaschutz"
+      "professionalPackaging": "Professionelle Verpackung"
     },
     "message": {
       "title": "Nachricht",
@@ -621,7 +621,7 @@
         "alt": "Paul Simon untersucht eine handgefertigte Geige in seiner Werkstatt"
       },
       "ecaterinaPortrait": {
-        "title": "Meister-Geigenbauerin Ecaterina Simon",
+        "title": "Handaufgetragener Lack",
         "alt": "Ecaterina Simon trägt präzise Lack auf eine Geige auf"
       },
       "paulAtWork": {
@@ -653,7 +653,7 @@
         "alt": "Der Dachbodenraum, in dem Tonholz sorgfältig gelagert und gereift wird"
       },
       "violinTops": {
-        "title": "Instrumente warten auf Montage",
+        "title": "Instrumente warten auf Lackierung",
         "alt": "Eine Reihe von Geigendecken hängt in der Werkstatt"
       },
       "awaitingVarnish": {
@@ -661,7 +661,7 @@
         "alt": "Geigenkörper warten auf den Lackierprozess"
       },
       "carvedScrolls": {
-        "title": "Handgeschnitzte Schnecken",
+        "title": "Handgeschnitzte Hälse",
         "alt": "Sammlung handgeschnitzter Geigenschnecken, die traditionelle Handwerkskunst zeigen"
       },
       "varnishApplication": {
@@ -693,7 +693,7 @@
         "alt": "Detail eines frisch lackierten Instruments, das die Tiefe der Oberfläche zeigt"
       },
       "violaBack": {
-        "title": "Bratschenrücken-Detail",
+        "title": "Lackdetails",
         "alt": "Die Rückseite einer Bratsche, die den Lackierprozess in Arbeit zeigt"
       }
     }

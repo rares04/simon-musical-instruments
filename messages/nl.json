@@ -378,7 +378,7 @@
       },
       "secureShipping": "Deur-tot-deur levering met handtekeningbevestiging",
       "fullInsurance": "Verzekering inbegrepen in de prijs",
-      "professionalPackaging": "Professionele verpakking met klimaatbescherming"
+      "professionalPackaging": "Professionele verpakking"
     },
     "message": {
       "title": "Bericht",
@@ -608,7 +608,7 @@
   "photos": {
     "badge": "Achter de Schermen",
     "title": "In Onze Werkplaats",
-    "subtitle": "Een kijkje in onze wereld in Reghin—waar Paul en Ecaterina elk instrument met de hand vervaardigen, met hout dat sinds 2001 is gerijpt en doorgegeven traditionele technieken.",
+    "subtitle": "Een kijkje in onze wereld in Reghin—waar Paul en Ecaterina elk instrument met de hand vervaardigen, met hout dat sinds 2001 is gerijpt en traditionele technieken.",
     "categories": {
       "all": "Alle Foto's",
       "instruments": "Instrumenten",
@@ -621,7 +621,7 @@
         "alt": "Paul Simon onderzoekt een handgemaakte viool in zijn werkplaats"
       },
       "ecaterinaPortrait": {
-        "title": "Meester Vioolbouwer Ecaterina Simon",
+        "title": "Handaangebrachte Vernis",
         "alt": "Ecaterina Simon brengt met precisie vernis aan op een viool"
       },
       "paulAtWork": {
@@ -653,7 +653,7 @@
         "alt": "De zolderruimte waar klankhout zorgvuldig wordt opgeslagen en gerijpt"
       },
       "violinTops": {
-        "title": "Instrumenten Wachten op Assemblage",
+        "title": "Instrumenten Wachten op Vernis",
         "alt": "Een rij viooltopen hangend in de werkplaats"
       },
       "awaitingVarnish": {
@@ -661,7 +661,7 @@
         "alt": "Vioolkorpussen wachten op het vernisproces"
       },
       "carvedScrolls": {
-        "title": "Handgesneden Krullen",
+        "title": "Handgesneden Halzen",
         "alt": "Collectie handgesneden vioolkrullen die traditioneel vakmanschap tonen"
       },
       "varnishApplication": {
@@ -693,7 +693,7 @@
         "alt": "Detail van een vers gelakt instrument dat de diepte van de afwerking toont"
       },
       "violaBack": {
-        "title": "Altvioolrug Detail",
+        "title": "Vernisdetails",
         "alt": "De achterkant van een altviool die het vernisproces in uitvoering toont"
       }
     }
