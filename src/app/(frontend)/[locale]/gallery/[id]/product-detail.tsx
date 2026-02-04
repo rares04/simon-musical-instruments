@@ -1,15 +1,16 @@
 'use client'
 
-import { useRef, useState, useEffect, type MouseEvent } from 'react'
+import { useState, useEffect } from 'react'
 import Image from 'next/image'
 import { useTranslations } from 'next-intl'
 import { Link } from '@/i18n/routing'
-import { ArrowLeft, ChevronLeft, ChevronRight, Search, X, Maximize2 } from 'lucide-react'
+import { ArrowLeft, ChevronLeft, ChevronRight, Search, X, Maximize2, ZoomIn, ZoomOut, RotateCcw } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { AudioPlayer } from '@/components/audio-player'
 import { useCart } from '@/lib/cart-context'
 import type { Instrument } from '@/payload-types'
 import { getMediaSrc } from '@/lib/media-utils'
+import { TransformWrapper, TransformComponent } from 'react-zoom-pan-pinch'
 
 interface ProductDetailProps {
   instrument: Instrument
@@ -220,100 +221,78 @@ function SpecRow({ label, value }: { label: string; value: string }) {
   )
 }
 
-// --- LOGICA DE LUPĂ PENTRU LIGHTBOX ---
-function ZoomableImage({ src, alt }: { src: string; alt: string }) {
-  const containerRef = useRef<HTMLDivElement | null>(null)
-  const [isMagnifying, setIsMagnifying] = useState<boolean>(false)
-  const [mousePos, setMousePos] = useState({ x: 0, y: 0 })
-  const [containerDims, setContainerDims] = useState({ width: 0, height: 0 })
-
-  const LENS_SIZE = 150
-  const ZOOM = 2.5
-
-  const handleMouseMove = (e: MouseEvent<HTMLDivElement>) => {
-    const el = containerRef.current
-    if (!el) return
-    const rect = el.getBoundingClientRect()
-
-    if (
-      e.clientX < rect.left ||
-      e.clientX > rect.right ||
-      e.clientY < rect.top ||
-      e.clientY > rect.bottom
-    ) {
-      setIsMagnifying(false)
-      return
-    }
-
-    if (!isMagnifying) setIsMagnifying(true)
-
-    setMousePos({
-      x: e.clientX - rect.left,
-      y: e.clientY - rect.top,
-    })
-    setContainerDims({
-      width: rect.width,
-      height: rect.height,
-    })
-  }
-
-  const translateX = LENS_SIZE / 2 - mousePos.x * ZOOM
-  const translateY = LENS_SIZE / 2 - mousePos.y * ZOOM
-
+// --- NOUA IMPLEMENTARE ZOOM & PAN ---
+function PanZoomImage({ src, alt }: { src: string; alt: string }) {
   return (
-    <div
-      ref={containerRef}
-      onMouseLeave={() => setIsMagnifying(false)}
-      onMouseMove={handleMouseMove}
-      className={`relative w-full h-full flex items-center justify-center overflow-hidden ${
-        isMagnifying ? 'cursor-none' : 'cursor-default'
-      }`}
+    <TransformWrapper
+      initialScale={1}
+      minScale={1}
+      maxScale={8} // Permite zoom de pana la 8x
+      centerOnInit={true}
+      wheel={{ step: 0.2 }} // Cat de repede face zoom din scroll
     >
-      {/* Imaginea de bază în Lightbox */}
-      <div className="relative w-full h-full max-w-[90vw] max-h-[85vh]">
-        <Image
-          src={src}
-          alt={alt}
-          fill
-          className="object-contain pointer-events-none select-none"
-          priority
-          sizes="90vw"
-        />
-      </div>
+      {({ zoomIn, zoomOut, resetTransform }) => (
+        <>
+          {/* Controale pentru Zoom (Overlay) */}
+          <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex items-center gap-2 z-[70] bg-black/60 backdrop-blur-sm p-2 rounded-full border border-white/10">
+            <button
+              onClick={() => zoomOut()}
+              className="p-2 text-white hover:text-accent transition-colors hover:bg-white/10 rounded-full"
+              title="Zoom Out"
+            >
+              <ZoomOut className="w-5 h-5" />
+            </button>
+            <button
+              onClick={() => resetTransform()}
+              className="p-2 text-white hover:text-accent transition-colors hover:bg-white/10 rounded-full"
+              title="Reset View"
+            >
+              <RotateCcw className="w-5 h-5" />
+            </button>
+            <button
+              onClick={() => zoomIn()}
+              className="p-2 text-white hover:text-accent transition-colors hover:bg-white/10 rounded-full"
+              title="Zoom In"
+            >
+              <ZoomIn className="w-5 h-5" />
+            </button>
+          </div>
 
-      {/* Lupa */}
-      {isMagnifying && containerDims.width > 0 && (
-        <div
-          className="absolute z-50 rounded-full border-2 border-white/50 shadow-2xl overflow-hidden pointer-events-none bg-black"
-          style={{
-            width: LENS_SIZE,
-            height: LENS_SIZE,
-            left: mousePos.x - LENS_SIZE / 2,
-            top: mousePos.y - LENS_SIZE / 2,
-          }}
-        >
-          <div
-            className="relative"
-            style={{
-              width: containerDims.width * ZOOM,
-              height: containerDims.height * ZOOM,
-              transform: `translate(${translateX}px, ${translateY}px)`,
-              willChange: 'transform',
+          <TransformComponent
+            wrapperStyle={{
+              width: "100%",
+              height: "100%",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+            contentStyle={{
+               width: "100%",
+               height: "100%",
+               display: "flex",
+               alignItems: "center",
+               justifyContent: "center"
             }}
           >
-            {/* Imaginea Zoomed */}
-            <Image
-              src={src}
-              alt="Zoomed view"
-              fill
-              className="object-contain"
-              priority
-              sizes={`${containerDims.width * ZOOM}px`}
-            />
-          </div>
-        </div>
+            {/* Important: Folosim un div relativ pentru ca Next.js Image 
+              are nevoie de un container parinte pentru 'fill' 
+            */}
+            <div className="relative w-[90vw] h-[80vh] flex items-center justify-center">
+              <Image
+                src={src}
+                alt={alt}
+                fill
+                className="object-contain"
+                priority
+                quality={100} // Fortam calitatea maxima
+                sizes="100vw"
+                draggable={false} // Important pentru a nu trage imaginea nativ din browser
+              />
+            </div>
+          </TransformComponent>
+        </>
       )}
-    </div>
+    </TransformWrapper>
   )
 }
 
@@ -370,7 +349,7 @@ function ImageGallery({
   return (
     <>
       <div className="flex flex-col gap-4 h-full">
-        {/* Container Imagine Principala (PREVIEW) - Fara magnifying, doar click */}
+        {/* Container Imagine Principala (PREVIEW) */}
         <div 
           onClick={() => setIsLightboxOpen(true)}
           className="relative aspect-[3/4] bg-muted overflow-hidden group flex-1 cursor-zoom-in rounded-sm border border-border/50"
@@ -384,17 +363,15 @@ function ImageGallery({
             sizes="(max-width: 1024px) 100vw, 50vw"
           />
 
-          {/* Iconita care sugereaza expandarea */}
           <div className="absolute top-4 right-4 bg-black/40 backdrop-blur-md p-2 rounded-full text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
             <Maximize2 className="w-5 h-5" />
           </div>
 
           <div className="absolute bottom-3 left-3 bg-background/80 backdrop-blur-sm px-2 py-1 rounded flex items-center gap-1 text-xs text-muted-foreground z-10 pointer-events-none">
             <Search className="h-3 w-3" />
-            <span>Click to zoom</span>
+            <span>Click to expand</span>
           </div>
 
-          {/* Navigare Preview */}
           {images.length > 1 && (
             <>
               <button
@@ -450,17 +427,18 @@ function ImageGallery({
           {/* Close Button */}
           <button 
             onClick={() => setIsLightboxOpen(false)}
-            className="absolute top-4 right-4 lg:top-8 lg:right-8 z-[60] p-2 bg-black/20 hover:bg-black/40 text-foreground rounded-full transition-colors cursor-pointer"
+            className="absolute top-4 right-4 lg:top-8 lg:right-8 z-[80] p-2 bg-black/20 hover:bg-black/40 text-foreground rounded-full transition-colors cursor-pointer"
           >
             <X className="w-8 h-8" />
           </button>
 
-          {/* Container Imagine Lightbox - Aici aplicam logica de magnifying */}
+          {/* Container Imagine Lightbox - Cu Pan & Zoom */}
           <div 
-            className="relative w-full h-full flex items-center justify-center p-4 lg:p-12"
-            onClick={(e) => e.stopPropagation()} // Click pe imagine NU inchide modalul
+            className="relative w-full h-full flex items-center justify-center overflow-hidden"
+            onClick={(e) => e.stopPropagation()} 
           >
-            <ZoomableImage src={images[currentIndex]} alt={alt} />
+            {/* Resetăm componenta PanZoom când se schimbă imaginea folosind key */}
+            <PanZoomImage key={currentIndex} src={images[currentIndex]} alt={alt} />
             
             {/* Navigare Lightbox */}
             {images.length > 1 && (
@@ -480,8 +458,8 @@ function ImageGallery({
               </>
             )}
 
-            {/* Counter Lightbox */}
-             <div className="absolute bottom-8 left-1/2 -translate-x-1/2 bg-black/50 text-white px-4 py-2 rounded-full text-sm font-medium z-[60] pointer-events-none">
+            {/* Counter */}
+             <div className="absolute top-8 left-8 bg-black/50 text-white px-4 py-2 rounded-full text-sm font-medium z-[60] pointer-events-none">
               {currentIndex + 1} / {images.length}
             </div>
           </div>
