@@ -1,10 +1,10 @@
 'use client'
 
-import { useRef, useState, type MouseEvent } from 'react'
+import { useRef, useState, useEffect, type MouseEvent } from 'react'
 import Image from 'next/image'
 import { useTranslations } from 'next-intl'
 import { Link } from '@/i18n/routing'
-import { ArrowLeft, ChevronLeft, ChevronRight, Search } from 'lucide-react'
+import { ArrowLeft, ChevronLeft, ChevronRight, Search, X, Maximize2 } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { AudioPlayer } from '@/components/audio-player'
 import { useCart } from '@/lib/cart-context'
@@ -220,50 +220,21 @@ function SpecRow({ label, value }: { label: string; value: string }) {
   )
 }
 
-function ImageGallery({
-  images,
-  alt,
-  noImagesText,
-}: {
-  images: string[]
-  alt: string
-  noImagesText: string
-}) {
-  const [currentIndex, setCurrentIndex] = useState<number>(0)
+// --- LOGICA DE LUPĂ PENTRU LIGHTBOX ---
+function ZoomableImage({ src, alt }: { src: string; alt: string }) {
   const containerRef = useRef<HTMLDivElement | null>(null)
   const [isMagnifying, setIsMagnifying] = useState<boolean>(false)
-  // Store mouse position relative to the container
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 })
-  // Store container dimensions
   const [containerDims, setContainerDims] = useState({ width: 0, height: 0 })
 
-  if (images.length === 0) {
-    return (
-      <div className="aspect-[3/4] bg-muted flex items-center justify-center">
-        <span className="text-muted-foreground">{noImagesText}</span>
-      </div>
-    )
-  }
-
-  const nextImage = () => {
-    setCurrentIndex((prev: number) => (prev + 1) % images.length)
-  }
-
-  const prevImage = () => {
-    setCurrentIndex((prev: number) => (prev - 1 + images.length) % images.length)
-  }
-
-  const LENS_SIZE = 110
-  const ZOOM = 5
+  const LENS_SIZE = 150
+  const ZOOM = 2.5
 
   const handleMouseMove = (e: MouseEvent<HTMLDivElement>) => {
     const el = containerRef.current
     if (!el) return
     const rect = el.getBoundingClientRect()
 
-    // STRICT BOUNDARY CHECK:
-    // If the mouse is outside the container rect, turn off magnifying and return.
-    // This prevents the lens from "escaping".
     if (
       e.clientX < rect.left ||
       e.clientX > rect.right ||
@@ -274,12 +245,8 @@ function ImageGallery({
       return
     }
 
-    // If we are inside, make sure magnifying is on
-    if (!isMagnifying) {
-      setIsMagnifying(true)
-    }
+    if (!isMagnifying) setIsMagnifying(true)
 
-    // Update state with new coordinates and dimensions
     setMousePos({
       x: e.clientX - rect.left,
       y: e.clientY - rect.top,
@@ -290,132 +257,236 @@ function ImageGallery({
     })
   }
 
-  // CALCULATE POSITIONING FOR INNER IMAGE:
-  // 1. We have a large, zoomed-in image.
-  // 2. We need to move (translate) it so that the point under the cursor
-  //    is exactly in the center of the lens.
-  // 3. The math: (Center of Lens) - (Position on Zoomed Image)
   const translateX = LENS_SIZE / 2 - mousePos.x * ZOOM
   const translateY = LENS_SIZE / 2 - mousePos.y * ZOOM
 
   return (
-    <div className="flex flex-col gap-4 h-full">
-      <div
-        ref={containerRef}
-        // Add onMouseLeave as a backup to turn off the lens
-        onMouseLeave={() => setIsMagnifying(false)}
-        onMouseMove={handleMouseMove}
-        className={`relative aspect-[3/4] bg-muted overflow-hidden group flex-1 select-none ${
-          isMagnifying ? 'cursor-none' : 'cursor-default'
-        }`}
-      >
-        {/* Main Image */}
+    <div
+      ref={containerRef}
+      onMouseLeave={() => setIsMagnifying(false)}
+      onMouseMove={handleMouseMove}
+      className={`relative w-full h-full flex items-center justify-center overflow-hidden ${
+        isMagnifying ? 'cursor-none' : 'cursor-default'
+      }`}
+    >
+      {/* Imaginea de bază în Lightbox */}
+      <div className="relative w-full h-full max-w-[90vw] max-h-[85vh]">
         <Image
-          src={images[currentIndex]}
-          alt={`${alt} - View ${currentIndex + 1}`}
+          src={src}
+          alt={alt}
           fill
-          className="object-contain pointer-events-none"
+          className="object-contain pointer-events-none select-none"
           priority
-          sizes="(max-width: 1024px) 100vw, 50vw"
+          sizes="90vw"
         />
-
-        {/* Magnifier hint */}
-        <div className="absolute bottom-3 left-3 bg-background/80 backdrop-blur-sm px-2 py-1 rounded flex items-center gap-1 text-xs text-muted-foreground group-hover:opacity-0 transition-opacity z-10">
-          <Search className="h-3 w-3" />
-          <span>Hover to zoom</span>
-        </div>
-
-        {/* NEW MAGNIFIER LENS IMPLEMENTATION */}
-        {isMagnifying && containerDims.width > 0 && (
-          // 1. The Lens Container (Round, moves with mouse)
-          <div
-            className="absolute z-20 rounded-full border-2 border-white shadow-2xl overflow-hidden pointer-events-none bg-background"
-            style={{
-              width: LENS_SIZE,
-              height: LENS_SIZE,
-              // Center the lens itself on the mouse cursor
-              left: mousePos.x - LENS_SIZE / 2,
-              top: mousePos.y - LENS_SIZE / 2,
-            }}
-          >
-            {/* 2. The Zoomed Image Container (Large, gets translated) */}
-            <div
-              className="relative"
-              style={{
-                // Make this container the size of the ZOOMED image
-                width: containerDims.width * ZOOM,
-                height: containerDims.height * ZOOM,
-                // Move it to bring the correct spot to the center
-                transform: `translate(${translateX}px, ${translateY}px)`,
-                // Optimization for smooth movement
-                willChange: 'transform',
-              }}
-            >
-              {/* 3. The Actual Image (Uses object-contain to avoid deformation) */}
-              <Image
-                src={images[currentIndex]}
-                alt="Zoomed view"
-                fill
-                // This ensures the aspect ratio is correct!
-                className="object-contain"
-                priority
-                // Give it a large size value for proper loading
-                sizes={`${containerDims.width * ZOOM}px`}
-              />
-            </div>
-          </div>
-        )}
-
-        {/* Navigation Arrows */}
-        {images.length > 1 && (
-          <>
-            <button
-              onClick={prevImage}
-              className="absolute left-4 top-1/2 -translate-y-1/2 bg-background/80 backdrop-blur-sm p-2 hover:bg-background transition-colors opacity-0 group-hover:opacity-100 cursor-pointer z-30 rounded-full shadow-sm"
-              aria-label="Previous image"
-            >
-              <ChevronLeft className="h-6 w-6" />
-            </button>
-            <button
-              onClick={nextImage}
-              className="absolute right-4 top-1/2 -translate-y-1/2 bg-background/80 backdrop-blur-sm p-2 hover:bg-background transition-colors opacity-0 group-hover:opacity-100 cursor-pointer z-30 rounded-full shadow-sm"
-              aria-label="Next image"
-            >
-              <ChevronRight className="h-6 w-6" />
-            </button>
-
-            {/* Image Counter */}
-            <div className="absolute bottom-4 right-4 bg-background/80 backdrop-blur-sm px-3 py-1 text-sm rounded z-30 pointer-events-none">
-              {currentIndex + 1} / {images.length}
-            </div>
-          </>
-        )}
       </div>
 
-      {/* Thumbnail Navigation */}
-      {images.length > 1 && (
-        <div className="flex gap-3 overflow-x-auto pb-2">
-          {images.map((image, index) => (
-            <button
-              key={index}
-              onClick={() => setCurrentIndex(index)}
-              className={`relative aspect-[3/4] w-20 overflow-hidden bg-muted transition-all cursor-pointer flex-shrink-0 ${
-                index === currentIndex
-                  ? 'ring-2 ring-accent opacity-100'
-                  : 'opacity-50 hover:opacity-75'
-              }`}
-            >
-              <Image
-                src={image}
-                alt={`Thumbnail ${index + 1}`}
-                fill
-                className="object-cover"
-                sizes="80px"
-              />
-            </button>
-          ))}
+      {/* Lupa */}
+      {isMagnifying && containerDims.width > 0 && (
+        <div
+          className="absolute z-50 rounded-full border-2 border-white/50 shadow-2xl overflow-hidden pointer-events-none bg-black"
+          style={{
+            width: LENS_SIZE,
+            height: LENS_SIZE,
+            left: mousePos.x - LENS_SIZE / 2,
+            top: mousePos.y - LENS_SIZE / 2,
+          }}
+        >
+          <div
+            className="relative"
+            style={{
+              width: containerDims.width * ZOOM,
+              height: containerDims.height * ZOOM,
+              transform: `translate(${translateX}px, ${translateY}px)`,
+              willChange: 'transform',
+            }}
+          >
+            {/* Imaginea Zoomed */}
+            <Image
+              src={src}
+              alt="Zoomed view"
+              fill
+              className="object-contain"
+              priority
+              sizes={`${containerDims.width * ZOOM}px`}
+            />
+          </div>
         </div>
       )}
     </div>
+  )
+}
+
+// --- GALERIA PRINCIPALA + LIGHTBOX MANAGEMENT ---
+function ImageGallery({
+  images,
+  alt,
+  noImagesText,
+}: {
+  images: string[]
+  alt: string
+  noImagesText: string
+}) {
+  const [currentIndex, setCurrentIndex] = useState<number>(0)
+  const [isLightboxOpen, setIsLightboxOpen] = useState(false)
+
+  // Prevenim scroll-ul cand lightbox-ul e deschis
+  useEffect(() => {
+    if (isLightboxOpen) {
+      document.body.style.overflow = 'hidden'
+    } else {
+      document.body.style.overflow = 'unset'
+    }
+    return () => { document.body.style.overflow = 'unset' }
+  }, [isLightboxOpen])
+
+  // Ascultam tasta ESC pentru a inchide
+  useEffect(() => {
+    const handleEsc = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setIsLightboxOpen(false)
+    }
+    window.addEventListener('keydown', handleEsc)
+    return () => window.removeEventListener('keydown', handleEsc)
+  }, [])
+
+  if (images.length === 0) {
+    return (
+      <div className="aspect-[3/4] bg-muted flex items-center justify-center">
+        <span className="text-muted-foreground">{noImagesText}</span>
+      </div>
+    )
+  }
+
+  const nextImage = (e?: any) => {
+    e?.stopPropagation()
+    setCurrentIndex((prev) => (prev + 1) % images.length)
+  }
+
+  const prevImage = (e?: any) => {
+    e?.stopPropagation()
+    setCurrentIndex((prev) => (prev - 1 + images.length) % images.length)
+  }
+
+  return (
+    <>
+      <div className="flex flex-col gap-4 h-full">
+        {/* Container Imagine Principala (PREVIEW) - Fara magnifying, doar click */}
+        <div 
+          onClick={() => setIsLightboxOpen(true)}
+          className="relative aspect-[3/4] bg-muted overflow-hidden group flex-1 cursor-zoom-in rounded-sm border border-border/50"
+        >
+          <Image
+            src={images[currentIndex]}
+            alt={`${alt} - View ${currentIndex + 1}`}
+            fill
+            className="object-contain transition-transform duration-500 group-hover:scale-105"
+            priority
+            sizes="(max-width: 1024px) 100vw, 50vw"
+          />
+
+          {/* Iconita care sugereaza expandarea */}
+          <div className="absolute top-4 right-4 bg-black/40 backdrop-blur-md p-2 rounded-full text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
+            <Maximize2 className="w-5 h-5" />
+          </div>
+
+          <div className="absolute bottom-3 left-3 bg-background/80 backdrop-blur-sm px-2 py-1 rounded flex items-center gap-1 text-xs text-muted-foreground z-10 pointer-events-none">
+            <Search className="h-3 w-3" />
+            <span>Click to zoom</span>
+          </div>
+
+          {/* Navigare Preview */}
+          {images.length > 1 && (
+            <>
+              <button
+                onClick={prevImage}
+                className="absolute left-4 top-1/2 -translate-y-1/2 bg-background/80 hover:bg-background p-2 opacity-0 group-hover:opacity-100 transition-all rounded-full cursor-pointer z-20"
+                aria-label="Previous image"
+              >
+                <ChevronLeft className="h-6 w-6" />
+              </button>
+              <button
+                onClick={nextImage}
+                className="absolute right-4 top-1/2 -translate-y-1/2 bg-background/80 hover:bg-background p-2 opacity-0 group-hover:opacity-100 transition-all rounded-full cursor-pointer z-20"
+                aria-label="Next image"
+              >
+                <ChevronRight className="h-6 w-6" />
+              </button>
+            </>
+          )}
+        </div>
+
+        {/* Thumbnails */}
+        {images.length > 1 && (
+          <div className="flex gap-3 overflow-x-auto pb-2 scrollbar-hide">
+            {images.map((image, index) => (
+              <button
+                key={index}
+                onClick={() => setCurrentIndex(index)}
+                className={`relative aspect-[3/4] w-20 overflow-hidden bg-muted transition-all cursor-pointer flex-shrink-0 rounded-sm border ${
+                  index === currentIndex
+                    ? 'ring-2 ring-accent opacity-100 border-accent'
+                    : 'opacity-50 hover:opacity-75 border-transparent'
+                }`}
+              >
+                <Image
+                  src={image}
+                  alt={`Thumbnail ${index + 1}`}
+                  fill
+                  className="object-cover"
+                  sizes="80px"
+                />
+              </button>
+            ))}
+          </div>
+        )}
+      </div>
+
+      {/* --- LIGHTBOX MODAL --- */}
+      {isLightboxOpen && (
+        <div 
+          className="fixed inset-0 z-50 bg-background/95 backdrop-blur-md flex items-center justify-center animate-in fade-in duration-200"
+          onClick={() => setIsLightboxOpen(false)}
+        >
+          {/* Close Button */}
+          <button 
+            onClick={() => setIsLightboxOpen(false)}
+            className="absolute top-4 right-4 lg:top-8 lg:right-8 z-[60] p-2 bg-black/20 hover:bg-black/40 text-foreground rounded-full transition-colors cursor-pointer"
+          >
+            <X className="w-8 h-8" />
+          </button>
+
+          {/* Container Imagine Lightbox - Aici aplicam logica de magnifying */}
+          <div 
+            className="relative w-full h-full flex items-center justify-center p-4 lg:p-12"
+            onClick={(e) => e.stopPropagation()} // Click pe imagine NU inchide modalul
+          >
+            <ZoomableImage src={images[currentIndex]} alt={alt} />
+            
+            {/* Navigare Lightbox */}
+            {images.length > 1 && (
+              <>
+                 <button
+                  onClick={prevImage}
+                  className="absolute left-4 lg:left-8 top-1/2 -translate-y-1/2 p-3 bg-black/10 hover:bg-accent hover:text-white text-foreground/70 transition-colors rounded-full cursor-pointer z-[60]"
+                >
+                  <ChevronLeft className="w-8 h-8" />
+                </button>
+                <button
+                  onClick={nextImage}
+                  className="absolute right-4 lg:right-8 top-1/2 -translate-y-1/2 p-3 bg-black/10 hover:bg-accent hover:text-white text-foreground/70 transition-colors rounded-full cursor-pointer z-[60]"
+                >
+                  <ChevronRight className="w-8 h-8" />
+                </button>
+              </>
+            )}
+
+            {/* Counter Lightbox */}
+             <div className="absolute bottom-8 left-1/2 -translate-x-1/2 bg-black/50 text-white px-4 py-2 rounded-full text-sm font-medium z-[60] pointer-events-none">
+              {currentIndex + 1} / {images.length}
+            </div>
+          </div>
+        </div>
+      )}
+    </>
   )
 }
