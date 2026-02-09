@@ -74,10 +74,13 @@ export function Footer() {
                 </span>
                 </a>
               </div>
-              <div className="flex items-center gap-2 text-muted-foreground hover:text-accent transition-colors cursor-pointer">
+              <a 
+                href="mailto:paul.simon@simoninstruments.com"
+                className="flex items-center gap-2 text-muted-foreground hover:text-accent transition-colors cursor-pointer"
+                >
                 <Mail className="h-4 w-4 flex-shrink-0" />
-                <a href="mailto:paul.simon@simoninstruments.com">paul.simon@simoninstruments.com</a>
-              </div>
+                <span>paul.simon@simoninstruments.com</span>
+              </a>
               <div className="flex items-center gap-2 text-muted-foreground hover:text-accent transition-colors cursor-pointer">
                 <Phone className="h-4 w-4 flex-shrink-0" />
                 <a href="tel:+40744960722">+40 744 960 722</a>
