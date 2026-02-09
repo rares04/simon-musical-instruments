@@ -221,7 +221,6 @@ function SpecRow({ label, value }: { label: string; value: string }) {
   )
 }
 
-// --- NOUA IMPLEMENTARE ZOOM & PAN ---
 function PanZoomImage({ src, alt }: { src: string; alt: string }) {
   return (
     <TransformWrapper
