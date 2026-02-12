@@ -221,18 +221,17 @@ function SpecRow({ label, value }: { label: string; value: string }) {
   )
 }
 
-function PanZoomImage({ src, alt }: { src: string; alt: string }) {
+function PanZoomImage({ src, alt, onClose }: { src: string; alt: string; onClose: () => void }) {
   return (
     <TransformWrapper
       initialScale={1}
       minScale={1}
-      maxScale={8} // Permite zoom de pana la 8x
+      maxScale={8}
       centerOnInit={true}
-      wheel={{ step: 0.2 }} // Cat de repede face zoom din scroll
+      wheel={{ step: 0.2 }}
     >
       {({ zoomIn, zoomOut, resetTransform }) => (
         <>
-          {/* Controale pentru Zoom (Overlay) */}
           <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex items-center gap-2 z-[70] bg-black/60 backdrop-blur-sm p-2 rounded-full border border-white/10">
             <button
               onClick={() => zoomOut()}
@@ -255,6 +254,16 @@ function PanZoomImage({ src, alt }: { src: string; alt: string }) {
             >
               <ZoomIn className="w-5 h-5" />
             </button>
+
+            <div className="w-px h-5 bg-white/20 mx-1" />
+            
+            <button
+              onClick={onClose}
+              className="p-2 text-white hover:text-red-400 transition-colors hover:bg-white/10 rounded-full"
+              title="Close Fullscreen"
+            >
+              <X className="w-5 h-5" />
+            </button>
           </div>
 
           <TransformComponent
@@ -273,9 +282,6 @@ function PanZoomImage({ src, alt }: { src: string; alt: string }) {
                justifyContent: "center"
             }}
           >
-            {/* Important: Folosim un div relativ pentru ca Next.js Image 
-              are nevoie de un container parinte pentru 'fill' 
-            */}
             <div className="relative w-[90vw] h-[80vh] flex items-center justify-center">
               <Image
                 src={src}
@@ -283,9 +289,9 @@ function PanZoomImage({ src, alt }: { src: string; alt: string }) {
                 fill
                 className="object-contain"
                 priority
-                quality={100} // Fortam calitatea maxima
+                quality={100}
                 sizes="100vw"
-                draggable={false} // Important pentru a nu trage imaginea nativ din browser
+                draggable={false}
               />
             </div>
           </TransformComponent>
@@ -295,7 +301,6 @@ function PanZoomImage({ src, alt }: { src: string; alt: string }) {
   )
 }
 
-// --- GALERIA PRINCIPALA + LIGHTBOX MANAGEMENT ---
 function ImageGallery({
   images,
   alt,
@@ -308,7 +313,6 @@ function ImageGallery({
   const [currentIndex, setCurrentIndex] = useState<number>(0)
   const [isLightboxOpen, setIsLightboxOpen] = useState(false)
 
-  // Prevenim scroll-ul cand lightbox-ul e deschis
   useEffect(() => {
     if (isLightboxOpen) {
       document.body.style.overflow = 'hidden'
@@ -318,7 +322,6 @@ function ImageGallery({
     return () => { document.body.style.overflow = 'unset' }
   }, [isLightboxOpen])
 
-  // Ascultam tasta ESC pentru a inchide
   useEffect(() => {
     const handleEsc = (e: KeyboardEvent) => {
       if (e.key === 'Escape') setIsLightboxOpen(false)
@@ -348,7 +351,6 @@ function ImageGallery({
   return (
     <>
       <div className="flex flex-col gap-4 h-full">
-        {/* Container Imagine Principala (PREVIEW) */}
         <div 
           onClick={() => setIsLightboxOpen(true)}
           className="relative aspect-[3/4] bg-muted overflow-hidden group flex-1 cursor-zoom-in rounded-sm border border-border/50"
@@ -416,14 +418,12 @@ function ImageGallery({
           </div>
         )}
       </div>
-
-      {/* --- LIGHTBOX MODAL --- */}
       {isLightboxOpen && (
         <div 
           className="fixed inset-0 z-50 bg-background/95 backdrop-blur-md flex items-center justify-center animate-in fade-in duration-200"
           onClick={() => setIsLightboxOpen(false)}
         >
-          {/* Close Button */}
+          {/* Close Button Top-Right (Fallback) */}
           <button 
             onClick={() => setIsLightboxOpen(false)}
             className="absolute top-4 right-4 lg:top-8 lg:right-8 z-[80] p-2 bg-black/20 hover:bg-black/40 text-foreground rounded-full transition-colors cursor-pointer"
@@ -436,10 +436,12 @@ function ImageGallery({
             className="relative w-full h-full flex items-center justify-center overflow-hidden"
             onClick={(e) => e.stopPropagation()} 
           >
-            {/* Resetăm componenta PanZoom când se schimbă imaginea folosind key */}
-            <PanZoomImage key={currentIndex} src={images[currentIndex]} alt={alt} />
-            
-            {/* Navigare Lightbox */}
+            <PanZoomImage 
+              key={currentIndex} 
+              src={images[currentIndex]} 
+              alt={alt} 
+              onClose={() => setIsLightboxOpen(false)}
+            />
             {images.length > 1 && (
               <>
                  <button
