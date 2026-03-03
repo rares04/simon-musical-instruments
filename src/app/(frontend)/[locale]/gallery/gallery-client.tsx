@@ -41,9 +41,10 @@ export function GalleryClient({ instruments }: GalleryClientProps) {
         }
       }
 
-      // Price range filter
+      // Price range filter (instruments with null price only show in "all")
       if (selectedPriceRange !== 'all') {
         const price = instrument.price
+        if (price == null || price === undefined) return false
         switch (selectedPriceRange) {
           case 'under-3000':
             if (price >= 3000) return false

@@ -96,11 +96,11 @@ export const Instruments: CollectionConfig = {
     {
       name: 'price',
       type: 'number',
-      required: true,
+      required: false,
       min: 0,
       admin: {
         position: 'sidebar',
-        description: 'Price in EUR (€)',
+        description: 'Price in EUR (€). Leave empty for "Ask for price"',
       },
     },
     {

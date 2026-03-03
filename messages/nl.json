@@ -66,7 +66,8 @@
     "contrabass": "Contrabas",
     "model": "Model",
     "noImage": "Geen afbeelding",
-    "handcraftedInstrument": "Handgemaakt instrument"
+    "handcraftedInstrument": "Handgemaakt instrument",
+    "askForPrice": "Prijs op aanvraag"
   },
   "story": {
     "title": "Ons Vakmanschap",
@@ -280,7 +281,8 @@
     "inBuildNote": "Dit instrument wordt momenteel gemaakt. Neem contact met ons op om het te reserveren of updates over voltooiing te krijgen.",
     "soldNote": "Dit instrument is {status}. Neem contact met ons op om een soortgelijk stuk te bestellen.",
     "lowStock": "Nog maar {count} op voorraad",
-    "noImagesAvailable": "Geen afbeeldingen beschikbaar"
+    "noImagesAvailable": "Geen afbeeldingen beschikbaar",
+    "askForPrice": "Prijs op aanvraag"
   },
   "cart": {
     "title": "Winkelwagen",

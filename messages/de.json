@@ -66,7 +66,8 @@
     "contrabass": "Kontrabass",
     "model": "Modell",
     "noImage": "Kein Bild",
-    "handcraftedInstrument": "Handgefertigtes Instrument"
+    "handcraftedInstrument": "Handgefertigtes Instrument",
+    "askForPrice": "Preis auf Anfrage"
   },
   "story": {
     "title": "Unser Handwerk",
@@ -280,7 +281,8 @@
     "inBuildNote": "Dieses Instrument wird derzeit gefertigt. Kontaktieren Sie uns, um es zu reservieren oder Updates zur Fertigstellung zu erhalten.",
     "soldNote": "Dieses Instrument wurde {status}. Kontaktieren Sie uns, um ein ähnliches Stück in Auftrag zu geben.",
     "lowStock": "Nur noch {count} auf Lager",
-    "noImagesAvailable": "Keine Bilder verfügbar"
+    "noImagesAvailable": "Keine Bilder verfügbar",
+    "askForPrice": "Preis auf Anfrage"
   },
   "cart": {
     "title": "Warenkorb",

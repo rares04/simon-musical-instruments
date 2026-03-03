@@ -218,7 +218,9 @@ export function InstrumentCardWithAudio({ instrument }: InstrumentCardWithAudioP
               {instrument.title}
             </h3>
             <p className="text-base font-medium text-foreground whitespace-nowrap">
-              €{instrument.price.toLocaleString()}
+              {instrument.price != null
+                ? `€${instrument.price.toLocaleString()}`
+                : t('askForPrice')}
             </p>
           </div>
 

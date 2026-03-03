@@ -236,9 +236,9 @@ export interface Instrument {
   model?: string | null;
   status: 'available' | 'in-build' | 'reserved' | 'sold';
   /**
-   * Price in EUR (€)
+   * Price in EUR (€). Leave empty for "Ask for price"
    */
-  price: number;
+  price?: number | null;
   /**
    * Number of units in stock
    */

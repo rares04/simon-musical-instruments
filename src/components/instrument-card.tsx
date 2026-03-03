@@ -1,5 +1,6 @@
 import Image from "next/image"
 import Link from "next/link"
+import { useTranslations } from "next-intl"
 import { Badge } from "@/components/ui/badge"
 import type { Instrument } from "@/payload-types"
 import { getMediaUrlForSrc } from "@/lib/media-utils"
@@ -9,6 +10,7 @@ type InstrumentCardProps = {
 }
 
 export function InstrumentCard({ instrument }: InstrumentCardProps) {
+  const t = useTranslations("instruments")
   const isSold = instrument.status === "sold"
   const imageUrl = getMediaUrlForSrc(instrument.mainImage)
   const statusLabel =
@@ -64,7 +66,9 @@ export function InstrumentCard({ instrument }: InstrumentCardProps) {
               {instrument.title}
             </h3>
             <p className="text-base font-medium text-foreground whitespace-nowrap">
-              €{instrument.price.toLocaleString()}
+              {instrument.price != null
+                ? `€${instrument.price.toLocaleString()}`
+                : t("askForPrice")}
             </p>
           </div>
 

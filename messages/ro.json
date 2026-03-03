@@ -66,7 +66,8 @@
     "contrabass": "Contrabas",
     "model": "Model",
     "noImage": "Fără imagine",
-    "handcraftedInstrument": "Instrument realizat manual"
+    "handcraftedInstrument": "Instrument realizat manual",
+    "askForPrice": "Preț la cerere"
   },
   "story": {
     "title": "Meșteșugul Nostru",
@@ -280,7 +281,8 @@
     "inBuildNote": "Acest instrument este în construcție. Contactează-ne pentru a-l rezerva sau pentru actualizări despre finalizare.",
     "soldNote": "Acest instrument a fost {status}. Contactează-ne pentru a comanda unul similar.",
     "lowStock": "Doar {count} în stoc",
-    "noImagesAvailable": "Nicio imagine disponibilă"
+    "noImagesAvailable": "Nicio imagine disponibilă",
+    "askForPrice": "Preț la cerere"
   },
   "cart": {
     "title": "Coșul de Cumpărături",

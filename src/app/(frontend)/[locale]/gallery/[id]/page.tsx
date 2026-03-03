@@ -52,9 +52,14 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
     return { title: 'Instrument Not Found' }
   }
 
+  const priceDesc =
+    instrument.price != null
+      ? `Price: €${instrument.price.toLocaleString()}`
+      : 'Price on request'
+
   return {
     title: `${instrument.title} | Simon Musical Instruments`,
-    description: `${instrument.title} - Handcrafted ${instrument.specs?.bodyWood || 'string instrument'} by Simon Musical Instruments. Price: €${instrument.price.toLocaleString()}`,
+    description: `${instrument.title} - Handcrafted ${instrument.specs?.bodyWood || 'string instrument'} by Simon Musical Instruments. ${priceDesc}`,
   }
 }
 

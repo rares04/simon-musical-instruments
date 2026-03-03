@@ -66,7 +66,8 @@
     "contrabass": "Contrebasse",
     "model": "Modèle",
     "noImage": "Aucune image",
-    "handcraftedInstrument": "Instrument artisanal"
+    "handcraftedInstrument": "Instrument artisanal",
+    "askForPrice": "Prix sur demande"
   },
   "story": {
     "title": "Notre Savoir-Faire",
@@ -284,7 +285,8 @@
     "inBuildNote": "Cet instrument est actuellement en cours de fabrication. Contactez-nous pour le réserver ou obtenir des mises à jour sur l'achèvement.",
     "soldNote": "Cet instrument a été {status}. Contactez-nous pour commander une pièce similaire.",
     "lowStock": "Seulement {count} en stock",
-    "noImagesAvailable": "Aucune image disponible"
+    "noImagesAvailable": "Aucune image disponible",
+    "askForPrice": "Prix sur demande"
   },
   "cart": {
     "title": "Panier",

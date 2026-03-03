@@ -66,7 +66,8 @@
     "contrabass": "コントラバス",
     "model": "モデル",
     "noImage": "画像なし",
-    "handcraftedInstrument": "手作り楽器"
+    "handcraftedInstrument": "手作り楽器",
+    "askForPrice": "価格はお問い合わせください"
   },
   "story": {
     "title": "私たちの技",
@@ -280,7 +281,8 @@
     "inBuildNote": "この楽器は現在製作中です。予約または完成の最新情報については、お問い合わせください。",
     "soldNote": "この楽器は{status}です。類似品の注文についてはお問い合わせください。",
     "lowStock": "残り{count}点のみ",
-    "noImagesAvailable": "利用可能な画像がありません"
+    "noImagesAvailable": "利用可能な画像がありません",
+    "askForPrice": "価格はお問い合わせください"
   },
   "cart": {
     "title": "ショッピングカート",

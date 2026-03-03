@@ -35,6 +35,7 @@ export function ProductDetail({ instrument, images, audioUrl }: ProductDetailPro
             : 'String Instrument'
 
   const handleAddToCart = () => {
+    if (instrument.price == null || instrument.price == undefined) return
     addItem({
       id: String(instrument.id),
       name: instrument.title,
@@ -43,6 +44,8 @@ export function ProductDetail({ instrument, images, audioUrl }: ProductDetailPro
       image: images[0] ? (getMediaSrc(images[0]) || images[0]) : '',
     })
   }
+
+  const hasPrice = instrument.price != null && instrument.price !== undefined
 
   const statusLabel =
     instrument.status === 'available'
@@ -92,7 +95,7 @@ export function ProductDetail({ instrument, images, audioUrl }: ProductDetailPro
                 </div>
                 <div className="text-right">
                   <div className="font-serif text-3xl lg:text-4xl font-bold text-accent">
-                    €{instrument.price.toLocaleString()}
+                    {hasPrice ? `€${instrument.price!.toLocaleString()}` : tProduct('askForPrice')}
                   </div>
                   {instrument.year && (
                     <p className="text-sm text-muted-foreground mt-1">
@@ -167,7 +170,7 @@ export function ProductDetail({ instrument, images, audioUrl }: ProductDetailPro
             )}
 
             <div className="space-y-4 pt-4">
-              {instrument.status === 'available' && (instrument.stock ?? 1) > 0 ? (
+              {instrument.status === 'available' && (instrument.stock ?? 1) > 0 && hasPrice ? (
                 <>
                   <Button
                     size="lg"
@@ -185,6 +188,22 @@ export function ProductDetail({ instrument, images, audioUrl }: ProductDetailPro
                     </p>
                   )}
                 </>
+              ) : instrument.status === 'available' && !hasPrice ? (
+                <div className="bg-muted/50 border border-border p-6 text-center">
+                  <p className="text-base text-muted-foreground text-pretty">
+                    {tProduct('askForPrice')}
+                  </p>
+                  <Button
+                    variant="outline"
+                    size="lg"
+                    className="mt-4 bg-transparent cursor-pointer"
+                    asChild
+                  >
+                    <Link href={`/contact?instrument=${encodeURIComponent(instrument.title)}`}>
+                      {t('inquire')}
+                    </Link>
+                  </Button>
+                </div>
               ) : (
                 <div className="bg-muted/50 border border-border p-6 text-center">
                   <p className="text-base text-muted-foreground text-pretty">

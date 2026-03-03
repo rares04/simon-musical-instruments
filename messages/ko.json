@@ -66,7 +66,8 @@
     "contrabass": "콘트라베이스",
     "model": "모델",
     "noImage": "이미지 없음",
-    "handcraftedInstrument": "수제 악기"
+    "handcraftedInstrument": "수제 악기",
+    "askForPrice": "가격 문의"
   },
   "story": {
     "title": "우리의 기술",
@@ -280,7 +281,8 @@
     "inBuildNote": "이 악기는 현재 제작 중입니다. 예약하거나 완성에 대한 업데이트를 받으려면 문의해 주세요.",
     "soldNote": "이 악기는 {status}입니다. 유사한 작품 주문에 대해서는 문의해 주세요.",
     "lowStock": "{count}개만 남음",
-    "noImagesAvailable": "사용 가능한 이미지가 없습니다"
+    "noImagesAvailable": "사용 가능한 이미지가 없습니다",
+    "askForPrice": "가격 문의"
   },
   "cart": {
     "title": "쇼핑 카트",
