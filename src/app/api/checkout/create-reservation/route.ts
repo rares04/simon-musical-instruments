@@ -72,8 +72,20 @@ export async function POST(req: NextRequest) {
       )
     }
 
+    // Reject instruments with null/undefined price (e.g. "Price on Request" items - not reservable via cart)
+    const instrumentsWithoutPrice = instruments.filter(
+      (instrument) => instrument.price == null || instrument.price === undefined,
+    )
+    if (instrumentsWithoutPrice.length > 0) {
+      const names = instrumentsWithoutPrice.map((i) => i.title).join(', ')
+      return NextResponse.json(
+        { error: `The following instruments have no price set. Please remove them and contact us for a quote: ${names}` },
+        { status: 400 },
+      )
+    }
+
     // Verify the total matches what we expect
-    const calculatedTotal = instruments.reduce((sum, instrument) => sum + instrument.price, 0)
+    const calculatedTotal = instruments.reduce((sum, instrument) => sum + (instrument.price ?? 0), 0)
 
     // Allow small rounding differences (1 EUR)
     if (Math.abs(calculatedTotal - total) > 1) {
@@ -147,7 +159,7 @@ export async function POST(req: NextRequest) {
         items: instruments.map((instrument) => ({
           instrument: instrument.id,
           title: instrument.title,
-          price: instrument.price,
+          price: instrument.price!, // Validated above: all instruments have price
         })),
         contactInfo: {
           firstName: formData.firstName,
@@ -208,7 +220,7 @@ export async function POST(req: NextRequest) {
               customerName,
               items: instruments.map((instrument) => ({
                 title: instrument.title,
-                price: instrument.price,
+                price: instrument.price!, // Validated above: all instruments have price
               })),
               subtotal: calculatedTotal,
               shipping: 0,
@@ -245,7 +257,7 @@ export async function POST(req: NextRequest) {
             customerPhone: formData.phone,
             items: instruments.map((instrument) => ({
               title: instrument.title,
-              price: instrument.price,
+              price: instrument.price!, // Validated above: all instruments have price
             })),
             total: calculatedTotal,
             deliveryMethod: formData.deliveryMethod,
