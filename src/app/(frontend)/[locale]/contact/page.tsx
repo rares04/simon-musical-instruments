@@ -23,6 +23,7 @@ export default function ContactPage() {
   const t = useTranslations('contact')
   const searchParams = useSearchParams()
   const instrumentName = searchParams.get('instrument')
+  const inquiryType = searchParams.get('inquiry')
 
   const [formData, setFormData] = useState({
     name: '',
@@ -38,10 +39,13 @@ export default function ContactPage() {
       setFormData((prev) => ({
         ...prev,
         subject: 'purchase',
-        message: `I am interested in the "${instrumentName}" and would like to inquire about commissioning a similar instrument.\n\n`,
+        message:
+          inquiryType === 'price'
+            ? `I am interested in the "${instrumentName}" and would like to ask about the price of it.\n\n`
+            : `I am interested in the "${instrumentName}" and would like to inquire about commissioning a similar instrument.\n\n`,
       }))
     }
-  }, [instrumentName])
+  }, [instrumentName, inquiryType])
   const [isSubmitted, setIsSubmitted] = useState(false)
   const [isSubmitting, setIsSubmitting] = useState(false)
 

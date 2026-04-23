@@ -199,7 +199,9 @@ export function ProductDetail({ instrument, images, audioUrl }: ProductDetailPro
                     className="mt-4 bg-transparent cursor-pointer"
                     asChild
                   >
-                    <Link href={`/contact?instrument=${encodeURIComponent(instrument.title)}`}>
+                    <Link
+                      href={`/contact?instrument=${encodeURIComponent(instrument.title)}&inquiry=price`}
+                    >
                       {t('inquire')}
                     </Link>
                   </Button>
