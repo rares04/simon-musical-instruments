@@ -63,7 +63,7 @@
     "violin": "Violin",
     "viola": "Viola",
     "cello": "Cello",
-    "contrabass": "Contrabass",
+    "contrabass": "Double Bass",
     "model": "Model",
     "noImage": "No image",
     "handcraftedInstrument": "Handcrafted instrument",
@@ -82,7 +82,7 @@
     },
     "clientele": {
       "title": "International Clientele",
-      "description": "Our portfolio contains the whole range of string instruments: violins, violas, cellos and contrabasses. The quality of our products is appreciated by our clients and collaborators from countries like France, Belgium, Spain, Germany, Japan, Taiwan, etc."
+      "description": "Our portfolio contains the whole range of string instruments: violins, violas, cellos and double basses. The quality of our products is appreciated by our clients and collaborators from countries like France, Belgium, Spain, Germany, Japan, Taiwan, etc."
     },
     "invitation": "We invite you to our virtual workshop..."
   },
@@ -253,7 +253,7 @@
       "violins": "Violins",
       "violas": "Violas",
       "cellos": "Cellos",
-      "contrabasses": "Contrabasses",
+      "contrabasses": "Double Basses",
       "allTypes": "All Types",
       "allPrices": "All Prices",
       "under3000": "Under €3,000",
