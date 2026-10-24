@@ -88,7 +88,7 @@ export default function middleware(request: NextRequest) {
     return NextResponse.redirect(canonicalUrl, {
       status: 301,
       headers: {
-        'Cache-Control': 'public, max-age=31536000, immutable',
+        'Cache-Control': 'public, max-age=86400',
       },
     })
   }
