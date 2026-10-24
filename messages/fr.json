@@ -292,7 +292,20 @@
     "soldNote": "Cet instrument a été {status}. Contactez-nous pour commander une pièce similaire.",
     "lowStock": "Seulement {count} en stock",
     "noImagesAvailable": "Aucune image disponible",
-    "askForPrice": "Prix sur demande"
+    "askForPrice": "Prix sur demande",
+    "expandImage": "Agrandir l'image",
+    "clickToExpand": "Cliquez pour agrandir",
+    "previousImage": "Image précédente",
+    "nextImage": "Image suivante",
+    "closeImage": "Fermer",
+    "zoomIn": "Zoom avant",
+    "zoomOut": "Zoom arrière",
+    "resetZoom": "Réinitialiser la vue",
+    "thumbnail": "Image {number}",
+    "audioPlay": "Lire",
+    "audioPause": "Pause",
+    "audioSeek": "Position de lecture",
+    "audioCaption": "Enregistrement professionnel de l'instrument {name}, joué dans notre atelier. Écoutez la richesse de ses qualités tonales et de sa résonance."
   },
   "cart": {
     "title": "Panier",

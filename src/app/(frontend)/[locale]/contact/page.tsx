@@ -173,7 +173,10 @@ export default function ContactPage() {
                         setFormData((prev) => ({ ...prev, subject: value }))
                       }
                     >
-                      <SelectTrigger className="mt-1.5 border-border/60 focus:ring-accent cursor-pointer">
+                      <SelectTrigger
+                        id="subject"
+                        className="mt-1.5 border-border/60 focus:ring-accent cursor-pointer"
+                      >
                         <SelectValue placeholder={t('form.subject')} />
                       </SelectTrigger>
                       <SelectContent>

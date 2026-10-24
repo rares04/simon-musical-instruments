@@ -288,7 +288,20 @@
     "soldNote": "이 악기는 {status}입니다. 유사한 작품 주문에 대해서는 문의해 주세요.",
     "lowStock": "{count}개만 남음",
     "noImagesAvailable": "사용 가능한 이미지가 없습니다",
-    "askForPrice": "가격 문의"
+    "askForPrice": "가격 문의",
+    "expandImage": "이미지 확대",
+    "clickToExpand": "클릭하여 확대",
+    "previousImage": "이전 이미지",
+    "nextImage": "다음 이미지",
+    "closeImage": "닫기",
+    "zoomIn": "확대",
+    "zoomOut": "축소",
+    "resetZoom": "보기 초기화",
+    "thumbnail": "이미지 {number}",
+    "audioPlay": "재생",
+    "audioPause": "일시정지",
+    "audioSeek": "재생 위치",
+    "audioCaption": "저희 공방에서 연주한 {name}의 전문 녹음입니다. 풍부한 음색과 울림을 들어 보세요."
   },
   "cart": {
     "title": "쇼핑 카트",

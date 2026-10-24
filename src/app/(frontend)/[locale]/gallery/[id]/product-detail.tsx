@@ -135,7 +135,7 @@ export function ProductDetail({ instrument, images, audioUrl }: ProductDetailPro
                 <h2 className="font-serif text-2xl font-bold text-foreground">
                   {tProduct('specifications')}
                 </h2>
-                <div className="grid gap-4">
+                <dl className="grid gap-4">
                   {instrument.specs.bodyWood && (
                     <SpecRow label={tProduct('bodyWood')} value={instrument.specs.bodyWood} />
                   )}
@@ -167,7 +167,7 @@ export function ProductDetail({ instrument, images, audioUrl }: ProductDetailPro
                         value={instrument.specs.stringVibration}
                       />
                     )}
-                </div>
+                </dl>
               </div>
             )}
 
@@ -245,6 +245,7 @@ function SpecRow({ label, value }: { label: string; value: string }) {
 }
 
 function PanZoomImage({ src, alt, onClose }: { src: string; alt: string; onClose: () => void }) {
+  const tProduct = useTranslations('product')
   return (
     <TransformWrapper
       initialScale={1}
@@ -259,21 +260,24 @@ function PanZoomImage({ src, alt, onClose }: { src: string; alt: string; onClose
             <button
               onClick={() => zoomOut()}
               className="p-2 text-white hover:text-accent transition-colors hover:bg-white/10 rounded-full"
-              title="Zoom Out"
+              title={tProduct('zoomOut')}
+              aria-label={tProduct('zoomOut')}
             >
               <ZoomOut className="w-5 h-5" />
             </button>
             <button
               onClick={() => resetTransform()}
               className="p-2 text-white hover:text-accent transition-colors hover:bg-white/10 rounded-full"
-              title="Reset View"
+              title={tProduct('resetZoom')}
+              aria-label={tProduct('resetZoom')}
             >
               <RotateCcw className="w-5 h-5" />
             </button>
             <button
               onClick={() => zoomIn()}
               className="p-2 text-white hover:text-accent transition-colors hover:bg-white/10 rounded-full"
-              title="Zoom In"
+              title={tProduct('zoomIn')}
+              aria-label={tProduct('zoomIn')}
             >
               <ZoomIn className="w-5 h-5" />
             </button>
@@ -283,7 +287,8 @@ function PanZoomImage({ src, alt, onClose }: { src: string; alt: string; onClose
             <button
               onClick={onClose}
               className="p-2 text-white hover:text-red-400 transition-colors hover:bg-white/10 rounded-full"
-              title="Close Fullscreen"
+              title={tProduct('closeImage')}
+              aria-label={tProduct('closeImage')}
             >
               <X className="w-5 h-5" />
             </button>
@@ -335,6 +340,7 @@ function ImageGallery({
 }) {
   const [currentIndex, setCurrentIndex] = useState<number>(0)
   const [isLightboxOpen, setIsLightboxOpen] = useState(false)
+  const tProduct = useTranslations('product')
 
   useEffect(() => {
     if (isLightboxOpen) {
@@ -387,28 +393,36 @@ function ImageGallery({
             sizes="(max-width: 1024px) 100vw, 50vw"
           />
 
-          <div className="absolute top-4 right-4 bg-black/40 backdrop-blur-md p-2 rounded-full text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
+          <button
+            type="button"
+            onClick={(e) => {
+              e.stopPropagation()
+              setIsLightboxOpen(true)
+            }}
+            aria-label={tProduct('expandImage')}
+            className="absolute top-4 right-4 bg-black/40 backdrop-blur-md p-2 rounded-full text-white opacity-0 group-hover:opacity-100 focus-visible:opacity-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring transition-opacity duration-300 cursor-pointer z-20"
+          >
             <Maximize2 className="w-5 h-5" />
-          </div>
+          </button>
 
           <div className="absolute bottom-3 left-3 bg-background/80 backdrop-blur-sm px-2 py-1 rounded flex items-center gap-1 text-xs text-muted-foreground z-10 pointer-events-none">
             <Search className="h-3 w-3" />
-            <span>Click to expand</span>
+            <span>{tProduct('clickToExpand')}</span>
           </div>
 
           {images.length > 1 && (
             <>
               <button
                 onClick={prevImage}
-                className="absolute left-4 top-1/2 -translate-y-1/2 bg-background/80 hover:bg-background p-2 opacity-0 group-hover:opacity-100 transition-all rounded-full cursor-pointer z-20"
-                aria-label="Previous image"
+                className="absolute left-4 top-1/2 -translate-y-1/2 bg-background/80 hover:bg-background p-2 opacity-0 group-hover:opacity-100 focus-visible:opacity-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring transition-all rounded-full cursor-pointer z-20"
+                aria-label={tProduct('previousImage')}
               >
                 <ChevronLeft className="h-6 w-6" />
               </button>
               <button
                 onClick={nextImage}
-                className="absolute right-4 top-1/2 -translate-y-1/2 bg-background/80 hover:bg-background p-2 opacity-0 group-hover:opacity-100 transition-all rounded-full cursor-pointer z-20"
-                aria-label="Next image"
+                className="absolute right-4 top-1/2 -translate-y-1/2 bg-background/80 hover:bg-background p-2 opacity-0 group-hover:opacity-100 focus-visible:opacity-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring transition-all rounded-full cursor-pointer z-20"
+                aria-label={tProduct('nextImage')}
               >
                 <ChevronRight className="h-6 w-6" />
               </button>
@@ -431,7 +445,7 @@ function ImageGallery({
               >
                 <Image
                   src={image}
-                  alt={`Thumbnail ${index + 1}`}
+                  alt={tProduct('thumbnail', { number: index + 1 })}
                   fill
                   className="object-cover"
                   sizes="80px"
@@ -444,11 +458,16 @@ function ImageGallery({
       {isLightboxOpen && (
         <div 
           className="fixed inset-0 z-50 bg-background/95 backdrop-blur-md flex items-center justify-center animate-in fade-in duration-200"
+          role="dialog"
+          aria-modal="true"
+          aria-label={alt}
           onClick={() => setIsLightboxOpen(false)}
         >
           {/* Close Button Top-Right (Fallback) */}
-          <button 
+          <button
             onClick={() => setIsLightboxOpen(false)}
+            aria-label={tProduct('closeImage')}
+            autoFocus
             className="absolute top-4 right-4 lg:top-8 lg:right-8 z-[80] p-2 bg-black/20 hover:bg-black/40 text-foreground rounded-full transition-colors cursor-pointer"
           >
             <X className="w-8 h-8" />
@@ -469,12 +488,14 @@ function ImageGallery({
               <>
                  <button
                   onClick={prevImage}
+                  aria-label={tProduct('previousImage')}
                   className="absolute left-4 lg:left-8 top-1/2 -translate-y-1/2 p-3 bg-black/10 hover:bg-accent hover:text-white text-foreground/70 transition-colors rounded-full cursor-pointer z-[60]"
                 >
                   <ChevronLeft className="w-8 h-8" />
                 </button>
                 <button
                   onClick={nextImage}
+                  aria-label={tProduct('nextImage')}
                   className="absolute right-4 lg:right-8 top-1/2 -translate-y-1/2 p-3 bg-black/10 hover:bg-accent hover:text-white text-foreground/70 transition-colors rounded-full cursor-pointer z-[60]"
                 >
                   <ChevronRight className="w-8 h-8" />

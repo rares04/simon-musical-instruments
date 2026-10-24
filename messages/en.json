@@ -288,7 +288,20 @@
     "soldNote": "This instrument has been {status}. Contact us to commission a similar piece.",
     "lowStock": "Only {count} left in stock",
     "noImagesAvailable": "No images available",
-    "askForPrice": "Price on Request"
+    "askForPrice": "Price on Request",
+    "expandImage": "Expand image",
+    "clickToExpand": "Click to expand",
+    "previousImage": "Previous image",
+    "nextImage": "Next image",
+    "closeImage": "Close",
+    "zoomIn": "Zoom in",
+    "zoomOut": "Zoom out",
+    "resetZoom": "Reset view",
+    "thumbnail": "Image {number}",
+    "audioPlay": "Play",
+    "audioPause": "Pause",
+    "audioSeek": "Playback position",
+    "audioCaption": "Professional recording of the {name} played in our workshop. Listen to the rich tonal qualities and resonance."
   },
   "cart": {
     "title": "Shopping Cart",
