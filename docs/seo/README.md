@@ -9,6 +9,7 @@ Status: **Phase A strategy, 2026-10-24**. Owner: the seo session.
 | This file | The strategy and the plan |
 | [`technical-spec.md`](technical-spec.md) | The Phase B build: URLs, canonicals, sitemap, robots, JSON-LD, CMS fields, PRs |
 | [`ai-visibility-prompts.md`](ai-visibility-prompts.md) | The fixed questions we ask AI assistants every month |
+| [`translation-glossary.md`](translation-glossary.md) | Luthier terms in RO/DE/FR/NL for DeepL and translation review |
 | [`research/keywords-en-ro.md`](research/keywords-en-ro.md) | English and Romanian search behaviour |
 | [`research/keywords-de-fr-nl.md`](research/keywords-de-fr-nl.md) | German, French and Dutch |
 | [`research/keywords-ja-ko-el.md`](research/keywords-ja-ko-el.md) | Japanese, Korean and Greek |
