@@ -21,7 +21,7 @@ import {
 
 const SUBJECTS: Record<string, string> = {
   en: 'Reset your password - Simon Musical Instruments',
-  ro: 'Resetează-ți parola - Simon Musical Instruments',
+  ro: 'Resetați parola - Simon Musical Instruments',
   de: 'Passwort zurücksetzen - Simon Musical Instruments',
   fr: 'Réinitialisez votre mot de passe - Simon Musical Instruments',
   nl: 'Wachtwoord opnieuw instellen - Simon Musical Instruments',

@@ -477,7 +477,7 @@
         "tryAgain": "A apărut o eroare. Te rugăm să încerci din nou."
       },
       "verifiedSuccess": "Adresa de email a fost verificată. Te rugăm să te autentifici.",
-      "resetSuccess": "Parola a fost actualizată. Te rugăm să te autentifici."
+      "resetSuccess": "Parola a fost actualizată. Vă rugăm să vă autentificați."
     },
     "register": {
       "title": "Creează-ți Contul",
@@ -545,15 +545,15 @@
       "password": "Parolă"
     },
     "forgotPassword": {
-      "title": "Resetează-ți parola",
-      "subtitle": "Introdu adresa de email a contului și îți trimitem un cod de 6 cifre.",
-      "sendCode": "Trimite codul",
-      "codeSent": "Dacă există un cont pentru {email}, ți-am trimis un cod de 6 cifre. Expiră în 10 minute.",
-      "enterCode": "Introdu codul și alege o parolă nouă",
+      "title": "Resetați parola",
+      "subtitle": "Introduceți adresa de email a contului și vă trimitem un cod de 6 cifre.",
+      "sendCode": "Trimiteți codul",
+      "codeSent": "Dacă există un cont pentru {email}, v-am trimis un cod de 6 cifre. Expiră în 10 minute.",
+      "enterCode": "Introduceți codul și alegeți o parolă nouă",
       "newPassword": "Parolă nouă",
-      "resetPassword": "Setează parola nouă",
+      "resetPassword": "Setați parola nouă",
       "saving": "Se salvează...",
-      "invalidCode": "Cod invalid sau expirat. Cere un cod nou dacă este nevoie."
+      "invalidCode": "Cod invalid sau expirat. Solicitați un cod nou dacă este nevoie."
     }
   },
   "profile": {

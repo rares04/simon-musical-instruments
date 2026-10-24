@@ -19,7 +19,7 @@ import {
 
 const SUBJECTS: Record<string, string> = {
   en: 'Verify your email - Simon Musical Instruments',
-  ro: 'Verifică-ți adresa de email - Simon Musical Instruments',
+  ro: 'Verificați adresa de email - Simon Musical Instruments',
   de: 'E-Mail verifizieren - Simon Musical Instruments',
   fr: 'Vérifiez votre e-mail - Simon Musical Instruments',
   nl: 'E-mail verifiëren - Simon Musical Instruments',
