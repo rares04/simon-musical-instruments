@@ -71,6 +71,7 @@ export const LIMITS = {
   passwordChange: { limit: 5, windowMs: 10 * MINUTE },
   passwordResetRequest: { limit: 5, windowMs: HOUR },
   passwordResetConfirm: { limit: 20, windowMs: 10 * MINUTE },
+  cspReport: { limit: 60, windowMs: 10 * MINUTE },
 } as const
 
 /** Returns a 429 response if `req` is over the named limit, otherwise null. */
