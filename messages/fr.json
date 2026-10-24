@@ -329,7 +329,8 @@
     },
     "errors": {
       "fillRequired": "Veuillez remplir tous les champs obligatoires",
-      "reservationFailed": "Échec de la réservation. Veuillez réessayer."
+      "reservationFailed": "Échec de la réservation. Veuillez réessayer.",
+      "noLongerAvailable": "Désolé, cet instrument vient d'être réservé par quelqu'un d'autre."
     },
     "emptyCart": {
       "title": "Votre panier est vide",
@@ -479,7 +480,8 @@
         "genericError": "Une erreur s'est produite lors de la connexion.",
         "tryAgain": "Une erreur s'est produite. Veuillez réessayer."
       },
-      "verifiedSuccess": "E-mail vérifié. Veuillez vous connecter."
+      "verifiedSuccess": "E-mail vérifié. Veuillez vous connecter.",
+      "resetSuccess": "Mot de passe mis à jour. Veuillez vous connecter."
     },
     "register": {
       "title": "Créez Votre Compte",
@@ -545,6 +547,17 @@
     "labels": {
       "email": "Adresse E-mail",
       "password": "Mot de Passe"
+    },
+    "forgotPassword": {
+      "title": "Réinitialisez votre mot de passe",
+      "subtitle": "Saisissez l'e-mail de votre compte et nous vous enverrons un code à 6 chiffres.",
+      "sendCode": "Envoyer le code",
+      "codeSent": "Si un compte existe pour {email}, nous avons envoyé un code à 6 chiffres. Il expire dans 10 minutes.",
+      "enterCode": "Saisissez le code et choisissez un nouveau mot de passe",
+      "newPassword": "Nouveau mot de passe",
+      "resetPassword": "Enregistrer le nouveau mot de passe",
+      "saving": "Enregistrement...",
+      "invalidCode": "Code invalide ou expiré. Demandez-en un nouveau si nécessaire."
     }
   },
   "profile": {

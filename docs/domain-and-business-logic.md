@@ -172,6 +172,7 @@ stateDiagram-v2
 |---|---|---|
 | Register (email + password ≥ 8) | `/register` → `POST /api/register` → `POST /api/auth/send-otp` | Then redirects to `/verify-email` |
 | Verify email (6-digit OTP, 10 min, 60s resend cooldown, 5 attempts) | `/verify-email` → `POST /api/auth/verify-otp` | Then to `/login?verified=true` (sign in once more) |
+| Forgot password (6-digit code by email, 10 min, 5 attempts) | `/forgot-password` → `POST /api/auth/request-password-reset` → `POST /api/auth/reset-password` | Customers only. Admin passwords are set by another admin in `/admin` |
 | Login (password or Google) | `/login` | Unverified credential users (right password) get a fresh code and go to `/verify-email` |
 | Dashboard | `/account` | Stats, attention list, last 3 orders, reservation slots |
 | Orders | `/account/orders`, `/account/orders/[orderNumber]` | PDF download |

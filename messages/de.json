@@ -325,7 +325,8 @@
     },
     "errors": {
       "fillRequired": "Bitte füllen Sie alle erforderlichen Felder aus",
-      "reservationFailed": "Reservierung fehlgeschlagen. Bitte versuchen Sie es erneut."
+      "reservationFailed": "Reservierung fehlgeschlagen. Bitte versuchen Sie es erneut.",
+      "noLongerAvailable": "Leider wurde dieses Instrument gerade von jemand anderem reserviert."
     },
     "emptyCart": {
       "title": "Ihr Warenkorb ist leer",
@@ -475,7 +476,8 @@
         "genericError": "Ein Fehler ist bei der Anmeldung aufgetreten.",
         "tryAgain": "Ein Fehler ist aufgetreten. Bitte versuchen Sie es erneut."
       },
-      "verifiedSuccess": "E-Mail bestätigt. Bitte melden Sie sich an."
+      "verifiedSuccess": "E-Mail bestätigt. Bitte melden Sie sich an.",
+      "resetSuccess": "Passwort aktualisiert. Bitte melden Sie sich an."
     },
     "register": {
       "title": "Erstellen Sie Ihr Konto",
@@ -541,6 +543,17 @@
     "labels": {
       "email": "E-Mail-Adresse",
       "password": "Passwort"
+    },
+    "forgotPassword": {
+      "title": "Passwort zurücksetzen",
+      "subtitle": "Geben Sie die E-Mail-Adresse Ihres Kontos ein, und wir senden Ihnen einen 6-stelligen Code.",
+      "sendCode": "Code senden",
+      "codeSent": "Falls ein Konto für {email} existiert, haben wir einen 6-stelligen Code gesendet. Er ist 10 Minuten gültig.",
+      "enterCode": "Geben Sie den Code ein und wählen Sie ein neues Passwort",
+      "newPassword": "Neues Passwort",
+      "resetPassword": "Neues Passwort speichern",
+      "saving": "Wird gespeichert...",
+      "invalidCode": "Ungültiger oder abgelaufener Code. Fordern Sie bei Bedarf einen neuen an."
     }
   },
   "profile": {

@@ -7,7 +7,7 @@ import { useTranslations } from 'next-intl'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
-import { useSession } from 'next-auth/react'
+import { signOut, useSession } from 'next-auth/react'
 
 export function PasswordChangeForm() {
   const { data: session } = useSession()
@@ -57,6 +57,8 @@ export function PasswordChangeForm() {
       if (response.ok) {
         setMessage({ type: 'success', text: t('success') })
         setFormData({ currentPassword: '', newPassword: '', confirmPassword: '' })
+        // A password change ends every session, including this one: sign in again.
+        setTimeout(() => signOut({ callbackUrl: '/login?reset=true' }), 1500)
       } else {
         setMessage({ type: 'error', text: data.error || t('error') })
       }

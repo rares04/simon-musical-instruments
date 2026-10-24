@@ -1,5 +1,6 @@
 /* THIS FILE WAS GENERATED AUTOMATICALLY BY PAYLOAD. */
 /* DO NOT MODIFY IT BECAUSE IT COULD BE REWRITTEN AT ANY TIME. */
+// Security wrappers added below. Keep them if this file is ever regenerated.
 import config from '@payload-config'
 import '@payloadcms/next/css'
 import { getPayload } from 'payload'
@@ -14,7 +15,16 @@ import {
   REST_PUT,
 } from '@payloadcms/next/routes'
 
-// Security wrappers. Keep them if this file is ever regenerated.
+type RouteContext = { params: Promise<{ slug?: string[] }> }
+
+/**
+ * The endpoint path as Payload routes it: the decoded slug segments, lowercased (Payload matches
+ * endpoint paths case-insensitively), e.g. "users/login".
+ */
+async function endpointPath(ctx: RouteContext): Promise<string> {
+  const { slug } = await ctx.params
+  return (slug ?? []).join('/').toLowerCase()
+}
 
 // Only admins may send query filters (`where`, `joins`) to the REST API. The storefront reads data
 // through the Local API and never needs them; restricting them limits the query surface that
@@ -34,6 +44,13 @@ async function isAdminRequest(req: Request) {
 }
 const forbidden = () =>
   Response.json({ errors: [{ message: 'Query filters are not allowed.' }] }, { status: 403 })
+const notFound = () => Response.json({ errors: [{ message: 'Not found' }] }, { status: 404 })
+
+// Payload's auth endpoints are rate-limited per IP.
+const AUTH_ENDPOINTS = new Set(['users/login', 'users/first-register', 'users/unlock'])
+// Payload has no email adapter, so its own forgot/reset flow can't deliver mail. Customers use
+// /forgot-password; admin passwords are set by another admin in /admin.
+const DISABLED_ENDPOINTS = new Set(['users/forgot-password', 'users/reset-password'])
 
 const restGet = REST_GET(config)
 export const GET: typeof restGet = async (req, ctx) => {
@@ -41,19 +58,20 @@ export const GET: typeof restGet = async (req, ctx) => {
   return restGet(req, ctx)
 }
 
-// Rate-limit Payload's auth endpoints per IP.
 const restPost = REST_POST(config)
-const AUTH_PATHS = /^\/api\/users\/(login|forgot-password|reset-password|first-register|unlock)$/
 export const POST: typeof restPost = async (req, ctx) => {
+  const path = await endpointPath(ctx)
+  if (DISABLED_ENDPOINTS.has(path)) return notFound()
   if ((isMethodOverride(req) || usesQueryFilters(req)) && !(await isAdminRequest(req))) {
     return forbidden()
   }
-  if (AUTH_PATHS.test(new URL(req.url).pathname)) {
+  if (AUTH_ENDPOINTS.has(path)) {
     const limited = limitByIp(req, 'adminAuth')
     if (limited) return limited
   }
   return restPost(req, ctx)
 }
+
 // Bulk update and delete also accept `where`.
 const restDelete = REST_DELETE(config)
 export const DELETE: typeof restDelete = async (req, ctx) => {

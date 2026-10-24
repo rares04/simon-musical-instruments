@@ -325,7 +325,8 @@
     },
     "errors": {
       "fillRequired": "すべての必須フィールドを入力してください",
-      "reservationFailed": "予約に失敗しました。もう一度お試しください。"
+      "reservationFailed": "予約に失敗しました。もう一度お試しください。",
+      "noLongerAvailable": "申し訳ありません。この楽器はたった今、別のお客様に予約されました。"
     },
     "emptyCart": {
       "title": "カートは空です",
@@ -475,7 +476,8 @@
         "genericError": "ログイン中にエラーが発生しました。",
         "tryAgain": "エラーが発生しました。もう一度お試しください。"
       },
-      "verifiedSuccess": "メールアドレスが確認されました。ログインしてください。"
+      "verifiedSuccess": "メールアドレスが確認されました。ログインしてください。",
+      "resetSuccess": "パスワードを更新しました。ログインしてください。"
     },
     "register": {
       "title": "アカウントを作成",
@@ -541,6 +543,17 @@
     "labels": {
       "email": "メールアドレス",
       "password": "パスワード"
+    },
+    "forgotPassword": {
+      "title": "パスワードの再設定",
+      "subtitle": "アカウントのメールアドレスを入力してください。6桁のコードをお送りします。",
+      "sendCode": "コードを送信",
+      "codeSent": "{email} のアカウントが存在する場合、6桁のコードを送信しました。有効期限は10分です。",
+      "enterCode": "コードを入力し、新しいパスワードを設定してください",
+      "newPassword": "新しいパスワード",
+      "resetPassword": "新しいパスワードを設定",
+      "saving": "保存中...",
+      "invalidCode": "コードが無効か期限切れです。必要に応じて新しいコードをリクエストしてください。"
     }
   },
   "profile": {
