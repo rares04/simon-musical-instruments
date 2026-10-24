@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react'
 import Image from 'next/image'
 import { useSession, signOut } from 'next-auth/react'
-import { useTranslations } from 'next-intl'
+import { useLocale, useTranslations } from 'next-intl'
 import { Menu, User, LogOut, X, Wrench } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { CartButton } from '@/components/cart-button'
@@ -11,6 +11,8 @@ import { LanguageSwitcher } from '@/components/language-switcher'
 import { OrderNotificationDropdown } from '@/components/order-notification-dropdown'
 import { ReservationSlotIndicator } from '@/components/reservation-slot-indicator'
 import { Link } from '@/i18n/routing'
+import type { Locale } from '@/i18n/config'
+import { categoryPath } from '@/lib/seo/categories'
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -26,6 +28,8 @@ export function Header() {
   const { data: session, status } = useSession()
   const isAuthenticated = status === 'authenticated'
   const t = useTranslations('navigation')
+  const tGallery = useTranslations('gallery.filters')
+  const locale = useLocale() as Locale
 
   const closeMobileMenu = () => setMobileMenuOpen(false)
 
@@ -130,6 +134,19 @@ export function Header() {
                 className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors cursor-pointer"
               >
                 {t('contact')}
+              </Link>
+              {/* Category pages: wide screens only (xl), so the bar fits in every language, Greek included. */}
+              <Link
+                href={categoryPath('cellos', locale)}
+                className="hidden xl:inline text-sm font-medium text-muted-foreground hover:text-foreground transition-colors cursor-pointer"
+              >
+                {tGallery('cellos')}
+              </Link>
+              <Link
+                href={categoryPath('doubleBasses', locale)}
+                className="hidden xl:inline text-sm font-medium text-muted-foreground hover:text-foreground transition-colors cursor-pointer"
+              >
+                {tGallery('contrabasses')}
               </Link>
               <Link
                 href="/gallery"
@@ -245,6 +262,20 @@ export function Header() {
               className="px-4 py-3 text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-muted/50 rounded-md transition-colors cursor-pointer"
             >
               {t('shop')}
+            </Link>
+            <Link
+              href={categoryPath('cellos', locale)}
+              onClick={closeMobileMenu}
+              className="px-4 py-3 pl-8 text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-muted/50 rounded-md transition-colors cursor-pointer"
+            >
+              {tGallery('cellos')}
+            </Link>
+            <Link
+              href={categoryPath('doubleBasses', locale)}
+              onClick={closeMobileMenu}
+              className="px-4 py-3 pl-8 text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-muted/50 rounded-md transition-colors cursor-pointer"
+            >
+              {tGallery('contrabasses')}
             </Link>
             <Link
               href="/#story"
