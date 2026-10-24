@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server'
 import { getPayload } from 'payload'
 import config from '@/payload.config'
+import { limitByIp } from '@/lib/rate-limit'
 
 /**
  * Called by the login page after a failed sign-in. Answers `needsVerification: true` only when the
@@ -8,6 +9,8 @@ import config from '@/payload.config'
  * doesn't know the password.
  */
 export async function POST(request: Request) {
+  const limited = limitByIp(request, 'checkVerification')
+  if (limited) return limited
   const no = NextResponse.json({ needsVerification: false })
   try {
     const body = await request.json().catch(() => ({}))

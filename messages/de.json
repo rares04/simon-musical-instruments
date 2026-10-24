@@ -191,7 +191,8 @@
     "contactSupport": "Support kontaktieren",
     "continueAsGuest": "Als Gast weiter einkaufen",
     "needAssistance": "Benötigen Sie Hilfe?",
-    "viewDetails": "Details Ansehen"
+    "viewDetails": "Details Ansehen",
+    "captchaUnavailable": "Die Sicherheitsprüfung konnte nicht geladen werden. Bitte deaktivieren Sie Inhaltsblocker für diese Seite und laden Sie neu, oder kontaktieren Sie uns."
   },
   "account": {
     "title": "Mein Konto",
@@ -402,7 +403,8 @@
     "success": {
       "title": "Vielen Dank!",
       "message": "Ihre Bestellung wurde erfolgreich aufgegeben."
-    }
+    },
+    "holdExpiryNote": "Wir halten das Instrument 72 Stunden lang für Sie zurück, während wir gemeinsam die Zahlung vereinbaren."
   },
   "checkoutSuccess": {
     "confirmingOrder": "Bestellung wird bestätigt...",

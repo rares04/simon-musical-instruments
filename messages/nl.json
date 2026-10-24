@@ -191,7 +191,8 @@
     "contactSupport": "Contact Opnemen met Support",
     "continueAsGuest": "Doorgaan winkelen als gast",
     "needAssistance": "Hulp nodig?",
-    "viewDetails": "Details Bekijken"
+    "viewDetails": "Details Bekijken",
+    "captchaUnavailable": "De beveiligingscontrole kon niet worden geladen. Schakel contentblokkers voor deze site uit en laad de pagina opnieuw, of neem contact met ons op."
   },
   "account": {
     "title": "Mijn Account",
@@ -402,7 +403,8 @@
     "success": {
       "title": "Dank je wel!",
       "message": "Uw bestelling is succesvol geplaatst."
-    }
+    },
+    "holdExpiryNote": "We houden het instrument 72 uur voor u vast terwijl we samen de betaling regelen."
   },
   "checkoutSuccess": {
     "confirmingOrder": "Uw bestelling bevestigen...",

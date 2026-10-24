@@ -191,7 +191,8 @@
     "contactSupport": "サポートに連絡",
     "continueAsGuest": "ゲストとして買い物を続ける",
     "needAssistance": "サポートが必要ですか？",
-    "viewDetails": "詳細を見る"
+    "viewDetails": "詳細を見る",
+    "captchaUnavailable": "セキュリティチェックを読み込めませんでした。このサイトのコンテンツブロッカーを無効にして再読み込みするか、お問い合わせください。"
   },
   "account": {
     "title": "マイアカウント",
@@ -402,7 +403,8 @@
     "success": {
       "title": "ありがとうございます！",
       "message": "ご注文が正常に完了しました。"
-    }
+    },
+    "holdExpiryNote": "お支払いの手配が整うまで、楽器を72時間お取り置きいたします。"
   },
   "checkoutSuccess": {
     "confirmingOrder": "注文を確認中...",

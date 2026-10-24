@@ -19,8 +19,13 @@ These are the storefront's own endpoints. Payload's generated REST lives in
 3. **Validate input with a schema** (zod), not ad-hoc checks. Return `400` with field errors.
    Escape any user text that goes into HTML emails (React Email escapes by default; raw HTML strings
    don't).
-4. **Protect public endpoints that cause side effects** (email, reservations, OTP) with rate
-   limiting and bot protection. See `docs/known-issues.md` K-2.
+4. **Protect public endpoints that cause side effects** (email, reservations, OTP):
+   - Rate limit per IP with `limitByIp(req, '<name>')` from `@/lib/rate-limit`, and add the limit to
+     `LIMITS`.
+   - Forms that send email or hold stock also need `verifyTurnstile(body.turnstileToken, req)` from
+     `@/lib/turnstile` and the `<TurnstileWidget>` on the page.
+   - Payload's own auth endpoints are rate-limited in `src/app/(payload)/api/[...slug]/route.ts`.
+     Keep that wrapper if the file is ever regenerated.
 5. **Multi-write operations run in a transaction.** Create a `req` with `createLocalReq` (or reuse
    one) and pass it to every Payload call. Use conditional updates for availability.
 6. **Side effects after a commit** (emails) go through a job with retries, not fire-and-forget
@@ -44,8 +49,8 @@ These are the storefront's own endpoints. Payload's generated REST lives in
 | `account/orders` | GET | session | The user's orders, depth 2 |
 | `account/active-orders` | GET | session | Header bell: non-terminal orders |
 | `account/reservation-count` | GET | optional | `pending_payment` count vs the limit (2) |
-| `checkout/create-reservation` | POST | optional | Core reservation flow; see `docs/domain-and-business-logic.md` §4 |
-| `contact` | POST | none | Email Paul (Romanian template) |
+| `checkout/create-reservation` | POST | optional | Core reservation flow (Turnstile, per-IP limit, atomic claim, 72 h holds); see `docs/domain-and-business-logic.md` §4 |
+| `contact` | POST | none | Email Paul (Romanian template). Turnstile + per-IP limit, validated input |
 | `orders/[id]/invoice` | GET | session + ownership | PDF "invoice" (not a fiscal invoice) by numeric order id |
 
 ## Shared constants that should be centralised

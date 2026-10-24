@@ -17,6 +17,9 @@
 | `otp.ts` | Email codes: CSPRNG generation, HMAC storage (`v2:<attempts>:<sends>:<window>:<hmac>`), attempt limit, resend interval, daily cap, compare-and-set updates (`swapOtp`) | Server-only. The code itself is never stored |
 | `order-access.ts` | `customerOrdersWhere()`, `toCustomerOrder()` | Server-only. The single rule for which orders a customer may see |
 | `safe-redirect.ts` | `safeCallbackPath()` | Use for any redirect target taken from the URL |
+| `rate-limit.ts` | In-process per-IP limiter (`limitByIp`, `LIMITS`, `clientIp`) | One replica, so memory is shared. Client IP comes from `X-Real-IP` (Railway's edge sets it) |
+| `turnstile.ts` | `verifyTurnstile()` | Fails closed when `TURNSTILE_SECRET_KEY` is set; skipped when it isn't (local dev) |
+| `reservations.ts` | Atomic claim/release of instruments, 72 h hold expiry (`scheduleHoldSweep`), `errorSummary()` | Logs `holds:` / `orders:` lines with order numbers only. Log DB errors with `errorSummary()`: their `message` embeds query parameters (customer data) |
 
 ## Auth.js specifics (`auth.ts`)
 
@@ -43,8 +46,9 @@
 ## Rules
 
 - Server-only modules (`auth.ts`, `resend.ts`, `deepl.ts`, `pdf/*`) must never be imported from a
-  `'use client'` file. Add `import 'server-only'` when you touch them (the `server-only` package
-  isn't installed yet; platform adds it).
+  `'use client'` file. Add `import 'server-only'` when you touch them, **except** in modules that
+  collections or `payload.config.ts` import (e.g. `reservations.ts`): Payload's CLI loads those
+  outside Next, where `server-only` throws.
 - New third-party clients follow the lazy-singleton pattern in `resend.ts` and `deepl.ts`, so
   `next build` works without secrets.
 - New emails:

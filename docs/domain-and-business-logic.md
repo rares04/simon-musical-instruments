@@ -53,14 +53,20 @@ stateDiagram-v2
   in_build --> available: Paul (manual)
   available --> reserved: create-reservation API (automatic)
   reserved --> sold: Paul (manual, after payment)
-  reserved --> available: Paul (manual, if reservation cancelled)
+  reserved --> available: order cancelled/refunded, or unpaid after 72 h (automatic)
   available --> sold: Paul (manual, offline sale)
 ```
 
-- **Only one transition is automatic**: `available → reserved`. All others are manual in `/admin`.
-- **Reservations never expire.** A reservation the customer abandons keeps the instrument
-  `reserved` until Paul notices.
-- **Changing an order's status does not change the instrument's status**, in either direction.
+- **Automatic transitions**: `available → reserved` (atomic, so two buyers can't both reserve one
+  instrument) and `reserved → available` (when an order is cancelled or refunded, or when an unpaid
+  reservation is older than 72 hours, as long as no other open order holds it). Reopening a
+  cancelled order (e.g. setting it to `paid`) reserves its instrument again if it is still free.
+  Everything else is manual in `/admin`.
+- **Holds expire after 72 hours.** Unpaid (`pending_payment`) orders older than that are cancelled
+  with an internal note, and the instrument goes back on sale. Moving the order to `processing` or
+  `paid` stops expiry. The sweep runs in the background when the catalogue is read, at most every
+  10 minutes (`src/lib/reservations.ts`).
+- **Paying an order does not mark the instrument sold.** Paul does that by hand.
 - **The gallery shows every status.** Sold items render greyscale. Reserved and in-build items
   show a badge and a "Contact us" CTA instead of "Add to cart".
 

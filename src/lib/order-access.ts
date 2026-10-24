@@ -1,3 +1,4 @@
+import 'server-only'
 import type { Payload, Where } from 'payload'
 import type { Order, User } from '@/payload-types'
 

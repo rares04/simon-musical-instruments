@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server'
 import { getPayload } from 'payload'
 import config from '@/payload.config'
+import { limitByIp } from '@/lib/rate-limit'
 import { sendEmail } from '@/lib/resend'
 import { OtpVerificationEmail } from '@/lib/emails/otp-verification'
 import {
@@ -36,6 +37,9 @@ const GENERIC_OK = {
 
 export async function POST(request: Request) {
   try {
+    const limited = limitByIp(request, 'sendOtp')
+    if (limited) return limited
+
     const body = await request.json().catch(() => ({}))
     const email = typeof body.email === 'string' ? body.email.trim().toLowerCase() : ''
     const locale = typeof body.locale === 'string' && SUBJECTS[body.locale] ? body.locale : 'en'

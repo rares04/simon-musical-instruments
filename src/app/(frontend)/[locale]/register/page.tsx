@@ -8,6 +8,7 @@ import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Checkbox } from '@/components/ui/checkbox'
 import { AuthButtons } from '@/components/auth-buttons'
+import { TurnstileWidget, turnstileRequired } from '@/components/turnstile-widget'
 import { Separator } from '@/components/ui/separator'
 import { Link } from '@/i18n/routing'
 
@@ -26,6 +27,8 @@ export default function RegisterPage() {
   const [termsAccepted, setTermsAccepted] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
+  const [captchaToken, setCaptchaToken] = useState<string | null>(null)
+  const [captchaReset, setCaptchaReset] = useState(0)
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -61,10 +64,12 @@ export default function RegisterPage() {
           password,
           firstName,
           lastName,
+          turnstileToken: captchaToken,
         }),
       })
 
       if (!response.ok) {
+        setCaptchaReset((n) => n + 1)
         const data = await response.json()
         if (data.errors?.[0]?.message?.includes('email')) {
           setError(t('register.errors.emailExists'))
@@ -268,11 +273,12 @@ export default function RegisterPage() {
               </Label>
             </div>
 
+            <TurnstileWidget onToken={setCaptchaToken} resetKey={captchaReset} />
             <Button
               type="submit"
               size="lg"
               className="w-full h-11 cursor-pointer"
-              disabled={isLoading}
+              disabled={isLoading || (turnstileRequired && !captchaToken)}
             >
               {isLoading ? t('register.creatingAccount') : t('register.createAccount')}
             </Button>

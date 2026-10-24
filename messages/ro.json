@@ -191,7 +191,8 @@
     "contactSupport": "Contactează Suportul",
     "continueAsGuest": "Continuă cumpărăturile ca vizitator",
     "needAssistance": "Ai nevoie de asistență?",
-    "viewDetails": "Vezi Detalii"
+    "viewDetails": "Vezi Detalii",
+    "captchaUnavailable": "Verificarea de securitate nu s-a putut încărca. Dezactivează blocantele de conținut pentru acest site și reîncarcă pagina, sau contactează-ne."
   },
   "account": {
     "title": "Contul Meu",
@@ -402,7 +403,8 @@
     "success": {
       "title": "Mulțumim!",
       "message": "Comanda ta a fost plasată cu succes."
-    }
+    },
+    "holdExpiryNote": "Păstrăm instrumentul pentru tine timp de 72 de ore, cât stabilim împreună plata."
   },
   "checkoutSuccess": {
     "confirmingOrder": "Se confirmă comanda...",

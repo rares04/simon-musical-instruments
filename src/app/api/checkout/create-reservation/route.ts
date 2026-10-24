@@ -4,25 +4,67 @@ import config from '@/payload.config'
 import { sendEmail } from '@/lib/resend'
 import { OrderConfirmationEmail } from '@/lib/emails'
 import { NewReservationNotificationEmail } from '@/lib/emails/new-reservation-notification'
+import { randomBytes } from 'crypto'
 import { auth } from '@/lib/auth'
+import { limitByIp } from '@/lib/rate-limit'
+import { captchaFailed, verifyTurnstile } from '@/lib/turnstile'
+import {
+  claimInstruments,
+  errorSummary,
+  releaseInstruments,
+  scheduleHoldSweep,
+} from '@/lib/reservations'
 
 const RESERVATION_LIMIT = 2
+const MAX_ITEMS = 10
+const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+const MAX_LENGTH: Record<string, number> = {
+  firstName: 100,
+  lastName: 100,
+  email: 254,
+  phone: 40,
+  address: 200,
+  address2: 200,
+  city: 100,
+  state: 100,
+  zip: 20,
+  country: 100,
+  customerRemarks: 2000,
+}
 
 function generateReservationNumber(): string {
   const timestamp = Date.now().toString(36).toUpperCase()
-  const random = Math.random().toString(36).substring(2, 6).toUpperCase()
+  const random = randomBytes(3).toString('hex').toUpperCase()
   return `SI-${timestamp}-${random}`
 }
 
 export async function POST(req: NextRequest) {
   try {
+    const limited = limitByIp(req, 'reservation')
+    if (limited) return limited
+
     // The customer comes from the session, never from the request body.
-    const { items, formData, total } = await req.json()
+    const body = await req.json().catch(() => ({}))
+    const { items, formData, total, turnstileToken } = body ?? {}
+    if (!(await verifyTurnstile(turnstileToken, req))) return captchaFailed()
+
     const session = await auth()
     const userId = session?.user?.id
 
-    if (!items || items.length === 0) {
+    if (!Array.isArray(items) || items.length === 0) {
       return NextResponse.json({ error: 'No items in cart' }, { status: 400 })
+    }
+    if (!formData || typeof formData !== 'object') {
+      return NextResponse.json({ error: 'Missing required fields' }, { status: 400 })
+    }
+    if (formData.deliveryMethod !== 'pickup' && formData.deliveryMethod !== 'delivery') {
+      return NextResponse.json({ error: 'Invalid delivery method' }, { status: 400 })
+    }
+    for (const [field, max] of Object.entries(MAX_LENGTH)) {
+      const value = formData[field]
+      if (value != null && (typeof value !== 'string' || value.length > max)) {
+        return NextResponse.json({ error: `Invalid field: ${field}` }, { status: 400 })
+      }
     }
 
     // Validate required fields
@@ -43,12 +85,23 @@ export async function POST(req: NextRequest) {
 
     // Emails are compared case-sensitively in the DB; store them normalised.
     formData.email = String(formData.email).trim().toLowerCase()
+    if (!EMAIL_RE.test(formData.email)) {
+      return NextResponse.json({ error: 'Invalid email address' }, { status: 400 })
+    }
 
     // Get Payload instance
     const payload = await getPayload({ config })
 
+    // Release expired holds in the background (throttled).
+    scheduleHoldSweep(payload)
+
     // Validate all instruments are available
-    const instrumentIds = items.map((item: { id: string }) => item.id)
+    const instrumentIds: number[] = [
+      ...new Set(items.map((item: { id: unknown }) => Number(item?.id))),
+    ].filter((id): id is number => Number.isInteger(id) && id > 0)
+    if (instrumentIds.length === 0 || instrumentIds.length > MAX_ITEMS) {
+      return NextResponse.json({ error: 'Invalid cart' }, { status: 400 })
+    }
 
     const { docs: instruments } = await payload.find({
       collection: 'instruments',
@@ -86,13 +139,18 @@ export async function POST(req: NextRequest) {
     if (instrumentsWithoutPrice.length > 0) {
       const names = instrumentsWithoutPrice.map((i) => i.title).join(', ')
       return NextResponse.json(
-        { error: `The following instruments have no price set. Please remove them and contact us for a quote: ${names}` },
+        {
+          error: `The following instruments have no price set. Please remove them and contact us for a quote: ${names}`,
+        },
         { status: 400 },
       )
     }
 
     // Verify the total matches what we expect
-    const calculatedTotal = instruments.reduce((sum, instrument) => sum + (instrument.price ?? 0), 0)
+    const calculatedTotal = instruments.reduce(
+      (sum, instrument) => sum + (instrument.price ?? 0),
+      0,
+    )
 
     // Allow small rounding differences (1 EUR)
     if (Math.abs(calculatedTotal - total) > 1) {
@@ -153,61 +211,63 @@ export async function POST(req: NextRequest) {
       }
     }
 
-    // Create Order document with pending_payment status
-    const order = await payload.create({
-      collection: 'orders',
-      data: {
-        orderNumber: reservationNumber,
-        customer: customerIdNumber,
-        guestEmail: !customerIdNumber ? formData.email : undefined,
-        status: 'pending_payment',
-        paymentMethod: formData.deliveryMethod === 'pickup' ? 'cash' : 'bank_transfer',
-        deliveryMethod: formData.deliveryMethod,
-        items: instruments.map((instrument) => ({
-          instrument: instrument.id,
-          title: instrument.title,
-          price: instrument.price!, // Validated above: all instruments have price
-        })),
-        contactInfo: {
-          firstName: formData.firstName,
-          lastName: formData.lastName,
-          email: formData.email,
-          phone: formData.phone,
-        },
-        // Only include shipping address for delivery orders
-        ...(formData.deliveryMethod === 'delivery'
-          ? {
-              shippingAddress: {
-                street: formData.address,
-                apartment: formData.address2 || '',
-                city: formData.city,
-                state: formData.state,
-                zip: formData.zip,
-                country: formData.country,
-              },
-            }
-          : {}),
-        subtotal: calculatedTotal,
-        shipping: 0, // Delivery included in price
-        insurance: 0, // Insurance included in price
-        total: calculatedTotal,
-        // Customer remarks for special requests or personalization wishes
-        ...(formData.customerRemarks ? { customerRemarks: formData.customerRemarks } : {}),
-      },
-    })
+    // Claim the instruments atomically: only one buyer can move each from available to reserved.
+    const claimed = await claimInstruments(payload, instrumentIds)
+    if (claimed.length !== instrumentIds.length) {
+      await releaseInstruments(payload, claimed)
+      return NextResponse.json(
+        { error: 'One or more instruments are no longer available' },
+        { status: 409 },
+      )
+    }
 
-    // Mark instruments as reserved (change status to reduce visibility)
-    for (const instrument of instruments) {
-      await payload.update({
-        collection: 'instruments',
-        id: instrument.id,
+    // Create Order document with pending_payment status
+    let order
+    try {
+      order = await payload.create({
+        collection: 'orders',
         data: {
-          status: 'reserved',
-        },
-        context: {
-          skipAutoTranslate: true, // Don't trigger translation for status change
+          orderNumber: reservationNumber,
+          customer: customerIdNumber,
+          guestEmail: !customerIdNumber ? formData.email : undefined,
+          status: 'pending_payment',
+          paymentMethod: formData.deliveryMethod === 'pickup' ? 'cash' : 'bank_transfer',
+          deliveryMethod: formData.deliveryMethod,
+          items: instruments.map((instrument) => ({
+            instrument: instrument.id,
+            title: instrument.title,
+            price: instrument.price!, // Validated above: all instruments have price
+          })),
+          contactInfo: {
+            firstName: formData.firstName,
+            lastName: formData.lastName,
+            email: formData.email,
+            phone: formData.phone,
+          },
+          // Only include shipping address for delivery orders
+          ...(formData.deliveryMethod === 'delivery'
+            ? {
+                shippingAddress: {
+                  street: formData.address,
+                  apartment: formData.address2 || '',
+                  city: formData.city,
+                  state: formData.state,
+                  zip: formData.zip,
+                  country: formData.country,
+                },
+              }
+            : {}),
+          subtotal: calculatedTotal,
+          shipping: 0, // Delivery included in price
+          insurance: 0, // Insurance included in price
+          total: calculatedTotal,
+          // Customer remarks for special requests or personalization wishes
+          ...(formData.customerRemarks ? { customerRemarks: formData.customerRemarks } : {}),
         },
       })
+    } catch (error) {
+      await releaseInstruments(payload, claimed)
+      throw error
     }
 
     // Prepare email data
@@ -250,7 +310,7 @@ export async function POST(req: NextRequest) {
               ...(formData.customerRemarks ? { customerRemarks: formData.customerRemarks } : {}),
             }),
           })
-          console.log(`✅ Confirmation email sent to ${customerEmail}`)
+          console.log(`✅ Confirmation email sent for ${reservationNumber}`)
         }
 
         // Send notification email to Paul
@@ -285,7 +345,7 @@ export async function POST(req: NextRequest) {
         })
         console.log(`✅ Notification email sent to Paul`)
       } catch (emailError) {
-        console.error('❌ Error sending emails:', emailError)
+        console.error(`❌ Error sending emails for ${reservationNumber}: ${errorSummary(emailError)}`)
         // Don't throw - reservation is already created
       }
     }
@@ -299,7 +359,7 @@ export async function POST(req: NextRequest) {
       orderId: order.id,
     })
   } catch (error) {
-    console.error('Error creating reservation:', error)
+    console.error(`Error creating reservation: ${errorSummary(error)}`)
     return NextResponse.json({ error: 'Failed to create reservation' }, { status: 500 })
   }
 }

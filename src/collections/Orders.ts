@@ -2,6 +2,7 @@ import type { CollectionConfig, CollectionAfterChangeHook } from 'payload'
 import { sendEmail } from '@/lib/resend'
 import { ShippingNotificationEmail } from '@/lib/emails'
 import { hasAdminRole, isAdmin } from '@/access'
+import { claimInstruments, releaseInstruments } from '@/lib/reservations'
 
 // Hook to send shipping notification when status changes to 'shipped' (delivery orders only)
 const sendShippingNotification: CollectionAfterChangeHook = async ({
@@ -51,6 +52,43 @@ const sendShippingNotification: CollectionAfterChangeHook = async ({
   return doc
 }
 
+// Keeps instrument status in step with the order:
+// - cancelled/refunded: instruments it still holds go back on sale (unless another open order holds them);
+// - reopened (e.g. paid after an automatic cancel): its instruments are reserved again if still free.
+const syncInstrumentHolds: CollectionAfterChangeHook = async ({
+  doc,
+  previousDoc,
+  operation,
+  req,
+}) => {
+  if (operation !== 'update' || !previousDoc) return doc
+  const closed = ['cancelled', 'refunded']
+  const wasClosed = closed.includes(previousDoc.status)
+  const isClosed = closed.includes(doc.status)
+  if (wasClosed === isClosed) return doc
+
+  const ids = (doc.items ?? [])
+    .map((item: { instrument?: number | { id: number } }) =>
+      typeof item.instrument === 'object' ? item.instrument?.id : item.instrument,
+    )
+    .filter((id: unknown): id is number => typeof id === 'number')
+
+  if (isClosed) {
+    const released = await releaseInstruments(req.payload, ids, doc.id)
+    if (released > 0) {
+      console.log(`orders: released ${released} instrument(s) from ${doc.orderNumber}`)
+    }
+  } else {
+    const claimed = await claimInstruments(req.payload, ids)
+    if (claimed.length < ids.length) {
+      console.warn(
+        `orders: ${doc.orderNumber} reopened but ${ids.length - claimed.length} instrument(s) are no longer available`,
+      )
+    }
+  }
+  return doc
+}
+
 export const Orders: CollectionConfig = {
   slug: 'orders',
   admin: {
@@ -59,7 +97,7 @@ export const Orders: CollectionConfig = {
     group: 'Shop',
   },
   hooks: {
-    afterChange: [sendShippingNotification],
+    afterChange: [sendShippingNotification, syncInstrumentHolds],
   },
   access: {
     // Admins see all orders; signed-in customers only their own.

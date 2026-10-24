@@ -191,7 +191,8 @@
     "contactSupport": "Contact Support",
     "continueAsGuest": "Continue shopping as guest",
     "needAssistance": "Need assistance?",
-    "viewDetails": "View Details"
+    "viewDetails": "View Details",
+    "captchaUnavailable": "The security check couldn't load. Please disable content blockers for this site and reload, or contact us."
   },
   "account": {
     "title": "My Account",
@@ -402,7 +403,8 @@
     "success": {
       "title": "Thank You!",
       "message": "Your order has been placed successfully."
-    }
+    },
+    "holdExpiryNote": "We hold the instrument for you for 72 hours while we arrange payment together."
   },
   "checkoutSuccess": {
     "confirmingOrder": "Confirming your order...",

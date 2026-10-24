@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, Suspense } from 'react'
+import { useState, useEffect, Suspense } from 'react'
 import { signIn } from 'next-auth/react'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { useLocale, useTranslations } from 'next-intl'
@@ -22,7 +22,20 @@ function LoginForm() {
   const error = searchParams.get('error')
   const justVerified = searchParams.get('verified') === 'true'
 
-  const [email, setEmail] = useState(searchParams.get('email') ?? '')
+  const [email, setEmail] = useState('')
+
+  // Prefill after email verification (set by /verify-email; never passed in the URL).
+  useEffect(() => {
+    try {
+      const saved = sessionStorage.getItem('loginEmail')
+      if (saved) {
+        setEmail(saved)
+        sessionStorage.removeItem('loginEmail')
+      }
+    } catch {
+      // Storage unavailable.
+    }
+  }, [])
   const [password, setPassword] = useState('')
   const [isLoading, setIsLoading] = useState(false)
   const [formError, setFormError] = useState<string | null>(null)
