@@ -61,7 +61,7 @@ inline. Re-verify anything older than about 3 months before acting on it.
 
 | Work | Why | Notes |
 |---|---|---|
-| Fonts, banner, hard-coded strings (K-6, K-11) | The brand currently renders in the system font | Hours, and the biggest visual win |
+| ~~Fonts~~, banner, hard-coded strings (K-6 done 2026-10-24, K-11) | ~~The brand renders in the system font~~ Fonts fixed; English-only strings remain | Hours |
 | **Reservation lifecycle** (K-5, K-8) | Holds never expire; double-booking is possible | `reservedUntil` + a Payload Jobs `waitUntil` release + a daily sweeper ([jobs docs](https://payloadcms.com/docs/jobs-queue/schedules)). Atomic conditional update. An `orders` hook syncs instrument status. Emails: "reservation expiring", "released" |
 | **Translations** (K-4) | 7 of 8 languages show English product text | Fix the key, backfill, then make translation a job with retries. Optionally a "needs review" flag per locale so RO and DE get a human pass |
 | Email reliability + localization (K-10, K-11) | Silent failures; English-only | Store `locale` on orders. Send through a job queue with retries. Shared `BrandEmailLayout`. Note: React Email 6 merged `@react-email/components` into `react-email`, so migrate the templates ([blog](https://resend.com/blog/react-email-6)) |

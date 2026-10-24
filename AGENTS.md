@@ -171,8 +171,6 @@ The authoritative list is in `.env.example`. Required in production: `DATABASE_U
 
 ## 9. Known sharp edges (non-security; full list in `docs/known-issues.md`)
 
-- Brand fonts (Playfair Display, Inter) are downloaded but never applied. The CSS variable names
-  don't match. The site renders in the system font.
 - Product translations are missing in production. Non-English product pages show English text.
 - `/api/account/password` cannot work: Payload never returns `password`. Password change is broken.
 - All DB pages use `force-dynamic` with no caching. Images are proxied through the app server (~2s

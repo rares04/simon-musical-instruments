@@ -217,10 +217,13 @@ flowchart TB
   - It writes each translation with a nested `payload.update`, using `skipAutoTranslate`.
 - **Emails**: only the OTP email is localized. Order, reservation and shipping emails are English.
   Notifications to Paul are Romanian (contact form) or English (reservations).
-- **Fonts**:
-  - Inter and Playfair Display (latin) are loaded with `next/font`.
-  - Noto Sans JP/KR are loaded with the latin subset only, so they never cover CJK glyphs.
-  - None of these are applied today because of a CSS variable mismatch. See `known-issues.md`.
+- **Fonts** (`[locale]/layout.tsx`):
+  - Inter (normal and italic) and Playfair Display are loaded with `next/font`, latin subset. A
+    separate Playfair italic face is not preloaded. Three font files are preloaded per page.
+  - The `next/font` variables (`--font-inter`, `--font-playfair`) feed the `@theme` stacks
+    `--font-sans` and `--font-serif` in `globals.css`. The names must match.
+  - There is no CJK web font: `/ja` and `/ko` use the OS CJK fonts, picked through `<html lang>`.
+    A `next/font` CJK face would add its `@font-face` CSS to every locale's pages.
 
 ## 7. Background work and side effects
 
