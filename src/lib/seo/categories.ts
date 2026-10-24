@@ -145,7 +145,8 @@ export function categoryStats(list: readonly StatsInstrument[]): CategoryStats {
   }
 }
 
-/** "A, B and C" in the visitor's language. */
+/** "A, B and C" in the visitor's language. English follows the site's British style (no serial comma). */
 export function formatList(locale: string, items: readonly string[]): string {
-  return new Intl.ListFormat(locale, { style: 'long', type: 'conjunction' }).format(items)
+  const listLocale = locale === 'en' ? 'en-GB' : locale
+  return new Intl.ListFormat(listLocale, { style: 'long', type: 'conjunction' }).format(items)
 }

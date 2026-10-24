@@ -827,7 +827,7 @@
     },
     "categories": {
       "cellos": {
-        "title": "Handgefertigte Celli kaufen, aus Reghin, Rumänien",
+        "title": "Cello kaufen vom Geigenbauer, Reghin, Rumänien",
         "description": "Celli in voller Größe, von Paul und Ecaterina Simon in Reghin, Rumänien, von Hand gebaut. Modelle: {models}. Fotos, Klangbeispiele und Preise. Online reservieren."
       },
       "doubleBasses": {
@@ -875,7 +875,7 @@
     "allInstruments": "Alle Instrumente ansehen",
     "contact": "Stellen Sie uns eine Frage",
     "cellos": {
-      "h1": "Handgefertigte Celli",
+      "h1": "Celli vom Geigenbauer",
       "intro": "Wir bauen Celli in voller Größe (4/4) von Hand in unserer Werkstatt in Reghin, Rumänien. Jedes ist ein Einzelstück, mit eigenem Holz, Lack und Setup.",
       "stock": "{count, plural, one {Ein Cello ist derzeit verfügbar} other {# Celli sind derzeit verfügbar}}. Preise: {price}.",
       "stockNoPrice": "{count, plural, one {Ein Cello ist derzeit verfügbar} other {# Celli sind derzeit verfügbar}}. Preise auf Anfrage.",
