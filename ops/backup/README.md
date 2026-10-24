@@ -73,19 +73,35 @@ Then run it once (see above) and check the log ends with `[backup] done`.
    `--clean --if-exists` is needed: the dump recreates schema `public`, which every new
    database already has.
 
-3. To restore production (only with Rares's OK, after a fresh backup of the current state):
-   1. Put the site in maintenance mode, or stop the Railway service.
-   2. Restore into the prod database:
+3. To restore production (only with Rares's OK). **This step has not been tested yet.** Only the
+   local and in-job restores are proven.
+   1. Take a fresh backup of the current state first (run the job), even if it is broken.
+   2. Prefer restoring into a **new, empty** Supabase project or database. Check it, then point
+      `DATABASE_URL` on the web service at it and redeploy. Don't restore over the live database:
+      `--clean --if-exists` drops and recreates schema `public`, which can reset the grants and
+      row-level security that Supabase and the security hardening rely on.
 
       ```sh
-      pg_restore -d "$DATABASE_URL" --no-owner --no-privileges --clean --if-exists <file>.dump
+      pg_restore -d "<new database URL>" --no-owner --no-privileges --clean --if-exists <file>.dump
       ```
 
       Use `pg_restore` 17 (`/opt/homebrew/opt/postgresql@17/bin` on macOS).
-   3. Check the row counts against the matching `.counts.txt`.
-   4. Start the service and run the smoke test from `docs/infrastructure-and-operations.md`.
+   3. Check the row counts against the matching `.counts.txt`, and re-apply the RLS and grants
+      from the security runbook.
+   4. Run the smoke test from `docs/infrastructure-and-operations.md`.
 4. Media: copy the files from the bucket's `media/` back into the Supabase `media` bucket, keeping
    the same keys.
+
+## When the drop check fails on purpose
+
+The job fails, and skips pruning, when a table lost more than 20% of its rows since the last good
+run. If the deletion was intended (for example, Paul removed old instruments), accept the new
+counts once. Either:
+
+- Run the job once with `MAX_DROP_PCT=100` set on the service, then remove the variable.
+- Or copy the newest `db/daily/<stamp>.counts.txt` over `db/latest-counts.txt` in the bucket.
+
+Until then every night fails, and the heartbeat alert fires.
 
 ## Cost
 
