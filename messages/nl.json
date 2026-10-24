@@ -175,7 +175,9 @@
     "shopInstruments": "Instrumenten Kopen",
     "ourStory": "Ons Verhaal",
     "copyright": "© {year} Simon Musical Instruments. Alle rechten voorbehouden.",
-    "madeIn": "Met zorg gemaakt in Reghin, Roemenië"
+    "madeIn": "Met zorg gemaakt in Reghin, Roemenië",
+    "followInstagram": "Volg ons op Instagram",
+    "contactWhatsApp": "Neem contact met ons op via WhatsApp"
   },
   "common": {
     "loading": "Laden...",
@@ -362,7 +364,8 @@
     "fullyInsured": "Verzekering inbegrepen in de prijs",
     "secureShipping": "Deur-tot-deur service vanuit ons atelier",
     "professionalPackaging": "Professionele verpakking",
-    "assistanceNote": "Hulp nodig? Neem contact met ons op voor een persoonlijk advies"
+    "assistanceNote": "Hulp nodig? Neem contact met ons op voor een persoonlijk advies",
+    "closeCart": "Winkelwagen sluiten"
   },
   "checkout": {
     "title": "Kassa",

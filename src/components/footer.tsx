@@ -36,7 +36,7 @@ export function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-2 text-muted-foreground hover:text-accent transition-colors cursor-pointer"
-                aria-label="Follow us on Instagram"
+                aria-label={t('followInstagram')}
               >
                 <Instagram className="h-5 w-5" />
                 <span className="text-sm">Instagram</span>
@@ -46,7 +46,7 @@ export function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-2 text-muted-foreground hover:text-accent transition-colors cursor-pointer"
-                aria-label="Contact us on WhatsApp"
+                aria-label={t('contactWhatsApp')}
               >
                 <WhatsAppIcon className="h-5 w-5" />
                 <span className="text-sm">WhatsApp</span>

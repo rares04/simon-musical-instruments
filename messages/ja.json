@@ -175,7 +175,9 @@
     "shopInstruments": "楽器を購入",
     "ourStory": "私たちの物語",
     "copyright": "© {year} Simon Musical Instruments. 無断転載禁止。",
-    "madeIn": "ルーマニア、レギンで愛情込めて製作"
+    "madeIn": "ルーマニア、レギンで愛情込めて製作",
+    "followInstagram": "Instagramでフォローする",
+    "contactWhatsApp": "WhatsAppでお問い合わせ"
   },
   "common": {
     "loading": "読み込み中...",
@@ -362,7 +364,8 @@
     "fullyInsured": "保険は価格に含まれています",
     "secureShipping": "工房からのドア・ツー・ドアサービス",
     "professionalPackaging": "プロフェッショナル梱包",
-    "assistanceNote": "サポートが必要ですか？個人相談についてお問い合わせください"
+    "assistanceNote": "サポートが必要ですか？個人相談についてお問い合わせください",
+    "closeCart": "カートを閉じる"
   },
   "checkout": {
     "title": "チェックアウト",

@@ -73,7 +73,7 @@ export function CartDrawer() {
             <button
               onClick={closeCart}
               className="p-2 hover:bg-muted rounded-lg transition-colors"
-              aria-label="Close cart"
+              aria-label={t('closeCart')}
             >
               <X className="h-5 w-5" />
             </button>
