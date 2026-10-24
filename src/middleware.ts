@@ -4,8 +4,23 @@ import { routing } from './i18n/routing'
 
 const intlMiddleware = createMiddleware(routing)
 
-/** The canonical production domain (no subdomains allowed) */
-const CANONICAL_DOMAIN = 'simoninstruments.com'
+const PRODUCTION_DOMAIN = 'simoninstruments.com'
+
+/**
+ * The canonical domain (no subdomains allowed). Derived from NEXT_PUBLIC_SITE_URL so preview and
+ * staging deploys can set their own host; defaults to production when unset or invalid.
+ */
+function resolveCanonicalDomain(): string {
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL
+  if (!siteUrl) return PRODUCTION_DOMAIN
+  try {
+    return new URL(siteUrl).hostname
+  } catch {
+    return PRODUCTION_DOMAIN
+  }
+}
+
+const CANONICAL_DOMAIN = resolveCanonicalDomain()
 
 /**
  * Check if a host is allowed for local development
