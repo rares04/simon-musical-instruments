@@ -16,12 +16,12 @@ The steps below were run against an empty local database:
 
 | Tool | Version | Notes |
 |---|---|---|
-| Node | 22 or 24 LTS | `engines` allows ≥20.9. Node 20 is EOL as of 2026-04-30 |
+| Node | 22.23.4+ or 24.22.1+ | Payload 3.92 requires it (`engines`); `.nvmrc` pins 24. Node 20 is EOL as of 2026-04-30 |
 | pnpm | 10.29.2 via Corepack | `corepack enable && corepack prepare pnpm@10.29.2 --activate`. pnpm ≥11 ignores the `onlyBuiltDependencies` allow-list and creates `pnpm-workspace.yaml`; don't commit that file |
 | PostgreSQL | 15+ | Docker, Homebrew or Postgres.app |
 
-`docker-compose.yml` in the repo is the Payload **MongoDB** template. It does not match this project,
-which uses Postgres. Use one of the options below instead.
+`docker-compose.yml` in the repo starts a local Postgres 17 (`docker compose up -d`, then
+`DATABASE_URL=postgresql://simon:simon@localhost:5432/simon`). Homebrew or Postgres.app work too.
 
 ## 2. Start a database
 
@@ -110,6 +110,7 @@ pnpm payload migrate:create x   # new migration from schema diff
 | Symptom | Cause / fix |
 |---|---|
 | `ENOTFOUND tenant/user postgres.ognzjmnrelsefcqacroe not found` | `.env` still points at the paused staging Supabase. Use a local DB |
+| `payload migrate` hangs on "…data loss will occur. Would you like to proceed?" | A `dev` row (batch −1) in `payload_migrations`: scripts that start Payload in dev mode (seed, `getPayload` in `tsx`) write it. Answer `y` (Payload then ignores that row and runs the pending migrations), or run scripts with `NODE_ENV=production`. Never run against a database you care about without a backup |
 | Payload asks "Do you want to push the schema?" or warns about dev push | You're in dev mode against a DB that was migrated. Answer no, and keep using migrations |
 | `ERR_PNPM_IGNORED_BUILDS` / new `pnpm-workspace.yaml` | Wrong pnpm major. Switch to 10.29.2 through Corepack and delete the generated file |
 | A new migration contains `ALTER COLUMN "price" DROP NOT NULL` | Known: `20260303_000000_make_instrument_price_optional` was written by hand without a JSON snapshot. The statement is harmless (a no-op on an already-nullable column). Keep it in the generated migration; its snapshot fixes the drift |
