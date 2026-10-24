@@ -745,8 +745,8 @@
     },
     "private": {
       "login": "Autentificare",
-      "register": "Creează un cont",
-      "verifyEmail": "Verifică adresa de e-mail",
+      "register": "Creați un cont",
+      "verifyEmail": "Verificați adresa de e-mail",
       "checkout": "Rezervare",
       "account": "Contul meu"
     },
