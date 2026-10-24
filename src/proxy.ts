@@ -40,7 +40,7 @@ function isLocalhost(host: string): boolean {
  * Wildcard domain setup: *.simoninstruments.com → simoninstruments.com
  * All canonicalization is done in a single redirect to avoid redirect chains.
  */
-export default function middleware(request: NextRequest) {
+export default function proxy(request: NextRequest) {
   const url = new URL(request.url)
 
   // Get the host from headers (handle proxies like Railway's load balancer)
