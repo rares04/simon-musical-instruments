@@ -35,8 +35,9 @@ deletion and the new backup job.
 - `S3_ACCESS_KEY/BUCKET/ENDPOINT/REGION/SECRET_KEY`.
 - `STRIPE_SECRET_KEY`, `NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY`.
 
-**`DEEPL_API_KEY` is missing** (as of 2026-10-24). That is the confirmed root cause of K-4. A DeepL
-API Free key exists; the K-4 rollout sets it and backfills the existing instruments.
+`DEEPL_API_KEY` has been set since 2026-10-24 (DeepL API Free). That fixed K-4: the existing
+instruments were backfilled in all 7 languages, and new instruments are translated when they're
+created.
 
 ## 2. Build and deploy
 
@@ -82,7 +83,8 @@ API Free key exists; the K-4 rollout sets it and backfills the existing instrume
 | Record | Value | Purpose |
 |---|---|---|
 | `@ ALIAS` | the Railway target `….up.railway.app` (Hostinger flattens it; resolves to the Railway edge `69.46.46.117`) | Website |
-| `www CNAME` | the Railway target for `www` (added 2026-10-24, TTL 300) | `www` is a second Railway custom domain; the middleware 301s it to the apex |
+| `www CNAME` | the Railway target for `www` (added 2026-10-24, TTL 300) | `www` is a second Railway custom domain; it 301s to the apex |
+| `_railway-verify.www TXT` | `railway-verify=…` | Railway's ownership check for `www`. Keep it |
 | `@ MX` | `mx1/mx2.hostinger.com` | Paul's mailbox (Hostinger Mail) |
 | `@ TXT` | `v=spf1 include:_spf.mail.hostinger.com ~all` | SPF for the mailbox |
 | `@ TXT` | `google-site-verification=…` | Google Search Console domain verification (added 2026-10-24). **Keep forever**: deleting it unverifies Search Console |
@@ -106,11 +108,11 @@ Cloudflare isn't needed for caching, because Railway's own edge CDN is free (see
 
 | Vendor | Used for | Account / plan | Config / secret | Notes |
 |---|---|---|---|---|
-| **Railway** | Hosting the Next.js + Payload app, nightly backup job | Paul's account, **Hobby** ($5/mo, includes $5 of usage) | Service variables | ~$8.50/mo from March to October 2026, 99% of it memory. ~$6.60/mo after deleting `ideal-caring`. Target: the $5 floor. The edge CDN is free and off (K-15) |
+| **Railway** | Hosting the Next.js + Payload app, nightly backup job | Paul's account, **Hobby** ($5/mo, includes $5 of usage) | Service variables | ~$8.50/mo from March to October 2026, 99% of it memory. ~$6.60/mo after deleting `ideal-caring`. Target: the $5 floor. The edge CDN is **on** since 2026-10-24 (free; see §6.7) |
 | **Supabase** | Postgres + S3-compatible storage | **Free**. No built-in backups; pauses after 7 days without activity (low risk: the site gets traffic every few minutes) | `DATABASE_URL`, `S3_*` | Limits vs use (2026-10-24): DB 500 MB vs ~14 MB (app tables 1.4 MB); storage 1 GB vs 40 MB (84 files); 2 active projects vs 1 (+1 paused). Egress (5 GB) is unmeasured. Pro ($25/mo) isn't needed: our own job backs up the DB **and** media (§6.6) |
 | **Hostinger** | Domain, DNS, `paul.simon@` mailbox | Unknown | Dashboard | |
 | **Resend** | Transactional email | Unknown. Free tier is 100/day, 3,000/mo | `RESEND_API_KEY`, `EMAIL_FROM` | Domain verified (DKIM present) |
-| **DeepL** | Translating instrument title and notes | **API Free** (500k characters/mo) | `DEEPL_API_KEY` | Not yet set in production (K-4). The backfill uses ~90k characters once; a new instrument ~4k. Free allows one glossary, which holds the luthier terms (`docs/seo/translation-glossary.md`) |
+| **DeepL** | Translating instrument title and notes | **API Free** (500k characters/mo) | `DEEPL_API_KEY` | Set in production 2026-10-24. The one-off backfill used ~90k characters; a new instrument uses ~4k. Free allows one glossary, which holds the luthier terms (`docs/seo/translation-glossary.md`) |
 | **Google Cloud** | OAuth client for "Sign in with Google" | Unknown project | `GOOGLE_CLIENT_ID/SECRET` | Redirect URI `https://simoninstruments.com/api/auth/callback/google` |
 | **Stripe** | Card payments, **disabled** | Test-mode keys, also in production | `STRIPE_SECRET_KEY`, `NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY` | Code kept in comments. No live account in use |
 | **Better Stack** | Uptime monitors, backup heartbeat | Free | — | Owned by observability. A missed nightly backup alerts after ~26 h |
@@ -175,11 +177,20 @@ Both steps are manual. Nothing links them.
 1. Upload the photos and audio to Media. Fill in `alt` with something descriptive, not just
    "Front".
 2. Create the instrument **in English**. Leave the price empty for "price on request".
-3. Translations to the other 7 locales should appear about 10s after saving, if `DEEPL_API_KEY` is
-   set.
+3. Translations to the other 7 locales appear about 10s after saving. DeepL uses formal address and
+   the luthier glossary. If DeepL fails, nothing is saved (the English text is never copied in), and
+   the instrument stays English in that language until it's backfilled.
 
-To re-translate later, nothing in the UI does it today. The hook only runs on create, or when code
-passes `context.triggerAutoTranslate`.
+To fix one translation, switch the admin locale and edit the text by hand. The hook only runs on
+create, so editing the English later doesn't re-translate. To translate missing or out-of-date
+languages in bulk, use `scripts/backfill-translations.ts`:
+
+1. `review` writes proposals to a file.
+2. A person checks them (a native speaker reviews RO).
+3. `apply` writes exactly that file.
+
+The script header has the commands. Hand-written translations are kept. To change the glossary, edit
+`docs/seo/translation-glossary.md`, then run the script's `glossary` command (it costs no quota).
 
 ### 6.5 Rotate a secret
 
@@ -211,6 +222,21 @@ Daily dumps are kept 35 days, monthly dumps 400 days. Media and `db/pinned/` are
 - Restores have been tested into a local database and inside the job. A restore over the live
   database has **not** been tested; restore into a new database instead, then switch over.
 
+### 6.7 Edge CDN
+
+Railway's edge CDN is on for the web service (enabled 2026-10-24; free). It caches `image/*`
+responses (media files, `/_next/image`) for 2 hours. HTML, `/api/*`, `/admin` and anything sent
+with `Set-Cookie`, `Cache-Control: private` or `no-store` are never cached. A response header
+`x-cache: HIT` means it came from the edge.
+
+- **Replaced a photo but kept its filename?** Run `railway cdn purge all`. Payload normally makes
+  filenames unique, so this is rare.
+- **Something private got cached?** Make the route send `Cache-Control: private, no-store`, then
+  purge.
+- **Turn it off:** `railway cdn disable`.
+- Railway's HTTP logs still record each visitor's real IP (`srcIp`), and the app sees it, so rate
+  limits stay per visitor.
+
 ## 7. Calendar of hard deadlines
 
 | Date | What |
@@ -227,7 +253,7 @@ Answered 2026-10-24:
 - Production is `alluring-laughter`. It now runs in EU West.
 - `ideal-caring` was an idle, billing copy. Deleted.
 - Supabase is on the Free plan, so it has no backups of its own; the nightly job covers that.
-- `DEEPL_API_KEY` is missing; a Free key exists and K-4 sets it.
+- `DEEPL_API_KEY` was missing. It has been set since 2026-10-24, and K-4 is fixed.
 
 Still open (tracked on the coordination board):
 
