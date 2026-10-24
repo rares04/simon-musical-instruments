@@ -59,7 +59,9 @@ export function OrderCard({ order, showViewDetails = false }: OrderCardProps) {
           <div className="flex items-center justify-between mt-3">
             <div className="text-sm">
               <p className="text-muted-foreground">{formattedDate}</p>
-              <p className="font-semibold text-foreground mt-1">{formatPrice(order.total, locale)}</p>
+              <p className="font-semibold text-foreground mt-1">
+                {formatPrice(order.total, locale)}
+              </p>
             </div>
 
             {showViewDetails && (

@@ -144,7 +144,9 @@ export default async function AccountDashboard() {
           <div className="flex items-center justify-between mb-2">
             <span className="text-accent font-semibold">€</span>
           </div>
-          <p className="text-2xl font-bold text-foreground">{formatPrice(stats.totalSpent, locale)}</p>
+          <p className="text-2xl font-bold text-foreground">
+            {formatPrice(stats.totalSpent, locale)}
+          </p>
           <p className="text-sm text-muted-foreground">{t('totalSpent')}</p>
         </div>
       </div>

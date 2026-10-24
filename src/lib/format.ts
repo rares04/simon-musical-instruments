@@ -9,13 +9,23 @@
 // Pin the time zone too, so server (UTC) and browser render the same calendar day.
 const TIME_ZONE = 'Europe/Bucharest'
 
+const priceFormatters = new Map<string, Intl.NumberFormat>()
+const dateFormatters = new Map<string, Intl.DateTimeFormat>()
+
 export function formatPrice(amount: number, locale: string): string {
-  return new Intl.NumberFormat(locale, {
-    style: 'currency',
-    currency: 'EUR',
-    minimumFractionDigits: 0,
-    maximumFractionDigits: 2,
-  }).format(amount)
+  let formatter = priceFormatters.get(locale)
+  if (!formatter) {
+    formatter = new Intl.NumberFormat(locale, {
+      style: 'currency',
+      currency: 'EUR',
+      // "€" in every locale; Romanian would otherwise print "EUR".
+      currencyDisplay: 'narrowSymbol',
+      minimumFractionDigits: 0,
+      maximumFractionDigits: 2,
+    })
+    priceFormatters.set(locale, formatter)
+  }
+  return formatter.format(amount)
 }
 
 export function formatDate(
@@ -23,5 +33,13 @@ export function formatDate(
   locale: string,
   options: Intl.DateTimeFormatOptions = { dateStyle: 'medium' },
 ): string {
-  return new Intl.DateTimeFormat(locale, { timeZone: TIME_ZONE, ...options }).format(new Date(date))
+  const value = new Date(date)
+  if (Number.isNaN(value.getTime())) return ''
+  const key = `${locale}|${JSON.stringify(options)}`
+  let formatter = dateFormatters.get(key)
+  if (!formatter) {
+    formatter = new Intl.DateTimeFormat(locale, { timeZone: TIME_ZONE, ...options })
+    dateFormatters.set(key, formatter)
+  }
+  return formatter.format(value)
 }

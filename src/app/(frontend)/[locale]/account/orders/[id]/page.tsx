@@ -94,8 +94,7 @@ export default async function OrderDetailPage({ params }: { params: Promise<{ id
         },
         {
           status: 'Processing',
-          date:
-            order.status === 'paid' ? 'Pending' : formatDate(order.createdAt, locale),
+          date: order.status === 'paid' ? 'Pending' : formatDate(order.createdAt, locale),
           completed: ['processing', 'shipped', 'delivered'].includes(order.status),
         },
         {

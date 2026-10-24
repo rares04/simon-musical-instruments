@@ -220,9 +220,7 @@ export function InstrumentCardWithAudio({ instrument }: InstrumentCardWithAudioP
               {instrument.title}
             </h3>
             <p className="text-base font-medium text-foreground whitespace-nowrap">
-              {instrument.price != null
-                ? formatPrice(instrument.price, locale)
-                : t('askForPrice')}
+              {instrument.price != null ? formatPrice(instrument.price, locale) : t('askForPrice')}
             </p>
           </div>
 
