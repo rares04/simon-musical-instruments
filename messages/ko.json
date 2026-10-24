@@ -12,7 +12,12 @@
     "activeOrders": "진행 중인 주문",
     "ordersInProgress": "{count}개 주문 진행 중",
     "completePayment": "결제 완료",
-    "paulWillContact": "폴이 결제 안내를 위해 연락드리겠습니다"
+    "paulWillContact": "폴이 결제 안내를 위해 연락드리겠습니다",
+    "language": "언어",
+    "openMenu": "메뉴 열기",
+    "closeMenu": "메뉴 닫기",
+    "openCart": "장바구니 열기",
+    "notifications": "알림"
   },
   "hero": {
     "title": "가상 공방에 오신 것을 환영합니다",

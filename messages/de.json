@@ -12,7 +12,12 @@
     "activeOrders": "Aktive Bestellungen",
     "ordersInProgress": "{count} Bestellung(en) in Bearbeitung",
     "completePayment": "Zahlung Abschließen",
-    "paulWillContact": "Paul wird Sie kontaktieren, um die Zahlung zu vereinbaren"
+    "paulWillContact": "Paul wird Sie kontaktieren, um die Zahlung zu vereinbaren",
+    "language": "Sprache",
+    "openMenu": "Menü öffnen",
+    "closeMenu": "Menü schließen",
+    "openCart": "Warenkorb öffnen",
+    "notifications": "Benachrichtigungen"
   },
   "hero": {
     "title": "Willkommen in Unserer Virtuellen Werkstatt",

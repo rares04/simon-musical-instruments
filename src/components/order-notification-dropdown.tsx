@@ -60,7 +60,12 @@ export function OrderNotificationDropdown() {
   return (
     <DropdownMenu open={open} onOpenChange={setOpen}>
       <DropdownMenuTrigger asChild>
-        <Button variant="ghost" size="icon" className="relative cursor-pointer">
+        <Button
+          variant="ghost"
+          size="icon"
+          className="relative cursor-pointer"
+          aria-label={t('notifications')}
+        >
           <Bell className="h-5 w-5" />
           {hasPendingPayment && (
             <span className="absolute top-1 right-1 w-2 h-2 bg-amber-500 rounded-full animate-pulse" />

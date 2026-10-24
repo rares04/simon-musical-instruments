@@ -1,6 +1,6 @@
 'use client'
 
-import { useLocale } from 'next-intl'
+import { useLocale, useTranslations } from 'next-intl'
 import { usePathname, useRouter } from '@/i18n/routing'
 import { Globe, Check } from 'lucide-react'
 import {
@@ -18,6 +18,7 @@ interface LanguageSwitcherProps {
 
 export function LanguageSwitcher({ variant = 'header' }: LanguageSwitcherProps) {
   const locale = useLocale() as Locale
+  const t = useTranslations('navigation')
   const router = useRouter()
   const pathname = usePathname()
 
@@ -33,6 +34,7 @@ export function LanguageSwitcher({ variant = 'header' }: LanguageSwitcherProps) 
             variant="ghost"
             size="sm"
             className="gap-2 cursor-pointer hover:bg-muted/50 transition-colors"
+            aria-label={`${t('language')}: ${localeNames[locale]}`}
           >
             <Globe className="h-4 w-4" />
             <span className="hidden lg:inline text-sm">{locale.toUpperCase()}</span>

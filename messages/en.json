@@ -12,7 +12,12 @@
     "activeOrders": "Active Orders",
     "ordersInProgress": "{count} order(s) in progress",
     "completePayment": "Complete Payment",
-    "paulWillContact": "Paul will contact you to arrange payment"
+    "paulWillContact": "Paul will contact you to arrange payment",
+    "language": "Language",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu",
+    "openCart": "Open shopping cart",
+    "notifications": "Notifications"
   },
   "hero": {
     "title": "Welcome to Our Virtual Workshop",
