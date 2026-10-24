@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server'
 import { getPayload } from 'payload'
 import config from '@/payload.config'
+import { limitByIp } from '@/lib/rate-limit'
 import {
   OTP_MAX_ATTEMPTS,
   formatOtpRecord,
@@ -16,6 +17,9 @@ const INVALID = {
 
 export async function POST(request: Request) {
   try {
+    const limited = limitByIp(request, 'verifyOtp')
+    if (limited) return limited
+
     const body = await request.json().catch(() => ({}))
     const email = typeof body.email === 'string' ? body.email.trim().toLowerCase() : ''
     const otp = typeof body.otp === 'string' ? body.otp : ''

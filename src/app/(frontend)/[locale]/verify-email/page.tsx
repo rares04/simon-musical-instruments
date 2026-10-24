@@ -79,8 +79,14 @@ export default function VerifyEmailPage() {
       setSuccess(true)
 
       // Sign in normally after verification (the password is never passed between pages).
+      // Prefill the login form without putting the address in the URL.
+      try {
+        sessionStorage.setItem('loginEmail', email)
+      } catch {
+        // Storage unavailable (private mode): the user types the email again.
+      }
       setTimeout(() => {
-        router.push(`/login?verified=true&email=${encodeURIComponent(email)}`)
+        router.push('/login?verified=true')
       }, 1500)
     } catch {
       setError(t('verifyEmail.errors.genericError'))

@@ -1,6 +1,8 @@
 import { getPayload } from 'payload'
 import config from '@/payload.config'
 import { NextResponse } from 'next/server'
+import { limitByIp } from '@/lib/rate-limit'
+import { captchaFailed, verifyTurnstile } from '@/lib/turnstile'
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 
@@ -8,7 +10,11 @@ const str = (v: unknown) => (typeof v === 'string' ? v.trim() : '')
 
 export async function POST(req: Request) {
   try {
+    const limited = limitByIp(req, 'register')
+    if (limited) return limited
+
     const body = await req.json().catch(() => ({}))
+    if (!(await verifyTurnstile(body.turnstileToken, req))) return captchaFailed()
     const email = str(body.email).toLowerCase()
     const password = typeof body.password === 'string' ? body.password : ''
     const firstName = str(body.firstName)

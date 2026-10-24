@@ -13,6 +13,7 @@ import { Label } from '@/components/ui/label'
 import { Textarea } from '@/components/ui/textarea'
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group'
 import { CheckoutLimitReached } from '@/components/checkout-limit-reached'
+import { TurnstileWidget, turnstileRequired } from '@/components/turnstile-widget'
 import Image from 'next/image'
 import { Link } from '@/i18n/routing'
 import { formatPrice } from '@/lib/format'
@@ -57,7 +58,6 @@ interface SavedAddress {
 export default function CheckoutPage() {
   const { data: session, status } = useSession()
   const isAuthenticated = status === 'authenticated'
-  const userId = session?.user?.id
   const { items, clearCart } = useCart()
   const t = useTranslations('checkout')
   const tCommon = useTranslations('common')
@@ -67,6 +67,8 @@ export default function CheckoutPage() {
   // Form states
   const [isProcessing, setIsProcessing] = useState(false)
   const [error, setError] = useState<string>('')
+  const [captchaToken, setCaptchaToken] = useState<string | null>(null)
+  const [captchaReset, setCaptchaReset] = useState(0)
 
   // Reservation limit state
   const [reservationCount, setReservationCount] = useState(0)
@@ -270,12 +272,13 @@ export default function CheckoutPage() {
             type: item.type,
           })),
           formData,
-          userId,
           total,
+          turnstileToken: captchaToken,
         }),
       })
 
       if (!response.ok) {
+        setCaptchaReset((n) => n + 1)
         const errorData = await response.json()
         throw new Error(errorData.error || 'Failed to submit reservation')
       }
@@ -340,6 +343,7 @@ export default function CheckoutPage() {
                 <li>{t('howItWorksStep3')}</li>
                 <li>{t('howItWorksStep4')}</li>
               </ol>
+              <p className="mt-2 text-sm text-muted-foreground">{t('holdExpiryNote')}</p>
             </div>
           </div>
         </div>
@@ -700,12 +704,14 @@ export default function CheckoutPage() {
                   {/* <p className="text-xs text-muted-foreground">{t('summary.priceNote')}</p> */}
                 </div>
 
+                <TurnstileWidget onToken={setCaptchaToken} resetKey={captchaReset} />
+
                 {/* Submit Button */}
                 <Button
                   type="submit"
                   size="lg"
                   className="w-full h-12 cursor-pointer"
-                  disabled={isProcessing}
+                  disabled={isProcessing || (turnstileRequired && !captchaToken)}
                 >
                   {isProcessing ? (
                     <>

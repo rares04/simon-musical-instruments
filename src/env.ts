@@ -20,6 +20,8 @@ const recommended = [
   'GOOGLE_CLIENT_ID',
   'GOOGLE_CLIENT_SECRET',
   'DEEPL_API_KEY',
+  'NEXT_PUBLIC_TURNSTILE_SITE_KEY',
+  'TURNSTILE_SECRET_KEY',
 ] as const
 
 /**

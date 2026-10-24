@@ -191,7 +191,8 @@
     "contactSupport": "지원팀 문의",
     "continueAsGuest": "게스트로 쇼핑 계속",
     "needAssistance": "도움이 필요하신가요?",
-    "viewDetails": "상세 정보"
+    "viewDetails": "상세 정보",
+    "captchaUnavailable": "보안 확인을 불러오지 못했습니다. 이 사이트의 콘텐츠 차단 기능을 끄고 새로고침하거나 문의해 주세요."
   },
   "account": {
     "title": "내 계정",
@@ -402,7 +403,8 @@
     "success": {
       "title": "감사합니다!",
       "message": "주문이 성공적으로 완료되었습니다."
-    }
+    },
+    "holdExpiryNote": "결제를 함께 준비하는 동안 악기를 72시간 동안 보류해 드립니다."
   },
   "checkoutSuccess": {
     "confirmingOrder": "주문 확인 중...",

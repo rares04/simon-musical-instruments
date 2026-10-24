@@ -77,7 +77,7 @@ export function OrderConfirmationEmail({
             <Text style={paragraph}>Dear {customerName},</Text>
             <Text style={paragraph}>
               {isReservation
-                ? 'Thank you for your reservation. Paul will contact you within 1-2 business days to confirm details and arrange payment.'
+                ? 'Thank you for your reservation. Paul will contact you within 1-2 business days to confirm details and arrange payment. We hold the instrument for you for 72 hours while we arrange payment together.'
                 : 'Thank you for your purchase. Your handcrafted instrument is being prepared with the utmost care.'}
             </Text>
           </Section>

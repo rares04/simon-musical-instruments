@@ -1,6 +1,7 @@
 'use client'
 
 import type React from 'react'
+import { TurnstileWidget, turnstileRequired } from '@/components/turnstile-widget'
 import { useState, useEffect } from 'react'
 import { useSearchParams } from 'next/navigation'
 import { useTranslations } from 'next-intl'
@@ -48,6 +49,8 @@ export default function ContactPage() {
   }, [instrumentName, inquiryType])
   const [isSubmitted, setIsSubmitted] = useState(false)
   const [isSubmitting, setIsSubmitting] = useState(false)
+  const [captchaToken, setCaptchaToken] = useState<string | null>(null)
+  const [captchaReset, setCaptchaReset] = useState(0)
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -57,19 +60,22 @@ export default function ContactPage() {
       const response = await fetch('/api/contact', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({ ...formData, turnstileToken: captchaToken }),
       })
 
       if (response.ok) {
+        setCaptchaReset((n) => n + 1)
         setIsSubmitted(true)
         setTimeout(() => {
           setIsSubmitted(false)
           setFormData({ name: '', email: '', phone: '', subject: '', message: '' })
         }, 5000)
       } else {
+        setCaptchaReset((n) => n + 1)
         alert(t('form.error'))
       }
     } catch {
+      setCaptchaReset((n) => n + 1)
       alert(t('form.error'))
     } finally {
       setIsSubmitting(false)
@@ -205,9 +211,10 @@ export default function ContactPage() {
                     />
                   </div>
 
+                  <TurnstileWidget onToken={setCaptchaToken} resetKey={captchaReset} />
                   <Button
                     type="submit"
-                    disabled={isSubmitting}
+                    disabled={isSubmitting || (turnstileRequired && !captchaToken)}
                     className="w-full bg-accent text-accent-foreground hover:bg-accent/90 cursor-pointer"
                   >
                     {isSubmitting ? t('form.sending') : t('form.submit')}

@@ -136,6 +136,7 @@ Cloudflare isn't needed for caching, because Railway's own edge CDN is free (see
 | `DEEPL_API_KEY` | recommended | `src/lib/deepl.ts`, `src/hooks/autoTranslate.ts` | Without it, translation is skipped silently |
 | `BACKUP_DATABASE_URL` | `db-backup` only | `ops/backup/backup.sh` | The read-only `simon_backup` role. The job's `DATABASE_URL` references it |
 | `HEARTBEAT_URL` | `db-backup` only | `ops/backup/backup.sh` | Better Stack heartbeat, pinged after a verified run. Treat as a secret |
+| `NEXT_PUBLIC_TURNSTILE_SITE_KEY`, `TURNSTILE_SECRET_KEY` | yes | `src/components/turnstile-widget.tsx`, `src/lib/turnstile.ts` | Cloudflare Turnstile bot check on sign-up, contact and reservations. The site key is inlined at **build** time. Without the secret, checks are skipped |
 | `STRIPE_SECRET_KEY`, `NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY` | no (disabled) | dead code | |
 | `NEXTAUTH_URL` / `AUTH_URL` | no | Auth.js | `trustHost: true` derives the URL from the request |
 

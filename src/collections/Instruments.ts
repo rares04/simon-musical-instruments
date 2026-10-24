@@ -1,6 +1,7 @@
 import type { CollectionConfig } from 'payload'
 import { autoTranslateInstrument } from '@/hooks/autoTranslate'
 import { anyone, isAdmin } from '@/access'
+import { scheduleHoldSweep } from '@/lib/reservations'
 
 export const Instruments: CollectionConfig = {
   slug: 'instruments',
@@ -11,6 +12,13 @@ export const Instruments: CollectionConfig = {
   },
   hooks: {
     afterChange: [autoTranslateInstrument],
+    // Release expired reservations in the background whenever the catalogue is read
+    // (at most every 10 minutes; see src/lib/reservations.ts).
+    beforeOperation: [
+      ({ operation, req }) => {
+        if (operation === 'read') scheduleHoldSweep(req.payload)
+      },
+    ],
   },
   access: {
     read: anyone,

@@ -1,3 +1,4 @@
+import 'server-only'
 import { createHmac, randomInt, timingSafeEqual } from 'crypto'
 import type { Payload } from 'payload'
 import { sql, type PostgresAdapter } from '@payloadcms/db-postgres'

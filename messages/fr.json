@@ -195,7 +195,8 @@
     "contactSupport": "Contacter le Support",
     "continueAsGuest": "Continuer les achats en tant qu'invité",
     "needAssistance": "Besoin d'aide?",
-    "viewDetails": "Voir les Détails"
+    "viewDetails": "Voir les Détails",
+    "captchaUnavailable": "La vérification de sécurité n'a pas pu se charger. Désactivez les bloqueurs de contenu pour ce site et rechargez la page, ou contactez-nous."
   },
   "account": {
     "title": "Mon Compte",
@@ -406,7 +407,8 @@
     "success": {
       "title": "Merci!",
       "message": "Votre commande a été passée avec succès."
-    }
+    },
+    "holdExpiryNote": "Nous vous réservons l'instrument pendant 72 heures, le temps d'organiser ensemble le paiement."
   },
   "checkoutSuccess": {
     "confirmingOrder": "Confirmation de votre commande...",

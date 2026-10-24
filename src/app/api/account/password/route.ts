@@ -2,6 +2,7 @@ import { type NextRequest, NextResponse } from 'next/server'
 import { auth } from '@/lib/auth'
 import { getPayload } from 'payload'
 import config from '@/payload.config'
+import { LIMITS, rateLimit, tooManyRequests } from '@/lib/rate-limit'
 
 export async function POST(req: NextRequest) {
   try {
@@ -10,6 +11,9 @@ export async function POST(req: NextRequest) {
     if (!session?.user?.id) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
     }
+    const { limit, windowMs } = LIMITS.passwordChange
+    const allowed = rateLimit(`passwordChange:${session.user.id}`, limit, windowMs)
+    if (!allowed.ok) return tooManyRequests(allowed.retryAfterSec)
 
     const body = await req.json().catch(() => ({}))
     const currentPassword = typeof body.currentPassword === 'string' ? body.currentPassword : ''

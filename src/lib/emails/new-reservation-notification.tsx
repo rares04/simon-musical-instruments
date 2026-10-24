@@ -66,6 +66,10 @@ export function NewReservationNotificationEmail({
           <Section style={alertBox}>
             <Heading style={alertHeading}>New instrument reservation received!</Heading>
             <Text style={alertText}>Please contact the customer within 1-2 business days.</Text>
+            <Text style={alertText}>
+              The hold is released automatically after 72 hours unless you move the order to
+              &quot;Processing&quot; or &quot;Paid&quot; in the admin.
+            </Text>
           </Section>
 
           {/* Reservation Number */}
