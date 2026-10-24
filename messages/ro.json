@@ -827,17 +827,17 @@
     },
     "categories": {
       "cellos": {
-        "title": "Violoncele de vânzare, lucrate manual, Reghin",
+        "title": "Violoncele 4/4 de vânzare, de lutier, Reghin",
         "description": "Violoncele 4/4 construite manual de Paul și Ecaterina Simon în Reghin. Modele: {models}. Fotografii, înregistrări audio și prețuri. Rezervare online."
       },
       "doubleBasses": {
-        "title": "Contrabași de vânzare, lucrați manual, Reghin",
+        "title": "Contrabași 3/4 de vânzare, de lutier, Reghin",
         "description": "Contrabași 3/4 construiți manual de Paul și Ecaterina Simon în Reghin. Modele: {models}. Fotografii, înregistrări audio și prețuri. Rezervare online."
       }
     }
   },
   "categoryPage": {
-    "badge": "Lucrate manual în Reghin, România",
+    "badge": "Din atelierul nostru din Reghin, România",
     "modelsLine": "Modele actuale: {models}.",
     "factsHeading": "Pe scurt",
     "facts": {
@@ -875,7 +875,7 @@
     "allInstruments": "Vedeți toate instrumentele",
     "contact": "Puneți-ne o întrebare",
     "cellos": {
-      "h1": "Violoncele lucrate manual",
+      "h1": "Violoncele de lutier din Reghin",
       "intro": "Construim manual violoncele de mărime întreagă (4/4), în atelierul nostru din Reghin. Fiecare este unic, cu lemnul, lacul și reglajul său.",
       "stock": "{count, plural, one {Un violoncel este disponibil acum} few {# violoncele sunt disponibile acum} other {# de violoncele sunt disponibile acum}}. Prețuri: {price}.",
       "stockNoPrice": "{count, plural, one {Un violoncel este disponibil acum} few {# violoncele sunt disponibile acum} other {# de violoncele sunt disponibile acum}}. Prețuri la cerere.",
@@ -896,7 +896,7 @@
       }
     },
     "doubleBasses": {
-      "h1": "Contrabași lucrați manual",
+      "h1": "Contrabași de lutier din Reghin",
       "intro": "Construim manual contrabași 3/4, în atelierul nostru din Reghin. Fiecare este unic, cu lemnul, lacul și reglajul său.",
       "stock": "{count, plural, one {Un contrabas este disponibil acum} few {# contrabași sunt disponibili acum} other {# de contrabași sunt disponibili acum}}. Prețuri: {price}.",
       "stockNoPrice": "{count, plural, one {Un contrabas este disponibil acum} few {# contrabași sunt disponibili acum} other {# de contrabași sunt disponibili acum}}. Prețuri la cerere.",

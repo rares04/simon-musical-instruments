@@ -115,6 +115,12 @@ describe('categoryStats', () => {
     })
   })
 
+  it('lists in British English, without a serial comma', async () => {
+    const { formatList } = await import('@/lib/seo/categories')
+    expect(formatList('en', ['maple', 'alder', 'ash'])).toBe('maple, alder and ash')
+    expect(formatList('ro', ['paltin', 'arin', 'frasin'])).toBe('paltin, arin și frasin')
+  })
+
   it('falls back to every instrument when nothing is for sale', () => {
     const stats = categoryStats([list[3]])
     expect(stats).toMatchObject({ available: 0, minPrice: null, models: ['Ceruti'] })

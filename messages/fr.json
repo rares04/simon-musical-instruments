@@ -827,11 +827,11 @@
     },
     "categories": {
       "cellos": {
-        "title": "Violoncelles faits main à vendre, Reghin, Roumanie",
+        "title": "Violoncelles de luthier à vendre, Roumanie",
         "description": "Violoncelles entiers fabriqués à la main par Paul et Ecaterina Simon à Reghin, en Roumanie. Modèles : {models}. Photos, extraits sonores et prix. Réservation en ligne."
       },
       "doubleBasses": {
-        "title": "Contrebasses faites main à vendre, Roumanie",
+        "title": "Contrebasses de luthier à vendre, Roumanie",
         "description": "Contrebasses 3/4 fabriquées à la main par Paul et Ecaterina Simon à Reghin, en Roumanie. Modèles : {models}. Photos, extraits sonores et prix."
       }
     }
@@ -875,7 +875,7 @@
     "allInstruments": "Voir tous les instruments",
     "contact": "Posez-nous une question",
     "cellos": {
-      "h1": "Violoncelles faits main",
+      "h1": "Violoncelles de luthier",
       "intro": "Nous fabriquons à la main des violoncelles entiers (4/4) dans notre atelier de Reghin, en Roumanie. Chacun est unique, avec son bois, son vernis et son réglage.",
       "stock": "{count, plural, one {Un violoncelle est disponible actuellement} other {# violoncelles sont disponibles actuellement}}. Prix : {price}.",
       "stockNoPrice": "{count, plural, one {Un violoncelle est disponible actuellement} other {# violoncelles sont disponibles actuellement}}. Prix sur demande.",
@@ -896,7 +896,7 @@
       }
     },
     "doubleBasses": {
-      "h1": "Contrebasses faites main",
+      "h1": "Contrebasses de luthier",
       "intro": "Nous fabriquons à la main des contrebasses 3/4 dans notre atelier de Reghin, en Roumanie. Chacune est unique, avec son bois, son vernis et son réglage.",
       "stock": "{count, plural, one {Une contrebasse est disponible actuellement} other {# contrebasses sont disponibles actuellement}}. Prix : {price}.",
       "stockNoPrice": "{count, plural, one {Une contrebasse est disponible actuellement} other {# contrebasses sont disponibles actuellement}}. Prix sur demande.",
