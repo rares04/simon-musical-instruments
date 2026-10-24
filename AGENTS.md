@@ -18,8 +18,7 @@ Reghin, Transylvania (Romania's "City of Violins"), founded 2014. Live at
 - **Content operations**: Paul adds instruments himself in the Payload admin (`/admin`), using phone
   photos. He fulfils orders by changing order status in the admin.
 - **8 locales**: en (default), ro, de, fr, nl, ja, ko, el. UI strings live in `messages/*.json`.
-  Product text is meant to be machine-translated by DeepL when an instrument is created (see
-  `docs/known-issues.md`: this is not happening in production).
+  Product text is machine-translated by DeepL when an instrument is created.
 
 ## 2. Read this before you change anything
 
@@ -41,8 +40,10 @@ Reghin, Transylvania (Romania's "City of Violins"), founded 2014. Live at
    - **Auth.js v5 (`next-auth@5 beta`)** handles the storefront session: a JWT cookie, with Google
      OAuth and email/password.
    - Both use the same Payload `users` collection. See `src/lib/AGENTS.md`.
-3. **Pushing to `main` deploys to production** (Railway auto-deploy, no CI gate). Work on a branch
-   and open a PR.
+3. **Pushing to `main` deploys to production** (Railway auto-deploy). CI (type-check, lint, unit
+   tests, build, migrations, smoke tests) runs on every PR, but it is **not a required check**: there
+   is no branch protection, so a red PR can still be merged. Work on a branch, open a PR, and wait
+   for green. See `docs/workflow.md`.
 4. **Never run `pnpm dev` against the production database.**
    - In development, the Payload Postgres adapter **pushes schema changes directly** to whatever
      database `DATABASE_URL` points at.
@@ -59,26 +60,27 @@ Reghin, Transylvania (Romania's "City of Violins"), founded 2014. Live at
 
 | Layer | Choice | Version (pinned) | Notes |
 |---|---|---|---|
-| Framework | Next.js App Router | 15.4.10 | React 19.2.1; `src/middleware.ts` handles canonical host + i18n |
-| CMS / backend | Payload CMS | 3.69.0 | Embedded in the same Next app; admin at `/admin`, REST at `/api/*` |
+| Framework | Next.js App Router | 16.4.3 | React 19.3.1, Turbopack; `src/proxy.ts` (Next 16's name for middleware) handles canonical host + i18n |
+| CMS / backend | Payload CMS | 3.92.0 | Embedded in the same Next app; admin at `/admin`, REST at `/api/*` |
 | Database | PostgreSQL (Supabase) | `@payloadcms/db-postgres` | Supabase project `eedkygcxohpnjayapcjt`, eu-west-1, via the session pooler |
 | Media | Supabase Storage (S3 API) | `@payloadcms/storage-s3` | Bucket `media`. Served through the app at `/api/media/file/*` |
-| Storefront auth | Auth.js (next-auth) | 5.0.0-beta.30 | Google + Credentials providers, JWT sessions |
+| Storefront auth | Auth.js (next-auth) | 5.0.0-beta.32 | Google + Credentials providers, JWT sessions |
 | i18n | next-intl | ^4.6 | `localePrefix: 'always'`, Accept-Language detection |
 | UI | Tailwind CSS v4 + shadcn/ui (new-york) + Radix | 4.1 | Tokens in `src/app/(frontend)/globals.css` |
 | Email | Resend + React Email | resend ^6.6 | Sends from `paul.simon@simoninstruments.com`, `send.` subdomain |
 | Translation | DeepL API | deepl-node ^1.24 | `afterChange` hook on instrument create |
 | PDF | @react-pdf/renderer | ^4.3 | "Invoice" download (not a legal fiscal invoice) |
-| Payments | Stripe | ^20.1 | **Disabled.** Routes return 501 |
-| Hosting | Railway (Railpack builder) | n/a | `railway.toml`; healthcheck `/api/health` |
-| DNS / registrar / mailbox | Hostinger | n/a | Apex A record points to Railway. No `www` record |
+| Payments | Stripe | ^20.1 | **Disabled.** The Stripe API routes were removed; the package is kept for a future online-payment path |
+| Runtime | Node 24 | `.nvmrc` 24.22.1 | pnpm 10.29.2; Payload 3.92 needs Node ≥22.23.4 or ≥24.22.1 |
+| Hosting | Railway (Railpack builder) | n/a | Region **europe-west4** (next to the database). `railway.toml` for now; Infrastructure-as-Code is in progress. Healthcheck `/api/health` checks the database |
+| DNS / registrar / mailbox | Hostinger | n/a | Apex A record points to Railway. `www` is an ALIAS to the same Railway domain and redirects to the apex |
 
 ## 4. Repo map
 
 ```
 src/
   payload.config.ts        Payload config: collections, locales, Postgres, S3 plugin
-  middleware.ts            301 to canonical host, trailing-slash strip, next-intl routing
+  proxy.ts                 301 to canonical host, trailing-slash strip, next-intl routing
   access/                  Shared access-control helpers (isAdmin, isAdminOrSelf, …)
   collections/             Users, Media, Instruments, Orders            → AGENTS.md
   hooks/autoTranslate.ts   DeepL afterChange hook for instruments
@@ -107,14 +109,14 @@ file.
 |---|---|
 | Install | `pnpm install --frozen-lockfile` |
 | Dev server | `pnpm dev` (port 3000; see `docs/local-development.md` for a local DB) |
-| Type-check | `pnpm exec tsc --noEmit` (clean as of 2026-10-24) |
-| Lint | `pnpm lint` (0 errors, warnings only) |
+| Type-check | `pnpm exec tsc --noEmit` |
+| Lint | `pnpm lint` (ESLint CLI; 0 errors, warnings only) |
 | Build | `pnpm build` |
 | Regenerate types after a schema change | `pnpm generate:types` |
 | Regenerate the admin import map after adding admin components | `pnpm generate:importmap` |
 | Create a migration | `pnpm payload migrate:create <name>` |
 | Apply migrations | `pnpm payload migrate` |
-| Tests | `pnpm test:int`, `pnpm test:e2e`. **Placeholder tests from the Payload template.** The e2e test is stale |
+| Tests | `pnpm test:int` (Vitest 4 unit tests) and `pnpm test:e2e` (Playwright smoke tests: needs a migrated database and a running app, see `.github/workflows/ci.yml`) |
 
 ## Development workflow (short version)
 
@@ -171,15 +173,14 @@ The authoritative list is in `.env.example`. Required in production: `DATABASE_U
 
 ## 9. Known sharp edges (non-security; full list in `docs/known-issues.md`)
 
-- Product translations are missing in production. Non-English product pages show English text.
-- `/api/account/password` cannot work: Payload never returns `password`. Password change is broken.
-- All DB pages use `force-dynamic` with no caching. Images are proxied through the app server (~2s
-  TTFB).
-- No sitemap, robots.txt, hreflang, Open Graph or structured data. Slugs are hand-typed
-  (`Cello-4-4(10)`).
+- Database-backed pages are rendered per request (`force-dynamic`, `cache-control: no-store`).
+  Optimized images are cached at the Railway edge; the HTML is not.
+- Slugs are hand-typed (`Cello-4-4(10)`).
+- Production's `payload_migrations` has a leftover `dev` row, so `payload migrate` stops at an
+  interactive "data loss will occur, proceed?" prompt until that row is removed (K-26).
 - No staging environment. The staging Supabase project is paused. Local dev needs a local Postgres.
-- Production runs in Railway **us-west2** while the DB is in **eu-west-1**, so every query crosses
-  the Atlantic.
+- Dependabot and CI audits are on, but a new critical advisory fails CI for every PR until it is
+  fixed (`pnpm audit --audit-level=critical`).
 
 ## 10. Where to read next
 
