@@ -13,7 +13,8 @@ const SITE = 'https://simoninstruments.com'
 
 describe('resolveSiteUrl', () => {
   it('defaults to production and keeps only the origin', () => {
-    expect(resolveSiteUrl(undefined)).toBe(SITE)
+    // An empty value, not `undefined`: `undefined` reads NEXT_PUBLIC_SITE_URL, which CI sets.
+    expect(resolveSiteUrl('')).toBe(SITE)
     expect(resolveSiteUrl('not a url')).toBe(SITE)
     expect(resolveSiteUrl('https://staging.example.com/some/path')).toBe(
       'https://staging.example.com',
