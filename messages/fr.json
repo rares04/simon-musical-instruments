@@ -12,7 +12,12 @@
     "activeOrders": "Commandes Actives",
     "ordersInProgress": "{count} commande(s) en cours",
     "completePayment": "Compléter le Paiement",
-    "paulWillContact": "Paul vous contactera pour organiser le paiement"
+    "paulWillContact": "Paul vous contactera pour organiser le paiement",
+    "language": "Langue",
+    "openMenu": "Ouvrir le menu",
+    "closeMenu": "Fermer le menu",
+    "openCart": "Ouvrir le panier",
+    "notifications": "Notifications"
   },
   "hero": {
     "title": "Bienvenue dans Notre Atelier Virtuel",

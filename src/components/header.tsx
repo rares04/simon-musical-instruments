@@ -149,7 +149,12 @@ export function Header() {
               {isAuthenticated && session?.user ? (
                 <DropdownMenu>
                   <DropdownMenuTrigger asChild>
-                    <Button variant="ghost" size="icon" className="cursor-pointer">
+                    <Button
+                      variant="ghost"
+                      size="icon"
+                      className="cursor-pointer"
+                      aria-label={t('myAccount')}
+                    >
                       {session.user.image ? (
                         <Image
                           src={session.user.image}
@@ -195,11 +200,9 @@ export function Header() {
                   </DropdownMenuContent>
                 </DropdownMenu>
               ) : (
-                <Link href="/login">
-                  <Button variant="ghost" size="sm" className="cursor-pointer">
-                    {t('signIn')}
-                  </Button>
-                </Link>
+                <Button variant="ghost" size="sm" className="cursor-pointer" asChild>
+                  <Link href="/login">{t('signIn')}</Link>
+                </Button>
               )}
 
               <CartButton />
@@ -210,11 +213,11 @@ export function Header() {
               <LanguageSwitcher variant="header" />
               {isAuthenticated && <OrderNotificationDropdown />}
               {!isAuthenticated && (
-                <Link href="/login">
-                  <Button variant="ghost" size="icon" className="cursor-pointer">
+                <Button variant="ghost" size="icon" className="cursor-pointer" asChild>
+                  <Link href="/login" aria-label={t('signIn')}>
                     <User className="h-5 w-5" />
-                  </Button>
-                </Link>
+                  </Link>
+                </Button>
               )}
               <CartButton />
               <Button
@@ -222,7 +225,7 @@ export function Header() {
                 size="icon"
                 className="cursor-pointer"
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                aria-label={mobileMenuOpen ? 'Close menu' : 'Open menu'}
+                aria-label={mobileMenuOpen ? t('closeMenu') : t('openMenu')}
                 aria-expanded={mobileMenuOpen}
               >
                 {mobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}

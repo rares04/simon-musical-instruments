@@ -12,7 +12,12 @@
     "activeOrders": "Actieve Bestellingen",
     "ordersInProgress": "{count} bestelling(en) in behandeling",
     "completePayment": "Betaling Voltooien",
-    "paulWillContact": "Paul neemt contact met u op om de betaling te regelen"
+    "paulWillContact": "Paul neemt contact met u op om de betaling te regelen",
+    "language": "Taal",
+    "openMenu": "Menu openen",
+    "closeMenu": "Menu sluiten",
+    "openCart": "Winkelwagen openen",
+    "notifications": "Meldingen"
   },
   "hero": {
     "title": "Welkom in Onze Virtuele Werkplaats",

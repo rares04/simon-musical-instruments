@@ -1,16 +1,18 @@
 "use client"
 
 import { ShoppingBag } from "lucide-react"
+import { useTranslations } from "next-intl"
 import { useCart } from "@/lib/cart-context"
 
 export function CartButton() {
   const { itemCount, openCart } = useCart()
+  const t = useTranslations("navigation")
 
   return (
     <button
       onClick={openCart}
       className="relative p-2 hover:bg-muted rounded-lg transition-colors"
-      aria-label="Open shopping cart"
+      aria-label={t("openCart")}
     >
       <ShoppingBag className="h-5 w-5 text-foreground" />
       {itemCount > 0 && (

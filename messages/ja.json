@@ -12,7 +12,12 @@
     "activeOrders": "進行中の注文",
     "ordersInProgress": "{count}件の注文が進行中",
     "completePayment": "支払いを完了",
-    "paulWillContact": "ポールが支払いの手配についてご連絡いたします"
+    "paulWillContact": "ポールが支払いの手配についてご連絡いたします",
+    "language": "言語",
+    "openMenu": "メニューを開く",
+    "closeMenu": "メニューを閉じる",
+    "openCart": "カートを開く",
+    "notifications": "通知"
   },
   "hero": {
     "title": "私たちのバーチャル工房へようこそ",

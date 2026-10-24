@@ -62,24 +62,24 @@ export function Hero() {
             </div>
 
             <div className="flex flex-col sm:flex-row gap-4 pt-2">
-              <Link href="/gallery">
-                <Button
-                  size="lg"
-                  className="bg-accent hover:bg-accent/90 text-accent-foreground group cursor-pointer w-full sm:w-auto shadow-sm"
-                >
+              <Button
+                size="lg"
+                className="bg-accent hover:bg-accent/90 text-accent-foreground group cursor-pointer w-full sm:w-auto shadow-sm"
+                asChild
+              >
+                <Link href="/gallery">
                   {t('cta')}
                   <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
-                </Button>
-              </Link>
-              <Link href="/#story">
-                <Button
-                  size="lg"
-                  variant="outline"
-                  className="cursor-pointer w-full sm:w-auto border-border/60 hover:bg-accent/10 hover:text-accent bg-transparent transition-colors"
-                >
-                  {t('learnStory')}
-                </Button>
-              </Link>
+                </Link>
+              </Button>
+              <Button
+                size="lg"
+                variant="outline"
+                className="cursor-pointer w-full sm:w-auto border-border/60 hover:bg-accent/10 hover:text-accent bg-transparent transition-colors"
+                asChild
+              >
+                <Link href="/#story">{t('learnStory')}</Link>
+              </Button>
             </div>
           </div>
 
