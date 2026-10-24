@@ -18,6 +18,18 @@ Each run:
 
 A failed run exits non-zero and shows as failed in the Railway cron history.
 
+## Security
+
+- **Dumps are not encrypted.** They hold customer data and password hashes, and they sit in a
+  private bucket (no public access). Anyone who can open that bucket can also read the database
+  credentials in the same Railway project, so client-side encryption would add little, and a lost
+  key would make every backup useless. Accepted by the owner on 2026-10-24.
+- The job reads the database as `simon_backup`: login, `SELECT` only, `BYPASSRLS` (so row-level
+  security doesn't hide rows from the dump), read-only transactions. Its URL is
+  `BACKUP_DATABASE_URL`, and the job's `DATABASE_URL` references it. The security runbook rotates
+  it.
+- The job must never print connection strings, keys or rows. Keep `set -x` off.
+
 ## Bucket layout
 
 | Path | Contents | Kept |
@@ -32,7 +44,7 @@ A failed run exits non-zero and shows as failed in the Railway cron history.
 
 | Variable | Value |
 |---|---|
-| `DATABASE_URL` | Reference to the app's `DATABASE_URL`. Later, a read-only role with `BYPASSRLS` (owned by security) |
+| `DATABASE_URL` | `${{BACKUP_DATABASE_URL}}`: the read-only `simon_backup` role (created and rotated by security) |
 | `S3_BUCKET`, `S3_ENDPOINT`, `S3_REGION`, `S3_ACCESS_KEY`, `S3_SECRET_KEY` | References to the app's Supabase Storage variables |
 | `BACKUP_BUCKET`, `BACKUP_ENDPOINT`, `BACKUP_REGION`, `BACKUP_ACCESS_KEY_ID`, `BACKUP_SECRET_ACCESS_KEY` | References to the bucket's credentials |
 | `HEARTBEAT_URL` | Optional. Pinged only after a fully successful run, so a monitor can alert when it goes missing |
