@@ -113,7 +113,9 @@ rclone copyto "$WORK/restore-counts.txt" "$DEST/db/latest-counts.txt" || fail "u
 
 # 4. Media: copy new or changed files only. Never delete, so removed photos stay recoverable.
 log "copying media"
-if ! rclone copy "supa:$S3_BUCKET" "$DEST/media" -v > "$WORK/media.log" 2>&1; then
+# --size-only: Supabase reports unstable modtimes for some objects, which made rclone
+# re-copy them every night. Payload never reuses a filename, so size is enough.
+if ! rclone copy "supa:$S3_BUCKET" "$DEST/media" --size-only -v > "$WORK/media.log" 2>&1; then
   grep -E 'ERROR|Failed' "$WORK/media.log" >&2 || true
   fail "copying media"
 fi
