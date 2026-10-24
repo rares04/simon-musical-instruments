@@ -7,6 +7,7 @@ Status: **Phase A strategy, 2026-10-24**. Owner: the seo session.
 | Doc | What's in it |
 |---|---|
 | This file | The strategy and the plan |
+| [`milestones.md`](milestones.md) | Five milestones with measurable exit criteria, and the monthly workflow and report |
 | [`technical-spec.md`](technical-spec.md) | The Phase B build: URLs, canonicals, sitemap, robots, JSON-LD, CMS fields, PRs |
 | [`ai-visibility-prompts.md`](ai-visibility-prompts.md) | The fixed questions we ask AI assistants every month |
 | [`translation-glossary.md`](translation-glossary.md) | Luthier terms in RO/DE/FR/NL for DeepL and translation review |
@@ -308,7 +309,7 @@ promotional copy in forums, or editing Wikipedia about ourselves.
 | Now (Paul) | Questions P-11, P-13, P-14, P-18, P-20 and P-21–P-31 (below); Google Business Profile | Paul via Rares |
 | After platform PR2 | Build B1 → B5 (`technical-spec.md` §10) | seo |
 | In parallel | K-4 translations (infra-cost), caching and images (improvements), analytics (observability), legal texts (legal) | other sessions |
-| Monthly | AI prompt run, Search Console review, one new content piece | seo |
+| Monthly | AI prompt run, Search Console review, one new content piece. Checklist and report template: [`milestones.md`](milestones.md) | seo |
 
 ### Questions for Paul
 
