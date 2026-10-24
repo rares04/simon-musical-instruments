@@ -17,9 +17,6 @@ const OG_LOCALE: Record<Locale, string> = {
 /** Default share image, 1200×630. */
 export const DEFAULT_OG_IMAGE = '/og-default.jpg'
 
-/** Titles longer than this skip the brand suffix; Google truncates around 60 characters. */
-const MAX_TITLE_WITH_BRAND = 60
-
 type BuildMetadataInput = {
   locale: Locale
   /** Path without the locale prefix, e.g. `/faq`. */
@@ -38,9 +35,13 @@ type BuildMetadataInput = {
   siteUrl?: string
 }
 
+/**
+ * Every public title ends with the brand, which helps search engines tie each page to the
+ * workshop. Keywords come first, so when a results page truncates a long title (around 60
+ * characters), only the brand suffix is cut.
+ */
 export function withBrand(title: string): string {
-  const full = `${title} | ${business.name}`
-  return full.length <= MAX_TITLE_WITH_BRAND ? full : title
+  return `${title} | ${business.name}`
 }
 
 /**

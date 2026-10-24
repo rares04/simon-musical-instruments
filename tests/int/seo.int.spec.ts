@@ -102,10 +102,10 @@ describe('buildMetadata', () => {
     expect(m.robots).toEqual({ index: false, follow: true })
   })
 
-  it('drops the brand suffix on long titles', () => {
+  it('ends every title with the brand, keywords first', () => {
     expect(withBrand('Short')).toBe('Short | Simon Musical Instruments')
-    const long = 'Handmade cello, Stradivari Davidov model, 2025, flamed alder back'
-    expect(withBrand(long)).toBe(long)
+    const long = 'Handmade cellos, double basses and violins for sale'
+    expect(withBrand(long)).toBe(`${long} | Simon Musical Instruments`)
   })
 })
 
