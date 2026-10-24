@@ -316,7 +316,7 @@ function PanZoomImage({ src, alt, onClose }: { src: string; alt: string; onClose
                 alt={alt}
                 fill
                 className="object-contain"
-                priority
+                loading="eager"
                 quality={100}
                 sizes="100vw"
                 draggable={false}
@@ -400,7 +400,10 @@ function ImageGallery({
             alt={`${alt} - View ${currentIndex + 1}`}
             fill
             className="object-contain transition-transform duration-500 group-hover:scale-105"
-            priority
+            // The first photo is the page's LCP element: load it eagerly at high priority. The Next 16
+            // docs prefer this over `preload`, which must not be combined with `fetchPriority`.
+            loading={currentIndex === 0 ? 'eager' : 'lazy'}
+            fetchPriority={currentIndex === 0 ? 'high' : 'auto'}
             sizes="(max-width: 1024px) 100vw, 50vw"
           />
 
