@@ -4,7 +4,7 @@ import type React from 'react'
 
 import { useState, useEffect } from 'react'
 import { useSession } from 'next-auth/react'
-import { useTranslations } from 'next-intl'
+import { useLocale, useTranslations } from 'next-intl'
 import { useRouter } from 'next/navigation'
 import { useCart } from '@/lib/cart-context'
 import { Button } from '@/components/ui/button'
@@ -15,6 +15,7 @@ import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group'
 import { CheckoutLimitReached } from '@/components/checkout-limit-reached'
 import Image from 'next/image'
 import { Link } from '@/i18n/routing'
+import { formatPrice } from '@/lib/format'
 import {
   Shield,
   Package,
@@ -60,6 +61,7 @@ export default function CheckoutPage() {
   const { items, clearCart } = useCart()
   const t = useTranslations('checkout')
   const tCommon = useTranslations('common')
+  const locale = useLocale()
   const router = useRouter()
 
   // Form states
@@ -667,7 +669,7 @@ export default function CheckoutPage() {
                         </h3>
                         <p className="text-xs text-muted-foreground mt-1">{item.type}</p>
                         <p className="font-serif font-semibold text-accent mt-2">
-                          €{item.price.toLocaleString()}
+                          {formatPrice(item.price, locale)}
                         </p>
                       </div>
                     </div>
@@ -692,7 +694,7 @@ export default function CheckoutPage() {
                       {t('summary.total')}
                     </span>
                     <span className="font-serif text-2xl font-bold text-accent">
-                      €{total.toLocaleString()}
+                      {formatPrice(total, locale)}
                     </span>
                   </div>
                   {/* <p className="text-xs text-muted-foreground">{t('summary.priceNote')}</p> */}

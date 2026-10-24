@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import { Bell } from 'lucide-react'
-import { useTranslations } from 'next-intl'
+import { useLocale, useTranslations } from 'next-intl'
 import { Button } from '@/components/ui/button'
 import {
   DropdownMenu,
@@ -12,6 +12,7 @@ import {
 } from '@/components/ui/dropdown-menu'
 import { OrderStatusBadge } from '@/components/account/order-status-badge'
 import { Link } from '@/i18n/routing'
+import { formatPrice } from '@/lib/format'
 import type { OrderStatus } from '@/lib/order-types'
 
 interface ActiveOrder {
@@ -28,6 +29,7 @@ export function OrderNotificationDropdown() {
   const [hasPendingPayment, setHasPendingPayment] = useState(false)
   const [isLoading, setIsLoading] = useState(true)
   const t = useTranslations('navigation')
+  const locale = useLocale()
 
   useEffect(() => {
     async function fetchActiveOrders() {
@@ -93,7 +95,7 @@ export function OrderNotificationDropdown() {
                   />
                 </div>
                 <p className="text-sm font-medium text-foreground">{order.itemName}</p>
-                <p className="text-xs text-muted-foreground">€{order.total.toLocaleString()}</p>
+                <p className="text-xs text-muted-foreground">{formatPrice(order.total, locale)}</p>
               </Link>
             </DropdownMenuItem>
           ))}

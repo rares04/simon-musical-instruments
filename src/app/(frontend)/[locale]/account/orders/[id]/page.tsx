@@ -13,6 +13,8 @@ import {
 } from 'lucide-react'
 import Image from 'next/image'
 import { Link } from '@/i18n/routing'
+import { getLocale } from 'next-intl/server'
+import { formatDate, formatPrice } from '@/lib/format'
 import { auth } from '@/lib/auth'
 import { getPayload } from 'payload'
 import config from '@/payload.config'
@@ -24,6 +26,7 @@ export const dynamic = 'force-dynamic'
 
 export default async function OrderDetailPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params
+  const locale = await getLocale()
   const session = await auth()
 
   if (!session?.user) {
@@ -63,7 +66,7 @@ export default async function OrderDetailPage({ params }: { params: Promise<{ id
     ? [
         {
           status: 'Reservation Placed',
-          date: new Date(order.createdAt).toLocaleDateString(),
+          date: formatDate(order.createdAt, locale),
           completed: true,
         },
         {
@@ -86,18 +89,18 @@ export default async function OrderDetailPage({ params }: { params: Promise<{ id
     : [
         {
           status: 'Order Placed',
-          date: new Date(order.paidAt || order.createdAt).toLocaleDateString(),
+          date: formatDate(order.paidAt || order.createdAt, locale),
           completed: true,
         },
         {
           status: 'Processing',
           date:
-            order.status === 'paid' ? 'Pending' : new Date(order.createdAt).toLocaleDateString(),
+            order.status === 'paid' ? 'Pending' : formatDate(order.createdAt, locale),
           completed: ['processing', 'shipped', 'delivered'].includes(order.status),
         },
         {
           status: isPickup ? 'Ready for Pickup' : 'Shipped',
-          date: order.shippedAt ? new Date(order.shippedAt).toLocaleDateString() : 'Pending',
+          date: order.shippedAt ? formatDate(order.shippedAt, locale) : 'Pending',
           completed: ['shipped', 'delivered'].includes(order.status),
         },
         {
@@ -220,7 +223,7 @@ export default async function OrderDetailPage({ params }: { params: Promise<{ id
                       <div className="flex items-center justify-between mt-2">
                         <p className="text-sm text-muted-foreground">Qty: 1</p>
                         <p className="font-semibold text-foreground">
-                          €{item.price.toLocaleString()}
+                          {formatPrice(item.price, locale)}
                         </p>
                       </div>
                     </div>
@@ -274,7 +277,7 @@ export default async function OrderDetailPage({ params }: { params: Promise<{ id
             <div className="space-y-3">
               <div className="flex justify-between text-sm">
                 <span className="text-muted-foreground">Subtotal</span>
-                <span className="text-foreground">€{order.subtotal.toLocaleString()}</span>
+                <span className="text-foreground">{formatPrice(order.subtotal, locale)}</span>
               </div>
               {!isPickup && (
                 <>
@@ -297,7 +300,7 @@ export default async function OrderDetailPage({ params }: { params: Promise<{ id
               <div className="border-t border-border pt-3 flex justify-between">
                 <span className="font-semibold text-foreground">Total</span>
                 <span className="font-semibold text-foreground">
-                  €{order.total.toLocaleString()}
+                  {formatPrice(order.total, locale)}
                 </span>
               </div>
             </div>

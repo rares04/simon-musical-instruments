@@ -3,11 +3,12 @@
 import { useState, useEffect } from 'react'
 import { useSession } from 'next-auth/react'
 import { useCart } from '@/lib/cart-context'
-import { useTranslations } from 'next-intl'
+import { useLocale, useTranslations } from 'next-intl'
 import { X, ShoppingBag, Package, Shield, Truck, Info } from 'lucide-react'
 import Image from 'next/image'
 import { Button } from '@/components/ui/button'
 import { Link } from '@/i18n/routing'
+import { formatPrice } from '@/lib/format'
 
 const RESERVATION_LIMIT = 2
 
@@ -17,6 +18,7 @@ export function CartDrawer() {
   const isAuthenticated = status === 'authenticated'
   const t = useTranslations('cart')
   const tRes = useTranslations('reservations')
+  const locale = useLocale()
   const [reservationCount, setReservationCount] = useState(0)
 
   // Fetch reservation count when drawer opens
@@ -195,7 +197,7 @@ export function CartDrawer() {
                         </h3>
                         <p className="text-sm text-muted-foreground mb-2">{item.type}</p>
                         <p className="font-serif text-lg font-bold text-accent">
-                          €{item.price.toLocaleString()}
+                          {formatPrice(item.price, locale)}
                         </p>
                       </div>
 
@@ -231,7 +233,10 @@ export function CartDrawer() {
               <div className="flex items-baseline justify-between pb-4">
                 <span className="text-base font-medium text-foreground">{t('total')}</span>
                 <span className="font-serif text-2xl font-bold text-accent">
-                  €{items.reduce((sum, item) => sum + item.price, 0).toLocaleString()}
+                  {formatPrice(
+                    items.reduce((sum, item) => sum + item.price, 0),
+                    locale,
+                  )}
                 </span>
               </div>
 
