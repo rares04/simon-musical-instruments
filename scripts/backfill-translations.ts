@@ -6,6 +6,7 @@
  *   pnpm tsx scripts/backfill-translations.ts review --out <file.json> [--locales ro,de]
  *     [--glossary docs/seo/translation-glossary.md] [--overwrite]
  *   pnpm tsx scripts/backfill-translations.ts apply --in <file.json> [--dry-run]
+ *   pnpm tsx scripts/backfill-translations.ts glossary --glossary <file.md>
  *
  * review  Reads every instrument, asks DeepL for each missing translation and writes the proposals
  *         to <file.json>, plus <file.md> for reading. Never writes to the database.
@@ -17,6 +18,7 @@
  *
  * `--glossary` reads the Terms table of a Markdown glossary and loads it into DeepL (one glossary
  * per language, reused across runs), so luthier terms come out right.
+ * `glossary` only (re)loads that glossary into DeepL. It translates nothing, so it costs no quota.
  *
  * Always run with NODE_ENV=production, so Payload never pushes schema changes to the database.
  * `--mock` fakes DeepL (no key needed) to test the pipeline on a local database; apply refuses a
@@ -391,6 +393,16 @@ async function apply() {
   console.log(`${dryRun ? 'Dry run: would write' : 'Wrote'} ${written} fields, skipped ${skipped}`)
 }
 
+async function loadGlossaryOnly() {
+  const path = arg('glossary')
+  if (!path) throw new Error('glossary needs --glossary <file.md>')
+  if (!process.env.DEEPL_API_KEY) throw new Error('DEEPL_API_KEY is not set')
+  const entries = parseGlossary(path)
+  const g = await ensureGlossary(new deepl.DeepLClient(process.env.DEEPL_API_KEY), entries)
+  for (const d of g?.dictionaries ?? []) console.log(`  ${d.targetLangCode}: ${d.entryCount} terms`)
+  console.log(`DeepL glossary ${g?.name ?? '(none)'} is loaded`)
+}
+
 async function main() {
   if (process.env.NODE_ENV !== 'production') {
     throw new Error('Run with NODE_ENV=production so Payload never pushes schema changes')
@@ -398,7 +410,11 @@ async function main() {
   const command = process.argv[2]
   if (command === 'review') await review()
   else if (command === 'apply') await apply()
-  else throw new Error('Usage: backfill-translations.ts review|apply (see the header comment)')
+  else if (command === 'glossary') await loadGlossaryOnly()
+  else
+    throw new Error(
+      'Usage: backfill-translations.ts review|apply|glossary (see the header comment)',
+    )
 }
 
 main()
