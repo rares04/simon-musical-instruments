@@ -18,6 +18,8 @@ KEEP_DAILY_DAYS=${KEEP_DAILY_DAYS:-35}
 KEEP_MONTHLY_DAYS=${KEEP_MONTHLY_DAYS:-400}
 MAX_DROP_PCT=${MAX_DROP_PCT:-20}
 REQUIRED_TABLES=${REQUIRED_TABLES:-instruments media users}
+# Tables whose row counts rise and fall on their own (sessions, edit locks, cache), so a drop is normal.
+DROP_CHECK_IGNORE=${DROP_CHECK_IGNORE-users_sessions payload_locked_documents payload_locked_documents_rels payload_kv}
 
 STAMP=$(date -u +%Y%m%dT%H%M%SZ)
 WORK=$(mktemp -d)
@@ -100,9 +102,10 @@ for t in $REQUIRED_TABLES; do
   [ "${n:-0}" -gt 0 ] || fail "table '$t' is empty or missing; not pruning"
 done
 if rclone cat "$DEST/db/latest-counts.txt" > "$WORK/prev-counts.txt" 2>/dev/null && [ -s "$WORK/prev-counts.txt" ]; then
-  awk -F'|' -v max="$MAX_DROP_PCT" '
+  awk -F'|' -v max="$MAX_DROP_PCT" -v ignore="$DROP_CHECK_IGNORE" '
+    BEGIN { n = split(ignore, list, /[ ,]+/); for (i = 1; i <= n; i++) if (list[i] != "") skip[list[i]] = 1 }
     NR == FNR { prev[$1] = $2; next }
-    ($1 in prev) && prev[$1] >= 5 && $2 < prev[$1] * (100 - max) / 100 {
+    !($1 in skip) && ($1 in prev) && prev[$1] >= 5 && $2 < prev[$1] * (100 - max) / 100 {
       printf "[backup] %s dropped from %d to %d rows\n", $1, prev[$1], $2; bad = 1
     }
     END { exit bad }

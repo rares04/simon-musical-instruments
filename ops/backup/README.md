@@ -10,7 +10,8 @@ Each run:
 2. Restores the dump into a throwaway Postgres inside the container and checks that every table
    has the same row count as production.
 3. Uploads the dump. Fails if `instruments`, `media` or `users` is empty, or if any table lost more
-   than 20% of its rows since the last run.
+   than 20% of its rows since the last run. Tables that shrink on their own (login sessions, edit
+   locks, Payload's key-value cache) are left out of that drop check.
 4. Copies new media files from Supabase Storage. It never deletes, so removed photos stay
    recoverable.
 5. Prunes daily dumps older than 35 days and monthly dumps older than 400 days, but only if every
@@ -49,6 +50,7 @@ A failed run exits non-zero and shows as failed in the Railway cron history.
 | `BACKUP_BUCKET`, `BACKUP_ENDPOINT`, `BACKUP_REGION`, `BACKUP_ACCESS_KEY_ID`, `BACKUP_SECRET_ACCESS_KEY` | References to the bucket's credentials |
 | `HEARTBEAT_URL` | Optional. Pinged only after a fully successful run, so a monitor can alert when it goes missing |
 | `KEEP_DAILY_DAYS`, `KEEP_MONTHLY_DAYS`, `MAX_DROP_PCT`, `REQUIRED_TABLES` | Optional overrides |
+| `DROP_CHECK_IGNORE` | Optional. Tables left out of the drop check, separated by spaces or commas. Default: `users_sessions payload_locked_documents payload_locked_documents_rels payload_kv`. Set it to an empty value to check every table |
 
 ## Run a backup now
 
