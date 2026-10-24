@@ -61,9 +61,18 @@ These are the source of truth for counts and alerting. They use `distinct_id: 's
 | `reservation_hold_expired` | Hold sweep (72 h reservation-hold expiry), once per auto-cancelled order | `order_number`, `item_count`, `age_hours` |
 | `instruments_released` | Order cancelled or expired, instruments back to `available` | `order_number`, `instrument_count`, `cause` (expired/cancelled) |
 
-Every 5xx, every `email_failed` and every **hold-sweep failure** (log line `holds: sweep failed …`,
-the reservation-hold expiry) is **also** captured as an exception in the error tool, tagged `job: holds_sweep` for the
-sweep, so it alerts within 5 minutes. PostHog's insight alerts check hourly at best, which is too slow.
+Failures are **also** captured as exceptions in the error tool, so they can alert within 5 minutes.
+PostHog's insight alerts check hourly at best, which is too slow. Status:
+
+| Failure | Captured as an exception |
+|---|---|
+| Uncaught server error (pages, server actions, route handlers that throw) | Yes (`onRequestError`) |
+| `sendEmail` failure (any template) | Yes |
+| API route that catches its own error and returns 500 (create-reservation, contact, OTP, register, …) | Not yet. Needs a `captureError()` call in each catch (call-site follow-up) |
+| Payload REST/admin errors (Payload catches them) | Not yet. Needs `hooks.afterError` in `payload.config.ts` |
+| Hold-sweep failure (`holds: sweep failed …`) | Not yet. `captureError({ source: 'job', job: 'holds_sweep' })` in `reservations.ts` |
+
+Until the follow-up lands, those last three are visible only in Railway's logs.
 
 ## Funnels and dashboards
 

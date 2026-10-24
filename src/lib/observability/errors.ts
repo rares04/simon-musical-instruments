@@ -16,12 +16,14 @@ export type ErrorContext = {
  * Where errors go. PostHog error tracking today; a Sentry sink can be added here without
  * touching call sites. `ERROR_TRACKER=none` turns reporting off (logs still happen).
  */
-type ErrorSink = (error: Error, context: ErrorContext) => void
+type ErrorSink = (error: ReturnType<typeof scrubError>, context: ErrorContext) => void
 
 const posthogSink: ErrorSink = (error, context) => {
   getServerPostHog()?.captureException(error, 'server', {
     ...context,
     ...appContext(),
+    error_code: error.code,
+    error_digest: error.digest,
     $process_person_profile: false,
   })
 }

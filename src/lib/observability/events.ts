@@ -20,7 +20,7 @@ export type ServerEvents = {
     instrument_count: number
     cause: 'expired' | 'cancelled'
   }
-  email_sent: { template: EmailTemplate }
+  email_sent: { template: EmailTemplate; resend_id: string }
   email_failed: { template: EmailTemplate; error_name: string }
   inquiry_received: { inquiry_type: string }
 }

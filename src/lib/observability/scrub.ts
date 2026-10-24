@@ -1,14 +1,18 @@
 /**
  * Removes personal data from anything we send to logs or analytics.
  * Runs in the browser and on the server, so it must stay dependency-free.
+ * When in doubt it fails closed: values it can't inspect are replaced, not passed through.
  */
 
 const EMAIL_RE = /[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}/gi
-// 9+ digits with optional separators: phone numbers, IBANs, card-like numbers.
-const LONG_NUMBER_RE = /\+?\d(?:[\s().-]*\d){8,}/g
-// Drizzle puts the query parameters (customer data) after "params:", on one line. Stop at the line
-// end so a stack trace that follows survives.
-const QUERY_PARAMS_RE = /\bparams:[^\n]*/gi
+const HAS_EMAIL_RE = /[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}/i
+// 9+ digits with optional separators: phone numbers, IBANs, card-like numbers. Not when the run is
+// glued to letters, dots, slashes, colons or dashes, so UUIDs, timestamps, version strings and
+// order numbers (SI-2026-0042) survive.
+const LONG_NUMBER_RE = /(?<![\w./:+-])\+?\d(?:[ \t().-]*\d){8,}(?![\w./:-])/g
+// Drizzle puts the query parameters (customer data) after "params:". Values can contain newlines,
+// so redact up to the first stack frame ("\n    at ") or the end of the text.
+const QUERY_PARAMS_RE = /\bparams:[\s\S]*?(?=\n\s+at\s|$)/g
 
 /** Query parameters kept on URLs: campaign attribution only. Everything else is dropped. */
 const KEPT_QUERY_PARAMS = new Set([
@@ -26,7 +30,7 @@ const KEPT_QUERY_PARAMS = new Set([
 
 /** Property keys whose values are never sent, whatever they contain. */
 const SECRET_KEY_RE =
-  /(e-?mail|password|passwd|token|secret|otp|authorization|cookie|phone|address|street|postcode|zip|iban|card)/i
+  /(e-?mail|password|passwd|token|secret|otp|authorization|cookie|phone|address|street|postcode|zip|iban|card|remark|comment|surname|nickname|displayname|birth)/i
 // `name`, `customerName`, `first_name`, …, but not `error_name` or `template_name`.
 const PERSON_NAME_KEY_RE =
   /^(customer|first|last|full|user|contact|billing|shipping|recipient)?_?name$/i
@@ -34,19 +38,24 @@ const PERSONAL_KEYS = new Set(['message', 'notes', 'customernotes'])
 /** PostHog routing fields: `token` is the public project key, not a secret. Never dropped. */
 const ALWAYS_KEPT_KEYS = new Set(['token', 'distinct_id', 'uuid'])
 
-export function scrubText(text: string): string {
-  return text
-    .replace(QUERY_PARAMS_RE, 'params: [redacted]')
-    .replace(EMAIL_RE, '[email]')
-    .replace(LONG_NUMBER_RE, '[number]')
+const MAX_DEPTH = 8
+
+const UUID_RE = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i
+
+export function scrubText(text: string, options: { numbers?: boolean } = {}): string {
+  const out = text.replace(QUERY_PARAMS_RE, 'params: [redacted]').replace(EMAIL_RE, '[email]')
+  if (options.numbers === false) return out
+  // An all-digit UUID is still an ID, not a phone number.
+  return out.replace(LONG_NUMBER_RE, (match) => (UUID_RE.test(match) ? match : '[number]'))
 }
 
 /**
  * Keeps the origin, path and campaign parameters of a URL; drops every other query parameter and
- * the fragment. Works on absolute URLs and on paths ("/en/verify-email?email=…").
+ * the fragment. Works on absolute, protocol-relative and path-only URLs.
  */
 export function scrubUrl(value: string): string {
   const isAbsolute = /^[a-z][a-z0-9+.-]*:\/\//i.test(value)
+  const isProtocolRelative = value.startsWith('//')
   let url: URL
   try {
     url = new URL(value, 'http://relative.invalid')
@@ -58,68 +67,94 @@ export function scrubUrl(value: string): string {
     if (KEPT_QUERY_PARAMS.has(key.toLowerCase())) kept.append(key, paramValue)
   })
   const query = kept.toString()
-  const path = scrubText(decodeURIComponentSafe(url.pathname))
+  // Keep the path encoded (so %3F stays %3F), but catch encoded emails (%40).
+  const path = url.pathname.replace(/[^/]*%40[^/]*/gi, (segment) =>
+    HAS_EMAIL_RE.test(segment.replace(/%40/gi, '@')) ? '[email]' : segment,
+  )
   // `origin` is "null" for file: and other non-HTTP schemes, so build the prefix by hand.
-  const base = isAbsolute ? `${url.protocol}//${url.host}${path}` : path
+  const prefix = isAbsolute
+    ? `${url.protocol}//${url.host}`
+    : isProtocolRelative
+      ? `//${url.host}`
+      : ''
+  const base = `${prefix}${scrubText(path)}`
   return query ? `${base}?${query}` : base
 }
 
-function decodeURIComponentSafe(value: string): string {
-  try {
-    return decodeURIComponent(value)
-  } catch {
-    return value
-  }
-}
-
-function isSecretKey(key: string): boolean {
-  return (
-    SECRET_KEY_RE.test(key) ||
-    PERSON_NAME_KEY_RE.test(key) ||
-    PERSONAL_KEYS.has(key.toLowerCase().replace(/[_-]/g, ''))
-  )
+function isSecretKey(key: string, insidePostHogKey: boolean): boolean {
+  if (SECRET_KEY_RE.test(key)) return true
+  if (insidePostHogKey) return false
+  return PERSON_NAME_KEY_RE.test(key) || PERSONAL_KEYS.has(key.toLowerCase().replace(/[_-]/g, ''))
 }
 
 const URL_LIKE_RE = /^(https?:\/\/|\/)/i
 
 /**
- * Deep-copies a properties object: drops secret keys, rewrites URLs with `scrubUrl` and other
- * strings with `scrubText`. `$`-prefixed keys are PostHog's own: their values are scrubbed, but no
- * key inside them is dropped (web-vitals objects have a `name: 'LCP'`, for example).
+ * Deep-copies a properties object: drops personal keys, rewrites URLs with `scrubUrl` and other
+ * strings with `scrubText`.
+ *
+ * `$`-prefixed keys are PostHog's own: no key inside them is dropped for looking like a name
+ * (web-vitals objects have `name: 'LCP'`), and digit runs are left alone (they're IDs and
+ * timestamps generated by the SDK). Emails, query parameters and secret-looking keys are still
+ * removed there.
  */
 export function scrubProperties<T>(value: T, depth = 0, insidePostHogKey = false): T {
-  if (depth > 8) return value
+  if (depth > MAX_DEPTH) return '[truncated]' as T
   if (typeof value === 'string') {
-    return (URL_LIKE_RE.test(value) ? scrubUrl(value) : scrubText(value)) as T
+    return (
+      URL_LIKE_RE.test(value) ? scrubUrl(value) : scrubText(value, { numbers: !insidePostHogKey })
+    ) as T
+  }
+  if (value === null || typeof value !== 'object') {
+    return (typeof value === 'function' || typeof value === 'symbol' ? undefined : value) as T
   }
   if (Array.isArray(value)) {
     return value.map((item) => scrubProperties(item, depth + 1, insidePostHogKey)) as T
   }
-  if (value && typeof value === 'object' && Object.getPrototypeOf(value) === Object.prototype) {
-    const out: Record<string, unknown> = {}
-    for (const [key, item] of Object.entries(value as Record<string, unknown>)) {
-      if (ALWAYS_KEPT_KEYS.has(key) && depth === 0) {
-        out[key] = item
-        continue
-      }
-      const isPostHogKey = insidePostHogKey || key.startsWith('$')
-      if (!isPostHogKey && isSecretKey(key)) continue
-      out[key] = scrubProperties(item, depth + 1, isPostHogKey)
+  if (value instanceof Date) return value.toISOString() as T
+  if (value instanceof URL) return scrubUrl(value.href) as T
+  if (value instanceof Error) return scrubError(value).message as T
+  const proto = Object.getPrototypeOf(value)
+  if (proto !== Object.prototype && proto !== null) return '[object]' as T
+
+  const out: Record<string, unknown> = {}
+  for (const [key, item] of Object.entries(value as Record<string, unknown>)) {
+    if (ALWAYS_KEPT_KEYS.has(key) && depth === 0) {
+      out[key] = item
+      continue
     }
-    return out as T
+    const isPostHogKey = insidePostHogKey || key.startsWith('$')
+    if (isSecretKey(key, isPostHogKey)) continue
+    out[key] = scrubProperties(item, depth + 1, isPostHogKey)
   }
-  return value
+  return out as T
 }
 
-/** A copy of `error` safe to log or send: scrubbed message and stack, same name. */
-export function scrubError(error: unknown): Error {
-  if (error instanceof Error) {
-    const safe = new Error(scrubText(error.message))
-    safe.name = error.name
-    safe.stack = error.stack ? scrubText(error.stack) : undefined
-    const digest = (error as { digest?: unknown }).digest
-    if (typeof digest === 'string') Object.assign(safe, { digest })
-    return safe
+/** Postgres SQLSTATE (or similar) from the error or its cause. Not personal data. */
+function errorCode(error: Error): string | undefined {
+  for (const candidate of [error, (error as { cause?: unknown }).cause]) {
+    const code = (candidate as { code?: unknown } | undefined)?.code
+    if (typeof code === 'string' || typeof code === 'number') return String(code)
   }
-  return new Error(scrubText(typeof error === 'string' ? error : 'Non-Error thrown'))
+  return undefined
+}
+
+/**
+ * A copy of `error` safe to log or send: same name, scrubbed message and stack, and the same for
+ * its `cause` chain. Keeps `code` (SQLSTATE) and Next's `digest`.
+ */
+export function scrubError(error: unknown, depth = 0): Error & { code?: string; digest?: string } {
+  if (!(error instanceof Error)) {
+    return new Error(scrubText(typeof error === 'string' ? error : 'Non-Error thrown'))
+  }
+  const safe: Error & { code?: string; digest?: string } = new Error(scrubText(error.message))
+  safe.name = error.name
+  safe.stack = error.stack ? scrubText(error.stack) : undefined
+  const code = errorCode(error)
+  if (code) safe.code = code
+  const digest = (error as { digest?: unknown }).digest
+  if (typeof digest === 'string') safe.digest = digest
+  const cause = (error as { cause?: unknown }).cause
+  if (cause !== undefined && depth < 3) safe.cause = scrubError(cause, depth + 1)
+  return safe
 }

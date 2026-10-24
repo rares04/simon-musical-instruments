@@ -80,10 +80,11 @@ describe('scrubProperties inside PostHog structures', () => {
   it('scrubs values but keeps keys such as the web-vitals metric name', () => {
     const out = scrubProperties({
       $web_vitals_LCP_event: { name: 'LCP', value: 180, $current_url: '/en?email=a@b.co' },
-      $set: { email: 'a@b.co' },
+      $set: { email: 'a@b.co', $browser: 'Chrome' },
     })
     expect(out.$web_vitals_LCP_event).toEqual({ name: 'LCP', value: 180, $current_url: '/en' })
-    expect(out.$set).toEqual({ email: '[email]' })
+    // Secret-looking keys are dropped even inside PostHog structures.
+    expect(out.$set).toEqual({ $browser: 'Chrome' })
   })
 })
 

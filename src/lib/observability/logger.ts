@@ -18,19 +18,30 @@ export type Logger = {
 
 function write(level: Level, msg: string, base: Fields, fields: Fields = {}): void {
   const { err, ...rest } = fields
+  // Core fields last, so a caller's `level` or `msg` field can't overwrite them.
   const line: Fields = {
+    ...scrubProperties({ ...base, ...rest }),
     level,
     time: new Date().toISOString(),
     msg: scrubText(msg),
-    ...scrubProperties({ ...base, ...rest }),
   }
-  if (err !== undefined) {
-    const safe = scrubError(err)
-    line.err = { name: safe.name, message: safe.message, stack: safe.stack }
-  }
+  if (err !== undefined) line.err = errorFields(scrubError(err))
   const out = JSON.stringify(line)
   if (level === 'error' || level === 'warn') console.error(out)
   else console.log(out)
+}
+
+function errorFields(error: Error & { code?: string; digest?: string }): Fields {
+  const cause =
+    error.cause instanceof Error ? (error.cause as Error & { code?: string }) : undefined
+  return {
+    name: error.name,
+    message: error.message,
+    code: error.code,
+    digest: error.digest,
+    stack: error.stack,
+    cause: cause ? { name: cause.name, message: cause.message, code: cause.code } : undefined,
+  }
 }
 
 function create(base: Fields): Logger {

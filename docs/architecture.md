@@ -242,12 +242,15 @@ only trace is a `console.error` in the Railway logs.
 Details: `docs/observability/` (tracking plan, runbook).
 
 - **Logs**: JSON lines to stdout (`src/lib/observability/logger.ts`), indexed by Railway. Each line
-  carries a `request_id` (Railway's `x-railway-request-id` when present). Fields are scrubbed: no
-  emails, names, phone numbers, tokens or query strings. Older code still uses `console.*`.
-- **Errors**: every uncaught server error (`onRequestError` in `src/instrumentation.ts`), every email
-  failure (`sendEmail`) and every `captureError()` call goes to PostHog error tracking, after
-  scrubbing. Database errors embed query parameters, so the scrubber redacts them. Browser
-  exceptions are captured too.
+  carries a `request_id` (Railway's `x-railway-request-id` when present). The message and fields
+  are scrubbed: no emails, names, phone numbers, tokens or query strings. Older code still uses
+  `console.*`, and Next.js and Payload print uncaught errors to stderr themselves, unscrubbed.
+  Payload's logger redaction is tracked separately.
+- **Errors**: uncaught server errors (`onRequestError` in `src/instrumentation.ts`), email failures
+  (`sendEmail`) and `captureError()` calls go to PostHog error tracking, after scrubbing. Database
+  errors embed query parameters, so the scrubber redacts them. Browser exceptions are captured too.
+  API routes that catch their own errors, Payload's REST errors and the hold sweep still need
+  `captureError()` calls (see `docs/observability/tracking-plan.md`).
 - **Analytics**: PostHog EU (`src/instrumentation-client.ts`). Nothing is stored in the browser
   (`persistence: 'memory'`), visitors are never identified, session replay is off, and nothing runs
   on `/admin`. The country comes from GeoIP; the IP is discarded at ingestion.

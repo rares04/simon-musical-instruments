@@ -37,7 +37,8 @@ chosen. Paul gets no technical alerts; tell him only when customers are affected
 
 ## Error and business alerts
 
-- Error alerts (new or spiking error), with a stack trace and request ID.
+- Error alerts (new or spiking error), with a stack trace and request ID. Which failures are captured
+  today: see the table in the tracking plan.
 - Business alerts: reservation failed, email send failed. Each one is a customer who may not have
   been told anything: contact them directly from the order in `/admin`.
 - **Hold sweep failed** (72 h reservation-hold expiry): unpaid reservations past 72 h aren't being released, so

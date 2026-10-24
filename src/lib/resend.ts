@@ -49,7 +49,8 @@ export async function sendEmail({
       return { success: false, error }
     }
 
-    trackServerEvent('email_sent', { template })
+    // The Resend message id lets you trace a "never got the email" report in the Resend dashboard.
+    trackServerEvent('email_sent', { template, resend_id: data?.id ?? 'unknown' })
     return { success: true, data }
   } catch (error) {
     reportEmailFailure(template, error instanceof Error ? error.name : 'Error', error)
