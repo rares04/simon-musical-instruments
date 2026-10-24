@@ -30,6 +30,8 @@ const nextConfig = {
   async redirects() {
     return legacyRedirects
   },
+  // Next 16 `next dev` otherwise appends a generated block to AGENTS.md (our handbook).
+  agentRules: false,
   images: {
     // Media is served same-origin from /api/media/file/*. Don't allow remote hosts: the optimizer
     // would fetch and process images from them. The OAuth avatar is rendered `unoptimized`.
