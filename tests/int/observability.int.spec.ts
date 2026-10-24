@@ -133,6 +133,44 @@ describe('sanitizeClientEvent', () => {
     expect(out?.properties.app_version).toBe('abc1234')
     expect(out?.properties.token).toBe('phc_public')
   })
+
+  it('scrubs browser exception messages and stack frames', () => {
+    const out = sanitizeClientEvent(
+      event('https://simoninstruments.com/en/checkout', {
+        $exception_list: [
+          {
+            type: 'TypeError',
+            value: 'Cannot read email jane.doe@example.com of undefined',
+            stacktrace: {
+              frames: [
+                {
+                  filename: 'https://simoninstruments.com/_next/static/chunks/app.js?email=a@b.co',
+                  function: 'submit',
+                  lineno: 12,
+                  context_line: 'fetch(`/api/x?email=${"jane.doe@example.com"}`)',
+                },
+              ],
+            },
+          },
+        ],
+      }),
+      ctx,
+    )
+    const [exception] = out?.properties.$exception_list as Array<{
+      type: string
+      value: string
+      stacktrace: { frames: Array<Record<string, unknown>> }
+    }>
+    expect(exception?.type).toBe('TypeError')
+    expect(exception?.value).toBe('Cannot read email [email] of undefined')
+    const frame = exception?.stacktrace.frames[0]
+    expect(frame).toMatchObject({
+      filename: 'https://simoninstruments.com/_next/static/chunks/app.js',
+      function: 'submit',
+      lineno: 12,
+    })
+    expect(JSON.stringify(out)).not.toContain('jane.doe')
+  })
 })
 
 describe('logger', () => {
