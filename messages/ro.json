@@ -824,6 +824,97 @@
       "priceOnRequest": "Preț la cerere",
       "reserved": "Rezervat",
       "sold": "Vândut"
+    },
+    "categories": {
+      "cellos": {
+        "title": "Violoncele de vânzare, lucrate manual, Reghin",
+        "description": "Violoncele 4/4 construite manual de Paul și Ecaterina Simon în Reghin. Modele: {models}. Fotografii, înregistrări audio și prețuri. Rezervare online."
+      },
+      "doubleBasses": {
+        "title": "Contrabași de vânzare, lucrați manual, Reghin",
+        "description": "Contrabași 3/4 construiți manual de Paul și Ecaterina Simon în Reghin. Modele: {models}. Fotografii, înregistrări audio și prețuri. Rezervare online."
+      }
+    }
+  },
+  "categoryPage": {
+    "badge": "Lucrate manual în Reghin, România",
+    "modelsLine": "Modele actuale: {models}.",
+    "factsHeading": "Pe scurt",
+    "facts": {
+      "size": "Mărime",
+      "models": "Modele",
+      "top": "Fața",
+      "backAndRibs": "Spatele și eclisele",
+      "varnish": "Lac",
+      "price": "Preț",
+      "certificate": "Certificat",
+      "howToBuy": "Cum cumpărați"
+    },
+    "values": {
+      "top": "Molid românesc cu fibră fină",
+      "varnish": "Lac pe bază de alcool, aplicat manual",
+      "priceRange": "între {min} și {max}",
+      "priceOnRequest": "La cerere",
+      "certificate": "Certificat de autenticitate semnat, pentru fiecare instrument",
+      "howToBuy": "Rezervați online. Paul vă contactează în 1–2 zile lucrătoare pentru plată și livrare."
+    },
+    "woods": {
+      "maple": "paltin",
+      "alder": "arin",
+      "ash": "frasin",
+      "poplar": "plop"
+    },
+    "listHeading": "Acum în atelier",
+    "soldNote": "Instrumentele vândute rămân afișate, ca exemple ale lucrărilor noastre.",
+    "empty": "Momentan nu avem instrumente disponibile. Contactați-ne pentru o comandă personalizată.",
+    "faqHeading": "Întrebări",
+    "howToBuy": {
+      "question": "Cum pot cumpăra un instrument?",
+      "answer": "Rezervați instrumentul online. Paul vă contactează în 1–2 zile lucrătoare, vă răspunde la întrebări și stabilește cu dumneavoastră plata și livrarea. Fiecare instrument vine cu un certificat de autenticitate semnat."
+    },
+    "allInstruments": "Vedeți toate instrumentele",
+    "contact": "Puneți-ne o întrebare",
+    "cellos": {
+      "h1": "Violoncele lucrate manual",
+      "intro": "Construim manual violoncele de mărime întreagă (4/4), în atelierul nostru din Reghin. Fiecare este unic, cu lemnul, lacul și reglajul său.",
+      "stock": "{count, plural, one {Un violoncel este disponibil acum} few {# violoncele sunt disponibile acum} other {# de violoncele sunt disponibile acum}}. Prețuri: {price}.",
+      "stockNoPrice": "{count, plural, one {Un violoncel este disponibil acum} few {# violoncele sunt disponibile acum} other {# de violoncele sunt disponibile acum}}. Prețuri la cerere.",
+      "size": "4/4 (mărime întreagă)",
+      "faq": {
+        "price": {
+          "question": "Cât costă un violoncel lucrat manual?",
+          "answer": "Violoncelele disponibile acum costă {price}. Prețul depinde de model, de lemn și de reglaj."
+        },
+        "size": {
+          "question": "Ce mărime au violoncelele dumneavoastră?",
+          "answer": "Violoncelele noastre sunt 4/4, mărimea întreagă, pentru adulți."
+        },
+        "woods": {
+          "question": "Ce lemn folosiți?",
+          "answer": "Fața este din molid românesc cu fibră fină. Spatele și eclisele sunt din {woods}, în funcție de instrument. Pagina fiecărui violoncel indică lemnul, corzile și dimensiunile."
+        }
+      }
+    },
+    "doubleBasses": {
+      "h1": "Contrabași lucrați manual",
+      "intro": "Construim manual contrabași 3/4, în atelierul nostru din Reghin. Fiecare este unic, cu lemnul, lacul și reglajul său.",
+      "stock": "{count, plural, one {Un contrabas este disponibil acum} few {# contrabași sunt disponibili acum} other {# de contrabași sunt disponibili acum}}. Prețuri: {price}.",
+      "stockNoPrice": "{count, plural, one {Un contrabas este disponibil acum} few {# contrabași sunt disponibili acum} other {# de contrabași sunt disponibili acum}}. Prețuri la cerere.",
+      "size": "3/4",
+      "faq": {
+        "price": {
+          "question": "Cât costă un contrabas lucrat manual?",
+          "answer": "Contrabașii disponibili acum costă {price}. Prețul depinde de model, de lemn și de reglaj."
+        },
+        "size": {
+          "question": "Ce mărime au contrabașii dumneavoastră?",
+          "answer": "Contrabașii noștri sunt 3/4, mărimea folosită de cei mai mulți muzicieni adulți, în orchestră și în jazz."
+        },
+        "woods": {
+          "question": "Ce lemn folosiți?",
+          "answer": "Fața este din molid românesc cu fibră fină. Spatele și eclisele sunt din {woods}, în funcție de instrument. Pagina fiecărui contrabas indică lemnul, corzile și dimensiunile."
+        }
+      }
     }
   }
 }

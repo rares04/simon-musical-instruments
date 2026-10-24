@@ -4,6 +4,7 @@ import { buildMetadata, withBrand } from '@/lib/seo/metadata'
 import { AVAILABILITY, productNode, type ProductInput } from '@/lib/seo/schema'
 import { resolveSiteUrl } from '@/lib/seo/site'
 import { STATIC_PATHS, toSitemapEntries } from '@/lib/seo/sitemap'
+import { CATEGORY_KEYS, categoryPaths } from '@/lib/seo/categories'
 import { serializeJsonLd } from '@/components/seo/json-ld'
 import robots from '@/app/robots'
 import type { AbstractIntlMessages } from 'next-intl'
@@ -176,7 +177,14 @@ describe('toSitemapEntries', () => {
   )
 
   it('lists static pages in all 8 locales', () => {
-    const staticUrls = entries.filter((e) => !e.url.includes('/gallery/'))
+    const categoryUrls = new Set(
+      CATEGORY_KEYS.flatMap((k) =>
+        Object.entries(categoryPaths(k)).map(([l, p]) => `${SITE}/${l}${p}`),
+      ),
+    )
+    const staticUrls = entries.filter(
+      (e) => !e.url.includes('/gallery/') && !categoryUrls.has(e.url),
+    )
     expect(staticUrls).toHaveLength(STATIC_PATHS.length * 8)
     expect(staticUrls.map((e) => e.url)).toContain(`${SITE}/ro`)
   })

@@ -824,6 +824,97 @@
       "priceOnRequest": "Price on request",
       "reserved": "Reserved",
       "sold": "Sold"
+    },
+    "categories": {
+      "cellos": {
+        "title": "Handmade cellos for sale, Reghin, Romania",
+        "description": "Full-size cellos built by hand by Paul and Ecaterina Simon in Reghin, Romania. Models: {models}. Photos, sound samples and prices. Reserve online."
+      },
+      "doubleBasses": {
+        "title": "Handmade double basses for sale, Reghin, Romania",
+        "description": "3/4 double basses (upright basses) built by hand by Paul and Ecaterina Simon in Reghin, Romania. Models: {models}. Photos, sound samples and prices."
+      }
+    }
+  },
+  "categoryPage": {
+    "badge": "Handmade in Reghin, Romania",
+    "modelsLine": "Current models: {models}.",
+    "factsHeading": "At a glance",
+    "facts": {
+      "size": "Size",
+      "models": "Models",
+      "top": "Top",
+      "backAndRibs": "Back and ribs",
+      "varnish": "Varnish",
+      "price": "Price",
+      "certificate": "Certificate",
+      "howToBuy": "How to buy"
+    },
+    "values": {
+      "top": "Fine-grained Romanian spruce",
+      "varnish": "Spirit varnish, applied by hand",
+      "priceRange": "{min} to {max}",
+      "priceOnRequest": "On request",
+      "certificate": "Signed certificate of authenticity with every instrument",
+      "howToBuy": "Reserve online. Paul contacts you within 1–2 business days to arrange payment and delivery."
+    },
+    "woods": {
+      "maple": "maple",
+      "alder": "alder",
+      "ash": "ash",
+      "poplar": "poplar"
+    },
+    "listHeading": "In the workshop now",
+    "soldNote": "Sold instruments stay listed as examples of our work.",
+    "empty": "Nothing is available right now. Contact us about a commission.",
+    "faqHeading": "Questions",
+    "howToBuy": {
+      "question": "How do I buy one?",
+      "answer": "Reserve the instrument online. Paul contacts you within 1–2 business days to answer your questions and arrange payment and delivery. Every instrument comes with a signed certificate of authenticity."
+    },
+    "allInstruments": "See all instruments",
+    "contact": "Ask us a question",
+    "cellos": {
+      "h1": "Handmade cellos",
+      "intro": "We build full-size (4/4) cellos by hand in our workshop in Reghin, Romania. Each one is unique, with its own woods, varnish and set-up.",
+      "stock": "{count, plural, one {One cello is available now} other {# cellos are available now}}. Prices: {price}.",
+      "stockNoPrice": "{count, plural, one {One cello is available now} other {# cellos are available now}}. Prices on request.",
+      "size": "4/4 (full size)",
+      "faq": {
+        "price": {
+          "question": "How much does a handmade cello cost?",
+          "answer": "The cellos available now cost {price}. The price depends on the model, the woods and the set-up."
+        },
+        "size": {
+          "question": "What size are your cellos?",
+          "answer": "Our cellos are 4/4, the full size played by adults."
+        },
+        "woods": {
+          "question": "Which woods do you use?",
+          "answer": "The top is fine-grained Romanian spruce. Backs and ribs are {woods}, depending on the instrument. Each cello's page lists its woods, strings and measurements."
+        }
+      }
+    },
+    "doubleBasses": {
+      "h1": "Handmade double basses",
+      "intro": "We build 3/4 double basses (upright basses) by hand in our workshop in Reghin, Romania. Each one is unique, with its own woods, varnish and set-up.",
+      "stock": "{count, plural, one {One double bass is available now} other {# double basses are available now}}. Prices: {price}.",
+      "stockNoPrice": "{count, plural, one {One double bass is available now} other {# double basses are available now}}. Prices on request.",
+      "size": "3/4",
+      "faq": {
+        "price": {
+          "question": "How much does a handmade double bass cost?",
+          "answer": "The double basses available now cost {price}. The price depends on the model, the woods and the set-up."
+        },
+        "size": {
+          "question": "What size are your double basses?",
+          "answer": "Our double basses are 3/4, the size most adult players use in orchestras and in jazz."
+        },
+        "woods": {
+          "question": "Which woods do you use?",
+          "answer": "The top is fine-grained Romanian spruce. Backs and ribs are {woods}, depending on the instrument. Each bass's page lists its woods, strings and measurements."
+        }
+      }
     }
   }
 }

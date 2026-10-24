@@ -824,6 +824,97 @@
       "priceOnRequest": "Prix sur demande",
       "reserved": "Réservé",
       "sold": "Vendu"
+    },
+    "categories": {
+      "cellos": {
+        "title": "Violoncelles faits main à vendre, Reghin, Roumanie",
+        "description": "Violoncelles entiers fabriqués à la main par Paul et Ecaterina Simon à Reghin, en Roumanie. Modèles : {models}. Photos, extraits sonores et prix. Réservation en ligne."
+      },
+      "doubleBasses": {
+        "title": "Contrebasses faites main à vendre, Roumanie",
+        "description": "Contrebasses 3/4 fabriquées à la main par Paul et Ecaterina Simon à Reghin, en Roumanie. Modèles : {models}. Photos, extraits sonores et prix."
+      }
+    }
+  },
+  "categoryPage": {
+    "badge": "Fait main à Reghin, en Roumanie",
+    "modelsLine": "Modèles actuels : {models}.",
+    "factsHeading": "En bref",
+    "facts": {
+      "size": "Taille",
+      "models": "Modèles",
+      "top": "Table",
+      "backAndRibs": "Fond et éclisses",
+      "varnish": "Vernis",
+      "price": "Prix",
+      "certificate": "Certificat",
+      "howToBuy": "Comment acheter"
+    },
+    "values": {
+      "top": "Épicéa roumain à grain fin",
+      "varnish": "Vernis à l'alcool, appliqué à la main",
+      "priceRange": "de {min} à {max}",
+      "priceOnRequest": "Sur demande",
+      "certificate": "Certificat d'authenticité signé avec chaque instrument",
+      "howToBuy": "Réservez en ligne. Paul vous contacte sous 1 à 2 jours ouvrés pour convenir du paiement et de la livraison."
+    },
+    "woods": {
+      "maple": "érable",
+      "alder": "aulne",
+      "ash": "frêne",
+      "poplar": "peuplier"
+    },
+    "listHeading": "Actuellement à l'atelier",
+    "soldNote": "Les instruments vendus restent affichés comme exemples de notre travail.",
+    "empty": "Aucun instrument n'est disponible pour le moment. Contactez-nous pour une commande sur mesure.",
+    "faqHeading": "Questions",
+    "howToBuy": {
+      "question": "Comment acheter un instrument ?",
+      "answer": "Réservez l'instrument en ligne. Paul vous contacte sous 1 à 2 jours ouvrés pour répondre à vos questions et convenir du paiement et de la livraison. Chaque instrument est accompagné d'un certificat d'authenticité signé."
+    },
+    "allInstruments": "Voir tous les instruments",
+    "contact": "Posez-nous une question",
+    "cellos": {
+      "h1": "Violoncelles faits main",
+      "intro": "Nous fabriquons à la main des violoncelles entiers (4/4) dans notre atelier de Reghin, en Roumanie. Chacun est unique, avec son bois, son vernis et son réglage.",
+      "stock": "{count, plural, one {Un violoncelle est disponible actuellement} other {# violoncelles sont disponibles actuellement}}. Prix : {price}.",
+      "stockNoPrice": "{count, plural, one {Un violoncelle est disponible actuellement} other {# violoncelles sont disponibles actuellement}}. Prix sur demande.",
+      "size": "4/4 (entier)",
+      "faq": {
+        "price": {
+          "question": "Combien coûte un violoncelle fait main ?",
+          "answer": "Les violoncelles disponibles actuellement coûtent {price}. Le prix dépend du modèle, du bois et du réglage."
+        },
+        "size": {
+          "question": "Quelle taille font vos violoncelles ?",
+          "answer": "Nos violoncelles sont des 4/4, la taille entière jouée par les adultes."
+        },
+        "woods": {
+          "question": "Quels bois utilisez-vous ?",
+          "answer": "La table est en épicéa roumain à grain fin. Le fond et les éclisses sont en {woods}, selon l'instrument. La page de chaque violoncelle indique le bois, les cordes et les dimensions."
+        }
+      }
+    },
+    "doubleBasses": {
+      "h1": "Contrebasses faites main",
+      "intro": "Nous fabriquons à la main des contrebasses 3/4 dans notre atelier de Reghin, en Roumanie. Chacune est unique, avec son bois, son vernis et son réglage.",
+      "stock": "{count, plural, one {Une contrebasse est disponible actuellement} other {# contrebasses sont disponibles actuellement}}. Prix : {price}.",
+      "stockNoPrice": "{count, plural, one {Une contrebasse est disponible actuellement} other {# contrebasses sont disponibles actuellement}}. Prix sur demande.",
+      "size": "3/4",
+      "faq": {
+        "price": {
+          "question": "Combien coûte une contrebasse faite main ?",
+          "answer": "Les contrebasses disponibles actuellement coûtent {price}. Le prix dépend du modèle, du bois et du réglage."
+        },
+        "size": {
+          "question": "Quelle taille font vos contrebasses ?",
+          "answer": "Nos contrebasses sont des 3/4, la taille jouée par la plupart des contrebassistes adultes, en orchestre comme en jazz."
+        },
+        "woods": {
+          "question": "Quels bois utilisez-vous ?",
+          "answer": "La table est en épicéa roumain à grain fin. Le fond et les éclisses sont en {woods}, selon l'instrument. La page de chaque contrebasse indique le bois, les cordes et les dimensions."
+        }
+      }
     }
   }
 }
