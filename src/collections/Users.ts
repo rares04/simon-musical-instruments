@@ -1,4 +1,13 @@
 import type { CollectionConfig } from 'payload'
+import {
+  adminOnlyApiLogin,
+  ensureFirstUserIsAdmin,
+  hasAdminRole,
+  isAdmin,
+  isAdminField,
+  isAdminOrSelf,
+  serverOnlyField,
+} from '@/access'
 
 export const Users: CollectionConfig = {
   slug: 'users',
@@ -6,8 +15,37 @@ export const Users: CollectionConfig = {
     useAsTitle: 'email',
     defaultColumns: ['email', 'name', 'provider', 'emailVerified', 'roles', 'createdAt'],
   },
-  auth: true,
+  auth: {
+    cookies: {
+      sameSite: 'Lax',
+      secure: process.env.NODE_ENV === 'production',
+    },
+    // Payload's defaults, made explicit. Setting 0 would drop the lockout columns (schema change).
+    maxLoginAttempts: 5,
+    lockTime: 600_000,
+  },
+  access: {
+    admin: ({ req: { user } }) => hasAdminRole(user),
+    create: isAdmin,
+    read: isAdminOrSelf,
+    update: isAdminOrSelf,
+    delete: isAdmin,
+    unlock: isAdmin,
+  },
+  hooks: {
+    beforeChange: [ensureFirstUserIsAdmin],
+    beforeLogin: [adminOnlyApiLogin],
+  },
   fields: [
+    // Overrides the built-in auth email field: only admins may set or change it over the API.
+    {
+      name: 'email',
+      type: 'email',
+      access: {
+        create: isAdminField,
+        update: isAdminField,
+      },
+    },
     {
       name: 'name',
       type: 'text',
@@ -19,6 +57,10 @@ export const Users: CollectionConfig = {
       type: 'checkbox',
       label: 'Email Verified',
       defaultValue: false,
+      access: {
+        create: isAdminField,
+        update: isAdminField,
+      },
       admin: {
         position: 'sidebar',
         description: 'Whether the user has verified their email address',
@@ -28,6 +70,11 @@ export const Users: CollectionConfig = {
       name: 'otp',
       type: 'text',
       label: 'OTP Code',
+      access: {
+        read: serverOnlyField,
+        create: serverOnlyField,
+        update: serverOnlyField,
+      },
       admin: {
         position: 'sidebar',
         readOnly: true,
@@ -39,6 +86,11 @@ export const Users: CollectionConfig = {
       name: 'otpExpiry',
       type: 'date',
       label: 'OTP Expiry',
+      access: {
+        read: serverOnlyField,
+        create: serverOnlyField,
+        update: serverOnlyField,
+      },
       admin: {
         position: 'sidebar',
         readOnly: true,
@@ -74,6 +126,10 @@ export const Users: CollectionConfig = {
         // { label: 'Apple', value: 'apple' }, // Not implemented for now
       ],
       defaultValue: 'credentials',
+      access: {
+        create: isAdminField,
+        update: isAdminField,
+      },
       admin: {
         position: 'sidebar',
       },
@@ -82,6 +138,10 @@ export const Users: CollectionConfig = {
       name: 'providerId',
       type: 'text',
       label: 'OAuth Provider ID',
+      access: {
+        create: isAdminField,
+        update: isAdminField,
+      },
       admin: {
         position: 'sidebar',
         description: 'Unique ID from the OAuth provider',
@@ -103,10 +163,8 @@ export const Users: CollectionConfig = {
         position: 'sidebar',
       },
       access: {
-        update: ({ req: { user } }) => {
-          const roles = (user as { roles?: string[] } | null)?.roles
-          return Boolean(roles?.includes('admin'))
-        },
+        create: isAdminField,
+        update: isAdminField,
       },
     },
     // Shipping address for faster checkout

@@ -1,5 +1,6 @@
 import type { CollectionConfig } from 'payload'
 import { autoTranslateInstrument } from '@/hooks/autoTranslate'
+import { anyone, isAdmin } from '@/access'
 
 export const Instruments: CollectionConfig = {
   slug: 'instruments',
@@ -12,19 +13,10 @@ export const Instruments: CollectionConfig = {
     afterChange: [autoTranslateInstrument],
   },
   access: {
-    read: () => true,
-    create: ({ req: { user } }) => {
-      const roles = (user as { roles?: string[] } | null)?.roles
-      return Boolean(roles?.includes('admin'))
-    },
-    update: ({ req: { user } }) => {
-      const roles = (user as { roles?: string[] } | null)?.roles
-      return Boolean(roles?.includes('admin'))
-    },
-    delete: ({ req: { user } }) => {
-      const roles = (user as { roles?: string[] } | null)?.roles
-      return Boolean(roles?.includes('admin'))
-    },
+    read: anyone,
+    create: isAdmin,
+    update: isAdmin,
+    delete: isAdmin,
   },
   fields: [
     {

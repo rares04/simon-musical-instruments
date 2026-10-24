@@ -48,3 +48,9 @@ node_modules/
 /playwright-report/
 /blob-report/
 /playwright/.cache/
+
+# Private notes (security audits etc.). Never commit; the repo is public.
+/.private/
+
+# Supabase CLI local state
+supabase/.temp/

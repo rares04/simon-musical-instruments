@@ -1,0 +1,205 @@
+# Infrastructure and operations
+
+Observed 2026-10-24 using DNS, HTTP, the GitHub API, the public site, and the Railway CLI and
+Supabase CLI (read-only; Railway is logged in as Paul's account). The Resend, Google Cloud and
+Hostinger dashboards were **not** accessed. Items marked **(unverified)** need someone with
+dashboard access to confirm.
+
+## 1. Environments
+
+| Env | URL | App | Database | Media | Status |
+|---|---|---|---|---|---|
+| **Production** | https://simoninstruments.com (+ `simon-musical-instruments-production-74e3.up.railway.app`) | Railway project `alluring-laughter`, env `production`, service `simon-musical-instruments`, **region us-west2 (Oregon)**, 1 replica, no sleep. Auto-deploy from `main` | Supabase `prod-simon-musical-instruments` (`eedkygcxohpnjayapcjt`, eu-west-1, **Free plan**), session pooler `:5432` | Supabase Storage bucket `media` (public read) | Live |
+| Staging | — | none confirmed | Supabase `simon-musical-instruments` (`ognzjmnrelsefcqacroe`) | same project | **Paused** (Supabase status `INACTIVE`; its DNS is removed while paused). It may be restorable from the dashboard |
+| Local | http://localhost:3000 | `pnpm dev` | Local Postgres (see `local-development.md`) | **Uploads don't work**: the S3 vars point at the paused staging project | Works (tested) |
+
+> **The app runs in Oregon, but the database is in Ireland.** Every Postgres query crosses the
+> Atlantic (~140 ms round-trip), and a page makes several. Moving the Railway service to the EU West
+> region is free, and it's the single biggest latency win.
+
+**Railway projects linked to this repo** (Railway workspace "My Projects", owned by Paul's account):
+
+| Railway project | Deploys | Active | Notes |
+|---|---|---|---|
+| `lovely-adaptation` | 59 (2025-12-29 → 2026-02-09) | not in Paul's workspace (another account?) | Original production |
+| `artistic-wholeness` | 1 (2025-12-29) | not in Paul's workspace (another account?) | Abandoned |
+| `alluring-laughter` | 13 (2026-02-09 → now) | **yes: PRODUCTION** | Serves the custom domain. Variables point at the prod Supabase |
+| `ideal-caring` | 13 (2026-02-09 → 2026-05-21) | unclear | Same repo and service name, no public domain. Probably an orphaned copy; check whether it still runs and costs money, then delete it |
+
+**Production variables present** (names only, checked 2026-10-24):
+
+- `AUTH_SECRET`, `AUTH_TRUST_HOST`, `AUTH_URL`, `DATABASE_URL`, `EMAIL_FROM`.
+- `GOOGLE_CLIENT_ID/SECRET`, `PAYLOAD_SECRET`, `RESEND_API_KEY`.
+- `S3_ACCESS_KEY/BUCKET/ENDPOINT/REGION/SECRET_KEY`.
+- `STRIPE_SECRET_KEY`, `NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY`.
+
+**`DEEPL_API_KEY` is missing.** That is the confirmed root cause of K-4.
+
+## 2. Build and deploy
+
+- **Builder**: Railpack, Railway's default.
+  - Node version: Railpack reads `engines.node`, which is currently `^18.20.2 || >=20.9.0`. That
+    resolves to whatever Railpack picks; pin it.
+  - Package manager: pnpm. `engines.pnpm` is `10.29.2`, and there's no `packageManager` field.
+- **Config**: `railway.toml`.
+  - Start command `pnpm start`.
+  - Healthcheck `/api/health` with a 300s timeout.
+  - Restart policy `on_failure` with 10 retries.
+- **Deadline:** Railway's "Config as Code" (`railway.toml`/`railway.json`) is deprecated, with a
+  **hard cutoff on 2026-12-01**. Replace it with Infrastructure as Code (`.railway/railway.ts`)
+  before then. See the Railway docs: https://docs.railway.com/config-as-code
+- **Build**: `pnpm build`, i.e. `next build` with an 8 GB old-space limit.
+  - The build doesn't need the DB, because DB pages are `force-dynamic`.
+- **Migrations are not run on deploy.**
+  - They were added to `start` and reverted the same day (2026-03-03, commits `38ebd81` and
+    `c02ab9b`).
+  - Today someone runs `pnpm payload migrate` by hand against production. Who, and from where, is
+    unverified.
+  - See `src/migrations/AGENTS.md` for the safe procedure.
+- **CI**:
+  - None: there's no `.github/workflows`, branch protection is off, and nothing gates lint, types or
+    tests.
+  - Four GitHub webhooks on `pull_request` point at `trigger.heylua.ai`. These are AI review agents
+    on the Lua platform.
+- **Lockfiles**: both `pnpm-lock.yaml` and `package-lock.json` are committed. Railpack chooses pnpm
+  because of the pnpm lockfile.
+  - **Action:** delete `package-lock.json` to avoid drift.
+- **Rollback**: redeploy a previous deployment from the Railway dashboard. DB migrations are not
+  rolled back automatically.
+
+## 3. Domain, DNS and email
+
+**Registrar**: Hostinger.
+
+- Registered 2019-05-24, **expires 2027-05-24**. Turn on auto-renew (unverified).
+- Nameservers `ns1/ns2.dns-parking.com` (Hostinger DNS).
+
+| Record | Value | Purpose |
+|---|---|---|
+| `@ A` | `69.46.46.117` (Railway edge, `RLWY-HIKARI`) | Website |
+| `www` | **none** | `www.simoninstruments.com` does not resolve. Add a CNAME to the Railway domain; the middleware already 301s it to the apex |
+| `@ MX` | `mx1/mx2.hostinger.com` | Paul's mailbox (Hostinger Mail) |
+| `@ TXT` | `v=spf1 include:_spf.mail.hostinger.com ~all` | SPF for the mailbox |
+| `send MX/TXT` | `feedback-smtp.eu-west-1.amazonses.com`, `v=spf1 include:amazonses.com ~all` | Resend return-path (Resend runs on SES eu-west-1) |
+| `resend._domainkey TXT` | DKIM public key | Resend DKIM |
+| `_dmarc TXT` | `v=DMARC1; p=none` | Monitoring only. Add `rua=` reporting, then move to `quarantine` |
+| `CAA` | none | Optional: restrict certificate issuers |
+
+The apex uses a hard-coded **A record**, probably because Hostinger DNS lacks CNAME flattening
+(unverified). If Railway changes its edge IP, the site goes down. Safer options:
+
+- move DNS to Cloudflare (free; CNAME flattening, plus a CDN and WAF in front of Railway), or
+- follow Railway's documented apex setup.
+
+## 4. Vendors and third parties
+
+| Vendor | Used for | Account / plan | Config / secret | Notes |
+|---|---|---|---|---|
+| **Railway** | Hosting the Next.js + Payload app | Paul's account. About $15/mo reported | Service variables | Production is `alluring-laughter` (us-west2). `ideal-caring` is probably orphaned; see §1 |
+| **Supabase** | Postgres + S3-compatible storage | **Free** (confirmed by the owner): **no backups**, and pausing after 1 week of inactivity. The production DB is under 2 MB | `DATABASE_URL`, `S3_*` | A shop needs backups. Pro ($25/mo) adds daily backups |
+| **Hostinger** | Domain, DNS, `paul.simon@` mailbox | Unknown | Dashboard | |
+| **Resend** | Transactional email | Unknown. Free tier is 100/day, 3,000/mo | `RESEND_API_KEY`, `EMAIL_FROM` | Domain verified (DKIM present) |
+| **DeepL** | Translating instrument title and notes | Unknown | `DEEPL_API_KEY` | **The key is not set in production**, so no instrument has ever been translated |
+| **Google Cloud** | OAuth client for "Sign in with Google" | Unknown project | `GOOGLE_CLIENT_ID/SECRET` | Redirect URI `https://simoninstruments.com/api/auth/callback/google` |
+| **Stripe** | Card payments, **disabled** | Test keys locally | `STRIPE_SECRET_KEY`, `NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY` | Code kept in comments |
+| **Vercel Analytics** | Nothing (not on Vercel) | — | — | Remove, or replace with a cookieless analytics tool |
+| **Google Maps** | Embed + links on contact/footer | — | Embed URL hard-coded | The iframe loads Google cookies; consider a click-to-load placeholder for GDPR |
+| **Instagram / WhatsApp** | Footer links | — | — | |
+| **Facebook / Apple OAuth** | Not active | — | Vars exist in `.env` | Code commented out |
+| **GitHub** | `rares04/simon-musical-instruments` (**public**) | Collaborators: `rares04`, `SimonRaul` | — | No branch protection |
+| **Lua (trigger.heylua.ai)** | PR webhooks (review agents) | — | Repo webhooks | |
+
+## 5. Environment variables
+
+| Variable | Required | Used by | Notes |
+|---|---|---|---|
+| `DATABASE_URL` | yes | Payload Postgres adapter | Supabase **session** pooler (`aws-1-eu-west-1.pooler.supabase.com:5432`, user `postgres.<ref>`) |
+| `PAYLOAD_SECRET` | yes | Payload JWT/crypto | ≥32 random chars. Rotating it logs out all admin sessions |
+| `AUTH_SECRET` | yes | Auth.js | Rotating it logs out all storefront sessions |
+| `S3_BUCKET`, `S3_ENDPOINT`, `S3_REGION`, `S3_ACCESS_KEY`, `S3_SECRET_KEY` | yes | `@payloadcms/storage-s3` | Supabase → Storage → S3 connection. `forcePathStyle: true` |
+| `RESEND_API_KEY` | yes | `src/lib/resend.ts` | Throws on first send if missing |
+| `EMAIL_FROM` | recommended | `src/lib/resend.ts` | Default `Paul Simon <paul.simon@simoninstruments.com>` |
+| `GOOGLE_CLIENT_ID`, `GOOGLE_CLIENT_SECRET` | yes (Google login) | `src/lib/auth.ts` | |
+| `DEEPL_API_KEY` | recommended | `src/lib/deepl.ts`, `src/hooks/autoTranslate.ts` | Without it, translation is skipped silently |
+| `STRIPE_SECRET_KEY`, `NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY` | no (disabled) | dead code | |
+| `NEXTAUTH_URL` / `AUTH_URL` | no | Auth.js | `trustHost: true` derives the URL from the request |
+
+`src/payload.config.ts` falls back to `''` for a missing `PAYLOAD_SECRET`, `DATABASE_URL` or `S3_*`.
+A misconfigured deploy boots, then fails at runtime. Validate env at startup instead (see roadmap).
+
+## 6. Runbooks
+
+### 6.1 Deploy a change
+
+1. Branch from `main`, then open a PR.
+2. Run `pnpm exec tsc --noEmit && pnpm lint && pnpm build` locally. There is no CI yet.
+3. If the schema changed, follow `src/migrations/AGENTS.md` and apply the migration to production
+   **before** merging.
+4. Merge to `main`. Railway deploys both active projects in about 7 minutes (12:05→12:12 on
+   2026-05-21).
+5. Smoke test: `/en`, `/en/gallery`, a product page, `/admin` login, `/api/health`.
+
+### 6.2 Release a stale reservation (customer never paid)
+
+1. In `/admin` → Shop → Orders, open the order and set its status to `cancelled`. Add a note.
+2. In `/admin` → Instruments, open each instrument from that order and set its status back to
+   `available`.
+
+Both steps are manual. Nothing links them.
+
+### 6.3 Mark a sale complete
+
+1. Set the order to `paid`, then fill in `paymentReference` and `paidAt`.
+2. Set each instrument to `sold`.
+3. For delivery, set the order to `processing`, add the tracking details, then set it to `shipped`.
+   This sends the shipping email to the customer.
+
+### 6.4 Add an instrument (Paul)
+
+1. Upload the photos and audio to Media. Fill in `alt` with something descriptive, not just
+   "Front".
+2. Create the instrument **in English**. Leave the price empty for "price on request".
+3. Translations to the other 7 locales should appear about 10s after saving, if `DEEPL_API_KEY` is
+   set.
+
+To re-translate later, nothing in the UI does it today. The hook only runs on create, or when code
+passes `context.triggerAutoTranslate`.
+
+### 6.5 Rotate a secret
+
+1. Generate the new value (`openssl rand -base64 32` for app secrets) or rotate it in the vendor
+   dashboard.
+2. Update the Railway service variables on **every** active project, then redeploy.
+3. Update your local `.env`.
+4. Revoke the old value at the vendor.
+
+### 6.6 Database backup and restore
+
+- **Unverified:** whether Supabase backups exist at all. The Free plan has none.
+- Until that's confirmed, take a manual logical backup before any migration:
+  `pg_dump "$DATABASE_URL" --no-owner --format=custom -f backup-$(date +%F).dump`.
+- Store the dump outside the repo.
+
+## 7. Calendar of hard deadlines
+
+| Date | What |
+|---|---|
+| **ASAP** | Next.js 15.4.10 is affected by published critical advisories (`GHSA-2464-fhr4-w9xw`, `GHSA-2xp9-vwfh-vxw4`). See `known-issues.md` K-1 |
+| **2026-12-01** | Railway `railway.toml` stops being honoured. Migrate to `.railway/railway.ts` |
+| 2027-04-30 | Node 22 EOL. Target Node 24 LTS |
+| **2027-05-24** | Domain renewal at Hostinger |
+
+## 8. Open questions
+
+Answered 2026-10-24:
+
+- Production is `alluring-laughter`.
+- `DEEPL_API_KEY` is missing.
+- Supabase is on the Free plan, so there are no backups.
+
+Still open (tracked on the coordination board):
+
+1. What is `ideal-caring` for? Is it running, and does it cost money?
+2. Can the paused staging project be restored, and is it worth restoring?
+3. What is the legal entity (SRL/PFA/II, CUI, registration no.)? It's needed for invoices and the
+   legal pages. Owner: Paul.

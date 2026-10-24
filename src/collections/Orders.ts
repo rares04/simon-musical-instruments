@@ -1,6 +1,7 @@
 import type { CollectionConfig, CollectionAfterChangeHook } from 'payload'
 import { sendEmail } from '@/lib/resend'
 import { ShippingNotificationEmail } from '@/lib/emails'
+import { hasAdminRole, isAdmin } from '@/access'
 
 // Hook to send shipping notification when status changes to 'shipped' (delivery orders only)
 const sendShippingNotification: CollectionAfterChangeHook = async ({
@@ -61,25 +62,16 @@ export const Orders: CollectionConfig = {
     afterChange: [sendShippingNotification],
   },
   access: {
-    // Admins can do everything
+    // Admins see all orders; signed-in customers only their own.
     read: ({ req: { user } }) => {
       if (!user) return false
-      const roles = (user as { roles?: string[] })?.roles
-      if (roles?.includes('admin')) return true
-      // Customers can only read their own orders
-      return {
-        customer: { equals: user.id },
-      }
+      if (hasAdminRole(user)) return true
+      return { customer: { equals: user.id } }
     },
-    create: () => true, // API creates orders
-    update: ({ req: { user } }) => {
-      const roles = (user as { roles?: string[] } | null)?.roles
-      return Boolean(roles?.includes('admin'))
-    },
-    delete: ({ req: { user } }) => {
-      const roles = (user as { roles?: string[] } | null)?.roles
-      return Boolean(roles?.includes('admin'))
-    },
+    // The storefront creates orders server-side through the Local API.
+    create: isAdmin,
+    update: isAdmin,
+    delete: isAdmin,
   },
   fields: [
     {

@@ -1,1141 +1,192 @@
-# Payload CMS Development Rules
+# Simon Musical Instruments: Engineering Guide
 
-You are an expert Payload CMS developer. When working with Payload projects, follow these rules:
+> Canonical guide for humans and AI agents working in this repo. `CLAUDE.md` is a symlink to this
+> file. Subdirectories carry their own `AGENTS.md` (+ `CLAUDE.md` symlink) with local rules.
+> Last full audit: **2026-10-24**.
 
-## Core Principles
+## 1. What this is
 
-1. **TypeScript-First**: Always use TypeScript with proper types from Payload
-2. **Security-Critical**: Follow all security patterns, especially access control
-3. **Type Generation**: Run `generate:types` script after schema changes
-4. **Transaction Safety**: Always pass `req` to nested operations in hooks
-5. **Access Control**: Understand Local API bypasses access control by default
-6. **Access Control**: Ensure roles exist when modifiyng collection or globals with access controls
+The website and reservation shop of **Paul & Ecaterina Simon**, a two-person luthier workshop in
+Reghin, Transylvania (Romania's "City of Violins"), founded 2014. Live at
+**https://simoninstruments.com**.
 
-### Code Validation
+- **Sells**: one-of-a-kind, handmade violins, violas, cellos and double basses. Live prices range
+  from about €1,700 to €7,500. Some instruments are "price on request".
+- **No online payment.** Stripe code exists but is disabled. A customer **reserves** an instrument,
+  Paul contacts them within 1–2 business days, and payment happens by bank transfer (delivery) or
+  cash (pickup at the atelier).
+- **Content operations**: Paul adds instruments himself in the Payload admin (`/admin`), using phone
+  photos. He fulfils orders by changing order status in the admin.
+- **8 locales**: en (default), ro, de, fr, nl, ja, ko, el. UI strings live in `messages/*.json`.
+  Product text is meant to be machine-translated by DeepL when an instrument is created (see
+  `docs/known-issues.md`: this is not happening in production).
 
-- To validate typescript correctness after modifying code run `tsc --noEmit`
-- Generate import maps after creating or modifying components.
+## 2. Read this before you change anything
 
-## Project Structure
+1. **Every Payload collection is a public API.** Each collection is served at `/api/<slug>` (REST).
+   GraphQL is disabled; keep it that way. Collection `access` functions are the only thing guarding
+   that API.
+   - Payload's default for any missing access function is "any logged-in user may do it".
+   - The admin panel default is "any user in the `users` collection may log in".
+   - Every collection must define `create/read/update/delete` explicitly. `users` must also define
+     `admin`. Use the shared helpers in `src/access/`.
+   - Only admins can get a Payload session over REST (a `beforeLogin` hook). Customers sign in
+     through Auth.js only.
+   - The Local API (`payload.find` etc.) **bypasses access control** unless you pass
+     `overrideAccess: false`.
+   - Security hardening is required before new feature work. Findings are tracked privately, not in
+     this public repo. Ask the maintainer.
+2. **There are two auth systems.**
+   - **Payload auth** protects `/admin`, using the `payload-token` cookie.
+   - **Auth.js v5 (`next-auth@5 beta`)** handles the storefront session: a JWT cookie, with Google
+     OAuth and email/password.
+   - Both use the same Payload `users` collection. See `src/lib/AGENTS.md`.
+3. **Pushing to `main` deploys to production** (Railway auto-deploy, no CI gate). Work on a branch
+   and open a PR.
+4. **Never run `pnpm dev` against the production database.**
+   - In development, the Payload Postgres adapter **pushes schema changes directly** to whatever
+     database `DATABASE_URL` points at.
+   - Production schema changes go through migrations only. See `src/migrations/AGENTS.md`.
+5. **Any code that changes an instrument must pass `context: { skipAutoTranslate: true }`**, unless
+   you want DeepL to re-translate it.
+6. **Money is EUR.** `instruments.price` is nullable: `null` means "price on request" and the
+   instrument cannot be reserved. Orders snapshot the title and price at reservation time.
+7. **Every user-facing string goes through next-intl, in all 8 locale files.** See
+   `messages/AGENTS.md`.
+8. **The repo is public on GitHub.** Never commit secrets, customer data, or exploit details.
+
+## 3. Stack
+
+| Layer | Choice | Version (pinned) | Notes |
+|---|---|---|---|
+| Framework | Next.js App Router | 15.4.10 | React 19.2.1; `src/middleware.ts` handles canonical host + i18n |
+| CMS / backend | Payload CMS | 3.69.0 | Embedded in the same Next app; admin at `/admin`, REST at `/api/*` |
+| Database | PostgreSQL (Supabase) | `@payloadcms/db-postgres` | Supabase project `eedkygcxohpnjayapcjt`, eu-west-1, via the session pooler |
+| Media | Supabase Storage (S3 API) | `@payloadcms/storage-s3` | Bucket `media`. Served through the app at `/api/media/file/*` |
+| Storefront auth | Auth.js (next-auth) | 5.0.0-beta.30 | Google + Credentials providers, JWT sessions |
+| i18n | next-intl | ^4.6 | `localePrefix: 'always'`, Accept-Language detection |
+| UI | Tailwind CSS v4 + shadcn/ui (new-york) + Radix | 4.1 | Tokens in `src/app/(frontend)/globals.css` |
+| Email | Resend + React Email | resend ^6.6 | Sends from `paul.simon@simoninstruments.com`, `send.` subdomain |
+| Translation | DeepL API | deepl-node ^1.24 | `afterChange` hook on instrument create |
+| PDF | @react-pdf/renderer | ^4.3 | "Invoice" download (not a legal fiscal invoice) |
+| Payments | Stripe | ^20.1 | **Disabled.** Routes return 501 |
+| Hosting | Railway (Railpack builder) | n/a | `railway.toml`; healthcheck `/api/health` |
+| DNS / registrar / mailbox | Hostinger | n/a | Apex A record points to Railway. No `www` record |
+
+## 4. Repo map
 
 ```
 src/
-├── app/
-│   ├── (frontend)/          # Frontend routes
-│   └── (payload)/           # Payload admin routes
-├── collections/             # Collection configs
-├── globals/                 # Global configs
-├── components/              # Custom React components
-├── hooks/                   # Hook functions
-├── access/                  # Access control functions
-└── payload.config.ts        # Main config
+  payload.config.ts        Payload config: collections, locales, Postgres, S3 plugin
+  middleware.ts            301 to canonical host, trailing-slash strip, next-intl routing
+  access/                  Shared access-control helpers (isAdmin, isAdminOrSelf, …)
+  collections/             Users, Media, Instruments, Orders            → AGENTS.md
+  hooks/autoTranslate.ts   DeepL afterChange hook for instruments
+  migrations/              Payload Postgres migrations (+ JSON snapshots) → AGENTS.md
+  app/
+    (frontend)/[locale]/   Storefront pages (home, gallery, product, checkout, account, auth) → AGENTS.md
+    (payload)/             Payload admin + REST (GraphQL disabled). Generated; do not edit
+    api/                   Custom route handlers (checkout, account, auth OTP, contact) → AGENTS.md
+  components/              Storefront components + components/ui (shadcn) → AGENTS.md
+  lib/                     auth (Auth.js), resend, deepl, emails/, pdf/, cart context → AGENTS.md
+  i18n/                    next-intl routing/config/request
+  payload-types.ts         Generated. Run `pnpm generate:types`
+messages/                  UI translations, one JSON per locale → AGENTS.md
+scripts/seed-instruments.ts  Demo seed. Destructive; local only
+public/gallery/            Static workshop photos used by home + /photos
+docs/                      Architecture, business logic, infra, design system, ADRs, roadmap
 ```
 
-## Configuration
-
-### Minimal Config Pattern
-
-```typescript
-import { buildConfig } from 'payload'
-import { mongooseAdapter } from '@payloadcms/db-mongodb'
-import { lexicalEditor } from '@payloadcms/richtext-lexical'
-import path from 'path'
-import { fileURLToPath } from 'url'
-
-const filename = fileURLToPath(import.meta.url)
-const dirname = path.dirname(filename)
-
-export default buildConfig({
-  admin: {
-    user: 'users',
-    importMap: {
-      baseDir: path.resolve(dirname),
-    },
-  },
-  collections: [Users, Media],
-  editor: lexicalEditor(),
-  secret: process.env.PAYLOAD_SECRET,
-  typescript: {
-    outputFile: path.resolve(dirname, 'payload-types.ts'),
-  },
-  db: mongooseAdapter({
-    url: process.env.DATABASE_URL,
-  }),
-})
-```
-
-## Collections
-
-### Basic Collection
-
-```typescript
-import type { CollectionConfig } from 'payload'
-
-export const Posts: CollectionConfig = {
-  slug: 'posts',
-  admin: {
-    useAsTitle: 'title',
-    defaultColumns: ['title', 'author', 'status', 'createdAt'],
-  },
-  fields: [
-    { name: 'title', type: 'text', required: true },
-    { name: 'slug', type: 'text', unique: true, index: true },
-    { name: 'content', type: 'richText' },
-    { name: 'author', type: 'relationship', relationTo: 'users' },
-  ],
-  timestamps: true,
-}
-```
-
-### Auth Collection with RBAC
-
-```typescript
-export const Users: CollectionConfig = {
-  slug: 'users',
-  auth: true,
-  fields: [
-    {
-      name: 'roles',
-      type: 'select',
-      hasMany: true,
-      options: ['admin', 'editor', 'user'],
-      defaultValue: ['user'],
-      required: true,
-      saveToJWT: true, // Include in JWT for fast access checks
-      access: {
-        update: ({ req: { user } }) => user?.roles?.includes('admin'),
-      },
-    },
-  ],
-}
-```
-
-## Fields
-
-### Common Patterns
-
-```typescript
-// Auto-generate slugs
-import { slugField } from 'payload'
-slugField({ fieldToUse: 'title' })
-
-// Relationship with filtering
-{
-  name: 'category',
-  type: 'relationship',
-  relationTo: 'categories',
-  filterOptions: { active: { equals: true } },
-}
-
-// Conditional field
-{
-  name: 'featuredImage',
-  type: 'upload',
-  relationTo: 'media',
-  admin: {
-    condition: (data) => data.featured === true,
-  },
-}
-
-// Virtual field
-{
-  name: 'fullName',
-  type: 'text',
-  virtual: true,
-  hooks: {
-    afterRead: [({ siblingData }) => `${siblingData.firstName} ${siblingData.lastName}`],
-  },
-}
-```
-
-## CRITICAL SECURITY PATTERNS
-
-### 1. Local API Access Control (MOST IMPORTANT)
-
-```typescript
-// ❌ SECURITY BUG: Access control bypassed
-await payload.find({
-  collection: 'posts',
-  user: someUser, // Ignored! Operation runs with ADMIN privileges
-})
-
-// ✅ SECURE: Enforces user permissions
-await payload.find({
-  collection: 'posts',
-  user: someUser,
-  overrideAccess: false, // REQUIRED
-})
-
-// ✅ Administrative operation (intentional bypass)
-await payload.find({
-  collection: 'posts',
-  // No user, overrideAccess defaults to true
-})
-```
-
-**Rule**: When passing `user` to Local API, ALWAYS set `overrideAccess: false`
-
-### 2. Transaction Safety in Hooks
-
-```typescript
-// ❌ DATA CORRUPTION RISK: Separate transaction
-hooks: {
-  afterChange: [
-    async ({ doc, req }) => {
-      await req.payload.create({
-        collection: 'audit-log',
-        data: { docId: doc.id },
-        // Missing req - runs in separate transaction!
-      })
-    },
-  ],
-}
-
-// ✅ ATOMIC: Same transaction
-hooks: {
-  afterChange: [
-    async ({ doc, req }) => {
-      await req.payload.create({
-        collection: 'audit-log',
-        data: { docId: doc.id },
-        req, // Maintains atomicity
-      })
-    },
-  ],
-}
-```
-
-**Rule**: ALWAYS pass `req` to nested operations in hooks
-
-### 3. Prevent Infinite Hook Loops
-
-```typescript
-// ❌ INFINITE LOOP
-hooks: {
-  afterChange: [
-    async ({ doc, req }) => {
-      await req.payload.update({
-        collection: 'posts',
-        id: doc.id,
-        data: { views: doc.views + 1 },
-        req,
-      }) // Triggers afterChange again!
-    },
-  ],
-}
-
-// ✅ SAFE: Use context flag
-hooks: {
-  afterChange: [
-    async ({ doc, req, context }) => {
-      if (context.skipHooks) return
-
-      await req.payload.update({
-        collection: 'posts',
-        id: doc.id,
-        data: { views: doc.views + 1 },
-        context: { skipHooks: true },
-        req,
-      })
-    },
-  ],
-}
-```
-
-## Access Control
-
-### Collection-Level Access
-
-```typescript
-import type { Access } from 'payload'
-
-// Boolean return
-const authenticated: Access = ({ req: { user } }) => Boolean(user)
-
-// Query constraint (row-level security)
-const ownPostsOnly: Access = ({ req: { user } }) => {
-  if (!user) return false
-  if (user?.roles?.includes('admin')) return true
-
-  return {
-    author: { equals: user.id },
-  }
-}
-
-// Async access check
-const projectMemberAccess: Access = async ({ req, id }) => {
-  const { user, payload } = req
-
-  if (!user) return false
-  if (user.roles?.includes('admin')) return true
-
-  const project = await payload.findByID({
-    collection: 'projects',
-    id: id as string,
-    depth: 0,
-  })
-
-  return project.members?.includes(user.id)
-}
-```
-
-### Field-Level Access
-
-```typescript
-// Field access ONLY returns boolean (no query constraints)
-{
-  name: 'salary',
-  type: 'number',
-  access: {
-    read: ({ req: { user }, doc }) => {
-      // Self can read own salary
-      if (user?.id === doc?.id) return true
-      // Admin can read all
-      return user?.roles?.includes('admin')
-    },
-    update: ({ req: { user } }) => {
-      // Only admins can update
-      return user?.roles?.includes('admin')
-    },
-  },
-}
-```
-
-### Common Access Patterns
-
-```typescript
-// Anyone
-export const anyone: Access = () => true
-
-// Authenticated only
-export const authenticated: Access = ({ req: { user } }) => Boolean(user)
-
-// Admin only
-export const adminOnly: Access = ({ req: { user } }) => {
-  return user?.roles?.includes('admin')
-}
-
-// Admin or self
-export const adminOrSelf: Access = ({ req: { user } }) => {
-  if (user?.roles?.includes('admin')) return true
-  return { id: { equals: user?.id } }
-}
-
-// Published or authenticated
-export const authenticatedOrPublished: Access = ({ req: { user } }) => {
-  if (user) return true
-  return { _status: { equals: 'published' } }
-}
-```
-
-## Hooks
-
-### Common Hook Patterns
-
-```typescript
-import type { CollectionConfig } from 'payload'
-
-export const Posts: CollectionConfig = {
-  slug: 'posts',
-  hooks: {
-    // Before validation - format data
-    beforeValidate: [
-      async ({ data, operation }) => {
-        if (operation === 'create') {
-          data.slug = slugify(data.title)
-        }
-        return data
-      },
-    ],
-
-    // Before save - business logic
-    beforeChange: [
-      async ({ data, req, operation, originalDoc }) => {
-        if (operation === 'update' && data.status === 'published') {
-          data.publishedAt = new Date()
-        }
-        return data
-      },
-    ],
-
-    // After save - side effects
-    afterChange: [
-      async ({ doc, req, operation, previousDoc, context }) => {
-        // Check context to prevent loops
-        if (context.skipNotification) return
-
-        if (operation === 'create') {
-          await sendNotification(doc)
-        }
-        return doc
-      },
-    ],
-
-    // After read - computed fields
-    afterRead: [
-      async ({ doc, req }) => {
-        doc.viewCount = await getViewCount(doc.id)
-        return doc
-      },
-    ],
-
-    // Before delete - cascading deletes
-    beforeDelete: [
-      async ({ req, id }) => {
-        await req.payload.delete({
-          collection: 'comments',
-          where: { post: { equals: id } },
-          req, // Important for transaction
-        })
-      },
-    ],
-  },
-}
-```
-
-## Queries
-
-### Local API
-
-```typescript
-// Find with complex query
-const posts = await payload.find({
-  collection: 'posts',
-  where: {
-    and: [{ status: { equals: 'published' } }, { 'author.name': { contains: 'john' } }],
-  },
-  depth: 2, // Populate relationships
-  limit: 10,
-  sort: '-createdAt',
-  select: {
-    title: true,
-    author: true,
-  },
-})
-
-// Find by ID
-const post = await payload.findByID({
-  collection: 'posts',
-  id: '123',
-  depth: 2,
-})
-
-// Create
-const newPost = await payload.create({
-  collection: 'posts',
-  data: {
-    title: 'New Post',
-    status: 'draft',
-  },
-})
-
-// Update
-await payload.update({
-  collection: 'posts',
-  id: '123',
-  data: { status: 'published' },
-})
-
-// Delete
-await payload.delete({
-  collection: 'posts',
-  id: '123',
-})
-```
-
-### Query Operators
-
-```typescript
-// Equals
-{ status: { equals: 'published' } }
-
-// Not equals
-{ status: { not_equals: 'draft' } }
-
-// Greater than / less than
-{ price: { greater_than: 100 } }
-{ age: { less_than_equal: 65 } }
-
-// Contains (case-insensitive)
-{ title: { contains: 'payload' } }
-
-// Like (all words present)
-{ description: { like: 'cms headless' } }
-
-// In array
-{ category: { in: ['tech', 'news'] } }
-
-// Exists
-{ image: { exists: true } }
-
-// Near (geospatial)
-{ location: { near: [-122.4194, 37.7749, 10000] } }
-```
-
-### AND/OR Logic
-
-```typescript
-{
-  or: [
-    { status: { equals: 'published' } },
-    { author: { equals: user.id } },
-  ],
-}
-
-{
-  and: [
-    { status: { equals: 'published' } },
-    { featured: { equals: true } },
-  ],
-}
-```
-
-## Getting Payload Instance
-
-```typescript
-// In API routes (Next.js)
-import { getPayload } from 'payload'
-import config from '@payload-config'
-
-export async function GET() {
-  const payload = await getPayload({ config })
-
-  const posts = await payload.find({
-    collection: 'posts',
-  })
-
-  return Response.json(posts)
-}
-
-// In Server Components
-import { getPayload } from 'payload'
-import config from '@payload-config'
-
-export default async function Page() {
-  const payload = await getPayload({ config })
-  const { docs } = await payload.find({ collection: 'posts' })
-
-  return <div>{docs.map(post => <h1 key={post.id}>{post.title}</h1>)}</div>
-}
-```
-
-## Components
-
-The Admin Panel can be extensively customized using React Components. Custom Components can be Server Components (default) or Client Components.
-
-### Defining Components
-
-Components are defined using **file paths** (not direct imports) in your config:
-
-**Component Path Rules:**
-
-- Paths are relative to project root or `config.admin.importMap.baseDir`
-- Named exports: use `#ExportName` suffix or `exportName` property
-- Default exports: no suffix needed
-- File extensions can be omitted
-
-```typescript
-import { buildConfig } from 'payload'
-
-export default buildConfig({
-  admin: {
-    components: {
-      // Logo and branding
-      graphics: {
-        Logo: '/components/Logo',
-        Icon: '/components/Icon',
-      },
-
-      // Navigation
-      Nav: '/components/CustomNav',
-      beforeNavLinks: ['/components/CustomNavItem'],
-      afterNavLinks: ['/components/NavFooter'],
-
-      // Header
-      header: ['/components/AnnouncementBanner'],
-      actions: ['/components/ClearCache', '/components/Preview'],
-
-      // Dashboard
-      beforeDashboard: ['/components/WelcomeMessage'],
-      afterDashboard: ['/components/Analytics'],
-
-      // Auth
-      beforeLogin: ['/components/SSOButtons'],
-      logout: { Button: '/components/LogoutButton' },
-
-      // Settings
-      settingsMenu: ['/components/SettingsMenu'],
-
-      // Views
-      views: {
-        dashboard: { Component: '/components/CustomDashboard' },
-      },
-    },
-  },
-})
-```
-
-**Component Path Rules:**
-
-- Paths are relative to project root or `config.admin.importMap.baseDir`
-- Named exports: use `#ExportName` suffix or `exportName` property
-- Default exports: no suffix needed
-- File extensions can be omitted
-
-### Component Types
-
-1. **Root Components** - Global Admin Panel (logo, nav, header)
-2. **Collection Components** - Collection-specific (edit view, list view)
-3. **Global Components** - Global document views
-4. **Field Components** - Custom field UI and cells
-
-### Component Types
-
-1. **Root Components** - Global Admin Panel (logo, nav, header)
-2. **Collection Components** - Collection-specific (edit view, list view)
-3. **Global Components** - Global document views
-4. **Field Components** - Custom field UI and cells
-
-### Server vs Client Components
-
-**All components are Server Components by default** (can use Local API directly):
-
-```tsx
-// Server Component (default)
-import type { Payload } from 'payload'
-
-async function MyServerComponent({ payload }: { payload: Payload }) {
-  const posts = await payload.find({ collection: 'posts' })
-  return <div>{posts.totalDocs} posts</div>
-}
-
-export default MyServerComponent
-```
-
-**Client Components** need the `'use client'` directive:
-
-```tsx
-'use client'
-import { useState } from 'react'
-import { useAuth } from '@payloadcms/ui'
-
-export function MyClientComponent() {
-  const [count, setCount] = useState(0)
-  const { user } = useAuth()
-
-  return (
-    <button onClick={() => setCount(count + 1)}>
-      {user?.email}: Clicked {count} times
-    </button>
-  )
-}
-```
-
-### Using Hooks (Client Components Only)
-
-```tsx
-'use client'
-import {
-  useAuth, // Current user
-  useConfig, // Payload config (client-safe)
-  useDocumentInfo, // Document info (id, collection, etc.)
-  useField, // Field value and setter
-  useForm, // Form state
-  useFormFields, // Multiple field values (optimized)
-  useLocale, // Current locale
-  useTranslation, // i18n translations
-  usePayload, // Local API methods
-} from '@payloadcms/ui'
-
-export function MyComponent() {
-  const { user } = useAuth()
-  const { config } = useConfig()
-  const { id, collection } = useDocumentInfo()
-  const locale = useLocale()
-  const { t } = useTranslation()
-
-  return <div>Hello {user?.email}</div>
-}
-```
-
-### Collection/Global Components
-
-```typescript
-export const Posts: CollectionConfig = {
-  slug: 'posts',
-  admin: {
-    components: {
-      // Edit view
-      edit: {
-        PreviewButton: '/components/PostPreview',
-        SaveButton: '/components/CustomSave',
-        SaveDraftButton: '/components/SaveDraft',
-        PublishButton: '/components/Publish',
-      },
-
-      // List view
-      list: {
-        Header: '/components/ListHeader',
-        beforeList: ['/components/BulkActions'],
-        afterList: ['/components/ListFooter'],
-      },
-    },
-  },
-}
-```
-
-### Field Components
-
-```typescript
-{
-  name: 'status',
-  type: 'select',
-  options: ['draft', 'published'],
-  admin: {
-    components: {
-      // Edit view field
-      Field: '/components/StatusField',
-      // List view cell
-      Cell: '/components/StatusCell',
-      // Field label
-      Label: '/components/StatusLabel',
-      // Field description
-      Description: '/components/StatusDescription',
-      // Error message
-      Error: '/components/StatusError',
-    },
-  },
-}
-```
-
-**UI Field** (presentational only, no data):
-
-```typescript
-{
-  name: 'refundButton',
-  type: 'ui',
-  admin: {
-    components: {
-      Field: '/components/RefundButton',
-    },
-  },
-}
-```
-
-### Performance Best Practices
-
-1. **Import correctly:**
-
-   - Admin Panel: `import { Button } from '@payloadcms/ui'`
-   - Frontend: `import { Button } from '@payloadcms/ui/elements/Button'`
-
-2. **Optimize re-renders:**
-
-   ```tsx
-   // ❌ BAD: Re-renders on every form change
-   const { fields } = useForm()
-
-   // ✅ GOOD: Only re-renders when specific field changes
-   const value = useFormFields(([fields]) => fields[path])
-   ```
-
-3. **Prefer Server Components** - Only use Client Components when you need:
-
-   - State (useState, useReducer)
-   - Effects (useEffect)
-   - Event handlers (onClick, onChange)
-   - Browser APIs (localStorage, window)
-
-4. **Minimize serialized props** - Server Components serialize props sent to client
-
-### Styling Components
-
-```tsx
-import './styles.scss'
-
-export function MyComponent() {
-  return <div className="my-component">Content</div>
-}
-```
-
-```scss
-// Use Payload's CSS variables
-.my-component {
-  background-color: var(--theme-elevation-500);
-  color: var(--theme-text);
-  padding: var(--base);
-  border-radius: var(--border-radius-m);
-}
-
-// Import Payload's SCSS library
-@import '~@payloadcms/ui/scss';
-
-.my-component {
-  @include mid-break {
-    background-color: var(--theme-elevation-900);
-  }
-}
-```
-
-### Type Safety
-
-```tsx
-import type {
-  TextFieldServerComponent,
-  TextFieldClientComponent,
-  TextFieldCellComponent,
-  SelectFieldServerComponent,
-  // ... etc
-} from 'payload'
-
-export const MyField: TextFieldClientComponent = (props) => {
-  // Fully typed props
-}
-```
-
-### Import Map
-
-Payload auto-generates `app/(payload)/admin/importMap.js` to resolve component paths.
-
-**Regenerate manually:**
-
-```bash
-payload generate:importmap
-```
-
-**Set custom location:**
-
-```typescript
-export default buildConfig({
-  admin: {
-    importMap: {
-      baseDir: path.resolve(dirname, 'src'),
-      importMapFile: path.resolve(dirname, 'app', 'custom-import-map.js'),
-    },
-  },
-})
-```
-
-## Custom Endpoints
-
-```typescript
-import type { Endpoint } from 'payload'
-import { APIError } from 'payload'
-
-// Always check authentication
-export const protectedEndpoint: Endpoint = {
-  path: '/protected',
-  method: 'get',
-  handler: async (req) => {
-    if (!req.user) {
-      throw new APIError('Unauthorized', 401)
-    }
-
-    // Use req.payload for database operations
-    const data = await req.payload.find({
-      collection: 'posts',
-      where: { author: { equals: req.user.id } },
-    })
-
-    return Response.json(data)
-  },
-}
-
-// Route parameters
-export const trackingEndpoint: Endpoint = {
-  path: '/:id/tracking',
-  method: 'get',
-  handler: async (req) => {
-    const { id } = req.routeParams
-
-    const tracking = await getTrackingInfo(id)
-
-    if (!tracking) {
-      return Response.json({ error: 'not found' }, { status: 404 })
-    }
-
-    return Response.json(tracking)
-  },
-}
-```
-
-## Drafts & Versions
-
-```typescript
-export const Pages: CollectionConfig = {
-  slug: 'pages',
-  versions: {
-    drafts: {
-      autosave: true,
-      schedulePublish: true,
-      validate: false, // Don't validate drafts
-    },
-    maxPerDoc: 100,
-  },
-  access: {
-    read: ({ req: { user } }) => {
-      // Public sees only published
-      if (!user) return { _status: { equals: 'published' } }
-      // Authenticated sees all
-      return true
-    },
-  },
-}
-
-// Create draft
-await payload.create({
-  collection: 'pages',
-  data: { title: 'Draft Page' },
-  draft: true, // Skips required field validation
-})
-
-// Read with drafts
-const page = await payload.findByID({
-  collection: 'pages',
-  id: '123',
-  draft: true, // Returns draft if available
-})
-```
-
-## Field Type Guards
-
-```typescript
-import {
-  fieldAffectsData,
-  fieldHasSubFields,
-  fieldIsArrayType,
-  fieldIsBlockType,
-  fieldSupportsMany,
-  fieldHasMaxDepth,
-} from 'payload'
-
-function processField(field: Field) {
-  // Check if field stores data
-  if (fieldAffectsData(field)) {
-    console.log(field.name) // Safe to access
-  }
-
-  // Check if field has nested fields
-  if (fieldHasSubFields(field)) {
-    field.fields.forEach(processField) // Safe to access
-  }
-
-  // Check field type
-  if (fieldIsArrayType(field)) {
-    console.log(field.minRows, field.maxRows)
-  }
-
-  // Check capabilities
-  if (fieldSupportsMany(field) && field.hasMany) {
-    console.log('Multiple values supported')
-  }
-}
-```
-
-## Plugins
-
-### Using Plugins
-
-```typescript
-import { seoPlugin } from '@payloadcms/plugin-seo'
-import { redirectsPlugin } from '@payloadcms/plugin-redirects'
-
-export default buildConfig({
-  plugins: [
-    seoPlugin({
-      collections: ['posts', 'pages'],
-    }),
-    redirectsPlugin({
-      collections: ['pages'],
-    }),
-  ],
-})
-```
-
-### Creating Plugins
-
-```typescript
-import type { Config, Plugin } from 'payload'
-
-interface MyPluginConfig {
-  collections?: string[]
-  enabled?: boolean
-}
-
-export const myPlugin =
-  (options: MyPluginConfig): Plugin =>
-  (config: Config): Config => ({
-    ...config,
-    collections: config.collections?.map((collection) => {
-      if (options.collections?.includes(collection.slug)) {
-        return {
-          ...collection,
-          fields: [...collection.fields, { name: 'pluginField', type: 'text' }],
-        }
-      }
-      return collection
-    }),
-  })
-```
-
-## Best Practices
-
-### Security
-
-1. Always set `overrideAccess: false` when passing `user` to Local API
-2. Field-level access only returns boolean (no query constraints)
-3. Default to restrictive access, gradually add permissions
-4. Never trust client-provided data
-5. Use `saveToJWT: true` for roles to avoid database lookups
-
-### Performance
-
-1. Index frequently queried fields
-2. Use `select` to limit returned fields
-3. Set `maxDepth` on relationships to prevent over-fetching
-4. Use query constraints over async operations in access control
-5. Cache expensive operations in `req.context`
-
-### Data Integrity
-
-1. Always pass `req` to nested operations in hooks
-2. Use context flags to prevent infinite hook loops
-3. Enable transactions for MongoDB (requires replica set) and Postgres
-4. Use `beforeValidate` for data formatting
-5. Use `beforeChange` for business logic
-
-### Type Safety
-
-1. Run `generate:types` after schema changes
-2. Import types from generated `payload-types.ts`
-3. Type your user object: `import type { User } from '@/payload-types'`
-4. Use `as const` for field options
-5. Use field type guards for runtime type checking
-
-### Organization
-
-1. Keep collections in separate files
-2. Extract access control to `access/` directory
-3. Extract hooks to `hooks/` directory
-4. Use reusable field factories for common patterns
-5. Document complex access control with comments
-
-## Common Gotchas
-
-1. **Local API Default**: Access control bypassed unless `overrideAccess: false`
-2. **Transaction Safety**: Missing `req` in nested operations breaks atomicity
-3. **Hook Loops**: Operations in hooks can trigger the same hooks
-4. **Field Access**: Cannot use query constraints, only boolean
-5. **Relationship Depth**: Default depth is 2, set to 0 for IDs only
-6. **Draft Status**: `_status` field auto-injected when drafts enabled
-7. **Type Generation**: Types not updated until `generate:types` runs
-8. **MongoDB Transactions**: Require replica set configuration
-9. **SQLite Transactions**: Disabled by default, enable with `transactionOptions: {}`
-10. **Point Fields**: Not supported in SQLite
-
-## Additional Context Files
-
-For deeper exploration of specific topics, refer to the context files located in `.cursor/rules/`:
-
-### Available Context Files
-
-1. **`payload-overview.md`** - High-level architecture and core concepts
-
-   - Payload structure and initialization
-   - Configuration fundamentals
-   - Database adapters overview
-
-2. **`security-critical.md`** - Critical security patterns (⚠️ IMPORTANT)
-
-   - Local API access control
-   - Transaction safety in hooks
-   - Preventing infinite hook loops
-
-3. **`collections.md`** - Collection configurations
-
-   - Basic collection patterns
-   - Auth collections with RBAC
-   - Upload collections
-   - Drafts and versioning
-   - Globals
-
-4. **`fields.md`** - Field types and patterns
-
-   - All field types with examples
-   - Conditional fields
-   - Virtual fields
-   - Field validation
-   - Common field patterns
-
-5. **`field-type-guards.md`** - TypeScript field type utilities
-
-   - Field type checking utilities
-   - Safe type narrowing
-   - Runtime field validation
-
-6. **`access-control.md`** - Permission patterns
-
-   - Collection-level access
-   - Field-level access
-   - Row-level security
-   - RBAC patterns
-   - Multi-tenant access control
-
-7. **`access-control-advanced.md`** - Complex access patterns
-
-   - Nested document access
-   - Cross-collection permissions
-   - Dynamic role hierarchies
-   - Performance optimization
-
-8. **`hooks.md`** - Lifecycle hooks
-
-   - Collection hooks
-   - Field hooks
-   - Hook context patterns
-   - Common hook recipes
-
-9. **`queries.md`** - Database operations
-
-   - Local API usage
-   - Query operators
-   - Complex queries with AND/OR
-   - Performance optimization
-
-10. **`endpoints.md`** - Custom API endpoints
-
-    - REST endpoint patterns
-    - Authentication in endpoints
-    - Error handling
-    - Route parameters
-
-11. **`adapters.md`** - Database and storage adapters
-
-    - MongoDB, PostgreSQL, SQLite patterns
-    - Storage adapter usage (S3, Azure, GCS, etc.)
-    - Custom adapter development
-
-12. **`plugin-development.md`** - Creating plugins
-
-    - Plugin architecture
-    - Modifying configuration
-    - Plugin hooks
-    - Best practices
-
-13. **`components.md`** - Custom Components
-
-    - Component types (Root, Collection, Global, Field)
-    - Server vs Client Components
-    - Component paths and definition
-    - Default and custom props
-    - Using hooks
-    - Performance best practices
-    - Styling components
-
-## Resources
-
-- Docs: https://payloadcms.com/docs
-- LLM Context: https://payloadcms.com/llms-full.txt
-- GitHub: https://github.com/payloadcms/payload
-- Examples: https://github.com/payloadcms/payload/tree/main/examples
-- Templates: https://github.com/payloadcms/payload/tree/main/templates
+## 5. Commands
+
+Use the pinned pnpm through Corepack (`corepack enable && corepack prepare pnpm@10.29.2 --activate`).
+pnpm 11+ ignores `pnpm.onlyBuiltDependencies` and writes a `pnpm-workspace.yaml`. Do not commit that
+file.
+
+| Task | Command |
+|---|---|
+| Install | `pnpm install --frozen-lockfile` |
+| Dev server | `pnpm dev` (port 3000; see `docs/local-development.md` for a local DB) |
+| Type-check | `pnpm exec tsc --noEmit` (clean as of 2026-10-24) |
+| Lint | `pnpm lint` (0 errors, warnings only) |
+| Build | `pnpm build` |
+| Regenerate types after a schema change | `pnpm generate:types` |
+| Regenerate the admin import map after adding admin components | `pnpm generate:importmap` |
+| Create a migration | `pnpm payload migrate:create <name>` |
+| Apply migrations | `pnpm payload migrate` |
+| Tests | `pnpm test:int`, `pnpm test:e2e`. **Placeholder tests from the Payload template.** The e2e test is stale |
+
+## 6. Core flows (one line each; details in `docs/domain-and-business-logic.md`)
+
+- **Browse**: `/[locale]/gallery` loads up to 100 instruments server-side and filters client-side by
+  type and price. `/[locale]/gallery/[slug-or-id]` is the product page.
+- **Reserve**:
+  1. Add to cart. The cart is React state only and does not survive a reload.
+  2. `/checkout` posts to `POST /api/checkout/create-reservation`.
+  3. That creates an `orders` row with `status: pending_payment`, sets each instrument to `reserved`,
+     and emails the customer and Paul.
+  4. Limit: 2 pending reservations per user or email.
+- **Fulfil** (manual, in `/admin`): Paul moves the order through
+  `pending_payment → paid → processing → shipped → delivered`. Moving to `shipped` emails tracking
+  info (delivery orders only).
+  - **Instrument status is not updated automatically when an order changes.** Paul sets it to `sold`
+    by hand, or back to `available` after a cancellation.
+- **Accounts**:
+  - Register with email and password, then confirm with a 6-digit OTP email.
+  - Or sign in with Google.
+  - `/account` shows orders, profile, addresses and a PDF download.
+- **Contact**: `/contact` posts to `POST /api/contact`, which emails Paul in Romanian.
+
+## 7. Conventions
+
+- TypeScript strict. Import alias `@/*` points to `src/*`, and `@payload-config` points to the
+  config.
+- Prettier: single quotes, no semicolons, trailing commas, width 100.
+- Files are kebab-case and components are PascalCase named exports.
+- Prefer Server Components. Add `'use client'` only for state, effects or handlers.
+  - Several pages are needlessly client-side today, which hurts SEO and performance.
+- Use `Link`, `useRouter` and `redirect` from `@/i18n/routing`, not `next/link` or
+  `next/navigation`, so the locale prefix is preserved.
+- Use shadcn primitives from `@/components/ui`. Style with semantic tokens (`bg-background`,
+  `text-accent`, …), never raw colors. See `src/components/AGENTS.md`.
+- Commit messages are Conventional Commits (`feat:`, `fix:`, `refactor:`, `chore:`).
+- After a schema change:
+  1. `pnpm generate:types`
+  2. `pnpm payload migrate:create <name>`
+  3. Commit the `.ts` + `.json` + `index.ts` together.
+
+## 8. Environment variables
+
+The authoritative list is in `.env.example`. Required in production: `DATABASE_URL`,
+`PAYLOAD_SECRET`, `AUTH_SECRET`, `S3_BUCKET`, `S3_ENDPOINT`, `S3_REGION`, `S3_ACCESS_KEY`,
+`S3_SECRET_KEY`, `RESEND_API_KEY`, `EMAIL_FROM`, `GOOGLE_CLIENT_ID`, `GOOGLE_CLIENT_SECRET`,
+`DEEPL_API_KEY`. Stripe keys are only needed if payments are re-enabled.
+
+## 9. Known sharp edges (non-security; full list in `docs/known-issues.md`)
+
+- Brand fonts (Playfair Display, Inter) are downloaded but never applied. The CSS variable names
+  don't match. The site renders in the system font.
+- Product translations are missing in production. Non-English product pages show English text.
+- `/api/account/password` cannot work: Payload never returns `password`. Password change is broken.
+- All DB pages use `force-dynamic` with no caching. Images are proxied through the app server (~2s
+  TTFB).
+- No sitemap, robots.txt, hreflang, Open Graph or structured data. Slugs are hand-typed
+  (`Cello-4-4(10)`).
+- No staging environment. The staging Supabase project is paused. Local dev needs a local Postgres.
+- Production runs in Railway **us-west2** while the DB is in **eu-west-1**, so every query crosses
+  the Atlantic.
+
+## 10. Where to read next
+
+| Doc | What's in it |
+|---|---|
+| `docs/README.md` | Index and reading order |
+| `docs/architecture.md` | System diagram, request lifecycle, rendering, auth, data flow |
+| `docs/domain-and-business-logic.md` | Instruments, reservations, orders, emails, roles, state machines |
+| `docs/infrastructure-and-operations.md` | Railway, Supabase, DNS, vendors, env vars, deploys, runbooks |
+| `docs/local-development.md` | Tested local setup with Postgres |
+| `docs/design-system.md` | Brand, tokens, typography, components, imagery, voice |
+| `docs/known-issues.md` | Bugs and tech debt, ranked |
+| `docs/roadmap.md` | Plan to take the site to a best-in-class level |
+| `docs/adr/` | Architecture decision records (retroactive) |
+| `docs/reference/payload-cms-rules.md`, `.cursor/rules/` | Generic Payload CMS patterns (template) |
