@@ -5,6 +5,7 @@ import * as migration_20251230_161607_add_stock_field from './20251230_161607_ad
 import * as migration_20260112_184331_add_otp_verification_fields from './20260112_184331_add_otp_verification_fields';
 import * as migration_20260303_000000_make_instrument_price_optional from './20260303_000000_make_instrument_price_optional';
 import * as migration_20261024_113716_payload_3_92_schema from './20261024_113716_payload_3_92_schema';
+import * as migration_20261024_185724_admin_totp from './20261024_185724_admin_totp';
 
 export const migrations = [
   {
@@ -40,6 +41,11 @@ export const migrations = [
   {
     up: migration_20261024_113716_payload_3_92_schema.up,
     down: migration_20261024_113716_payload_3_92_schema.down,
-    name: '20261024_113716_payload_3_92_schema'
+    name: '20261024_113716_payload_3_92_schema',
+  },
+  {
+    up: migration_20261024_185724_admin_totp.up,
+    down: migration_20261024_185724_admin_totp.down,
+    name: '20261024_185724_admin_totp'
   },
 ];

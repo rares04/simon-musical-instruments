@@ -43,6 +43,14 @@ function isLocalhost(host: string): boolean {
 export default function proxy(request: NextRequest) {
   const url = new URL(request.url)
 
+  // Payload admin: only pass the path to the admin 2FA plugin (payload-totp reads `x-pathname` to
+  // avoid redirect loops). `set` overwrites any value the client sent. No locale or host handling.
+  if (url.pathname === '/admin' || url.pathname.startsWith('/admin/')) {
+    const headers = new Headers(request.headers)
+    headers.set('x-pathname', url.pathname)
+    return NextResponse.next({ request: { headers } })
+  }
+
   // Get the host from headers (handle proxies like Railway's load balancer)
   const forwardedHost = request.headers.get('x-forwarded-host')
   const host = forwardedHost || request.headers.get('host') || ''
@@ -104,5 +112,6 @@ export const config = {
   // - /_next (Next.js internals)
   // - /_vercel (Vercel internals)
   // - /.*\\..* (files with extensions like .jpg, .css, etc.)
-  matcher: ['/((?!api|admin|_next|_vercel|.*\\..*).*)', '/'],
+  // /admin is matched separately, only to set the header above.
+  matcher: ['/((?!api|admin|_next|_vercel|.*\\..*).*)', '/', '/admin', '/admin/:path*'],
 }

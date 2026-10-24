@@ -1,5 +1,5 @@
 import type { CollectionConfig } from 'payload'
-import { anyone, isAdmin } from '@/access'
+import { anyone, isAdmin, publicReadOptOut } from '@/access'
 
 export const Media: CollectionConfig = {
   slug: 'media',
@@ -9,6 +9,8 @@ export const Media: CollectionConfig = {
     update: isAdmin,
     delete: isAdmin,
   },
+  // Public reads stay public with admin 2FA on (see src/access).
+  custom: publicReadOptOut,
   fields: [
     {
       name: 'alt',
