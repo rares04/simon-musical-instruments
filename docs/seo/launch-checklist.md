@@ -58,3 +58,4 @@ account (see `README.md` §11).
   of priced instruments.
 - Bing → AI Performance: first citation data.
 - Run the monthly AI-answer check (`ai-visibility-prompts.md`).
+- Re-run Lighthouse on the three pages in `research/performance-baseline-2026-10-24.md` and compare.
