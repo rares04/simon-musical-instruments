@@ -9,18 +9,17 @@ import { ClientProviders } from '@/components/client-providers'
 import { routing } from '@/i18n/routing'
 import '../globals.css'
 
-const inter = Inter({ subsets: ['latin'], variable: '--font-sans' })
-const playfair = Playfair_Display({ subsets: ['latin'], variable: '--font-serif' })
-const notoJP = Noto_Sans_JP({
-  subsets: ['latin'],
-  variable: '--font-ja',
-  weight: ['400', '500', '700'],
-})
-const notoKR = Noto_Sans_KR({
-  subsets: ['latin'],
-  variable: '--font-ko',
-  weight: ['400', '500', '700'],
-})
+// Variable names must match the `@theme` font stacks in globals.css.
+const inter = Inter({ subsets: ['latin'], variable: '--font-inter' })
+const playfair = Playfair_Display({ subsets: ['latin'], variable: '--font-playfair' })
+
+// CJK fonts are applied only on /ja and /ko, without preload, so other locales never download them.
+const notoJP = Noto_Sans_JP({ variable: '--font-cjk', preload: false })
+const notoKR = Noto_Sans_KR({ variable: '--font-cjk', preload: false })
+const cjkFontVariable: Partial<Record<string, string>> = {
+  ja: notoJP.variable,
+  ko: notoKR.variable,
+}
 
 export const metadata: Metadata = {
   title: 'Simon Musical Instruments | Handcrafted String Instruments from Reghin, Romania',
@@ -65,7 +64,7 @@ export default async function LocaleLayout({
   return (
     <html
       lang={locale}
-      className={`${inter.variable} ${playfair.variable} ${notoJP.variable} ${notoKR.variable}`}
+      className={`${inter.variable} ${playfair.variable} ${cjkFontVariable[locale] ?? ''}`}
     >
       <body className="min-h-screen bg-background font-sans antialiased" suppressHydrationWarning>
         <NextIntlClientProvider messages={messages}>
