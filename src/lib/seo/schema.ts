@@ -84,6 +84,39 @@ export function breadcrumbNode(items: { name: string; url: string }[]): JsonLdNo
   }
 }
 
+/** A category page listing instruments, e.g. all cellos. */
+export function collectionPageNode(
+  p: {
+    url: string
+    name: string
+    description: string
+    locale: Locale
+    items: { url: string; name: string }[]
+  },
+  siteUrl = SITE_URL,
+): JsonLdNode {
+  return {
+    '@type': 'CollectionPage',
+    '@id': `${p.url}#webpage`,
+    url: p.url,
+    name: p.name,
+    description: p.description,
+    inLanguage: p.locale,
+    isPartOf: { '@id': ids.website(siteUrl) },
+    publisher: { '@id': ids.business(siteUrl) },
+    mainEntity: {
+      '@type': 'ItemList',
+      numberOfItems: p.items.length,
+      itemListElement: p.items.map((item, i) => ({
+        '@type': 'ListItem',
+        position: i + 1,
+        url: item.url,
+        name: item.name,
+      })),
+    },
+  }
+}
+
 export function faqNode(items: { question: string; answer: string }[]): JsonLdNode | null {
   if (items.length === 0) return null
   return {

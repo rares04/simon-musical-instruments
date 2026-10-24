@@ -4,6 +4,7 @@ import { getPayload } from 'payload'
 import config from '@payload-config'
 import type { Instrument } from '@/payload-types'
 import { localesWithText } from './alternates'
+import { CATEGORIES, sortByStatus, type CategoryKey } from './categories'
 import type { Locale } from './site'
 
 export type FoundInstrument = { instrument: Instrument; matchedBy: 'slug' | 'id' }
@@ -57,3 +58,20 @@ export const getTranslatedLocales = cache(async (id: number): Promise<Locale[]> 
     .luthierNotes
   return localesWithText(notes)
 })
+
+/** Every public instrument of a category, available first and sold last. Cached per request. */
+export const findCategoryInstruments = cache(
+  async (key: CategoryKey, locale: Locale): Promise<Instrument[]> => {
+    const payload = await getPayload({ config })
+    const { docs } = await payload.find({
+      collection: 'instruments',
+      locale,
+      where: { instrumentType: { equals: CATEGORIES[key].type } },
+      limit: 100,
+      depth: 1,
+      sort: '-createdAt',
+      overrideAccess: false,
+    })
+    return sortByStatus(docs)
+  },
+)

@@ -824,6 +824,97 @@
       "priceOnRequest": "Preis auf Anfrage",
       "reserved": "Reserviert",
       "sold": "Verkauft"
+    },
+    "categories": {
+      "cellos": {
+        "title": "Handgefertigte Celli kaufen, aus Reghin, Rumänien",
+        "description": "Celli in voller Größe, von Paul und Ecaterina Simon in Reghin, Rumänien, von Hand gebaut. Modelle: {models}. Fotos, Klangbeispiele und Preise. Online reservieren."
+      },
+      "doubleBasses": {
+        "title": "Handgefertigte Kontrabässe kaufen, aus Rumänien",
+        "description": "3/4-Kontrabässe, von Paul und Ecaterina Simon in Reghin, Rumänien, von Hand gebaut. Modelle: {models}. Fotos, Klangbeispiele und Preise."
+      }
+    }
+  },
+  "categoryPage": {
+    "badge": "Handgefertigt in Reghin, Rumänien",
+    "modelsLine": "Aktuelle Modelle: {models}.",
+    "factsHeading": "Auf einen Blick",
+    "facts": {
+      "size": "Größe",
+      "models": "Modelle",
+      "top": "Decke",
+      "backAndRibs": "Boden und Zargen",
+      "varnish": "Lack",
+      "price": "Preis",
+      "certificate": "Zertifikat",
+      "howToBuy": "So kaufen Sie"
+    },
+    "values": {
+      "top": "Feinjährige rumänische Fichte",
+      "varnish": "Spirituslack, von Hand aufgetragen",
+      "priceRange": "{min} bis {max}",
+      "priceOnRequest": "Auf Anfrage",
+      "certificate": "Signiertes Echtheitszertifikat zu jedem Instrument",
+      "howToBuy": "Online reservieren. Paul meldet sich innerhalb von 1–2 Werktagen, um Zahlung und Lieferung mit Ihnen zu vereinbaren."
+    },
+    "woods": {
+      "maple": "Ahorn",
+      "alder": "Erle",
+      "ash": "Esche",
+      "poplar": "Pappel"
+    },
+    "listHeading": "Jetzt in der Werkstatt",
+    "soldNote": "Verkaufte Instrumente bleiben als Beispiele unserer Arbeit sichtbar.",
+    "empty": "Derzeit ist kein Instrument verfügbar. Fragen Sie uns nach einer Auftragsarbeit.",
+    "faqHeading": "Fragen",
+    "howToBuy": {
+      "question": "Wie kann ich ein Instrument kaufen?",
+      "answer": "Reservieren Sie das Instrument online. Paul meldet sich innerhalb von 1–2 Werktagen, beantwortet Ihre Fragen und vereinbart Zahlung und Lieferung mit Ihnen. Jedes Instrument wird mit einem signierten Echtheitszertifikat geliefert."
+    },
+    "allInstruments": "Alle Instrumente ansehen",
+    "contact": "Stellen Sie uns eine Frage",
+    "cellos": {
+      "h1": "Handgefertigte Celli",
+      "intro": "Wir bauen Celli in voller Größe (4/4) von Hand in unserer Werkstatt in Reghin, Rumänien. Jedes ist ein Einzelstück, mit eigenem Holz, Lack und Setup.",
+      "stock": "{count, plural, one {Ein Cello ist derzeit verfügbar} other {# Celli sind derzeit verfügbar}}. Preise: {price}.",
+      "stockNoPrice": "{count, plural, one {Ein Cello ist derzeit verfügbar} other {# Celli sind derzeit verfügbar}}. Preise auf Anfrage.",
+      "size": "4/4 (volle Größe)",
+      "faq": {
+        "price": {
+          "question": "Was kostet ein handgefertigtes Cello?",
+          "answer": "Die derzeit verfügbaren Celli kosten {price}. Der Preis hängt von Modell, Holz und Setup ab."
+        },
+        "size": {
+          "question": "Welche Größe haben Ihre Celli?",
+          "answer": "Unsere Celli sind 4/4, die volle Größe für Erwachsene."
+        },
+        "woods": {
+          "question": "Welche Hölzer verwenden Sie?",
+          "answer": "Die Decke ist aus feinjähriger rumänischer Fichte. Boden und Zargen sind aus {woods}, je nach Instrument. Auf der Seite jedes Cellos stehen Hölzer, Saiten und Maße."
+        }
+      }
+    },
+    "doubleBasses": {
+      "h1": "Handgefertigte Kontrabässe",
+      "intro": "Wir bauen 3/4-Kontrabässe von Hand in unserer Werkstatt in Reghin, Rumänien. Jeder ist ein Einzelstück, mit eigenem Holz, Lack und Setup.",
+      "stock": "{count, plural, one {Ein Kontrabass ist derzeit verfügbar} other {# Kontrabässe sind derzeit verfügbar}}. Preise: {price}.",
+      "stockNoPrice": "{count, plural, one {Ein Kontrabass ist derzeit verfügbar} other {# Kontrabässe sind derzeit verfügbar}}. Preise auf Anfrage.",
+      "size": "3/4",
+      "faq": {
+        "price": {
+          "question": "Was kostet ein handgefertigter Kontrabass?",
+          "answer": "Die derzeit verfügbaren Kontrabässe kosten {price}. Der Preis hängt von Modell, Holz und Setup ab."
+        },
+        "size": {
+          "question": "Welche Größe haben Ihre Kontrabässe?",
+          "answer": "Unsere Kontrabässe sind 3/4, die Größe, die die meisten erwachsenen Bassisten im Orchester und im Jazz spielen."
+        },
+        "woods": {
+          "question": "Welche Hölzer verwenden Sie?",
+          "answer": "Die Decke ist aus feinjähriger rumänischer Fichte. Boden und Zargen sind aus {woods}, je nach Instrument. Auf der Seite jedes Kontrabasses stehen Hölzer, Saiten und Maße."
+        }
+      }
     }
   }
 }

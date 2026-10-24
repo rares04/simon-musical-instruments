@@ -824,6 +824,97 @@
       "priceOnRequest": "Prijs op aanvraag",
       "reserved": "Gereserveerd",
       "sold": "Verkocht"
+    },
+    "categories": {
+      "cellos": {
+        "title": "Handgemaakte cello's te koop, Reghin, Roemenië",
+        "description": "Hele cello's, met de hand gebouwd door Paul en Ecaterina Simon in Reghin, Roemenië. Modellen: {models}. Foto's, geluidsfragmenten en prijzen. Online reserveren."
+      },
+      "doubleBasses": {
+        "title": "Handgemaakte contrabassen te koop, Roemenië",
+        "description": "3/4-contrabassen, met de hand gebouwd door Paul en Ecaterina Simon in Reghin, Roemenië. Modellen: {models}. Foto's, geluidsfragmenten en prijzen."
+      }
+    }
+  },
+  "categoryPage": {
+    "badge": "Handgemaakt in Reghin, Roemenië",
+    "modelsLine": "Huidige modellen: {models}.",
+    "factsHeading": "In het kort",
+    "facts": {
+      "size": "Maat",
+      "models": "Modellen",
+      "top": "Bovenblad",
+      "backAndRibs": "Achterblad en zijkanten",
+      "varnish": "Lak",
+      "price": "Prijs",
+      "certificate": "Certificaat",
+      "howToBuy": "Zo koopt u"
+    },
+    "values": {
+      "top": "Fijnjarig Roemeens sparrenhout",
+      "varnish": "Spiritlak, met de hand aangebracht",
+      "priceRange": "{min} tot {max}",
+      "priceOnRequest": "Op aanvraag",
+      "certificate": "Gesigneerd certificaat van echtheid bij elk instrument",
+      "howToBuy": "Reserveer online. Paul neemt binnen 1–2 werkdagen contact met u op om betaling en levering af te spreken."
+    },
+    "woods": {
+      "maple": "esdoorn",
+      "alder": "elzenhout",
+      "ash": "essenhout",
+      "poplar": "populierenhout"
+    },
+    "listHeading": "Nu in de werkplaats",
+    "soldNote": "Verkochte instrumenten blijven zichtbaar als voorbeeld van ons werk.",
+    "empty": "Er is op dit moment geen instrument beschikbaar. Neem contact met ons op voor een instrument op bestelling.",
+    "faqHeading": "Vragen",
+    "howToBuy": {
+      "question": "Hoe koop ik een instrument?",
+      "answer": "Reserveer het instrument online. Paul neemt binnen 1–2 werkdagen contact met u op om uw vragen te beantwoorden en betaling en levering af te spreken. Elk instrument wordt geleverd met een gesigneerd certificaat van echtheid."
+    },
+    "allInstruments": "Bekijk alle instrumenten",
+    "contact": "Stel ons een vraag",
+    "cellos": {
+      "h1": "Handgemaakte cello's",
+      "intro": "Wij bouwen hele cello's (4/4) met de hand in onze werkplaats in Reghin, Roemenië. Elke cello is uniek, met eigen hout, lak en afstelling.",
+      "stock": "{count, plural, one {Er is nu één cello beschikbaar} other {Er zijn nu # cello's beschikbaar}}. Prijzen: {price}.",
+      "stockNoPrice": "{count, plural, one {Er is nu één cello beschikbaar} other {Er zijn nu # cello's beschikbaar}}. Prijzen op aanvraag.",
+      "size": "4/4 (hele maat)",
+      "faq": {
+        "price": {
+          "question": "Wat kost een handgemaakte cello?",
+          "answer": "De cello's die nu beschikbaar zijn, kosten {price}. De prijs hangt af van het model, het hout en de afstelling."
+        },
+        "size": {
+          "question": "Welke maat hebben uw cello's?",
+          "answer": "Onze cello's zijn 4/4, de hele maat die volwassenen spelen."
+        },
+        "woods": {
+          "question": "Welk hout gebruikt u?",
+          "answer": "Het bovenblad is van fijnjarig Roemeens sparrenhout. Achterblad en zijkanten zijn van {woods}, afhankelijk van het instrument. Op de pagina van elke cello staan het hout, de snaren en de maten."
+        }
+      }
+    },
+    "doubleBasses": {
+      "h1": "Handgemaakte contrabassen",
+      "intro": "Wij bouwen 3/4-contrabassen met de hand in onze werkplaats in Reghin, Roemenië. Elke bas is uniek, met eigen hout, lak en afstelling.",
+      "stock": "{count, plural, one {Er is nu één contrabas beschikbaar} other {Er zijn nu # contrabassen beschikbaar}}. Prijzen: {price}.",
+      "stockNoPrice": "{count, plural, one {Er is nu één contrabas beschikbaar} other {Er zijn nu # contrabassen beschikbaar}}. Prijzen op aanvraag.",
+      "size": "3/4",
+      "faq": {
+        "price": {
+          "question": "Wat kost een handgemaakte contrabas?",
+          "answer": "De contrabassen die nu beschikbaar zijn, kosten {price}. De prijs hangt af van het model, het hout en de afstelling."
+        },
+        "size": {
+          "question": "Welke maat hebben uw contrabassen?",
+          "answer": "Onze contrabassen zijn 3/4, de maat die de meeste volwassen bassisten spelen, in het orkest en in de jazz."
+        },
+        "woods": {
+          "question": "Welk hout gebruikt u?",
+          "answer": "Het bovenblad is van fijnjarig Roemeens sparrenhout. Achterblad en zijkanten zijn van {woods}, afhankelijk van het instrument. Op de pagina van elke contrabas staan het hout, de snaren en de maten."
+        }
+      }
     }
   }
 }
