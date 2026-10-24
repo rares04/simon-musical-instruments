@@ -49,6 +49,17 @@ account (see `README.md` §11).
      the legal pages exist.
    - "Price on request" products show no product rich result. That's by design.
 
+## B4 (llms.txt and IndexNow)
+
+1. `https://simoninstruments.com/llms.txt` returns Markdown that lists the instruments for sale now.
+2. IndexNow needs one Railway variable, `INDEXNOW_KEY`: 32 random hex characters, from
+   `openssl rand -hex 16`. Production also needs `NEXT_PUBLIC_APP_ENV=production` (already set for
+   observability). Then:
+   - `https://simoninstruments.com/indexnow-key.txt` returns the key;
+   - after the next instrument edit in `/admin`, Bing Webmaster Tools → IndexNow lists the URLs
+     within an hour.
+3. Bulk scripts that touch many instruments pass `context: { skipIndexNow: true }`.
+
 ## Two weeks later
 
 - Search Console → Pages: `/en/*` should move from "Duplicate without user-selected canonical" to

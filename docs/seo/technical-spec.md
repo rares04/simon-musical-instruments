@@ -308,7 +308,7 @@ traffic exists.
 | B1 foundations | `metadata.ts` helper, translated `generateMetadata` on all pages, `robots.ts`, `sitemap.ts`, `alternateLinks: false`, noindex on private pages, favicon, default OG image, business/website/breadcrumb JSON-LD, Product JSON-LD from existing fields, the untranslated-locale canonical rule | no | 1.5 d |
 | B2 instrument identity | plugin-seo, slug generator, `previousSlugs`, new URL map + 308s, alt-text requirement, slug backfill script | **yes** (migration lock) | 1.5 d |
 | B3 category + about pages | `/cellos`, `/double-basses`, `/violins`, `/violas`, `/about`, with ItemList and Person JSON-LD | no (messages) | 1 d + content |
-| B4 extras | `llms.txt` (generated from live data), product OG images (`opengraph-image.tsx`), AudioObject, IndexNow | no | 0.5 d |
+| B4 extras | `llms.txt` (generated from live data), IndexNow (production-only `afterChange`/`afterDelete` hooks, key file at `/indexnow-key.txt`). AudioObject shipped in B1. Generated product share images are deferred: B1 already uses the main photo, and ja/ko/el titles would need CJK and Greek fonts on the server | no | 0.5 d |
 | B5 content collection | `pages`/`posts` collection for guides and model pages | **yes** | 1 d + content |
 
 **Validation for every PR**:
