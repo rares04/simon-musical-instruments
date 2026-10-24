@@ -14,6 +14,7 @@ for a ten-minute orientation. Read the rest in this order:
 | 6 | [known-issues.md](known-issues.md) | Before planning work. Ranked bugs and tech debt |
 | 7 | [roadmap.md](roadmap.md) | You plan what comes next |
 | 8 | [adr/](adr/) | You wonder why something is the way it is |
+| 9 | [seo/](seo/README.md) | You touch page metadata, URLs, slugs, structured data or content pages. Search strategy (SEO, answer engines, AI search) and the Phase B technical spec |
 | — | [reference/payload-cms-rules.md](reference/payload-cms-rules.md) | Generic Payload CMS patterns (from the Payload template; also split in `.cursor/rules/`) |
 
 ## Conventions for these docs
