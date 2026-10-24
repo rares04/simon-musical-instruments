@@ -44,7 +44,9 @@ jobs:
           node-version-file: .nvmrc
           cache: pnpm
       - run: pnpm install --frozen-lockfile
-      - name: Dependency audit (informational)
+      - name: Dependency audit (fails on critical)
+        run: pnpm audit --audit-level=critical
+      - name: Dependency audit (full report, informational)
         run: pnpm audit --prod
         continue-on-error: true
       - name: Type-check
