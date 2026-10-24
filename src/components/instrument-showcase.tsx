@@ -1,9 +1,11 @@
 'use client'
 
 import { useState } from 'react'
-import { useTranslations } from 'next-intl'
+import { useLocale, useTranslations } from 'next-intl'
 import { Link } from '@/i18n/routing'
 import { Music, Music2, Music3, Music4 } from 'lucide-react'
+import type { Locale } from '@/i18n/config'
+import { categoryPath, type CategoryKey } from '@/lib/seo/categories'
 
 const categories = [
   {
@@ -23,18 +25,27 @@ const categories = [
     translationKey: 'cello',
     icon: Music3,
     filterParam: 'Cello',
+    categoryKey: 'cellos',
   },
   {
     id: 'contrabass',
     translationKey: 'contrabass',
     icon: Music4,
     filterParam: 'Contrabass',
+    categoryKey: 'doubleBasses',
   },
-] as const
+] as const satisfies readonly {
+  id: string
+  translationKey: string
+  icon: unknown
+  filterParam: string
+  categoryKey?: CategoryKey
+}[]
 
 export function InstrumentShowcase() {
   const t = useTranslations('instruments')
   const tCategories = useTranslations('instrumentCategories')
+  const locale = useLocale() as Locale
   const [hoveredCard, setHoveredCard] = useState<string | null>(null)
 
   return (
@@ -65,7 +76,12 @@ export function InstrumentShowcase() {
             return (
               <Link
                 key={category.id}
-                href={`/gallery?type=${category.filterParam}`}
+                href={
+                  // Types with a category page link to it; the others open the filtered gallery.
+                  'categoryKey' in category
+                    ? categoryPath(category.categoryKey, locale)
+                    : `/gallery?type=${category.filterParam}`
+                }
                 onMouseEnter={() => setHoveredCard(category.id)}
                 onMouseLeave={() => setHoveredCard(null)}
                 className="group relative block cursor-pointer"

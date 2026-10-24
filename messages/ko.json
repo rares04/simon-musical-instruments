@@ -177,7 +177,8 @@
     "copyright": "© {year} Simon Musical Instruments. 모든 권리 보유.",
     "madeIn": "루마니아 레긴에서 사랑으로 제작",
     "followInstagram": "Instagram에서 팔로우하기",
-    "contactWhatsApp": "WhatsApp으로 문의하기"
+    "contactWhatsApp": "WhatsApp으로 문의하기",
+    "instruments": "악기"
   },
   "common": {
     "loading": "로딩 중...",
@@ -315,7 +316,8 @@
       "6000to10000": "€6,000 - €10,000",
       "over10000": "€10,000 이상"
     },
-    "showing": "{count}개의 악기 표시 중"
+    "showing": "{count}개의 악기 표시 중",
+    "browseBy": "악기별 보기"
   },
   "product": {
     "backToCollection": "컬렉션으로 돌아가기",

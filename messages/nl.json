@@ -177,7 +177,8 @@
     "copyright": "© {year} Simon Musical Instruments. Alle rechten voorbehouden.",
     "madeIn": "Met zorg gemaakt in Reghin, Roemenië",
     "followInstagram": "Volg ons op Instagram",
-    "contactWhatsApp": "Neem contact met ons op via WhatsApp"
+    "contactWhatsApp": "Neem contact met ons op via WhatsApp",
+    "instruments": "Instrumenten"
   },
   "common": {
     "loading": "Laden...",
@@ -315,7 +316,8 @@
       "6000to10000": "€6.000 - €10.000",
       "over10000": "Boven €10.000"
     },
-    "showing": "{count} instrumenten weergegeven"
+    "showing": "{count} instrumenten weergegeven",
+    "browseBy": "Per instrument"
   },
   "product": {
     "backToCollection": "Terug naar Collectie",

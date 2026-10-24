@@ -1,8 +1,10 @@
 'use client'
 
-import { useTranslations } from 'next-intl'
+import { useLocale, useTranslations } from 'next-intl'
 import { Mail, MapPin, Phone, Instagram } from 'lucide-react'
 import { Link } from '@/i18n/routing'
+import type { Locale } from '@/i18n/config'
+import { categoryPath } from '@/lib/seo/categories'
 import { LanguageSwitcher } from '@/components/language-switcher'
 
 // WhatsApp icon (lucide-react doesn't have one)
@@ -16,11 +18,13 @@ function WhatsAppIcon({ className }: { className?: string }) {
 
 export function Footer() {
   const t = useTranslations('footer')
+  const tGallery = useTranslations('gallery.filters')
+  const locale = useLocale() as Locale
 
   return (
     <footer id="contact" className="border-t border-border/60 bg-primary/5">
       <div className="container mx-auto px-4 lg:px-8 py-12 lg:py-16">
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
+        <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-8 lg:gap-12">
           {/* Brand */}
           <div className="space-y-4 lg:col-span-2">
             <h3 className="font-serif text-xl text-foreground">Simon Musical Instruments</h3>
@@ -117,6 +121,27 @@ export function Footer() {
                 className="text-muted-foreground hover:text-accent transition-colors cursor-pointer"
               >
                 {t('shopInstruments')}
+              </Link>
+            </nav>
+          </div>
+
+          {/* Category pages */}
+          <div className="space-y-4">
+            <h4 className="text-sm font-medium uppercase tracking-wider text-foreground">
+              {t('instruments')}
+            </h4>
+            <nav className="flex flex-col gap-2 text-sm">
+              <Link
+                href={categoryPath('cellos', locale)}
+                className="text-muted-foreground hover:text-accent transition-colors cursor-pointer"
+              >
+                {tGallery('cellos')}
+              </Link>
+              <Link
+                href={categoryPath('doubleBasses', locale)}
+                className="text-muted-foreground hover:text-accent transition-colors cursor-pointer"
+              >
+                {tGallery('contrabasses')}
               </Link>
             </nav>
           </div>
