@@ -118,6 +118,7 @@ if ! rclone copy "supa:$S3_BUCKET" "$DEST/media" -v > "$WORK/media.log" 2>&1; th
   fail "copying media"
 fi
 log "media files copied this run: $(grep -c ': Copied' "$WORK/media.log" || true)"
+grep ': Copied' "$WORK/media.log" | sed -E 's/^.*INFO *: (.*): Copied (.*)$/[backup]   copied: \1 \2/' | head -10 || true
 rclone lsf "supa:$S3_BUCKET" --files-only -R > "$WORK/src-raw.txt" || fail "listing source media"
 rclone lsf "$DEST/media" --files-only -R > "$WORK/dst-raw.txt" || fail "listing backed-up media"
 [ -s "$WORK/src-raw.txt" ] || fail "source media listing is empty"
