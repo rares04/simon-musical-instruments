@@ -4,6 +4,7 @@ import * as migration_20251230_160250_add_model_and_string_vibration from './202
 import * as migration_20251230_161607_add_stock_field from './20251230_161607_add_stock_field';
 import * as migration_20260112_184331_add_otp_verification_fields from './20260112_184331_add_otp_verification_fields';
 import * as migration_20260303_000000_make_instrument_price_optional from './20260303_000000_make_instrument_price_optional';
+import * as migration_20261024_113716_payload_3_92_schema from './20261024_113716_payload_3_92_schema';
 
 export const migrations = [
   {
@@ -29,11 +30,16 @@ export const migrations = [
   {
     up: migration_20260112_184331_add_otp_verification_fields.up,
     down: migration_20260112_184331_add_otp_verification_fields.down,
-    name: '20260112_184331_add_otp_verification_fields'
+    name: '20260112_184331_add_otp_verification_fields',
   },
   {
     up: migration_20260303_000000_make_instrument_price_optional.up,
     down: migration_20260303_000000_make_instrument_price_optional.down,
-    name: '20260303_000000_make_instrument_price_optional'
+    name: '20260303_000000_make_instrument_price_optional',
+  },
+  {
+    up: migration_20261024_113716_payload_3_92_schema.up,
+    down: migration_20261024_113716_payload_3_92_schema.down,
+    name: '20261024_113716_payload_3_92_schema'
   },
 ];
