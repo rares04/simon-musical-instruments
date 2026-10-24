@@ -236,7 +236,9 @@
       "processing": "In Bearbeitung",
       "shipped": "Versendet",
       "delivered": "Geliefert",
-      "cancelled": "Storniert"
+      "cancelled": "Storniert",
+      "pending": "Ausstehend",
+      "refunded": "Erstattet"
     },
     "profilePage": {
       "title": "Profileinstellungen",
@@ -244,6 +246,50 @@
       "personalInfo": "Persönliche Informationen",
       "savedAddresses": "Gespeicherte Adressen",
       "password": "Passwort"
+    },
+    "dashboardLink": "Übersicht",
+    "orderDetail": {
+      "titleReservation": "Reservierungsdetails",
+      "titleOrder": "Bestelldetails",
+      "awaitingTitle": "Reservierung wartet auf Zahlung",
+      "awaitingBodyDelivery": "Paul meldet sich innerhalb von 1-2 Werktagen bei Ihnen, um die Zahlung per Banküberweisung zu vereinbaren.",
+      "awaitingBodyPickup": "Paul meldet sich innerhalb von 1-2 Werktagen bei Ihnen, um die Zahlung per Banküberweisung oder bar bei Abholung zu vereinbaren.",
+      "downloadInvoice": "Rechnung Herunterladen",
+      "timelineTitle": "Bestellverlauf",
+      "timeline": {
+        "reservationPlaced": "Reservierung Aufgegeben",
+        "awaitingContact": "Warten auf Kontakt",
+        "awaitingContactNote": "Paul meldet sich innerhalb von 1-2 Werktagen",
+        "paymentArranged": "Zahlung Vereinbart",
+        "paymentArrangedNote": "Banküberweisung oder bar bei Abholung",
+        "readyForPickup": "Bereit zur Abholung",
+        "orderPlaced": "Bestellung Aufgegeben",
+        "pickedUp": "Abgeholt",
+        "completed": "Abgeschlossen"
+      },
+      "itemsOrdered": "Bestellte Artikel",
+      "quantity": "Menge: {count}",
+      "shippingInfo": "Versandinformationen",
+      "trackingNumber": "Sendungsnummer",
+      "trackPackage": "Sendung Verfolgen",
+      "estimatedDelivery": "Voraussichtliche Lieferung",
+      "summaryReservation": "Reservierungsübersicht",
+      "delivery": "Lieferung",
+      "insurance": "Versicherung",
+      "pickup": "Abholung",
+      "atelierName": "Werkstatt Simon Musical Instruments",
+      "pickupContactNote": "Paul meldet sich bei Ihnen, um einen Abholtermin zu vereinbaren.",
+      "payment": "Zahlung",
+      "paymentNoteDelivery": "Paul meldet sich bei Ihnen, um die Banküberweisung zu vereinbaren.",
+      "paymentNotePickup": "Paul meldet sich bei Ihnen, um die Banküberweisung oder Barzahlung bei Abholung zu vereinbaren.",
+      "method": {
+        "bank_transfer": "Banküberweisung",
+        "cash": "Bar",
+        "card": "Kartenzahlung",
+        "other": "Zahlung Abgeschlossen"
+      },
+      "reference": "Ref.: {ref}",
+      "backToOrders": "Zurück zu den Bestellungen"
     }
   },
   "gallery": {

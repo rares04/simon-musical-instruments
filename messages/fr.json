@@ -129,10 +129,6 @@
       "payment": {
         "question": "Quels modes de paiement acceptez-vous?",
         "answer": "Après confirmation de votre réservation, le paiement peut être organisé par virement bancaire ou autres moyens de paiement."
-      },
-      "packaging": {
-        "question": "Comment les instruments sont-ils emballés pour la livraison?",
-        "answer": "Chaque instrument est soigneusement enveloppé dans des matériaux de protection, placé dans un étui rigide (inclus avec l'achat), puis emballé dans une boîte d'expédition personnalisée avec un rembourrage supplémentaire. Nous utilisons un emballage à température contrôlée pour protéger votre instrument tout au long de son voyage de notre atelier à votre porte."
       }
     }
   },
@@ -240,7 +236,9 @@
       "processing": "En Cours",
       "shipped": "Expédié",
       "delivered": "Livré",
-      "cancelled": "Annulé"
+      "cancelled": "Annulé",
+      "pending": "En Attente",
+      "refunded": "Remboursé"
     },
     "profilePage": {
       "title": "Paramètres du Profil",
@@ -248,6 +246,50 @@
       "personalInfo": "Informations Personnelles",
       "savedAddresses": "Adresses Enregistrées",
       "password": "Mot de Passe"
+    },
+    "dashboardLink": "Tableau de Bord",
+    "orderDetail": {
+      "titleReservation": "Détails de la Réservation",
+      "titleOrder": "Détails de la Commande",
+      "awaitingTitle": "Réservation en Attente de Paiement",
+      "awaitingBodyDelivery": "Paul vous contactera sous 1 à 2 jours ouvrés pour organiser le paiement par virement bancaire.",
+      "awaitingBodyPickup": "Paul vous contactera sous 1 à 2 jours ouvrés pour organiser le paiement par virement bancaire ou en espèces au retrait.",
+      "downloadInvoice": "Télécharger la Facture",
+      "timelineTitle": "Suivi de la Commande",
+      "timeline": {
+        "reservationPlaced": "Réservation Effectuée",
+        "awaitingContact": "En Attente de Contact",
+        "awaitingContactNote": "Paul vous contactera sous 1 à 2 jours ouvrés",
+        "paymentArranged": "Paiement Convenu",
+        "paymentArrangedNote": "Virement bancaire ou espèces au retrait",
+        "readyForPickup": "Prêt pour le Retrait",
+        "orderPlaced": "Commande Passée",
+        "pickedUp": "Retiré",
+        "completed": "Terminé"
+      },
+      "itemsOrdered": "Articles Commandés",
+      "quantity": "Qté : {count}",
+      "shippingInfo": "Informations de Livraison",
+      "trackingNumber": "Numéro de Suivi",
+      "trackPackage": "Suivre le Colis",
+      "estimatedDelivery": "Livraison Estimée",
+      "summaryReservation": "Résumé de la Réservation",
+      "delivery": "Livraison",
+      "insurance": "Assurance",
+      "pickup": "Retrait",
+      "atelierName": "Atelier Simon Musical Instruments",
+      "pickupContactNote": "Paul vous contactera pour convenir d'une heure de retrait.",
+      "payment": "Paiement",
+      "paymentNoteDelivery": "Paul vous contactera pour organiser le virement bancaire.",
+      "paymentNotePickup": "Paul vous contactera pour organiser le virement bancaire ou le paiement en espèces au retrait.",
+      "method": {
+        "bank_transfer": "Virement Bancaire",
+        "cash": "Espèces",
+        "card": "Paiement par Carte",
+        "other": "Paiement Effectué"
+      },
+      "reference": "Réf. : {ref}",
+      "backToOrders": "Retour aux Commandes"
     }
   },
   "gallery": {
