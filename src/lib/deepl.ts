@@ -1,97 +1,78 @@
 import * as deepl from 'deepl-node'
 
-// DeepL language codes mapping
-const DEEPL_LANG_MAP: Record<string, deepl.TargetLanguageCode> = {
-  ro: 'ro',
-  de: 'de',
-  fr: 'fr',
-  nl: 'nl',
-  ja: 'ja',
-  ko: 'ko',
-  el: 'el',
-} as const
-
 // Locales that need translation (excluding English which is the source)
 export const TRANSLATABLE_LOCALES = ['ro', 'de', 'fr', 'nl', 'ja', 'ko', 'el'] as const
+export type TranslatableLocale = (typeof TRANSLATABLE_LOCALES)[number]
 
-let translator: deepl.Translator | null = null
+// Name prefix of the luthier glossary that scripts/backfill-translations.ts loads into DeepL.
+export const GLOSSARY_PREFIX = 'simon-luthier'
 
-function getTranslator(): deepl.Translator {
-  if (!translator) {
+let client: deepl.DeepLClient | null = null
+let glossary: Promise<deepl.MultilingualGlossaryInfo | null> | null = null
+
+function getClient(): deepl.DeepLClient {
+  if (!client) {
     const apiKey = process.env.DEEPL_API_KEY
     if (!apiKey) {
       throw new Error('DEEPL_API_KEY environment variable is not set')
     }
-    translator = new deepl.Translator(apiKey)
+    client = new deepl.DeepLClient(apiKey)
   }
-  return translator
+  return client
 }
 
-/**
- * Translate text from English to a target locale using DeepL
- */
-export async function translateText(text: string, targetLocale: string): Promise<string> {
-  if (!text || text.trim() === '') {
-    return text
-  }
-
-  const deeplLang = DEEPL_LANG_MAP[targetLocale]
-  if (!deeplLang) {
-    console.warn(`No DeepL language mapping for locale: ${targetLocale}`)
-    return text
-  }
-
-  try {
-    const translator = getTranslator()
-    const result = await translator.translateText(text, 'en', deeplLang)
-    return result.text
-  } catch (error) {
-    console.error(`DeepL translation error for ${targetLocale}:`, error)
-    // Return original text if translation fails
-    return text
-  }
+/** The luthier glossary, if one exists. Looked up once per process. */
+function getGlossary(): Promise<deepl.MultilingualGlossaryInfo | null> {
+  glossary ??= getClient()
+    .listMultilingualGlossaries()
+    .then((all) => all.find((g) => g.name.startsWith(GLOSSARY_PREFIX)) ?? null)
+    .catch(() => null)
+  return glossary
 }
 
-/**
- * Translate multiple texts to a target locale (batch operation)
- */
-export async function translateTexts(texts: string[], targetLocale: string): Promise<string[]> {
-  const deeplLang = DEEPL_LANG_MAP[targetLocale]
-  if (!deeplLang) {
-    console.warn(`No DeepL language mapping for locale: ${targetLocale}`)
-    return texts
-  }
-
-  // Filter out empty texts and keep track of indices
-  const nonEmptyIndices: number[] = []
-  const nonEmptyTexts: string[] = []
-
-  texts.forEach((text, index) => {
-    if (text && text.trim() !== '') {
-      nonEmptyIndices.push(index)
-      nonEmptyTexts.push(text)
-    }
-  })
-
-  if (nonEmptyTexts.length === 0) {
-    return texts
-  }
-
+async function translate(
+  texts: string[],
+  locale: TranslatableLocale,
+  retry = true,
+): Promise<deepl.TextResult[]> {
+  const g = await getGlossary()
+  const useGlossary = g?.dictionaries.some((d) => d.targetLangCode === locale) ? g : undefined
   try {
-    const translator = getTranslator()
-    const results = await translator.translateText(nonEmptyTexts, 'en', deeplLang)
-
-    // Reconstruct the array with translations in correct positions
-    const translatedTexts = [...texts]
-    const resultArray = Array.isArray(results) ? results : [results]
-
-    nonEmptyIndices.forEach((originalIndex, resultIndex) => {
-      translatedTexts[originalIndex] = resultArray[resultIndex].text
+    return await getClient().translateText(texts, 'en', locale as deepl.TargetLanguageCode, {
+      preserveFormatting: true,
+      formality: 'prefer_more',
+      ...(useGlossary ? { glossary: useGlossary } : {}),
     })
-
-    return translatedTexts
   } catch (error) {
-    console.error(`DeepL batch translation error for ${targetLocale}:`, error)
+    // The glossary may have been replaced since it was cached. Look it up again once.
+    if (useGlossary && retry) {
+      glossary = null
+      return translate(texts, locale, false)
+    }
+    throw error
+  }
+}
+
+/**
+ * Translate texts from English to a target locale. Empty texts stay empty.
+ *
+ * Throws on any DeepL error, so callers never save the English text as a translation.
+ */
+export async function translateTexts(
+  texts: string[],
+  targetLocale: TranslatableLocale,
+): Promise<string[]> {
+  const indices = texts.flatMap((text, i) => (text && text.trim() !== '' ? [i] : []))
+  if (indices.length === 0) {
     return texts
   }
+  const results = await translate(
+    indices.map((i) => texts[i]),
+    targetLocale,
+  )
+  const translated = [...texts]
+  indices.forEach((originalIndex, n) => {
+    translated[originalIndex] = results[n].text
+  })
+  return translated
 }

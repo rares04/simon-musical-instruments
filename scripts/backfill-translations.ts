@@ -28,7 +28,7 @@ import fs from 'fs'
 import * as deepl from 'deepl-node'
 import { getPayload } from 'payload'
 import config from '../src/payload.config'
-import { TRANSLATABLE_LOCALES } from '../src/lib/deepl'
+import { GLOSSARY_PREFIX, TRANSLATABLE_LOCALES } from '../src/lib/deepl'
 
 type Locale = (typeof TRANSLATABLE_LOCALES)[number]
 type Field = 'title' | 'luthierNotes'
@@ -148,8 +148,6 @@ function parseGlossary(path: string): Partial<Record<Locale, Record<string, stri
   }
   return result
 }
-
-const GLOSSARY_PREFIX = 'simon-luthier'
 
 /**
  * Returns one multilingual DeepL glossary holding a dictionary per locale. The Free plan allows a
