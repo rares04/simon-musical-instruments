@@ -114,7 +114,7 @@ export default function OrdersPage() {
         </div>
 
         <Select value={statusFilter} onValueChange={handleFilterChange}>
-          <SelectTrigger className="w-[180px]">
+          <SelectTrigger className="w-[180px]" aria-label={t('filterByStatus')}>
             <SelectValue placeholder={t('filterByStatus')} />
           </SelectTrigger>
           <SelectContent>
