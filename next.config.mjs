@@ -34,6 +34,14 @@ const nextConfig = {
     // Media is served same-origin from /api/media/file/*. Don't allow remote hosts: the optimizer
     // would fetch and process images from them. The OAuth avatar is rendered `unoptimized`.
     remotePatterns: [],
+    // Next 16: only these local paths may be optimized (and with query strings, e.g. cache-busted
+    // media URLs), and only these quality values (one component uses 100).
+    localPatterns: [
+      { pathname: '/api/media/file/**' },
+      { pathname: '/gallery/**' },
+      { pathname: '/placeholder.svg' },
+    ],
+    qualities: [75, 100],
   },
   webpack: (webpackConfig) => {
     webpackConfig.resolve.extensionAlias = {
