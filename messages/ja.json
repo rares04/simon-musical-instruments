@@ -177,7 +177,8 @@
     "copyright": "© {year} Simon Musical Instruments. 無断転載禁止。",
     "madeIn": "ルーマニア、レギンで愛情込めて製作",
     "followInstagram": "Instagramでフォローする",
-    "contactWhatsApp": "WhatsAppでお問い合わせ"
+    "contactWhatsApp": "WhatsAppでお問い合わせ",
+    "instruments": "楽器"
   },
   "common": {
     "loading": "読み込み中...",
@@ -315,7 +316,8 @@
       "6000to10000": "€6,000 - €10,000",
       "over10000": "€10,000以上"
     },
-    "showing": "{count}の楽器を表示中"
+    "showing": "{count}の楽器を表示中",
+    "browseBy": "楽器から探す"
   },
   "product": {
     "backToCollection": "コレクションに戻る",

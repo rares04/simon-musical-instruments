@@ -9,6 +9,8 @@ import { JsonLd } from '@/components/seo/json-ld'
 import { buildMetadata } from '@/lib/seo/metadata'
 import { breadcrumbNode, businessNode, graph } from '@/lib/seo/schema'
 import { absoluteUrl, localizedPath } from '@/lib/seo/site'
+import { categoryPath } from '@/lib/seo/categories'
+import { Link } from '@/i18n/routing'
 import { GalleryClient } from './gallery-client'
 
 // Render at runtime (DB not accessible during build)
@@ -72,6 +74,24 @@ export default async function GalleryPage() {
               {t('title')}
             </h1>
             <p className="text-lg text-muted-foreground text-pretty">{t('description')}</p>
+            <nav
+              aria-label={t('browseBy')}
+              className="mt-6 flex flex-wrap items-center justify-center gap-x-4 gap-y-2 text-sm"
+            >
+              <span className="text-muted-foreground">{t('browseBy')}:</span>
+              <Link
+                href={categoryPath('cellos', locale as Locale)}
+                className="text-accent hover:underline underline-offset-4"
+              >
+                {t('filters.cellos')}
+              </Link>
+              <Link
+                href={categoryPath('doubleBasses', locale as Locale)}
+                className="text-accent hover:underline underline-offset-4"
+              >
+                {t('filters.contrabasses')}
+              </Link>
+            </nav>
           </div>
 
           <GalleryClient instruments={instruments} />

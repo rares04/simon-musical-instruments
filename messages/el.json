@@ -177,7 +177,8 @@
     "copyright": "© {year} Simon Musical Instruments. Όλα τα δικαιώματα διατηρούνται.",
     "madeIn": "Χειροποίητο με αγάπη στο Reghin, Ρουμανία",
     "followInstagram": "Ακολουθήστε μας στο Instagram",
-    "contactWhatsApp": "Επικοινωνήστε μαζί μας στο WhatsApp"
+    "contactWhatsApp": "Επικοινωνήστε μαζί μας στο WhatsApp",
+    "instruments": "Όργανα"
   },
   "common": {
     "loading": "Φόρτωση...",
@@ -315,7 +316,8 @@
       "6000to10000": "€6.000 - €10.000",
       "over10000": "Πάνω από €10.000"
     },
-    "showing": "Εμφάνιση {count} οργάνων"
+    "showing": "Εμφάνιση {count} οργάνων",
+    "browseBy": "Ανά όργανο"
   },
   "product": {
     "backToCollection": "Επιστροφή στη Συλλογή",

@@ -177,7 +177,8 @@
     "copyright": "© {year} Simon Musical Instruments. Toate drepturile rezervate.",
     "madeIn": "Realizat cu grijă în Reghin, România",
     "followInstagram": "Urmăriți-ne pe Instagram",
-    "contactWhatsApp": "Contactați-ne pe WhatsApp"
+    "contactWhatsApp": "Contactați-ne pe WhatsApp",
+    "instruments": "Instrumente"
   },
   "common": {
     "loading": "Se încarcă...",
@@ -315,7 +316,8 @@
       "6000to10000": "€6.000 - €10.000",
       "over10000": "Peste €10.000"
     },
-    "showing": "Se afișează {count} instrumente"
+    "showing": "Se afișează {count} instrumente",
+    "browseBy": "Căutați după instrument"
   },
   "product": {
     "backToCollection": "Înapoi la Colecție",
