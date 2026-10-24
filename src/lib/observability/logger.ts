@@ -1,11 +1,11 @@
-import { scrubError, scrubProperties } from './scrub'
+import { scrubError, scrubProperties, scrubText } from './scrub'
 
 type Level = 'debug' | 'info' | 'warn' | 'error'
 type Fields = Record<string, unknown>
 
 /**
  * JSON-lines logger for the server. Railway indexes the fields, so you can filter on
- * `@level:error` or `@request_id:…` in its log viewer. Fields go through `scrubProperties`:
+ * `@level:error` or `@request_id:…` in its log viewer. The message and fields are scrubbed:
  * emails, names, phone numbers, tokens and query strings never reach the logs.
  */
 export type Logger = {
@@ -21,7 +21,7 @@ function write(level: Level, msg: string, base: Fields, fields: Fields = {}): vo
   const line: Fields = {
     level,
     time: new Date().toISOString(),
-    msg,
+    msg: scrubText(msg),
     ...scrubProperties({ ...base, ...rest }),
   }
   if (err !== undefined) {

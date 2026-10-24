@@ -84,14 +84,17 @@ const URL_LIKE_RE = /^(https?:\/\/|\/)/i
 
 /**
  * Deep-copies a properties object: drops secret keys, rewrites URLs with `scrubUrl` and other
- * strings with `scrubText`. `$`-prefixed keys are PostHog's own and are only scrubbed, not dropped.
+ * strings with `scrubText`. `$`-prefixed keys are PostHog's own: their values are scrubbed, but no
+ * key inside them is dropped (web-vitals objects have a `name: 'LCP'`, for example).
  */
-export function scrubProperties<T>(value: T, depth = 0): T {
+export function scrubProperties<T>(value: T, depth = 0, insidePostHogKey = false): T {
   if (depth > 8) return value
   if (typeof value === 'string') {
     return (URL_LIKE_RE.test(value) ? scrubUrl(value) : scrubText(value)) as T
   }
-  if (Array.isArray(value)) return value.map((item) => scrubProperties(item, depth + 1)) as T
+  if (Array.isArray(value)) {
+    return value.map((item) => scrubProperties(item, depth + 1, insidePostHogKey)) as T
+  }
   if (value && typeof value === 'object' && Object.getPrototypeOf(value) === Object.prototype) {
     const out: Record<string, unknown> = {}
     for (const [key, item] of Object.entries(value as Record<string, unknown>)) {
@@ -99,8 +102,9 @@ export function scrubProperties<T>(value: T, depth = 0): T {
         out[key] = item
         continue
       }
-      if (!key.startsWith('$') && isSecretKey(key)) continue
-      out[key] = scrubProperties(item, depth + 1)
+      const isPostHogKey = insidePostHogKey || key.startsWith('$')
+      if (!isPostHogKey && isSecretKey(key)) continue
+      out[key] = scrubProperties(item, depth + 1, isPostHogKey)
     }
     return out as T
   }

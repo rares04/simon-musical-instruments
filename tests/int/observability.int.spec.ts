@@ -76,6 +76,17 @@ describe('scrubProperties', () => {
   })
 })
 
+describe('scrubProperties inside PostHog structures', () => {
+  it('scrubs values but keeps keys such as the web-vitals metric name', () => {
+    const out = scrubProperties({
+      $web_vitals_LCP_event: { name: 'LCP', value: 180, $current_url: '/en?email=a@b.co' },
+      $set: { email: 'a@b.co' },
+    })
+    expect(out.$web_vitals_LCP_event).toEqual({ name: 'LCP', value: 180, $current_url: '/en' })
+    expect(out.$set).toEqual({ email: '[email]' })
+  })
+})
+
 describe('scrubError', () => {
   it('keeps the name and digest, scrubs message and stack', () => {
     const original = Object.assign(new Error(DRIZZLE_ERROR), {
@@ -141,6 +152,13 @@ describe('logger', () => {
       inquiry_type: 'price',
     })
     expect(line.email).toBeUndefined()
+  })
+
+  it('scrubs the message too', () => {
+    const spy = vi.spyOn(console, 'log').mockImplementation(() => {})
+    logger.info('Confirmation email sent to jane.doe@example.com')
+    const line = JSON.parse(spy.mock.calls[0]?.[0] as string)
+    expect(line.msg).toBe('Confirmation email sent to [email]')
   })
 
   it('prefers the Railway request ID', () => {
