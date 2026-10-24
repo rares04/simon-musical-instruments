@@ -86,11 +86,8 @@ export default function RegisterPage() {
         console.error('Failed to send OTP email')
       }
 
-      // Redirect to verify email page with email and password (base64 encoded for auto-login after verification)
-      const encodedPassword = btoa(password)
-      router.push(
-        `/verify-email?email=${encodeURIComponent(email)}&p=${encodeURIComponent(encodedPassword)}`,
-      )
+      // The password never goes into the URL: after verifying, the user signs in normally.
+      router.push(`/verify-email?email=${encodeURIComponent(email)}`)
     } catch {
       setError(t('register.errors.genericError'))
     } finally {

@@ -2,6 +2,7 @@ import { type NextRequest, NextResponse } from 'next/server'
 import { auth } from '@/lib/auth'
 import { getPayload } from 'payload'
 import config from '@/payload.config'
+import { customerOrdersWhere } from '@/lib/order-access'
 import ReactPDF from '@react-pdf/renderer'
 import { InvoicePDF } from '@/lib/pdf/invoice-generator'
 
@@ -10,23 +11,26 @@ export async function GET(req: NextRequest, { params }: { params: Promise<{ id: 
     const { id } = await params
     const session = await auth()
 
-    if (!session?.user) {
+    if (!session?.user?.id) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
     }
 
     const payload = await getPayload({ config })
+    const ownOrders = await customerOrdersWhere(payload, session.user.id)
+    if (!ownOrders || !/^\d+$/.test(id)) {
+      return NextResponse.json({ error: 'Not found' }, { status: 404 })
+    }
 
-    // Fetch order
-    const order = await payload.findByID({
+    // Only orders this customer may see; anything else looks like "not found".
+    const { docs } = await payload.find({
       collection: 'orders',
-      id,
+      where: { and: [{ id: { equals: Number(id) } }, ownOrders] },
+      limit: 1,
       depth: 2,
     })
-
-    // Verify user has access to this order
-    const customerId = typeof order.customer === 'object' ? order.customer?.id : order.customer
-    if (customerId !== Number(session.user.id) && order.guestEmail !== session.user.email) {
-      return NextResponse.json({ error: 'Forbidden' }, { status: 403 })
+    const order = docs[0]
+    if (!order) {
+      return NextResponse.json({ error: 'Not found' }, { status: 404 })
     }
 
     // Generate PDF - call the component as a function since it returns a Document

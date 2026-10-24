@@ -472,7 +472,8 @@
         "oauthNotLinked": "Diese E-Mail ist bereits mit einem anderen Konto verknüpft.",
         "genericError": "Ein Fehler ist bei der Anmeldung aufgetreten.",
         "tryAgain": "Ein Fehler ist aufgetreten. Bitte versuchen Sie es erneut."
-      }
+      },
+      "verifiedSuccess": "E-Mail bestätigt. Bitte melden Sie sich an."
     },
     "register": {
       "title": "Erstellen Sie Ihr Konto",
@@ -550,7 +551,8 @@
       "saveChanges": "Änderungen Speichern",
       "saving": "Wird gespeichert...",
       "updateSuccess": "Profil erfolgreich aktualisiert!",
-      "updateError": "Fehler beim Aktualisieren des Profils"
+      "updateError": "Fehler beim Aktualisieren des Profils",
+      "emailLockedNote": "Um Ihre E-Mail-Adresse zu ändern, kontaktieren Sie uns bitte."
     },
     "password": {
       "currentPassword": "Aktuelles Passwort",

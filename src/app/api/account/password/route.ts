@@ -2,7 +2,6 @@ import { type NextRequest, NextResponse } from 'next/server'
 import { auth } from '@/lib/auth'
 import { getPayload } from 'payload'
 import config from '@/payload.config'
-import { compare, hash } from 'bcryptjs'
 
 export async function POST(req: NextRequest) {
   try {
@@ -12,8 +11,9 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
     }
 
-    const body = await req.json()
-    const { currentPassword, newPassword } = body
+    const body = await req.json().catch(() => ({}))
+    const currentPassword = typeof body.currentPassword === 'string' ? body.currentPassword : ''
+    const newPassword = typeof body.newPassword === 'string' ? body.newPassword : ''
 
     if (!currentPassword || !newPassword) {
       return NextResponse.json(
@@ -22,7 +22,7 @@ export async function POST(req: NextRequest) {
       )
     }
 
-    if (newPassword.length < 8) {
+    if (newPassword.length < 8 || newPassword.length > 128) {
       return NextResponse.json(
         { error: 'Password must be at least 8 characters long' },
         { status: 400 },
@@ -30,47 +30,33 @@ export async function POST(req: NextRequest) {
     }
 
     const payload = await getPayload({ config })
+    const user = await payload.findByID({ collection: 'users', id: session.user.id, depth: 0 })
 
-    // Get user with password
-    const user = await payload.findByID({
-      collection: 'users',
-      id: session.user.id,
-      depth: 0,
-    })
-
-    // Check if user has a password (OAuth users might not)
-    if (!user.password) {
-      return NextResponse.json(
-        { error: 'Cannot change password for OAuth-authenticated accounts' },
-        { status: 400 },
-      )
+    // Payload stores a salted hash; verify the current password through its own login check.
+    // Accounts linked to Google keep working here if the user knows their password.
+    try {
+      await payload.login({
+        collection: 'users',
+        data: { email: user.email, password: currentPassword },
+      })
+    } catch {
+      const error =
+        user.provider === 'google'
+          ? 'Cannot change password for OAuth-authenticated accounts'
+          : 'Current password is incorrect'
+      return NextResponse.json({ error }, { status: 400 })
     }
 
-    // Verify current password
-    const isPasswordValid = await compare(currentPassword, user.password)
-
-    if (!isPasswordValid) {
-      return NextResponse.json({ error: 'Current password is incorrect' }, { status: 400 })
-    }
-
-    // Hash new password
-    const hashedPassword = await hash(newPassword, 10)
-
-    // Update password
+    // Payload hashes the new password itself.
     await payload.update({
       collection: 'users',
-      id: session.user.id,
-      data: {
-        password: hashedPassword,
-      },
+      id: user.id,
+      data: { password: newPassword },
     })
 
-    return NextResponse.json({
-      success: true,
-      message: 'Password changed successfully',
-    })
+    return NextResponse.json({ success: true, message: 'Password changed successfully' })
   } catch (error) {
-    console.error('Error changing password:', error)
+    console.error('Error changing password:', error instanceof Error ? error.message : error)
     return NextResponse.json({ error: 'Failed to change password' }, { status: 500 })
   }
 }

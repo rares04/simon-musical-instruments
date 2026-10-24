@@ -13,8 +13,9 @@ These are the storefront's own endpoints. Payload's generated REST lives in
 2. **The Local API skips access control by default.** Either:
    - pass `user` + `overrideAccess: false`, or
    - put ownership into the `where` clause: `{ customer: { equals: session.user.id } }`.
-   - How guest orders are matched to accounts is under review in the private audit. Don't copy the
-     existing pattern into new routes.
+   - Customer order queries use `customerOrdersWhere()` from `@/lib/order-access`. It matches guest
+     orders by email only for verified accounts, and reads identity from the DB. Strip internal
+     fields with `toCustomerOrder()` before returning orders.
 3. **Validate input with a schema** (zod), not ad-hoc checks. Return `400` with field errors.
    Escape any user text that goes into HTML emails (React Email escapes by default; raw HTML strings
    don't).
@@ -32,14 +33,14 @@ These are the storefront's own endpoints. Payload's generated REST lives in
 | Route | Method | Auth | Purpose |
 |---|---|---|---|
 | `health` | GET | none | Static `{status:'ok'}`. Doesn't check the DB |
-| `register` | POST | none | Create a credentials user (`emailVerified:false`) |
+| `register` | POST | none | Create a credentials user (`emailVerified:false`). Validates email, password length (8–128) and name length |
 | `auth/[...nextauth]` | GET/POST | — | Auth.js handlers |
-| `auth/send-otp` | POST | none | Generate and email a 6-digit code (10 min) |
-| `auth/verify-otp` | POST | none | Check the code and set `emailVerified` |
-| `auth/check-verification` | POST | none | Tell the login page whether to redirect to `/verify-email` |
+| `auth/send-otp` | POST | none | Generate and email a 6-digit code (10 min, one per 60 s, 5 per day). Same response whatever the account state. Helpers in `@/lib/otp` |
+| `auth/verify-otp` | POST | none | Check the code (5 attempts, each taken atomically before the check; then discarded) and set `emailVerified`. One error message for every failure |
+| `auth/check-verification` | POST | none | Needs email **and** password. Says `needsVerification: true` only when the password is right and the email is unverified |
 | `account/profile` | GET/PATCH | session | Read and update the session user's profile fields. Identity fields are security-sensitive; see `src/lib/AGENTS.md` |
 | `account/addresses` | POST/PATCH/DELETE | session | Manage `savedAddresses` |
-| `account/password` | POST | session | **Broken** (K-7). Rewrite to use `payload.login` + `payload.update({password})` |
+| `account/password` | POST | session | Verifies the current password with `payload.login`, then `payload.update({ password })` |
 | `account/orders` | GET | session | The user's orders, depth 2 |
 | `account/active-orders` | GET | session | Header bell: non-terminal orders |
 | `account/reservation-count` | GET | optional | `pending_payment` count vs the limit (2) |

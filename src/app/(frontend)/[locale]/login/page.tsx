@@ -3,23 +3,26 @@
 import { useState, Suspense } from 'react'
 import { signIn } from 'next-auth/react'
 import { useRouter, useSearchParams } from 'next/navigation'
-import { useTranslations } from 'next-intl'
+import { useLocale, useTranslations } from 'next-intl'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { AuthButtons } from '@/components/auth-buttons'
 import { Separator } from '@/components/ui/separator'
 import { Link } from '@/i18n/routing'
+import { safeCallbackPath } from '@/lib/safe-redirect'
 
 function LoginForm() {
   const router = useRouter()
   const searchParams = useSearchParams()
   const t = useTranslations('auth')
+  const locale = useLocale()
   const tCommon = useTranslations('common')
-  const callbackUrl = searchParams.get('callbackUrl') || '/'
+  const callbackUrl = safeCallbackPath(searchParams.get('callbackUrl'))
   const error = searchParams.get('error')
+  const justVerified = searchParams.get('verified') === 'true'
 
-  const [email, setEmail] = useState('')
+  const [email, setEmail] = useState(searchParams.get('email') ?? '')
   const [password, setPassword] = useState('')
   const [isLoading, setIsLoading] = useState(false)
   const [formError, setFormError] = useState<string | null>(null)
@@ -42,16 +45,18 @@ function LoginForm() {
           const checkResponse = await fetch('/api/auth/check-verification', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ email }),
+            body: JSON.stringify({ email, password }),
           })
           const checkData = await checkResponse.json()
 
           if (checkData.needsVerification) {
-            // User exists but email not verified - redirect to verify
-            const encodedPassword = btoa(password)
-            router.push(
-              `/verify-email?email=${encodeURIComponent(email)}&p=${encodeURIComponent(encodedPassword)}`,
-            )
+            // Correct password, unverified email: send a fresh code, then go verify.
+            await fetch('/api/auth/send-otp', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ email, locale }),
+            }).catch(() => undefined)
+            router.push(`/verify-email?email=${encodeURIComponent(email)}`)
             return
           }
         } catch {
@@ -105,6 +110,12 @@ function LoginForm() {
             <h2 className="font-serif text-3xl font-bold text-foreground">{t('login.title')}</h2>
             <p className="text-muted-foreground mt-2">{t('login.subtitle')}</p>
           </div>
+
+          {justVerified && !error && !formError && (
+            <div className="p-4 bg-accent/10 border border-accent/20 rounded-lg text-sm text-foreground">
+              {t('login.verifiedSuccess')}
+            </div>
+          )}
 
           {/* Error Messages */}
           {(error || formError) && (

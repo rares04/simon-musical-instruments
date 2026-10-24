@@ -472,7 +472,8 @@
         "oauthNotLinked": "This email is already associated with another account.",
         "genericError": "An error occurred during sign in.",
         "tryAgain": "An error occurred. Please try again."
-      }
+      },
+      "verifiedSuccess": "Email verified. Please sign in."
     },
     "register": {
       "title": "Create Your Account",
@@ -550,7 +551,8 @@
       "saveChanges": "Save Changes",
       "saving": "Saving...",
       "updateSuccess": "Profile updated successfully!",
-      "updateError": "Failed to update profile"
+      "updateError": "Failed to update profile",
+      "emailLockedNote": "To change your email address, please contact us."
     },
     "password": {
       "currentPassword": "Current Password",

@@ -4,6 +4,7 @@ import config from '@/payload.config'
 import { sendEmail } from '@/lib/resend'
 import { OrderConfirmationEmail } from '@/lib/emails'
 import { NewReservationNotificationEmail } from '@/lib/emails/new-reservation-notification'
+import { auth } from '@/lib/auth'
 
 const RESERVATION_LIMIT = 2
 
@@ -15,7 +16,10 @@ function generateReservationNumber(): string {
 
 export async function POST(req: NextRequest) {
   try {
-    const { items, formData, userId, total } = await req.json()
+    // The customer comes from the session, never from the request body.
+    const { items, formData, total } = await req.json()
+    const session = await auth()
+    const userId = session?.user?.id
 
     if (!items || items.length === 0) {
       return NextResponse.json({ error: 'No items in cart' }, { status: 400 })
@@ -36,6 +40,9 @@ export async function POST(req: NextRequest) {
         { status: 400 },
       )
     }
+
+    // Emails are compared case-sensitively in the DB; store them normalised.
+    formData.email = String(formData.email).trim().toLowerCase()
 
     // Get Payload instance
     const payload = await getPayload({ config })
@@ -111,7 +118,7 @@ export async function POST(req: NextRequest) {
         }
       } catch {
         // User doesn't exist, treat as guest checkout
-        console.log(`User ${userId} not found, treating as guest checkout`)
+        console.log('Session user not found, treating as guest checkout')
       }
     }
 
