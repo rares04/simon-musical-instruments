@@ -17,16 +17,21 @@ export function instrumentTitle(t: SeoTranslator, i: TitleInput): string {
 
 type PriceInput = { price?: number | null; status: InstrumentStatus }
 
+/** Whole euros in the visitor's number format, e.g. "€6,500" or "6.500 €" (never "6.500 EUR"). */
+export function formatEuro(locale: string, amount: number): string {
+  return new Intl.NumberFormat(locale, {
+    style: 'currency',
+    currency: 'EUR',
+    currencyDisplay: 'narrowSymbol',
+    maximumFractionDigits: 0,
+  }).format(amount)
+}
+
 export function instrumentPriceText(t: SeoTranslator, locale: string, i: PriceInput): string {
   if (i.status === 'sold') return t('instrument.sold')
   if (i.status === 'reserved') return t('instrument.reserved')
   if (i.price == null) return t('instrument.priceOnRequest')
-  const price = new Intl.NumberFormat(locale, {
-    style: 'currency',
-    currency: 'EUR',
-    maximumFractionDigits: 0,
-  }).format(i.price)
-  return t('instrument.price', { price })
+  return t('instrument.price', { price: formatEuro(locale, i.price) })
 }
 
 export function instrumentDescription(

@@ -17,6 +17,8 @@ type BuildAlternatesInput = {
   locale: Locale
   /** Path without the locale prefix, e.g. `/gallery/cello-…` or `/` for home. */
   path: string
+  /** Per-locale paths for pages whose URL word is translated, e.g. `{ en: '/cellos', ro: '/violoncele' }`. */
+  paths?: Partial<Record<Locale, string>>
   /** Locales whose content exists in their own language. The default locale is always included. */
   translatedLocales?: readonly Locale[]
   siteUrl?: string
@@ -33,11 +35,12 @@ type BuildAlternatesInput = {
 export function buildAlternates({
   locale,
   path,
+  paths,
   translatedLocales = locales,
   siteUrl = SITE_URL,
 }: BuildAlternatesInput): Alternates {
   const translated = locales.filter((l) => l === defaultLocale || translatedLocales.includes(l))
-  const urlFor = (l: Locale) => absoluteUrl(localizedPath(l, path), siteUrl)
+  const urlFor = (l: Locale) => absoluteUrl(localizedPath(l, paths?.[l] ?? path), siteUrl)
 
   const isHome = path === '/' || path === ''
   const xDefault = isHome && HOME_X_DEFAULT === 'root' ? `${siteUrl}/` : urlFor(defaultLocale)

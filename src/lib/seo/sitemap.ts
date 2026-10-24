@@ -1,6 +1,7 @@
 import type { MetadataRoute } from 'next'
 import { getMediaSrc } from '@/lib/media-utils'
 import { buildAlternates, localesWithText } from './alternates'
+import { CATEGORY_KEYS, categoryPaths } from './categories'
 import { absoluteUrl, locales, localizedPath, SITE_URL, type Locale } from './site'
 
 /** Public, indexable pages that exist in every locale. */
@@ -20,15 +21,23 @@ export function instrumentPath(doc: Pick<SitemapInstrument, 'id' | 'slug'>): str
 }
 
 function entriesFor(
-  path: string,
+  path: string | Record<Locale, string>,
   translated: readonly Locale[],
   siteUrl: string,
   extra: Omit<MetadataRoute.Sitemap[number], 'url' | 'alternates'> = {},
 ): MetadataRoute.Sitemap {
+  const paths = typeof path === 'string' ? undefined : path
+  const pathFor = (l: Locale) => (typeof path === 'string' ? path : path[l])
   return translated.map((locale) => {
-    const { languages } = buildAlternates({ locale, path, translatedLocales: translated, siteUrl })
+    const { languages } = buildAlternates({
+      locale,
+      path: pathFor(locale),
+      paths,
+      translatedLocales: translated,
+      siteUrl,
+    })
     return {
-      url: absoluteUrl(localizedPath(locale, path), siteUrl),
+      url: absoluteUrl(localizedPath(locale, pathFor(locale)), siteUrl),
       alternates: { languages },
       ...extra,
     }
@@ -44,6 +53,9 @@ export function toSitemapEntries(
   siteUrl: string = SITE_URL,
 ): MetadataRoute.Sitemap {
   const staticEntries = STATIC_PATHS.flatMap((path) => entriesFor(path, locales, siteUrl))
+  const categoryEntries = CATEGORY_KEYS.flatMap((key) =>
+    entriesFor(categoryPaths(key), locales, siteUrl),
+  )
 
   const instrumentEntries = instruments.flatMap((doc) => {
     const image =
@@ -56,5 +68,5 @@ export function toSitemapEntries(
     })
   })
 
-  return [...staticEntries, ...instrumentEntries]
+  return [...staticEntries, ...categoryEntries, ...instrumentEntries]
 }
