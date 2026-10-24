@@ -32,13 +32,13 @@ const translations: Record<string, any> = {
     location: 'Reghin, Transylvania',
   },
   ro: {
-    title: 'Verifică-ți adresa de email',
-    preview: 'Codul tău de verificare este {otp}',
-    greeting: 'Bună {name},',
+    title: 'Verificați adresa de email',
+    preview: 'Codul dumneavoastră de verificare este {otp}',
+    greeting: 'Bună ziua, {name},',
     intro:
-      'Îți mulțumim pentru crearea unui cont la Simon Musical Instruments. Pentru a finaliza înregistrarea, te rugăm să introduci codul de verificare de mai jos:',
+      'Vă mulțumim pentru crearea unui cont la Simon Musical Instruments. Pentru a finaliza înregistrarea, vă rugăm să introduceți codul de verificare de mai jos:',
     expiry: 'Acest cod va expira în {minutes} minute.',
-    ignore: 'Dacă nu ai creat un cont la noi, poți ignora acest email în siguranță.',
+    ignore: 'Dacă nu ați creat un cont la noi, puteți ignora acest email în siguranță.',
     team: '— Echipa Simon Musical Instruments',
     location: 'Reghin, Transilvania',
   },
@@ -124,12 +124,12 @@ const resetTranslations: Record<string, Record<string, string>> = {
       "If you didn't ask to reset your password, you can ignore this email. Your password stays the same.",
   },
   ro: {
-    title: 'Resetează-ți parola',
-    preview: 'Codul tău de resetare a parolei este {otp}',
+    title: 'Resetați parola',
+    preview: 'Codul dumneavoastră de resetare a parolei este {otp}',
     intro:
-      'Am primit o cerere de resetare a parolei pentru contul tău Simon Musical Instruments. Introdu acest cod pentru a alege o parolă nouă:',
+      'Am primit o cerere de resetare a parolei pentru contul dumneavoastră Simon Musical Instruments. Introduceți acest cod pentru a alege o parolă nouă:',
     ignore:
-      'Dacă nu ai cerut resetarea parolei, poți ignora acest email. Parola ta rămâne neschimbată.',
+      'Dacă nu ați cerut resetarea parolei, puteți ignora acest email. Parola dumneavoastră rămâne neschimbată.',
   },
   de: {
     title: 'Passwort zurücksetzen',
