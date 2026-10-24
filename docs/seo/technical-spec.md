@@ -175,8 +175,11 @@ buildMetadata({
   - Keep layout edits minimal; it's a hot file. The order is bugs → observability → seo.
 - Every `page.tsx` exports `generateMetadata` using `getTranslations`.
   - New keys go under `messages/*.json` → `seo.*`, add-only, in all 8 files.
-- **Title length**: about 50–60 characters. **Description**: about 140–160 characters. Product
-  descriptions are generated from fields when Paul leaves them empty (§6).
+- **Titles**: keywords first, then ` | Simon Musical Instruments` on every public page except the
+  home page, which already starts with the brand. Keep the part before the brand to about 50
+  characters, because results pages truncate around 60 and the brand helps entity recognition.
+  **Description**: about 140–160 characters. Product descriptions are generated from fields when
+  Paul leaves them empty (§6).
 - `noindex` on: `login`, `register`, `verify-email`, `account/**`, `checkout/**`.
 - Add a `/favicon.ico` (it currently returns 404) and a default branded OG image,
   `public/og-default.jpg`, 1200×630.
