@@ -1,67 +1,68 @@
-# Payload Blank Template
+# Simon Musical Instruments
 
-This template comes configured with the bare minimum to get started on anything you need.
+Website and reservation shop for **Paul & Ecaterina Simon**, makers of handmade violins, violas,
+cellos and double basses in Reghin, Transylvania.
+
+**Live:** https://simoninstruments.com · **Admin:** https://simoninstruments.com/admin
+
+Built with Next.js 15 (App Router) and Payload CMS 3, on Postgres and Supabase Storage, hosted on
+Railway. The site supports 8 languages (en, ro, de, fr, nl, ja, ko, el).
 
 ## Quick start
 
-This template can be deployed directly from our Cloud hosting and it will setup MongoDB and cloud S3 object storage for media.
+1. Install dependencies with the pinned pnpm.
 
-## Quick Start - local setup
+   ```bash
+   corepack enable && corepack prepare pnpm@10.29.2 --activate
+   pnpm install --frozen-lockfile
+   ```
 
-To spin up this template locally, follow these steps:
+2. Start a local Postgres. Never point `pnpm dev` at production.
 
-### Clone
+   ```bash
+   docker run -d --name simon-pg -p 5432:5432 -e POSTGRES_PASSWORD=postgres -e POSTGRES_DB=simon_local postgres:17
+   ```
 
-After you click the `Deploy` button above, you'll want to have standalone copy of this repo on your machine. If you've already cloned this repo, skip to [Development](#development).
+3. Create your env file.
 
-### Development
+   ```bash
+   cp .env.example .env
+   ```
 
-1. First [clone the repo](#clone) if you have not done so already
-2. `cd my-project && cp .env.example .env` to copy the example environment variables. You'll need to add the `MONGODB_URL` from your Cloud project to your `.env` if you want to use S3 storage and the MongoDB database that was created for you.
+4. Edit `.env`:
+   - Set `DATABASE_URL` to `postgres://postgres:postgres@127.0.0.1:5432/simon_local`.
+   - Set `PAYLOAD_SECRET` and `AUTH_SECRET` to the output of `openssl rand -base64 32`.
 
-3. `pnpm install && pnpm dev` to install dependencies and start the dev server
-4. open `http://localhost:3000` to open the app in your browser
+5. Apply migrations and start the dev server.
 
-That's it! Changes made in `./src` will be reflected in your app. Follow the on-screen instructions to login and create your first admin user. Then check out [Production](#production) once you're ready to build and serve your app, and [Deployment](#deployment) when you're ready to go live.
+   ```bash
+   pnpm payload migrate
+   pnpm dev
+   ```
 
-#### Docker (Optional)
+6. Open http://localhost:3000. Create the first admin user at `/admin`.
 
-If you prefer to use Docker for local development instead of a local MongoDB instance, the provided docker-compose.yml file can be used.
+The full setup, including what works without third-party keys, is in
+[docs/local-development.md](docs/local-development.md).
 
-To do so, follow these steps:
+## Documentation
 
-- Modify the `MONGODB_URL` in your `.env` file to `mongodb://127.0.0.1/<dbname>`
-- Modify the `docker-compose.yml` file's `MONGODB_URL` to match the above `<dbname>`
-- Run `docker-compose up` to start the database, optionally pass `-d` to run in the background.
+| | |
+|---|---|
+| [AGENTS.md](AGENTS.md) (= `CLAUDE.md`) | Start here: what it is, rules, stack, commands |
+| [docs/](docs/README.md) | Architecture, business logic, infrastructure, design system, known issues, roadmap, ADRs |
 
-## How it works
+## Scripts
 
-The Payload config is tailored specifically to the needs of most websites. It is pre-configured in the following ways:
+| Command | What |
+|---|---|
+| `pnpm dev` / `pnpm build` / `pnpm start` | Next.js dev / production build / serve |
+| `pnpm exec tsc --noEmit` · `pnpm lint` | Type-check · lint |
+| `pnpm generate:types` · `pnpm generate:importmap` | Regenerate Payload types · admin import map |
+| `pnpm payload migrate:create <name>` · `pnpm payload migrate` | Create · apply DB migrations |
+| `pnpm seed` | **Destructive** demo seed (deletes all orders and instruments). Local only |
 
-### Collections
+## Deploying
 
-See the [Collections](https://payloadcms.com/docs/configuration/collections) docs for details on how to extend this functionality.
-
-- #### Users (Authentication)
-
-  Users are auth-enabled collections that have access to the admin panel.
-
-  For additional help, see the official [Auth Example](https://github.com/payloadcms/payload/tree/main/examples/auth) or the [Authentication](https://payloadcms.com/docs/authentication/overview#authentication-overview) docs.
-
-- #### Media
-
-  This is the uploads enabled collection. It features pre-configured sizes, focal point and manual resizing to help you manage your pictures.
-
-### Docker
-
-Alternatively, you can use [Docker](https://www.docker.com) to spin up this template locally. To do so, follow these steps:
-
-1. Follow [steps 1 and 2 from above](#development), the docker-compose file will automatically use the `.env` file in your project root
-1. Next run `docker-compose up`
-1. Follow [steps 4 and 5 from above](#development) to login and create your first admin user
-
-That's it! The Docker instance will help you get up and running quickly while also standardizing the development environment across your teams.
-
-## Questions
-
-If you have any issues or questions, reach out to us on [Discord](https://discord.com/invite/payload) or start a [GitHub discussion](https://github.com/payloadcms/payload/discussions).
+Pushing to `main` deploys to production on Railway. There's no CI gate yet, so use branches and pull
+requests. See [docs/infrastructure-and-operations.md](docs/infrastructure-and-operations.md).

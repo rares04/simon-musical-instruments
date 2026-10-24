@@ -44,6 +44,8 @@ export async function GET(req: NextRequest, { params }: { params: Promise<{ id: 
       headers: {
         'Content-Type': 'application/pdf',
         'Content-Disposition': `attachment; filename="invoice-${order.orderNumber}.pdf"`,
+        // Per-customer document: never let a shared cache (CDN, proxy) store it.
+        'Cache-Control': 'private, no-store',
       },
     })
   } catch (error) {

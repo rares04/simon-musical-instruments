@@ -37,6 +37,10 @@ export default buildConfig({
   },
   collections: [Users, Media, Instruments, Orders],
   editor: lexicalEditor(),
+  // The app only uses REST and the Local API.
+  graphQL: {
+    disable: true,
+  },
   secret: process.env.PAYLOAD_SECRET || '',
   typescript: {
     outputFile: path.resolve(dirname, 'payload-types.ts'),
