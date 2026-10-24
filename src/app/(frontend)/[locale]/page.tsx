@@ -8,6 +8,7 @@ import { LuthierStory } from '@/components/luthier-story'
 import { Testimonials } from '@/components/testimonials'
 import { Footer } from '@/components/footer'
 import { JsonLd } from '@/components/seo/json-ld'
+import { business } from '@/lib/seo/business'
 import { buildMetadata } from '@/lib/seo/metadata'
 import { businessNode, graph, personNodes, websiteNode } from '@/lib/seo/schema'
 
@@ -19,7 +20,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return buildMetadata({
     locale,
     path: '/',
-    title: t('home.title'),
+    title: t('home.title', { brand: business.name }),
     description: t('home.description'),
     brandSuffix: false,
   })
