@@ -27,6 +27,12 @@ const legacyRedirects = [
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   poweredByHeader: false,
+  // The commit being built, sent with browser analytics as `app_version`. Railway sets
+  // RAILWAY_GIT_COMMIT_SHA in GitHub-triggered builds; a ${{...}} reference to it resolves empty.
+  env: {
+    NEXT_PUBLIC_APP_VERSION:
+      process.env.NEXT_PUBLIC_APP_VERSION || process.env.RAILWAY_GIT_COMMIT_SHA || '',
+  },
   async redirects() {
     return legacyRedirects
   },
