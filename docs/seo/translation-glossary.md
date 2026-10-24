@@ -27,11 +27,13 @@ sizes (4/4, 3/4, 7/8), measurements and prices.
 | spruce | molid | Fichte | épicéa | sparrenhout |
 | maple | paltin | Ahorn | érable | esdoorn |
 | flamed maple | paltin flamat `?` | geflammter Ahorn | érable ondé | gevlamd esdoorn |
+| flamed alder | arin flamat `?` | geflammte Erle | aulne ondé | gevlamd elzenhout |
+| rosewood | palisandru | Palisander | palissandre | palissander |
+| set-up (fittings) | accesorii | Garnitur | garniture | garnituur |
 | alder | arin `?` | Erle | aulne | elzenhout |
 | ebony | abanos | Ebenholz | ébène | ebbenhout |
 | top (plate) | față / capac `?` | Decke | table | bovenblad |
 | back | spate / fund `?` | Boden | fond | achterblad |
-| one-piece back | spate dintr-o bucată | einteiliger Boden | fond d'une pièce | eendelig achterblad |
 | ribs | eclise | Zargen | éclisses | zijkanten |
 | scroll | melc | Schnecke | volute | krul |
 | neck | gât | Hals | manche | hals |
@@ -49,11 +51,19 @@ sizes (4/4, 3/4, 7/8), measurements and prices.
 | in the white (unvarnished) | în alb `?` | im Weiß | en blanc | in het wit |
 | gamba-shaped (bass) | formă de gambă | Gambenform | forme gambe | gambavorm |
 | violin-shaped (bass) | formă de vioară | Violinform | forme violon | vioolvorm |
-| body length | lungimea corpului | Korpuslänge | longueur de caisse | corpuslengte |
-| string length | lungime de coardă vibrantă `?` | Mensur | diapason | mensuur |
 | model (after Stradivari) | model Stradivari | nach Stradivari | modèle Stradivarius | Stradivarius-model |
 | price on request | preț la cerere | Preis auf Anfrage | prix sur demande | prijs op aanvraag |
 | reservation | rezervare | Reservierung | réservation | reservering |
+
+## Lessons from the first run (2026-10-24)
+
+- DeepL glossaries insert the target form verbatim. For Romanian this breaks article and gender
+  agreement ("o lungimea", "o spate"). So multi-word phrases with articles stay out of the RO
+  glossary. Reviewers check them instead: "spatele dintr-o singură bucată", "o lungime a corpului
+  de 757 mm".
+- "Amber varnish" is a colour. It isn't "alcool de chihlimbar", "auf Bernsteinbasis" or "alcool
+  ambré". Say "de culoare chihlimbar", "bernsteinfarben", "de teinte ambrée".
+- "Flamed" is never "flambat" (flambéed).
 
 ## Review checklist (per instrument, per language)
 
