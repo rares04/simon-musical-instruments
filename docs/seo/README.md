@@ -286,7 +286,7 @@ promotional copy in forums, or editing Wikipedia about ourselves.
 | Source | What | When |
 |---|---|---|
 | Google Search Console (verified 2026-10-24, domain property) | Indexed pages, queries, clicks, positions, rich-result reports | Weekly glance, monthly note |
-| Bing Webmaster Tools (being set up) | Same for Bing, which also feeds ChatGPT search | Monthly |
+| Bing Webmaster Tools (verified 2026-10-24) | Same for Bing, which also feeds ChatGPT search. Its "AI Performance" report shows citations in Copilot answers | Monthly |
 | `ai-visibility-prompts.md` | Mention and link rate across ChatGPT, Perplexity, Gemini and Google | Monthly, same prompts |
 | Analytics (observability session) | Visits from search and from AI assistants (`chatgpt.com`, `perplexity.ai`, `gemini.google.com`) | Monthly |
 
@@ -303,9 +303,9 @@ promotional copy in forums, or editing Wikipedia about ourselves.
 
 | When | What | Owner |
 |---|---|---|
-| Now (no code) | Search Console ✅, Bing (in progress), research ✅, strategy and spec ✅, AI baseline | seo + Rares |
-| Now (small, after security PR-1) | Legacy `.html` 301 map + `www` (§10 #1) | seo + infra-cost, via the board |
-| Now (Paul) | Questions P-11, P-13, P-14, P-18, P-20 and P-21–P-26 (below); Google Business Profile | Paul via Rares |
+| Now (no code) | Search Console ✅, Bing ✅, research ✅, strategy and spec ✅, AI baseline ✅ | seo + Rares |
+| Done 2026-10-24 | Legacy `.html` redirects live (PR #6). `www` pending (infra-cost, K-13) | seo + infra-cost |
+| Now (Paul) | Questions P-11, P-13, P-14, P-18, P-20 and P-21–P-31 (below); Google Business Profile | Paul via Rares |
 | After platform PR2 | Build B1 → B5 (`technical-spec.md` §10) | seo |
 | In parallel | K-4 translations (infra-cost), caching and images (improvements), analytics (observability), legal texts (legal) | other sessions |
 | Monthly | AI prompt run, Search Console review, one new content piece | seo |
@@ -314,5 +314,7 @@ promotional copy in forums, or editing Wikipedia about ourselves.
 
 Tracked privately in `paul-followups.md` through the master. Those that block this plan: P-11
 (Business Profile), P-13 (photos), P-14 (instrument titles), P-18 (channels), P-20 (brand name),
-P-21 to P-26 (instrument numbers, build-stage photos, press and events, workshop sign, visits) and
-whether "price on request" instruments can show a price.
+P-21 to P-31 (instrument numbers, the link to the other Simon workshop, build-stage photos, press and
+events, workshop sign, visits, prices for "price on request" instruments, the Facebook page, dealer
+listings, claiming the reghin.ro listing). P-22 (the other Simon workshop) is the most urgent,
+because Google's AI Overview already mixes the two up.
