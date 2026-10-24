@@ -25,10 +25,12 @@ query data will replace guesses from about November 2026.
 1. **Google already knows the site, but files it badly.** It drops every `/en/…` page as a duplicate
    and keeps redirecting, language-less URLs instead. Canonical tags fix this. They are build
    item B1.
-2. **Nobody else talks about us.** We found two third-party mentions on the whole web. The one
-   inbound link (the AALR luthiers' association) points to `www.simoninstruments.com`, which doesn't
-   resolve. The one English forum thread about us is from 2021 and has no buyer reports. For AI
-   answers this matters more than any tag on our own pages.
+2. **Google's AI confuses who we are, and few other sites talk about us.** Asked about "Simon
+   Musical Instruments", Google's AI Overview describes a different Reghin workshop whose owner is
+   also named Simon. Beyond that, we found few third-party mentions: a press piece, a forum thread
+   and directory listings under mixed names. The AALR luthiers' association links to
+   `www.simoninstruments.com`, which doesn't resolve. For AI answers, fixing who we are matters
+   more than any tag on our own pages.
 3. **Each language needs its own words, not translations.** Romanians search "maestru", "Reghin"
    and "preț", never "lucrat manual". Germans search "Meistercello" and "vom Geigenbauer". The French
    say "de luthier". Only the Dutch say "handgemaakt".
@@ -100,7 +102,13 @@ Paris bow maker called Simon.
   - These directories are "citations" (name, address and phone on other sites). They help local
     rankings only if the name and details match, which they currently don't.
 
-**AI answers**: see `research/ai-baseline-2026-10-24.md`.
+**AI answers** (`research/ai-baseline-2026-10-24.md`):
+
+- ChatGPT names us in 4 of 20 unbranded answers, Gemini in 0 of 9, and Google's AI Overview in 5 of
+  9. But **Google's Overview merges us with another Reghin workshop whose owner is also named Simon**,
+  and gives that workshop's founder and address as ours.
+- Specific pages work: both ChatGPT and Google put us first for the Davidov-model cello question.
+- No engine names us for double basses, or in German, French, Dutch, Korean or Greek.
 
 **Competitors worth copying**:
 
@@ -263,6 +271,7 @@ promotional copy in forums, or editing Wikipedia about ourselves.
 |---|---|---|---|
 | 1 | Revive the dead links: make `www.simoninstruments.com` resolve (Railway domain + DNS) and 301 the old `/{en,ro,de,fr,nl}/{home,about-us,galery,contact}.html` URLs to the new pages. Then ask AALR to update their link to `https://simoninstruments.com/ro` and add Ecaterina | infra-cost (www), seo (redirect map), Paul or Rares (AALR email) | Low |
 | 2 | Google Business Profile: same name as the sign, website URL, categories, hours / "by appointment", work-in-progress photos | Paul (owner access), seo writes the texts | Low |
+| 2a | Claim the free listings that AI engines cite: reghin.ro's workshop directory (we're listed as "Paul Simon - Musical Instruments", with no website or description), turismreghin.ro, firmadeaur.ro. Add the website, description and photos | seo drafts, Paul or Rares submits | Low |
 | 2b | Citation clean-up: once the name is chosen (P-20), make name, address, phone, website and hours identical on Bing Places, Cylex, CityMaps.ro, Violin Network, Top 100 of Romania, Deschis.ro and the Facebook page | seo drafts the list, Paul or Rares edits (most need the owner's login or a claim) | Low |
 | 3 | Reviews: after each delivery, Paul sends one short message with the review link. No incentives | Paul | Ongoing |
 | 4 | Directory listings: allviolinshops (Romania), dbstrings, Homo Faber (apply), Visit Mureș (visitable workshop) | seo drafts, Paul or Rares submits | Low–Med |
