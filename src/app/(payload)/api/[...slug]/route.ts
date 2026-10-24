@@ -2,6 +2,8 @@
 /* DO NOT MODIFY IT BECAUSE IT COULD BE REWRITTEN AT ANY TIME. */
 import config from '@payload-config'
 import '@payloadcms/next/css'
+import { getPayload } from 'payload'
+import { hasAdminRole } from '@/access'
 import { limitByIp } from '@/lib/rate-limit'
 import {
   REST_DELETE,
@@ -12,18 +14,56 @@ import {
   REST_PUT,
 } from '@payloadcms/next/routes'
 
-export const GET = REST_GET(config)
-// Security: rate-limit Payload's auth endpoints per IP. Keep this wrapper if the file is regenerated.
+// Security wrappers. Keep them if this file is ever regenerated.
+
+// Only admins may send query filters (`where`, `joins`) to the REST API. The storefront reads data
+// through the Local API and never needs them; restricting them limits the query surface that
+// untrusted visitors can reach. Payload also accepts queries in a POST body with a method-override
+// header, so that path is covered too.
+const FILTER_PARAM = /^(where|joins)(\[|$)/
+const usesQueryFilters = (req: Request) =>
+  [...new URL(req.url).searchParams.keys()].some((key) => FILTER_PARAM.test(key))
+const isMethodOverride = (req: Request) =>
+  Boolean(
+    req.headers.get('x-payload-http-method-override') || req.headers.get('x-http-method-override'),
+  )
+async function isAdminRequest(req: Request) {
+  const payload = await getPayload({ config })
+  const { user } = await payload.auth({ headers: req.headers })
+  return hasAdminRole(user)
+}
+const forbidden = () =>
+  Response.json({ errors: [{ message: 'Query filters are not allowed.' }] }, { status: 403 })
+
+const restGet = REST_GET(config)
+export const GET: typeof restGet = async (req, ctx) => {
+  if (usesQueryFilters(req) && !(await isAdminRequest(req))) return forbidden()
+  return restGet(req, ctx)
+}
+
+// Rate-limit Payload's auth endpoints per IP.
 const restPost = REST_POST(config)
 const AUTH_PATHS = /^\/api\/users\/(login|forgot-password|reset-password|first-register|unlock)$/
 export const POST: typeof restPost = async (req, ctx) => {
+  if ((isMethodOverride(req) || usesQueryFilters(req)) && !(await isAdminRequest(req))) {
+    return forbidden()
+  }
   if (AUTH_PATHS.test(new URL(req.url).pathname)) {
     const limited = limitByIp(req, 'adminAuth')
     if (limited) return limited
   }
   return restPost(req, ctx)
 }
-export const DELETE = REST_DELETE(config)
-export const PATCH = REST_PATCH(config)
+// Bulk update and delete also accept `where`.
+const restDelete = REST_DELETE(config)
+export const DELETE: typeof restDelete = async (req, ctx) => {
+  if (usesQueryFilters(req) && !(await isAdminRequest(req))) return forbidden()
+  return restDelete(req, ctx)
+}
+const restPatch = REST_PATCH(config)
+export const PATCH: typeof restPatch = async (req, ctx) => {
+  if (usesQueryFilters(req) && !(await isAdminRequest(req))) return forbidden()
+  return restPatch(req, ctx)
+}
 export const PUT = REST_PUT(config)
 export const OPTIONS = REST_OPTIONS(config)
