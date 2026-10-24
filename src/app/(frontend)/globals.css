@@ -104,11 +104,8 @@
 
 @theme inline {
   /* Using elegant serif and sans-serif fonts for premium feel */
-  /* --font-cjk is only set on /ja and /ko (see [locale]/layout.tsx) */
-  --font-sans:
-    var(--font-inter), var(--font-cjk, ui-sans-serif), ui-sans-serif, system-ui, -apple-system,
-    sans-serif;
-  --font-serif: var(--font-playfair), var(--font-cjk, ui-serif), ui-serif, Georgia, serif;
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --font-serif: var(--font-playfair), ui-serif, Georgia, serif;
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);

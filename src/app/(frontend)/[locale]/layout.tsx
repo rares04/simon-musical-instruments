@@ -1,12 +1,11 @@
 import type React from 'react'
 import type { Metadata } from 'next'
-import { Inter, Playfair_Display, Noto_Sans_JP, Noto_Sans_KR } from 'next/font/google'
+import { Inter, Playfair_Display } from 'next/font/google'
 import { notFound } from 'next/navigation'
 import { NextIntlClientProvider } from 'next-intl'
 import { getMessages } from 'next-intl/server'
 import { Analytics } from '@vercel/analytics/next'
 import { ClientProviders } from '@/components/client-providers'
-import type { Locale } from '@/i18n/config'
 import { routing } from '@/i18n/routing'
 import { cn } from '@/lib/utils'
 import '../globals.css'
@@ -30,14 +29,8 @@ const playfairItalic = Playfair_Display({
   variable: '--font-playfair-italic',
   adjustFontFallback: false,
 })
-
-// CJK fonts are applied only on /ja and /ko, without preload, so other locales never download them.
-const notoJP = Noto_Sans_JP({ variable: '--font-cjk', preload: false })
-const notoKR = Noto_Sans_KR({ variable: '--font-cjk', preload: false })
-const cjkFontVariable: Partial<Record<Locale, string>> = {
-  ja: notoJP.variable,
-  ko: notoKR.variable,
-}
+// No CJK web font: /ja and /ko use the OS font (Hiragino, Yu Gothic, Malgun Gothic, …), picked by
+// <html lang>. A next/font CJK face would add its @font-face CSS to every locale's pages.
 
 export const metadata: Metadata = {
   title: 'Simon Musical Instruments | Handcrafted String Instruments from Reghin, Romania',
@@ -80,15 +73,7 @@ export default async function LocaleLayout({
   const messages = await getMessages()
 
   return (
-    <html
-      lang={locale}
-      className={cn(
-        inter.variable,
-        playfair.variable,
-        playfairItalic.variable,
-        cjkFontVariable[locale as Locale],
-      )}
-    >
+    <html lang={locale} className={cn(inter.variable, playfair.variable, playfairItalic.variable)}>
       <body className="min-h-screen bg-background font-sans antialiased" suppressHydrationWarning>
         <NextIntlClientProvider messages={messages}>
           <ClientProviders>
