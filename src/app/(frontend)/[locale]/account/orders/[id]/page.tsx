@@ -140,10 +140,11 @@ export default async function OrderDetailPage({ params }: { params: Promise<{ id
         </div>
         {!isReservation && (
           <Button className="cursor-pointer" asChild>
-            <Link href={`/api/orders/${order.id}/invoice`}>
+            {/* Plain <a>: the i18n Link would prefix the locale (/en/api/...), which 404s. */}
+            <a href={`/api/orders/${order.id}/invoice`} download>
               <Download className="w-4 h-4 mr-2" />
               Download Invoice
-            </Link>
+            </a>
           </Button>
         )}
       </div>
