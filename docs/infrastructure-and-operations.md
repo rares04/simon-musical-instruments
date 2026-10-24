@@ -81,8 +81,8 @@ API Free key exists; the K-4 rollout sets it and backfills the existing instrume
 
 | Record | Value | Purpose |
 |---|---|---|
-| `@ A` | `69.46.46.117` (Railway edge, `RLWY-HIKARI`) | Website |
-| `www` | **none** | `www.simoninstruments.com` does not resolve. Add a CNAME to the Railway domain; the middleware already 301s it to the apex |
+| `@ ALIAS` | the Railway target `….up.railway.app` (Hostinger flattens it; resolves to the Railway edge `69.46.46.117`) | Website |
+| `www CNAME` | the Railway target for `www` (added 2026-10-24, TTL 300) | `www` is a second Railway custom domain; the middleware 301s it to the apex |
 | `@ MX` | `mx1/mx2.hostinger.com` | Paul's mailbox (Hostinger Mail) |
 | `@ TXT` | `v=spf1 include:_spf.mail.hostinger.com ~all` | SPF for the mailbox |
 | `@ TXT` | `google-site-verification=…` | Google Search Console domain verification (added 2026-10-24). **Keep forever**: deleting it unverifies Search Console |
@@ -93,19 +93,14 @@ API Free key exists; the K-4 rollout sets it and backfills the existing instrume
 | `_dmarc TXT` | `v=DMARC1; p=none` | Monitoring only. Add `rua=` reporting, then move to `quarantine` |
 | `CAA` | none | Optional: restrict certificate issuers |
 
-The apex uses a hard-coded **A record**: a copy of the IP behind the Railway CNAME target shown in
-the service's domain settings. If Railway changes that IP, the site goes down. Hostinger supports a
-flattened **ALIAS** at the apex (enter a CNAME on `@`; hPanel shows it as ALIAS), so the fix doesn't
-need a DNS move. Planned with `www` (pending the owner's OK):
+The apex is a Hostinger **ALIAS** (flattened CNAME) to the Railway target, not a hard-coded IP, so
+an edge IP change at Railway is followed automatically. `dig` shows an A record only because of the
+flattening. `www` was added on 2026-10-24 as a second custom domain on the web service (Hobby allows
+2 per service). A full zone snapshot from before that change is kept privately.
 
-1. Add `www.simoninstruments.com` as a Railway custom domain (Hobby allows 2 per service).
-2. Snapshot the zone, then add the `www` CNAME and replace `@ A` with the ALIAS. Only do the apex
-   step if hPanel really offers ALIAS: a plain CNAME at `@` would break MX and TXT.
-3. Check with `dig` that MX, every TXT and DKIM record are unchanged, both certificates are valid,
-   and `www` 301s to the apex.
-
-Rollback: re-add `@ A 69.46.46.117`. Cloudflare is no longer needed for caching, because Railway's
-own edge CDN is free (see §4).
+Changing the zone: snapshot it first (hPanel → DNS → the record list), change one record, then
+check with `dig @ns1.dns-parking.com` that MX, every TXT and the DKIM records are unchanged.
+Cloudflare isn't needed for caching, because Railway's own edge CDN is free (see §4).
 
 ## 4. Vendors and third parties
 
