@@ -22,12 +22,5 @@ export const business = {
   },
   /** Only profiles the owner has confirmed. */
   sameAs: ['https://www.instagram.com/simon_musicalinstruments/'],
-  knowsAbout: [
-    'Violin making',
-    'Cello',
-    'Double bass',
-    'Viola',
-    'Tonewood',
-    'Spirit varnish',
-  ],
+  knowsAbout: ['Violin making', 'Cello', 'Double bass', 'Viola', 'Tonewood', 'Spirit varnish'],
 } as const

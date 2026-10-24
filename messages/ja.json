@@ -721,5 +721,47 @@
         "alt": "進行中のニス塗りプロセスを見せるビオラの裏板"
       }
     }
+  },
+  "seo": {
+    "home": {
+      "title": "Simon Musical Instruments｜ルーマニア・レギンの弦楽器工房",
+      "description": "ルーマニア「バイオリンの町」レギンで、パウルとエカテリーナ・シモンが手作りするバイオリン、ビオラ、チェロ、コントラバス。価格を掲載し、保険付きで配送します。"
+    },
+    "gallery": {
+      "title": "手工品のチェロ・コントラバス・バイオリン販売",
+      "description": "在庫の楽器をすべて、価格・写真・音源付きで掲載しています。レギンの工房で一台ずつ手作りしています。オンラインで予約できます。"
+    },
+    "photos": {
+      "title": "レギンの工房の様子",
+      "description": "工房の写真：トーンウッド、彫り、白木の楽器、手塗りのニス。"
+    },
+    "faq": {
+      "title": "よくある質問",
+      "description": "手工品の楽器のご購入について：予約、お支払い、配送、返品、証明書、お手入れ。"
+    },
+    "contact": {
+      "title": "レギンの工房へのお問い合わせ",
+      "description": "パウルとエカテリーナ・シモンの工房（Strada 1 Decembrie 1918 nr. 8, Reghin）へ、楽器・価格・ご注文についてお気軽にお問い合わせください。"
+    },
+    "private": {
+      "login": "ログイン",
+      "register": "アカウント作成",
+      "verifyEmail": "メールアドレスの確認",
+      "checkout": "予約",
+      "account": "マイアカウント"
+    },
+    "breadcrumb": {
+      "home": "ホーム",
+      "instruments": "楽器"
+    },
+    "instrument": {
+      "titleWithModel": "{title} {model}モデル 手工品 {year}年",
+      "titleNoModel": "{title} 手工品 {year}年",
+      "description": "{name}。ルーマニア・レギンでパウルとエカテリーナ・シモンが手作りしました。{price}。",
+      "price": "価格：{price}",
+      "priceOnRequest": "価格はお問い合わせください",
+      "reserved": "予約済み",
+      "sold": "売約済み"
+    }
   }
 }

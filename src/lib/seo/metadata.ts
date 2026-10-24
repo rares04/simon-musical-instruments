@@ -32,6 +32,8 @@ type BuildMetadataInput = {
   imageAlt?: string
   translatedLocales?: readonly Locale[]
   noindex?: boolean
+  /** Append " | <brand>" when the title fits. Off for titles that already name the brand. */
+  brandSuffix?: boolean
   type?: 'website' | 'article'
   siteUrl?: string
 }
@@ -54,11 +56,12 @@ export function buildMetadata({
   imageAlt,
   translatedLocales = locales,
   noindex = false,
+  brandSuffix = true,
   type = 'website',
   siteUrl = SITE_URL,
 }: BuildMetadataInput): Metadata {
   const alternates = buildAlternates({ locale, path, translatedLocales, siteUrl })
-  const fullTitle = withBrand(title)
+  const fullTitle = brandSuffix ? withBrand(title) : title
   const imageUrl = absoluteUrl(image || DEFAULT_OG_IMAGE, siteUrl)
 
   return {
@@ -85,4 +88,9 @@ export function buildMetadata({
     },
     robots: noindex ? { index: false, follow: true } : { index: true, follow: true },
   }
+}
+
+/** Metadata for sign-in, account and checkout pages: translated title, kept out of the index. */
+export function privatePageMetadata(locale: Locale, path: string, title: string): Metadata {
+  return buildMetadata({ locale, path, title, description: title, noindex: true })
 }

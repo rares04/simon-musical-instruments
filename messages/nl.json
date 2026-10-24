@@ -721,5 +721,47 @@
         "alt": "De achterkant van een altviool die het vernisproces in uitvoering toont"
       }
     }
+  },
+  "seo": {
+    "home": {
+      "title": "Simon Musical Instruments, vioolbouwers in Reghin",
+      "description": "Handgemaakte violen, altviolen, cello’s en contrabassen van Paul en Ecaterina Simon uit Reghin, Roemenië. Met prijzen en verzekerde levering."
+    },
+    "gallery": {
+      "title": "Handgemaakte cello’s, contrabassen en violen te koop",
+      "description": "Alle beschikbare instrumenten met prijzen, foto’s en geluidsfragmenten. Met de hand gebouwd in onze werkplaats in Reghin. Online reserveren."
+    },
+    "photos": {
+      "title": "Een kijkje in onze werkplaats",
+      "description": "Foto’s uit de werkplaats in Reghin: klankhout, snijwerk, instrumenten in het wit en met de hand aangebrachte lak."
+    },
+    "faq": {
+      "title": "Veelgestelde vragen",
+      "description": "Antwoorden over het kopen van een handgemaakt instrument: reserveren, betalen, levering, retour, certificaat en onderhoud."
+    },
+    "contact": {
+      "title": "Contact met de werkplaats in Reghin",
+      "description": "Schrijf, bel of bezoek Paul en Ecaterina Simon, Strada 1 Decembrie 1918 nr. 8, Reghin. Vragen over een instrument, een prijs of een opdracht."
+    },
+    "private": {
+      "login": "Inloggen",
+      "register": "Account aanmaken",
+      "verifyEmail": "E-mailadres bevestigen",
+      "checkout": "Reservering",
+      "account": "Mijn account"
+    },
+    "breadcrumb": {
+      "home": "Home",
+      "instruments": "Instrumenten"
+    },
+    "instrument": {
+      "titleWithModel": "{title}, handgemaakt, {model}-model, {year}",
+      "titleNoModel": "{title}, handgemaakt, {year}",
+      "description": "{name}. Met de hand gebouwd in Reghin, Roemenië, door Paul en Ecaterina Simon. {price}.",
+      "price": "Prijs: {price}",
+      "priceOnRequest": "Prijs op aanvraag",
+      "reserved": "Gereserveerd",
+      "sold": "Verkocht"
+    }
   }
 }

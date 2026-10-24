@@ -14,6 +14,10 @@ export const routing = defineRouting({
   // Automatically detect locale from Accept-Language header
   // When a user visits `/` they'll be redirected to their preferred locale
   localeDetection: true,
+
+  // hreflang comes from page metadata and the sitemap (src/lib/seo/alternates.ts), which list only
+  // translated locales. The automatic Link header would advertise all 8 for every page.
+  alternateLinks: false,
 })
 
 // Lightweight wrappers around Next.js' navigation APIs

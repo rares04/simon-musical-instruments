@@ -721,5 +721,47 @@
         "alt": "The back of a viola showing the varnishing process in progress"
       }
     }
+  },
+  "seo": {
+    "home": {
+      "title": "Simon Musical Instruments, luthiers in Reghin, Romania",
+      "description": "Handmade violins, violas, cellos and double basses by Paul and Ecaterina Simon in Reghin, Romania's City of Violins. Prices online, insured delivery."
+    },
+    "gallery": {
+      "title": "Handmade cellos, double basses and violins for sale",
+      "description": "Every instrument in stock, with prices, photos and sound samples. Built by hand in our workshop in Reghin. Reserve online."
+    },
+    "photos": {
+      "title": "Inside the workshop",
+      "description": "Photos from our workshop in Reghin: tonewood, carving, instruments in the white and hand-applied varnish."
+    },
+    "faq": {
+      "title": "Frequently asked questions",
+      "description": "Answers about buying a handmade instrument from us: reservation, payment, delivery, returns, certificates and care."
+    },
+    "contact": {
+      "title": "Contact the workshop in Reghin",
+      "description": "Write, call or visit Paul and Ecaterina Simon at Strada 1 Decembrie 1918 nr. 8, Reghin. Ask about an instrument, a price or a commission."
+    },
+    "private": {
+      "login": "Sign in",
+      "register": "Create an account",
+      "verifyEmail": "Verify your email",
+      "checkout": "Reservation",
+      "account": "My account"
+    },
+    "breadcrumb": {
+      "home": "Home",
+      "instruments": "Instruments"
+    },
+    "instrument": {
+      "titleWithModel": "{title}, handmade {model} model, {year}",
+      "titleNoModel": "{title}, handmade, {year}",
+      "description": "{name}. Built by hand in Reghin, Romania, by luthiers Paul and Ecaterina Simon. {price}.",
+      "price": "Price: {price}",
+      "priceOnRequest": "Price on request",
+      "reserved": "Reserved",
+      "sold": "Sold"
+    }
   }
 }

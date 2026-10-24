@@ -724,5 +724,47 @@
         "alt": "진행 중인 바니시 과정을 보여주는 비올라 뒤판"
       }
     }
+  },
+  "seo": {
+    "home": {
+      "title": "Simon Musical Instruments, 루마니아 레긴의 현악기 공방",
+      "description": "루마니아 ‘바이올린의 도시’ 레긴에서 파울과 에카테리나 시몬이 손으로 만드는 바이올린, 비올라, 첼로, 콘트라베이스. 가격 공개, 보험 적용 배송."
+    },
+    "gallery": {
+      "title": "수제 첼로, 콘트라베이스, 바이올린 판매",
+      "description": "판매 중인 모든 악기를 가격, 사진, 음원과 함께 소개합니다. 레긴 공방에서 손으로 제작합니다. 온라인 예약 가능."
+    },
+    "photos": {
+      "title": "레긴 공방 둘러보기",
+      "description": "공방 사진: 음향목, 조각 작업, 칠하기 전의 악기, 손으로 바른 바니시."
+    },
+    "faq": {
+      "title": "자주 묻는 질문",
+      "description": "수제 악기 구매 안내: 예약, 결제, 배송, 반품, 보증서, 관리."
+    },
+    "contact": {
+      "title": "레긴 공방 문의",
+      "description": "파울과 에카테리나 시몬의 공방(Strada 1 Decembrie 1918 nr. 8, Reghin)에 악기, 가격, 주문 제작에 대해 문의하세요."
+    },
+    "private": {
+      "login": "로그인",
+      "register": "계정 만들기",
+      "verifyEmail": "이메일 인증",
+      "checkout": "예약",
+      "account": "내 계정"
+    },
+    "breadcrumb": {
+      "home": "홈",
+      "instruments": "악기"
+    },
+    "instrument": {
+      "titleWithModel": "{title} {model} 모델 수제 {year}",
+      "titleNoModel": "{title} 수제 {year}",
+      "description": "{name}. 루마니아 레긴에서 파울과 에카테리나 시몬이 손으로 제작했습니다. {price}.",
+      "price": "가격: {price}",
+      "priceOnRequest": "가격 문의",
+      "reserved": "예약됨",
+      "sold": "판매 완료"
+    }
   }
 }

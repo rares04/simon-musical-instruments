@@ -725,5 +725,47 @@
         "alt": "Le dos d'un alto montrant le processus de vernissage en cours"
       }
     }
+  },
+  "seo": {
+    "home": {
+      "title": "Simon Musical Instruments, luthiers à Reghin",
+      "description": "Violons, altos, violoncelles et contrebasses faits à la main par Paul et Ecaterina Simon à Reghin, en Roumanie. Prix affichés, livraison assurée."
+    },
+    "gallery": {
+      "title": "Violoncelles, contrebasses et violons de luthier",
+      "description": "Tous les instruments disponibles, avec prix, photos et extraits sonores. Fabriqués à la main dans notre atelier de Reghin. Réservation en ligne."
+    },
+    "photos": {
+      "title": "Dans notre atelier de Reghin",
+      "description": "Photos de l’atelier : bois de lutherie, sculpture, instruments en blanc et vernis appliqué à la main."
+    },
+    "faq": {
+      "title": "Questions fréquentes",
+      "description": "Réponses sur l’achat d’un instrument de luthier : réservation, paiement, livraison, retours, certificat et entretien."
+    },
+    "contact": {
+      "title": "Contacter l’atelier de lutherie à Reghin",
+      "description": "Écrivez-nous, appelez ou rendez visite à Paul et Ecaterina Simon, Strada 1 Decembrie 1918 nr. 8, Reghin. Questions sur un instrument, un prix ou une commande."
+    },
+    "private": {
+      "login": "Connexion",
+      "register": "Créer un compte",
+      "verifyEmail": "Vérifier votre e-mail",
+      "checkout": "Réservation",
+      "account": "Mon compte"
+    },
+    "breadcrumb": {
+      "home": "Accueil",
+      "instruments": "Instruments"
+    },
+    "instrument": {
+      "titleWithModel": "{title} de luthier, modèle {model}, {year}",
+      "titleNoModel": "{title} de luthier, {year}",
+      "description": "{name}. Fabriqué à la main à Reghin, en Roumanie, par Paul et Ecaterina Simon. {price}.",
+      "price": "Prix : {price}",
+      "priceOnRequest": "Prix sur demande",
+      "reserved": "Réservé",
+      "sold": "Vendu"
+    }
   }
 }
