@@ -721,5 +721,47 @@
         "alt": "Die Rückseite einer Bratsche, die den Lackierprozess in Arbeit zeigt"
       }
     }
+  },
+  "seo": {
+    "home": {
+      "title": "Simon Musical Instruments, Geigenbauer in Reghin",
+      "description": "Handgefertigte Geigen, Bratschen, Celli und Kontrabässe von Paul und Ecaterina Simon aus Reghin, Rumänien. Mit Preisen, versicherter Versand."
+    },
+    "gallery": {
+      "title": "Celli, Kontrabässe und Geigen vom Geigenbauer",
+      "description": "Alle verfügbaren Instrumente mit Preisen, Fotos und Klangbeispielen. Handgefertigt in unserer Werkstatt in Reghin. Online reservieren."
+    },
+    "photos": {
+      "title": "Einblick in unsere Werkstatt",
+      "description": "Fotos aus der Werkstatt in Reghin: Tonholz, Schnitzarbeit, Instrumente im Weiß und von Hand aufgetragener Lack."
+    },
+    "faq": {
+      "title": "Häufige Fragen",
+      "description": "Antworten zum Kauf eines handgefertigten Instruments: Reservierung, Zahlung, Versand, Rückgabe, Zertifikat und Pflege."
+    },
+    "contact": {
+      "title": "Kontakt zur Geigenbauwerkstatt in Reghin",
+      "description": "Schreiben Sie uns, rufen Sie an oder besuchen Sie Paul und Ecaterina Simon, Strada 1 Decembrie 1918 nr. 8, Reghin. Fragen zu Instrumenten, Preisen oder Aufträgen."
+    },
+    "private": {
+      "login": "Anmelden",
+      "register": "Konto erstellen",
+      "verifyEmail": "E-Mail bestätigen",
+      "checkout": "Reservierung",
+      "account": "Mein Konto"
+    },
+    "breadcrumb": {
+      "home": "Startseite",
+      "instruments": "Instrumente"
+    },
+    "instrument": {
+      "titleWithModel": "{title} vom Geigenbauer, nach {model}, {year}",
+      "titleNoModel": "{title} vom Geigenbauer, {year}",
+      "description": "{name}. Handgefertigt in Reghin, Rumänien, von Paul und Ecaterina Simon. {price}.",
+      "price": "Preis: {price}",
+      "priceOnRequest": "Preis auf Anfrage",
+      "reserved": "Reserviert",
+      "sold": "Verkauft"
+    }
   }
 }

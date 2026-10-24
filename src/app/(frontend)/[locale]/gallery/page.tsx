@@ -1,23 +1,49 @@
+import type { Metadata } from 'next'
 import { getPayload } from 'payload'
 import config from '@/payload.config'
 import { getLocale, getTranslations } from 'next-intl/server'
 import type { Locale } from '@/i18n/config'
 import { Header } from '@/components/header'
 import { Footer } from '@/components/footer'
+import { JsonLd } from '@/components/seo/json-ld'
+import { buildMetadata } from '@/lib/seo/metadata'
+import { breadcrumbNode, businessNode, graph } from '@/lib/seo/schema'
+import { absoluteUrl, localizedPath } from '@/lib/seo/site'
 import { GalleryClient } from './gallery-client'
 
 // Render at runtime (DB not accessible during build)
 export const dynamic = 'force-dynamic'
 
-export const metadata = {
-  title: 'Gallery | Simon Musical Instruments',
-  description: 'Browse our collection of handcrafted violins, violas, cellos, and contrabasses.',
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>
+}): Promise<Metadata> {
+  const locale = (await params).locale as Locale
+  const t = await getTranslations({ locale, namespace: 'seo' })
+  return buildMetadata({
+    locale,
+    path: '/gallery',
+    title: t('gallery.title'),
+    description: t('gallery.description'),
+  })
 }
 
 export default async function GalleryPage() {
   const locale = await getLocale()
   const t = await getTranslations('gallery')
+  const tSeo = await getTranslations('seo')
   const payload = await getPayload({ config })
+  const jsonLd = graph(
+    businessNode(),
+    breadcrumbNode([
+      { name: tSeo('breadcrumb.home'), url: absoluteUrl(localizedPath(locale as Locale, '/')) },
+      {
+        name: tSeo('breadcrumb.instruments'),
+        url: absoluteUrl(localizedPath(locale as Locale, '/gallery')),
+      },
+    ]),
+  )
 
   // Fetch all instruments with locale
   const { docs: instruments } = await payload.find({
@@ -30,6 +56,7 @@ export default async function GalleryPage() {
 
   return (
     <div className="min-h-screen bg-background">
+      <JsonLd data={jsonLd} />
       <Header />
 
       <main className="pt-24 pb-20">
@@ -44,9 +71,7 @@ export default async function GalleryPage() {
             <h1 className="font-serif text-4xl lg:text-5xl font-bold text-foreground mb-4 text-balance">
               {t('title')}
             </h1>
-            <p className="text-lg text-muted-foreground text-pretty">
-              {t('description')}
-            </p>
+            <p className="text-lg text-muted-foreground text-pretty">{t('description')}</p>
           </div>
 
           <GalleryClient instruments={instruments} />
@@ -57,4 +82,3 @@ export default async function GalleryPage() {
     </div>
   )
 }
-

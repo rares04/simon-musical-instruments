@@ -9,13 +9,31 @@ import { Button } from '@/components/ui/button'
 import { Link } from '@/i18n/routing'
 import { Header } from '@/components/header'
 import { Footer } from '@/components/footer'
+import type { Metadata } from 'next'
+import type { Locale } from '@/i18n/config'
+import { JsonLd } from '@/components/seo/json-ld'
+import { buildMetadata } from '@/lib/seo/metadata'
+import { businessNode, faqNode, graph } from '@/lib/seo/schema'
 
-export async function generateMetadata() {
-  const t = await getTranslations('faq')
-  return {
-    title: `${t('title')} | Simon Musical Instruments`,
-    description: t('subtitle'),
-  }
+/**
+ * Answers repeated in structured data. Shipping and returns stay out until the owner confirms
+ * the policy (the site's copy contradicts itself on both).
+ */
+const STRUCTURED_FAQ_KEYS = ['purchase', 'certificate', 'care', 'custom', 'payment'] as const
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>
+}): Promise<Metadata> {
+  const locale = (await params).locale as Locale
+  const t = await getTranslations({ locale, namespace: 'seo' })
+  return buildMetadata({
+    locale,
+    path: '/faq',
+    title: t('faq.title'),
+    description: t('faq.description'),
+  })
 }
 
 export default async function FAQPage() {
@@ -31,8 +49,19 @@ export default async function FAQPage() {
     'payment',
   ] as const
 
+  const jsonLd = graph(
+    businessNode(),
+    faqNode(
+      STRUCTURED_FAQ_KEYS.map((key) => ({
+        question: t(`questions.${key}.question`),
+        answer: t(`questions.${key}.answer`),
+      })),
+    ),
+  )
+
   return (
     <div className="min-h-screen bg-background">
+      <JsonLd data={jsonLd} />
       <Header />
 
       <main className="pt-20">

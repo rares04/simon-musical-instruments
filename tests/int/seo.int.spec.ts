@@ -6,6 +6,8 @@ import { resolveSiteUrl } from '@/lib/seo/site'
 import { STATIC_PATHS, toSitemapEntries } from '@/lib/seo/sitemap'
 import { serializeJsonLd } from '@/components/seo/json-ld'
 import robots from '@/app/robots'
+import type { AbstractIntlMessages } from 'next-intl'
+import type { SeoTranslator } from '@/lib/seo/instrument-text'
 
 const SITE = 'https://simoninstruments.com'
 
@@ -13,7 +15,9 @@ describe('resolveSiteUrl', () => {
   it('defaults to production and keeps only the origin', () => {
     expect(resolveSiteUrl(undefined)).toBe(SITE)
     expect(resolveSiteUrl('not a url')).toBe(SITE)
-    expect(resolveSiteUrl('https://staging.example.com/some/path')).toBe('https://staging.example.com')
+    expect(resolveSiteUrl('https://staging.example.com/some/path')).toBe(
+      'https://staging.example.com',
+    )
   })
 })
 
@@ -41,7 +45,12 @@ describe('buildAlternates', () => {
   })
 
   it('always keeps the default locale, even if the list omits it', () => {
-    const a = buildAlternates({ locale: 'ro', path: '/x', translatedLocales: ['ro'], siteUrl: SITE })
+    const a = buildAlternates({
+      locale: 'ro',
+      path: '/x',
+      translatedLocales: ['ro'],
+      siteUrl: SITE,
+    })
     expect(a.languages.en).toBe(`${SITE}/en/x`)
   })
 
@@ -82,7 +91,13 @@ describe('buildMetadata', () => {
   })
 
   it('marks private pages noindex', () => {
-    const m = buildMetadata({ locale: 'en', path: '/account', title: 'A', description: 'd', noindex: true })
+    const m = buildMetadata({
+      locale: 'en',
+      path: '/account',
+      title: 'A',
+      description: 'd',
+      noindex: true,
+    })
     expect(m.robots).toEqual({ index: false, follow: true })
   })
 
@@ -189,5 +204,74 @@ describe('robots', () => {
     expect(rule.allow).toContain('/api/media/file/')
     expect(rule.disallow).toEqual(['/admin', '/api/'])
     expect(r.sitemap).toMatch(/\/sitemap\.xml$/)
+  })
+})
+
+describe('instrument text', async () => {
+  const { createTranslator } = await import('next-intl')
+  const { instrumentDescription, instrumentTitle } = await import('@/lib/seo/instrument-text')
+  const en = (await import('../../messages/en.json')).default
+  const de = (await import('../../messages/de.json')).default
+  // Loosely typed messages, as in the app (no global next-intl key augmentation).
+  const tEn = createTranslator({
+    locale: 'en',
+    messages: en as AbstractIntlMessages,
+    namespace: 'seo',
+  }) as unknown as SeoTranslator
+  const tDe = createTranslator({
+    locale: 'de',
+    messages: de as AbstractIntlMessages,
+    namespace: 'seo',
+  }) as unknown as SeoTranslator
+  const cello = {
+    title: 'Cello 4/4',
+    model: 'Stradivari Davidoff',
+    year: 2025,
+    price: 6500,
+    status: 'available' as const,
+  }
+
+  it('builds localized titles and keeps the year unformatted', () => {
+    expect(instrumentTitle(tEn, cello)).toBe('Cello 4/4, handmade Stradivari Davidoff model, 2025')
+    expect(instrumentTitle(tDe, { ...cello, title: 'Violoncello 4/4' })).toBe(
+      'Violoncello 4/4 vom Geigenbauer, nach Stradivari Davidoff, 2025',
+    )
+    expect(instrumentTitle(tEn, { ...cello, model: '  ' })).toBe('Cello 4/4, handmade, 2025')
+  })
+
+  it('states price, price on request, reserved or sold', () => {
+    expect(instrumentDescription(tEn, 'en', cello)).toContain('Price: €6,500.')
+    expect(instrumentDescription(tEn, 'en', { ...cello, price: null })).toContain(
+      'Price on request.',
+    )
+    expect(instrumentDescription(tEn, 'en', { ...cello, status: 'sold' })).toContain('Sold.')
+    expect(instrumentDescription(tDe, 'de', cello)).toContain('6.500')
+  })
+
+  it('keeps the brand out of titles that already contain it', () => {
+    const m = buildMetadata({
+      locale: 'en',
+      path: '/',
+      title: 'Simon Musical Instruments, luthiers',
+      description: 'd',
+      brandSuffix: false,
+    })
+    expect(m.title).toEqual({ absolute: 'Simon Musical Instruments, luthiers' })
+  })
+})
+
+describe('seo messages', async () => {
+  const fs = await import('node:fs')
+  const path = await import('node:path')
+  const keys = (o: Record<string, unknown>, p = ''): string[] =>
+    Object.entries(o).flatMap(([k, v]) =>
+      v && typeof v === 'object' ? keys(v as Record<string, unknown>, `${p}${k}.`) : [`${p}${k}`],
+    )
+  const load = (l: string) =>
+    JSON.parse(fs.readFileSync(path.join(process.cwd(), 'messages', `${l}.json`), 'utf8')).seo
+  const ref = keys(load('en')).sort()
+
+  it.each(['ro', 'de', 'fr', 'nl', 'ja', 'ko', 'el'])('%s has the same seo keys as en', (l) => {
+    expect(keys(load(l)).sort()).toEqual(ref)
   })
 })

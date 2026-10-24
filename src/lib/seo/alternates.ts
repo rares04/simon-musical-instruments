@@ -36,14 +36,11 @@ export function buildAlternates({
   translatedLocales = locales,
   siteUrl = SITE_URL,
 }: BuildAlternatesInput): Alternates {
-  const translated = locales.filter(
-    (l) => l === defaultLocale || translatedLocales.includes(l),
-  )
+  const translated = locales.filter((l) => l === defaultLocale || translatedLocales.includes(l))
   const urlFor = (l: Locale) => absoluteUrl(localizedPath(l, path), siteUrl)
 
   const isHome = path === '/' || path === ''
-  const xDefault =
-    isHome && HOME_X_DEFAULT === 'root' ? `${siteUrl}/` : urlFor(defaultLocale)
+  const xDefault = isHome && HOME_X_DEFAULT === 'root' ? `${siteUrl}/` : urlFor(defaultLocale)
 
   const languages: Record<string, string> = {}
   for (const l of translated) languages[l] = urlFor(l)

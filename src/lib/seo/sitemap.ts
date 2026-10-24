@@ -47,7 +47,9 @@ export function toSitemapEntries(
 
   const instrumentEntries = instruments.flatMap((doc) => {
     const image =
-      doc.mainImage && typeof doc.mainImage === 'object' ? getMediaSrc(doc.mainImage.url ?? null) : null
+      doc.mainImage && typeof doc.mainImage === 'object'
+        ? getMediaSrc(doc.mainImage.url ?? null)
+        : null
     return entriesFor(instrumentPath(doc), localesWithText(doc.luthierNotes), siteUrl, {
       lastModified: doc.updatedAt,
       ...(image ? { images: [absoluteUrl(image, siteUrl)] } : {}),

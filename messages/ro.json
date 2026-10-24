@@ -721,5 +721,47 @@
         "alt": "Spatele unei viole arătând procesul de lăcuire în desfășurare"
       }
     }
+  },
+  "seo": {
+    "home": {
+      "title": "Simon Musical Instruments, lutieri din Reghin",
+      "description": "Viori, viole, violoncele și contrabași lucrați manual de Paul și Ecaterina Simon, în Reghin, orașul viorilor. Prețuri afișate, livrare asigurată."
+    },
+    "gallery": {
+      "title": "Violoncele, contrabași și viori de vânzare, Reghin",
+      "description": "Toate instrumentele disponibile, cu prețuri, fotografii și înregistrări audio. Construite manual în atelierul nostru din Reghin. Rezervare online."
+    },
+    "photos": {
+      "title": "În atelierul nostru din Reghin",
+      "description": "Fotografii din atelier: lemn de rezonanță, sculptură, instrumente în alb și lac aplicat manual."
+    },
+    "faq": {
+      "title": "Întrebări frecvente",
+      "description": "Răspunsuri despre cumpărarea unui instrument lucrat manual: rezervare, plată, livrare, retur, certificat și întreținere."
+    },
+    "contact": {
+      "title": "Contact: atelierul de lutierie din Reghin",
+      "description": "Scrieți-ne, sunați sau vizitați atelierul lui Paul și al Ecaterinei Simon, Strada 1 Decembrie 1918 nr. 8, Reghin. Întrebări despre instrumente, prețuri sau comenzi."
+    },
+    "private": {
+      "login": "Autentificare",
+      "register": "Creează un cont",
+      "verifyEmail": "Verifică adresa de e-mail",
+      "checkout": "Rezervare",
+      "account": "Contul meu"
+    },
+    "breadcrumb": {
+      "home": "Acasă",
+      "instruments": "Instrumente"
+    },
+    "instrument": {
+      "titleWithModel": "{title}, model {model}, {year}, Reghin",
+      "titleNoModel": "{title}, {year}, Reghin",
+      "description": "{name}. Lucrat manual în Reghin de lutierii Paul și Ecaterina Simon. {price}.",
+      "price": "Preț: {price}",
+      "priceOnRequest": "Preț la cerere",
+      "reserved": "Rezervat",
+      "sold": "Vândut"
+    }
   }
 }

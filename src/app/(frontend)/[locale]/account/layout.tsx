@@ -1,10 +1,19 @@
 import type React from "react"
+import type { Metadata } from "next"
+import { getTranslations } from "next-intl/server"
+import type { Locale } from "@/i18n/config"
+import { privatePageMetadata } from "@/lib/seo/metadata"
 import { AccountSidebar } from "@/components/account/account-sidebar"
 import { AccountHeader } from "@/components/account/account-header"
 
-export const metadata = {
-  title: "My Account - Simon Musical Instruments",
-  description: "Manage your account, orders, and preferences",
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>
+}): Promise<Metadata> {
+  const locale = (await params).locale as Locale
+  const t = await getTranslations({ locale, namespace: "seo" })
+  return privatePageMetadata(locale, "/account", t("private.account"))
 }
 
 export default function AccountLayout({ children }: { children: React.ReactNode }) {
