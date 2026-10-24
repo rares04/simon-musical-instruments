@@ -81,13 +81,13 @@ export default async function GalleryPage() {
               <span className="text-muted-foreground">{t('browseBy')}:</span>
               <Link
                 href={categoryPath('cellos', locale as Locale)}
-                className="text-accent hover:underline underline-offset-4"
+                className="inline-block py-0.5 text-accent hover:underline underline-offset-4"
               >
                 {t('filters.cellos')}
               </Link>
               <Link
                 href={categoryPath('doubleBasses', locale as Locale)}
-                className="text-accent hover:underline underline-offset-4"
+                className="inline-block py-0.5 text-accent hover:underline underline-offset-4"
               >
                 {t('filters.contrabasses')}
               </Link>

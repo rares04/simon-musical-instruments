@@ -97,28 +97,28 @@ export function Footer() {
             <h4 className="text-sm font-medium uppercase tracking-wider text-foreground">
               {t('explore')}
             </h4>
-            <nav className="flex flex-col gap-2 text-sm">
+            <nav className="flex flex-col items-start gap-1 text-sm">
               <Link
                 href="/#story"
-                className="text-muted-foreground hover:text-accent transition-colors cursor-pointer"
+                className="inline-block py-0.5 text-muted-foreground hover:text-accent transition-colors cursor-pointer"
               >
                 {t('ourStory')}
               </Link>
               <Link
                 href="/faq"
-                className="text-muted-foreground hover:text-accent transition-colors cursor-pointer"
+                className="inline-block py-0.5 text-muted-foreground hover:text-accent transition-colors cursor-pointer"
               >
                 FAQ
               </Link>
               <Link
                 href="/contact"
-                className="text-muted-foreground hover:text-accent transition-colors cursor-pointer"
+                className="inline-block py-0.5 text-muted-foreground hover:text-accent transition-colors cursor-pointer"
               >
                 {t('contact')}
               </Link>
               <Link
                 href="/gallery"
-                className="text-muted-foreground hover:text-accent transition-colors cursor-pointer"
+                className="inline-block py-0.5 text-muted-foreground hover:text-accent transition-colors cursor-pointer"
               >
                 {t('shopInstruments')}
               </Link>
@@ -130,16 +130,16 @@ export function Footer() {
             <h4 className="text-sm font-medium uppercase tracking-wider text-foreground">
               {t('instruments')}
             </h4>
-            <nav className="flex flex-col gap-2 text-sm">
+            <nav className="flex flex-col items-start gap-1 text-sm">
               <Link
                 href={categoryPath('cellos', locale)}
-                className="text-muted-foreground hover:text-accent transition-colors cursor-pointer"
+                className="inline-block py-0.5 text-muted-foreground hover:text-accent transition-colors cursor-pointer"
               >
                 {tGallery('cellos')}
               </Link>
               <Link
                 href={categoryPath('doubleBasses', locale)}
-                className="text-muted-foreground hover:text-accent transition-colors cursor-pointer"
+                className="inline-block py-0.5 text-muted-foreground hover:text-accent transition-colors cursor-pointer"
               >
                 {tGallery('contrabasses')}
               </Link>
