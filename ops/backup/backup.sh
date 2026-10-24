@@ -66,10 +66,11 @@ log "dump size $(wc -c < "$WORK/db.dump") bytes, $(wc -l < "$WORK/prod-counts.tx
 
 # 2. Restore check in a throwaway server (unix socket only, no network).
 log "restore check"
-initdb -D "$PGDATA_TMP" -U postgres --auth=trust >/dev/null || fail "initdb"
+initdb -D "$PGDATA_TMP" -U postgres --auth=trust -E UTF8 --locale=C >/dev/null || fail "initdb"
 pg_ctl -D "$PGDATA_TMP" -o "-k $WORK -c listen_addresses=''" -w start >/dev/null || fail "starting check server"
 createdb -h "$WORK" -U postgres verify || fail "createdb"
-pg_restore -h "$WORK" -U postgres -d verify --no-owner --no-privileges --exit-on-error "$WORK/db.dump" \
+# --clean --if-exists: the dump recreates schema "public", which a new database already has.
+pg_restore -h "$WORK" -U postgres -d verify --no-owner --no-privileges --clean --if-exists --exit-on-error "$WORK/db.dump" \
   || fail "pg_restore"
 psql -h "$WORK" -U postgres -d verify -X -At -v ON_ERROR_STOP=1 -c "$COUNT_SQL" > "$WORK/restore-counts.txt" \
   || fail "counting restored rows"

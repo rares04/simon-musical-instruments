@@ -53,8 +53,11 @@ Use this before a production migration:
 
    ```sh
    createdb simon_restore
-   pg_restore -d simon_restore --no-owner --no-privileges --exit-on-error <file>.dump
+   pg_restore -d simon_restore --no-owner --no-privileges --clean --if-exists --exit-on-error <file>.dump
    ```
+
+   `--clean --if-exists` is needed: the dump recreates schema `public`, which every new
+   database already has.
 
 3. To restore production (only with Rares's OK, after a fresh backup of the current state):
    1. Put the site in maintenance mode, or stop the Railway service.
