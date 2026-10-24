@@ -34,6 +34,9 @@ cleanup() {
 trap cleanup EXIT
 
 # rclone remotes come from env vars, so there is no config file holding keys.
+# An empty config file stops rclone warning that none exists.
+export RCLONE_CONFIG="$WORK/rclone.conf"
+: > "$RCLONE_CONFIG"
 export RCLONE_CONFIG_SUPA_TYPE=s3
 export RCLONE_CONFIG_SUPA_PROVIDER=Other
 export RCLONE_CONFIG_SUPA_ENDPOINT="$S3_ENDPOINT"
