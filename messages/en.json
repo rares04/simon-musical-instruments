@@ -236,7 +236,9 @@
       "processing": "Processing",
       "shipped": "Shipped",
       "delivered": "Delivered",
-      "cancelled": "Cancelled"
+      "cancelled": "Cancelled",
+      "pending": "Pending",
+      "refunded": "Refunded"
     },
     "profilePage": {
       "title": "Profile Settings",
@@ -244,6 +246,50 @@
       "personalInfo": "Personal Info",
       "savedAddresses": "Saved Addresses",
       "password": "Password"
+    },
+    "dashboardLink": "Dashboard",
+    "orderDetail": {
+      "titleReservation": "Reservation Details",
+      "titleOrder": "Order Details",
+      "awaitingTitle": "Reservation Awaiting Payment",
+      "awaitingBodyDelivery": "Paul will contact you within 1-2 business days to arrange payment by bank transfer.",
+      "awaitingBodyPickup": "Paul will contact you within 1-2 business days to arrange payment by bank transfer or in cash at pickup.",
+      "downloadInvoice": "Download Invoice",
+      "timelineTitle": "Order Timeline",
+      "timeline": {
+        "reservationPlaced": "Reservation Placed",
+        "awaitingContact": "Awaiting Contact",
+        "awaitingContactNote": "Paul will contact you within 1-2 business days",
+        "paymentArranged": "Payment Arranged",
+        "paymentArrangedNote": "Bank transfer or cash at pickup",
+        "readyForPickup": "Ready for Pickup",
+        "orderPlaced": "Order Placed",
+        "pickedUp": "Picked Up",
+        "completed": "Completed"
+      },
+      "itemsOrdered": "Items Ordered",
+      "quantity": "Qty: {count}",
+      "shippingInfo": "Shipping Information",
+      "trackingNumber": "Tracking Number",
+      "trackPackage": "Track Package",
+      "estimatedDelivery": "Estimated Delivery",
+      "summaryReservation": "Reservation Summary",
+      "delivery": "Delivery",
+      "insurance": "Insurance",
+      "pickup": "Pickup",
+      "atelierName": "Simon Musical Instruments Atelier",
+      "pickupContactNote": "Paul will contact you to arrange a pickup time.",
+      "payment": "Payment",
+      "paymentNoteDelivery": "Paul will contact you to arrange the bank transfer.",
+      "paymentNotePickup": "Paul will contact you to arrange the bank transfer or cash payment at pickup.",
+      "method": {
+        "bank_transfer": "Bank Transfer",
+        "cash": "Cash",
+        "card": "Card Payment",
+        "other": "Payment Completed"
+      },
+      "reference": "Ref: {ref}",
+      "backToOrders": "Back to Orders"
     }
   },
   "gallery": {

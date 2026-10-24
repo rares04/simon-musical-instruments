@@ -236,7 +236,9 @@
       "processing": "În Procesare",
       "shipped": "Expediat",
       "delivered": "Livrat",
-      "cancelled": "Anulat"
+      "cancelled": "Anulat",
+      "pending": "În Așteptare",
+      "refunded": "Rambursat"
     },
     "profilePage": {
       "title": "Setări Profil",
@@ -244,6 +246,50 @@
       "personalInfo": "Informații Personale",
       "savedAddresses": "Adrese Salvate",
       "password": "Parolă"
+    },
+    "dashboardLink": "Panou Principal",
+    "orderDetail": {
+      "titleReservation": "Detaliile Rezervării",
+      "titleOrder": "Detaliile Comenzii",
+      "awaitingTitle": "Rezervare în Așteptarea Plății",
+      "awaitingBodyDelivery": "Paul vă va contacta în 1-2 zile lucrătoare pentru a stabili plata prin transfer bancar.",
+      "awaitingBodyPickup": "Paul vă va contacta în 1-2 zile lucrătoare pentru a stabili plata prin transfer bancar sau în numerar la ridicare.",
+      "downloadInvoice": "Descarcă Factura",
+      "timelineTitle": "Istoricul Comenzii",
+      "timeline": {
+        "reservationPlaced": "Rezervare Plasată",
+        "awaitingContact": "În Așteptarea Contactului",
+        "awaitingContactNote": "Paul vă va contacta în 1-2 zile lucrătoare",
+        "paymentArranged": "Plată Stabilită",
+        "paymentArrangedNote": "Transfer bancar sau numerar la ridicare",
+        "readyForPickup": "Gata de Ridicare",
+        "orderPlaced": "Comandă Plasată",
+        "pickedUp": "Ridicat",
+        "completed": "Finalizat"
+      },
+      "itemsOrdered": "Produse Comandate",
+      "quantity": "Cant.: {count}",
+      "shippingInfo": "Informații de Livrare",
+      "trackingNumber": "Număr de Urmărire",
+      "trackPackage": "Urmărește Coletul",
+      "estimatedDelivery": "Livrare Estimată",
+      "summaryReservation": "Sumar Rezervare",
+      "delivery": "Livrare",
+      "insurance": "Asigurare",
+      "pickup": "Ridicare",
+      "atelierName": "Atelierul Simon Musical Instruments",
+      "pickupContactNote": "Paul vă va contacta pentru a stabili ora ridicării.",
+      "payment": "Plată",
+      "paymentNoteDelivery": "Paul vă va contacta pentru a stabili transferul bancar.",
+      "paymentNotePickup": "Paul vă va contacta pentru a stabili transferul bancar sau plata în numerar la ridicare.",
+      "method": {
+        "bank_transfer": "Transfer Bancar",
+        "cash": "Numerar",
+        "card": "Plată cu Cardul",
+        "other": "Plată Efectuată"
+      },
+      "reference": "Ref.: {ref}",
+      "backToOrders": "Înapoi la Comenzi"
     }
   },
   "gallery": {

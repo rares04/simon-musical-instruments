@@ -1,22 +1,26 @@
 'use client'
 
 import { useState } from 'react'
-import { usePathname } from 'next/navigation'
+import { useTranslations } from 'next-intl'
 import { Menu, X, LayoutDashboard, Package, User, LogOut, ArrowLeft } from 'lucide-react'
 import { Button } from '@/components/ui/button'
-import { Link } from '@/i18n/routing'
+import { Link, usePathname } from '@/i18n/routing'
 import { cn } from '@/lib/utils'
 import { signOut } from 'next-auth/react'
 
+// Labels are keys in the `account` namespace.
 const navigation = [
-  { name: 'Dashboard', href: '/account', icon: LayoutDashboard },
-  { name: 'Orders', href: '/account/orders', icon: Package },
-  { name: 'Profile', href: '/account/profile', icon: User },
-]
+  { label: 'dashboardLink', href: '/account', icon: LayoutDashboard },
+  { label: 'orders', href: '/account/orders', icon: Package },
+  { label: 'profile', href: '/account/profile', icon: User },
+] as const
 
 export function AccountHeader() {
   const [isOpen, setIsOpen] = useState(false)
+  // Locale-free path (/account/orders), so it matches the hrefs below.
   const pathname = usePathname()
+  const t = useTranslations('account')
+  const tNav = useTranslations('navigation')
 
   const handleSignOut = async () => {
     await signOut({ callbackUrl: '/' })
@@ -31,15 +35,17 @@ export function AccountHeader() {
             className="flex items-center gap-1.5 text-sm font-medium text-accent hover:text-accent/80 transition-colors cursor-pointer"
           >
             <ArrowLeft className="w-4 h-4" />
-            Shop
+            {tNav('shop')}
           </Link>
-        <h1 className="font-serif text-2xl font-bold text-foreground">My Account</h1>
+        <h1 className="font-serif text-2xl font-bold text-foreground">{t('title')}</h1>
         </div>
         <Button
           variant="outline"
           size="icon"
           onClick={() => setIsOpen(!isOpen)}
           className="cursor-pointer"
+          aria-label={isOpen ? tNav('closeMenu') : tNav('openMenu')}
+          aria-expanded={isOpen}
         >
           {isOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
         </Button>
@@ -52,7 +58,7 @@ export function AccountHeader() {
               const isActive = pathname === item.href || pathname.startsWith(item.href + '/')
               return (
                 <Link
-                  key={item.name}
+                  key={item.href}
                   href={item.href}
                   onClick={() => setIsOpen(false)}
                   className={cn(
@@ -63,7 +69,7 @@ export function AccountHeader() {
                   )}
                 >
                   <item.icon className="w-5 h-5" />
-                  {item.name}
+                  {t(item.label)}
                 </Link>
               )
             })}
@@ -76,7 +82,7 @@ export function AccountHeader() {
               onClick={handleSignOut}
             >
               <LogOut className="w-5 h-5 mr-3" />
-              Sign Out
+              {tNav('signOut')}
             </Button>
           </div>
         </div>

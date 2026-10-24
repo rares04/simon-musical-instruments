@@ -236,7 +236,9 @@
       "processing": "処理中",
       "shipped": "発送済み",
       "delivered": "配達済み",
-      "cancelled": "キャンセル"
+      "cancelled": "キャンセル",
+      "pending": "保留中",
+      "refunded": "返金済み"
     },
     "profilePage": {
       "title": "プロフィール設定",
@@ -244,6 +246,50 @@
       "personalInfo": "個人情報",
       "savedAddresses": "保存された住所",
       "password": "パスワード"
+    },
+    "dashboardLink": "ダッシュボード",
+    "orderDetail": {
+      "titleReservation": "予約の詳細",
+      "titleOrder": "注文の詳細",
+      "awaitingTitle": "お支払い待ちの予約",
+      "awaitingBodyDelivery": "1〜2営業日以内にポールより銀行振込でのお支払いについてご連絡いたします。",
+      "awaitingBodyPickup": "1〜2営業日以内にポールより銀行振込または受け取り時の現金でのお支払いについてご連絡いたします。",
+      "downloadInvoice": "請求書をダウンロード",
+      "timelineTitle": "注文の経過",
+      "timeline": {
+        "reservationPlaced": "予約完了",
+        "awaitingContact": "ご連絡待ち",
+        "awaitingContactNote": "1〜2営業日以内にポールよりご連絡いたします",
+        "paymentArranged": "お支払い手配済み",
+        "paymentArrangedNote": "銀行振込または受け取り時の現金",
+        "readyForPickup": "受け取り準備完了",
+        "orderPlaced": "注文完了",
+        "pickedUp": "受け取り済み",
+        "completed": "完了"
+      },
+      "itemsOrdered": "ご注文の商品",
+      "quantity": "数量: {count}",
+      "shippingInfo": "配送情報",
+      "trackingNumber": "追跡番号",
+      "trackPackage": "荷物を追跡",
+      "estimatedDelivery": "お届け予定",
+      "summaryReservation": "予約概要",
+      "delivery": "配送",
+      "insurance": "保険",
+      "pickup": "受け取り",
+      "atelierName": "Simon Musical Instruments 工房",
+      "pickupContactNote": "受け取り日時についてポールよりご連絡いたします。",
+      "payment": "お支払い",
+      "paymentNoteDelivery": "銀行振込の手続きについてポールよりご連絡いたします。",
+      "paymentNotePickup": "銀行振込または受け取り時の現金払いについてポールよりご連絡いたします。",
+      "method": {
+        "bank_transfer": "銀行振込",
+        "cash": "現金",
+        "card": "カード払い",
+        "other": "お支払い完了"
+      },
+      "reference": "参照番号: {ref}",
+      "backToOrders": "注文一覧に戻る"
     }
   },
   "gallery": {

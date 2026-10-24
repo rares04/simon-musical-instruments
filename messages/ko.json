@@ -236,7 +236,9 @@
       "processing": "처리 중",
       "shipped": "배송됨",
       "delivered": "배송 완료",
-      "cancelled": "취소됨"
+      "cancelled": "취소됨",
+      "pending": "대기 중",
+      "refunded": "환불됨"
     },
     "profilePage": {
       "title": "프로필 설정",
@@ -244,6 +246,50 @@
       "personalInfo": "개인 정보",
       "savedAddresses": "저장된 주소",
       "password": "비밀번호"
+    },
+    "dashboardLink": "대시보드",
+    "orderDetail": {
+      "titleReservation": "예약 상세",
+      "titleOrder": "주문 상세",
+      "awaitingTitle": "결제 대기 중인 예약",
+      "awaitingBodyDelivery": "영업일 기준 1~2일 이내에 폴이 계좌 이체 결제 안내를 위해 연락드립니다.",
+      "awaitingBodyPickup": "영업일 기준 1~2일 이내에 폴이 계좌 이체 또는 수령 시 현금 결제 안내를 위해 연락드립니다.",
+      "downloadInvoice": "인보이스 다운로드",
+      "timelineTitle": "주문 진행 상황",
+      "timeline": {
+        "reservationPlaced": "예약 완료",
+        "awaitingContact": "연락 대기 중",
+        "awaitingContactNote": "영업일 기준 1~2일 이내에 폴이 연락드립니다",
+        "paymentArranged": "결제 방법 확정",
+        "paymentArrangedNote": "계좌 이체 또는 수령 시 현금",
+        "readyForPickup": "수령 준비 완료",
+        "orderPlaced": "주문 완료",
+        "pickedUp": "수령 완료",
+        "completed": "완료"
+      },
+      "itemsOrdered": "주문 상품",
+      "quantity": "수량: {count}",
+      "shippingInfo": "배송 정보",
+      "trackingNumber": "운송장 번호",
+      "trackPackage": "배송 조회",
+      "estimatedDelivery": "도착 예정",
+      "summaryReservation": "예약 요약",
+      "delivery": "배송",
+      "insurance": "보험",
+      "pickup": "수령",
+      "atelierName": "Simon Musical Instruments 공방",
+      "pickupContactNote": "수령 시간을 정하기 위해 폴이 연락드립니다.",
+      "payment": "결제",
+      "paymentNoteDelivery": "계좌 이체 안내를 위해 폴이 연락드립니다.",
+      "paymentNotePickup": "계좌 이체 또는 수령 시 현금 결제 안내를 위해 폴이 연락드립니다.",
+      "method": {
+        "bank_transfer": "계좌 이체",
+        "cash": "현금",
+        "card": "카드 결제",
+        "other": "결제 완료"
+      },
+      "reference": "참조: {ref}",
+      "backToOrders": "주문 목록으로"
     }
   },
   "gallery": {
@@ -445,9 +491,6 @@
       "step3Desc": "수제 악기가 세심하게 준비되고, 정성껏 포장되어 완전 보험과 함께 배송되거나 수령 준비가 완료됩니다.",
       "emailSent": "확인 이메일 전송됨",
       "emailSentDesc": "예약 번호와 다음 단계가 포함된 확인 이메일을 보내드렸습니다. 받은 편지함(및 스팸 폴더)을 확인해 주세요.",
-      "reservationStep1": "폴이 1-2 영업일 이내에 연락드려 예약 사항을 확인합니다",
-      "reservationStep2": "결제 세부 정보(은행 송금 또는 현금)가 안내됩니다",
-      "reservationStep3": "악기가 준비되어 보험과 함께 배송되거나 수령 준비가 완료됩니다",
       "questionsAbout": "예약에 대한 질문이 있으신가요?"
     },
     "inquiry": {

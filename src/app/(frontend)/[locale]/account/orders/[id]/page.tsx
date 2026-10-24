@@ -13,7 +13,7 @@ import {
 } from 'lucide-react'
 import Image from 'next/image'
 import { Link } from '@/i18n/routing'
-import { getLocale } from 'next-intl/server'
+import { getLocale, getTranslations } from 'next-intl/server'
 import { formatDate, formatPrice } from '@/lib/format'
 import { auth } from '@/lib/auth'
 import { getPayload } from 'payload'
@@ -27,6 +27,10 @@ export const dynamic = 'force-dynamic'
 export default async function OrderDetailPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params
   const locale = await getLocale()
+  const t = await getTranslations('account.orderDetail')
+  const tStatus = await getTranslations('account.orderHistory')
+  const tCheckout = await getTranslations('checkout')
+  const tInstruments = await getTranslations('instruments')
   const session = await auth()
 
   if (!session?.user) {
@@ -65,46 +69,46 @@ export default async function OrderDetailPage({ params }: { params: Promise<{ id
   const timeline = isReservation
     ? [
         {
-          status: 'Reservation Placed',
+          status: t('timeline.reservationPlaced'),
           date: formatDate(order.createdAt, locale),
           completed: true,
         },
         {
-          status: 'Awaiting Contact',
-          date: 'Paul will contact you within 1-2 business days',
+          status: t('timeline.awaitingContact'),
+          date: t('timeline.awaitingContactNote'),
           completed: false,
           current: true,
         },
         {
-          status: 'Payment Arranged',
-          date: 'Bank transfer or cash on pickup',
+          status: t('timeline.paymentArranged'),
+          date: t('timeline.paymentArrangedNote'),
           completed: false,
         },
         {
-          status: isPickup ? 'Ready for Pickup' : 'Shipped',
-          date: 'Pending',
+          status: isPickup ? t('timeline.readyForPickup') : tStatus('shipped'),
+          date: tStatus('pending'),
           completed: false,
         },
       ]
     : [
         {
-          status: 'Order Placed',
+          status: t('timeline.orderPlaced'),
           date: formatDate(order.paidAt || order.createdAt, locale),
           completed: true,
         },
         {
-          status: 'Processing',
-          date: order.status === 'paid' ? 'Pending' : formatDate(order.createdAt, locale),
+          status: tStatus('processing'),
+          date: order.status === 'paid' ? tStatus('pending') : formatDate(order.createdAt, locale),
           completed: ['processing', 'shipped', 'delivered'].includes(order.status),
         },
         {
-          status: isPickup ? 'Ready for Pickup' : 'Shipped',
-          date: order.shippedAt ? formatDate(order.shippedAt, locale) : 'Pending',
+          status: isPickup ? t('timeline.readyForPickup') : tStatus('shipped'),
+          date: order.shippedAt ? formatDate(order.shippedAt, locale) : tStatus('pending'),
           completed: ['shipped', 'delivered'].includes(order.status),
         },
         {
-          status: isPickup ? 'Picked Up' : 'Delivered',
-          date: order.status === 'delivered' ? 'Completed' : 'Pending',
+          status: isPickup ? t('timeline.pickedUp') : tStatus('delivered'),
+          date: order.status === 'delivered' ? t('timeline.completed') : tStatus('pending'),
           completed: order.status === 'delivered',
         },
       ]
@@ -119,10 +123,9 @@ export default async function OrderDetailPage({ params }: { params: Promise<{ id
               <Clock className="w-6 h-6 text-amber-600" />
             </div>
             <div>
-              <h3 className="font-semibold text-foreground mb-1">Reservation Awaiting Payment</h3>
+              <h3 className="font-semibold text-foreground mb-1">{t('awaitingTitle')}</h3>
               <p className="text-sm text-muted-foreground">
-                Paul will contact you within 1-2 business days to arrange payment via bank transfer
-                {isPickup ? ' or cash on pickup' : ''}.
+                {isPickup ? t('awaitingBodyPickup') : t('awaitingBodyDelivery')}
               </p>
             </div>
           </div>
@@ -133,7 +136,7 @@ export default async function OrderDetailPage({ params }: { params: Promise<{ id
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
           <h1 className="font-serif text-3xl sm:text-4xl font-bold text-foreground mb-2">
-            {isReservation ? 'Reservation Details' : 'Order Details'}
+            {isReservation ? t('titleReservation') : t('titleOrder')}
           </h1>
           <div className="flex items-center gap-3">
             <p className="font-mono text-lg text-muted-foreground">{order.orderNumber}</p>
@@ -145,7 +148,7 @@ export default async function OrderDetailPage({ params }: { params: Promise<{ id
             {/* Plain <a>: the i18n Link would prefix the locale (/en/api/...), which 404s. */}
             <a href={`/api/orders/${order.id}/invoice`} download>
               <Download className="w-4 h-4 mr-2" />
-              Download Invoice
+              {t('downloadInvoice')}
             </a>
           </Button>
         )}
@@ -153,7 +156,7 @@ export default async function OrderDetailPage({ params }: { params: Promise<{ id
 
       {/* Order Timeline */}
       <div className="bg-card border border-border rounded-lg p-6">
-        <h2 className="font-semibold text-foreground mb-6">Order Timeline</h2>
+        <h2 className="font-semibold text-foreground mb-6">{t('timelineTitle')}</h2>
         <div className="relative">
           <div className="absolute left-4 top-0 bottom-0 w-0.5 bg-border" />
           <div className="space-y-6">
@@ -186,7 +189,7 @@ export default async function OrderDetailPage({ params }: { params: Promise<{ id
           <div className="bg-card border border-border rounded-lg p-6">
             <h2 className="font-semibold text-foreground mb-6 flex items-center gap-2">
               <Package className="w-5 h-5" />
-              Items Ordered
+              {t('itemsOrdered')}
             </h2>
             <div className="space-y-4">
               {order.items?.map((item, idx) => {
@@ -214,13 +217,13 @@ export default async function OrderDetailPage({ params }: { params: Promise<{ id
                       <h3 className="font-semibold text-foreground">{item.title}</h3>
                       {instrument && (
                         <p className="text-sm text-muted-foreground mt-1">
-                          {instrument.instrumentType}
+                          {tInstruments(instrument.instrumentType)}
                           {instrument.model && ` · ${instrument.model}`}
                           {instrument.year && ` · ${instrument.year}`}
                         </p>
                       )}
                       <div className="flex items-center justify-between mt-2">
-                        <p className="text-sm text-muted-foreground">Qty: 1</p>
+                        <p className="text-sm text-muted-foreground">{t('quantity', { count: 1 })}</p>
                         <p className="font-semibold text-foreground">
                           {formatPrice(item.price, locale)}
                         </p>
@@ -237,11 +240,11 @@ export default async function OrderDetailPage({ params }: { params: Promise<{ id
             <div className="bg-card border border-border rounded-lg p-6">
               <h2 className="font-semibold text-foreground mb-4 flex items-center gap-2">
                 <Truck className="w-5 h-5" />
-                Shipping Information
+                {t('shippingInfo')}
               </h2>
               <div className="space-y-3">
                 <div>
-                  <p className="text-sm text-muted-foreground mb-1">Tracking Number</p>
+                  <p className="text-sm text-muted-foreground mb-1">{t('trackingNumber')}</p>
                   <p className="font-mono text-foreground">{order.trackingNumber}</p>
                 </div>
                 {order.trackingUrl && (
@@ -251,13 +254,13 @@ export default async function OrderDetailPage({ params }: { params: Promise<{ id
                     asChild
                   >
                     <a href={order.trackingUrl} target="_blank" rel="noopener noreferrer">
-                      Track Package
+                      {t('trackPackage')}
                     </a>
                   </Button>
                 )}
                 {order.estimatedDelivery && (
                   <div>
-                    <p className="text-sm text-muted-foreground mb-1">Estimated Delivery</p>
+                    <p className="text-sm text-muted-foreground mb-1">{t('estimatedDelivery')}</p>
                     <p className="text-foreground">{order.estimatedDelivery}</p>
                   </div>
                 )}
@@ -271,33 +274,33 @@ export default async function OrderDetailPage({ params }: { params: Promise<{ id
           {/* Order Summary */}
           <div className="bg-card border border-border rounded-lg p-6">
             <h2 className="font-semibold text-foreground mb-4">
-              {isReservation ? 'Reservation Summary' : 'Order Summary'}
+              {isReservation ? t('summaryReservation') : tCheckout('summary.title')}
             </h2>
             <div className="space-y-3">
               <div className="flex justify-between text-sm">
-                <span className="text-muted-foreground">Subtotal</span>
+                <span className="text-muted-foreground">{tCheckout('summary.subtotal')}</span>
                 <span className="text-foreground">{formatPrice(order.subtotal, locale)}</span>
               </div>
               {!isPickup && (
                 <>
                   <div className="flex justify-between text-sm">
-                    <span className="text-muted-foreground">Delivery</span>
-                    <span className="text-green-600">Included</span>
+                    <span className="text-muted-foreground">{t('delivery')}</span>
+                    <span className="text-green-600">{tCheckout('summary.included')}</span>
                   </div>
                   <div className="flex justify-between text-sm">
-                    <span className="text-muted-foreground">Insurance</span>
-                    <span className="text-green-600">Included</span>
+                    <span className="text-muted-foreground">{t('insurance')}</span>
+                    <span className="text-green-600">{tCheckout('summary.included')}</span>
                   </div>
                 </>
               )}
               {isPickup && (
                 <div className="flex justify-between text-sm">
-                  <span className="text-muted-foreground">Pickup</span>
-                  <span className="text-green-600">Free</span>
+                  <span className="text-muted-foreground">{t('pickup')}</span>
+                  <span className="text-green-600">{tCheckout('pickup.free')}</span>
                 </div>
               )}
               <div className="border-t border-border pt-3 flex justify-between">
-                <span className="font-semibold text-foreground">Total</span>
+                <span className="font-semibold text-foreground">{tCheckout('summary.total')}</span>
                 <span className="font-semibold text-foreground">
                   {formatPrice(order.total, locale)}
                 </span>
@@ -309,16 +312,16 @@ export default async function OrderDetailPage({ params }: { params: Promise<{ id
           <div className="bg-card border border-border rounded-lg p-6">
             <h2 className="font-semibold text-foreground mb-4 flex items-center gap-2">
               {isPickup ? <Building2 className="w-5 h-5" /> : <MapPin className="w-5 h-5" />}
-              {isPickup ? 'Pickup Location' : 'Delivery Address'}
+              {isPickup ? tCheckout('pickup.title') : tCheckout('shipping.title')}
             </h2>
             {isPickup ? (
               <div className="text-sm text-foreground space-y-1">
-                <p className="font-medium">Simon Musical Instruments Atelier</p>
+                <p className="font-medium">{t('atelierName')}</p>
                 <p>Strada 1 Decembrie 1918, nr. 8</p>
                 <p>Reghin, Mureș 545300</p>
-                <p>Romania</p>
+                <p>{tCheckout('shipping.countries.RO')}</p>
                 <p className="text-muted-foreground mt-2 text-xs">
-                  Paul will contact you to arrange a pickup time.
+                  {t('pickupContactNote')}
                 </p>
               </div>
             ) : (
@@ -341,36 +344,33 @@ export default async function OrderDetailPage({ params }: { params: Promise<{ id
           <div className="bg-card border border-border rounded-lg p-6">
             <h2 className="font-semibold text-foreground mb-4 flex items-center gap-2">
               <CreditCard className="w-5 h-5" />
-              Payment
+              {t('payment')}
             </h2>
             {isReservation ? (
               <div className="text-sm">
                 <div className="flex items-center gap-2 text-amber-600 mb-2">
                   <AlertCircle className="w-4 h-4" />
-                  <span className="font-medium">Awaiting Payment</span>
+                  <span className="font-medium">{tStatus('awaitingPayment')}</span>
                 </div>
                 <p className="text-muted-foreground text-xs">
-                  Paul will contact you to arrange bank transfer
-                  {isPickup ? ' or cash payment on pickup' : ''}.
+                  {isPickup ? t('paymentNotePickup') : t('paymentNoteDelivery')}
                 </p>
               </div>
             ) : (
               <>
                 <p className="text-sm text-foreground">
-                  {order.paymentMethod === 'bank_transfer'
-                    ? 'Bank Transfer'
-                    : order.paymentMethod === 'cash'
-                      ? 'Cash'
-                      : order.paymentMethod === 'card'
-                        ? 'Card Payment'
-                        : 'Payment Completed'}
+                  {order.paymentMethod === 'bank_transfer' ||
+                  order.paymentMethod === 'cash' ||
+                  order.paymentMethod === 'card'
+                    ? t(`method.${order.paymentMethod}`)
+                    : t('method.other')}
                 </p>
                 {order.paymentIntentId && (
                   <p className="text-xs text-muted-foreground mt-1">ID: {order.paymentIntentId}</p>
                 )}
                 {order.paymentReference && (
                   <p className="text-xs text-muted-foreground mt-1">
-                    Ref: {order.paymentReference}
+                    {t('reference', { ref: order.paymentReference })}
                   </p>
                 )}
               </>
@@ -381,7 +381,7 @@ export default async function OrderDetailPage({ params }: { params: Promise<{ id
 
       {/* Back Button */}
       <Button asChild variant="outline" className="cursor-pointer bg-transparent">
-        <Link href="/account/orders">Back to Orders</Link>
+        <Link href="/account/orders">{t('backToOrders')}</Link>
       </Button>
     </div>
   )

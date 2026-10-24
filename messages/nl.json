@@ -236,7 +236,9 @@
       "processing": "In Behandeling",
       "shipped": "Verzonden",
       "delivered": "Bezorgd",
-      "cancelled": "Geannuleerd"
+      "cancelled": "Geannuleerd",
+      "pending": "In Afwachting",
+      "refunded": "Terugbetaald"
     },
     "profilePage": {
       "title": "Profielinstellingen",
@@ -244,6 +246,50 @@
       "personalInfo": "Persoonlijke Informatie",
       "savedAddresses": "Opgeslagen Adressen",
       "password": "Wachtwoord"
+    },
+    "dashboardLink": "Overzicht",
+    "orderDetail": {
+      "titleReservation": "Reserveringsdetails",
+      "titleOrder": "Bestelgegevens",
+      "awaitingTitle": "Reservering Wacht op Betaling",
+      "awaitingBodyDelivery": "Paul neemt binnen 1-2 werkdagen contact met u op om de betaling per bankoverschrijving te regelen.",
+      "awaitingBodyPickup": "Paul neemt binnen 1-2 werkdagen contact met u op om de betaling per bankoverschrijving of contant bij ophalen te regelen.",
+      "downloadInvoice": "Factuur Downloaden",
+      "timelineTitle": "Bestelverloop",
+      "timeline": {
+        "reservationPlaced": "Reservering Geplaatst",
+        "awaitingContact": "Wachten op Contact",
+        "awaitingContactNote": "Paul neemt binnen 1-2 werkdagen contact met u op",
+        "paymentArranged": "Betaling Geregeld",
+        "paymentArrangedNote": "Bankoverschrijving of contant bij ophalen",
+        "readyForPickup": "Klaar om Op te Halen",
+        "orderPlaced": "Bestelling Geplaatst",
+        "pickedUp": "Opgehaald",
+        "completed": "Voltooid"
+      },
+      "itemsOrdered": "Bestelde Artikelen",
+      "quantity": "Aantal: {count}",
+      "shippingInfo": "Verzendinformatie",
+      "trackingNumber": "Trackingnummer",
+      "trackPackage": "Pakket Volgen",
+      "estimatedDelivery": "Verwachte Levering",
+      "summaryReservation": "Reserveringsoverzicht",
+      "delivery": "Bezorging",
+      "insurance": "Verzekering",
+      "pickup": "Ophalen",
+      "atelierName": "Atelier Simon Musical Instruments",
+      "pickupContactNote": "Paul neemt contact met u op om een ophaaltijd af te spreken.",
+      "payment": "Betaling",
+      "paymentNoteDelivery": "Paul neemt contact met u op om de bankoverschrijving te regelen.",
+      "paymentNotePickup": "Paul neemt contact met u op om de bankoverschrijving of contante betaling bij ophalen te regelen.",
+      "method": {
+        "bank_transfer": "Bankoverschrijving",
+        "cash": "Contant",
+        "card": "Kaartbetaling",
+        "other": "Betaling Voltooid"
+      },
+      "reference": "Ref.: {ref}",
+      "backToOrders": "Terug naar Bestellingen"
     }
   },
   "gallery": {

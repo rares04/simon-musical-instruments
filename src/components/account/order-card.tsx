@@ -1,4 +1,4 @@
-import { useLocale } from 'next-intl'
+import { useLocale, useTranslations } from 'next-intl'
 import { Link } from '@/i18n/routing'
 import { formatDate, formatPrice } from '@/lib/format'
 import Image from 'next/image'
@@ -19,6 +19,7 @@ interface OrderCardProps {
 
 export function OrderCard({ order, showViewDetails = false }: OrderCardProps) {
   const locale = useLocale()
+  const tCommon = useTranslations('common')
   const formattedDate = formatDate(order.date, locale, {
     year: 'numeric',
     month: 'long',
@@ -66,7 +67,7 @@ export function OrderCard({ order, showViewDetails = false }: OrderCardProps) {
 
             {showViewDetails && (
               <div className="flex items-center gap-1 text-sm text-accent">
-                <span>View Details</span>
+                <span>{tCommon('viewDetails')}</span>
                 <ChevronRight className="w-4 h-4" />
               </div>
             )}
