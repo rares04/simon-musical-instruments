@@ -1,5 +1,6 @@
 import type { CollectionConfig } from 'payload'
 import { autoTranslateInstrument } from '@/hooks/autoTranslate'
+import { indexNowAfterChange, indexNowAfterDelete } from '@/hooks/indexNow'
 import { anyone, isAdmin } from '@/access'
 import { scheduleHoldSweep } from '@/lib/reservations'
 
@@ -11,7 +12,8 @@ export const Instruments: CollectionConfig = {
     listSearchableFields: ['title', 'slug'],
   },
   hooks: {
-    afterChange: [autoTranslateInstrument],
+    afterChange: [autoTranslateInstrument, indexNowAfterChange],
+    afterDelete: [indexNowAfterDelete],
     // Release expired reservations in the background whenever the catalogue is read
     // (at most every 10 minutes; see src/lib/reservations.ts).
     beforeOperation: [
