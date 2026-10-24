@@ -4,6 +4,7 @@ import config from '../src/payload.config'
 import path from 'path'
 import fs from 'fs'
 import { fileURLToPath } from 'url'
+import { assertSafeSeedTarget } from './seed-guard'
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
@@ -499,6 +500,7 @@ const instruments = [
 ]
 
 async function seed() {
+  assertSafeSeedTarget()
   console.log('🌱 Starting seed with localized content...')
 
   const payload = await getPayload({ config })

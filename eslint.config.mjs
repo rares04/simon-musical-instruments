@@ -30,6 +30,22 @@ const eslintConfig = [
     },
   },
   {
+    // Locale-less toLocaleString() formats with the runtime's locale, so the server and the browser
+    // can disagree and React reports a hydration error. Use the helpers in src/lib/format.ts.
+    files: ['src/components/**/*.{ts,tsx}', 'src/app/**/*.{ts,tsx}'],
+    rules: {
+      'no-restricted-syntax': [
+        'error',
+        {
+          selector:
+            'CallExpression[callee.property.name=/^toLocale(Date|Time)?String$/][arguments.length=0]',
+          message:
+            'Pass a locale (see src/lib/format.ts). A bare toLocale*String() causes hydration errors.',
+        },
+      ],
+    },
+  },
+  {
     ignores: ['.next/'],
   },
 ]
