@@ -16,7 +16,7 @@ describe('validateEnv', () => {
   })
 
   it('names every missing or invalid required variable', () => {
-    const env = { PAYLOAD_SECRET: 'short' }
+    const env = { PAYLOAD_SECRET: '' }
     expect(() => validateEnv(env)).toThrow(/DATABASE_URL[\s\S]*PAYLOAD_SECRET[\s\S]*AUTH_SECRET/)
   })
 

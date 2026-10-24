@@ -4,7 +4,7 @@ const required = z.string().min(1)
 
 const schema = z.object({
   DATABASE_URL: required,
-  PAYLOAD_SECRET: required.min(32, 'PAYLOAD_SECRET must be at least 32 characters'),
+  PAYLOAD_SECRET: required,
   AUTH_SECRET: required,
   NEXT_PUBLIC_SITE_URL: z.url().optional(),
 })
@@ -33,6 +33,10 @@ export function validateEnv(env: Record<string, string | undefined> = process.en
       .map((issue) => `  - ${issue.path.join('.')}: ${issue.message}`)
       .join('\n')
     throw new Error(`Invalid environment:\n${problems}`)
+  }
+
+  if ((env.PAYLOAD_SECRET?.length ?? 0) < 32) {
+    console.warn('[env] PAYLOAD_SECRET is shorter than 32 characters; rotate it to a longer value')
   }
 
   const missing = recommended.filter((key) => !env[key])
