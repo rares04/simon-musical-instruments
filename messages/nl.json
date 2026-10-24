@@ -288,7 +288,20 @@
     "soldNote": "Dit instrument is {status}. Neem contact met ons op om een soortgelijk stuk te bestellen.",
     "lowStock": "Nog maar {count} op voorraad",
     "noImagesAvailable": "Geen afbeeldingen beschikbaar",
-    "askForPrice": "Prijs op aanvraag"
+    "askForPrice": "Prijs op aanvraag",
+    "expandImage": "Afbeelding vergroten",
+    "clickToExpand": "Klik om te vergroten",
+    "previousImage": "Vorige afbeelding",
+    "nextImage": "Volgende afbeelding",
+    "closeImage": "Sluiten",
+    "zoomIn": "Inzoomen",
+    "zoomOut": "Uitzoomen",
+    "resetZoom": "Weergave herstellen",
+    "thumbnail": "Afbeelding {number}",
+    "audioPlay": "Afspelen",
+    "audioPause": "Pauzeren",
+    "audioSeek": "Afspeelpositie",
+    "audioCaption": "Professionele opname van het instrument {name}, bespeeld in onze werkplaats. Luister naar de rijke klankkleuren en de resonantie."
   },
   "cart": {
     "title": "Winkelwagen",

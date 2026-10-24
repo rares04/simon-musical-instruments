@@ -288,7 +288,20 @@
     "soldNote": "この楽器は{status}です。類似品の注文についてはお問い合わせください。",
     "lowStock": "残り{count}点のみ",
     "noImagesAvailable": "利用可能な画像がありません",
-    "askForPrice": "価格はお問い合わせください"
+    "askForPrice": "価格はお問い合わせください",
+    "expandImage": "画像を拡大",
+    "clickToExpand": "クリックで拡大",
+    "previousImage": "前の画像",
+    "nextImage": "次の画像",
+    "closeImage": "閉じる",
+    "zoomIn": "ズームイン",
+    "zoomOut": "ズームアウト",
+    "resetZoom": "表示をリセット",
+    "thumbnail": "画像 {number}",
+    "audioPlay": "再生",
+    "audioPause": "一時停止",
+    "audioSeek": "再生位置",
+    "audioCaption": "工房で演奏した{name}のプロ録音です。豊かな音色と響きをお聴きください。"
   },
   "cart": {
     "title": "ショッピングカート",

@@ -288,7 +288,20 @@
     "soldNote": "Dieses Instrument wurde {status}. Kontaktieren Sie uns, um ein ähnliches Stück in Auftrag zu geben.",
     "lowStock": "Nur noch {count} auf Lager",
     "noImagesAvailable": "Keine Bilder verfügbar",
-    "askForPrice": "Preis auf Anfrage"
+    "askForPrice": "Preis auf Anfrage",
+    "expandImage": "Bild vergrößern",
+    "clickToExpand": "Zum Vergrößern klicken",
+    "previousImage": "Vorheriges Bild",
+    "nextImage": "Nächstes Bild",
+    "closeImage": "Schließen",
+    "zoomIn": "Vergrößern",
+    "zoomOut": "Verkleinern",
+    "resetZoom": "Ansicht zurücksetzen",
+    "thumbnail": "Bild {number}",
+    "audioPlay": "Abspielen",
+    "audioPause": "Pause",
+    "audioSeek": "Wiedergabeposition",
+    "audioCaption": "Professionelle Aufnahme des Instruments {name}, gespielt in unserer Werkstatt. Hören Sie die reichen Klangfarben und die Resonanz."
   },
   "cart": {
     "title": "Warenkorb",

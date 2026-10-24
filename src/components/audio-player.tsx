@@ -4,6 +4,7 @@ import type React from "react"
 
 import { useState, useRef, useEffect } from "react"
 import { Play, Pause, Volume2 } from "lucide-react"
+import { useTranslations } from "next-intl"
 import { Button } from "@/components/ui/button"
 
 interface AudioPlayerProps {
@@ -13,6 +14,7 @@ interface AudioPlayerProps {
 
 export function AudioPlayer({ audioUrl, instrumentName }: AudioPlayerProps) {
   const audioRef = useRef<HTMLAudioElement>(null)
+  const t = useTranslations("product")
   const [isPlaying, setIsPlaying] = useState(false)
   const [currentTime, setCurrentTime] = useState(0)
   const [duration, setDuration] = useState(0)
@@ -82,7 +84,7 @@ export function AudioPlayer({ audioUrl, instrumentName }: AudioPlayerProps) {
           size="icon"
           className="h-12 w-12 shrink-0 bg-transparent"
           onClick={togglePlayPause}
-          aria-label={isPlaying ? "Pause" : "Play"}
+          aria-label={isPlaying ? t("audioPause") : t("audioPlay")}
         >
           {isPlaying ? <Pause className="h-5 w-5" /> : <Play className="h-5 w-5 ml-0.5" />}
         </Button>
@@ -90,6 +92,7 @@ export function AudioPlayer({ audioUrl, instrumentName }: AudioPlayerProps) {
         <div className="flex-1 space-y-2">
           <input
             type="range"
+            aria-label={t("audioSeek")}
             min={0}
             max={duration || 0}
             value={currentTime}
@@ -107,8 +110,7 @@ export function AudioPlayer({ audioUrl, instrumentName }: AudioPlayerProps) {
 
       <div className="pt-2">
         <p className="text-sm text-muted-foreground text-pretty">
-          Professional recording of the {instrumentName} played in our workshop. Listen to the rich tonal qualities and
-          resonance.
+          {t("audioCaption", { name: instrumentName })}
         </p>
       </div>
     </div>
