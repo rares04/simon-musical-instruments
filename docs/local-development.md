@@ -114,4 +114,4 @@ pnpm payload migrate:create x   # new migration from schema diff
 | Payload asks "Do you want to push the schema?" or warns about dev push | You're in dev mode against a DB that was migrated. Answer no, and keep using migrations |
 | `ERR_PNPM_IGNORED_BUILDS` / new `pnpm-workspace.yaml` | Wrong pnpm major. Switch to 10.29.2 through Corepack and delete the generated file |
 | A new migration contains `ALTER COLUMN "price" DROP NOT NULL` | Known: `20260303_000000_make_instrument_price_optional` was written by hand without a JSON snapshot. The statement is harmless (a no-op on an already-nullable column). Keep it in the generated migration; its snapshot fixes the drift |
-| Fonts look like the system font | Known bug. See `known-issues.md` K-6 |
+| Fonts look like the system font | The `next/font` variable names in `[locale]/layout.tsx` no longer match the `@theme` stacks in `globals.css` (see `design-system.md` §3) |

@@ -52,19 +52,16 @@ toggles it. Treat the site as **light-only** until a designed dark theme exists.
 
 ## 3. Typography
 
-| Role | Intended | Actual today |
-|---|---|---|
-| Display / headings (`font-serif`) | **Playfair Display** | System UI sans-serif |
-| Body / UI (`font-sans`) | **Inter** | System UI sans-serif |
-| Japanese / Korean | Noto Sans JP / KR | OS fallback (fonts loaded with the `latin` subset only, and never referenced) |
+| Role | Font |
+|---|---|
+| Display / headings (`font-serif`) | **Playfair Display** (fallback: the system serif, then Georgia) |
+| Body / UI (`font-sans`) | **Inter** (system UI sans-serif as fallback) |
+| Greek | Body text uses Inter's Greek glyphs. Playfair has no Greek, so Greek headings use the system serif |
+| Japanese / Korean | The OS CJK fonts (Hiragino, Yu Gothic, Apple SD Gothic Neo, Malgun Gothic, …). No CJK web font, so `/ja` and `/ko` stay light |
 
-**Bug (`known-issues.md` K-6):**
-
-- `layout.tsx` registers the fonts as `--font-sans` and `--font-serif`.
-- `globals.css` maps the Tailwind families to `var(--font-inter)` and `var(--font-playfair)`, which
-  are never defined.
-- Result: four font files (~140 KB) download on every page and are never used. The elegant
-  serif/sans pairing the design depends on never appears.
+The `next/font` variable names in `layout.tsx` (`--font-inter`, `--font-playfair`) must match the
+`@theme` stacks in `globals.css`. A mismatch silently drops the site to the system font (that was
+K-6, fixed 2026-10-24).
 
 **Type scale in use**:
 
