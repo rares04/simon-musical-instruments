@@ -41,10 +41,10 @@ export function getServerPostHog(): PostHog | null {
       return event
     },
   })
-  const shutdown = () => {
+  // Flush anything still queued when a script (e.g. the Payload CLI) ends. No SIGTERM handler:
+  // adding one would stop Node's default exit, and Next already handles shutdown.
+  process.once('beforeExit', () => {
     void client?.shutdown(2000)
-  }
-  process.once('SIGTERM', shutdown)
-  process.once('beforeExit', shutdown)
+  })
   return client
 }
