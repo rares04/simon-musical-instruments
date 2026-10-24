@@ -116,6 +116,13 @@ file.
 | Apply migrations | `pnpm payload migrate` |
 | Tests | `pnpm test:int`, `pnpm test:e2e`. **Placeholder tests from the Payload template.** The e2e test is stale |
 
+## Development workflow (short version)
+
+Branch → PR → CI green → self-review → merge to `main` (**auto-deploys to Railway**) → watch the
+deploy → validate live → roll back if broken (redeploy the previous Railway deployment, or
+`git revert`). Migrations: backup first, apply before merging code that needs them. The repo is
+public: never push secrets. Full version: `docs/workflow.md`.
+
 ## 6. Core flows (one line each; details in `docs/domain-and-business-logic.md`)
 
 - **Browse**: `/[locale]/gallery` loads up to 100 instruments server-side and filters client-side by
@@ -181,6 +188,7 @@ The authoritative list is in `.env.example`. Required in production: `DATABASE_U
 | Doc | What's in it |
 |---|---|
 | `docs/README.md` | Index and reading order |
+| `docs/workflow.md` | Branch → PR → CI → merge = deploy → validate live → rollback; migrations |
 | `docs/architecture.md` | System diagram, request lifecycle, rendering, auth, data flow |
 | `docs/domain-and-business-logic.md` | Instruments, reservations, orders, emails, roles, state machines |
 | `docs/infrastructure-and-operations.md` | Railway, Supabase, DNS, vendors, env vars, deploys, runbooks |

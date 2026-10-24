@@ -8,6 +8,7 @@ for a ten-minute orientation. Read the rest in this order:
 | 1 | [architecture.md](architecture.md) | You need the mental model: how Next.js, Payload, Auth.js, Supabase and Railway fit together |
 | 2 | [domain-and-business-logic.md](domain-and-business-logic.md) | You touch instruments, reservations, orders, emails or accounts |
 | 3 | [local-development.md](local-development.md) | You want the app running on your machine (tested 2026-10-24) |
+| 3b | [workflow.md](workflow.md) | You ship a change: branch, PR, CI, deploy, validate, roll back, migrations |
 | 4 | [infrastructure-and-operations.md](infrastructure-and-operations.md) | You deploy, change env vars, touch DNS/email, or handle an incident |
 | 5 | [design-system.md](design-system.md) | You build or change UI |
 | 6 | [known-issues.md](known-issues.md) | Before planning work. Ranked bugs and tech debt |
