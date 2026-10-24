@@ -19,6 +19,8 @@ Ranked backlog from the 2026-10-24 audit.
 
 ### K-1 · Next.js 15.4.10 has published critical advisories *(source: GitHub Advisory DB)*
 
+**Fixed 2026-10-24**: production runs Payload 3.92.0, Next 16.4.3 and React 19.3.1 (PR #2), with the sharp override and empty `remotePatterns` from the stopgap. The text below is the original finding.
+
 - **What's affected**: `next@15.4.10` is inside the affected range of these advisories:
   - [GHSA-2464-fhr4-w9xw](https://github.com/advisories/GHSA-2464-fhr4-w9xw): Image Optimization
     RCE on glibc Linux. Fixed in 15.5.28 / 16.4.1.
@@ -44,6 +46,8 @@ Ranked backlog from the 2026-10-24 audit.
 - **Effort**: ~1–2 days for the critical set.
 
 ### K-3 · Railway `railway.toml` stops being honoured on 2026-12-01 *(source: Railway docs)*
+
+**In progress**: `.railway/railway.ts` (mirrors the live project in europe-west4) is in PR #4. It merges after the backup job's PR; applying it is a separate `railway config apply` that needs Rares's OK.
 
 - **Impact**: the healthcheck, restart policy and start command in `railway.toml` stop applying.
 - **Fix**: migrate to `.railway/railway.ts` (Infrastructure as Code).
@@ -81,12 +85,12 @@ Ranked backlog from the 2026-10-24 audit.
 
 | ID | Issue | Fix |
 |---|---|---|
-| K-22 | No CI. Tests are stale Payload-template placeholders; the e2e test expects "Payload Blank Template" | GitHub Actions: install → tsc → lint → build → Playwright smoke. Branch protection on `main` |
-| K-23 | Two lockfiles (`pnpm-lock.yaml` + `package-lock.json`). No `packageManager` field. Loose `engines.node` | Delete `package-lock.json`. Add `"packageManager": "pnpm@10.29.2"`, `.nvmrc`, `engines.node: ">=22"` |
-| K-24 | Dead code: `stripe-payment-form.tsx` (611 lines), `instrument-card.tsx`, `session-provider.tsx`, `lib/order-types.ts`, Facebook/Apple env vars, `public/placeholder*` | Delete. Git history keeps them |
-| K-25 | `README.md` was the Payload template; `docker-compose.yml` runs MongoDB | README rewritten (2026-10-24). Replace the compose file with Postgres |
-| K-26 | Migration snapshot drift: `20260303_000000_make_instrument_price_optional` has no `.json` snapshot | The next `migrate:create` will re-emit the harmless `DROP NOT NULL`. Keep it |
-| K-27 | `src/middleware.ts` hard-codes the canonical host, so staging or preview deploys redirect to production | Read the canonical host from env (`NEXT_PUBLIC_SITE_URL`) |
+| K-22 | **Fixed 2026-10-24.** ~~No CI. Tests are stale Payload-template placeholders.~~ GitHub Actions runs tsc, lint, unit tests, build, migrations and Playwright smoke tests on every PR (`.github/workflows/ci.yml`). Branch protection on `main` is not enabled (Rares's decision) | GitHub Actions: install → tsc → lint → build → Playwright smoke. Branch protection on `main` |
+| K-23 | **Fixed 2026-10-24.** ~~Two lockfiles, no `packageManager`, loose `engines`.~~ `package-lock.json` removed; `packageManager: pnpm@10.29.2`, `.nvmrc` and `engines` set | Delete `package-lock.json`. Add `"packageManager": "pnpm@10.29.2"`, `.nvmrc`, `engines.node: ">=22"` |
+| K-24 | **Mostly fixed 2026-10-24.** ~~Dead code.~~ Removed `stripe-payment-form.tsx`, `instrument-card.tsx`, `session-provider.tsx` and the unused `public/placeholder*` files. `lib/order-types.ts` and `public/placeholder.svg` are still used and stay. The Stripe stub routes were removed by the security work. Still open: `src/lib/auth.ts` still reads the Facebook/Apple OAuth env vars (unused providers; security's file) | Delete. Git history keeps them |
+| K-25 | **Fixed 2026-10-24.** ~~`docker-compose.yml` runs MongoDB.~~ It now starts Postgres 17 | README rewritten (2026-10-24). Replace the compose file with Postgres |
+| K-26 | Migration snapshot drift: `20260303_000000_make_instrument_price_optional` has no `.json` snapshot | The next `migrate:create` will re-emit the harmless `DROP NOT NULL`. Keep it. **2026-10-24:** applied to production together with the Payload 3.92 migration. Production's `payload_migrations` still has a leftover `dev` row (batch -1), written when Payload ran in dev mode against that database; it makes every `payload migrate` stop at a "data loss will occur, proceed?" prompt. Answering `y` only makes Payload ignore that row. Removing the row is a separate production write, planned with the 2FA migration |
+| K-27 | **Fixed 2026-10-24.** ~~The canonical host is hard-coded.~~ It is read from `NEXT_PUBLIC_SITE_URL` (defaults to production) | Read the canonical host from env (`NEXT_PUBLIC_SITE_URL`) |
 | K-28 | Business constants are duplicated: the reservation limit (3 places), Paul's email (8+ places), phone and address (5+ places) | A single `src/config/business.ts` (or a Payload `settings` global, editable by Paul) |
 | K-29 | Seed script deletes all orders and instruments with no environment guard | Refuse to run unless `DATABASE_URL` is local or `--force` is passed |
 | K-30 | Copy contradictions (shipping included vs calculated, pickup hours, returns) | See `domain-and-business-logic.md` §9 |

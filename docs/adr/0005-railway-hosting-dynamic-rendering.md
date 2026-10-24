@@ -2,6 +2,7 @@
 
 - **Status**: Accepted; the caching part is to be superseded (roadmap Phase 1)
 - **Date**: 2025-12-29 (retroactive record; commits `5bedf12`, `2197bb0`, `ea64e60`)
+- **Update 2026-10-24**: production moved to europe-west4 (next to the database). The `railway.toml` replacement (`.railway/railway.ts`) is in PR #4. The caching part is unchanged.
 
 ## Context
 

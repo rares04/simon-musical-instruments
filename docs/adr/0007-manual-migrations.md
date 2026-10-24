@@ -2,6 +2,7 @@
 
 - **Status**: Accepted; revisit when CI exists
 - **Date**: 2026-03-03 (retroactive record; commits `38ebd81` → `c02ab9b`)
+- **Update 2026-10-24**: still manual. CI now applies the migrations to a fresh database on every PR, and the 3.92 migration was applied to production by hand after a verified backup. Running `payload migrate` as a Railway pre-deploy command waits on removing production's leftover `dev` row (see K-26).
 
 ## Context
 
