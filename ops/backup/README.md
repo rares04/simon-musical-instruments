@@ -42,9 +42,23 @@ A failed run exits non-zero and shows as failed in the Railway cron history.
 
 Use this before a production migration:
 
-1. Railway dashboard → `db-backup` → Cron → **Run now**, or `railway cron` from the CLI.
+1. Railway dashboard → `db-backup` → Cron → **Run now**, or
+   `railway cron run --service db-backup --environment production --yes`.
 2. Wait for `[backup] done` in the logs.
 3. Copy that dump to `db/pinned/` if you want to keep it past 35 days.
+
+## Deploying changes to this job
+
+`db-backup` has **no push trigger**: Railway can't create one for this repo. Changes under
+`ops/backup/` are not deployed automatically, even after they merge. To deploy the current head
+of `main`:
+
+```sh
+railway service source connect --repo rares04/simon-musical-instruments --branch main \
+  --service db-backup --environment production
+```
+
+Then run it once (see above) and check the log ends with `[backup] done`.
 
 ## Restore
 
