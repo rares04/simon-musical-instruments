@@ -18,7 +18,7 @@ export default function ProfilePage() {
 
       {/* Tabs */}
       <Tabs defaultValue="personal" className="w-full">
-        <TabsList className="w-full justify-start border-b border-border rounded-none bg-transparent p-0 h-auto">
+        <TabsList className="w-full flex-wrap justify-start border-b border-border rounded-none bg-transparent p-0 h-auto">
           <TabsTrigger
             value="personal"
             className="rounded-none border-b-2 border-transparent data-[state=active]:border-accent data-[state=active]:bg-transparent cursor-pointer"
