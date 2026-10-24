@@ -1,4 +1,6 @@
+import { useLocale } from 'next-intl'
 import { Link } from '@/i18n/routing'
+import { formatDate, formatPrice } from '@/lib/format'
 import Image from 'next/image'
 import { OrderStatusBadge } from '@/components/account/order-status-badge'
 import { ChevronRight } from 'lucide-react'
@@ -16,7 +18,8 @@ interface OrderCardProps {
 }
 
 export function OrderCard({ order, showViewDetails = false }: OrderCardProps) {
-  const formattedDate = new Date(order.date).toLocaleDateString('en-US', {
+  const locale = useLocale()
+  const formattedDate = formatDate(order.date, locale, {
     year: 'numeric',
     month: 'long',
     day: 'numeric',
@@ -56,7 +59,9 @@ export function OrderCard({ order, showViewDetails = false }: OrderCardProps) {
           <div className="flex items-center justify-between mt-3">
             <div className="text-sm">
               <p className="text-muted-foreground">{formattedDate}</p>
-              <p className="font-semibold text-foreground mt-1">€{order.total.toLocaleString()}</p>
+              <p className="font-semibold text-foreground mt-1">
+                {formatPrice(order.total, locale)}
+              </p>
             </div>
 
             {showViewDetails && (

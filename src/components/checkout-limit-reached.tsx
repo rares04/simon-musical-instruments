@@ -1,9 +1,10 @@
 'use client'
 
 import { AlertTriangle, Mail, Phone } from 'lucide-react'
-import { useTranslations } from 'next-intl'
+import { useLocale, useTranslations } from 'next-intl'
 import { Button } from '@/components/ui/button'
 import { Link } from '@/i18n/routing'
+import { formatDate, formatPrice } from '@/lib/format'
 
 interface PendingReservation {
   id: string
@@ -19,6 +20,7 @@ interface CheckoutLimitReachedProps {
 export function CheckoutLimitReached({ pendingReservations }: CheckoutLimitReachedProps) {
   const t = useTranslations('reservations')
   const tCommon = useTranslations('common')
+  const locale = useLocale()
 
   return (
     <div className="min-h-[60vh] flex items-center justify-center px-4 py-12">
@@ -52,9 +54,9 @@ export function CheckoutLimitReached({ pendingReservations }: CheckoutLimitReach
                       <p className="font-semibold text-foreground mt-1">{reservation.name}</p>
                       <p className="text-sm text-muted-foreground mt-1">
                         {t('reservedOn', {
-                          date: new Date(reservation.date).toLocaleDateString(),
+                          date: formatDate(reservation.date, locale),
                         })}{' '}
-                        • €{reservation.price.toLocaleString()}
+                        • {formatPrice(reservation.price, locale)}
                       </p>
                     </div>
                   </div>

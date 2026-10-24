@@ -1,5 +1,6 @@
 import { Package, Clock, CheckCircle, TrendingUp, AlertCircle } from 'lucide-react'
-import { getTranslations } from 'next-intl/server'
+import { getLocale, getTranslations } from 'next-intl/server'
+import { formatPrice } from '@/lib/format'
 import { Button } from '@/components/ui/button'
 import { Link } from '@/i18n/routing'
 import { OrderCard } from '@/components/account/order-card'
@@ -23,6 +24,7 @@ export default async function AccountDashboard() {
   const session = await requireAuth()
   const payload = await getPayload({ config })
   const t = await getTranslations('account.dashboard')
+  const locale = await getLocale()
 
   const userId = session.user?.id
   const ownOrders = userId ? await customerOrdersWhere(payload, userId) : null
@@ -142,7 +144,9 @@ export default async function AccountDashboard() {
           <div className="flex items-center justify-between mb-2">
             <span className="text-accent font-semibold">€</span>
           </div>
-          <p className="text-2xl font-bold text-foreground">€{stats.totalSpent.toLocaleString()}</p>
+          <p className="text-2xl font-bold text-foreground">
+            {formatPrice(stats.totalSpent, locale)}
+          </p>
           <p className="text-sm text-muted-foreground">{t('totalSpent')}</p>
         </div>
       </div>

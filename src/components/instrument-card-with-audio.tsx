@@ -5,9 +5,10 @@ import Image from 'next/image'
 import { Link } from '@/i18n/routing'
 import { Badge } from '@/components/ui/badge'
 import { Play, Pause } from 'lucide-react'
-import { useTranslations } from 'next-intl'
+import { useLocale, useTranslations } from 'next-intl'
 import type { Instrument } from '@/payload-types'
 import { getMediaUrlForSrc, getMediaSrc, getMediaUrl } from '@/lib/media-utils'
+import { formatPrice } from '@/lib/format'
 
 type InstrumentCardWithAudioProps = {
   instrument: Instrument
@@ -19,6 +20,7 @@ let currentlyPlayingCallback: (() => void) | null = null
 
 export function InstrumentCardWithAudio({ instrument }: InstrumentCardWithAudioProps) {
   const t = useTranslations('instruments')
+  const locale = useLocale()
   const isSold = instrument.status === 'sold'
   const imageUrl = getMediaUrlForSrc(instrument.mainImage)
   const audioUrl = getMediaUrl(instrument.audioSample)
@@ -218,9 +220,7 @@ export function InstrumentCardWithAudio({ instrument }: InstrumentCardWithAudioP
               {instrument.title}
             </h3>
             <p className="text-base font-medium text-foreground whitespace-nowrap">
-              {instrument.price != null
-                ? `€${instrument.price.toLocaleString()}`
-                : t('askForPrice')}
+              {instrument.price != null ? formatPrice(instrument.price, locale) : t('askForPrice')}
             </p>
           </div>
 

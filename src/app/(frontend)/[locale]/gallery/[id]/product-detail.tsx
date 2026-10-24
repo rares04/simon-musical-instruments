@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import Image from 'next/image'
-import { useTranslations } from 'next-intl'
+import { useLocale, useTranslations } from 'next-intl'
 import { Link } from '@/i18n/routing'
 import { ArrowLeft, ChevronLeft, ChevronRight, Search, X, Maximize2, ZoomIn, ZoomOut, RotateCcw } from 'lucide-react'
 import { Button } from '@/components/ui/button'
@@ -10,6 +10,7 @@ import { AudioPlayer } from '@/components/audio-player'
 import { useCart } from '@/lib/cart-context'
 import type { Instrument } from '@/payload-types'
 import { getMediaSrc } from '@/lib/media-utils'
+import { formatPrice } from '@/lib/format'
 import { TransformWrapper, TransformComponent } from 'react-zoom-pan-pinch'
 
 interface ProductDetailProps {
@@ -22,6 +23,7 @@ export function ProductDetail({ instrument, images, audioUrl }: ProductDetailPro
   const { addItem } = useCart()
   const t = useTranslations('instruments')
   const tProduct = useTranslations('product')
+  const locale = useLocale()
 
   const typeLabel =
     instrument.instrumentType === 'violin'
@@ -95,7 +97,7 @@ export function ProductDetail({ instrument, images, audioUrl }: ProductDetailPro
                 </div>
                 <div className="text-right">
                   <div className="font-serif text-3xl lg:text-4xl font-bold text-accent">
-                    {hasPrice ? `€${instrument.price!.toLocaleString()}` : tProduct('askForPrice')}
+                    {hasPrice ? formatPrice(instrument.price!, locale) : tProduct('askForPrice')}
                   </div>
                   {instrument.year && (
                     <p className="text-sm text-muted-foreground mt-1">
