@@ -16,6 +16,7 @@
 | `utils.ts` | `cn()` (clsx + tailwind-merge) | shadcn helper |
 | `otp.ts` | Email codes: CSPRNG generation, HMAC storage (`v2:<attempts>:<sends>:<window>:<hmac>`), attempt limit, resend interval, daily cap, compare-and-set updates (`swapOtp`) | Server-only. The code itself is never stored |
 | `order-access.ts` | `customerOrdersWhere()`, `toCustomerOrder()` | Server-only. The single rule for which orders a customer may see |
+| `session-version.ts` | `passwordFingerprint()` | Stored in the Auth.js token at sign-in and checked in the `jwt` callback: a password change or reset ends every session |
 | `safe-redirect.ts` | `safeCallbackPath()` | Use for any redirect target taken from the URL |
 | `rate-limit.ts` | In-process per-IP limiter (`limitByIp`, `LIMITS`, `clientIp`) | One replica, so memory is shared. Client IP comes from `X-Real-IP` (Railway's edge sets it) |
 | `turnstile.ts` | `verifyTurnstile()` | Fails closed when `TURNSTILE_SECRET_KEY` is set; skipped when it isn't (local dev) |

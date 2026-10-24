@@ -24,8 +24,10 @@ These are the storefront's own endpoints. Payload's generated REST lives in
      `LIMITS`.
    - Forms that send email or hold stock also need `verifyTurnstile(body.turnstileToken, req)` from
      `@/lib/turnstile` and the `<TurnstileWidget>` on the page.
-   - Payload's own auth endpoints are rate-limited in `src/app/(payload)/api/[...slug]/route.ts`.
-     Keep that wrapper if the file is ever regenerated.
+   - Payload's own auth endpoints are rate-limited in `src/app/(payload)/api/[...slug]/route.ts`,
+     and Payload's `forgot-password`/`reset-password` are disabled there (no email adapter, so
+     they can't deliver mail). Paths are matched on Payload's decoded, lowercased slug. Keep that
+     wrapper if the file is ever regenerated.
 5. **Multi-write operations run in a transaction.** Create a `req` with `createLocalReq` (or reuse
    one) and pass it to every Payload call. Use conditional updates for availability.
 6. **Side effects after a commit** (emails) go through a job with retries, not fire-and-forget
@@ -42,6 +44,8 @@ These are the storefront's own endpoints. Payload's generated REST lives in
 | `auth/[...nextauth]` | GET/POST | — | Auth.js handlers |
 | `auth/send-otp` | POST | none | Generate and email a 6-digit code (10 min, one per 60 s, 5 per day). Same response whatever the account state. Helpers in `@/lib/otp` |
 | `auth/verify-otp` | POST | none | Check the code (5 attempts, each taken atomically before the check; then discarded) and set `emailVerified`. One error message for every failure |
+| `auth/request-password-reset` | POST | none | Turnstile + per-IP limit. Emails a reset code (kind `r2`; shares the resend interval and daily cap with verification codes) to any non-admin account. Same response whatever the account state; the email is sent after the response |
+| `auth/reset-password` | POST | none | Turnstile per attempt. Checks the reset code (5 attempts, atomic) and sets the new password; clears any login lockout. Changing the password ends all sessions (`src/lib/session-version.ts`) |
 | `auth/check-verification` | POST | none | Needs email **and** password. Says `needsVerification: true` only when the password is right and the email is unverified |
 | `account/profile` | GET/PATCH | session | Read and update the session user's profile fields. Identity fields are security-sensitive; see `src/lib/AGENTS.md` |
 | `account/addresses` | POST/PATCH/DELETE | session | Manage `savedAddresses` |

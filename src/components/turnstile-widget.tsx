@@ -88,7 +88,7 @@ export function TurnstileWidget({
             setUnavailable(true)
           },
           language: locale,
-          theme: 'auto',
+          theme: 'light',
         })
       })
       .catch(() => {

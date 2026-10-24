@@ -325,7 +325,8 @@
     },
     "errors": {
       "fillRequired": "Vul alle verplichte velden in",
-      "reservationFailed": "Reservering mislukt. Probeer het opnieuw."
+      "reservationFailed": "Reservering mislukt. Probeer het opnieuw.",
+      "noLongerAvailable": "Helaas, dit instrument is zojuist door iemand anders gereserveerd."
     },
     "emptyCart": {
       "title": "Uw winkelwagen is leeg",
@@ -475,7 +476,8 @@
         "genericError": "Er is een fout opgetreden tijdens het inloggen.",
         "tryAgain": "Er is een fout opgetreden. Probeer het opnieuw."
       },
-      "verifiedSuccess": "E-mailadres geverifieerd. Log in om verder te gaan."
+      "verifiedSuccess": "E-mailadres geverifieerd. Log in om verder te gaan.",
+      "resetSuccess": "Wachtwoord bijgewerkt. Log in om verder te gaan."
     },
     "register": {
       "title": "Maak Uw Account Aan",
@@ -541,6 +543,17 @@
     "labels": {
       "email": "E-mailadres",
       "password": "Wachtwoord"
+    },
+    "forgotPassword": {
+      "title": "Wachtwoord opnieuw instellen",
+      "subtitle": "Voer het e-mailadres van uw account in, dan sturen we u een code van 6 cijfers.",
+      "sendCode": "Code versturen",
+      "codeSent": "Als er een account bestaat voor {email}, hebben we een code van 6 cijfers gestuurd. Deze verloopt over 10 minuten.",
+      "enterCode": "Voer de code in en kies een nieuw wachtwoord",
+      "newPassword": "Nieuw wachtwoord",
+      "resetPassword": "Nieuw wachtwoord opslaan",
+      "saving": "Bezig met opslaan...",
+      "invalidCode": "Ongeldige of verlopen code. Vraag zo nodig een nieuwe aan."
     }
   },
   "profile": {

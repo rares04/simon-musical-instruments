@@ -21,6 +21,7 @@ function LoginForm() {
   const callbackUrl = safeCallbackPath(searchParams.get('callbackUrl'))
   const error = searchParams.get('error')
   const justVerified = searchParams.get('verified') === 'true'
+  const justReset = searchParams.get('reset') === 'true'
 
   const [email, setEmail] = useState('')
 
@@ -124,9 +125,9 @@ function LoginForm() {
             <p className="text-muted-foreground mt-2">{t('login.subtitle')}</p>
           </div>
 
-          {justVerified && !error && !formError && (
+          {(justVerified || justReset) && !error && !formError && (
             <div className="p-4 bg-accent/10 border border-accent/20 rounded-lg text-sm text-foreground">
-              {t('login.verifiedSuccess')}
+              {justReset ? t('login.resetSuccess') : t('login.verifiedSuccess')}
             </div>
           )}
 
@@ -173,26 +174,27 @@ function LoginForm() {
               />
             </div>
 
-            <div>
-              <div className="flex items-center justify-between">
-                <Label htmlFor="password">{t('labels.password')}</Label>
-                <Link
-                  href="/forgot-password"
-                  className="text-sm text-accent hover:text-accent/80 transition-colors cursor-pointer"
-                >
-                  {t('login.forgotPassword')}
-                </Link>
-              </div>
+            {/* The link comes after the input in DOM (tab) order but is shown beside the label. */}
+            <div className="grid grid-cols-[1fr_auto] items-center gap-x-2">
+              <Label htmlFor="password" className="row-start-1 col-start-1">
+                {t('labels.password')}
+              </Label>
               <Input
                 id="password"
                 type="password"
                 placeholder={t('login.passwordPlaceholder')}
                 required
-                className="mt-1.5"
+                className="mt-1.5 row-start-2 col-span-2"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 disabled={isLoading}
               />
+              <Link
+                href="/forgot-password"
+                className="row-start-1 col-start-2 text-sm text-accent hover:text-accent/80 transition-colors cursor-pointer"
+              >
+                {t('login.forgotPassword')}
+              </Link>
             </div>
 
             <Button

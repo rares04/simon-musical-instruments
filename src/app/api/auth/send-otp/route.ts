@@ -1,4 +1,4 @@
-import { NextResponse } from 'next/server'
+import { NextResponse, after } from 'next/server'
 import { getPayload } from 'payload'
 import config from '@/payload.config'
 import { limitByIp } from '@/lib/rate-limit'
@@ -7,13 +7,13 @@ import { OtpVerificationEmail } from '@/lib/emails/otp-verification'
 import {
   OTP_EXPIRY_MINUTES,
   OTP_MAX_SENDS_PER_DAY,
+  anyOtpRecord,
   currentWindow,
   formatOtpRecord,
   generateOtp,
   issuedRecently,
   otpDigest,
   otpExpiryDate,
-  parseOtpRecord,
   swapOtp,
 } from '@/lib/otp'
 
@@ -67,7 +67,7 @@ export async function POST(request: Request) {
       return NextResponse.json(GENERIC_OK)
     }
 
-    const window = currentWindow(parseOtpRecord(user.otp))
+    const window = currentWindow(anyOtpRecord(user.otp))
     if (window.sends >= OTP_MAX_SENDS_PER_DAY) {
       return NextResponse.json(GENERIC_OK)
     }
@@ -91,19 +91,22 @@ export async function POST(request: Request) {
       return NextResponse.json(GENERIC_OK)
     }
 
-    const emailResult = await sendEmail({
-      to: user.email,
-      subject: SUBJECTS[locale],
-      react: OtpVerificationEmail({
-        firstName: user.firstName || user.name?.split(' ')[0] || undefined,
-        otp,
-        expiryMinutes: OTP_EXPIRY_MINUTES,
-        locale,
-      }),
+    // Send after responding, so response time doesn't depend on whether an email goes out.
+    after(async () => {
+      const emailResult = await sendEmail({
+        to: user.email,
+        subject: SUBJECTS[locale],
+        react: OtpVerificationEmail({
+          firstName: user.firstName || user.name?.split(' ')[0] || undefined,
+          otp,
+          expiryMinutes: OTP_EXPIRY_MINUTES,
+          locale,
+        }),
+      })
+      if (!emailResult.success) {
+        console.error('send-otp: email delivery failed for user', user.id)
+      }
     })
-    if (!emailResult.success) {
-      console.error('send-otp: email delivery failed for user', user.id)
-    }
 
     return NextResponse.json(GENERIC_OK)
   } catch (error) {

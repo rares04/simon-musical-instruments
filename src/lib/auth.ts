@@ -9,6 +9,7 @@ import config from '@/payload.config'
 import type { User as PayloadUser } from '@/payload-types'
 import crypto from 'crypto'
 import { hasAdminRole } from '@/access'
+import { passwordFingerprint } from '@/lib/session-version'
 
 const randomPassword = () => crypto.randomBytes(32).toString('hex')
 
@@ -195,7 +196,23 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
       return true
     },
     async jwt({ token, user, account }) {
+      // Sessions end when the password changes (reset or change): the token carries a fingerprint
+      // of the password hash from sign-in time, checked on every session read.
+      if (!user && token.id) {
+        let current: string | null | undefined
+        try {
+          const payload = await getPayload({ config })
+          current = await passwordFingerprint(payload, token.id as string)
+        } catch {
+          current = undefined // DB unreachable: keep the session rather than sign everyone out
+        }
+        if (current === null) return null // account no longer exists
+        if (current && token.pwv && token.pwv !== current) return null
+        if (current && !token.pwv) token.pwv = current // sessions issued before this check
+      }
       if (user) {
+        const payload = await getPayload({ config })
+        token.pwv = user.id ? await passwordFingerprint(payload, user.id) : null
         token.id = user.id
         token.firstName = user.firstName || null
         token.lastName = user.lastName || null

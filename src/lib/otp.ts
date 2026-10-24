@@ -15,9 +15,12 @@ const DAY_MS = 24 * 60 * 60 * 1000
 
 /**
  * What `users.otp` holds (never the code itself):
- *   v2:<attempts>:<sends in window>:<window start, ms>:<hmac of the code, or "-" when discarded>
- * Counters live in the same column so no schema change is needed.
+ *   <kind>:<attempts>:<sends in window>:<window start, ms>:<hmac of the code, or "-" when discarded>
+ * `kind` is `v2` for email verification and `r2` for password reset, so a code issued for one
+ * purpose can never be used for the other. Counters live in the same column (no schema change).
  */
+export type OtpPurpose = 'verify' | 'reset'
+const KIND: Record<OtpPurpose, string> = { verify: 'v2', reset: 'r2' }
 export type OtpRecord = {
   attempts: number
   sends: number
@@ -25,8 +28,11 @@ export type OtpRecord = {
   hash: string | null
 }
 
-export function parseOtpRecord(stored: string | null | undefined): OtpRecord | null {
-  const m = /^v2:(\d+):(\d+):(\d+):([0-9a-f]{64}|-)$/.exec(stored ?? '')
+export function parseOtpRecord(
+  stored: string | null | undefined,
+  purpose: OtpPurpose = 'verify',
+): OtpRecord | null {
+  const m = new RegExp(`^${KIND[purpose]}:(\\d+):(\\d+):(\\d+):([0-9a-f]{64}|-)$`).exec(stored ?? '')
   if (!m) return null
   return {
     attempts: Number(m[1]),
@@ -36,22 +42,32 @@ export function parseOtpRecord(stored: string | null | undefined): OtpRecord | n
   }
 }
 
-export function formatOtpRecord(r: OtpRecord): string {
-  return `v2:${r.attempts}:${r.sends}:${r.windowStart}:${r.hash ?? '-'}`
+export function formatOtpRecord(r: OtpRecord, purpose: OtpPurpose = 'verify'): string {
+  return `${KIND[purpose]}:${r.attempts}:${r.sends}:${r.windowStart}:${r.hash ?? '-'}`
 }
 
 export function generateOtp(): string {
   return randomInt(0, 1_000_000).toString().padStart(6, '0')
 }
 
-export function otpDigest(userId: number | string, otp: string): string {
+export function otpDigest(
+  userId: number | string,
+  otp: string,
+  purpose: OtpPurpose = 'verify',
+): string {
   const secret = process.env.PAYLOAD_SECRET
   if (!secret) throw new Error('PAYLOAD_SECRET is not set')
-  return createHmac('sha256', secret).update(`otp:${userId}:${otp}`).digest('hex')
+  const label = purpose === 'verify' ? 'otp' : 'reset'
+  return createHmac('sha256', secret).update(`${label}:${userId}:${otp}`).digest('hex')
 }
 
-export function otpMatches(userId: number | string, otp: string, hash: string): boolean {
-  const candidate = Buffer.from(otpDigest(userId, otp), 'hex')
+export function otpMatches(
+  userId: number | string,
+  otp: string,
+  hash: string,
+  purpose: OtpPurpose = 'verify',
+): boolean {
+  const candidate = Buffer.from(otpDigest(userId, otp, purpose), 'hex')
   const expected = Buffer.from(hash, 'hex')
   return candidate.length === expected.length && timingSafeEqual(candidate, expected)
 }
@@ -65,6 +81,11 @@ export function issuedRecently(otpExpiry: string | null | undefined): boolean {
   if (!otpExpiry) return false
   const issuedAt = new Date(otpExpiry).getTime() - OTP_EXPIRY_MINUTES * 60 * 1000
   return Date.now() - issuedAt < OTP_RESEND_INTERVAL_MS
+}
+
+/** The stored record of either kind; used so both kinds share one daily send cap. */
+export function anyOtpRecord(stored: string | null | undefined): OtpRecord | null {
+  return parseOtpRecord(stored, 'verify') ?? parseOtpRecord(stored, 'reset')
 }
 
 /** Send counter for the current rolling day (a new window starts after 24 h). */

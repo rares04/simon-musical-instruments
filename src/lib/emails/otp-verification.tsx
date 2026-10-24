@@ -15,6 +15,8 @@ interface OtpVerificationEmailProps {
   otp: string
   expiryMinutes?: number
   locale?: string
+  /** 'reset' sends the password-reset wording with the same layout. */
+  purpose?: 'verify' | 'reset'
 }
 
 const translations: Record<string, any> = {
@@ -111,14 +113,84 @@ const translations: Record<string, any> = {
   },
 }
 
+// Password-reset wording; greeting, expiry and signature come from `translations`.
+const resetTranslations: Record<string, Record<string, string>> = {
+  en: {
+    title: 'Reset Your Password',
+    preview: 'Your password reset code is {otp}',
+    intro:
+      'We received a request to reset the password for your Simon Musical Instruments account. Enter this code to choose a new password:',
+    ignore:
+      "If you didn't ask to reset your password, you can ignore this email. Your password stays the same.",
+  },
+  ro: {
+    title: 'Resetează-ți parola',
+    preview: 'Codul tău de resetare a parolei este {otp}',
+    intro:
+      'Am primit o cerere de resetare a parolei pentru contul tău Simon Musical Instruments. Introdu acest cod pentru a alege o parolă nouă:',
+    ignore:
+      'Dacă nu ai cerut resetarea parolei, poți ignora acest email. Parola ta rămâne neschimbată.',
+  },
+  de: {
+    title: 'Passwort zurücksetzen',
+    preview: 'Ihr Code zum Zurücksetzen des Passworts ist {otp}',
+    intro:
+      'Wir haben eine Anfrage zum Zurücksetzen des Passworts für Ihr Konto bei Simon Musical Instruments erhalten. Geben Sie diesen Code ein, um ein neues Passwort zu wählen:',
+    ignore:
+      'Wenn Sie das Zurücksetzen nicht angefordert haben, können Sie diese E-Mail ignorieren. Ihr Passwort bleibt unverändert.',
+  },
+  fr: {
+    title: 'Réinitialisez votre mot de passe',
+    preview: 'Votre code de réinitialisation est {otp}',
+    intro:
+      'Nous avons reçu une demande de réinitialisation du mot de passe de votre compte Simon Musical Instruments. Saisissez ce code pour choisir un nouveau mot de passe :',
+    ignore:
+      "Si vous n'avez pas demandé de réinitialisation, ignorez cet e-mail. Votre mot de passe reste inchangé.",
+  },
+  nl: {
+    title: 'Wachtwoord opnieuw instellen',
+    preview: 'Uw code om het wachtwoord opnieuw in te stellen is {otp}',
+    intro:
+      'We hebben een verzoek ontvangen om het wachtwoord van uw Simon Musical Instruments-account opnieuw in te stellen. Voer deze code in om een nieuw wachtwoord te kiezen:',
+    ignore:
+      'Heeft u dit niet aangevraagd? Dan kunt u deze e-mail negeren. Uw wachtwoord blijft hetzelfde.',
+  },
+  el: {
+    title: 'Επαναφορά κωδικού πρόσβασης',
+    preview: 'Ο κωδικός επαναφοράς είναι {otp}',
+    intro:
+      'Λάβαμε αίτημα επαναφοράς του κωδικού πρόσβασης για τον λογαριασμό σας στη Simon Musical Instruments. Εισαγάγετε αυτόν τον κωδικό για να ορίσετε νέο κωδικό πρόσβασης:',
+    ignore:
+      'Αν δεν ζητήσατε επαναφορά, αγνοήστε αυτό το email. Ο κωδικός πρόσβασής σας παραμένει ίδιος.',
+  },
+  ja: {
+    title: 'パスワードの再設定',
+    preview: 'パスワード再設定コードは {otp} です',
+    intro:
+      'Simon Musical Instruments アカウントのパスワード再設定のリクエストを受け付けました。新しいパスワードを設定するには、以下のコードを入力してください。',
+    ignore: 'お心当たりがない場合は、このメールを無視してください。パスワードは変更されません。',
+  },
+  ko: {
+    title: '비밀번호 재설정',
+    preview: '비밀번호 재설정 코드는 {otp} 입니다',
+    intro:
+      'Simon Musical Instruments 계정의 비밀번호 재설정 요청을 받았습니다. 새 비밀번호를 설정하려면 아래 코드를 입력해 주세요.',
+    ignore: '요청하지 않으셨다면 이 이메일을 무시하셔도 됩니다. 비밀번호는 변경되지 않습니다.',
+  },
+}
+
 export function OtpVerificationEmail({
   firstName = 'there',
   otp,
   expiryMinutes = 10,
   locale = 'en',
+  purpose = 'verify',
 }: OtpVerificationEmailProps) {
   // Use English if locale not found
-  const t = translations[locale] || translations.en
+  const t = {
+    ...(translations[locale] || translations.en),
+    ...(purpose === 'reset' ? resetTranslations[locale] || resetTranslations.en : {}),
+  }
 
   // Split OTP into individual digits for display
   const otpDigits = otp.split('')

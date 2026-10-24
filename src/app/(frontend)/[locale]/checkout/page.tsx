@@ -279,6 +279,9 @@ export default function CheckoutPage() {
 
       if (!response.ok) {
         setCaptchaReset((n) => n + 1)
+        if (response.status === 409) {
+          throw new Error(t('errors.noLongerAvailable'))
+        }
         const errorData = await response.json()
         throw new Error(errorData.error || 'Failed to submit reservation')
       }

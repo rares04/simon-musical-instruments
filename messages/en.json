@@ -325,7 +325,8 @@
     },
     "errors": {
       "fillRequired": "Please fill in all required fields",
-      "reservationFailed": "Failed to submit reservation. Please try again."
+      "reservationFailed": "Failed to submit reservation. Please try again.",
+      "noLongerAvailable": "Sorry, this instrument was just reserved by someone else."
     },
     "emptyCart": {
       "title": "Your cart is empty",
@@ -475,7 +476,8 @@
         "genericError": "An error occurred during sign in.",
         "tryAgain": "An error occurred. Please try again."
       },
-      "verifiedSuccess": "Email verified. Please sign in."
+      "verifiedSuccess": "Email verified. Please sign in.",
+      "resetSuccess": "Password updated. Please sign in."
     },
     "register": {
       "title": "Create Your Account",
@@ -541,6 +543,17 @@
     "labels": {
       "email": "Email Address",
       "password": "Password"
+    },
+    "forgotPassword": {
+      "title": "Reset your password",
+      "subtitle": "Enter your account email and we'll send you a 6-digit code.",
+      "sendCode": "Send code",
+      "codeSent": "If an account exists for {email}, we've sent a 6-digit code. It expires in 10 minutes.",
+      "enterCode": "Enter the code and choose a new password",
+      "newPassword": "New password",
+      "resetPassword": "Set new password",
+      "saving": "Saving...",
+      "invalidCode": "Invalid or expired code. Request a new one if needed."
     }
   },
   "profile": {
