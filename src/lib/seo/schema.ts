@@ -44,7 +44,6 @@ export function businessNode(siteUrl = SITE_URL): JsonLdNode {
     telephone: business.telephone,
     email: business.email,
     address: { '@type': 'PostalAddress', ...business.address },
-    areaServed: 'Worldwide',
     knowsAbout: [...business.knowsAbout],
     sameAs: [...business.sameAs],
   }
