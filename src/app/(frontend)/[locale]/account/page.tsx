@@ -15,11 +15,6 @@ import { getMediaUrl } from '@/lib/media-utils'
 // Render at runtime (DB not accessible during build)
 export const dynamic = 'force-dynamic'
 
-export const metadata = {
-  title: 'Dashboard - Simon Musical Instruments',
-  description: 'Your account dashboard',
-}
-
 export default async function AccountDashboard() {
   const session = await requireAuth()
   const payload = await getPayload({ config })
