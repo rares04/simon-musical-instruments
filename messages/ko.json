@@ -475,7 +475,8 @@
         "oauthNotLinked": "이 이메일은 이미 다른 계정과 연결되어 있습니다.",
         "genericError": "로그인 중 오류가 발생했습니다.",
         "tryAgain": "오류가 발생했습니다. 다시 시도해 주세요."
-      }
+      },
+      "verifiedSuccess": "이메일이 인증되었습니다. 로그인해 주세요."
     },
     "register": {
       "title": "계정 만들기",
@@ -553,7 +554,8 @@
       "saveChanges": "변경사항 저장",
       "saving": "저장 중...",
       "updateSuccess": "프로필이 성공적으로 업데이트되었습니다!",
-      "updateError": "프로필 업데이트에 실패했습니다"
+      "updateError": "프로필 업데이트에 실패했습니다",
+      "emailLockedNote": "이메일 주소를 변경하려면 문의해 주세요."
     },
     "password": {
       "currentPassword": "현재 비밀번호",

@@ -2,27 +2,28 @@ import { type NextRequest, NextResponse } from 'next/server'
 import { auth } from '@/lib/auth'
 import { getPayload } from 'payload'
 import config from '@/payload.config'
+import { customerOrdersWhere } from '@/lib/order-access'
 
 export async function GET(_req: NextRequest) {
   try {
     const session = await auth()
 
-    if (!session?.user?.id || !session?.user?.email) {
+    if (!session?.user?.id) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
     }
 
     const payload = await getPayload({ config })
-    const userId = session.user.id
-    const userEmail = session.user.email
+    const ownOrders = await customerOrdersWhere(payload, session.user.id)
+    if (!ownOrders) {
+      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
+    }
 
     // Fetch active orders (not delivered, cancelled, or refunded)
     const { docs: orders } = await payload.find({
       collection: 'orders',
       where: {
         and: [
-          {
-            or: [{ customer: { equals: userId } }, { guestEmail: { equals: userEmail } }],
-          },
+          ownOrders,
           {
             status: {
               not_in: ['delivered', 'cancelled', 'refunded'],

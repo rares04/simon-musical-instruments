@@ -472,7 +472,8 @@
         "oauthNotLinked": "Dit e-mailadres is al gekoppeld aan een ander account.",
         "genericError": "Er is een fout opgetreden tijdens het inloggen.",
         "tryAgain": "Er is een fout opgetreden. Probeer het opnieuw."
-      }
+      },
+      "verifiedSuccess": "E-mailadres geverifieerd. Log in om verder te gaan."
     },
     "register": {
       "title": "Maak Uw Account Aan",
@@ -550,7 +551,8 @@
       "saveChanges": "Wijzigingen Opslaan",
       "saving": "Opslaan...",
       "updateSuccess": "Profiel succesvol bijgewerkt!",
-      "updateError": "Fout bij het bijwerken van profiel"
+      "updateError": "Fout bij het bijwerken van profiel",
+      "emailLockedNote": "Neem contact met ons op om uw e-mailadres te wijzigen."
     },
     "password": {
       "currentPassword": "Huidig Wachtwoord",

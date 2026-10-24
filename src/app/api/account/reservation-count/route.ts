@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server'
 import { getPayload } from 'payload'
 import config from '@/payload.config'
+import { customerOrdersWhere } from '@/lib/order-access'
 import { auth } from '@/lib/auth'
 
 export const dynamic = 'force-dynamic'
@@ -11,7 +12,7 @@ export async function GET() {
   try {
     const session = await auth()
 
-    if (!session?.user?.id && !session?.user?.email) {
+    if (!session?.user?.id) {
       return NextResponse.json({
         count: 0,
         limit: RESERVATION_LIMIT,
@@ -20,8 +21,14 @@ export async function GET() {
     }
 
     const payload = await getPayload({ config })
-    const userId = session.user.id
-    const userEmail = session.user.email
+    const ownOrders = await customerOrdersWhere(payload, session.user.id)
+    if (!ownOrders) {
+      return NextResponse.json({
+        count: 0,
+        limit: RESERVATION_LIMIT,
+        pendingReservations: [],
+      })
+    }
 
     // Query for pending_payment orders
     const { docs: pendingOrders } = await payload.find({
@@ -29,12 +36,7 @@ export async function GET() {
       where: {
         and: [
           { status: { equals: 'pending_payment' } },
-          {
-            or: [
-              ...(userId ? [{ customer: { equals: userId } }] : []),
-              ...(userEmail ? [{ guestEmail: { equals: userEmail } }] : []),
-            ],
-          },
+          ownOrders,
         ],
       },
       sort: '-createdAt',

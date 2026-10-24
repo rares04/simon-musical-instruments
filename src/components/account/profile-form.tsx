@@ -114,11 +114,12 @@ export function ProfileForm() {
             id="email"
             type="email"
             value={formData.email}
-            onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-            required
+            readOnly
+            aria-readonly="true"
+            className="bg-muted/50 text-muted-foreground cursor-not-allowed"
           />
           <p className="text-xs text-muted-foreground">
-            {t('emailChangeNote')}
+            {t('emailLockedNote')}
           </p>
         </div>
 

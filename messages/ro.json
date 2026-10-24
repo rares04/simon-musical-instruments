@@ -472,7 +472,8 @@
         "oauthNotLinked": "Acest email este deja asociat cu alt cont.",
         "genericError": "A apărut o eroare la autentificare.",
         "tryAgain": "A apărut o eroare. Te rugăm să încerci din nou."
-      }
+      },
+      "verifiedSuccess": "Adresa de email a fost verificată. Te rugăm să te autentifici."
     },
     "register": {
       "title": "Creează-ți Contul",
@@ -550,7 +551,8 @@
       "saveChanges": "Salvează Modificările",
       "saving": "Se salvează...",
       "updateSuccess": "Profil actualizat cu succes!",
-      "updateError": "Eroare la actualizarea profilului"
+      "updateError": "Eroare la actualizarea profilului",
+      "emailLockedNote": "Pentru a schimba adresa de email, te rugăm să ne contactezi."
     },
     "password": {
       "currentPassword": "Parola Curentă",

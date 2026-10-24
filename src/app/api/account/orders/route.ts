@@ -2,26 +2,26 @@ import { type NextRequest, NextResponse } from 'next/server'
 import { auth } from '@/lib/auth'
 import { getPayload } from 'payload'
 import config from '@/payload.config'
+import { customerOrdersWhere, toCustomerOrder } from '@/lib/order-access'
 import { getMediaUrl } from '@/lib/media-utils'
 
 export async function GET(_req: NextRequest) {
   try {
     const session = await auth()
 
-    if (!session?.user?.id || !session?.user?.email) {
+    if (!session?.user?.id) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
     }
 
     const payload = await getPayload({ config })
+    const where = await customerOrdersWhere(payload, session.user.id)
+    if (!where) {
+      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
+    }
 
     const { docs: orders } = await payload.find({
       collection: 'orders',
-      where: {
-        or: [
-          { customer: { equals: session.user.id } },
-          { guestEmail: { equals: session.user.email } },
-        ],
-      },
+      where,
       sort: '-createdAt',
       limit: 100,
       depth: 2, // Increase depth to get instrument images
@@ -29,7 +29,7 @@ export async function GET(_req: NextRequest) {
 
     // Transform orders to include image URLs
     const ordersWithImages = orders.map((order) => ({
-      ...order,
+      ...toCustomerOrder(order),
       items: order.items?.map((item) => {
         const instrument = typeof item.instrument === 'object' ? item.instrument : null
         const imageUrl = instrument ? getMediaUrl(instrument.mainImage) : null

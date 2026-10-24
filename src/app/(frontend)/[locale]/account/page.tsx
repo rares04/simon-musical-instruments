@@ -8,6 +8,7 @@ import { ReservationSlotsCard } from '@/components/reservation-slots-card'
 import { requireAuth } from '@/lib/auth-guard'
 import { getPayload } from 'payload'
 import config from '@/payload.config'
+import { customerOrdersWhere } from '@/lib/order-access'
 import { getMediaUrl } from '@/lib/media-utils'
 
 // Render at runtime (DB not accessible during build)
@@ -24,18 +25,16 @@ export default async function AccountDashboard() {
   const t = await getTranslations('account.dashboard')
 
   const userId = session.user?.id
-  const userEmail = session.user?.email
+  const ownOrders = userId ? await customerOrdersWhere(payload, userId) : null
 
-  if (!userId || !userEmail) {
+  if (!ownOrders) {
     throw new Error('User session is invalid')
   }
 
   // Fetch user's orders
   const { docs: orders, totalDocs } = await payload.find({
     collection: 'orders',
-    where: {
-      or: [{ customer: { equals: userId } }, { guestEmail: { equals: userEmail } }],
-    },
+    where: ownOrders,
     sort: '-createdAt',
     limit: 10, // Get more to check for pending_payment
     depth: 2, // Increase depth to get instrument images

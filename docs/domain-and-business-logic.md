@@ -165,11 +165,11 @@ stateDiagram-v2
 | Feature | Route | Notes |
 |---|---|---|
 | Register (email + password ≥ 8) | `/register` → `POST /api/register` → `POST /api/auth/send-otp` | Then redirects to `/verify-email` |
-| Verify email (6-digit OTP, 10 min, 60s resend cooldown) | `/verify-email` → `POST /api/auth/verify-otp` | Auto-login after verify |
-| Login (password or Google) | `/login` | Unverified credential users are sent to `/verify-email` |
+| Verify email (6-digit OTP, 10 min, 60s resend cooldown, 5 attempts) | `/verify-email` → `POST /api/auth/verify-otp` | Then to `/login?verified=true` (sign in once more) |
+| Login (password or Google) | `/login` | Unverified credential users (right password) get a fresh code and go to `/verify-email` |
 | Dashboard | `/account` | Stats, attention list, last 3 orders, reservation slots |
 | Orders | `/account/orders`, `/account/orders/[orderNumber]` | PDF download |
-| Profile | `/account/profile` | Name, email, phone; address book; password change (**broken**) |
+| Profile | `/account/profile` | Name and phone (email is read-only; contact Paul to change it); address book; password change |
 
 - **Roles**: `admin` (Paul; full admin) and `user` (customers).
 - **Social login**: Facebook and Apple are coded but commented out. Only Google is active.

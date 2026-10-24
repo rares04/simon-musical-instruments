@@ -476,7 +476,8 @@
         "oauthNotLinked": "Cet e-mail est déjà associé à un autre compte.",
         "genericError": "Une erreur s'est produite lors de la connexion.",
         "tryAgain": "Une erreur s'est produite. Veuillez réessayer."
-      }
+      },
+      "verifiedSuccess": "E-mail vérifié. Veuillez vous connecter."
     },
     "register": {
       "title": "Créez Votre Compte",
@@ -554,7 +555,8 @@
       "saveChanges": "Enregistrer les Modifications",
       "saving": "Enregistrement...",
       "updateSuccess": "Profil mis à jour avec succès!",
-      "updateError": "Échec de la mise à jour du profil"
+      "updateError": "Échec de la mise à jour du profil",
+      "emailLockedNote": "Pour modifier votre adresse e-mail, veuillez nous contacter."
     },
     "password": {
       "currentPassword": "Mot de Passe Actuel",

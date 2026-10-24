@@ -16,6 +16,7 @@ import { Link } from '@/i18n/routing'
 import { auth } from '@/lib/auth'
 import { getPayload } from 'payload'
 import config from '@/payload.config'
+import { customerOrdersWhere } from '@/lib/order-access'
 import { getMediaUrl } from '@/lib/media-utils'
 
 // Render at runtime (DB not accessible during build)
@@ -30,6 +31,10 @@ export default async function OrderDetailPage({ params }: { params: Promise<{ id
   }
 
   const payload = await getPayload({ config })
+  const ownOrders = session.user.id ? await customerOrdersWhere(payload, session.user.id) : null
+  if (!ownOrders) {
+    notFound()
+  }
 
   // Find order by orderNumber
   const { docs } = await payload.find({
@@ -37,12 +42,7 @@ export default async function OrderDetailPage({ params }: { params: Promise<{ id
     where: {
       and: [
         { orderNumber: { equals: id } },
-        {
-          or: [
-            { customer: { equals: session.user.id } },
-            { guestEmail: { equals: session.user.email } },
-          ],
-        },
+        ownOrders,
       ],
     },
     limit: 1,

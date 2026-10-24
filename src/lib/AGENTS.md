@@ -14,17 +14,24 @@
 | `media-utils.ts` | `getMediaUrl`, `getMediaSrc`, `getMediaUrlForSrc` | Handles `number \| Media \| null` relationships. Prefixes relative filenames with `/api/media/file/` |
 | `order-types.ts` | `OrderStatus` incl. legacy `'pending'` | **Unused.** Delete it, or derive from `payload-types` |
 | `utils.ts` | `cn()` (clsx + tailwind-merge) | shadcn helper |
+| `otp.ts` | Email codes: CSPRNG generation, HMAC storage (`v2:<attempts>:<sends>:<window>:<hmac>`), attempt limit, resend interval, daily cap, compare-and-set updates (`swapOtp`) | Server-only. The code itself is never stored |
+| `order-access.ts` | `customerOrdersWhere()`, `toCustomerOrder()` | Server-only. The single rule for which orders a customer may see |
+| `safe-redirect.ts` | `safeCallbackPath()` | Use for any redirect target taken from the URL |
 
 ## Auth.js specifics (`auth.ts`)
 
 - **Credentials `authorize`**
-  - Refuses accounts that haven't verified their email, then delegates to `payload.login()`.
-  - The login page calls `/api/auth/check-verification` and redirects to `/verify-email`.
+  - Refuses accounts that haven't verified their email, then delegates to `payload.login()` (Local
+    API; REST login is admin-only).
+  - The login page calls `/api/auth/check-verification` (with the password) and redirects to
+    `/verify-email`. Passwords are never put in URLs.
 - **Google `signIn` callback**
   - Finds or creates the Payload user for the Google account, then sets `user.id` to the Payload id
     (as a string).
-  - Account-linking rules are under review in the private security audit. Get a review before
-    changing them.
+  - Requires Google's `email_verified`. New Google users are created verified.
+  - Linking to an existing account by email: never for admin accounts. It marks the email verified,
+    and if the account wasn't verified before, replaces its password with a random one.
+  - Get a security review before changing these rules.
 - **`jwt` callback** copies `id, firstName, lastName, phone, roles, shippingAddress` into the token
   at sign-in.
 - **`session` callback** re-reads the user from Payload **on every call**: one DB query per
@@ -36,7 +43,8 @@
 ## Rules
 
 - Server-only modules (`auth.ts`, `resend.ts`, `deepl.ts`, `pdf/*`) must never be imported from a
-  `'use client'` file. Add `import 'server-only'` when you touch them.
+  `'use client'` file. Add `import 'server-only'` when you touch them (the `server-only` package
+  isn't installed yet; platform adds it).
 - New third-party clients follow the lazy-singleton pattern in `resend.ts` and `deepl.ts`, so
   `next build` works without secrets.
 - New emails:

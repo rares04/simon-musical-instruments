@@ -1,110 +1,81 @@
 import { NextResponse } from 'next/server'
 import { getPayload } from 'payload'
 import config from '@/payload.config'
+import {
+  OTP_MAX_ATTEMPTS,
+  formatOtpRecord,
+  otpMatches,
+  parseOtpRecord,
+  swapOtp,
+} from '@/lib/otp'
+
+// One answer for every failure, so responses don't reveal account state.
+const INVALID = {
+  error: 'Invalid or expired verification code. You can request a new code.',
+}
 
 export async function POST(request: Request) {
   try {
-    const body = await request.json()
-    const { email, otp } = body
+    const body = await request.json().catch(() => ({}))
+    const email = typeof body.email === 'string' ? body.email.trim().toLowerCase() : ''
+    const otp = typeof body.otp === 'string' ? body.otp : ''
 
     if (!email || !otp) {
-      return NextResponse.json(
-        { error: 'Email and OTP are required' },
-        { status: 400 }
-      )
+      return NextResponse.json({ error: 'Email and OTP are required' }, { status: 400 })
     }
-
-    // Validate OTP format (6 digits)
     if (!/^\d{6}$/.test(otp)) {
-      return NextResponse.json(
-        { error: 'Invalid OTP format. Must be 6 digits.' },
-        { status: 400 }
-      )
+      return NextResponse.json({ error: 'Invalid OTP format. Must be 6 digits.' }, { status: 400 })
     }
 
     const payload = await getPayload({ config })
-
-    // Find user by email
-    const users = await payload.find({
+    const { docs } = await payload.find({
       collection: 'users',
-      where: {
-        email: { equals: email },
-      },
+      where: { email: { equals: email } },
       limit: 1,
+      depth: 0,
     })
+    const user = docs[0]
+    const record = parseOtpRecord(user?.otp)
 
-    if (users.docs.length === 0) {
-      return NextResponse.json(
-        { error: 'Invalid email or OTP' },
-        { status: 400 }
-      )
+    if (!user || user.emailVerified || !record?.hash || !user.otpExpiry) {
+      return NextResponse.json(INVALID, { status: 400 })
     }
 
-    const user = users.docs[0]
+    const stored = user.otp as string
+    // Discarded codes keep their counters and expiry, so the resend interval and daily cap hold.
+    const discarded = formatOtpRecord({ ...record, hash: null })
 
-    // Check if already verified
-    if (user.emailVerified) {
-      return NextResponse.json({
-        success: true,
-        alreadyVerified: true,
-        message: 'Email is already verified',
-      })
+    if (new Date(user.otpExpiry) < new Date() || record.attempts >= OTP_MAX_ATTEMPTS) {
+      await swapOtp(payload, user.id, stored, discarded)
+      return NextResponse.json(INVALID, { status: 400 })
     }
 
-    // Check if OTP exists
-    if (!user.otp || !user.otpExpiry) {
-      return NextResponse.json(
-        { error: 'No verification code found. Please request a new one.' },
-        { status: 400 }
-      )
+    // Use up one attempt atomically before checking the code, so parallel guesses can't share it.
+    const attempts = record.attempts + 1
+    const consumed = formatOtpRecord({ ...record, attempts })
+    if (!(await swapOtp(payload, user.id, stored, consumed))) {
+      return NextResponse.json(INVALID, { status: 400 })
     }
 
-    // Check if OTP is expired
-    const otpExpiry = new Date(user.otpExpiry)
-    if (otpExpiry < new Date()) {
-      // Clear expired OTP
-      await payload.update({
-        collection: 'users',
-        id: user.id,
-        data: {
-          otp: null,
-          otpExpiry: null,
-        },
-      })
-      return NextResponse.json(
-        { error: 'Verification code has expired. Please request a new one.', expired: true },
-        { status: 400 }
-      )
+    if (!otpMatches(user.id, otp, record.hash)) {
+      if (attempts >= OTP_MAX_ATTEMPTS) {
+        await swapOtp(payload, user.id, consumed, formatOtpRecord({ ...record, attempts, hash: null }))
+      }
+      return NextResponse.json(INVALID, { status: 400 })
     }
 
-    // Verify OTP
-    if (user.otp !== otp) {
-      return NextResponse.json(
-        { error: 'Invalid verification code' },
-        { status: 400 }
-      )
-    }
-
-    // OTP is valid - mark email as verified and clear OTP
     await payload.update({
       collection: 'users',
       id: user.id,
-      data: {
-        emailVerified: true,
-        otp: null,
-        otpExpiry: null,
-      },
+      data: { emailVerified: true, otp: null, otpExpiry: null },
     })
 
-    return NextResponse.json({
-      success: true,
-      message: 'Email verified successfully',
-    })
+    return NextResponse.json({ success: true, message: 'Email verified successfully' })
   } catch (error) {
-    console.error('Error verifying OTP:', error)
+    console.error('verify-otp error:', error instanceof Error ? error.message : error)
     return NextResponse.json(
       { error: 'An error occurred while verifying the code' },
-      { status: 500 }
+      { status: 500 },
     )
   }
 }

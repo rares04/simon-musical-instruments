@@ -41,20 +41,20 @@ export async function PATCH(req: NextRequest) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
     }
 
-    const body = await req.json()
-    const { firstName, lastName, email, phone } = body
+    const body = await req.json().catch(() => ({}))
+    const field = (v: unknown, max: number) =>
+      typeof v === 'string' ? v.trim().slice(0, max) : undefined
 
     const payload = await getPayload({ config })
 
-    // Update user profile
+    // The email address can't be changed here: it identifies the account and its guest orders.
     const updatedUser = await payload.update({
       collection: 'users',
       id: session.user.id,
       data: {
-        firstName,
-        lastName,
-        email,
-        phone,
+        firstName: field(body.firstName, 100),
+        lastName: field(body.lastName, 100),
+        phone: field(body.phone, 40),
       },
     })
 

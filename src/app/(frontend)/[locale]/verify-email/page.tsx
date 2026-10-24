@@ -2,7 +2,6 @@
 
 import { useState, useEffect, useCallback } from 'react'
 import { useRouter, useSearchParams, useParams } from 'next/navigation'
-import { signIn } from 'next-auth/react'
 import { useTranslations } from 'next-intl'
 import { Button } from '@/components/ui/button'
 import { OtpInput } from '@/components/ui/otp-input'
@@ -17,17 +16,6 @@ export default function VerifyEmailPage() {
   const t = useTranslations('auth')
 
   const email = searchParams.get('email') || ''
-  const encodedPassword = searchParams.get('p') || ''
-  // Decode base64 password for auto-login after verification
-  const password = encodedPassword
-    ? (() => {
-        try {
-          return atob(encodedPassword)
-        } catch {
-          return ''
-        }
-      })()
-    : ''
 
   const [otp, setOtp] = useState('')
   const [isLoading, setIsLoading] = useState(false)
@@ -90,36 +78,17 @@ export default function VerifyEmailPage() {
 
       setSuccess(true)
 
-      // Auto sign in after verification if password is available
-      if (password) {
-        setTimeout(async () => {
-          const result = await signIn('credentials', {
-            email,
-            password,
-            redirect: false,
-          })
-
-          if (result?.error) {
-            // Verification succeeded but auto-login failed, redirect to login
-            router.push('/login?verified=true')
-          } else {
-            router.push('/')
-            router.refresh()
-          }
-        }, 1500)
-      } else {
-        // No password available, redirect to login
-        setTimeout(() => {
-          router.push('/login?verified=true')
-        }, 2000)
-      }
+      // Sign in normally after verification (the password is never passed between pages).
+      setTimeout(() => {
+        router.push(`/login?verified=true&email=${encodeURIComponent(email)}`)
+      }, 1500)
     } catch {
       setError(t('verifyEmail.errors.genericError'))
       setOtp('')
     } finally {
       setIsLoading(false)
     }
-  }, [otp, email, password, t, router])
+  }, [otp, email, t, router])
 
   const handleResendOtp = async () => {
     if (resendCooldown > 0) return

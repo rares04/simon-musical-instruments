@@ -7,6 +7,9 @@ import { getPayload } from 'payload'
 import config from '@/payload.config'
 import type { User as PayloadUser } from '@/payload-types'
 import crypto from 'crypto'
+import { hasAdminRole } from '@/access'
+
+const randomPassword = () => crypto.randomBytes(32).toString('hex')
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
   providers: [
@@ -34,34 +37,30 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
           return null
         }
 
+        const email = String(credentials.email).trim().toLowerCase()
+        const password = String(credentials.password)
+        if (password.length > 128) return null
+
         try {
           const payload = await getPayload({ config })
 
-          // First, check if user exists and is verified BEFORE attempting login
+          // Only verified accounts may sign in with a password. Unverified ones get null here;
+          // the login page then asks /api/auth/check-verification what to do.
           const existingUsers = await payload.find({
             collection: 'users',
-            where: {
-              email: { equals: credentials.email as string },
-            },
+            where: { email: { equals: email } },
             limit: 1,
+            depth: 0,
           })
-
-          if (existingUsers.docs.length > 0) {
-            const existingUser = existingUsers.docs[0]
-            // Check if credentials user hasn't verified their email
-            if (existingUser.provider === 'credentials' && !existingUser.emailVerified) {
-              // Return null instead of throwing - the login page will check verification status
-              return null
-            }
+          const existingUser = existingUsers.docs[0]
+          if (!existingUser || !existingUser.emailVerified) {
+            return null
           }
 
-          // Use Payload's built-in login
+          // Payload checks the password (Local API, so the admin-only REST login rule doesn't apply).
           const { user } = await payload.login({
             collection: 'users',
-            data: {
-              email: credentials.email as string,
-              password: credentials.password as string,
-            },
+            data: { email, password },
           })
 
           if (user) {
@@ -92,9 +91,15 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
     }),
   ],
   callbacks: {
-    async signIn({ user, account }) {
+    async signIn({ user, account, profile }) {
       // For OAuth providers, create or update user in Payload
       if (account?.provider && account.provider !== 'credentials') {
+        // Only trust addresses Google has verified.
+        if (!user.email || profile?.email_verified !== true) {
+          return false
+        }
+        const email = user.email.toLowerCase()
+
         try {
           const payload = await getPayload({ config })
 
@@ -119,6 +124,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
               data: {
                 name: user.name || existingUser.name || undefined,
                 image: user.image || existingUser.image || undefined,
+                emailVerified: true,
               },
             })
             // Store Payload user ID for session
@@ -128,14 +134,21 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
             const usersByEmail = await payload.find({
               collection: 'users',
               where: {
-                email: { equals: user.email },
+                email: { equals: email },
               },
               limit: 1,
+              depth: 0,
             })
 
             if (usersByEmail.docs.length > 0) {
-              // Link OAuth to existing account
               const existingUser = usersByEmail.docs[0]
+              // Admin accounts are never linked automatically.
+              if (hasAdminRole(existingUser)) {
+                return '/login?error=OAuthAccountNotLinked'
+              }
+              // Link OAuth to the existing account. Google has just proven the address, so it is
+              // now verified. If it wasn't verified before, nobody had proven control of it, so a
+              // password set back then is replaced with a random one.
               await payload.update({
                 collection: 'users',
                 id: existingUser.id,
@@ -144,19 +157,22 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
                   providerId: account.providerAccountId,
                   name: user.name || existingUser.name || undefined,
                   image: user.image || existingUser.image || undefined,
+                  emailVerified: true,
+                  ...(existingUser.emailVerified
+                    ? {}
+                    : { password: randomPassword(), otp: null, otpExpiry: null }),
                 },
               })
               user.id = String(existingUser.id)
             } else {
-              // Create new user
-              // Generate a secure random password for OAuth users (they won't use it)
-              const randomPassword = crypto.randomBytes(32).toString('hex')
+              // Create new user with a random password (OAuth users never use it)
               const nameParts = user.name?.split(' ') || []
               const newUser = await payload.create({
                 collection: 'users',
                 data: {
-                  email: user.email!,
-                  password: randomPassword, // Required by Payload auth collection
+                  email,
+                  password: randomPassword(), // Required by Payload auth collection
+                  emailVerified: true,
                   provider: account.provider as 'google', // | 'facebook' | 'apple' // Not implemented for now
                   providerId: account.providerAccountId,
                   name: user.name || undefined,
