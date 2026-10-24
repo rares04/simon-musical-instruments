@@ -239,14 +239,21 @@ only trace is a `console.error` in the Railway logs.
 
 ## 8. Observability
 
-- **Logs**: `console.log/error` to Railway's log viewer. No structured logging, no request IDs.
-  Railway's `x-railway-request-id` header exists but isn't logged.
-- **Errors**: no error tracking (no Sentry or equivalent).
-- **Analytics**: `@vercel/analytics` is mounted, but the site isn't on Vercel.
-  `/_vercel/insights/script.js` returns 404 on Railway, so **there is no traffic data**.
-- **Health**: `/api/health` returns static JSON. It doesn't check the DB, so a deploy with a broken
-  `DATABASE_URL` still reports healthy.
-- **Uptime monitoring**: none known.
+Details: `docs/observability/` (tracking plan, runbook).
+
+- **Logs**: JSON lines to stdout (`src/lib/observability/logger.ts`), indexed by Railway. Each line
+  carries a `request_id` (Railway's `x-railway-request-id` when present). Fields are scrubbed: no
+  emails, names, phone numbers, tokens or query strings. Older code still uses `console.*`.
+- **Errors**: every uncaught server error (`onRequestError` in `src/instrumentation.ts`), every email
+  failure (`sendEmail`) and every `captureError()` call goes to PostHog error tracking, after
+  scrubbing. Database errors embed query parameters, so the scrubber redacts them. Browser
+  exceptions are captured too.
+- **Analytics**: PostHog EU (`src/instrumentation-client.ts`). Nothing is stored in the browser
+  (`persistence: 'memory'`), visitors are never identified, session replay is off, and nothing runs
+  on `/admin`. The country comes from GeoIP; the IP is discarded at ingestion.
+- **Health**: `/api/health` checks the database (503 when it's down).
+- **Uptime**: Better Stack checks home, gallery, health and admin every 3 minutes from 4 regions,
+  plus SSL and domain expiry and the nightly backup heartbeat.
 
 ## 9. Security model (summary)
 
