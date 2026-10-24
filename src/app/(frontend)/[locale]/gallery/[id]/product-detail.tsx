@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import Image from 'next/image'
 import { useLocale, useTranslations } from 'next-intl'
 import { Link } from '@/i18n/routing'
@@ -341,6 +341,17 @@ function ImageGallery({
   const [currentIndex, setCurrentIndex] = useState<number>(0)
   const [isLightboxOpen, setIsLightboxOpen] = useState(false)
   const tProduct = useTranslations('product')
+  const expandButtonRef = useRef<HTMLButtonElement>(null)
+  const wasLightboxOpen = useRef(false)
+
+  // Return focus to the expand button when the lightbox closes.
+  useEffect(() => {
+    if (isLightboxOpen) wasLightboxOpen.current = true
+    else if (wasLightboxOpen.current) {
+      wasLightboxOpen.current = false
+      expandButtonRef.current?.focus()
+    }
+  }, [isLightboxOpen])
 
   useEffect(() => {
     if (isLightboxOpen) {
@@ -394,6 +405,7 @@ function ImageGallery({
           />
 
           <button
+            ref={expandButtonRef}
             type="button"
             onClick={(e) => {
               e.stopPropagation()
@@ -459,7 +471,6 @@ function ImageGallery({
         <div 
           className="fixed inset-0 z-50 bg-background/95 backdrop-blur-md flex items-center justify-center animate-in fade-in duration-200"
           role="dialog"
-          aria-modal="true"
           aria-label={alt}
           onClick={() => setIsLightboxOpen(false)}
         >
