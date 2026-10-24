@@ -268,8 +268,12 @@ privately.
   - route handlers that check `auth()` and enforce ownership.
 - **Secrets** live only in Railway service variables and a developer's local `.env`, which is
   git-ignored. Git history has been checked and contains no secrets (2026-10-24).
-- **Headers**: no CSP, HSTS, `X-Frame-Options` or `Referrer-Policy` are set yet (K-21).
-  `x-powered-by` is off.
+- **Headers** (`next.config.mjs` → `headers()`): HSTS (6 months, apex only: mail subdomains are
+  Hostinger/Resend, so no `includeSubDomains`, no `preload`), `nosniff`,
+  `X-Frame-Options: DENY`, `Referrer-Policy: strict-origin-when-cross-origin`, a restrictive
+  `Permissions-Policy` and COOP. The CSP runs in **report-only** mode; violations are logged by
+  `/api/csp-report` (`csp: <directive> blocked <url> on <page>`). Enforce it once the reports are
+  clean. `x-powered-by` is off.
 - **Database**: row-level security is on for every `public` table, and the Supabase `anon` and
   `authenticated` roles have no grants. Payload's role owns the tables and isn't affected.
 - **Abuse controls**: rate limiting and bot protection for public forms are tracked in the private
