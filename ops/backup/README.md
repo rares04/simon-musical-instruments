@@ -63,12 +63,19 @@ Use this before a production migration:
 
 `db-backup` has **no push trigger**: Railway can't create one for this repo. Changes under
 `ops/backup/` are not deployed automatically, even after they merge. To deploy the current head
-of `main`:
+of `main`, deploy that exact commit:
 
 ```sh
-railway service source connect --repo rares04/simon-musical-instruments --branch main \
-  --service db-backup --environment production
+railway api "mutation { serviceInstanceDeployV2(
+  serviceId: \"40b67e49-fd9a-4d6a-a7b4-67b1565f0240\",
+  environmentId: \"93a0487a-94ef-4396-8641-5abb100d9510\",
+  commitSha: \"$(git rev-parse origin/main)\") }"
 ```
+
+Don't use `railway service source connect` or `railway redeploy --from-source` for this. The
+watch path (`/ops/backup/**`) makes Railway **skip** a deploy whose head commit didn't touch
+`ops/backup/`. Changing the service's variables can also start a deploy, even with
+`--skip-deploys`.
 
 Then run it once (see above) and check the log ends with `[backup] done`.
 
