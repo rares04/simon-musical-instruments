@@ -175,7 +175,9 @@
     "shopInstruments": "Acheter des Instruments",
     "ourStory": "Notre Histoire",
     "copyright": "© {year} Simon Musical Instruments. Tous droits réservés.",
-    "madeIn": "Fabriqué avec amour à Reghin, Roumanie"
+    "madeIn": "Fabriqué avec amour à Reghin, Roumanie",
+    "followInstagram": "Suivez-nous sur Instagram",
+    "contactWhatsApp": "Contactez-nous sur WhatsApp"
   },
   "common": {
     "loading": "Chargement...",
@@ -362,7 +364,8 @@
     "fullyInsured": "Assurance incluse dans le prix",
     "secureShipping": "Service de porte à porte depuis notre atelier",
     "professionalPackaging": "Emballage professionnel",
-    "assistanceNote": "Besoin d'aide? Contactez-nous pour une consultation personnelle"
+    "assistanceNote": "Besoin d'aide? Contactez-nous pour une consultation personnelle",
+    "closeCart": "Fermer le panier"
   },
   "checkout": {
     "title": "Paiement",

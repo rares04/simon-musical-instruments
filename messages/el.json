@@ -175,7 +175,9 @@
     "shopInstruments": "Αγορά Οργάνων",
     "ourStory": "Η Ιστορία μας",
     "copyright": "© {year} Simon Musical Instruments. Όλα τα δικαιώματα διατηρούνται.",
-    "madeIn": "Χειροποίητο με αγάπη στο Reghin, Ρουμανία"
+    "madeIn": "Χειροποίητο με αγάπη στο Reghin, Ρουμανία",
+    "followInstagram": "Ακολουθήστε μας στο Instagram",
+    "contactWhatsApp": "Επικοινωνήστε μαζί μας στο WhatsApp"
   },
   "common": {
     "loading": "Φόρτωση...",
@@ -362,7 +364,8 @@
     "fullyInsured": "Ασφάλιση περιλαμβάνεται στην τιμή",
     "secureShipping": "Υπηρεσία πόρτα-πόρτα από το ατελιέ μας",
     "professionalPackaging": "Επαγγελματική συσκευασία",
-    "assistanceNote": "Χρειάζεστε βοήθεια; Επικοινωνήστε μαζί μας για προσωπική συμβουλευτική"
+    "assistanceNote": "Χρειάζεστε βοήθεια; Επικοινωνήστε μαζί μας για προσωπική συμβουλευτική",
+    "closeCart": "Κλείσιμο καλαθιού"
   },
   "checkout": {
     "title": "Ολοκλήρωση Παραγγελίας",

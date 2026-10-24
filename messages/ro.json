@@ -175,7 +175,9 @@
     "shopInstruments": "Magazin Instrumente",
     "ourStory": "Povestea Noastră",
     "copyright": "© {year} Simon Musical Instruments. Toate drepturile rezervate.",
-    "madeIn": "Realizat cu grijă în Reghin, România"
+    "madeIn": "Realizat cu grijă în Reghin, România",
+    "followInstagram": "Urmăriți-ne pe Instagram",
+    "contactWhatsApp": "Contactați-ne pe WhatsApp"
   },
   "common": {
     "loading": "Se încarcă...",
@@ -362,7 +364,8 @@
     "fullyInsured": "Asigurare inclusă în preț",
     "secureShipping": "Serviciu din ușă în ușă de la atelierul nostru",
     "professionalPackaging": "Ambalaj profesional",
-    "assistanceNote": "Aveți nevoie de asistență? Contactați-ne pentru o consultare personală"
+    "assistanceNote": "Aveți nevoie de asistență? Contactați-ne pentru o consultare personală",
+    "closeCart": "Închideți coșul"
   },
   "checkout": {
     "title": "Finalizare Comandă",

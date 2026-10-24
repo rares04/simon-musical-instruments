@@ -175,7 +175,9 @@
     "shopInstruments": "악기 구매",
     "ourStory": "우리의 이야기",
     "copyright": "© {year} Simon Musical Instruments. 모든 권리 보유.",
-    "madeIn": "루마니아 레긴에서 사랑으로 제작"
+    "madeIn": "루마니아 레긴에서 사랑으로 제작",
+    "followInstagram": "Instagram에서 팔로우하기",
+    "contactWhatsApp": "WhatsApp으로 문의하기"
   },
   "common": {
     "loading": "로딩 중...",
@@ -362,7 +364,8 @@
     "fullyInsured": "보험이 가격에 포함됩니다",
     "secureShipping": "공방에서 도어투도어 서비스",
     "professionalPackaging": "전문 포장",
-    "assistanceNote": "도움이 필요하신가요? 개인 상담을 위해 문의해 주세요"
+    "assistanceNote": "도움이 필요하신가요? 개인 상담을 위해 문의해 주세요",
+    "closeCart": "장바구니 닫기"
   },
   "checkout": {
     "title": "결제",
