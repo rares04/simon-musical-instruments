@@ -1,26 +1,36 @@
 import type React from 'react'
 import type { Metadata } from 'next'
-import { Inter, Playfair_Display, Noto_Sans_JP, Noto_Sans_KR } from 'next/font/google'
+import { Inter, Playfair_Display } from 'next/font/google'
 import { notFound } from 'next/navigation'
 import { NextIntlClientProvider } from 'next-intl'
 import { getMessages } from 'next-intl/server'
 import { Analytics } from '@vercel/analytics/next'
 import { ClientProviders } from '@/components/client-providers'
 import { routing } from '@/i18n/routing'
+import { cn } from '@/lib/utils'
 import '../globals.css'
 
-const inter = Inter({ subsets: ['latin'], variable: '--font-sans' })
-const playfair = Playfair_Display({ subsets: ['latin'], variable: '--font-serif' })
-const notoJP = Noto_Sans_JP({
+// Variable names must match the `@theme` font stacks in globals.css.
+// `subsets` only controls preloading: other ranges (Romanian ă ș ț, Greek) still load on demand.
+// Inter italic is preloaded because the footer quote uses it on every page.
+const inter = Inter({ subsets: ['latin'], style: ['normal', 'italic'], variable: '--font-inter' })
+// Playfair has no Greek glyphs. Without the metric-adjusted Times fallback, Greek headings fall
+// through to the regular serif stack instead of an enlarged Times New Roman.
+const playfair = Playfair_Display({
   subsets: ['latin'],
-  variable: '--font-ja',
-  weight: ['400', '500', '700'],
+  variable: '--font-playfair',
+  adjustFontFallback: false,
 })
-const notoKR = Noto_Sans_KR({
-  subsets: ['latin'],
-  variable: '--font-ko',
-  weight: ['400', '500', '700'],
+// Same family name, so the browser pairs these italic faces with `playfair`. Not preloaded:
+// only a few home-page lines are italic.
+const playfairItalic = Playfair_Display({
+  style: 'italic',
+  preload: false,
+  variable: '--font-playfair-italic',
+  adjustFontFallback: false,
 })
+// No CJK web font: /ja and /ko use the OS font (Hiragino, Yu Gothic, Malgun Gothic, …), picked by
+// <html lang>. A next/font CJK face would add its @font-face CSS to every locale's pages.
 
 export const metadata: Metadata = {
   title: 'Simon Musical Instruments | Handcrafted String Instruments from Reghin, Romania',
@@ -63,10 +73,7 @@ export default async function LocaleLayout({
   const messages = await getMessages()
 
   return (
-    <html
-      lang={locale}
-      className={`${inter.variable} ${playfair.variable} ${notoJP.variable} ${notoKR.variable}`}
-    >
+    <html lang={locale} className={cn(inter.variable, playfair.variable, playfairItalic.variable)}>
       <body className="min-h-screen bg-background font-sans antialiased" suppressHydrationWarning>
         <NextIntlClientProvider messages={messages}>
           <ClientProviders>
