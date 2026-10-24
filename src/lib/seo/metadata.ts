@@ -21,6 +21,8 @@ type BuildMetadataInput = {
   locale: Locale
   /** Path without the locale prefix, e.g. `/faq`. */
   path: string
+  /** Per-locale paths when the URL word is translated (see `buildAlternates`). */
+  paths?: Partial<Record<Locale, string>>
   /** Already translated, without the brand suffix. */
   title: string
   description: string
@@ -51,6 +53,7 @@ export function withBrand(title: string): string {
 export function buildMetadata({
   locale,
   path,
+  paths,
   title,
   description,
   image,
@@ -61,7 +64,7 @@ export function buildMetadata({
   type = 'website',
   siteUrl = SITE_URL,
 }: BuildMetadataInput): Metadata {
-  const alternates = buildAlternates({ locale, path, translatedLocales, siteUrl })
+  const alternates = buildAlternates({ locale, path, paths, translatedLocales, siteUrl })
   const fullTitle = brandSuffix ? withBrand(title) : title
   const imageUrl = absoluteUrl(image || DEFAULT_OG_IMAGE, siteUrl)
 
