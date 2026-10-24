@@ -6,17 +6,35 @@ import { NextIntlClientProvider } from 'next-intl'
 import { getMessages } from 'next-intl/server'
 import { Analytics } from '@vercel/analytics/next'
 import { ClientProviders } from '@/components/client-providers'
+import type { Locale } from '@/i18n/config'
 import { routing } from '@/i18n/routing'
+import { cn } from '@/lib/utils'
 import '../globals.css'
 
 // Variable names must match the `@theme` font stacks in globals.css.
-const inter = Inter({ subsets: ['latin'], variable: '--font-inter' })
-const playfair = Playfair_Display({ subsets: ['latin'], variable: '--font-playfair' })
+// `subsets` only controls preloading: other ranges (Romanian ă ș ț, Greek) still load on demand.
+// Inter italic is preloaded because the footer quote uses it on every page.
+const inter = Inter({ subsets: ['latin'], style: ['normal', 'italic'], variable: '--font-inter' })
+// Playfair has no Greek glyphs. Without the metric-adjusted Times fallback, Greek headings fall
+// through to the regular serif stack instead of an enlarged Times New Roman.
+const playfair = Playfair_Display({
+  subsets: ['latin'],
+  variable: '--font-playfair',
+  adjustFontFallback: false,
+})
+// Same family name, so the browser pairs these italic faces with `playfair`. Not preloaded:
+// only a few home-page lines are italic.
+const playfairItalic = Playfair_Display({
+  style: 'italic',
+  preload: false,
+  variable: '--font-playfair-italic',
+  adjustFontFallback: false,
+})
 
 // CJK fonts are applied only on /ja and /ko, without preload, so other locales never download them.
 const notoJP = Noto_Sans_JP({ variable: '--font-cjk', preload: false })
 const notoKR = Noto_Sans_KR({ variable: '--font-cjk', preload: false })
-const cjkFontVariable: Partial<Record<string, string>> = {
+const cjkFontVariable: Partial<Record<Locale, string>> = {
   ja: notoJP.variable,
   ko: notoKR.variable,
 }
@@ -64,7 +82,12 @@ export default async function LocaleLayout({
   return (
     <html
       lang={locale}
-      className={`${inter.variable} ${playfair.variable} ${cjkFontVariable[locale] ?? ''}`}
+      className={cn(
+        inter.variable,
+        playfair.variable,
+        playfairItalic.variable,
+        cjkFontVariable[locale as Locale],
+      )}
     >
       <body className="min-h-screen bg-background font-sans antialiased" suppressHydrationWarning>
         <NextIntlClientProvider messages={messages}>
