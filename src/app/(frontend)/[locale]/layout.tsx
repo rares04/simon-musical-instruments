@@ -4,7 +4,6 @@ import { Inter, Playfair_Display } from 'next/font/google'
 import { notFound } from 'next/navigation'
 import { NextIntlClientProvider } from 'next-intl'
 import { getMessages } from 'next-intl/server'
-import { Analytics } from '@vercel/analytics/next'
 import { ClientProviders } from '@/components/client-providers'
 import { routing } from '@/i18n/routing'
 import { cn } from '@/lib/utils'
@@ -78,7 +77,6 @@ export default async function LocaleLayout({
         <NextIntlClientProvider messages={messages}>
           <ClientProviders>
             {children}
-            <Analytics />
           </ClientProviders>
         </NextIntlClientProvider>
       </body>
