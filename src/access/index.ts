@@ -13,6 +13,13 @@ export const hasAdminRole = (user: unknown): boolean =>
 
 export const anyone: Access = () => true
 
+/**
+ * Admin 2FA (payload-totp) wraps every collection's access and refuses anonymous requests. A
+ * collection whose `read` is public must opt out with `custom: publicReadOptOut`, or the storefront
+ * loses it (including `/api/media/file/*` for Media).
+ */
+export const publicReadOptOut = { totp: { disableAccessWrapper: { read: true } } }
+
 export const isAdmin: Access = ({ req: { user } }) => hasAdminRole(user)
 
 /** Admins see everything; other signed-in users only their own document. */
@@ -41,7 +48,11 @@ export const adminOnlyApiLogin: CollectionBeforeLoginHook = ({ req, user }) => {
  * The first user, created from the admin's first-register screen on an empty database, becomes an
  * admin. Storefront sign-ups go through the Local API and never get here as the first user.
  */
-export const ensureFirstUserIsAdmin: CollectionBeforeChangeHook = async ({ data, operation, req }) => {
+export const ensureFirstUserIsAdmin: CollectionBeforeChangeHook = async ({
+  data,
+  operation,
+  req,
+}) => {
   if (operation !== 'create' || req.payloadAPI === 'local') return data
   const { totalDocs } = await req.payload.count({ collection: 'users', req })
   if (totalDocs === 0) return { ...data, roles: ['admin'] }

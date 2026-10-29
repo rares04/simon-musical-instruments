@@ -22,6 +22,7 @@ const recommended = [
   'DEEPL_API_KEY',
   'NEXT_PUBLIC_TURNSTILE_SITE_KEY',
   'TURNSTILE_SECRET_KEY',
+  'TOTP_ENC_KEY',
 ] as const
 
 /**
@@ -39,6 +40,15 @@ export function validateEnv(env: Record<string, string | undefined> = process.en
 
   if ((env.PAYLOAD_SECRET?.length ?? 0) < 32) {
     console.warn('[env] PAYLOAD_SECRET is shorter than 32 characters; rotate it to a longer value')
+  }
+
+  if (env.TOTP_ENC_KEY && Buffer.from(env.TOTP_ENC_KEY, 'base64').length !== 32) {
+    console.warn(
+      '[env] TOTP_ENC_KEY must be 32 random bytes, base64-encoded; admin 2FA enrolment will fail',
+    )
+  }
+  if (env.ADMIN_TOTP_DISABLED === 'true') {
+    console.warn('[env] ADMIN_TOTP_DISABLED=true: admin two-factor authentication is switched off')
   }
 
   const missing = recommended.filter((key) => !env[key])

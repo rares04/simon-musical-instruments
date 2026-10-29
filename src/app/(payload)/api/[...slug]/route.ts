@@ -40,14 +40,25 @@ const isMethodOverride = (req: Request) =>
 async function isAdminRequest(req: Request) {
   const payload = await getPayload({ config })
   const { user } = await payload.auth({ headers: req.headers })
-  return hasAdminRole(user)
+  if (!hasAdminRole(user)) return false
+  // Admin 2FA: an enrolled admin counts only once this session has entered a code.
+  const { hasTotp, _strategy } = user as { hasTotp?: boolean; _strategy?: string }
+  return !hasTotp || _strategy === 'totp'
 }
 const forbidden = () =>
   Response.json({ errors: [{ message: 'Query filters are not allowed.' }] }, { status: 403 })
 const notFound = () => Response.json({ errors: [{ message: 'Not found' }] }, { status: 404 })
 
-// Payload's auth endpoints are rate-limited per IP.
-const AUTH_ENDPOINTS = new Set(['users/login', 'users/first-register', 'users/unlock'])
+// Payload's auth endpoints, and admin 2FA's code endpoints, are rate-limited per IP. The 2FA plugin
+// also locks an account after too many wrong codes, like passwords.
+const AUTH_ENDPOINTS = new Set([
+  'users/login',
+  'users/first-register',
+  'users/unlock',
+  'setup-totp',
+  'verify-totp',
+  'remove-totp',
+])
 // Payload has no email adapter, so its own forgot/reset flow can't deliver mail. Customers use
 // /forgot-password; admin passwords are set by another admin in /admin.
 const DISABLED_ENDPOINTS = new Set(['users/forgot-password', 'users/reset-password'])

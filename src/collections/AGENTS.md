@@ -28,6 +28,14 @@ production schema change.
    `isAdminField`, `serverOnlyField`, `hasAdminRole`). Don't inline role checks.
 6. **Uploads**: `media` has an explicit `mimeTypes` allowlist. Don't add SVG, XML, HTML or wildcard
    types.
+7. **Admin 2FA wraps every collection's access** (`payload-totp`, the last plugin in
+   `payload.config.ts`). The wrapper refuses anonymous requests and admins who haven't entered
+   their code yet.
+   - A collection with public `read` must add `custom: publicReadOptOut` (from `src/access/`), as
+     `instruments` and `media` do. Without it, the storefront loses that collection.
+   - Keep the plugin last. Plugins listed after it are not wrapped.
+   - `users.totpSecret` is the plugin's field, encrypted at rest by hooks in `Users.ts`
+     (`src/lib/totp-secret.ts`). Don't read or write it anywhere else.
 
 ## Inventory
 

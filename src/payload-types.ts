@@ -71,6 +71,7 @@ export interface Config {
     media: Media;
     instruments: Instrument;
     orders: Order;
+    'totp-attempts': TotpAttempt;
     'payload-kv': PayloadKv;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
@@ -82,6 +83,7 @@ export interface Config {
     media: MediaSelect<false> | MediaSelect<true>;
     instruments: InstrumentsSelect<false> | InstrumentsSelect<true>;
     orders: OrdersSelect<false> | OrdersSelect<true>;
+    'totp-attempts': TotpAttemptsSelect<false> | TotpAttemptsSelect<true>;
     'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
@@ -185,6 +187,8 @@ export interface User {
         id?: string | null;
       }[]
     | null;
+  totpSecret?: string | null;
+  hasTotp?: boolean | null;
   updatedAt: string;
   createdAt: string;
   email: string;
@@ -393,6 +397,15 @@ export interface Order {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "totp-attempts".
+ */
+export interface TotpAttempt {
+  id: string;
+  attempts: number;
+  lockUntil?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-kv".
  */
 export interface PayloadKv {
@@ -512,6 +525,8 @@ export interface UsersSelect<T extends boolean = true> {
         isDefault?: T;
         id?: T;
       };
+  totpSecret?: T;
+  hasTotp?: T;
   updatedAt?: T;
   createdAt?: T;
   email?: T;
@@ -639,6 +654,15 @@ export interface OrdersSelect<T extends boolean = true> {
   notes?: T;
   updatedAt?: T;
   createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "totp-attempts_select".
+ */
+export interface TotpAttemptsSelect<T extends boolean = true> {
+  id?: T;
+  attempts?: T;
+  lockUntil?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema

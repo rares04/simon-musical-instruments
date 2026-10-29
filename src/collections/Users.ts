@@ -8,6 +8,7 @@ import {
   isAdminOrSelf,
   serverOnlyField,
 } from '@/access'
+import { decryptTotpSecretAfterRead, encryptTotpSecretBeforeChange } from '@/lib/totp-secret'
 
 export const Users: CollectionConfig = {
   slug: 'users',
@@ -33,7 +34,9 @@ export const Users: CollectionConfig = {
     unlock: isAdmin,
   },
   hooks: {
-    beforeChange: [ensureFirstUserIsAdmin],
+    // Admin 2FA (payload-totp, see payload.config.ts): the authenticator secret is encrypted at rest.
+    afterRead: [decryptTotpSecretAfterRead],
+    beforeChange: [ensureFirstUserIsAdmin, encryptTotpSecretBeforeChange],
     beforeLogin: [adminOnlyApiLogin],
   },
   fields: [

@@ -5,6 +5,7 @@ import path from 'path'
 import { buildConfig } from 'payload'
 import { fileURLToPath } from 'url'
 import sharp from 'sharp'
+import { payloadTotp } from 'payload-totp'
 
 import { Users } from './collections/Users'
 import { Media } from './collections/Media'
@@ -114,6 +115,16 @@ export default buildConfig({
         region: process.env.S3_REGION || 'auto',
         forcePathStyle: true, // Required for Supabase Storage
       },
+    }),
+    // Admin 2FA with an authenticator app. Keep it the LAST plugin: it wraps the access of every
+    // collection registered before it (public reads opt out, see src/access). Optional per admin
+    // until `forceSetup` is turned on. ADMIN_TOTP_DISABLED=true is the emergency switch: it keeps
+    // the schema and the enrolments. Secrets are encrypted at rest (src/lib/totp-secret.ts).
+    payloadTotp({
+      collection: 'users',
+      disabled: process.env.ADMIN_TOTP_DISABLED === 'true',
+      forceWhiteBackgroundOnQrCode: true,
+      totp: { issuer: 'Simon Instruments' },
     }),
   ],
 })

@@ -36,7 +36,10 @@ Reghin, Transylvania (Romania's "City of Violins"), founded 2014. Live at
    - Security hardening is required before new feature work. Findings are tracked privately, not in
      this public repo. Ask the maintainer.
 2. **There are two auth systems.**
-   - **Payload auth** protects `/admin`, using the `payload-token` cookie.
+   - **Payload auth** protects `/admin`, using the `payload-token` cookie. Admins who have enrolled
+     also enter an authenticator-app code (`payload-totp`; runbook in
+     `docs/infrastructure-and-operations.md` §6.8). It wraps every collection's access: public reads
+     must opt out (see `src/collections/AGENTS.md`).
    - **Auth.js v5 (`next-auth@5 beta`)** handles the storefront session: a JWT cookie, with Google
      OAuth and email/password.
    - Both use the same Payload `users` collection. See `src/lib/AGENTS.md`.
@@ -169,7 +172,8 @@ public: never push secrets. Full version: `docs/workflow.md`.
 The authoritative list is in `.env.example`. Required in production: `DATABASE_URL`,
 `PAYLOAD_SECRET`, `AUTH_SECRET`, `S3_BUCKET`, `S3_ENDPOINT`, `S3_REGION`, `S3_ACCESS_KEY`,
 `S3_SECRET_KEY`, `RESEND_API_KEY`, `EMAIL_FROM`, `GOOGLE_CLIENT_ID`, `GOOGLE_CLIENT_SECRET`,
-`DEEPL_API_KEY`. Stripe keys are only needed if payments are re-enabled.
+`DEEPL_API_KEY`, `NEXT_PUBLIC_TURNSTILE_SITE_KEY`, `TURNSTILE_SECRET_KEY`, `TOTP_ENC_KEY`. Stripe keys
+are only needed if payments are re-enabled.
 
 ## 9. Known sharp edges (non-security; full list in `docs/known-issues.md`)
 

@@ -1,7 +1,7 @@
 import type { CollectionConfig } from 'payload'
 import { autoTranslateInstrument } from '@/hooks/autoTranslate'
 import { indexNowAfterChange, indexNowAfterDelete } from '@/hooks/indexNow'
-import { anyone, isAdmin } from '@/access'
+import { anyone, isAdmin, publicReadOptOut } from '@/access'
 import { scheduleHoldSweep } from '@/lib/reservations'
 
 export const Instruments: CollectionConfig = {
@@ -28,6 +28,8 @@ export const Instruments: CollectionConfig = {
     update: isAdmin,
     delete: isAdmin,
   },
+  // Public reads stay public with admin 2FA on (see src/access).
+  custom: publicReadOptOut,
   fields: [
     {
       name: 'title',
