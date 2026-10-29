@@ -27,7 +27,7 @@ for a ten-minute orientation. Read the rest in this order:
     of an existing one).
 - **No secrets, customer data or vulnerability details.** The repository is public. Security
   findings are tracked privately by the maintainer.
-- Each `AGENTS.md` in a subdirectory has a `CLAUDE.md` symlink next to it. Edit `AGENTS.md`.
+- Each `AGENTS.md` in a subdirectory has a one-line `CLAUDE.md` (`@AGENTS.md`) next to it. Edit `AGENTS.md`, never `CLAUDE.md`.
 
 ## Glossary
 

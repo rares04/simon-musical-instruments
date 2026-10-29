@@ -1,7 +1,8 @@
 # Simon Musical Instruments: Engineering Guide
 
-> Canonical guide for humans and AI agents working in this repo. `CLAUDE.md` is a symlink to this
-> file. Subdirectories carry their own `AGENTS.md` (+ `CLAUDE.md` symlink) with local rules.
+> Canonical guide for humans and AI agents working in this repo. `CLAUDE.md` imports this
+> file with a one-line `@AGENTS.md` (no symlink). Subdirectories carry their own `AGENTS.md`,
+> each with the same one-line `CLAUDE.md`, for local rules.
 > Last full audit: **2026-10-24**.
 
 ## 1. What this is
