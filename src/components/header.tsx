@@ -102,14 +102,14 @@ export function Header() {
         <div className="container mx-auto px-4 lg:px-8">
           <div className="flex items-center justify-between h-16 lg:h-20">
             {/* Logo */}
-            <Link href="/" className="flex items-center gap-2 cursor-pointer">
-              <div className="text-lg lg:text-xl font-serif font-semibold tracking-tight text-foreground">
+            <Link href="/" className="flex items-center gap-2 cursor-pointer md:shrink-0 md:whitespace-nowrap">
+              <div className="text-lg 2xl:text-xl font-serif font-semibold tracking-tight text-foreground">
                 Simon Musical Instruments
               </div>
             </Link>
 
             {/* Desktop Navigation */}
-            <nav className="hidden md:flex items-center gap-6 lg:gap-8">
+            <nav className="hidden xl:flex items-center gap-4 2xl:gap-8 whitespace-nowrap">
             
               <Link
                 href="/#story"
@@ -135,16 +135,16 @@ export function Header() {
               >
                 {t('contact')}
               </Link>
-              {/* Category pages: wide screens only (xl), so the bar fits in every language, Greek included. */}
+              {/* The full bar only fits from xl in every language (Greek is the longest), so smaller screens get the menu button. */}
               <Link
                 href={categoryPath('cellos', locale)}
-                className="hidden xl:inline text-sm font-medium text-muted-foreground hover:text-foreground transition-colors cursor-pointer"
+                className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors cursor-pointer"
               >
                 {tGallery('cellos')}
               </Link>
               <Link
                 href={categoryPath('doubleBasses', locale)}
-                className="hidden xl:inline text-sm font-medium text-muted-foreground hover:text-foreground transition-colors cursor-pointer"
+                className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors cursor-pointer"
               >
                 {tGallery('contrabasses')}
               </Link>
@@ -226,7 +226,7 @@ export function Header() {
             </nav>
 
             {/* Mobile Menu Button */}
-            <div className="flex items-center gap-2 md:hidden">
+            <div className="flex items-center gap-2 xl:hidden">
               <LanguageSwitcher variant="header" />
               {isAuthenticated && <OrderNotificationDropdown />}
               {!isAuthenticated && (
@@ -254,7 +254,7 @@ export function Header() {
 
       {/* Mobile Navigation Drawer */}
       {mobileMenuOpen && (
-        <div className="md:hidden border-t border-border/60 bg-background/95 backdrop-blur-md">
+        <div className="xl:hidden border-t border-border/60 bg-background/95 backdrop-blur-md">
           <nav className="container mx-auto px-4 py-4 flex flex-col gap-2">
             <Link
               href="/gallery"
