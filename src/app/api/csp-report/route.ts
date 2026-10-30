@@ -29,7 +29,7 @@ function extractReports(body: unknown): Report[] {
 }
 
 /**
- * Collects Content-Security-Policy violation reports (the policy is report-only for now) and
+ * Collects Content-Security-Policy violation reports (the policy is enforced) and
  * logs one line per violation: directive, blocked resource and page, without query strings.
  */
 export async function POST(request: Request) {

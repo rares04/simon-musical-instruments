@@ -79,7 +79,7 @@ Ranked backlog from the 2026-10-24 audit.
 | K-18 | **Weak product identity.** Generic titles ("Cello 4/4" ×10), hand-typed slugs (`Cello-4-4(10)`), alt text "Front" | *live* | Per-locale title templates, auto-slug `{type}-{model}-{year}-{distinguisher}` with `previousSlugs` 308s, required descriptive alt. See `docs/seo/technical-spec.md` §2, §6 (PR B2) |
 | K-19 | **Pages are client components without need.** `hero`, `footer`, `instrument-showcase` and `photos/page.tsx` are fully client. `/photos` has no metadata | *source* | Make them server components, with client islands only for interactivity |
 | K-20 | ~~**No observability.**~~ **Mostly fixed (2026-10-24).** Uptime + SSL/domain monitors and the backup heartbeat are live (Better Stack). Structured logs, server error tracking, business events and cookie-less PostHog analytics are in `src/lib/observability/`. **Open:** the alert channel for error alerts, and wiring events into the reservation/contact/hold-sweep call sites | *live* | See `docs/observability/` |
-| K-21 | **Mostly fixed 2026-10-24**: security headers are set; the CSP runs report-only until violation reports are clean, then switch to enforcing | *live* | Watch `csp:` log lines, then rename the header to `Content-Security-Policy` |
+| K-21 | **Fixed 2026-10-30**: security headers are set and the CSP is enforced (report-only from 2026-10-24) | *live* | Watch `csp:` log lines after adding any third-party host |
 
 ## P3: hygiene
 
