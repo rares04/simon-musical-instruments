@@ -218,8 +218,9 @@ flowchart TB
 - **Emails**: only the OTP email is localized. Order, reservation and shipping emails are English.
   Notifications to Paul are Romanian (contact form) or English (reservations).
 - **Fonts** (`[locale]/layout.tsx`):
-  - Inter (normal and italic) and Playfair Display are loaded with `next/font`, latin subset. A
-    separate Playfair italic face is not preloaded. Three font files are preloaded per page.
+  - Inter and Playfair Display are loaded with `next/font`, latin subset. The Inter and Playfair
+    italic faces are separate and not preloaded, so pages without italic text never fetch them. Two
+    font files are preloaded per page.
   - The `next/font` variables (`--font-inter`, `--font-playfair`) feed the `@theme` stacks
     `--font-sans` and `--font-serif` in `globals.css`. The names must match.
   - There is no CJK web font: `/ja` and `/ko` use the OS CJK fonts, picked through `<html lang>`.

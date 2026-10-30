@@ -11,8 +11,10 @@ import '../globals.css'
 
 // Variable names must match the `@theme` font stacks in globals.css.
 // `subsets` only controls preloading: other ranges (Romanian ă ș ț, Greek) still load on demand.
-// Inter italic is preloaded because the footer quote uses it on every page.
-const inter = Inter({ subsets: ['latin'], style: ['normal', 'italic'], variable: '--font-inter' })
+const inter = Inter({ subsets: ['latin'], variable: '--font-inter' })
+// Same family name, so the browser pairs this with inter. Not preloaded: only the testimonials and
+// a few other lines are italic, so pages without them never fetch it.
+const interItalic = Inter({ style: 'italic', preload: false, variable: '--font-inter-italic' })
 // Playfair has no Greek glyphs. Without the metric-adjusted Times fallback, Greek headings fall
 // through to the regular serif stack instead of an enlarged Times New Roman.
 const playfair = Playfair_Display({
@@ -72,7 +74,7 @@ export default async function LocaleLayout({
   const messages = await getMessages()
 
   return (
-    <html lang={locale} className={cn(inter.variable, playfair.variable, playfairItalic.variable)}>
+    <html lang={locale} className={cn(inter.variable, interItalic.variable, playfair.variable, playfairItalic.variable)}>
       <body className="min-h-screen bg-background font-sans antialiased" suppressHydrationWarning>
         <NextIntlClientProvider messages={messages}>
           <ClientProviders>

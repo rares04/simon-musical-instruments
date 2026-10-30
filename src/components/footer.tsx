@@ -31,7 +31,7 @@ export function Footer() {
             <p className="text-muted-foreground text-sm leading-relaxed max-w-md text-pretty">
               {t('tagline')}
             </p>
-            <p className="text-xs text-muted-foreground italic">&quot;{t('quote')}&quot;</p>
+            <p className="text-xs text-muted-foreground">&quot;{t('quote')}&quot;</p>
 
             {/* Social Media Links */}
             <div className="flex gap-4 pt-2">
