@@ -24,7 +24,7 @@ export default defineRailway(() => {
       restartPolicyMaxRetries: 10,
     },
     replicas: { [REGION]: 1 },
-    domains: ['simoninstruments.com'],
+    domains: ['simoninstruments.com', 'www.simoninstruments.com'],
     // Turned on by hand on 2026-10-24; media images rely on edge caching.
     cdn: { enabled: true },
   })
