@@ -139,7 +139,7 @@ Cloudflare isn't needed for caching, because Railway's own edge CDN is free (see
 | `BACKUP_DATABASE_URL` | `db-backup` only | `ops/backup/backup.sh` | The read-only `simon_backup` role. The job's `DATABASE_URL` references it |
 | `HEARTBEAT_URL` | `db-backup` only | `ops/backup/backup.sh` | Better Stack heartbeat, pinged after a verified run. Treat as a secret |
 | `NEXT_PUBLIC_TURNSTILE_SITE_KEY`, `TURNSTILE_SECRET_KEY` | yes | `src/components/turnstile-widget.tsx`, `src/lib/turnstile.ts` | Cloudflare Turnstile bot check on sign-up, contact and reservations. The site key is inlined at **build** time. Without the secret, checks are skipped |
-| `TOTP_ENC_KEY` | yes | `src/lib/totp-secret.ts` | Encrypts admins' authenticator secrets (32 random bytes, base64). Not in the database or backups: keep a private copy. Losing or changing it means every admin re-enrols (§6.8) |
+| `TOTP_ENC_KEY` | yes | `src/lib/totp-secret.ts` | Encrypts admins' authenticator secrets (32 random bytes, base64). Not in the database or backups; the owner keeps a copy in his password manager. Losing or changing it means every admin re-enrols (§6.8) |
 | `ADMIN_TOTP_DISABLED` | no | `src/payload.config.ts` | Emergency switch: `true` turns admin 2FA off without removing enrolments (§6.8) |
 | `STRIPE_SECRET_KEY`, `NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY` | no (disabled) | dead code | |
 | `NEXTAUTH_URL` / `AUTH_URL` | no | Auth.js | `trustHost: true` derives the URL from the request |
@@ -248,18 +248,17 @@ Authenticator, Microsoft Authenticator, 1Password, …). It uses the `payload-to
 are not affected: they never get an admin session.
 
 - **Enrol**: `/admin` → your account (top right) → "Authenticator app" → **Setup**. Scan the QR code
-  with the app and enter the code it shows. Save the **setup key** (the text under the QR code) in a
-  safe place agreed with the maintainer. It is the backup: it lets you add the account to a new
-  phone.
+  with the app and enter the code it shows. Setup keys (the text under the QR code) are **not**
+  stored anywhere: a lost phone is handled by a reset (below), not by a backup copy.
 - **Sign in**: password first, then the current code. A session that has entered its code stays
   valid for the admin session's lifetime.
 - **Wrong codes**: after 5 wrong codes the account is locked for 10 minutes, like wrong passwords.
   Another admin can lift it with **Force Unlock** on the locked user's page.
-- **Lost phone, setup key saved**: add the account to the new phone from the setup key. Nothing
-  else changes.
-- **Lost phone, no setup key**: the maintainer clears that admin's 2FA in the database (script in the
-  private ops folder; it's a production write and needs the owner's OK). The admin then signs in
-  with the password only and enrols again.
+- **Lost or replaced phone**: the maintainer clears that admin's 2FA in the database (script in the
+  private ops folder; it's a production write and needs the owner's OK each time). Other admins
+  can't do this from `/admin`: the plugin only lets you remove your own 2FA, with a current code.
+  The admin then signs in with the password only and enrols again on the new phone. A phone moved
+  with the authenticator app's own transfer or cloud backup needs no reset.
 - **Everyone is refused a correct code** (and the logs show `totp: an authenticator secret could not
   be decrypted`): `TOTP_ENC_KEY` is missing or wrong. Restore the right value. If it is lost,
   clear every admin's 2FA as above and re-enrol.
