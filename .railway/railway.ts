@@ -25,6 +25,8 @@ export default defineRailway(() => {
     },
     replicas: { [REGION]: 1 },
     domains: ['simoninstruments.com'],
+    // Turned on by hand on 2026-10-24; media images rely on edge caching.
+    cdn: { enabled: true },
   })
 
   const dbBackup = service('db-backup', {
