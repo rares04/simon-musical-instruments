@@ -1,5 +1,6 @@
 import { withPayload } from '@payloadcms/next/withPayload'
 import createNextIntlPlugin from 'next-intl/plugin'
+import { securityHeaders } from './security-headers.mjs'
 
 const withNextIntl = createNextIntlPlugin('./src/i18n/request.ts')
 
@@ -24,42 +25,8 @@ const legacyRedirects = [
   ),
 ]
 
-// Security headers (see SECURITY.md). The CSP is enforced. Violations are blocked and also sent to
-// /api/csp-report, which logs them. Adding a third-party script, image, frame or API? Add its
-// host to the matching directive below, or the browser will block it.
-const CSP = [
-  "default-src 'self'",
-  // Next.js inlines hydration scripts; Turnstile and PostHog load their own scripts.
-  "script-src 'self' 'unsafe-inline' https://challenges.cloudflare.com https://eu-assets.i.posthog.com",
-  "style-src 'self' 'unsafe-inline'",
-  // Google profile pictures are shown unoptimized in the header.
-  "img-src 'self' data: blob: https://*.googleusercontent.com",
-  "font-src 'self' data:",
-  "media-src 'self' blob:",
-  "connect-src 'self' https://eu.i.posthog.com https://eu-assets.i.posthog.com https://challenges.cloudflare.com",
-  // Turnstile widget and the Google Maps embed on /contact.
-  'frame-src https://challenges.cloudflare.com https://www.google.com',
-  "worker-src 'self' blob:",
-  "object-src 'none'",
-  "base-uri 'self'",
-  // Google sign-in posts to Auth.js, which redirects to accounts.google.com.
-  "form-action 'self' https://accounts.google.com",
-  "frame-ancestors 'none'",
-  'report-uri /api/csp-report',
-].join('; ')
-
-const securityHeaders = [
-  { key: 'Strict-Transport-Security', value: 'max-age=15552000' },
-  { key: 'X-Content-Type-Options', value: 'nosniff' },
-  { key: 'X-Frame-Options', value: 'DENY' },
-  { key: 'Referrer-Policy', value: 'strict-origin-when-cross-origin' },
-  {
-    key: 'Permissions-Policy',
-    value: 'camera=(), microphone=(), geolocation=(), payment=(), usb=(), browsing-topics=()',
-  },
-  { key: 'Cross-Origin-Opener-Policy', value: 'same-origin-allow-popups' },
-  { key: 'Content-Security-Policy', value: CSP },
-]
+// Security headers, including the enforced CSP: see security-headers.mjs.
+const headers = securityHeaders(process.env.NODE_ENV)
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
@@ -71,7 +38,7 @@ const nextConfig = {
       process.env.NEXT_PUBLIC_APP_VERSION || process.env.RAILWAY_GIT_COMMIT_SHA || '',
   },
   async headers() {
-    return [{ source: '/:path*', headers: securityHeaders }]
+    return [{ source: '/:path*', headers }]
   },
   async redirects() {
     return legacyRedirects
