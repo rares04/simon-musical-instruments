@@ -66,6 +66,11 @@ export default buildConfig({
     : {}),
   admin: {
     user: Users.slug,
+    // No Gravatar: it would send a hash of each admin's email to a third party on every page.
+    avatar: 'default',
+    // No generated Open Graph image (it pointed at the container's internal host); this also
+    // turns off Payload's /api/og endpoint.
+    meta: { defaultOGImageType: 'off' },
     importMap: {
       baseDir: path.resolve(dirname),
     },

@@ -275,9 +275,10 @@ privately.
 - **Headers** (`next.config.mjs` → `headers()`): HSTS (6 months, apex only: mail subdomains are
   Hostinger/Resend, so no `includeSubDomains`, no `preload`), `nosniff`,
   `X-Frame-Options: DENY`, `Referrer-Policy: strict-origin-when-cross-origin`, a restrictive
-  `Permissions-Policy` and COOP. The CSP runs in **report-only** mode; violations are logged by
-  `/api/csp-report` (`csp: <directive> blocked <url> on <page>`). Enforce it once the reports are
-  clean. `x-powered-by` is off.
+  `Permissions-Policy` and COOP. The CSP is **enforced** (since 2026-10-30, after 6 days of
+  clean report-only data). Violations are blocked and logged by `/api/csp-report`
+  (`csp: <directive> blocked <url> on <page>`). A new third-party host must be added to
+  `next.config.mjs` first. `x-powered-by` is off.
 - **Database**: row-level security is on for every `public` table, and the Supabase `anon` and
   `authenticated` roles have no grants. Payload's role owns the tables and isn't affected.
 - **Abuse controls**: rate limiting and bot protection for public forms are tracked in the private

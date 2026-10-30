@@ -24,8 +24,9 @@ const legacyRedirects = [
   ),
 ]
 
-// Security headers (see SECURITY.md). The CSP starts in report-only mode: violations are sent to
-// /api/csp-report and logged, and nothing is blocked until the reports are clean.
+// Security headers (see SECURITY.md). The CSP is enforced. Violations are blocked and also sent to
+// /api/csp-report, which logs them. Adding a third-party script, image, frame or API? Add its
+// host to the matching directive below, or the browser will block it.
 const CSP = [
   "default-src 'self'",
   // Next.js inlines hydration scripts; Turnstile and PostHog load their own scripts.
@@ -57,7 +58,7 @@ const securityHeaders = [
     value: 'camera=(), microphone=(), geolocation=(), payment=(), usb=(), browsing-topics=()',
   },
   { key: 'Cross-Origin-Opener-Policy', value: 'same-origin-allow-popups' },
-  { key: 'Content-Security-Policy-Report-Only', value: CSP },
+  { key: 'Content-Security-Policy', value: CSP },
 ]
 
 /** @type {import('next').NextConfig} */
