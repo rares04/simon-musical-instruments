@@ -20,8 +20,8 @@ export default defineRailway(() => {
       startCommand: 'pnpm start',
       healthcheckPath: '/api/health',
       healthcheckTimeout: 300,
-      restartPolicyType: 'ON_FAILURE',
-      restartPolicyMaxRetries: 10,
+      // Restart policy ON_FAILURE x10 is Railway's default. It is left unset on purpose: Railway
+      // stores the default as null, so declaring it makes every plan show a diff that never clears.
     },
     replicas: { [REGION]: 1 },
     domains: ['simoninstruments.com', 'www.simoninstruments.com'],
