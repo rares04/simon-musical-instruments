@@ -81,7 +81,7 @@
     "prettier": "^3.4.2",
     "railway": "3.16.0",
     "tsx": "^4.21.0",
-    "typescript": "5.7.3",
+    "typescript": "5.9.3",
     "vite-tsconfig-paths": "5.1.4",
     "vitest": "4.1.12"
   },
