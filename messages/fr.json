@@ -165,6 +165,12 @@
     },
     "map": {
       "title": "Nous Trouver"
+    },
+    "mapConsent": {
+      "notice": "La carte est fournie par Google. Lorsque vous la chargez, Google reçoit votre adresse IP et peut déposer des cookies.",
+      "load": "Charger la carte",
+      "open": "Ouvrir dans Google Maps",
+      "privacy": "Politique de confidentialité"
     }
   },
   "footer": {
@@ -178,7 +184,10 @@
     "madeIn": "Fabriqué avec amour à Reghin, Roumanie",
     "followInstagram": "Suivez-nous sur Instagram",
     "contactWhatsApp": "Contactez-nous sur WhatsApp",
-    "instruments": "Instruments"
+    "instruments": "Instruments",
+    "legal": "Mentions légales",
+    "privacy": "Politique de confidentialité",
+    "terms": "Conditions générales de vente"
   },
   "common": {
     "loading": "Chargement...",
@@ -836,6 +845,14 @@
         "title": "Contrebasses de luthier à vendre, Roumanie",
         "description": "Contrebasses 3/4 fabriquées à la main par Paul et Ecaterina Simon à Reghin, en Roumanie. Modèles : {models}. Photos, extraits sonores et prix."
       }
+    },
+    "privacy": {
+      "title": "Politique de confidentialité",
+      "description": "Quelles données personnelles Simon Musical Instruments collecte, pourquoi, qui les traite, combien de temps nous les conservons et comment exercer vos droits."
+    },
+    "terms": {
+      "title": "Conditions générales de vente",
+      "description": "Comment fonctionnent la réservation, le paiement, la livraison, la rétractation et la garantie légale lorsque vous achetez un instrument fait main dans notre atelier de Reghin."
     }
   },
   "categoryPage": {
@@ -917,6 +934,272 @@
           "answer": "La table est en épicéa roumain à grain fin. Le fond et les éclisses sont en {woods}, selon l'instrument. La page de chaque contrebasse indique le bois, les cordes et les dimensions."
         }
       }
+    }
+  },
+  "legal": {
+    "common": {
+      "lastUpdated": "Dernière mise à jour : {date}",
+      "pending": "[à compléter]",
+      "contents": "Sommaire",
+      "seeAlso": "Voir aussi"
+    },
+    "privacy": {
+      "title": "Politique de confidentialité",
+      "intro": "La présente politique explique quelles données à caractère personnel nous collectons lorsque vous utilisez simoninstruments.com, pourquoi nous les collectons, qui les traite pour notre compte, combien de temps nous les conservons et de quels droits vous disposez. Nous collectons le moins de données possible.",
+      "sections": [
+        {
+          "id": "controller",
+          "title": "Qui sommes-nous",
+          "body": [
+            "Le responsable du traitement de vos données à caractère personnel est {legalName}, {address}, numéro de TVA {vat}, n° d’immatriculation au registre du commerce {regCom} (« nous »). Nous sommes un petit atelier de lutherie dirigé par Paul et Ecaterina Simon.",
+            "Pour toute question concernant vos données, écrivez-nous à {email} ou appelez-nous au {phone}. Nous n’avons pas désigné de délégué à la protection des données, car la loi ne l’exige pas pour une entreprise de notre taille et de notre activité."
+          ]
+        },
+        {
+          "id": "data",
+          "title": "Quelles données nous collectons et pourquoi",
+          "body": [
+            [
+              "Compte. Lors de votre inscription : votre nom, votre adresse e-mail et votre mot de passe (nous ne conservons qu’une empreinte irréversible (hachage) du mot de passe, jamais le mot de passe lui-même). Si vous vous connectez avec Google : le nom, l’adresse e-mail, la photo de profil et l’identifiant de compte que Google nous transmet. Facultativement, le numéro de téléphone et les adresses que vous ajoutez à votre profil. Finalité : vous fournir un compte dans lequel vous pouvez consulter vos réservations. Base juridique : le contrat conclu avec vous (art. 6, paragraphe 1, point b), du RGPD).",
+              "Confirmation de l’adresse e-mail. Un code à 6 chiffres que nous vous envoyons par e-mail pour confirmer votre adresse ou réinitialiser votre mot de passe. Il expire au bout de {otpMinutes} minutes et est supprimé dès qu’il a été utilisé. Base juridique : le contrat (art. 6, paragraphe 1, point b), du RGPD).",
+              "Réservations. Votre nom, votre adresse e-mail, votre numéro de téléphone, le choix entre livraison et retrait, l’adresse de livraison, les instruments réservés et leurs prix, vos remarques et le suivi de la commande (paiement, expédition, numéro de suivi). Vous pouvez réserver avec ou sans compte. Finalité : traiter votre réservation, organiser le paiement et la livraison, et conserver les documents exigés par la loi. Bases juridiques : le contrat (art. 6, paragraphe 1, point b), du RGPD) et nos obligations légales en matière comptable et fiscale (art. 6, paragraphe 1, point c), du RGPD).",
+              "Formulaire de contact. Votre nom, votre adresse e-mail, votre numéro de téléphone (facultatif), l’objet et le message. Ils sont envoyés par e-mail à la boîte de réception de notre atelier et ne sont pas enregistrés dans la base de données du site. Finalité : vous répondre. Base juridique : les mesures précontractuelles prises à votre demande (art. 6, paragraphe 1, point b), du RGPD) ou notre intérêt légitime à répondre aux demandes (art. 6, paragraphe 1, point f), du RGPD).",
+              "Sécurité. Pour bloquer les abus automatisés, les formulaires d’inscription, de réinitialisation du mot de passe, de réservation et de contact utilisent Cloudflare Turnstile, qui vérifie des signaux techniques provenant de votre navigateur, tels que votre adresse IP et les caractéristiques de votre navigateur. Nos serveurs conservent également des journaux techniques de courte durée (adresse IP, heure, page demandée, erreurs). Base juridique : notre intérêt légitime à assurer la sécurité du site et de votre compte (art. 6, paragraphe 1, point f), du RGPD).",
+              "Statistiques de visite. Nous utilisons PostHog, hébergé dans l’UE, pour compter les visites et voir quelles pages fonctionnent bien. Il n’enregistre rien sur votre appareil (ni cookies, ni stockage local) et ne vous identifie pas : chaque chargement de page reçoit un nouvel identifiant aléatoire, le texte des pages et le contenu des formulaires ne sont pas enregistrés, et seul votre pays est déduit de votre adresse IP, qui est ensuite supprimée. Base juridique : notre intérêt légitime à comprendre comment le site est utilisé (art. 6, paragraphe 1, point f), du RGPD). Vous pouvez vous y opposer à tout moment (voir « Vos droits »).",
+              "Surveillance de la disponibilité. Better Stack vérifie depuis l’extérieur que le site est en ligne. Ce service ne traite aucune donnée concernant les visiteurs."
+            ],
+            "Nous ne vendons pas vos données, nous ne les utilisons pas à des fins publicitaires ou de profilage, et nous ne prenons aucune décision vous concernant sur le seul fondement d’un traitement automatisé.",
+            "La communication de vos données est facultative. Sans votre nom, votre adresse e-mail et, pour une livraison, votre adresse et votre numéro de téléphone, nous ne pouvons pas traiter une réservation."
+          ]
+        },
+        {
+          "id": "recipients",
+          "title": "Qui reçoit vos données",
+          "body": [
+            "Nous ne communiquons des données qu’aux prestataires qui exploitent le site pour notre compte (sous-traitants), uniquement dans la mesure où elles leur sont nécessaires, et en vertu de contrats qui les obligent à les protéger :",
+            [
+              "Supabase : base de données et stockage de fichiers, serveurs en Irlande (UE).",
+              "Railway : hébergement du site, serveurs aux Pays-Bas (UE).",
+              "Resend : envoi des e-mails, tels que les codes de confirmation et les avis de réservation.",
+              "Hostinger : la boîte de réception de notre atelier, qui reçoit vos messages et les avis de réservation.",
+              "Cloudflare : protection Turnstile contre les abus automatisés.",
+              "PostHog : statistiques de visite qui ne vous identifient pas, serveurs dans l’UE."
+            ],
+            "Google agit en tant que responsable du traitement distinct, conformément à sa propre politique de confidentialité (https://policies.google.com/privacy), et uniquement si vous choisissez de vous connecter avec Google ou de charger la carte sur la page de contact.",
+            "DeepL traduit les descriptions de nos instruments. Il ne reçoit aucune donnée à caractère personnel.",
+            "Lorsque nous expédions un instrument, nous communiquons au transporteur le nom, l’adresse et le numéro de téléphone nécessaires à la livraison. Nous ne communiquons des données aux autorités publiques que lorsque la loi l’exige."
+          ]
+        },
+        {
+          "id": "transfers",
+          "title": "Transferts hors de l’UE",
+          "body": [
+            "Notre base de données et notre site fonctionnent sur des serveurs situés dans l’UE. Certains prestataires (par exemple Supabase, Railway, Resend, Cloudflare et Google) sont des sociétés établies aux États-Unis et peuvent accéder à des données depuis ce pays, par exemple pour acheminer des e-mails ou fournir une assistance. Ces transferts sont encadrés par le cadre de protection des données UE-États-Unis (EU-U.S. Data Privacy Framework), lorsque le prestataire est certifié à ce titre, ou par les clauses contractuelles types approuvées par la Commission européenne."
+          ]
+        },
+        {
+          "id": "retention",
+          "title": "Combien de temps nous conservons vos données",
+          "body": [
+            [
+              "Compte : tant que votre compte existe. Vous pouvez nous demander de le supprimer à tout moment.",
+              "Codes de confirmation : au maximum {otpMinutes} minutes.",
+              "Réservations : une réservation non payée est annulée automatiquement au bout de {holdHours} heures. Nous conservons les commandes et les documents associés aussi longtemps que l’exige le droit comptable et fiscal roumain (pour certains documents comptables, jusqu’à 10 ans). Les documents qui ne relèvent pas de ce droit sont conservés pendant 3 ans après la finalisation ou l’annulation de la commande, afin que nous puissions traiter toute réclamation.",
+              "Messages de contact : aussi longtemps que nécessaire pour vous répondre et assurer le suivi, puis nous les supprimons, au plus tard au bout de 3 ans.",
+              "Journaux des serveurs : au maximum 30 jours.",
+              "Statistiques de visite : elles ne vous identifient pas."
+            ]
+          ]
+        },
+        {
+          "id": "cookies",
+          "title": "Cookies et stockage dans le navigateur",
+          "body": [
+            "Nous n’utilisons que les cookies et le stockage dans le navigateur nécessaires au fonctionnement du site ; c’est pourquoi nous ne vous demandons pas votre consentement. Nous n’utilisons pas de cookies publicitaires ou de traçage.",
+            [
+              "NEXT_LOCALE (cookie) : mémorise votre langue. Supprimé à la fermeture du navigateur.",
+              "authjs.session-token (cookie) : vous maintient connecté. Conservé jusqu’à 30 jours, ou jusqu’à votre déconnexion.",
+              "authjs.csrf-token et authjs.callback-url (cookies) : protègent le formulaire de connexion et vous ramènent à la page d’où vous veniez. Supprimés à la fermeture du navigateur.",
+              "payload-token (cookie) : utilisé uniquement par les administrateurs de l’atelier.",
+              "construction-notice-dismissed (stockage local) : mémorise que vous avez fermé le bandeau d’information en haut du site.",
+              "loginEmail (stockage de session) : pré-remplit votre adresse e-mail sur la page de connexion après votre inscription ou la réinitialisation de votre mot de passe. Supprimé à la fermeture de l’onglet."
+            ],
+            "Sur les formulaires mentionnés ci-dessus, Cloudflare Turnstile effectue une vérification dans votre navigateur. Google ne dépose ses propres cookies que si vous vous connectez avec Google ou choisissez de charger la carte.",
+            "Si nous ajoutons un jour des cookies facultatifs, par exemple à des fins publicitaires, nous vous demanderons d’abord votre consentement et mettrons à jour la présente politique."
+          ]
+        },
+        {
+          "id": "rights",
+          "title": "Vos droits",
+          "body": [
+            "En vertu du RGPD, vous disposez d’un droit d’accès à vos données, d’un droit de rectification ou d’effacement, d’un droit à la limitation du traitement, d’un droit à la portabilité de vos données et d’un droit d’opposition au traitement fondé sur notre intérêt légitime, y compris pour les statistiques de visite. Lorsque le traitement repose sur votre consentement, vous pouvez le retirer à tout moment.",
+            "Pour exercer l’un de ces droits, écrivez-nous à {email}. Nous vous répondons dans un délai d’un mois. Nous pouvons d’abord vous demander de confirmer votre identité.",
+            "Vous avez également le droit d’introduire une réclamation auprès de l’autorité roumaine de protection des données, l’ANSPDCP (Autoritatea Națională de Supraveghere a Prelucrării Datelor cu Caracter Personal), Bd. G-ral. Gheorghe Magheru 28-30, sector 1, 010336 București, https://www.dataprotection.ro, ou auprès de l’autorité du pays de l’UE où vous résidez."
+          ]
+        },
+        {
+          "id": "security",
+          "title": "Comment nous protégeons vos données",
+          "body": [
+            "Le site est servi uniquement via une connexion chiffrée (HTTPS), les mots de passe ne sont conservés que sous forme d’empreintes irréversibles (hachages), et l’accès à l’espace d’administration est réservé à l’atelier et aux personnes qui assurent la maintenance du site pour son compte."
+          ]
+        },
+        {
+          "id": "children",
+          "title": "Enfants",
+          "body": [
+            "Le site ne s’adresse pas aux enfants de moins de 16 ans, et nous ne collectons pas sciemment leurs données. Les réservations ne peuvent être effectuées que par des personnes majeures."
+          ]
+        },
+        {
+          "id": "changes",
+          "title": "Modifications de la présente politique",
+          "body": [
+            "Lorsque nous modifions la présente politique, nous publions la nouvelle version sur cette page et mettons à jour la date indiquée en haut. Si une modification est importante, nous en informons également les titulaires d’un compte par e-mail."
+          ]
+        }
+      ]
+    },
+    "terms": {
+      "title": "Conditions générales de vente",
+      "intro": "Les présentes conditions s’appliquent à l’utilisation de simoninstruments.com ainsi qu’aux réservations et achats d’instruments effectués par son intermédiaire. Veuillez les lire avant de réserver. Si vous êtes un consommateur, aucune disposition des présentes conditions ne limite les droits que la loi vous accorde.",
+      "sections": [
+        {
+          "id": "seller",
+          "title": "Le vendeur",
+          "body": [
+            "Le vendeur est {legalName}, {address}, numéro de TVA {vat}, n° d’immatriculation au registre du commerce {regCom}. E-mail : {email}. Téléphone : {phone}.",
+            "Nous fabriquons et vendons des instruments à cordes frottées faits main dans notre atelier de Reghin."
+          ]
+        },
+        {
+          "id": "instruments",
+          "title": "Les instruments",
+          "body": [
+            "Chaque instrument est achevé, fait main et unique. Nous décrivons et photographions chacun d’eux aussi fidèlement que possible. Les variations naturelles du bois, de la couleur et du vernis font partie d’un instrument fait main et ne constituent pas des défauts. Les couleurs peuvent apparaître différemment sur votre écran.",
+            "Chaque instrument est accompagné d’un certificat d’authenticité signé.",
+            "Les instruments fabriqués selon vos propres spécifications (commandes sur mesure) font l’objet d’un accord distinct, écrit, et les présentes conditions ne s’y appliquent que dans la mesure où cet accord y renvoie."
+          ]
+        },
+        {
+          "id": "prices",
+          "title": "Prix",
+          "body": [
+            "Les prix sont indiqués en euros (EUR) et sont des prix définitifs, TVA comprise lorsqu’elle s’applique. Le prix applicable est celui affiché au moment de la réservation.",
+            "Les instruments affichés avec la mention « prix sur demande » ne peuvent pas être réservés en ligne. Veuillez nous contacter à leur sujet.",
+            "Les frais de livraison éventuels, ainsi que les modalités d’assurance de l’instrument pendant le transport, vous sont confirmés par écrit avant le paiement."
+          ]
+        },
+        {
+          "id": "reservation",
+          "title": "Comment fonctionne une réservation",
+          "body": [
+            [
+              "Choisissez un instrument, ajoutez-le à votre panier et remplissez le formulaire de réservation, en choisissant la livraison à votre adresse ou le retrait dans notre atelier. Vous pouvez réserver avec ou sans compte.",
+              "Avant d’envoyer le formulaire, vous pouvez vérifier et corriger vos informations. L’envoi du formulaire constitue une demande de réservation : vous n’êtes pas encore tenu d’acheter et vous ne payez rien à ce stade.",
+              "Nous accusons réception immédiatement par e-mail. L’instrument vous est alors réservé et apparaît comme réservé sur le site.",
+              "Nous vous contactons sous 1 à 2 jours ouvrés pour convenir des modalités du paiement et de la livraison ou du retrait.",
+              "Une réservation non payée expire automatiquement au bout de {holdHours} heures, sauf accord contraire avec vous, et l’instrument est remis en vente. Vous pouvez annuler gratuitement une réservation à tout moment avant le paiement, en nous écrivant.",
+              "Vous pouvez avoir au maximum 2 réservations en attente de paiement en même temps."
+            ],
+            "En cas de livraison, le contrat de vente est conclu lorsque nous vous le confirmons par écrit, par e-mail, avec le prix définitif et les coordonnées de paiement. En cas de retrait, le contrat est conclu dans notre atelier, lorsque vous voyez l’instrument et le payez ; si vous payez à l’avance, avant de le voir, le contrat est conclu comme en cas de livraison.",
+            "Nous pouvons refuser une réservation, par exemple si l’instrument a été vendu entre-temps ou si son annonce contient une erreur manifeste. Dans ce cas, nous vous en informons sans délai et vous ne payez rien.",
+            "Le contrat est conclu en roumain ou en anglais. Nous conservons une trace de votre réservation et vous en envoyons le détail par e-mail."
+          ]
+        },
+        {
+          "id": "payment",
+          "title": "Paiement",
+          "body": [
+            "Nous n’acceptons pas de paiement en ligne. En cas de livraison, vous payez par virement bancaire sur le compte que nous vous communiquons par écrit. En cas de retrait, vous pouvez payer par virement bancaire avant le retrait, ou en espèces à l’atelier dans les limites fixées par la loi roumaine.",
+            "Nous n’expédions l’instrument qu’après réception du paiement intégral sur notre compte. Vous en devenez propriétaire dès que le prix a été intégralement payé."
+          ]
+        },
+        {
+          "id": "delivery",
+          "title": "Livraison et retrait",
+          "body": [
+            "Nous emballons chaque instrument de manière professionnelle et le livrons à l’adresse que vous nous indiquez, par un service de messagerie ou de fret de notre choix. Le mode de livraison, les frais, l’assurance et la date estimée vous sont confirmés par écrit avant le paiement. Sauf accord contraire, nous livrons dans un délai de 30 jours à compter de la réception de votre paiement.",
+            "Le risque de perte ou d’endommagement vous est transféré lorsque vous-même, ou un tiers désigné par vous autre que le transporteur, prenez possession de l’instrument. Veuillez vérifier le colis à la livraison et signaler au transporteur tout dommage visible.",
+            "Le retrait se fait sur rendez-vous dans notre atelier, {address}. Nous convenons avec vous de la date et de l’heure."
+          ]
+        },
+        {
+          "id": "withdrawal",
+          "title": "Droit de rétractation (instruments livrés)",
+          "body": [
+            "Si vous êtes un consommateur et que nous vous livrons l’instrument, vous disposez d’un délai de 14 jours pour exercer votre droit de rétractation du contrat sans donner de motif. Le délai de rétractation expire 14 jours après le jour où vous-même, ou un tiers désigné par vous autre que le transporteur, prenez physiquement possession de l’instrument.",
+            "Pour exercer votre droit de rétractation, vous devez nous notifier votre décision au moyen d’une déclaration dénuée d’ambiguïté, par e-mail à {email} ou par courrier postal à {address}, avant l’expiration du délai de rétractation. Vous pouvez utiliser le modèle de formulaire de rétractation ci-dessous, mais ce n’est pas obligatoire.",
+            "En cas de rétractation, nous vous remboursons tous les paiements reçus de vous, y compris les frais de livraison standard, sans retard excessif et au plus tard 14 jours à compter du jour où nous sommes informés de votre décision. Nous procédons au remboursement en utilisant le même moyen de paiement que celui que vous avez utilisé, sauf accord exprès contraire, et ce remboursement n’occasionne aucuns frais pour vous. Nous pouvons différer le remboursement jusqu’à ce que nous ayons récupéré l’instrument, ou jusqu’à ce que vous ayez fourni une preuve de son expédition, la date retenue étant celle du premier de ces faits. Si vous avez choisi un mode de livraison plus coûteux que la livraison standard que nous proposions, nous ne vous remboursons pas la différence.",
+            "Veuillez nous renvoyer l’instrument à notre atelier, {address}, sans retard excessif et au plus tard 14 jours après nous avoir communiqué votre rétractation. Les frais directs de renvoi sont à votre charge. En raison de leur taille, les instruments ne peuvent pas être renvoyés par la poste ordinaire ; nous vous communiquons une estimation des frais de renvoi dans notre confirmation écrite, avant la conclusion du contrat.",
+            "Votre responsabilité n’est engagée qu’à l’égard de la dépréciation de l’instrument résultant de manipulations autres que celles nécessaires pour établir sa nature, ses caractéristiques et son bon fonctionnement. Vous pouvez le déballer, l’examiner et en jouer avec précaution, comme vous pourriez le faire dans un magasin. Veuillez le renvoyer dans son emballage d’origine, bien protégé.",
+            "Si vous voyez l’instrument dans notre atelier et l’y achetez, le contrat est conclu dans nos locaux et ce droit de rétractation ne s’applique pas. Si vous payez à l’avance et retirez l’instrument plus tard, le droit de rétractation s’applique comme en cas de livraison, et le délai de 14 jours court à compter du jour où vous le retirez."
+          ]
+        },
+        {
+          "id": "withdrawal-form",
+          "title": "Modèle de formulaire de rétractation",
+          "body": [
+            "Veuillez compléter et renvoyer le présent formulaire uniquement si vous souhaitez vous rétracter du contrat.",
+            [
+              "À l’attention de : {legalName}, {address}, {email}",
+              "Je/Nous (*) vous notifie/notifions (*) par la présente ma/notre (*) rétractation du contrat portant sur la vente du bien (*)/pour la prestation de services (*) ci-dessous :",
+              "Commandé le (*)/reçu le (*) :",
+              "Nom du (des) consommateur(s) :",
+              "Adresse du (des) consommateur(s) :",
+              "Signature du (des) consommateur(s) (uniquement en cas de notification du présent formulaire sur papier) :",
+              "Date :"
+            ],
+            "(*) Rayez la mention inutile."
+          ]
+        },
+        {
+          "id": "guarantee",
+          "title": "Garantie légale de conformité",
+          "body": [
+            "Si vous êtes un consommateur, nous répondons de tout défaut de conformité qui existe lors de la livraison de l’instrument et qui apparaît dans un délai de deux ans. Dans ce cas, vous avez droit, dans les conditions prévues par la loi, à la réparation ou au remplacement de l’instrument, à une réduction du prix ou à la résolution du contrat. Chaque instrument étant unique, son remplacement par un instrument identique n’est pas possible.",
+            "Les évolutions naturelles du bois et du vernis au fil du temps, l’usure normale, ainsi que les dommages causés par un entretien inadapté, l’humidité, la température, des accidents ou des interventions de tiers ne constituent pas un défaut de conformité. Veuillez nous signaler un problème dès que vous le constatez."
+          ]
+        },
+        {
+          "id": "complaints",
+          "title": "Réclamations et litiges",
+          "body": [
+            "En cas de problème, veuillez d’abord nous écrire à {email}. Nous vous répondons aussi rapidement que possible, et au plus tard dans un délai de 30 jours.",
+            "Vous pouvez également vous adresser à l’autorité roumaine de protection des consommateurs, l’ANPC (https://anpc.ro), ou recourir à son service de règlement extrajudiciaire des litiges, SAL (https://anpc.ro/ce-este-sal/). Pour un litige transfrontalier au sein de l’UE, le Centre européen des consommateurs de votre pays peut vous aider (https://www.eccromania.ro en Roumanie)."
+          ]
+        },
+        {
+          "id": "website",
+          "title": "Utilisation du site et de votre compte",
+          "body": [
+            "Veillez à garder votre mot de passe en sécurité et vos informations à jour. Nous pouvons suspendre un compte utilisé pour commettre des abus à l’égard du site ou d’autres clients.",
+            "Les textes, photos, vidéos et enregistrements sonores du site nous appartiennent. Veuillez ne pas les réutiliser sans notre autorisation écrite."
+          ]
+        },
+        {
+          "id": "liability",
+          "title": "Responsabilité",
+          "body": [
+            "Nous ne sommes pas responsables des retards ou des manquements dus à des événements échappant à notre contrôle raisonnable (force majeure). Aucune disposition des présentes conditions ne limite notre responsabilité lorsque la loi ne permet pas de la limiter."
+          ]
+        },
+        {
+          "id": "law",
+          "title": "Droit applicable et juridictions compétentes",
+          "body": [
+            "Les présentes conditions sont régies par le droit roumain. Si vous êtes un consommateur résidant dans un autre pays, vous conservez la protection que vous assurent les dispositions impératives de la loi du pays où vous résidez.",
+            "Les litiges sont tranchés par les juridictions roumaines compétentes. En tant que consommateur, vous pouvez également saisir les juridictions du pays où vous résidez."
+          ]
+        },
+        {
+          "id": "changes",
+          "title": "Modifications des présentes conditions",
+          "body": [
+            "Nous pouvons mettre à jour les présentes conditions. La version applicable à votre réservation est celle en vigueur le jour où vous l’avez effectuée. Les présentes conditions sont disponibles en plusieurs langues ; en cas de divergence entre les versions, la version roumaine prévaut."
+          ]
+        }
+      ]
     }
   }
 }

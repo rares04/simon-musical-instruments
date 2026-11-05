@@ -70,8 +70,9 @@ export default async function LocaleLayout({
     notFound()
   }
 
-  // Providing all messages to the client
-  const messages = await getMessages()
+  // Providing messages to the client. The legal texts render on the server only, so they stay out
+  // of every page's HTML.
+  const { legal: _serverOnly, ...messages } = await getMessages()
 
   return (
     <html lang={locale} className={cn(inter.variable, interItalic.variable, playfair.variable, playfairItalic.variable)}>

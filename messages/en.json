@@ -165,6 +165,12 @@
     },
     "map": {
       "title": "Find Us"
+    },
+    "mapConsent": {
+      "notice": "The map is provided by Google. When you load it, Google receives your IP address and may set cookies.",
+      "load": "Load the map",
+      "open": "Open in Google Maps",
+      "privacy": "Privacy policy"
     }
   },
   "footer": {
@@ -178,7 +184,10 @@
     "madeIn": "Handcrafted with care in Reghin, Romania",
     "followInstagram": "Follow us on Instagram",
     "contactWhatsApp": "Contact us on WhatsApp",
-    "instruments": "Instruments"
+    "instruments": "Instruments",
+    "legal": "Legal",
+    "privacy": "Privacy policy",
+    "terms": "Terms of sale"
   },
   "common": {
     "loading": "Loading...",
@@ -836,6 +845,14 @@
         "title": "Handmade double basses for sale, Reghin, Romania",
         "description": "3/4 double basses (upright basses) built by hand by Paul and Ecaterina Simon in Reghin, Romania. Models: {models}. Photos, sound samples and prices."
       }
+    },
+    "privacy": {
+      "title": "Privacy policy",
+      "description": "What personal data Simon Musical Instruments collects, why, who processes it, how long we keep it and how to use your rights."
+    },
+    "terms": {
+      "title": "Terms of sale",
+      "description": "How reservations, payment, delivery, withdrawal and the legal guarantee work when you buy a handmade instrument from our workshop in Reghin."
     }
   },
   "categoryPage": {
@@ -917,6 +934,272 @@
           "answer": "The top is fine-grained Romanian spruce. Backs and ribs are {woods}, depending on the instrument. Each bass's page lists its woods, strings and measurements."
         }
       }
+    }
+  },
+  "legal": {
+    "common": {
+      "lastUpdated": "Last updated: {date}",
+      "pending": "[to be completed]",
+      "contents": "Contents",
+      "seeAlso": "See also"
+    },
+    "privacy": {
+      "title": "Privacy policy",
+      "intro": "This policy explains what personal data we collect when you use simoninstruments.com, why we collect it, who processes it for us, how long we keep it and what rights you have. We collect as little as we can.",
+      "sections": [
+        {
+          "id": "controller",
+          "title": "Who we are",
+          "body": [
+            "The controller of your personal data is {legalName}, {address}, VAT code {vat}, Trade Register no. {regCom} (\"we\"). We are a small violin-making workshop run by Paul and Ecaterina Simon.",
+            "For any question about your data, write to {email} or call {phone}. We have not appointed a data protection officer, because the law does not require one for a business of our size and activity."
+          ]
+        },
+        {
+          "id": "data",
+          "title": "What data we collect and why",
+          "body": [
+            [
+              "Account. When you register: your name, email address and password (we store only a one-way hash of the password, never the password itself). If you sign in with Google: the name, email address, profile picture and account ID that Google shares with us. Optionally, the phone number and addresses you add to your profile. Purpose: to give you an account where you can see your reservations. Legal basis: the contract with you (Art. 6(1)(b) GDPR).",
+              "Email confirmation. A 6-digit code we email you to confirm your address or reset your password. It expires after {otpMinutes} minutes and is deleted once used. Legal basis: the contract (Art. 6(1)(b) GDPR).",
+              "Reservations. Your name, email address, phone number, the choice between delivery and pickup, the delivery address, the reserved instruments and their prices, your remarks, and the progress of the order (payment, shipping, tracking number). You can reserve with or without an account. Purpose: to handle your reservation, arrange payment and delivery, and keep the records the law requires. Legal bases: the contract (Art. 6(1)(b) GDPR) and our legal obligations under accounting and tax law (Art. 6(1)(c) GDPR).",
+              "Contact form. Your name, email address, optional phone number, subject and message. They are sent by email to our workshop inbox and are not stored in the website database. Purpose: to answer you. Legal basis: steps you ask for before a possible contract (Art. 6(1)(b) GDPR) or our legitimate interest in answering inquiries (Art. 6(1)(f) GDPR).",
+              "Security. To block automated abuse, the registration, password reset, reservation and contact forms use Cloudflare Turnstile, which checks technical signals from your browser, such as your IP address and browser characteristics. Our servers also keep short technical logs (IP address, time, requested page, errors). Legal basis: our legitimate interest in keeping the site and your account secure (Art. 6(1)(f) GDPR).",
+              "Visit statistics. We use PostHog, hosted in the EU, to count visits and see which pages work well. It stores nothing on your device (no cookies, no local storage) and does not identify you: each page load gets a new random ID, on-page text and form contents are not recorded, and only your country is derived from your IP address, which is then discarded. Legal basis: our legitimate interest in understanding how the site is used (Art. 6(1)(f) GDPR). You can object at any time (see \"Your rights\").",
+              "Uptime monitoring. Better Stack checks from the outside that the site is online. It does not process data about visitors."
+            ],
+            "We do not sell your data, we do not use it for advertising or profiling, and we do not make decisions about you by automated means alone.",
+            "Giving us your data is voluntary. Without your name, email address and, for delivery, your address and phone number, we cannot handle a reservation."
+          ]
+        },
+        {
+          "id": "recipients",
+          "title": "Who receives your data",
+          "body": [
+            "We share data only with the service providers that run the site for us (processors), only as far as they need it, and under contracts that oblige them to protect it:",
+            [
+              "Supabase: database and file storage, servers in Ireland (EU).",
+              "Railway: website hosting, servers in the Netherlands (EU).",
+              "Resend: sending emails such as confirmation codes and reservation notices.",
+              "Hostinger: our workshop email inbox, which receives your messages and reservation notices.",
+              "Cloudflare: Turnstile protection against automated abuse.",
+              "PostHog: visit statistics that do not identify you, EU servers."
+            ],
+            "Google acts as a separate controller under its own privacy policy (https://policies.google.com/privacy), and only if you choose to sign in with Google or to load the map on the contact page.",
+            "DeepL translates our instrument descriptions. It receives no personal data.",
+            "When we ship an instrument, we give the courier the name, address and phone number needed for delivery. We disclose data to public authorities only when the law requires it."
+          ]
+        },
+        {
+          "id": "transfers",
+          "title": "Transfers outside the EU",
+          "body": [
+            "Our database and website run on servers in the EU. Some providers (for example Supabase, Railway, Resend, Cloudflare and Google) are companies based in the United States and may access data from there, for example to deliver emails or provide support. Such transfers are protected by the EU-U.S. Data Privacy Framework, where the provider is certified under it, or by the Standard Contractual Clauses approved by the European Commission."
+          ]
+        },
+        {
+          "id": "retention",
+          "title": "How long we keep your data",
+          "body": [
+            [
+              "Account: for as long as your account exists. You can ask us to delete it at any time.",
+              "Confirmation codes: at most {otpMinutes} minutes.",
+              "Reservations: an unpaid reservation is cancelled automatically after {holdHours} hours. We keep orders and the related records for as long as Romanian accounting and tax law requires (for some accounting documents, up to 10 years). Records that this law does not cover are kept for 3 years after the order is completed or cancelled, so that we can handle any claim.",
+              "Contact messages: for as long as we need them to answer you and to follow up, then we delete them, at the latest after 3 years.",
+              "Server logs: at most 30 days.",
+              "Visit statistics: they do not identify you."
+            ]
+          ]
+        },
+        {
+          "id": "cookies",
+          "title": "Cookies and browser storage",
+          "body": [
+            "We use only the cookies and browser storage the site needs to work, so we do not ask for your consent. We do not use advertising or tracking cookies.",
+            [
+              "NEXT_LOCALE (cookie): remembers your language. Deleted when you close the browser.",
+              "authjs.session-token (cookie): keeps you signed in. Kept for up to 30 days, or until you sign out.",
+              "authjs.csrf-token and authjs.callback-url (cookies): protect the sign-in form and return you to the page you came from. Deleted when you close the browser.",
+              "payload-token (cookie): used only by the workshop's administrators.",
+              "construction-notice-dismissed (local storage): remembers that you closed the notice banner at the top of the site.",
+              "loginEmail (session storage): fills in your email address on the sign-in page after you register or reset your password. Deleted when you close the tab."
+            ],
+            "On the forms listed above, Cloudflare Turnstile runs a check in your browser. Google sets its own cookies only if you sign in with Google or choose to load the map.",
+            "If we ever add optional cookies, for example for advertising, we will ask for your consent first and update this policy."
+          ]
+        },
+        {
+          "id": "rights",
+          "title": "Your rights",
+          "body": [
+            "Under the GDPR, you have the right to access your data, to have it corrected or deleted, to restrict its processing, to receive it in a portable format, and to object to processing based on our legitimate interest, including the visit statistics. Where processing is based on your consent, you can withdraw it at any time.",
+            "To use any of these rights, write to {email}. We reply within one month. We may ask you to confirm your identity first.",
+            "You also have the right to complain to the Romanian data protection authority, ANSPDCP (Autoritatea Națională de Supraveghere a Prelucrării Datelor cu Caracter Personal), Bd. G-ral. Gheorghe Magheru 28-30, sector 1, 010336 București, https://www.dataprotection.ro, or to the authority in the EU country where you live."
+          ]
+        },
+        {
+          "id": "security",
+          "title": "How we protect your data",
+          "body": [
+            "The site is served only over an encrypted connection (HTTPS), passwords are stored only as one-way hashes, and access to the administration area is limited to the workshop and the people who maintain the site for it."
+          ]
+        },
+        {
+          "id": "children",
+          "title": "Children",
+          "body": [
+            "The site is not meant for children under 16, and we do not knowingly collect their data. Reservations can be made only by adults."
+          ]
+        },
+        {
+          "id": "changes",
+          "title": "Changes to this policy",
+          "body": [
+            "When we change this policy, we publish the new version on this page and update the date at the top. If a change is significant, we also tell account holders by email."
+          ]
+        }
+      ]
+    },
+    "terms": {
+      "title": "Terms of sale",
+      "intro": "These terms apply to the use of simoninstruments.com and to reservations and purchases of instruments made through it. Please read them before you reserve. If you are a consumer, nothing in these terms limits the rights that the law gives you.",
+      "sections": [
+        {
+          "id": "seller",
+          "title": "The seller",
+          "body": [
+            "The seller is {legalName}, {address}, VAT code {vat}, Trade Register no. {regCom}. Email: {email}. Phone: {phone}.",
+            "We make and sell handmade bowed string instruments in our workshop in Reghin."
+          ]
+        },
+        {
+          "id": "instruments",
+          "title": "The instruments",
+          "body": [
+            "Every instrument is finished, handmade and one of a kind. We describe and photograph each one as accurately as we can. Natural variations in the wood, colour and varnish are part of a handmade instrument and are not defects. Colours may look different on your screen.",
+            "Each instrument comes with a signed certificate of authenticity.",
+            "Instruments made to your own specifications (commissions) are agreed separately, in writing, and these terms apply to them only where that agreement refers to them."
+          ]
+        },
+        {
+          "id": "prices",
+          "title": "Prices",
+          "body": [
+            "Prices are shown in euros (EUR) and are final prices, including VAT where it applies. The price that applies is the one shown when you make the reservation.",
+            "Instruments listed as \"price on request\" cannot be reserved online. Please contact us about them.",
+            "The cost of delivery, if any, and how the instrument is insured during transport are confirmed to you in writing before you pay."
+          ]
+        },
+        {
+          "id": "reservation",
+          "title": "How a reservation works",
+          "body": [
+            [
+              "Choose an instrument, add it to your cart and complete the reservation form, choosing delivery to your address or pickup at our workshop. You can reserve with or without an account.",
+              "Before you send the form, you can check and correct your details. Sending it is a reservation request: you are not yet bound to buy and you pay nothing at this stage.",
+              "We confirm receipt by email straight away. The instrument is then held for you and shown on the site as reserved.",
+              "We contact you within 1-2 business days to agree the details of payment and of delivery or pickup.",
+              "An unpaid reservation expires automatically after {holdHours} hours, unless we have agreed otherwise with you, and the instrument goes back on sale. You can cancel a reservation free of charge at any time before you pay, by writing to us.",
+              "You can have at most 2 reservations awaiting payment at the same time."
+            ],
+            "For delivery, the sale contract is concluded when we confirm it to you in writing, by email, with the final price and the payment details. For pickup, the contract is concluded at our workshop, when you see the instrument and pay for it; if you pay in advance, before seeing it, the contract is concluded as for delivery.",
+            "We may decline a reservation, for example if the instrument has been sold in the meantime or its listing contains an obvious error. In that case we tell you promptly and you pay nothing.",
+            "The contract is concluded in Romanian or English. We keep a record of your reservation and send you its details by email."
+          ]
+        },
+        {
+          "id": "payment",
+          "title": "Payment",
+          "body": [
+            "We do not take payments online. For delivery, you pay by bank transfer to the account we send you in writing. For pickup, you can pay by bank transfer before the pickup, or in cash at the workshop within the limits set by Romanian law.",
+            "We ship the instrument only after the full payment has reached our account. You become the owner once the price has been paid in full."
+          ]
+        },
+        {
+          "id": "delivery",
+          "title": "Delivery and pickup",
+          "body": [
+            "We pack every instrument professionally and deliver it to the address you give us, by a courier or freight service of our choice. The delivery method, cost, insurance and estimated date are confirmed to you in writing before you pay. Unless we agree otherwise, we deliver within 30 days after receiving your payment.",
+            "The risk of loss or damage passes to you when you, or a person you name other than the carrier, receive the instrument. Please check the package on delivery and note any visible damage with the courier.",
+            "Pickup is by appointment at our workshop, {address}. We agree the date and time with you."
+          ]
+        },
+        {
+          "id": "withdrawal",
+          "title": "Right of withdrawal (delivered instruments)",
+          "body": [
+            "If you are a consumer and we deliver the instrument to you, you have the right to withdraw from the contract within 14 days without giving any reason. The withdrawal period ends 14 days after the day on which you, or a person you name other than the carrier, receive the instrument.",
+            "To withdraw, tell us of your decision with a clear statement, by email to {email} or by post to {address}, before the withdrawal period ends. You may use the model withdrawal form below, but you do not have to.",
+            "If you withdraw, we refund all payments we have received from you, including the cost of standard delivery, without undue delay and at the latest within 14 days from the day we are informed of your decision. We refund you by the same means of payment you used, unless we expressly agree otherwise, and you will not pay any fee for the refund. We may withhold the refund until we have received the instrument back, or until you have shown that you have sent it back, whichever comes first. If you chose a delivery method more expensive than the standard delivery we offered, we do not refund the difference.",
+            "Please send the instrument back to our workshop, {address}, without undue delay and at the latest within 14 days from the day you tell us of your withdrawal. You bear the direct cost of returning it. Because of their size, instruments cannot be returned by ordinary post; we tell you an estimate of the return cost in our written confirmation, before the contract is concluded.",
+            "You are liable only for any loss in value caused by handling the instrument beyond what is necessary to establish its nature, characteristics and functioning. You may unpack it, examine it and play it carefully, as you could in a shop. Please send it back in its original packaging, well protected.",
+            "If you see the instrument at our workshop and buy it there, the contract is concluded on our premises and this right of withdrawal does not apply. If you pay in advance and collect the instrument later, the right of withdrawal applies as for delivery, and the 14 days start on the day you collect it."
+          ]
+        },
+        {
+          "id": "withdrawal-form",
+          "title": "Model withdrawal form",
+          "body": [
+            "Complete and return this form only if you wish to withdraw from the contract.",
+            [
+              "To: {legalName}, {address}, {email}",
+              "I/We (*) hereby give notice that I/We (*) withdraw from my/our (*) contract of sale of the following goods (*)/for the provision of the following service (*):",
+              "Ordered on (*)/received on (*):",
+              "Name of consumer(s):",
+              "Address of consumer(s):",
+              "Signature of consumer(s) (only if this form is notified on paper):",
+              "Date:"
+            ],
+            "(*) Delete as appropriate."
+          ]
+        },
+        {
+          "id": "guarantee",
+          "title": "Legal guarantee of conformity",
+          "body": [
+            "If you are a consumer, we are responsible for any lack of conformity that exists when the instrument is delivered and becomes apparent within two years. In that case you are entitled, as the law provides, to have it repaired or replaced, to a price reduction or to terminate the contract. Because every instrument is unique, replacing it with an identical one is not possible.",
+            "Natural changes in the wood and varnish over time, normal wear, and damage caused by improper care, humidity, temperature, accidents or work done by others are not a lack of conformity. Please tell us about a problem as soon as you notice it."
+          ]
+        },
+        {
+          "id": "complaints",
+          "title": "Complaints and disputes",
+          "body": [
+            "If something is wrong, please write to us first at {email}. We answer as quickly as we can, and at the latest within 30 days.",
+            "You can also contact the Romanian consumer protection authority, ANPC (https://anpc.ro), or use its alternative dispute resolution service, SAL (https://anpc.ro/ce-este-sal/). For a cross-border dispute within the EU, the European Consumer Centre in your country can help you (https://www.eccromania.ro in Romania)."
+          ]
+        },
+        {
+          "id": "website",
+          "title": "Using the website and your account",
+          "body": [
+            "Keep your password safe and your details up to date. We may suspend an account that is used to abuse the site or other customers.",
+            "The texts, photos, videos and sound recordings on the site belong to us. Please do not reuse them without our written permission."
+          ]
+        },
+        {
+          "id": "liability",
+          "title": "Liability",
+          "body": [
+            "We are not liable for delays or failures caused by events beyond our reasonable control (force majeure). Nothing in these terms limits our liability where the law does not allow it to be limited."
+          ]
+        },
+        {
+          "id": "law",
+          "title": "Applicable law and courts",
+          "body": [
+            "These terms are governed by Romanian law. If you are a consumer living in another country, you keep the protection of the mandatory rules of the law of the country where you live.",
+            "Disputes are settled by the competent Romanian courts. As a consumer, you can also bring proceedings in the courts of the country where you live."
+          ]
+        },
+        {
+          "id": "changes",
+          "title": "Changes to these terms",
+          "body": [
+            "We may update these terms. The version that applies to your reservation is the one in force on the day you made it. These terms are available in several languages; if the versions differ, the Romanian version prevails."
+          ]
+        }
+      ]
     }
   }
 }

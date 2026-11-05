@@ -165,6 +165,12 @@
     },
     "map": {
       "title": "Vind Ons"
+    },
+    "mapConsent": {
+      "notice": "De kaart wordt geleverd door Google. Wanneer u de kaart laadt, ontvangt Google uw IP-adres en kan Google cookies plaatsen.",
+      "load": "Kaart laden",
+      "open": "Openen in Google Maps",
+      "privacy": "Privacybeleid"
     }
   },
   "footer": {
@@ -178,7 +184,10 @@
     "madeIn": "Met zorg gemaakt in Reghin, Roemenië",
     "followInstagram": "Volg ons op Instagram",
     "contactWhatsApp": "Neem contact met ons op via WhatsApp",
-    "instruments": "Instrumenten"
+    "instruments": "Instrumenten",
+    "legal": "Juridische informatie",
+    "privacy": "Privacybeleid",
+    "terms": "Verkoopvoorwaarden"
   },
   "common": {
     "loading": "Laden...",
@@ -836,6 +845,14 @@
         "title": "Handgemaakte contrabassen te koop, Roemenië",
         "description": "3/4-contrabassen, met de hand gebouwd door Paul en Ecaterina Simon in Reghin, Roemenië. Modellen: {models}. Foto's, geluidsfragmenten en prijzen."
       }
+    },
+    "privacy": {
+      "title": "Privacybeleid",
+      "description": "Welke persoonsgegevens Simon Musical Instruments verzamelt, waarom, wie ze verwerkt, hoe lang we ze bewaren en hoe u uw rechten uitoefent."
+    },
+    "terms": {
+      "title": "Verkoopvoorwaarden",
+      "description": "Hoe reservering, betaling, levering, herroeping en de wettelijke garantie werken wanneer u een handgemaakt instrument koopt uit ons atelier in Reghin."
     }
   },
   "categoryPage": {
@@ -917,6 +934,272 @@
           "answer": "Het bovenblad is van fijnjarig Roemeens sparrenhout. Achterblad en zijkanten zijn van {woods}, afhankelijk van het instrument. Op de pagina van elke contrabas staan het hout, de snaren en de maten."
         }
       }
+    }
+  },
+  "legal": {
+    "common": {
+      "lastUpdated": "Laatst bijgewerkt: {date}",
+      "pending": "[nog aan te vullen]",
+      "contents": "Inhoud",
+      "seeAlso": "Zie ook"
+    },
+    "privacy": {
+      "title": "Privacybeleid",
+      "intro": "In dit beleid leggen we uit welke persoonsgegevens we verzamelen wanneer u simoninstruments.com gebruikt, waarom we ze verzamelen, wie ze namens ons verwerkt, hoe lang we ze bewaren en welke rechten u hebt. We verzamelen zo weinig gegevens als mogelijk.",
+      "sections": [
+        {
+          "id": "controller",
+          "title": "Wie wij zijn",
+          "body": [
+            "De verwerkingsverantwoordelijke voor uw persoonsgegevens is {legalName}, {address}, btw-nummer {vat}, inschrijvingsnummer in het handelsregister {regCom} (“wij”). Wij zijn een klein vioolbouwatelier, gerund door Paul en Ecaterina Simon.",
+            "Voor vragen over uw gegevens kunt u schrijven naar {email} of bellen naar {phone}. Wij hebben geen functionaris voor gegevensbescherming aangesteld, omdat de wet dit voor een onderneming van onze omvang en met onze activiteiten niet verplicht stelt."
+          ]
+        },
+        {
+          "id": "data",
+          "title": "Welke gegevens we verzamelen en waarom",
+          "body": [
+            [
+              "Account. Bij registratie: uw naam, e-mailadres en wachtwoord (we bewaren alleen een onomkeerbare hash van het wachtwoord, nooit het wachtwoord zelf). Als u inlogt met Google: de naam, het e-mailadres, de profielfoto en de account-ID die Google met ons deelt. Optioneel: het telefoonnummer en de adressen die u aan uw profiel toevoegt. Doel: u een account bieden waarin u uw reserveringen kunt bekijken. Rechtsgrond: de overeenkomst met u (art. 6, lid 1, onder b), AVG).",
+              "Bevestiging van uw e-mailadres. Een 6-cijferige code die we u per e-mail sturen om uw adres te bevestigen of uw wachtwoord opnieuw in te stellen. De code verloopt na {otpMinutes} minuten en wordt na gebruik verwijderd. Rechtsgrond: de overeenkomst (art. 6, lid 1, onder b), AVG).",
+              "Reserveringen. Uw naam, e-mailadres, telefoonnummer, de keuze tussen levering en ophalen, het leveringsadres, de gereserveerde instrumenten en hun prijzen, uw opmerkingen en de voortgang van de bestelling (betaling, verzending, trackingnummer). U kunt reserveren met of zonder account. Doel: uw reservering afhandelen, betaling en levering regelen en de administratie bijhouden die de wet voorschrijft. Rechtsgronden: de overeenkomst (art. 6, lid 1, onder b), AVG) en onze wettelijke verplichtingen op grond van de boekhoud- en belastingwetgeving (art. 6, lid 1, onder c), AVG).",
+              "Contactformulier. Uw naam, e-mailadres, optioneel telefoonnummer, onderwerp en bericht. Deze worden per e-mail naar de mailbox van ons atelier gestuurd en niet opgeslagen in de database van de website. Doel: u antwoorden. Rechtsgrond: stappen die u vóór een eventuele overeenkomst vraagt (art. 6, lid 1, onder b), AVG) of ons gerechtvaardigd belang bij het beantwoorden van vragen (art. 6, lid 1, onder f), AVG).",
+              "Beveiliging. Om geautomatiseerd misbruik te blokkeren, gebruiken de formulieren voor registratie, het opnieuw instellen van het wachtwoord, reservering en contact Cloudflare Turnstile, dat technische signalen van uw browser controleert, zoals uw IP-adres en browserkenmerken. Onze servers bewaren ook korte technische logbestanden (IP-adres, tijdstip, opgevraagde pagina, fouten). Rechtsgrond: ons gerechtvaardigd belang bij de beveiliging van de site en van uw account (art. 6, lid 1, onder f), AVG).",
+              "Bezoekstatistieken. We gebruiken PostHog, gehost in de EU, om bezoeken te tellen en te zien welke pagina’s goed werken. PostHog slaat niets op uw apparaat op (geen cookies, geen lokale opslag) en identificeert u niet: elke paginaweergave krijgt een nieuwe willekeurige ID, tekst op de pagina en de inhoud van formulieren worden niet vastgelegd, en uit uw IP-adres wordt alleen uw land afgeleid, waarna het IP-adres wordt verwijderd. Rechtsgrond: ons gerechtvaardigd belang om te begrijpen hoe de site wordt gebruikt (art. 6, lid 1, onder f), AVG). U kunt hier op elk moment bezwaar tegen maken (zie “Uw rechten”).",
+              "Beschikbaarheidsmonitoring. Better Stack controleert van buitenaf of de site online is. Daarbij worden geen gegevens over bezoekers verwerkt."
+            ],
+            "We verkopen uw gegevens niet, we gebruiken ze niet voor reclame of profilering en we nemen geen besluiten over u die uitsluitend op geautomatiseerde verwerking berusten.",
+            "Het verstrekken van uw gegevens is vrijwillig. Zonder uw naam, e-mailadres en, bij levering, uw adres en telefoonnummer kunnen we een reservering niet afhandelen."
+          ]
+        },
+        {
+          "id": "recipients",
+          "title": "Wie uw gegevens ontvangt",
+          "body": [
+            "We delen gegevens alleen met de dienstverleners die de site voor ons laten draaien (verwerkers), alleen voor zover zij ze nodig hebben, en op grond van overeenkomsten die hen verplichten de gegevens te beschermen:",
+            [
+              "Supabase: database en bestandsopslag, servers in Ierland (EU).",
+              "Railway: hosting van de website, servers in Nederland (EU).",
+              "Resend: verzending van e-mails, zoals bevestigingscodes en reserveringsmeldingen.",
+              "Hostinger: de mailbox van ons atelier, waarin uw berichten en reserveringsmeldingen binnenkomen.",
+              "Cloudflare: Turnstile-bescherming tegen geautomatiseerd misbruik.",
+              "PostHog: bezoekstatistieken die u niet identificeren, servers in de EU."
+            ],
+            "Google treedt op als afzonderlijke verwerkingsverantwoordelijke op grond van zijn eigen privacybeleid (https://policies.google.com/privacy), en alleen als u ervoor kiest in te loggen met Google of de kaart op de contactpagina te laden.",
+            "DeepL vertaalt de beschrijvingen van onze instrumenten. DeepL ontvangt geen persoonsgegevens.",
+            "Wanneer we een instrument verzenden, geven we de koerier de naam, het adres en het telefoonnummer die voor de levering nodig zijn. We verstrekken gegevens alleen aan overheidsinstanties wanneer de wet dat vereist."
+          ]
+        },
+        {
+          "id": "transfers",
+          "title": "Doorgifte buiten de EU",
+          "body": [
+            "Onze database en website draaien op servers in de EU. Sommige dienstverleners (bijvoorbeeld Supabase, Railway, Resend, Cloudflare en Google) zijn bedrijven die in de Verenigde Staten zijn gevestigd en kunnen van daaruit toegang hebben tot gegevens, bijvoorbeeld om e-mails te bezorgen of ondersteuning te bieden. Zulke doorgiften worden beschermd door het EU-VS-kader voor gegevensbescherming (Data Privacy Framework), als de dienstverlener daaronder gecertificeerd is, of door de door de Europese Commissie goedgekeurde modelcontractbepalingen (Standard Contractual Clauses)."
+          ]
+        },
+        {
+          "id": "retention",
+          "title": "Hoe lang we uw gegevens bewaren",
+          "body": [
+            [
+              "Account: zolang uw account bestaat. U kunt ons op elk moment vragen het te verwijderen.",
+              "Bevestigingscodes: maximaal {otpMinutes} minuten.",
+              "Reserveringen: een onbetaalde reservering wordt na {holdHours} uur automatisch geannuleerd. We bewaren bestellingen en de bijbehorende administratie zolang de Roemeense boekhoud- en belastingwetgeving dat vereist (voor sommige boekhoudkundige documenten tot 10 jaar). Gegevens die niet onder deze wetgeving vallen, bewaren we gedurende 3 jaar na de afronding of annulering van de bestelling, zodat we eventuele vorderingen kunnen afhandelen.",
+              "Contactberichten: zolang we ze nodig hebben om u te antwoorden en voor de opvolging; daarna verwijderen we ze, uiterlijk na 3 jaar.",
+              "Serverlogbestanden: maximaal 30 dagen.",
+              "Bezoekstatistieken: deze identificeren u niet."
+            ]
+          ]
+        },
+        {
+          "id": "cookies",
+          "title": "Cookies en opslag in de browser",
+          "body": [
+            "We gebruiken alleen de cookies en browseropslag die nodig zijn om de site te laten werken; daarom vragen we niet om uw toestemming. We gebruiken geen advertentie- of trackingcookies.",
+            [
+              "NEXT_LOCALE (cookie): onthoudt uw taal. Wordt verwijderd wanneer u de browser sluit.",
+              "authjs.session-token (cookie): houdt u ingelogd. Wordt maximaal 30 dagen bewaard, of totdat u uitlogt.",
+              "authjs.csrf-token en authjs.callback-url (cookies): beveiligen het inlogformulier en brengen u terug naar de pagina waar u vandaan kwam. Worden verwijderd wanneer u de browser sluit.",
+              "payload-token (cookie): wordt alleen gebruikt door de beheerders van het atelier.",
+              "construction-notice-dismissed (lokale opslag): onthoudt dat u de mededelingsbalk bovenaan de site hebt gesloten.",
+              "loginEmail (sessieopslag): vult uw e-mailadres in op de inlogpagina nadat u zich hebt geregistreerd of uw wachtwoord opnieuw hebt ingesteld. Wordt verwijderd wanneer u het tabblad sluit."
+            ],
+            "Op de hierboven genoemde formulieren voert Cloudflare Turnstile een controle uit in uw browser. Google plaatst alleen eigen cookies als u inlogt met Google of ervoor kiest de kaart te laden.",
+            "Als we ooit optionele cookies toevoegen, bijvoorbeeld voor reclame, vragen we eerst uw toestemming en passen we dit beleid aan."
+          ]
+        },
+        {
+          "id": "rights",
+          "title": "Uw rechten",
+          "body": [
+            "Op grond van de AVG hebt u het recht op inzage in uw gegevens, op rectificatie of wissing ervan, op beperking van de verwerking, op ontvangst ervan in een overdraagbaar formaat (gegevensoverdraagbaarheid) en het recht om bezwaar te maken tegen verwerking die op ons gerechtvaardigd belang is gebaseerd, waaronder de bezoekstatistieken. Wanneer de verwerking op uw toestemming is gebaseerd, kunt u die toestemming op elk moment intrekken.",
+            "Om een van deze rechten uit te oefenen, schrijft u naar {email}. We antwoorden binnen één maand. We kunnen u eerst vragen uw identiteit te bevestigen.",
+            "U hebt ook het recht een klacht in te dienen bij de Roemeense toezichthoudende autoriteit voor gegevensbescherming, ANSPDCP (Autoritatea Națională de Supraveghere a Prelucrării Datelor cu Caracter Personal), Bd. G-ral. Gheorghe Magheru 28-30, sector 1, 010336 București, https://www.dataprotection.ro, of bij de toezichthoudende autoriteit in het EU-land waar u woont."
+          ]
+        },
+        {
+          "id": "security",
+          "title": "Hoe we uw gegevens beschermen",
+          "body": [
+            "De site is alleen bereikbaar via een versleutelde verbinding (HTTPS), wachtwoorden worden alleen als onomkeerbare hashes opgeslagen en de toegang tot het beheergedeelte is beperkt tot het atelier en de personen die de site voor het atelier onderhouden."
+          ]
+        },
+        {
+          "id": "children",
+          "title": "Kinderen",
+          "body": [
+            "De site is niet bedoeld voor kinderen jonger dan 16 jaar en we verzamelen niet bewust hun gegevens. Reserveringen kunnen alleen door meerderjarigen worden gedaan."
+          ]
+        },
+        {
+          "id": "changes",
+          "title": "Wijzigingen in dit beleid",
+          "body": [
+            "Wanneer we dit beleid wijzigen, publiceren we de nieuwe versie op deze pagina en passen we de datum bovenaan aan. Bij een belangrijke wijziging informeren we accounthouders ook per e-mail."
+          ]
+        }
+      ]
+    },
+    "terms": {
+      "title": "Verkoopvoorwaarden",
+      "intro": "Deze voorwaarden zijn van toepassing op het gebruik van simoninstruments.com en op reserveringen en aankopen van instrumenten via deze website. Lees ze voordat u reserveert. Als u consument bent, beperkt niets in deze voorwaarden de rechten die de wet u geeft.",
+      "sections": [
+        {
+          "id": "seller",
+          "title": "De verkoper",
+          "body": [
+            "De verkoper is {legalName}, {address}, btw-nummer {vat}, inschrijvingsnummer in het handelsregister {regCom}. E-mail: {email}. Telefoon: {phone}.",
+            "Wij maken en verkopen handgemaakte strijkinstrumenten in ons atelier in Reghin."
+          ]
+        },
+        {
+          "id": "instruments",
+          "title": "De instrumenten",
+          "body": [
+            "Elk instrument is afgewerkt, met de hand gemaakt en uniek. We beschrijven en fotograferen elk instrument zo nauwkeurig als we kunnen. Natuurlijke variaties in het hout, de kleur en de lak horen bij een handgemaakt instrument en zijn geen gebreken. Kleuren kunnen er op uw scherm anders uitzien.",
+            "Bij elk instrument hoort een ondertekend certificaat van echtheid.",
+            "Instrumenten die volgens uw eigen specificaties worden gemaakt (opdrachten op maat) worden afzonderlijk en schriftelijk overeengekomen; deze voorwaarden zijn daarop alleen van toepassing voor zover die overeenkomst ernaar verwijst."
+          ]
+        },
+        {
+          "id": "prices",
+          "title": "Prijzen",
+          "body": [
+            "Prijzen worden weergegeven in euro (EUR) en zijn eindprijzen, inclusief btw waar die van toepassing is. De geldende prijs is de prijs die wordt weergegeven op het moment dat u de reservering plaatst.",
+            "Instrumenten met de vermelding “prijs op aanvraag” kunnen niet online worden gereserveerd. Neem hiervoor contact met ons op.",
+            "De eventuele leveringskosten en de manier waarop het instrument tijdens het transport is verzekerd, worden u schriftelijk bevestigd voordat u betaalt."
+          ]
+        },
+        {
+          "id": "reservation",
+          "title": "Hoe een reservering werkt",
+          "body": [
+            [
+              "Kies een instrument, voeg het toe aan uw winkelwagen en vul het reserveringsformulier in, waarbij u kiest tussen levering op uw adres of ophalen in ons atelier. U kunt reserveren met of zonder account.",
+              "Voordat u het formulier verzendt, kunt u uw gegevens controleren en corrigeren. Het verzenden van het formulier is een reserveringsverzoek: u bent nog niet verplicht tot aankoop en u betaalt in deze fase niets.",
+              "We bevestigen de ontvangst direct per e-mail. Het instrument wordt dan voor u vastgehouden en op de site als gereserveerd weergegeven.",
+              "We nemen binnen 1-2 werkdagen contact met u op om de details van de betaling en van de levering of het ophalen af te spreken.",
+              "Een onbetaalde reservering vervalt automatisch na {holdHours} uur, tenzij we met u iets anders hebben afgesproken, en het instrument wordt dan weer te koop aangeboden. U kunt een reservering op elk moment vóór de betaling kosteloos annuleren door ons te schrijven.",
+              "U kunt tegelijkertijd maximaal 2 reserveringen hebben die op betaling wachten."
+            ],
+            "Bij levering komt de koopovereenkomst tot stand wanneer wij die schriftelijk, per e-mail, aan u bevestigen, met de definitieve prijs en de betalingsgegevens. Bij ophalen komt de overeenkomst tot stand in ons atelier, wanneer u het instrument ziet en ervoor betaalt; als u vooraf betaalt, voordat u het hebt gezien, komt de overeenkomst tot stand zoals bij levering.",
+            "We kunnen een reservering weigeren, bijvoorbeeld als het instrument intussen is verkocht of als de vermelding ervan een kennelijke fout bevat. In dat geval laten we u dat onverwijld weten en betaalt u niets.",
+            "De overeenkomst wordt gesloten in het Roemeens of het Engels. We bewaren een registratie van uw reservering en sturen u de gegevens ervan per e-mail."
+          ]
+        },
+        {
+          "id": "payment",
+          "title": "Betaling",
+          "body": [
+            "We nemen geen online betalingen aan. Bij levering betaalt u per bankoverschrijving op de rekening die we u schriftelijk toesturen. Bij ophalen kunt u vóór het ophalen per bankoverschrijving betalen, of contant in het atelier binnen de grenzen die de Roemeense wet stelt.",
+            "We verzenden het instrument pas nadat de volledige betaling op onze rekening is ontvangen. U wordt eigenaar zodra de prijs volledig is betaald."
+          ]
+        },
+        {
+          "id": "delivery",
+          "title": "Levering en ophalen",
+          "body": [
+            "We verpakken elk instrument professioneel en leveren het af op het adres dat u ons opgeeft, via een koeriers- of vrachtdienst naar onze keuze. De leveringswijze, de kosten, de verzekering en de verwachte datum worden u schriftelijk bevestigd voordat u betaalt. Tenzij we iets anders afspreken, leveren we binnen 30 dagen na ontvangst van uw betaling.",
+            "Het risico van verlies of beschadiging gaat op u over wanneer u, of een door u aangewezen derde die niet de vervoerder is, het instrument in ontvangst neemt. Controleer het pakket bij levering en laat eventuele zichtbare schade door de koerier noteren.",
+            "Ophalen gebeurt op afspraak in ons atelier, {address}. We spreken de datum en het tijdstip met u af."
+          ]
+        },
+        {
+          "id": "withdrawal",
+          "title": "Herroepingsrecht (geleverde instrumenten)",
+          "body": [
+            "Als u consument bent en wij het instrument aan u leveren, hebt u het recht de overeenkomst binnen 14 dagen zonder opgave van redenen te herroepen. De herroepingstermijn verstrijkt 14 dagen na de dag waarop u, of een door u aangewezen derde die niet de vervoerder is, het instrument fysiek in bezit krijgt.",
+            "Om het herroepingsrecht uit te oefenen, moet u ons vóór het verstrijken van de herroepingstermijn door middel van een ondubbelzinnige verklaring op de hoogte stellen van uw beslissing, per e-mail aan {email} of per post aan {address}. U kunt daarvoor het onderstaande modelformulier voor herroeping gebruiken, maar dat is niet verplicht.",
+            "Als u herroept, betalen wij u alle betalingen terug die we van u hebben ontvangen, inclusief de kosten van standaardlevering, zonder onredelijke vertraging en in ieder geval uiterlijk 14 dagen nadat wij op de hoogte zijn gesteld van uw beslissing. Wij betalen u terug met hetzelfde betaalmiddel dat u hebt gebruikt, tenzij we uitdrukkelijk iets anders overeenkomen, en u betaalt geen kosten voor de terugbetaling. Wij mogen wachten met terugbetalen tot wij het instrument hebben teruggekregen, of tot u hebt aangetoond dat u het hebt teruggezonden, naargelang welk tijdstip eerst valt. Als u een duurdere leveringswijze hebt gekozen dan de standaardlevering die wij aanboden, betalen wij het verschil niet terug.",
+            "Stuur het instrument zonder onredelijke vertraging en in ieder geval uiterlijk 14 dagen na de dag waarop u ons uw herroeping hebt meegedeeld, terug naar ons atelier, {address}. U draagt de rechtstreekse kosten van het terugzenden. Vanwege hun afmetingen kunnen instrumenten niet met de gewone post worden teruggestuurd; we geven u een schatting van de retourkosten in onze schriftelijke bevestiging, voordat de overeenkomst tot stand komt.",
+            "U bent alleen aansprakelijk voor waardevermindering van het instrument die het gevolg is van een behandeling die verder gaat dan nodig is om de aard, de kenmerken en de werking ervan vast te stellen. U mag het uitpakken, bekijken en er voorzichtig op spelen, zoals u dat in een winkel zou kunnen doen. Stuur het terug in de originele verpakking, goed beschermd.",
+            "Als u het instrument in ons atelier ziet en het daar koopt, wordt de overeenkomst in onze bedrijfsruimte gesloten en is dit herroepingsrecht niet van toepassing. Als u vooraf betaalt en het instrument later ophaalt, is het herroepingsrecht van toepassing zoals bij levering, en gaan de 14 dagen in op de dag waarop u het ophaalt."
+          ]
+        },
+        {
+          "id": "withdrawal-form",
+          "title": "Modelformulier voor herroeping",
+          "body": [
+            "Dit formulier alleen invullen en terugzenden als u de overeenkomst wilt herroepen.",
+            [
+              "Aan: {legalName}, {address}, {email}",
+              "Ik/Wij (*) deel/delen (*) u hierbij mede, dat ik/wij (*) onze overeenkomst betreffende de verkoop van de volgende goederen/levering van de volgende dienst (*) herroep/herroepen (*):",
+              "Besteld op (*)/ontvangen op (*):",
+              "Naam/Namen consument(en):",
+              "Adres consument(en):",
+              "Handtekening van consument(en) (alleen wanneer dit formulier op papier wordt ingediend):",
+              "Datum:"
+            ],
+            "(*) Doorhalen wat niet van toepassing is."
+          ]
+        },
+        {
+          "id": "guarantee",
+          "title": "Wettelijke conformiteitsgarantie",
+          "body": [
+            "Als u consument bent, zijn wij aansprakelijk voor elk gebrek aan overeenstemming (non-conformiteit) dat bestaat op het moment van levering van het instrument en binnen twee jaar aan het licht komt. In dat geval hebt u, zoals de wet bepaalt, recht op herstel of vervanging, op prijsvermindering of op ontbinding van de overeenkomst. Omdat elk instrument uniek is, is vervanging door een identiek instrument niet mogelijk.",
+            "Natuurlijke veranderingen van het hout en de lak in de loop van de tijd, normale slijtage en schade door onjuiste verzorging, vochtigheid, temperatuur, ongelukken of werkzaamheden door derden vormen geen gebrek aan overeenstemming. Meld een probleem zodra u het opmerkt."
+          ]
+        },
+        {
+          "id": "complaints",
+          "title": "Klachten en geschillen",
+          "body": [
+            "Als er iets mis is, schrijf ons dan eerst op {email}. We antwoorden zo snel mogelijk en uiterlijk binnen 30 dagen.",
+            "U kunt ook contact opnemen met de Roemeense autoriteit voor consumentenbescherming, ANPC (https://anpc.ro), of gebruikmaken van haar dienst voor alternatieve geschillenbeslechting, SAL (https://anpc.ro/ce-este-sal/). Bij een grensoverschrijdend geschil binnen de EU kan het Europees Consumenten Centrum in uw land u helpen (https://www.eccromania.ro in Roemenië)."
+          ]
+        },
+        {
+          "id": "website",
+          "title": "Gebruik van de website en uw account",
+          "body": [
+            "Houd uw wachtwoord veilig en uw gegevens actueel. We kunnen een account opschorten dat wordt gebruikt om misbruik te maken van de site of van andere klanten.",
+            "De teksten, foto’s, video’s en geluidsopnamen op de site zijn van ons. Gebruik ze niet opnieuw zonder onze schriftelijke toestemming."
+          ]
+        },
+        {
+          "id": "liability",
+          "title": "Aansprakelijkheid",
+          "body": [
+            "Wij zijn niet aansprakelijk voor vertragingen of tekortkomingen die worden veroorzaakt door gebeurtenissen buiten onze redelijke controle (overmacht). Niets in deze voorwaarden beperkt onze aansprakelijkheid waar de wet niet toestaat dat die wordt beperkt."
+          ]
+        },
+        {
+          "id": "law",
+          "title": "Toepasselijk recht en bevoegde rechter",
+          "body": [
+            "Op deze voorwaarden is het Roemeense recht van toepassing. Als u consument bent en in een ander land woont, behoudt u de bescherming van de dwingende bepalingen van het recht van het land waar u woont.",
+            "Geschillen worden beslecht door de bevoegde Roemeense rechter. Als consument kunt u ook een procedure aanspannen bij de rechter van het land waar u woont."
+          ]
+        },
+        {
+          "id": "changes",
+          "title": "Wijzigingen in deze voorwaarden",
+          "body": [
+            "We kunnen deze voorwaarden aanpassen. Op uw reservering is de versie van toepassing die gold op de dag waarop u de reservering plaatste. Deze voorwaarden zijn in meerdere talen beschikbaar; bij verschillen tussen de versies heeft de Roemeense versie voorrang."
+          ]
+        }
+      ]
     }
   }
 }

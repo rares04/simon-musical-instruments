@@ -165,6 +165,12 @@
     },
     "map": {
       "title": "Găsiți-ne"
+    },
+    "mapConsent": {
+      "notice": "Harta este furnizată de Google. Când o încărcați, Google primește adresa dumneavoastră IP și poate plasa cookie-uri.",
+      "load": "Încărcați harta",
+      "open": "Deschideți în Google Maps",
+      "privacy": "Politica de confidențialitate"
     }
   },
   "footer": {
@@ -178,7 +184,10 @@
     "madeIn": "Realizat cu grijă în Reghin, România",
     "followInstagram": "Urmăriți-ne pe Instagram",
     "contactWhatsApp": "Contactați-ne pe WhatsApp",
-    "instruments": "Instrumente"
+    "instruments": "Instrumente",
+    "legal": "Informații legale",
+    "privacy": "Politica de confidențialitate",
+    "terms": "Termeni și condiții de vânzare"
   },
   "common": {
     "loading": "Se încarcă...",
@@ -836,6 +845,14 @@
         "title": "Contrabași 3/4 de vânzare, de lutier, Reghin",
         "description": "Contrabași 3/4 construiți manual de Paul și Ecaterina Simon în Reghin. Modele: {models}. Fotografii, înregistrări audio și prețuri. Rezervare online."
       }
+    },
+    "privacy": {
+      "title": "Politica de confidențialitate",
+      "description": "Ce date personale colectează Simon Musical Instruments, în ce scop, cine le prelucrează, cât timp le păstrăm și cum vă puteți exercita drepturile."
+    },
+    "terms": {
+      "title": "Termeni și condiții de vânzare",
+      "description": "Cum funcționează rezervarea, plata, livrarea, dreptul de retragere și garanția legală atunci când cumpărați un instrument lucrat manual în atelierul nostru din Reghin."
     }
   },
   "categoryPage": {
@@ -917,6 +934,272 @@
           "answer": "Fața este din molid românesc cu fibră fină. Spatele și eclisele sunt din {woods}, în funcție de instrument. Pagina fiecărui contrabas indică lemnul, corzile și dimensiunile."
         }
       }
+    }
+  },
+  "legal": {
+    "common": {
+      "lastUpdated": "Ultima actualizare: {date}",
+      "pending": "[în curs de completare]",
+      "contents": "Cuprins",
+      "seeAlso": "Vedeți și"
+    },
+    "privacy": {
+      "title": "Politica de confidențialitate",
+      "intro": "Această politică explică ce date cu caracter personal colectăm atunci când utilizați simoninstruments.com, de ce le colectăm, cine le prelucrează în numele nostru, cât timp le păstrăm și ce drepturi aveți. Colectăm cât mai puține date posibil.",
+      "sections": [
+        {
+          "id": "controller",
+          "title": "Cine suntem",
+          "body": [
+            "Operatorul datelor dumneavoastră cu caracter personal este {legalName}, {address}, cod de TVA {vat}, nr. de înregistrare la Registrul Comerțului {regCom} („noi”). Suntem un mic atelier de lutierie condus de Paul și Ecaterina Simon.",
+            "Pentru orice întrebare privind datele dumneavoastră, ne puteți scrie la {email} sau ne puteți suna la {phone}. Nu am desemnat un responsabil cu protecția datelor, deoarece legea nu impune acest lucru pentru o activitate de dimensiunea și natura noastră."
+          ]
+        },
+        {
+          "id": "data",
+          "title": "Ce date colectăm și în ce scop",
+          "body": [
+            [
+              "Contul. La înregistrare: numele, adresa de e-mail și parola (păstrăm doar o amprentă criptografică ireversibilă a parolei, niciodată parola propriu-zisă). Dacă vă autentificați cu Google: numele, adresa de e-mail, fotografia de profil și identificatorul de cont pe care Google ni le transmite. Opțional, numărul de telefon și adresele pe care le adăugați în profil. Scop: să vă oferim un cont în care vă puteți vedea rezervările. Temei juridic: contractul încheiat cu dumneavoastră (art. 6 alin. (1) lit. b) din RGPD).",
+              "Confirmarea adresei de e-mail. Un cod din 6 cifre pe care vi-l trimitem prin e-mail pentru a vă confirma adresa sau pentru a vă reseta parola. Codul expiră după {otpMinutes} minute și este șters după utilizare. Temei juridic: contractul (art. 6 alin. (1) lit. b) din RGPD).",
+              "Rezervările. Numele, adresa de e-mail, numărul de telefon, opțiunea între livrare și ridicare personală, adresa de livrare, instrumentele rezervate și prețurile acestora, observațiile dumneavoastră și stadiul comenzii (plată, expediere, număr de urmărire). Puteți rezerva cu sau fără cont. Scop: să gestionăm rezervarea, să stabilim plata și livrarea și să păstrăm evidențele cerute de lege. Temeiuri juridice: contractul (art. 6 alin. (1) lit. b) din RGPD) și obligațiile noastre legale în materie contabilă și fiscală (art. 6 alin. (1) lit. c) din RGPD).",
+              "Formularul de contact. Numele, adresa de e-mail, numărul de telefon (opțional), subiectul și mesajul. Acestea ne sunt trimise prin e-mail, în căsuța de e-mail a atelierului, și nu sunt stocate în baza de date a site-ului. Scop: să vă răspundem. Temei juridic: demersurile pe care ni le solicitați înaintea unui eventual contract (art. 6 alin. (1) lit. b) din RGPD) sau interesul nostru legitim de a răspunde solicitărilor (art. 6 alin. (1) lit. f) din RGPD).",
+              "Securitatea. Pentru a bloca abuzurile automatizate, formularele de înregistrare, de resetare a parolei, de rezervare și de contact folosesc Cloudflare Turnstile, care verifică semnale tehnice din browserul dumneavoastră, precum adresa IP și caracteristicile browserului. Serverele noastre păstrează, de asemenea, jurnale tehnice pe termen scurt (adresa IP, ora, pagina accesată, erorile). Temei juridic: interesul nostru legitim de a menține securitatea site-ului și a contului dumneavoastră (art. 6 alin. (1) lit. f) din RGPD).",
+              "Statisticile de vizitare. Folosim PostHog, găzduit în UE, pentru a număra vizitele și a vedea ce pagini funcționează bine. Acesta nu stochează nimic pe dispozitivul dumneavoastră (nici cookie-uri, nici stocare locală) și nu vă identifică: fiecare încărcare de pagină primește un nou identificator aleatoriu, textul paginii și conținutul formularelor nu sunt înregistrate, iar din adresa IP se deduce doar țara, după care adresa IP este eliminată. Temei juridic: interesul nostru legitim de a înțelege cum este folosit site-ul (art. 6 alin. (1) lit. f) din RGPD). Vă puteți opune oricând (a se vedea „Drepturile dumneavoastră”).",
+              "Monitorizarea disponibilității. Better Stack verifică din exterior dacă site-ul este funcțional. Serviciul nu prelucrează date despre vizitatori."
+            ],
+            "Nu vindem datele dumneavoastră, nu le folosim în scopuri publicitare sau de creare de profiluri și nu luăm decizii cu privire la dumneavoastră exclusiv prin mijloace automatizate.",
+            "Furnizarea datelor este voluntară. Fără nume, adresă de e-mail și, pentru livrare, adresă și număr de telefon, nu putem procesa o rezervare."
+          ]
+        },
+        {
+          "id": "recipients",
+          "title": "Cine primește datele dumneavoastră",
+          "body": [
+            "Transmitem date doar furnizorilor de servicii care operează site-ul pentru noi (persoane împuternicite), numai în măsura în care le sunt necesare și în baza unor contracte care îi obligă să le protejeze:",
+            [
+              "Supabase: baza de date și stocarea fișierelor, servere în Irlanda (UE).",
+              "Railway: găzduirea site-ului, servere în Țările de Jos (UE).",
+              "Resend: trimiterea e-mailurilor, precum codurile de confirmare și notificările de rezervare.",
+              "Hostinger: căsuța de e-mail a atelierului, care primește mesajele și notificările de rezervare.",
+              "Cloudflare: protecția Turnstile împotriva abuzurilor automatizate.",
+              "PostHog: statistici de vizitare care nu vă identifică, servere în UE."
+            ],
+            "Google acționează ca operator separat, conform propriei politici de confidențialitate (https://policies.google.com/privacy), și doar dacă alegeți să vă autentificați cu Google sau să încărcați harta de pe pagina de contact.",
+            "DeepL traduce descrierile instrumentelor noastre. Nu primește date cu caracter personal.",
+            "Când expediem un instrument, transmitem curierului numele, adresa și numărul de telefon necesare livrării. Dezvăluim date autorităților publice doar atunci când legea ne obligă."
+          ]
+        },
+        {
+          "id": "transfers",
+          "title": "Transferuri în afara UE",
+          "body": [
+            "Baza noastră de date și site-ul funcționează pe servere din UE. Unii furnizori (de exemplu Supabase, Railway, Resend, Cloudflare și Google) sunt companii cu sediul în Statele Unite și pot accesa date de acolo, de exemplu pentru livrarea e-mailurilor sau pentru asistență tehnică. Aceste transferuri sunt protejate prin Cadrul UE-SUA privind protecția datelor (Data Privacy Framework), atunci când furnizorul este certificat, sau prin clauzele contractuale standard aprobate de Comisia Europeană."
+          ]
+        },
+        {
+          "id": "retention",
+          "title": "Cât timp păstrăm datele",
+          "body": [
+            [
+              "Contul: cât timp contul există. Ne puteți cere oricând să îl ștergem.",
+              "Codurile de confirmare: cel mult {otpMinutes} minute.",
+              "Rezervările: o rezervare neplătită este anulată automat după {holdHours} de ore. Păstrăm comenzile și evidențele aferente pe durata impusă de legislația contabilă și fiscală din România (pentru unele documente contabile, până la 10 ani). Evidențele care nu intră sub incidența acestei legislații se păstrează timp de 3 ani de la finalizarea sau anularea comenzii, pentru a putea soluționa eventualele pretenții.",
+              "Mesajele de contact: cât timp ne sunt necesare pentru a vă răspunde și pentru eventuale reveniri, după care le ștergem, cel târziu după 3 ani.",
+              "Jurnalele serverului: cel mult 30 de zile.",
+              "Statisticile de vizitare: nu vă identifică."
+            ]
+          ]
+        },
+        {
+          "id": "cookies",
+          "title": "Cookie-uri și stocarea în browser",
+          "body": [
+            "Folosim doar cookie-urile și stocarea în browser strict necesare funcționării site-ului, motiv pentru care nu vă solicităm consimțământul. Nu folosim cookie-uri de publicitate sau de urmărire.",
+            [
+              "NEXT_LOCALE (cookie): reține limba aleasă. Se șterge la închiderea browserului.",
+              "authjs.session-token (cookie): vă menține autentificat. Se păstrează cel mult 30 de zile sau până vă deconectați.",
+              "authjs.csrf-token și authjs.callback-url (cookie-uri): protejează formularul de autentificare și vă readuc la pagina de la care ați venit. Se șterg la închiderea browserului.",
+              "payload-token (cookie): folosit doar de administratorii atelierului.",
+              "construction-notice-dismissed (stocare locală): reține faptul că ați închis bannerul de informare din partea de sus a site-ului.",
+              "loginEmail (stocare de sesiune): completează adresa de e-mail pe pagina de autentificare după înregistrare sau după resetarea parolei. Se șterge la închiderea filei."
+            ],
+            "Pe formularele menționate mai sus, Cloudflare Turnstile efectuează o verificare în browserul dumneavoastră. Google plasează propriile cookie-uri doar dacă vă autentificați cu Google sau alegeți să încărcați harta.",
+            "Dacă vom adăuga vreodată cookie-uri opționale, de exemplu pentru publicitate, vă vom cere mai întâi consimțământul și vom actualiza această politică."
+          ]
+        },
+        {
+          "id": "rights",
+          "title": "Drepturile dumneavoastră",
+          "body": [
+            "Potrivit RGPD, aveți dreptul de acces la date, dreptul la rectificarea sau ștergerea acestora, dreptul la restricționarea prelucrării, dreptul de a le primi într-un format portabil și dreptul de a vă opune prelucrării întemeiate pe interesul nostru legitim, inclusiv statisticilor de vizitare. Atunci când prelucrarea se bazează pe consimțământul dumneavoastră, îl puteți retrage oricând.",
+            "Pentru a vă exercita oricare dintre aceste drepturi, ne puteți scrie la {email}. Vă răspundem în termen de o lună. Este posibil să vă cerem mai întâi să vă confirmați identitatea.",
+            "Aveți, de asemenea, dreptul de a depune o plângere la Autoritatea Națională de Supraveghere a Prelucrării Datelor cu Caracter Personal (ANSPDCP), B-dul G-ral. Gheorghe Magheru nr. 28-30, sector 1, 010336 București, https://www.dataprotection.ro, sau la autoritatea din statul UE în care locuiți."
+          ]
+        },
+        {
+          "id": "security",
+          "title": "Cum vă protejăm datele",
+          "body": [
+            "Site-ul este disponibil doar printr-o conexiune criptată (HTTPS), parolele sunt păstrate doar sub formă de amprente criptografice ireversibile, iar accesul la zona de administrare este limitat la atelier și la persoanele care întrețin site-ul pentru acesta."
+          ]
+        },
+        {
+          "id": "children",
+          "title": "Copiii",
+          "body": [
+            "Site-ul nu se adresează copiilor sub 16 ani și nu colectăm în mod intenționat datele acestora. Rezervările pot fi făcute doar de persoane majore."
+          ]
+        },
+        {
+          "id": "changes",
+          "title": "Modificări ale acestei politici",
+          "body": [
+            "Când modificăm această politică, publicăm noua versiune pe această pagină și actualizăm data din partea de sus. Dacă modificarea este importantă, îi informăm și pe titularii de cont prin e-mail."
+          ]
+        }
+      ]
+    },
+    "terms": {
+      "title": "Termeni și condiții de vânzare",
+      "intro": "Acești termeni se aplică utilizării site-ului simoninstruments.com, precum și rezervărilor și achizițiilor de instrumente făcute prin intermediul acestuia. Vă rugăm să îi citiți înainte de a face o rezervare. Dacă sunteți consumator, nicio prevedere din acești termeni nu vă limitează drepturile pe care vi le conferă legea.",
+      "sections": [
+        {
+          "id": "seller",
+          "title": "Vânzătorul",
+          "body": [
+            "Vânzătorul este {legalName}, {address}, cod de TVA {vat}, nr. de înregistrare la Registrul Comerțului {regCom}. E-mail: {email}. Telefon: {phone}.",
+            "Realizăm și vindem instrumente cu coarde și arcuș lucrate manual, în atelierul nostru din Reghin."
+          ]
+        },
+        {
+          "id": "instruments",
+          "title": "Instrumentele",
+          "body": [
+            "Fiecare instrument este finalizat, lucrat manual și unicat. Descriem și fotografiem fiecare instrument cât mai fidel posibil. Variațiile naturale ale lemnului, ale culorii și ale lacului fac parte din caracterul unui instrument lucrat manual și nu constituie defecte. Culorile pot apărea diferit pe ecranul dumneavoastră.",
+            "Fiecare instrument este însoțit de un certificat de autenticitate semnat.",
+            "Instrumentele realizate după specificațiile dumneavoastră (comenzi personalizate) se convin separat, în scris, iar acești termeni li se aplică doar în măsura în care acordul respectiv face trimitere la ei."
+          ]
+        },
+        {
+          "id": "prices",
+          "title": "Prețurile",
+          "body": [
+            "Prețurile sunt afișate în euro (EUR) și sunt prețuri finale, care includ TVA, acolo unde aceasta se aplică. Prețul aplicabil este cel afișat la momentul rezervării.",
+            "Instrumentele afișate cu mențiunea „preț la cerere” nu pot fi rezervate online. Vă rugăm să ne contactați pentru acestea.",
+            "Costul livrării, dacă există, precum și modul în care instrumentul este asigurat pe durata transportului vă sunt confirmate în scris înainte de plată."
+          ]
+        },
+        {
+          "id": "reservation",
+          "title": "Cum funcționează rezervarea",
+          "body": [
+            [
+              "Alegeți un instrument, adăugați-l în coș și completați formularul de rezervare, alegând livrarea la adresa dumneavoastră sau ridicarea personală de la atelier. Puteți rezerva cu sau fără cont.",
+              "Înainte de a trimite formularul, vă puteți verifica și corecta datele. Trimiterea formularului reprezintă o cerere de rezervare: nu sunteți încă obligat să cumpărați și nu plătiți nimic în această etapă.",
+              "Vă confirmăm imediat primirea, prin e-mail. Instrumentul este apoi păstrat pentru dumneavoastră și apare pe site ca rezervat.",
+              "Vă contactăm în 1-2 zile lucrătoare pentru a stabili detaliile plății și ale livrării sau ridicării.",
+              "O rezervare neplătită expiră automat după {holdHours} de ore, cu excepția cazului în care am convenit altfel cu dumneavoastră, iar instrumentul este pus din nou în vânzare. Puteți anula gratuit o rezervare oricând înainte de plată, printr-un mesaj scris.",
+              "Puteți avea cel mult 2 rezervări în așteptarea plății în același timp."
+            ],
+            "În cazul livrării, contractul de vânzare se încheie în momentul în care vi-l confirmăm în scris, prin e-mail, împreună cu prețul final și datele de plată. În cazul ridicării personale, contractul se încheie la atelierul nostru, atunci când vedeți instrumentul și îl plătiți; dacă plătiți în avans, înainte de a-l vedea, contractul se încheie la fel ca în cazul livrării.",
+            "Putem refuza o rezervare, de exemplu dacă între timp instrumentul a fost vândut sau dacă anunțul conține o eroare evidentă. În acest caz vă informăm prompt și nu plătiți nimic.",
+            "Contractul se încheie în limba română sau în limba engleză. Păstrăm evidența rezervării dumneavoastră și vă trimitem detaliile acesteia prin e-mail."
+          ]
+        },
+        {
+          "id": "payment",
+          "title": "Plata",
+          "body": [
+            "Nu primim plăți online. În cazul livrării, plătiți prin transfer bancar în contul pe care vi-l comunicăm în scris. În cazul ridicării personale, puteți plăti prin transfer bancar înainte de ridicare sau în numerar, la atelier, în limitele prevăzute de legislația din România.",
+            "Expediem instrumentul doar după ce plata integrală a intrat în contul nostru. Deveniți proprietarul instrumentului după achitarea integrală a prețului."
+          ]
+        },
+        {
+          "id": "delivery",
+          "title": "Livrarea și ridicarea personală",
+          "body": [
+            "Ambalăm fiecare instrument în mod profesionist și îl livrăm la adresa indicată de dumneavoastră, prin intermediul unei firme de curierat sau de transport alese de noi. Modalitatea de livrare, costul, asigurarea și data estimată vă sunt confirmate în scris înainte de plată. Cu excepția cazului în care convenim altfel, livrăm în cel mult 30 de zile de la primirea plății.",
+            "Riscul de pierdere sau deteriorare se transferă asupra dumneavoastră în momentul în care dumneavoastră sau o persoană desemnată de dumneavoastră, alta decât transportatorul, intrați în posesia instrumentului. Vă rugăm să verificați coletul la livrare și să consemnați la curier orice deteriorare vizibilă.",
+            "Ridicarea personală se face pe bază de programare, la atelierul nostru din {address}. Stabilim împreună cu dumneavoastră data și ora."
+          ]
+        },
+        {
+          "id": "withdrawal",
+          "title": "Dreptul de retragere (instrumente livrate)",
+          "body": [
+            "Dacă sunteți consumator și vă livrăm instrumentul, aveți dreptul de a vă retrage din contract în termen de 14 zile, fără a preciza motivele. Perioada de retragere expiră după 14 zile de la ziua în care dumneavoastră sau o persoană desemnată de dumneavoastră, alta decât transportatorul, intrați în posesia fizică a instrumentului.",
+            "Pentru a vă exercita dreptul de retragere, trebuie să ne informați cu privire la decizia dumneavoastră printr-o declarație neechivocă, trimisă prin e-mail la {email} sau prin poștă la {address}, înainte de expirarea perioadei de retragere. Puteți folosi modelul de formular de retragere de mai jos, dar nu este obligatoriu.",
+            "Dacă vă retrageți, vă rambursăm toate sumele primite de la dumneavoastră, inclusiv costul livrării standard, fără întârzieri nejustificate și în cel mult 14 zile de la data la care suntem informați cu privire la decizia dumneavoastră. Efectuăm rambursarea folosind aceeași modalitate de plată pe care ați folosit-o, cu excepția cazului în care am convenit expres altfel, și nu veți suporta niciun comision pentru rambursare. Putem amâna rambursarea până la primirea instrumentului sau până când ne dovediți că l-ați expediat, oricare dintre aceste momente survine primul. Dacă ați ales o modalitate de livrare mai costisitoare decât livrarea standard oferită de noi, nu vă rambursăm diferența.",
+            "Vă rugăm să ne trimiteți instrumentul înapoi, la atelierul nostru din {address}, fără întârzieri nejustificate și în cel mult 14 zile de la data la care ne-ați comunicat retragerea. Costul direct al returnării este suportat de dumneavoastră. Din cauza dimensiunilor, instrumentele nu pot fi returnate prin poșta obișnuită; vă comunicăm o estimare a costului returnării în confirmarea scrisă, înainte de încheierea contractului.",
+            "Răspundeți doar pentru diminuarea valorii instrumentului rezultată din manipularea acestuia în alt mod decât cel necesar pentru determinarea naturii, calităților și funcționării sale. Îl puteți despacheta, examina și cânta cu grijă, așa cum ați putea face într-un magazin. Vă rugăm să îl returnați în ambalajul original, bine protejat.",
+            "Dacă vedeți instrumentul la atelierul nostru și îl cumpărați acolo, contractul se încheie în spațiul nostru comercial, iar acest drept de retragere nu se aplică. Dacă plătiți în avans și ridicați instrumentul ulterior, dreptul de retragere se aplică la fel ca în cazul livrării, iar termenul de 14 zile începe din ziua în care ridicați instrumentul."
+          ]
+        },
+        {
+          "id": "withdrawal-form",
+          "title": "Model de formular de retragere",
+          "body": [
+            "Completați și trimiteți acest formular doar dacă doriți să vă retrageți din contract.",
+            [
+              "Către: {legalName}, {address}, {email}",
+              "Prin prezenta vă informez/informăm (*) cu privire la retragerea mea/noastră (*) din contractul referitor la vânzarea următoarelor produse (*)/prestarea următoarelor servicii (*):",
+              "Comandat la data (*)/primit la data (*):",
+              "Numele consumatorului (consumatorilor):",
+              "Adresa consumatorului (consumatorilor):",
+              "Semnătura consumatorului (consumatorilor) (doar în cazul în care acest formular este notificat pe hârtie):",
+              "Data:"
+            ],
+            "(*) Se elimină mențiunea inutilă."
+          ]
+        },
+        {
+          "id": "guarantee",
+          "title": "Garanția legală de conformitate",
+          "body": [
+            "Dacă sunteți consumator, răspundem pentru orice neconformitate care există la momentul livrării instrumentului și care devine evidentă în termen de doi ani. În acest caz aveți dreptul, în condițiile legii, la repararea sau înlocuirea instrumentului, la reducerea prețului sau la încetarea contractului. Deoarece fiecare instrument este unicat, înlocuirea cu un instrument identic nu este posibilă.",
+            "Modificările naturale ale lemnului și ale lacului în timp, uzura normală, precum și deteriorările cauzate de îngrijirea necorespunzătoare, umiditate, temperatură, accidente sau intervenții ale altor persoane nu constituie neconformități. Vă rugăm să ne anunțați o problemă imediat ce o observați."
+          ]
+        },
+        {
+          "id": "complaints",
+          "title": "Reclamații și soluționarea litigiilor",
+          "body": [
+            "Dacă ceva nu este în regulă, vă rugăm să ne scrieți mai întâi la {email}. Vă răspundem cât mai repede posibil și în cel mult 30 de zile.",
+            "De asemenea, vă puteți adresa Autorității Naționale pentru Protecția Consumatorilor, ANPC (https://anpc.ro), sau puteți apela la serviciul acesteia de soluționare alternativă a litigiilor, SAL (https://anpc.ro/ce-este-sal/). Pentru un litigiu transfrontalier în UE, vă poate ajuta Centrul European al Consumatorilor din țara dumneavoastră (https://www.eccromania.ro în România)."
+          ]
+        },
+        {
+          "id": "website",
+          "title": "Utilizarea site-ului și contul dumneavoastră",
+          "body": [
+            "Vă rugăm să vă păstrați parola în siguranță și datele actualizate. Putem suspenda un cont folosit pentru a abuza de site sau de alți clienți.",
+            "Textele, fotografiile, materialele video și înregistrările audio de pe site ne aparțin. Vă rugăm să nu le reutilizați fără acordul nostru scris."
+          ]
+        },
+        {
+          "id": "liability",
+          "title": "Răspunderea",
+          "body": [
+            "Nu răspundem pentru întârzierile sau neexecutările cauzate de evenimente aflate în afara controlului nostru rezonabil (forță majoră). Nicio prevedere din acești termeni nu ne limitează răspunderea acolo unde legea nu permite o astfel de limitare."
+          ]
+        },
+        {
+          "id": "law",
+          "title": "Legea aplicabilă și instanțele competente",
+          "body": [
+            "Acești termeni sunt guvernați de legea română. Dacă sunteți consumator și locuiți în altă țară, beneficiați în continuare de protecția oferită de dispozițiile imperative ale legii țării în care locuiți.",
+            "Litigiile sunt soluționate de instanțele competente din România. În calitate de consumator, vă puteți adresa și instanțelor din țara în care locuiți."
+          ]
+        },
+        {
+          "id": "changes",
+          "title": "Modificări ale acestor termeni",
+          "body": [
+            "Putem actualiza acești termeni. Versiunea aplicabilă rezervării dumneavoastră este cea în vigoare în ziua în care ați făcut-o. Acești termeni sunt disponibili în mai multe limbi; în caz de neconcordanță, prevalează versiunea în limba română."
+          ]
+        }
+      ]
     }
   }
 }

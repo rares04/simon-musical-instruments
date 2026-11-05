@@ -224,12 +224,12 @@ describe('instrument text', async () => {
   // Loosely typed messages, as in the app (no global next-intl key augmentation).
   const tEn = createTranslator({
     locale: 'en',
-    messages: en as AbstractIntlMessages,
+    messages: en as unknown as AbstractIntlMessages,
     namespace: 'seo',
   }) as unknown as SeoTranslator
   const tDe = createTranslator({
     locale: 'de',
-    messages: de as AbstractIntlMessages,
+    messages: de as unknown as AbstractIntlMessages,
     namespace: 'seo',
   }) as unknown as SeoTranslator
   const cello = {
