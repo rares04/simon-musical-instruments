@@ -151,6 +151,23 @@ export function Footer() {
         <div className="mt-12 pt-8 border-t border-border/40">
           <div className="flex flex-col sm:flex-row justify-between items-center gap-4 text-sm text-muted-foreground">
             <p>{t('copyright', { year: new Date().getFullYear() })}</p>
+            <nav
+              aria-label={t('legal')}
+              className="flex flex-wrap items-center justify-center gap-x-4 gap-y-1"
+            >
+              <Link
+                href="/privacy"
+                className="inline-block py-0.5 hover:text-accent transition-colors cursor-pointer"
+              >
+                {t('privacy')}
+              </Link>
+              <Link
+                href="/terms"
+                className="inline-block py-0.5 hover:text-accent transition-colors cursor-pointer"
+              >
+                {t('terms')}
+              </Link>
+            </nav>
             <div className="flex items-center gap-4">
               <LanguageSwitcher variant="footer" />
               <span className="text-xs">{t('madeIn')}</span>
