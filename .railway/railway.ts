@@ -13,8 +13,8 @@ export default defineRailway(() => {
     build: {
       buildEnvironment: 'V3',
       builder: 'RAILPACK',
-      // The backup job lives in ops/backup and must not redeploy the web app.
-      watchPatterns: ['/**', '!/ops/**'],
+      // No watchPatterns on purpose: ['/**', '!/ops/**'] made Railway skip normal commits ("No
+      // changes to watched files"). Every commit deploys web, so an ops-only commit redeploys it too.
     },
     deploy: {
       startCommand: 'pnpm start',
