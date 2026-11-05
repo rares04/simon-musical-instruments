@@ -82,7 +82,7 @@ created.
 
 | Record | Value | Purpose |
 |---|---|---|
-| `@ ALIAS` | the Railway target `….up.railway.app` (Hostinger flattens it; resolves to the Railway edge `69.46.46.117`) | Website |
+| `@ A` | `153.52.255.26`, TTL 300 (**temporary**, since 2026-11-05; see below) | Website. Normally an `ALIAS` to the Railway target `….up.railway.app` |
 | `www CNAME` | the Railway target for `www` (added 2026-10-24, TTL 300) | `www` is a second Railway custom domain; it 301s to the apex |
 | `_railway-verify.www TXT` | `railway-verify=…` | Railway's ownership check for `www`. Keep it |
 | `@ MX` | `mx1/mx2.hostinger.com` | Paul's mailbox (Hostinger Mail) |
@@ -95,9 +95,22 @@ created.
 | `_dmarc TXT` | `v=DMARC1; p=none` | Monitoring only. Add `rua=` reporting, then move to `quarantine` |
 | `CAA` | none | Optional: restrict certificate issuers |
 
-The apex is a Hostinger **ALIAS** (flattened CNAME) to the Railway target, not a hard-coded IP, so
-an edge IP change at Railway is followed automatically. `dig` shows an A record only because of the
-flattening. `www` was added on 2026-10-24 as a second custom domain on the web service (Hobby allows
+**The apex is a temporary A record (since 2026-11-05).** It used to be a Hostinger **ALIAS**
+(flattened CNAME) to the Railway target, which follows Railway edge IP changes automatically. On
+2026-11-05 Hostinger's nameservers started answering SERVFAIL for the apex A/AAAA query, so the
+apex stopped resolving (`www`, a plain CNAME, kept working). The most likely cause is that
+Hostinger's flattening could not reach Railway's nameservers during a Railway network incident. The
+ALIAS was replaced with an A record to the IP the Railway target resolved to.
+
+- **Risk while it stays:** if Railway changes the edge IP, the apex breaks. Check it now and then:
+  `dig +short <railway target>` must equal `dig +short simoninstruments.com @ns1.dns-parking.com`.
+- **Revert:** once flattening works again (an ALIAS test on a spare subdomain resolves at
+  `@ns1.dns-parking.com`), delete the A record and re-add `@ ALIAS` to the Railway target shown
+  under the service's custom domains. Hostinger does not allow changing a record's type in place:
+  delete, then add. A zone snapshot and the exact rollback are kept privately.
+- **Longer term:** moving DNS to Cloudflare (free, CNAME flattening at the apex) is being evaluated.
+
+`www` was added on 2026-10-24 as a second custom domain on the web service (Hobby allows
 2 per service). A full zone snapshot from before that change is kept privately.
 
 Changing the zone: snapshot it first (hPanel → DNS → the record list), change one record, then
