@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest'
 import { readFileSync } from 'fs'
 import { join } from 'path'
-import { fillPlaceholders, LEGAL_PLACEHOLDERS } from '@/lib/legal/placeholders'
+import { fillPlaceholders, LEGAL_PLACEHOLDERS, LINK_PATTERN } from '@/lib/legal/placeholders'
 
 const LOCALES = ['en', 'ro', 'de', 'fr', 'nl', 'ja', 'ko', 'el'] as const
 
@@ -68,6 +68,29 @@ describe('legal pages messages', () => {
         expect(known.has(name.slice(1, -1) as never), `${path}: ${name}`).toBe(true)
       }
     }
+  })
+})
+
+describe('LINK_PATTERN', () => {
+  const links = (m: Record<string, unknown>) =>
+    strings(m.legal)
+      .flatMap(([, text]) => text.match(LINK_PATTERN) ?? [])
+      .sort()
+  const enLinks = links(load('en'))
+
+  it.each(LOCALES)('%s links exactly the same URLs as English', (locale) => {
+    expect(enLinks.length).toBeGreaterThan(0)
+    expect(links(load(locale))).toEqual(enLinks)
+  })
+
+  it('stops at full-width and sentence punctuation', () => {
+    expect('（https://anpc.ro）に'.match(LINK_PATTERN)).toEqual(['https://anpc.ro'])
+    expect('see https://anpc.ro/ce-este-sal/).'.match(LINK_PATTERN)).toEqual([
+      'https://anpc.ro/ce-este-sal/',
+    ])
+    expect('{email}宛て'.replace('{email}', 'a.b@example.com').match(LINK_PATTERN)).toEqual([
+      'a.b@example.com',
+    ])
   })
 })
 

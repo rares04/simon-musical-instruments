@@ -5,18 +5,16 @@ import { Footer } from '@/components/footer'
 import { Link } from '@/i18n/routing'
 import { formatDate } from '@/lib/format'
 import { LEGAL_VERSION, legalValues } from '@/lib/legal/company'
-import { fillPlaceholders, type LegalValues } from '@/lib/legal/placeholders'
+import { fillPlaceholders, LINK_PATTERN, type LegalValues } from '@/lib/legal/placeholders'
 import type { Locale } from '@/i18n/config'
 
 /** A paragraph, or a nested array for a bullet list. */
 type Block = string | string[]
 type Section = { id: string; title: string; body: Block[] }
 
-const LINK = /(https:\/\/[^\s)]+[^\s).,;:]|[\w.+-]+@[\w-]+\.[\w.-]*\w)/g
-
 /** Turns bare URLs and email addresses into links. */
 function linkify(text: string): ReactNode[] {
-  return text.split(LINK).map((part, i) => {
+  return text.split(LINK_PATTERN).map((part, i) => {
     if (i % 2 === 0) return part
     const href = part.startsWith('https://') ? part : `mailto:${part}`
     return (
